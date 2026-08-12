@@ -34,13 +34,13 @@ const copyDirectory = async (relativePath) => {
   console.log(`✓ ${relativePath}`);
 };
 
-const copySingleFile = async (relativePath) => {
+const copySingleFile = async (relativePath, targetRelativePath = relativePath) => {
   const source = resolve(sourceRoot, relativePath);
-  const target = resolve(targetRoot, relativePath);
+  const target = resolve(targetRoot, targetRelativePath);
   await access(source);
   await mkdir(dirname(target), { recursive: true });
   await copyFile(source, target);
-  console.log(`✓ ${relativePath}`);
+  console.log(`✓ ${targetRelativePath}`);
 };
 
 for (const folder of projectFolders) {
@@ -49,6 +49,17 @@ for (const folder of projectFolders) {
 
 await copyDirectory("public/assets/photos/brand");
 await copySingleFile("public/assets/photos/portrait shot.jpg");
+
+for (const icon of [
+  "favicon.ico",
+  "favicon-16x16.png",
+  "favicon-32x32.png",
+  "apple-touch-icon.png",
+  "android-chrome-192x192.png",
+  "android-chrome-512x512.png",
+]) {
+  await copySingleFile(`public/${icon}`);
+}
 
 for (const video of [
   "kuro-compressed.mp4",
@@ -67,5 +78,5 @@ for (const fontName of fontNames) {
   await copySingleFile(`public/assets/fonts/${fontName}`);
 }
 
-console.log(`Imported ${projectFolders.length} project folders, brand assets, portrait, 3 videos and ${fontNames.length} Butler/Averia font files from ../chowchow26.`);
+console.log(`Imported ${projectFolders.length} project folders, brand assets, Chow root icons, portrait, 3 videos and ${fontNames.length} Butler/Averia font files from ../chowchow26.`);
 console.log("Excluded the oversized Maloya PNG and unused Ravine hero-scroll video.");
