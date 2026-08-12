@@ -6,6 +6,7 @@ import { Carousel } from "@/components/content/Carousel";
 import { Gallery } from "@/components/content/Gallery";
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
+import { Timeline } from "@/components/content/Timeline";
 import { Form } from "@/components/forms/Form";
 import { Grid } from "@/components/layout/Grid";
 import { Split } from "@/components/layout/Split";
@@ -61,6 +62,7 @@ export function Section({ block, suppressSceneMotion = false }: SectionProps) {
   else if (layout === "media-overlay") body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}</div>;
   else if (layout === "gallery") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null}</>;
   else if (layout === "carousel") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{cards.length ? <Carousel>{cards}</Carousel> : null}</>;
+  else if (layout === "timeline") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{items.length ? <Timeline items={items} /> : null}</>;
   else if (layout === "media") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{media ? <Media media={media} className="section__media" /> : null}</>;
   else body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsGrid}</>;
 
