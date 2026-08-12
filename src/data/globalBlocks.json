@@ -8,23 +8,8 @@
       "header": {
         "eyebrow": "Chow Studio · Paris · La Réunion",
         "title": "Sites, identités et directions visuelles.",
-        "text": [
-          "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue."
-        ],
-        "links": [
-          {
-            "label": "Voir les projets",
-            "href": "/projets",
-            "intent": "navigate",
-            "priority": "primary"
-          },
-          {
-            "label": "Découvrir les accompagnements",
-            "href": "/approche",
-            "intent": "navigate",
-            "priority": "secondary"
-          }
-        ]
+        "text": ["Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue."],
+        "links": [{"label":"Voir les projets","href":"/projets","intent":"navigate","priority":"primary"},{"label":"Découvrir les accompagnements","href":"/approche","intent":"navigate","priority":"secondary"}]
       },
       "media": "home-cover"
     }
@@ -33,66 +18,32 @@
     "id": "projects-featured",
     "type": "Section",
     "layout": "carousel",
-    "source": {
-      "collection": "projects",
-      "query": {
-        "featured": true,
-        "limit": 3
-      }
-    },
-    "content": {
-      "header": {
-        "eyebrow": "Projets sélectionnés",
-        "title": "Le travail comme preuve.",
-        "text": [
-          "Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet. Chaque étude de cas montre le contexte, les choix et la réponse construite."
-        ]
-      }
-    }
+    "source": {"collection":"projects","query":{"featured":true,"limit":3}},
+    "content": {"header":{"eyebrow":"Projets sélectionnés","title":"Le travail comme preuve.","text":["Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet. Chaque étude de cas montre le contexte, les choix et la réponse construite."]}}
   },
   "project-gallery": {
     "id": "project-gallery",
     "type": "Section",
     "layout": "grid",
-    "source": {
-      "collection": "projects"
-    },
-    "content": {
-      "header": {
-        "eyebrow": "Projets & études de cas",
-        "title": "Des réponses différentes pour des contextes différents.",
-        "text": [
-          "Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."
-        ]
-      }
-    }
+    "source": {"collection":"projects"},
+    "content": {"header":{"eyebrow":"Projets & études de cas","title":"Des réponses différentes pour des contextes différents.","text":["Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."]}}
   },
   "home-services": {
     "id": "home-services",
     "type": "Section",
-    "layout": "grid",
-    "source": {
-      "collection": "services",
-      "query": {
-        "featured": true,
-        "limit": 3
-      }
-    },
+    "layout": "content-switcher",
     "content": {
       "header": {
         "eyebrow": "Accompagnements",
-        "title": "Créer. Clarifier. Faire évoluer.",
-        "text": [
-          "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Chow Studio intervient pour construire une présence, remettre de l’ordre dans l’existant ou faire évoluer un système devenu trop limité."
-        ],
-        "links": [
-          {
-            "label": "Voir les accompagnements",
-            "href": "/approche",
-            "intent": "navigate"
-          }
-        ]
-      }
+        "title": "De quoi avez-vous besoin ?",
+        "text": ["Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."],
+        "links": [{"label":"Voir tous les accompagnements","href":"/approche","intent":"navigate"}]
+      },
+      "items": [
+        {"id":"service-create","eyebrow":"Vous partez de zéro ou presque.","title":"Créer","text":["Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."],"tags":["Site web","Identité visuelle","Direction artistique"],"links":[{"label":"Construire votre présence","href":"/contact","intent":"contact","priority":"primary"}]},
+        {"id":"service-clarify","eyebrow":"Quelque chose existe déjà, mais manque de netteté.","title":"Clarifier","text":["Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."],"tags":["Audit","Refonte","Architecture de contenu","UX/UI"],"links":[{"label":"Clarifier l’existant","href":"/contact","intent":"contact","priority":"primary"}]},
+        {"id":"service-evolve","eyebrow":"Votre système fonctionne, mais il est devenu trop limité.","title":"Faire évoluer","text":["Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux besoins."],"tags":["Refonte","Évolution du site","Direction visuelle","Supports complémentaires"],"links":[{"label":"Faire évoluer le projet","href":"/contact","intent":"contact","priority":"primary"}]}
+      ]
     }
   },
   "approach-default": {
@@ -100,303 +51,23 @@
     "type": "Section",
     "layout": "timeline",
     "content": {
-      "header": {
-        "eyebrow": "L’approche",
-        "title": "Comprendre d’abord. Construire ensuite.",
-        "text": [
-          "Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."
-        ]
-      },
+      "header": {"eyebrow":"L’approche","title":"Comprendre d’abord. Construire ensuite.","text":["Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."]},
       "items": [
-        {
-          "id": "approach-understand",
-          "eyebrow": "Cadrage",
-          "title": "Comprendre",
-          "text": [
-            "Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."
-          ]
-        },
-        {
-          "id": "approach-structure",
-          "eyebrow": "Architecture",
-          "title": "Structurer",
-          "text": [
-            "Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."
-          ]
-        },
-        {
-          "id": "approach-design",
-          "eyebrow": "Direction",
-          "title": "Concevoir",
-          "text": [
-            "Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."
-          ]
-        },
-        {
-          "id": "approach-build",
-          "eyebrow": "Réalisation",
-          "title": "Construire",
-          "text": [
-            "La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."
-          ]
-        }
+        {"id":"approach-understand","eyebrow":"Cadrage","title":"Comprendre","text":["Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."]},
+        {"id":"approach-structure","eyebrow":"Architecture","title":"Structurer","text":["Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."]},
+        {"id":"approach-design","eyebrow":"Direction","title":"Concevoir","text":["Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."]},
+        {"id":"approach-build","eyebrow":"Réalisation","title":"Construire","text":["La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."]}
       ]
     }
   },
-  "studio-founders": {
-    "id": "studio-founders",
-    "type": "Section",
-    "layout": "grid",
-    "content": {
-      "header": {
-        "eyebrow": "Le studio",
-        "title": "Un même regard, du concept à l’interface.",
-        "text": [
-          "Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."
-        ]
-      },
-      "items": [
-        {
-          "eyebrow": "Design · Direction artistique · Frontend",
-          "title": "Channy How-Choong",
-          "text": [
-            "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
-          ],
-          "media": [
-            "studio-founder-1"
-          ]
-        }
-      ]
-    }
-  },
-  "approach-method": {
-    "id": "approach-method",
-    "type": "Section",
-    "layout": "grid",
-    "source": {
-      "collection": "approach"
-    },
-    "content": {
-      "header": {
-        "eyebrow": "Méthode",
-        "title": "Clarifier, structurer, concevoir, livrer.",
-        "text": [
-          "Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."
-        ]
-      }
-    }
-  },
-  "journal-default": {
-    "id": "journal-default",
-    "type": "Section",
-    "layout": "carousel",
-    "source": {
-      "collection": "journal",
-      "query": {
-        "featured": true,
-        "limit": 3
-      }
-    },
-    "content": {
-      "header": {
-        "eyebrow": "Journal",
-        "title": "Design, structure et présence digitale.",
-        "text": [
-          "Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."
-        ]
-      }
-    },
-    "itemAppearance": {
-      "frame": true,
-      "effect": "none"
-    }
-  },
-  "contact-default": {
-    "id": "contact-default",
-    "type": "Section",
-    "layout": "split",
-    "surface": "solid",
-    "color": "accent",
-    "content": {
-      "header": {
-        "eyebrow": "Parler d’un projet",
-        "title": "Quelques lignes suffisent pour commencer.",
-        "text": [
-          "Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."
-        ]
-      },
-      "form": "contact"
-    }
-  },
-  "final-cta": {
-    "id": "final-cta",
-    "type": "Section",
-    "layout": "statement",
-    "tone": "inverse",
-    "content": {
-      "header": {
-        "eyebrow": "Un projet en tête ?",
-        "title": "Commençons par le rendre clair.",
-        "text": [
-          "Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."
-        ],
-        "links": [
-          {
-            "label": "Parler d’un projet",
-            "href": "/contact",
-            "intent": "contact",
-            "priority": "secondary"
-          }
-        ]
-      }
-    }
-  },
-  "links-profile": {
-    "id": "links-profile",
-    "type": "Section",
-    "layout": "statement",
-    "content": {
-      "header": {
-        "title": "Chow Studio",
-        "text": [
-          "Design web, identité visuelle et direction digitale entre Paris et La Réunion."
-        ],
-        "media": "studio-founder-1"
-      }
-    }
-  },
-  "links-primary": {
-    "id": "links-primary",
-    "type": "Section",
-    "layout": "list",
-    "source": {
-      "collection": "links",
-      "query": {
-        "group": "primary",
-        "enabled": true
-      }
-    }
-  },
-  "legal-notice-default": {
-    "id": "legal-notice-default",
-    "type": "Section",
-    "layout": "list",
-    "content": {
-      "header": {
-        "eyebrow": "Informations",
-        "title": "Mentions légales"
-      },
-      "items": [
-        {
-          "eyebrow": "01",
-          "title": "Édition",
-          "text": [
-            "Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."
-          ]
-        },
-        {
-          "eyebrow": "02",
-          "title": "Design & développement",
-          "text": [
-            "Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
-          ]
-        },
-        {
-          "eyebrow": "03",
-          "title": "Hébergement",
-          "text": [
-            "Ce site est hébergé par Netlify, Inc."
-          ]
-        },
-        {
-          "eyebrow": "04",
-          "title": "Propriété intellectuelle",
-          "text": [
-            "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."
-          ]
-        }
-      ]
-    }
-  },
-  "site-footer": {
-    "id": "site-footer",
-    "type": "Section",
-    "layout": "list",
-    "content": {
-      "header": {
-        "eyebrow": [
-          "Chow Studio",
-          "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
-        ],
-        "links": [
-          {
-            "label": "Projets",
-            "href": "/projets",
-            "intent": "navigate"
-          },
-          {
-            "label": "Accompagnements",
-            "href": "/approche",
-            "intent": "navigate"
-          },
-          {
-            "label": "Journal",
-            "href": "/journal",
-            "intent": "navigate"
-          },
-          {
-            "label": "Parler d’un projet",
-            "href": "/contact",
-            "intent": "contact"
-          },
-          {
-            "label": "LinkedIn",
-            "href": "https://www.linkedin.com/in/channyhow",
-            "intent": "navigate"
-          },
-          {
-            "label": "Mentions légales",
-            "href": "/mentions-legales",
-            "intent": "navigate"
-          }
-        ],
-        "meta": [
-          {
-            "label": "Design et développement",
-            "value": "Channy How-Choong · Chow Studio"
-          },
-          {
-            "label": "© 2026 CHOW STUDIO · TOUS DROITS RÉSERVÉS"
-          }
-        ]
-      }
-    }
-  },
-  "not-found-default": {
-    "id": "not-found-default",
-    "type": "Section",
-    "layout": "statement",
-    "variant": "editorial",
-    "content": {
-      "header": {
-        "eyebrow": "404 | Page introuvable",
-        "title": "Cette page n’est plus ici.",
-        "text": [
-          "Revenez à l’accueil ou poursuivez avec les projets du studio."
-        ],
-        "links": [
-          {
-            "label": "Retour à l’accueil",
-            "href": "/",
-            "intent": "navigate"
-          },
-          {
-            "label": "Voir les projets",
-            "href": "/projets",
-            "intent": "navigate"
-          }
-        ]
-      }
-    }
-  }
+  "studio-founders": {"id":"studio-founders","type":"Section","layout":"grid","content":{"header":{"eyebrow":"Le studio","title":"Un même regard, du concept à l’interface.","text":["Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."]},"items":[{"eyebrow":"Design · Direction artistique · Frontend","title":"Channy How-Choong","text":["Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."],"media":["studio-founder-1"]}]}},
+  "approach-method": {"id":"approach-method","type":"Section","layout":"grid","source":{"collection":"approach"},"content":{"header":{"eyebrow":"Méthode","title":"Clarifier, structurer, concevoir, livrer.","text":["Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."]}}},
+  "journal-default": {"id":"journal-default","type":"Section","layout":"carousel","source":{"collection":"journal","query":{"featured":true,"limit":3}},"content":{"header":{"eyebrow":"Journal","title":"Design, structure et présence digitale.","text":["Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."]}},"itemAppearance":{"frame":true,"effect":"none"}},
+  "contact-default": {"id":"contact-default","type":"Section","layout":"split","surface":"solid","color":"accent","content":{"header":{"eyebrow":"Parler d’un projet","title":"Quelques lignes suffisent pour commencer.","text":["Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."]},"form":"contact"}},
+  "final-cta": {"id":"final-cta","type":"Section","layout":"statement","tone":"inverse","content":{"header":{"eyebrow":"Un projet en tête ?","title":"Commençons par le rendre clair.","text":["Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."],"links":[{"label":"Parler d’un projet","href":"/contact","intent":"contact","priority":"secondary"}]}}},
+  "links-profile": {"id":"links-profile","type":"Section","layout":"statement","content":{"header":{"title":"Chow Studio","text":["Design web, identité visuelle et direction digitale entre Paris et La Réunion."],"media":"studio-founder-1"}}},
+  "links-primary": {"id":"links-primary","type":"Section","layout":"list","source":{"collection":"links","query":{"group":"primary","enabled":true}}},
+  "legal-notice-default": {"id":"legal-notice-default","type":"Section","layout":"list","content":{"header":{"eyebrow":"Informations","title":"Mentions légales"},"items":[{"eyebrow":"01","title":"Édition","text":["Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."]},{"eyebrow":"02","title":"Design & développement","text":["Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."]},{"eyebrow":"03","title":"Hébergement","text":["Ce site est hébergé par Netlify, Inc."]},{"eyebrow":"04","title":"Propriété intellectuelle","text":["Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."]}]}},
+  "site-footer": {"id":"site-footer","type":"Section","layout":"list","content":{"header":{"eyebrow":["Chow Studio","Design web · Identité visuelle · Direction digitale · Paris · La Réunion"],"links":[{"label":"Projets","href":"/projets","intent":"navigate"},{"label":"Accompagnements","href":"/approche","intent":"navigate"},{"label":"Journal","href":"/journal","intent":"navigate"},{"label":"Parler d’un projet","href":"/contact","intent":"contact"},{"label":"LinkedIn","href":"https://www.linkedin.com/in/channyhow","intent":"navigate"},{"label":"Mentions légales","href":"/mentions-legales","intent":"navigate"}],"meta":[{"label":"Design et développement","value":"Channy How-Choong · Chow Studio"},{"label":"© 2026 CHOW STUDIO · TOUS DROITS RÉSERVÉS"}]}}},
+  "not-found-default": {"id":"not-found-default","type":"Section","layout":"statement","variant":"editorial","content":{"header":{"eyebrow":"404 | Page introuvable","title":"Cette page n’est plus ici.","text":["Revenez à l’accueil ou poursuivez avec les projets du studio."],"links":[{"label":"Retour à l’accueil","href":"/","intent":"navigate"},{"label":"Voir les projets","href":"/projets","intent":"navigate"}]}}}
 }
