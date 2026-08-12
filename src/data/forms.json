@@ -2,7 +2,7 @@
   "contact": {
     "id": "project-enquiry-form",
     "name": "project-enquiry",
-    "submitLabel": "Démarrer un projet",
+    "submitLabel": "Parler de mon projet",
     "fields": [
       {
         "name": "name",
@@ -17,54 +17,53 @@
         "required": true
       },
       {
-        "name": "phone",
-        "label": "Téléphone",
-        "type": "tel"
-      },
-      {
-        "name": "location",
-        "label": "Localisation du projet",
+        "name": "company",
+        "label": "Marque, studio ou entreprise",
         "type": "text"
       },
       {
         "name": "projectType",
-        "label": "Type de projet",
+        "label": "De quoi avez-vous besoin ?",
         "type": "select",
         "required": true,
         "options": [
-          {
-            "label": "Appartement",
-            "value": "apartment"
-          },
-          {
-            "label": "Maison",
-            "value": "house"
-          },
-          {
-            "label": "Villa / résidence",
-            "value": "villa"
-          },
-          {
-            "label": "Lieu de vie / hospitalité",
-            "value": "hospitality"
-          },
-          {
-            "label": "Autre",
-            "value": "other"
-          }
+          { "label": "Créer un site web", "value": "website" },
+          { "label": "Refondre ou améliorer un site existant", "value": "redesign" },
+          { "label": "Créer ou faire évoluer une identité visuelle", "value": "identity" },
+          { "label": "Clarifier mon projet et définir la bonne direction", "value": "clarification" },
+          { "label": "Plusieurs de ces besoins", "value": "combined" },
+          { "label": "Autre / pas encore défini", "value": "other" }
         ]
       },
       {
         "name": "timeline",
-        "label": "Calendrier envisagé",
-        "type": "text"
+        "label": "Quand aimeriez-vous avancer ?",
+        "type": "select",
+        "options": [
+          { "label": "Dès que possible", "value": "asap" },
+          { "label": "Dans les 1 à 3 mois", "value": "1-3-months" },
+          { "label": "Dans les 3 à 6 mois", "value": "3-6-months" },
+          { "label": "Plus tard / à définir", "value": "later" }
+        ]
+      },
+      {
+        "name": "budget",
+        "label": "Budget envisagé",
+        "type": "select",
+        "options": [
+          { "label": "Moins de 1 000 €", "value": "under-1000" },
+          { "label": "1 000 – 2 000 €", "value": "1000-2000" },
+          { "label": "2 000 – 4 000 €", "value": "2000-4000" },
+          { "label": "4 000 € et plus", "value": "4000-plus" },
+          { "label": "À définir ensemble", "value": "to-define" }
+        ]
       },
       {
         "name": "message",
-        "label": "Le projet",
+        "label": "Parlez-moi du projet",
         "type": "textarea",
         "required": true,
-        "placeholder": "Surface, localisation, usages, état existant, calendrier, contraintes et ambiance recherchée…"
+        "placeholder": "Ce qui existe déjà, ce que vous souhaitez créer ou faire évoluer, votre contexte et les éventuelles contraintes à connaître…"
       }
     ]
   },
@@ -89,7 +88,8 @@
         "name": "message",
         "label": "Votre projet",
         "type": "textarea",
-        "required": true
+        "required": true,
+        "placeholder": "En quelques lignes, où en est le projet et de quoi avez-vous besoin ?"
       }
     ]
   }
