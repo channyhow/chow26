@@ -66,58 +66,90 @@
       }
     }
   },
-  "home-services": {
-    "id": "home-services",
-    "type": "Section",
-    "layout": "list",
-    "source": {
-      "collection": "services",
-      "query": {
-        "featured": true,
-        "limit": 3
-      }
-    },
-    "content": {
-      "header": {
-        "eyebrow": "Accompagnements",
-        "title": "Créer. Clarifier. Faire évoluer.",
-        "text": [
-          "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Chow Studio intervient pour construire une présence, remettre de l’ordre dans l’existant ou faire évoluer un système devenu trop limité."
-        ],
-        "links": [
-          {
-            "label": "Voir les accompagnements",
-            "href": "/approche",
-            "intent": "navigate"
-          }
-        ]
-      }
-    }
-  },
-"approach-default": {
-  "id": "approach-default",
+"home-services": {
+  "id": "home-services",
   "type": "Section",
+  "layout": "content-switcher",
   "content": {
     "header": {
-      "eyebrow": "L’approche",
-      "title": "Du premier échange à une présence cohérente."
+      "eyebrow": "Accompagnements",
+      "title": "De quoi avez-vous besoin ?",
+      "text": [
+        "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."
+      ],
+      "links": [
+        {
+          "label": "Voir tous les accompagnements",
+          "href": "/approche",
+          "intent": "navigate"
+        }
+      ]
     },
     "items": [
       {
-        "title": "Écouter",
-        "text": "Comprendre le projet, son contexte et ce qui doit réellement être clarifié."
+        "id": "service-create",
+        "eyebrow": "Vous partez de zéro ou presque.",
+        "title": "Créer",
+        "text": [
+          "Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."
+        ],
+        "tags": [
+          "Site web",
+          "Identité visuelle",
+          "Direction artistique"
+        ],
+        "links": [
+          {
+            "label": "Construire votre présence",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "primary"
+          }
+        ]
       },
       {
-        "title": "Définir",
-        "text": "Construire une direction visuelle et éditoriale cohérente."
+        "id": "service-clarify",
+        "eyebrow": "Quelque chose existe déjà, mais manque de netteté.",
+        "title": "Clarifier",
+        "text": [
+          "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."
+        ],
+        "tags": [
+          "Audit",
+          "Refonte",
+          "Architecture de contenu",
+          "UX/UI"
+        ],
+        "links": [
+          {
+            "label": "Clarifier l’existant",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "primary"
+          }
+        ]
       },
       {
-        "title": "Concevoir",
-        "text": "Transformer cette direction en identité, interface et système."
-      },
-      {
-        "title": "Déployer",
-        "text": "Créer une présence capable d’évoluer sans perdre sa cohérence."
+        "id": "service-evolve",
+        "eyebrow": "Votre système fonctionne, mais il est devenu trop limité.",
+        "title": "Faire évoluer",
+        "text": [
+          "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux besoins."
+        ],
+        "tags": [
+          "Refonte",
+          "Évolution du site",
+          "Direction visuelle",
+          "Supports complémentaires"
+        ],
+        "links": [
+          {
+            "label": "Faire évoluer le projet",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "primary"
+          }
+        ]
       }
     ]
   }
