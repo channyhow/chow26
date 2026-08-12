@@ -19,12 +19,13 @@
 }
 
 .brandingPage__keywords span {
+  @include pill-outline;
   padding: 0.55em 0.9em;
-  border: 1px solid currentColor;
-  border-radius: var(--radius-control, #{$radius-full});
 }
 
-.brandingPage__palette {
+.brandingPage__palette,
+.brandingPage__typePairing,
+.brandingPage__surfaces {
   display: grid;
   gap: $space-2;
 }
@@ -48,14 +49,16 @@
 }
 
 .brandingPage__swatchMeta p,
-.brandingPage__swatchMeta span {
+.brandingPage__swatchMeta span,
+.brandingPage__typeSample p,
+.brandingPage__typeSample span,
+.brandingPage__typeSample small {
   margin: 0;
-  opacity: $opacity-muted;
 }
 
-.brandingPage__typePairing {
-  display: grid;
-  gap: $space-2;
+.brandingPage__swatchMeta p,
+.brandingPage__swatchMeta span {
+  opacity: $opacity-muted;
 }
 
 .brandingPage__typeSample {
@@ -65,12 +68,6 @@
   gap: $space-3;
   padding: $space-3;
   border-top: 1px solid currentColor;
-}
-
-.brandingPage__typeSample p,
-.brandingPage__typeSample span,
-.brandingPage__typeSample small {
-  margin: 0;
 }
 
 .brandingPage__typeSample--heading p {
@@ -101,11 +98,6 @@
 
 .brandingPage__imagery > :first-child {
   grid-column: 1 / -1;
-}
-
-.brandingPage__surfaces {
-  display: grid;
-  gap: $space-2;
 }
 
 .brandingPage__surface {
