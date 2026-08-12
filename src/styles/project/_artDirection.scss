@@ -8,6 +8,8 @@
 ================================== */
 
 .site {
+  --font-heading: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
   --project-section-space: clamp(5rem, 10vw, 10rem);
   --project-section-space-compact: clamp(#{$space-4}, 8vw, 8rem);
   --project-section-space-wide: clamp(8rem, 16vw, 16rem);
