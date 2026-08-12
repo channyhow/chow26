@@ -185,7 +185,7 @@
     "type": "Section",
     "layout": "split",
     "surface": "solid",
-    "color": "secondary",
+    "color": "accent",
     "content": {
       "header": {
         "eyebrow": "Parler d’un projet",
