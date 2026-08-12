@@ -5,10 +5,10 @@
     "layout": "media-overlay",
     "content": {
       "header": {
-        "eyebrow": "Atmosphere Studio · Paris · La Réunion",
-        "title": "Architecture intérieure. Usages, lumière, matières.",
+        "eyebrow": "Chow Studio · Paris · La Réunion",
+        "title": "Sites, identités et directions visuelles, pensés avec clarté.",
         "text": [
-          "Studio d’architecture intérieure entre Paris, l’Île-de-France et La Réunion, pour des projets résidentiels sobres, sensibles et faciles à habiter."
+          "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue."
         ],
         "links": [
           {
@@ -18,7 +18,7 @@
             "priority": "primary"
           },
           {
-            "label": "L’approche",
+            "label": "Découvrir les accompagnements",
             "href": "/approche",
             "intent": "navigate",
             "priority": "secondary"
@@ -42,9 +42,9 @@
     "content": {
       "header": {
         "eyebrow": "Projets sélectionnés",
-        "title": "Paris. Lisbonne. Bali.",
+        "title": "Le travail comme preuve.",
         "text": [
-          "Trois lieux, trois réponses construites à partir des usages, de la lumière et des matières."
+          "Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet. Chaque étude de cas montre le contexte, les choix et la réponse construite."
         ]
       }
     }
@@ -58,10 +58,10 @@
     },
     "content": {
       "header": {
-        "eyebrow": "Projets résidentiels",
-        "title": "Passages, matières, lumière.",
+        "eyebrow": "Projets & études de cas",
+        "title": "Des réponses différentes pour des contextes différents.",
         "text": [
-          "Chaque projet répond à un lieu, à ses usages et à une manière particulière d’habiter."
+          "Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."
         ]
       }
     }
@@ -79,10 +79,17 @@
     },
     "content": {
       "header": {
-        "eyebrow": "Services",
-        "title": "Du plan au détail.",
+        "eyebrow": "Accompagnements",
+        "title": "Créer. Clarifier. Faire évoluer.",
         "text": [
-          "Architecture intérieure, direction d’ambiance, mobilier et stylisme, selon l’état d’avancement du projet."
+          "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Chow Studio intervient pour construire une présence, remettre de l’ordre dans l’existant ou faire évoluer un système devenu trop limité."
+        ],
+        "links": [
+          {
+            "label": "Voir les accompagnements",
+            "href": "/approche",
+            "intent": "navigate"
+          }
         ]
       }
     }
@@ -96,10 +103,11 @@
     },
     "content": {
       "header": {
-        "eyebrow": "Approche",
-        "title": "Les usages d’abord.",
+        "eyebrow": "Accompagnements",
+        "title": "Comprendre d’abord. Construire ensuite.",
         "text": [
-          "Circulations, lumière, volumes et contraintes du lieu guident le projet. Les matières et le mobilier viennent ensuite préciser la réponse."
+          "Un site ou une identité ne commence pas par une interface. Il commence par ce qui doit être compris : le projet, son public, son positionnement, ses contenus et ce que l’expérience doit permettre de faire.",
+          "Cette clarification guide ensuite la structure, la direction visuelle et le développement, avec un même fil conducteur du premier cadrage à la mise en ligne."
         ]
       }
     }
@@ -111,30 +119,20 @@
     "content": {
       "header": {
         "eyebrow": "Le studio",
-        "title": "Observer avant de transformer.",
+        "title": "Un même regard, du concept à l’interface.",
         "text": [
-          "Fondé à la Réunion par Maëlle Payet et Guillaume Hoarau, Atmosphere Studio travaille à partir du lieu, de ses usages et de sa lumière pour construire des intérieurs clairs, sensibles et durables."
+          "Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."
         ]
       },
       "items": [
         {
-          "eyebrow": "Cofondatrice · Architecture intérieure",
-          "title": "Maëlle Payet",
+          "eyebrow": "Design · Direction artistique · Frontend",
+          "title": "Channy How-Choong",
           "text": [
-            "Maëlle travaille les volumes, les circulations et les usages, de l’intention initiale aux matières et aux finitions."
+            "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
           ],
           "media": [
             "studio-founder-1"
-          ]
-        },
-        {
-          "eyebrow": "Cofondateur · Direction d’ambiance",
-          "title": "Guillaume Hoarau",
-          "text": [
-            "Guillaume compose les couleurs, le mobilier et la lumière pour donner à chaque projet une atmosphère cohérente et personnelle."
-          ],
-          "media": [
-            "studio-founder-2"
           ]
         }
       ]
@@ -149,10 +147,10 @@
     },
     "content": {
       "header": {
-        "eyebrow": "Approche",
-        "title": "Du lieu à l’atmosphère.",
+        "eyebrow": "Méthode",
+        "title": "Clarifier, structurer, concevoir, livrer.",
         "text": [
-          "Trois principes guident les décisions, de la première esquisse aux derniers détails."
+          "Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."
         ]
       }
     }
@@ -171,7 +169,10 @@
     "content": {
       "header": {
         "eyebrow": "Journal",
-        "title": "Notes d’architecture intérieure."
+        "title": "Design, structure et présence digitale.",
+        "text": [
+          "Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."
+        ]
       }
     },
     "itemAppearance": {
@@ -179,23 +180,23 @@
       "effect": "none"
     }
   },
- "contact-default": {
-  "id": "contact-default",
-  "type": "Section",
-  "layout": "split",
-  "surface": "solid",
-  "color": "secondary",
-  "content": {
-    "header": {
-      "eyebrow": "Démarrer un projet",
-      "title": "Parlons du lieu.",
-      "text": [
-        "Localisation, typologie, calendrier et usages suffisent pour commencer. Le studio accompagne des projets à Paris, en Île-de-France et à La Réunion."
-      ]
-    },
-    "form": "contact"
-  }
-},
+  "contact-default": {
+    "id": "contact-default",
+    "type": "Section",
+    "layout": "split",
+    "surface": "solid",
+    "color": "secondary",
+    "content": {
+      "header": {
+        "eyebrow": "Parler d’un projet",
+        "title": "Quelques lignes suffisent pour commencer.",
+        "text": [
+          "Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."
+        ]
+      },
+      "form": "contact"
+    }
+  },
   "final-cta": {
     "id": "final-cta",
     "type": "Section",
@@ -203,14 +204,14 @@
     "tone": "inverse",
     "content": {
       "header": {
-        "eyebrow": "Démarrer un projet",
-        "title": "Un lieu à transformer ?",
+        "eyebrow": "Un projet en tête ?",
+        "title": "Commençons par le rendre clair.",
         "text": [
-          "Quelques informations sur sa localisation, ses usages et vos besoins suffisent pour commencer."
+          "Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."
         ],
         "links": [
           {
-            "label": "Démarrer un projet",
+            "label": "Parler d’un projet",
             "href": "/contact",
             "intent": "contact",
             "priority": "secondary"
@@ -225,11 +226,11 @@
     "layout": "statement",
     "content": {
       "header": {
-        "title": "Atmosphere Studio",
+        "title": "Chow Studio",
         "text": [
-          "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion."
+          "Design web, identité visuelle et direction digitale entre Paris et La Réunion."
         ],
-        "media": "lisbon-living"
+        "media": "studio-founder-1"
       }
     }
   },
@@ -257,24 +258,16 @@
       "items": [
         {
           "eyebrow": "01",
-          "title": "Nature du projet",
+          "title": "Édition",
           "text": [
-            "Atmosphere Studio est une étude de cas fictive, conçue et développée par Channy How-Choong pour Chow Studio. Les noms, coordonnées, profils et projets servent de contenu de démonstration et ne représentent pas une agence réelle."
+            "Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."
           ]
         },
         {
           "eyebrow": "02",
-          "title": "Édition & création",
+          "title": "Design & développement",
           "text": [
-            "Direction artistique, UX/UI design et développement : Channy How-Choong · Chow Studio."
-          ],
-          "links": [
-            {
-              "label": "Chow Studio",
-              "href": "https://chow-studio.com/",
-              "intent": "navigate",
-              "variant": "arrow"
-            }
+            "Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
           ]
         },
         {
@@ -288,7 +281,7 @@
           "eyebrow": "04",
           "title": "Propriété intellectuelle",
           "text": [
-            "Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs. Ils sont présentés ici uniquement dans le cadre de cette étude de cas."
+            "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."
           ]
         }
       ]
@@ -301,8 +294,8 @@
     "content": {
       "header": {
         "eyebrow": [
-          "Atmosphere Studio",
-          "Architecture intérieure · Paris · Île-de-France · La Réunion."
+          "Chow Studio",
+          "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
         ],
         "links": [
           {
@@ -311,14 +304,24 @@
             "intent": "navigate"
           },
           {
-            "label": "Approche",
+            "label": "Accompagnements",
             "href": "/approche",
             "intent": "navigate"
           },
           {
-            "label": "Démarrer un projet",
+            "label": "Journal",
+            "href": "/journal",
+            "intent": "navigate"
+          },
+          {
+            "label": "Parler d’un projet",
             "href": "/contact",
             "intent": "contact"
+          },
+          {
+            "label": "LinkedIn",
+            "href": "https://www.linkedin.com/in/channyhow",
+            "intent": "navigate"
           },
           {
             "label": "Mentions légales",
@@ -328,7 +331,7 @@
         ],
         "meta": [
           {
-            "label": "Création du site",
+            "label": "Design et développement",
             "value": "Channy How-Choong · Chow Studio"
           },
           {
@@ -346,9 +349,9 @@
     "content": {
       "header": {
         "eyebrow": "404 | Page introuvable",
-        "title": "Cette page n’existe plus, ou n’a jamais habité ici.",
+        "title": "Cette page n’est plus ici.",
         "text": [
-          "Revenez à l’accueil ou poursuivez la visite à travers nos projets."
+          "Revenez à l’accueil ou poursuivez avec les projets du studio."
         ],
         "links": [
           {
