@@ -82,6 +82,15 @@
 .section[data-layout="statement"] .section__inner,
 .section[data-layout="text"] .section__inner { display: grid; justify-items: start; }
 
+#contact-default {
+  --section-space: clamp(3rem, 6vw, 6rem);
+  min-height: 100svh;
+}
+
+#contact-default .split {
+  align-items: start;
+}
+
 #site-footer {
   min-height: clamp(28rem, 55svh, 44rem);
   padding-block: clamp(#{$space-4}, 7vw, 6rem);
