@@ -5,6 +5,31 @@
 [build.environment]
   NODE_VERSION = "22.23.2"
 
+# Preserve useful legacy Chow Studio URLs and any backlinks pointing to them.
+[[redirects]]
+  from = "/work"
+  to = "/projets"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work/*"
+  to = "/projets"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comprendre"
+  to = "/approche"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comprendre/*"
+  to = "/approche"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404/index.html"
