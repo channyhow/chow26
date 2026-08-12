@@ -5,31 +5,20 @@
     "baseline": "Sites, identités et directions visuelles, pensés avec clarté.",
     "url": "https://chow-studio.com",
     "defaultLocale": "fr",
-    "supportedLocales": [
-      "fr"
-    ],
+    "supportedLocales": ["fr"],
     "seo": {
       "defaultTitle": "Chow Studio | Design web, identité visuelle et direction digitale",
       "defaultDescription": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales claires, singulières et bien construites, entre Paris et La Réunion.",
-      "defaultImage": "/assets/photos/brand/chow-studio-og.jpg",
+      "defaultImage": "/assets/photos/homepage31200.webp",
       "imageAlt": "Chow Studio — design web, identité visuelle et direction digitale",
       "siteType": "website",
       "organizationType": "ProfessionalService",
       "twitterCard": "summary_large_image",
       "themeColor": "#F6F5F3",
       "areaServed": [
-        {
-          "kind": "city",
-          "name": "Paris"
-        },
-        {
-          "kind": "region",
-          "name": "Île-de-France"
-        },
-        {
-          "kind": "region",
-          "name": "La Réunion"
-        }
+        {"kind":"city","name":"Paris"},
+        {"kind":"region","name":"Île-de-France"},
+        {"kind":"region","name":"La Réunion"}
       ],
       "knowsAbout": [
         "Design web",
@@ -43,24 +32,11 @@
       ],
       "offerCatalogName": "Services Chow Studio",
       "services": [
-        {
-          "name": "Sites web et refontes",
-          "description": "Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."
-        },
-        {
-          "name": "Identité visuelle et direction artistique",
-          "description": "Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."
-        },
-        {
-          "name": "Clarification et évolution digitale",
-          "description": "Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."
-        }
+        {"name":"Sites web et refontes","description":"Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."},
+        {"name":"Identité visuelle et direction artistique","description":"Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."},
+        {"name":"Clarification et évolution digitale","description":"Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."}
       ],
-      "projectLocations": [
-        "Paris",
-        "Île-de-France",
-        "La Réunion"
-      ]
+      "projectLocations": ["Paris", "Île-de-France", "La Réunion"]
     },
     "pwa": {
       "name": "Chow Studio",
@@ -72,24 +48,11 @@
     "contact": {
       "email": "channyhow@gmail.com",
       "phone": "+33 7 88 48 40 06",
-      "address": {
-        "street": "",
-        "postalCode": "",
-        "city": "Paris",
-        "country": "FR"
-      }
+      "address": {"street":"","postalCode":"","city":"Paris","country":"FR"}
     },
     "socials": {
-      "linkedin": {
-        "label": "LinkedIn",
-        "href": "https://www.linkedin.com/in/channyhow",
-        "enabled": true
-      },
-      "email": {
-        "label": "E-mail",
-        "href": "mailto:channyhow@gmail.com",
-        "enabled": true
-      }
+      "linkedin": {"label":"LinkedIn","href":"https://www.linkedin.com/in/channyhow","enabled":true},
+      "email": {"label":"E-mail","href":"mailto:channyhow@gmail.com","enabled":true}
     },
     "credits": {
       "label": "Design et développement",
@@ -100,82 +63,56 @@
     "contentMode": "business"
   },
   "ui": {
-    "navigation": {
-      "desktop": "inline"
-    },
+    "navigation": {"desktop":"inline"},
     "copy": {
       "navigation": {
-        "mainLabel": "Navigation principale",
-        "openMenuLabel": "Ouvrir le menu",
-        "closeLabel": "Fermer",
-        "drawerLabels": {
-          "menu": "Chow Studio",
-          "contact": "Projet",
-          "reservation": "Échanger"
-        }
+        "mainLabel":"Navigation principale",
+        "openMenuLabel":"Ouvrir le menu",
+        "closeLabel":"Fermer",
+        "drawerLabels":{"menu":"Chow Studio","contact":"Projet","reservation":"Échanger"}
       },
       "forms": {
-        "selectPlaceholder": "Sélectionner",
-        "defaultSubmitLabel": "Envoyer",
-        "requiredError": "Ce champ est requis.",
-        "emailError": "Saisissez une adresse e-mail valide.",
-        "numberError": "Saisissez une valeur valide.",
-        "genericError": "Vérifiez la valeur saisie."
+        "selectPlaceholder":"Sélectionner",
+        "defaultSubmitLabel":"Envoyer",
+        "requiredError":"Ce champ est requis.",
+        "emailError":"Saisissez une adresse e-mail valide.",
+        "numberError":"Saisissez une valeur valide.",
+        "genericError":"Vérifiez la valeur saisie."
       },
       "carousel": {
-        "defaultLabel": "Projets",
-        "navigationLabel": "Navigation du carrousel",
-        "previousLabel": "Précédent",
-        "nextLabel": "Suivant",
-        "positionSeparator": "sur"
+        "defaultLabel":"Projets",
+        "navigationLabel":"Navigation du carrousel",
+        "previousLabel":"Précédent",
+        "nextLabel":"Suivant",
+        "positionSeparator":"sur"
       },
-      "contentSwitcher": {
-        "controlsLabel": "Choisir un besoin"
-      },
-      "schedule": {
-        "bookingLabel": "Échanger"
-      }
+      "contentSwitcher": {"controlsLabel":"Choisir un besoin"},
+      "schedule": {"bookingLabel":"Échanger"}
     },
-    "loader": {
-      "messages": [
-        "Clarifier.",
-        "Concevoir.",
-        "Construire."
-      ]
-    },
+    "loader": {"messages":["Clarifier.","Concevoir.","Construire."]},
     "experience": {
-      "scrollProgress": "rail",
-      "sectionReveal": true,
-      "parallax": true,
-      "footerReveal": true
+      "scrollProgress":"rail",
+      "sectionReveal":true,
+      "parallax":true,
+      "footerReveal":true
     }
   },
   "theme": {
-    "variant": "editorial",
-    "tone": "default",
-    "colors": {
-      "primary": "#161616",
-      "secondary": "#F6F5F3",
-      "special": "#D8D4CC",
-      "accent": "#D85234"
-    },
-    "fonts": {
-      "classicHeading": "Noto Serif Display",
-      "editorialHeading": "Noto Serif Display",
-      "organicHeading": "Noto Serif Display",
-      "body": "Poppins"
-    }
+    "variant":"editorial",
+    "tone":"default",
+    "colors":{"primary":"#161616","secondary":"#F6F5F3","special":"#D8D4CC","accent":"#D85234"},
+    "fonts":{"classicHeading":"Noto Serif Display","editorialHeading":"Noto Serif Display","organicHeading":"Noto Serif Display","body":"Poppins"}
   },
   "integrations": {
-    "hosting": "netlify",
-    "forms": "netlify",
-    "cms": false,
-    "calendar": false,
-    "newsletter": false,
-    "commerce": false,
-    "maps": false,
-    "reviews": false,
-    "weather": false,
-    "analytics": false
+    "hosting":"netlify",
+    "forms":"netlify",
+    "cms":false,
+    "calendar":false,
+    "newsletter":false,
+    "commerce":false,
+    "maps":false,
+    "reviews":false,
+    "weather":false,
+    "analytics":false
   }
 }
