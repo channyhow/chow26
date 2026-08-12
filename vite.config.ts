@@ -64,11 +64,13 @@ function seoIndexPlugin(): Plugin {
       }
     : undefined;
 
+  const alternateName = "Chow Studio — Design web, identité visuelle et frontend";
+
   const business = {
     "@type": seo.organizationType,
     "@id": businessId,
     name: site.name,
-    alternateName: "Atmosphere Studio Architecture Intérieure",
+    alternateName,
     url: siteUrl,
     description: seo.defaultDescription,
     ...(site.contact.email ? { email: site.contact.email } : {}),
@@ -124,7 +126,7 @@ function seoIndexPlugin(): Plugin {
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: site.name,
-        alternateName: "Atmosphere Studio Architecture Intérieure",
+        alternateName,
         description: seo.defaultDescription,
         inLanguage: site.defaultLocale,
         publisher: { "@id": businessId },
