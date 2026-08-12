@@ -39,9 +39,7 @@
    HOME — TYPOGRAPHIC OPENING
 ================================== */
 
-body:has(#home-opening) .header {
-  --header-color: var(--primary);
-}
+body:has(#home-opening) .header { --header-color: var(--primary); }
 
 #home-opening {
   --title-width: none;
@@ -138,9 +136,7 @@ body:has(#home-opening) .header {
   padding-top: 0;
 }
 
-#home-opening .actions {
-  justify-content: start;
-}
+#home-opening .actions { justify-content: start; }
 
 #home-opening .actions > :first-child {
   background: transparent;
@@ -272,7 +268,7 @@ body:has(#home-opening) .header {
    RESPONSIVE ART DIRECTION
 ================================== */
 
-@include tablet-down {
+@media (max-width: #{$bp-desktop - 0.01rem}) {
   #home-opening .section__mediaOverlay > .media {
     right: -18vw;
     bottom: 6svh;
@@ -310,7 +306,7 @@ body:has(#home-opening) .header {
   .projectStory .textBlock__content > :first-child { grid-row: auto; }
 }
 
-@include mobile {
+@media (max-width: #{$bp-tablet - 0.01rem}) {
   #home-opening .section__overlayContent {
     padding-top: clamp(6rem, 12svh, 8rem);
     padding-bottom: $space-3;
