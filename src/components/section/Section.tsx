@@ -72,6 +72,7 @@ export function Section({ block, suppressSceneMotion = false }: SectionProps) {
       data-variant={block.variant}
       data-tone={block.tone}
       data-surface={block.surface}
+      data-color={block.color}
       data-motion={block.motion ?? "reveal"}
     >
       {shouldTrackScroll ? (
