@@ -1,4 +1,4 @@
-import { access, cp, copyFile, mkdir } from "node:fs/promises";
+import { access, cp, copyFile, mkdir, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const sourceRoot = resolve(process.cwd(), "..", "chowchow26");
@@ -70,15 +70,15 @@ for (const video of [
   await copySingleFile(`public/assets/videos/${video}`);
 }
 
-const activeFonts = [
-  "DMSans-VariableFont_opsz,wght.ttf",
-  "DMSans-Italic-VariableFont_opsz,wght.ttf",
-  "FlorDeRuina-Semilla.woff2",
-];
+const sourceFontsDir = resolve(sourceRoot, "public/assets/fonts");
+const fontNames = (await readdir(sourceFontsDir)).filter((name) =>
+  /\.(woff2?|ttf|otf)$/i.test(name),
+);
 
-for (const fontName of activeFonts) {
+for (const fontName of fontNames) {
   await copySingleFile(`public/assets/fonts/${fontName}`);
 }
 
-console.log(`Imported ${projectFolders.length} project folders, brand assets, homepage image, Chow root icons, portrait, 3 videos and ${activeFonts.length} active Chow Studio font files from ../chowchow26.`);
+console.log(`Imported ${projectFolders.length} project folders, brand assets, homepage image, Chow root icons, portrait, 3 videos and ${fontNames.length} font files from the full Chow font library in ../chowchow26.`);
+console.log("Current site defaults remain Flor de Ruina Semilla + DM Sans until changed deliberately in site.json.");
 console.log("Excluded the oversized Maloya PNG and unused Ravine hero-scroll video.");
