@@ -69,7 +69,7 @@
   "home-services": {
     "id": "home-services",
     "type": "Section",
-    "layout": "grid",
+    "layout": "list",
     "source": {
       "collection": "services",
       "query": {
@@ -94,24 +94,34 @@
       }
     }
   },
-  "approach-default": {
-    "id": "approach-default",
-    "type": "Section",
-    "layout": "grid",
-    "source": {
-      "collection": "approach"
+"approach-default": {
+  "id": "approach-default",
+  "type": "Section",
+  "content": {
+    "header": {
+      "eyebrow": "L’approche",
+      "title": "Du premier échange à une présence cohérente."
     },
-    "content": {
-      "header": {
-        "eyebrow": "Accompagnements",
-        "title": "Comprendre d’abord. Construire ensuite.",
-        "text": [
-          "Un site ou une identité ne commence pas par une interface. Il commence par ce qui doit être compris : le projet, son public, son positionnement, ses contenus et ce que l’expérience doit permettre de faire.",
-          "Cette clarification guide ensuite la structure, la direction visuelle et le développement, avec un même fil conducteur du premier cadrage à la mise en ligne."
-        ]
+    "items": [
+      {
+        "title": "Écouter",
+        "text": "Comprendre le projet, son contexte et ce qui doit réellement être clarifié."
+      },
+      {
+        "title": "Définir",
+        "text": "Construire une direction visuelle et éditoriale cohérente."
+      },
+      {
+        "title": "Concevoir",
+        "text": "Transformer cette direction en identité, interface et système."
+      },
+      {
+        "title": "Déployer",
+        "text": "Créer une présence capable d’évoluer sans perdre sa cohérence."
       }
-    }
-  },
+    ]
+  }
+},
   "studio-founders": {
     "id": "studio-founders",
     "type": "Section",

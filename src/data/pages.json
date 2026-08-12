@@ -27,6 +27,8 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
+                        "color": "primary",
+
             "blocks": [{ "ref": "projects-featured" }]
           },
           {

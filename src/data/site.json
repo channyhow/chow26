@@ -101,7 +101,7 @@
     "variant":"editorial",
     "tone":"default",
     "colors":{"primary":"#161616","secondary":"#F6F5F3","special":"#D8D4CC","accent":"#D85234"},
-    "fonts":{"classicHeading":"Flor de Ruina Semilla","editorialHeading":"Flor de Ruina Semilla","organicHeading":"Flor de Ruina Semilla","body":"DM Sans"}
+    "fonts":{"classicHeading":"Flor de Ruina Semilla","editorialHeading":"DM Sans","organicHeading":"Flor de Ruina Semilla","body":"DM Sans"}
   },
   "integrations": {
     "hosting":"netlify",

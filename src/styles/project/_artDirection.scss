@@ -112,15 +112,15 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   max-width: none;
 }
 
-#home-opening .textBlock__title {
-  @include type-display-xl;
-  width: min(100%, 11ch);
-  max-width: none;
-  font-size: clamp(4.25rem, 9.2vw, 10.5rem);
-  line-height: 0.82;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-}
+// #home-opening .textBlock__title {
+//   @include type-display-xl;
+//   width: min(100%, 11ch);
+//   max-width: none;
+//   font-size: clamp(4.25rem, 9.2vw, 10.5rem);
+//   line-height: 0.82;
+//   letter-spacing: -0.035em;
+//   text-wrap: balance;
+// }
 
 #home-opening .textBlock__content {
   grid-area: content;
