@@ -1,4 +1,4 @@
-const CACHE_VERSION = "atmosphere-v2";
+const CACHE_VERSION = "chow-studio-v1";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = "/offline.html";
@@ -40,7 +40,7 @@ self.addEventListener("activate", (event) => {
           keys
             .filter(
               (key) =>
-                key.startsWith("atmosphere-") &&
+                (key.startsWith("atmosphere-") || key.startsWith("chow-studio-")) &&
                 key !== STATIC_CACHE &&
                 key !== PAGE_CACHE,
             )
