@@ -183,9 +183,9 @@
     {"id":"deliver","title":"Livrer & transmettre","text":["Mettre en ligne un projet propre, documenté et suffisamment solide pour évoluer sans dépendre d’une reconstruction à chaque changement."],"order":4}
   ],
   "journal": [
-    {"id":"clarifier-avant-redesign","eyebrow":"Méthode","title":"Pourquoi clarifier le contenu avant de refaire un site","text":["Une refonte visuelle ne règle pas un message confus. Les questions à poser avant d’ouvrir Figma."],"featured":true,"order":1,"href":"/journal/clarifier-avant-redesign"},
-    {"id":"site-architecture-editorial","eyebrow":"Web design","title":"Ce qu’un site d’architecture peut apprendre d’un magazine","text":["Hiérarchie, rythme, images et respiration : utiliser une logique éditoriale sans transformer le site en mise en page décorative."],"featured":true,"order":2,"href":"/journal/site-architecture-editorial"},
-    {"id":"design-et-frontend","eyebrow":"Design & développement","title":"Pourquoi penser design et frontend ensemble","text":["Ce qui change lorsque responsive, accessibilité, contenu et réalisation technique sont considérés dès les premières décisions visuelles."],"featured":true,"order":3,"href":"/journal/design-et-frontend"}
+    {"id":"site-web-clair","eyebrow":"UX & contenu","title":"Avant de redesign un site, clarifier ce qu’il doit faire","text":["Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle pour construire un site plus clair et plus utile."],"featured":true,"order":1,"href":"/journal/site-web-clair"},
+    {"id":"identite-visuelle-systeme","eyebrow":"Identité visuelle","title":"Une identité utile ne s’arrête pas au logo","text":["Logo, typographie, couleur, image et règles d’usage : pourquoi une identité visuelle utile doit fonctionner comme un système."],"featured":true,"order":2,"href":"/journal/identite-visuelle-systeme"},
+    {"id":"design-et-developpement","eyebrow":"Design & frontend","title":"Quand le design connaît déjà la manière dont il sera construit","text":["Ce que change une approche où design, UX et développement frontend sont pensés ensemble dès le début d’un projet web."],"featured":true,"order":3,"href":"/journal/design-et-developpement"}
   ],
   "links": [
     {"id":"link-projects","title":"Voir le travail","links":[{"label":"Découvrir les projets","href":"/projets","intent":"navigate"}],"group":"primary","enabled":true,"order":1},
