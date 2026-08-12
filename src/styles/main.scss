@@ -35,7 +35,7 @@
 :root {
   color: var(--primary);
   background: var(--secondary);
-  font-family: var(--font-body);
+  font-family: system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
