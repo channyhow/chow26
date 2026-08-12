@@ -53,10 +53,10 @@
 }
 
 [data-tone="inverse"] {
-  --primary: #{$color-secondary};
-  --secondary: #{$color-primary};
+  --primary: var(--theme-secondary);
+  --secondary: var(--theme-primary);
 }
 
 [data-tone="accent"] {
-  --secondary: var(--accent);
+  --secondary: var(--theme-accent);
 }
