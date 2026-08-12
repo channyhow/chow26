@@ -1,12 +1,11 @@
 {
   "primary": [
-    { "id": "home", "label": "Accueil", "href": "/", "enabled": true },
     { "id": "projects", "label": "Projets", "href": "/projets", "enabled": true },
-    { "id": "approach", "label": "Approche", "href": "/approche", "enabled": true },
+    { "id": "approach", "label": "Accompagnements", "href": "/approche", "enabled": true },
     { "id": "journal", "label": "Journal", "href": "/journal", "enabled": true },
     {
       "id": "contact",
-      "label": "Démarrer un projet",
+      "label": "Parler d’un projet",
       "href": "/contact",
       "enabled": true,
       "variant": "cta"
