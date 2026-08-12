@@ -1,18 +1,18 @@
 {
   "site": {
-    "id": "atmosphere-architecture-template",
-    "name": "Atmosphere Studio",
-    "baseline": "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion",
-    "url": "https://atmosphere-studio.netlify.app",
+    "id": "chow-studio",
+    "name": "Chow Studio",
+    "baseline": "Sites, identités et directions visuelles, pensés avec clarté.",
+    "url": "https://chow-studio.com",
     "defaultLocale": "fr",
     "supportedLocales": [
       "fr"
     ],
     "seo": {
-      "defaultTitle": "Architecture intérieure Paris & La Réunion | Atmosphere Studio",
-      "defaultDescription": "Atmosphere Studio conçoit des intérieurs résidentiels à Paris, en Île-de-France et à La Réunion : rénovation, volumes, lumière, matières, mobilier et stylisme.",
-      "defaultImage": "/assets/photos/atmosphere/lisbon-living.jpg",
-      "imageAlt": "Intérieur lumineux aux matières naturelles conçu par Atmosphere Studio",
+      "defaultTitle": "Chow Studio | Design web, identité visuelle et direction digitale",
+      "defaultDescription": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales claires, singulières et bien construites, entre Paris et La Réunion.",
+      "defaultImage": "/assets/photos/brand/chow-studio-og.jpg",
+      "imageAlt": "Chow Studio — design web, identité visuelle et direction digitale",
       "siteType": "website",
       "organizationType": "ProfessionalService",
       "twitterCard": "summary_large_image",
@@ -32,46 +32,46 @@
         }
       ],
       "knowsAbout": [
-        "Architecture intérieure",
-        "Architecte d’intérieur",
-        "Rénovation résidentielle",
-        "Direction d’ambiance",
-        "Mobilier et stylisme",
-        "Aménagement intérieur",
-        "Lumière",
-        "Matières"
+        "Design web",
+        "Site vitrine sur mesure",
+        "Identité visuelle",
+        "Direction artistique digitale",
+        "Design d’interface",
+        "Développement frontend React",
+        "Refonte de site web",
+        "Expérience utilisateur"
       ],
-      "offerCatalogName": "Services Atmosphere Studio",
+      "offerCatalogName": "Services Chow Studio",
       "services": [
         {
-          "name": "Architecture intérieure résidentielle",
-          "description": "Conception et rénovation de lieux de vie à Paris, en Île-de-France et à La Réunion, autour des usages, des volumes, des circulations, des matières et de la lumière."
+          "name": "Sites web et refontes",
+          "description": "Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."
         },
         {
-          "name": "Direction d’ambiance",
-          "description": "Définition d’une palette cohérente de couleurs, matières, mobilier et lumière."
+          "name": "Identité visuelle et direction artistique",
+          "description": "Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."
         },
         {
-          "name": "Mobilier et stylisme",
-          "description": "Sélection du mobilier, des objets et des finitions pour prolonger l’intention du projet."
+          "name": "Clarification et évolution digitale",
+          "description": "Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."
         }
       ],
       "projectLocations": [
         "Paris",
-        "Lisbonne",
-        "Bali"
+        "Île-de-France",
+        "La Réunion"
       ]
     },
     "pwa": {
-      "name": "Atmosphere Studio",
-      "shortName": "Atmosphere",
-      "description": "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion.",
+      "name": "Chow Studio",
+      "shortName": "Chow Studio",
+      "description": "Design web, identité visuelle et direction digitale entre Paris et La Réunion.",
       "display": "standalone",
       "startUrl": "/"
     },
     "contact": {
-      "email": "hello@atmosphere-studio.fr",
-      "phone": "",
+      "email": "channyhow@gmail.com",
+      "phone": "+33 7 88 48 40 06",
       "address": {
         "street": "",
         "postalCode": "",
@@ -80,24 +80,19 @@
       }
     },
     "socials": {
-      "instagram": {
-        "label": "Instagram",
-        "href": "https://instagram.com/atmospherestudio",
-        "enabled": false
-      },
-      "pinterest": {
-        "label": "Pinterest",
-        "href": "https://pinterest.com/atmospherestudio",
-        "enabled": false
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/channyhow",
+        "enabled": true
       },
       "email": {
         "label": "E-mail",
-        "href": "mailto:hello@atmosphere-studio.fr",
+        "href": "mailto:channyhow@gmail.com",
         "enabled": true
       }
     },
     "credits": {
-      "label": "Création du site",
+      "label": "Design et développement",
       "name": "Channy How-Choong",
       "studio": "Chow Studio",
       "href": "https://chow-studio.com/"
@@ -114,9 +109,9 @@
         "openMenuLabel": "Ouvrir le menu",
         "closeLabel": "Fermer",
         "drawerLabels": {
-          "menu": "Atmosphere Studio",
+          "menu": "Chow Studio",
           "contact": "Projet",
-          "reservation": "Démarrer un projet"
+          "reservation": "Échanger"
         }
       },
       "forms": {
@@ -135,17 +130,17 @@
         "positionSeparator": "sur"
       },
       "contentSwitcher": {
-        "controlsLabel": "Choisir un type de projet"
+        "controlsLabel": "Choisir un besoin"
       },
       "schedule": {
-        "bookingLabel": "Nous écrire"
+        "bookingLabel": "Échanger"
       }
     },
     "loader": {
       "messages": [
-        "Observer.",
-        "Composer.",
-        "Habiter."
+        "Clarifier.",
+        "Concevoir.",
+        "Construire."
       ]
     },
     "experience": {
@@ -159,10 +154,10 @@
     "variant": "editorial",
     "tone": "default",
     "colors": {
-      "primary": "#222224",
+      "primary": "#161616",
       "secondary": "#F6F5F3",
-      "special": "#d47182",
-      "accent": "#ae482d"
+      "special": "#D8D4CC",
+      "accent": "#D85234"
     },
     "fonts": {
       "classicHeading": "Noto Serif Display",
