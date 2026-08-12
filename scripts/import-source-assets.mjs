@@ -49,6 +49,7 @@ for (const folder of projectFolders) {
 
 await copyDirectory("public/assets/photos/brand");
 await copySingleFile("public/assets/photos/portrait shot.jpg");
+await copySingleFile("public/assets/photos/homepage31200.webp");
 
 for (const icon of [
   "favicon.ico",
@@ -78,5 +79,5 @@ for (const fontName of fontNames) {
   await copySingleFile(`public/assets/fonts/${fontName}`);
 }
 
-console.log(`Imported ${projectFolders.length} project folders, brand assets, Chow root icons, portrait, 3 videos and ${fontNames.length} Butler/Averia font files from ../chowchow26.`);
+console.log(`Imported ${projectFolders.length} project folders, brand assets, homepage image, Chow root icons, portrait, 3 videos and ${fontNames.length} Butler/Averia font files from ../chowchow26.`);
 console.log("Excluded the oversized Maloya PNG and unused Ravine hero-scroll video.");
