@@ -1,64 +1,71 @@
-# Atmosphere Studio
+# Chow Studio
 
-> Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion
+> Sites, identités et directions visuelles, pensés avec clarté.
 
 ## Identity
 
-- Canonical site: https://atmosphere-studio.netlify.app
+- Canonical site: https://chow-studio.com
 - Language: fr
-- Content type: Interior architecture studio website
+- Content type: Independent design, identity and frontend studio website
 - Creator: Channy How-Choong · Chow Studio
 - Creator website: https://chow-studio.com/
 
 ## Public pages
 
-- Architecture intérieure Paris & La Réunion | Atmosphere Studio: https://atmosphere-studio.netlify.app — Atmosphere Studio conçoit des intérieurs résidentiels à Paris, en Île-de-France et à La Réunion : rénovation, volumes, lumière, matières, mobilier et stylisme.
-- Projets d’architecture intérieure | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets — Découvrez les projets résidentiels d’Atmosphere Studio à Paris, Lisbonne et Bali : rénovation, architecture intérieure, direction d’ambiance, mobilier et stylisme.
-- Studio et approche | Atmosphere Studio: https://atmosphere-studio.netlify.app/approche — Découvrez l’approche d’Atmosphere Studio, studio d’architecture intérieure entre Paris, l’Île-de-France et La Réunion : usages, lumière et matières.
-- Journal d’architecture intérieure | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal — Notes d’Atmosphere Studio sur l’architecture intérieure, la lumière, les matières, les palettes et le minimalisme chaleureux.
-- Architecte d’intérieur : démarrer un projet | Atmosphere Studio: https://atmosphere-studio.netlify.app/contact — Présentez votre projet résidentiel à Atmosphere Studio à Paris, en Île-de-France ou à La Réunion : rénovation, usages, calendrier et besoins.
-- Mentions légales | Atmosphere Studio: https://atmosphere-studio.netlify.app/mentions-legales — Nature de l’étude de cas Atmosphere Studio, création par Channy How-Choong et Chow Studio, hébergement et propriété intellectuelle.
-- Minimalisme chaleureux : composer sans vider l’espace | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/minimalisme-chaleureux — Matières, lumière, volumes et objets : les principes d’Atmosphere Studio pour créer un intérieur minimaliste, chaleureux et vivant.
-- Composer une palette neutre et sensible | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/palette-neutre — Comment associer ivoire, sable, pierre et bois pour construire une palette intérieure neutre, nuancée et durable.
-- La lumière au cœur d’un intérieur apaisé | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/lumiere-maison-calme — Lumière naturelle, éclairage indirect et zones d’ombre : concevoir une atmosphère intérieure calme dès le début du projet.
-- Appartement à Paris | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/appartement-paris — Rénovation intérieure d’un appartement parisien par Atmosphere Studio : circulations clarifiées, bois sombre, matières naturelles et lumière douce.
-- Maison à Lisbonne | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/maison-lisbonne — Direction intérieure d’une maison à Lisbonne : lumière naturelle, enduits texturés, fibres et confort méditerranéen par Atmosphere Studio.
-- Villa à Bali | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/villa-bali — Concept intérieur d’une villa à Bali par Atmosphere Studio : architecture ouverte, matières naturelles, végétation et circulation apaisée.
+- Chow Studio | Design web, identité visuelle & frontend: https://chow-studio.com — Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.
+- Projets sélectionnés | Chow Studio: https://chow-studio.com/projets — Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.
+- Accompagnements web & identité | Chow Studio: https://chow-studio.com/approche — Site web sur mesure, identité visuelle, refonte et clarification digitale : découvrez les accompagnements et la méthode de Chow Studio.
+- Journal — design web & identité | Chow Studio: https://chow-studio.com/journal — Conseils et notes de Chow Studio sur la conception de sites web, l’identité visuelle, l’UX, la structure de contenu et la présence digitale.
+- Parler d’un projet | Chow Studio: https://chow-studio.com/contact — Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin.
+- Mentions légales | Chow Studio: https://chow-studio.com/mentions-legales — Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio.
+- Rendre un site web plus clair avant de le redesign | Chow Studio: https://chow-studio.com/journal/site-web-clair — Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle pour construire un site plus clair et plus utile.
+- Une identité visuelle doit fonctionner comme un système | Chow Studio: https://chow-studio.com/journal/identite-visuelle-systeme — Logo, typographie, couleur, image et règles d’usage : pourquoi une identité visuelle utile doit fonctionner au-delà d’un simple logo.
+- Pourquoi rapprocher design et développement frontend | Chow Studio: https://chow-studio.com/journal/design-et-developpement — Ce que change une approche où design, UX et développement frontend sont pensés ensemble dès le début d’un projet web.
+- Atmosphere | Site d’architecture intérieure — Chow Studio: https://chow-studio.com/projets/atmosphere — Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.
+- Kuro | Web design pour restaurant — Chow Studio: https://chow-studio.com/projets/kuro — Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.
+- Sasha Yoga Flow | Site yoga & réservation — Chow Studio: https://chow-studio.com/projets/sashayogaflow — Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.
+- Mois du Kèr | Identité de campagne — Chow Studio: https://chow-studio.com/projets/mois-du-ker — Création de l’identité visuelle du Mois du Kèr, campagne de sensibilisation cardiovasculaire à La Réunion, par Chow Studio.
+- Maloya | Concept de site pour groupe de musique — Chow Studio: https://chow-studio.com/projets/maloya — Concept de plateforme musicale immersive : vidéo, dates, contenus et expérience mobile réunis dans une direction digitale par Chow Studio.
+- Ravine | Identité visuelle — Chow Studio: https://chow-studio.com/projets/ravine-branding — Étude de cas d’identité visuelle : logo, typographie, palette et déclinaisons print et digitales conçues comme un système cohérent.
+- Ravine | Web design éditorial — Chow Studio: https://chow-studio.com/projets/ravine-web — Exploration web éditoriale autour de La Réunion : storytelling, direction artistique et développement frontend par Chow Studio.
+- RandoRunOi | Direction visuelle trail — Chow Studio: https://chow-studio.com/projets/randorunoi — Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.
+- Structure | Concept de site d’architecture — Chow Studio: https://chow-studio.com/projets/structure — Concept web pour studio d’architecture : grille, hiérarchie et navigation directe explorées par Chow Studio.
+- Contraste | Concept web architecture — Chow Studio: https://chow-studio.com/projets/contraste — Concept de site pour cabinet d’architecture : espaces blancs, hiérarchie des projets et direction visuelle sobre par Chow Studio.
 
 ## Services represented
 
-- Architecture intérieure résidentielle
-- Direction d’ambiance
-- Mobilier et stylisme
+- Sites web et refontes
+- Identité visuelle et direction artistique
+- Clarification et évolution digitale
 
 ## Topics
 
-- Architecture intérieure
-- Architecte d’intérieur
-- Rénovation résidentielle
-- Direction d’ambiance
-- Mobilier et stylisme
-- Aménagement intérieur
-- Lumière
-- Matières
+- Design web
+- Site vitrine sur mesure
+- Identité visuelle
+- Direction artistique digitale
+- Design d’interface
+- Développement frontend React
+- Refonte de site web
+- Expérience utilisateur
 
-## Studio setting
+## Service areas
 
 - Paris
 - Île-de-France
 - La Réunion
 
-## Portfolio project locations
+## Geographic focus
 
 - Paris
-- Lisbonne
-- Bali
+- Île-de-France
+- La Réunion
 
 ## Contact and attribution
 
-- Contact page: https://atmosphere-studio.netlify.app/contact
-- Email: hello@atmosphere-studio.fr
-- Location represented: Paris, FR
+- Contact page: https://chow-studio.com/contact
+- Email: channyhow@gmail.com
+- Studio base: Paris, FR
 - Site created by: Channy How-Choong · Chow Studio
 
 This file is generated from src/data/site.json, src/data/pages.json and src/data/collections.json. Keep those sources accurate.
