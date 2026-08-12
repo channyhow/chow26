@@ -16,6 +16,12 @@ const projectFolders = [
   "structure",
 ];
 
+const requiredFonts = [
+  "DMSans-VariableFont_opsz,wght.ttf",
+  "DMSans-Italic-VariableFont_opsz,wght.ttf",
+  "FlorDeRuina-Semilla.woff2",
+];
+
 const excludedBasenames = new Set([
   "mobile_mockup_multi.png",
   "ravine_hero_scroll.mp4",
@@ -79,6 +85,11 @@ for (const fontName of fontNames) {
   await copySingleFile(`public/assets/fonts/${fontName}`);
 }
 
+for (const fontName of requiredFonts) {
+  await access(resolve(targetRoot, "public/assets/fonts", fontName));
+}
+
 console.log(`Imported ${projectFolders.length} project folders, brand assets, homepage image, Chow root icons, portrait, 3 videos and ${fontNames.length} font files from the full Chow font library in ../chowchow26.`);
+console.log(`Verified required runtime fonts: ${requiredFonts.join(", ")}.`);
 console.log("Current site defaults remain Flor de Ruina Semilla + DM Sans until changed deliberately in site.json.");
 console.log("Excluded the oversized Maloya PNG and unused Ravine hero-scroll video.");
