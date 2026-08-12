@@ -36,9 +36,7 @@
   background: transparent;
   cursor: default;
 
-  &:focus-visible {
-    outline: 0;
-  }
+  &:focus-visible { outline: 0; }
 }
 
 .drawer__panel {
@@ -82,19 +80,7 @@
 }
 
 .drawer__logo {
-  font-family: var(--font-heading, serif);
-  font-weight: 600;
-  color: inherit;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-
-  &:focus:not(:focus-visible) {
-    outline: 0;
-  }
-
-  &:focus-visible {
-    @include focus-ring;
-  }
+  @include brand-link;
 }
 
 .drawer__body {
