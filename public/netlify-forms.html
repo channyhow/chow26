@@ -2,11 +2,43 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="robots" content="noindex" />
+    <meta name="robots" content="noindex,nofollow" />
     <title>Form detection</title>
   </head>
   <body>
-    <form name="contact" method="POST" data-netlify="true">
+    <form name="project-enquiry" method="POST" data-netlify="true" data-netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="project-enquiry" />
+      <input type="text" name="website" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <select name="projectType">
+        <option value="website">Créer un site web</option>
+        <option value="redesign">Refondre ou améliorer un site existant</option>
+        <option value="identity">Créer ou faire évoluer une identité visuelle</option>
+        <option value="clarification">Clarifier mon projet et définir la bonne direction</option>
+        <option value="combined">Plusieurs de ces besoins</option>
+        <option value="other">Autre / pas encore défini</option>
+      </select>
+      <select name="timeline">
+        <option value="asap">Dès que possible</option>
+        <option value="1-3-months">Dans les 1 à 3 mois</option>
+        <option value="3-6-months">Dans les 3 à 6 mois</option>
+        <option value="later">Plus tard / à définir</option>
+      </select>
+      <select name="budget">
+        <option value="under-1000">Moins de 1 000 €</option>
+        <option value="1000-2000">1 000 – 2 000 €</option>
+        <option value="2000-4000">2 000 – 4 000 €</option>
+        <option value="4000-plus">4 000 € et plus</option>
+        <option value="to-define">À définir ensemble</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+
+    <form name="project-call" method="POST" data-netlify="true" data-netlify-honeypot="website">
+      <input type="hidden" name="form-name" value="project-call" />
+      <input type="text" name="website" />
       <input type="text" name="name" />
       <input type="email" name="email" />
       <textarea name="message"></textarea>
