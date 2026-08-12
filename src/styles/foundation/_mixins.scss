@@ -20,6 +20,17 @@
   &:focus-visible { @include focus-ring; }
 }
 
+@mixin brand-link {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus:not(:focus-visible) { outline: 0; }
+  &:focus-visible { @include focus-ring; }
+}
+
 @mixin interactive-control {
   border: 1px solid currentColor;
   border-radius: var(--radius-control, #{$radius-full});
