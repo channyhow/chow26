@@ -24,7 +24,9 @@ export type SectionLayout =
   | "gallery"
   | "carousel"
   | "media"
-  | "media-overlay";
+  | "media-overlay"
+  | "timeline"
+  | "content-switcher";
 export type GroupLayout = "flow" | "scroll-panel" | "sticky" | "overlap";
 export type PanelMode = "scene" | "stack";
 export type PanelSize = "sm" | "md" | "lg" | "full";
