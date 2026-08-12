@@ -12,8 +12,8 @@ const notFoundPage: PageData = {
   slug: "/404",
   variant: "editorial",
   seo: {
-    title: "Projet introuvable | Atmosphere Studio",
-    description: "Ce projet Atmosphere Studio est introuvable.",
+    title: "Projet introuvable | Chow Studio",
+    description: "Ce projet Chow Studio est introuvable.",
     robots: { index: false, follow: false },
   },
   blocks: [
