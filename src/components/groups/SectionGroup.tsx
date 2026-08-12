@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useReducedMotion } from "motion/react";
 import { resolveBlock } from "@/data/resolve";
 import { Section } from "@/components/section/Section";
-import type { BlockRef, PanelAlign, PanelBehavior, PanelSize, PanelSurface, SectionGroup as SectionGroupData, SectionSurface } from "@/types/content";
+import type { BlockRef, PanelAlign, PanelBehavior, PanelSize, PanelSurface, SectionGroup as SectionGroupData, SectionColor } from "@/types/content";
 
 function renderBlocks(blocks: BlockRef[], suppressSceneMotion = false) {
   return blocks.map(({ ref }) => {
@@ -11,7 +11,7 @@ function renderBlocks(blocks: BlockRef[], suppressSceneMotion = false) {
   });
 }
 
-function Panel({ id, behavior, size, align, surface, color, blocks }: { id: string; behavior: PanelBehavior; size: PanelSize; align: PanelAlign; surface: PanelSurface; color: SectionSurface; blocks: BlockRef[] }) {
+function Panel({ id, behavior, size, align, surface, color, blocks }: { id: string; behavior: PanelBehavior; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: BlockRef[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [stackTop, setStackTop] = useState<number | null>(behavior === "stack" ? -1 : null);
 
@@ -77,7 +77,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
         : isPanel && mode === "stack"
           ? blocks.map((block, index) => <Panel key={block.ref} id={`${group.id}-${index + 1}`} behavior="stack" size={defaultSize} align={defaultAlign} surface={defaultSurface} color={defaultColor} blocks={[block]} />)
           : isPanel && mode === "scene" && blocks.length
-            ? <><Panel id={`${group.id}-scene`} behavior="fixed" size="full" align="center" surface="transparent" color="transparent" blocks={[blocks[0]]} />{blocks.slice(1).map((block, index) => <Panel key={block.ref} id={`${group.id}-panel-${index + 1}`} behavior="moving" size={defaultSize} align={defaultAlign} surface={defaultSurface} color={defaultColor} blocks={[block]} />)}</>
+            ? <><Panel id={`${group.id}-scene`} behavior="fixed" size="full" align="center" surface="transparent" color={undefined} blocks={[blocks[0]]} />{blocks.slice(1).map((block, index) => <Panel key={block.ref} id={`${group.id}-panel-${index + 1}`} behavior="moving" size={defaultSize} align={defaultAlign} surface={defaultSurface} color={defaultColor} blocks={[block]} />)}</>
             : renderBlocks(flowBlocks)}
     </div>
   );
