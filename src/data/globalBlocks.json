@@ -3,6 +3,7 @@
     "id": "home-opening",
     "type": "Section",
     "layout": "media-overlay",
+    "motion": "scene",
     "content": {
       "header": {
         "eyebrow": "Chow Studio · Paris · La Réunion",
@@ -97,19 +98,49 @@
   "approach-default": {
     "id": "approach-default",
     "type": "Section",
-    "layout": "grid",
-    "source": {
-      "collection": "approach"
-    },
+    "layout": "timeline",
     "content": {
       "header": {
-        "eyebrow": "Accompagnements",
+        "eyebrow": "L’approche",
         "title": "Comprendre d’abord. Construire ensuite.",
         "text": [
-          "Un site ou une identité ne commence pas par une interface. Il commence par ce qui doit être compris : le projet, son public, son positionnement, ses contenus et ce que l’expérience doit permettre de faire.",
-          "Cette clarification guide ensuite la structure, la direction visuelle et le développement, avec un même fil conducteur du premier cadrage à la mise en ligne."
+          "Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."
         ]
-      }
+      },
+      "items": [
+        {
+          "id": "approach-understand",
+          "eyebrow": "Cadrage",
+          "title": "Comprendre",
+          "text": [
+            "Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."
+          ]
+        },
+        {
+          "id": "approach-structure",
+          "eyebrow": "Architecture",
+          "title": "Structurer",
+          "text": [
+            "Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."
+          ]
+        },
+        {
+          "id": "approach-design",
+          "eyebrow": "Direction",
+          "title": "Concevoir",
+          "text": [
+            "Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."
+          ]
+        },
+        {
+          "id": "approach-build",
+          "eyebrow": "Réalisation",
+          "title": "Construire",
+          "text": [
+            "La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."
+          ]
+        }
+      ]
     }
   },
   "studio-founders": {
