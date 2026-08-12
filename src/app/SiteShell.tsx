@@ -9,6 +9,9 @@ import type { StyleVariant, Tone } from "@/types/content";
 
 type ThemeStyle = CSSProperties & Record<`--${string}`, string>;
 
+const fontStack = (family: string, fallback: "serif" | "sans-serif") =>
+  `"${family}", ${fallback === "serif" ? "Georgia, 'Times New Roman', serif" : "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"}`;
+
 export function SiteShell({ children }: { children: ReactNode }) {
   const drawer = useUIStore(selectDrawerView);
   const overlayOpen = useUIStore(selectOverlayOpen);
@@ -33,12 +36,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
     "--primary": foreground,
     "--secondary": background,
     "--accent": colors.accent,
-    "--font-heading-classic": `"${fonts.classicHeading}"`,
-    "--font-heading-editorial": `"${fonts.editorialHeading}"`,
-    "--font-heading-organic": `"${fonts.organicHeading}"`,
-    "--font-body-project": `"${fonts.body}"`,
-    "--font-heading": `"${headingFont}"`,
-    "--font-body": `"${fonts.body}"`,
+    "--font-heading-classic": fontStack(fonts.classicHeading, "serif"),
+    "--font-heading-editorial": fontStack(fonts.editorialHeading, "serif"),
+    "--font-heading-organic": fontStack(fonts.organicHeading, "serif"),
+    "--font-body-project": fontStack(fonts.body, "sans-serif"),
+    "--font-heading": fontStack(headingFont, "serif"),
+    "--font-body": fontStack(fonts.body, "sans-serif"),
   };
 
   return (
