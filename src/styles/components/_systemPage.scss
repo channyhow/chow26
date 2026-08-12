@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
 
 .systemPage button {
   @include standard-control;
@@ -50,8 +51,8 @@
   color: var(--primary);
 }
 
-
-.systemPage__businessContext {
+.systemPage__businessContext,
+.systemReference__contexts {
   display: grid;
   gap: $space-4;
 }
@@ -62,22 +63,23 @@
 }
 
 .systemPage__businessLabel {
+  @include type-eyebrow;
+
   margin: 0 0 $space-2;
-  font-size: $type-caption;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   opacity: $opacity-muted;
 }
 
 .systemPage__businessHierarchy,
-.systemPage__businessComponents {
+.systemPage__businessComponents,
+.systemReference__hierarchy {
   margin: 0;
 }
 
-.systemPage__businessHierarchy {
+.systemPage__businessHierarchy,
+.systemReference__hierarchy {
   display: grid;
   gap: $space-1;
-  padding-left: 1.3em;
+  padding-left: 1.25em;
 }
 
 .systemPage__businessComponents {
@@ -89,9 +91,8 @@
 }
 
 .systemPage__businessComponents li {
+  @include pill-outline;
   padding: 0.35em 0.7em;
-  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
-  border-radius: var(--radius-control, #{$radius-full});
 }
 
 .systemReference__principles {
@@ -100,11 +101,6 @@
 
 .systemReference__card {
   border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
-}
-
-.systemReference__contexts {
-  display: grid;
-  gap: $space-4;
 }
 
 .systemReference__context {
@@ -119,13 +115,6 @@
   margin: 0;
 }
 
-.systemReference__hierarchy {
-  display: grid;
-  gap: $space-1;
-  margin: 0;
-  padding-left: 1.25em;
-}
-
 .systemReference__note {
   max-width: $measure-text;
   opacity: $opacity-muted;
@@ -138,6 +127,5 @@
 
   .systemReference__contexts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-4;
   }
 }
