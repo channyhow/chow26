@@ -1,0 +1,56 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
+.card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-surface, #{$radius-default});
+  background: var(--surface, transparent);
+
+  &__media { border-radius: 0; }
+  &__body { max-width: none; padding: $space-2; }
+
+  .media__asset {
+    transition: transform $transition-reveal;
+  }
+
+  .textBlock__title { @include type-heading-md; max-width: 22ch; }
+  .textBlock__subtitle p { @include type-body; }
+  .textBlock__meta { @include type-body-sm; }
+
+  @include hover {
+    .media__asset { transform: scale(1.02); }
+  }
+
+  &:focus-within .media__asset {
+    transform: scale(1.02);
+  }
+}
+
+[data-variant="organic"] .card {
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+}
+
+@include reduced-motion {
+  .card .media__asset {
+    transition: none;
+  }
+
+  .card:hover .media__asset,
+  .card:focus-within .media__asset {
+    transform: none;
+  }
+}
+
+.card[href] {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card[href]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: $space-1;
+}
+

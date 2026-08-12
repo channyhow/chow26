@@ -1,0 +1,15 @@
+@use "../foundation/tokens" as *;
+
+.scrollPanel[data-enabled="true"] {
+  scroll-snap-type: y proximity;
+}
+
+.scrollPanel[data-enabled="true"] > :first-child {
+  min-height: 100svh;
+  scroll-snap-align: start;
+}
+
+.scrollPanel[data-enabled="true"] > :not(:first-child) {
+  min-height: 0;
+  scroll-snap-align: none;
+}

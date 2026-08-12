@@ -1,0 +1,345 @@
+[
+  {
+    "id": "home",
+    "slug": "/",
+    "seo": {
+      "title": "Architecture intérieure Paris & La Réunion | Atmosphere Studio",
+      "description": "Atmosphere Studio conçoit des intérieurs résidentiels à Paris, en Île-de-France et à La Réunion : rénovation, volumes, lumière, matières, mobilier et stylisme.",
+      "image": "/assets/photos/atmosphere/lisbon-living.jpg"
+    },
+    "blocks": [
+      {
+        "id": "home-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "home-opening-panel",
+            "behavior": "fixed",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "blocks": [
+              {
+                "ref": "home-opening"
+              }
+            ]
+          },
+          {
+            "id": "home-projects-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "blocks": [
+              {
+                "ref": "projects-featured"
+              }
+            ]
+          },
+          {
+            "id": "home-approach-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "accent",
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
+          },
+          {
+            "id": "home-services-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "projects",
+    "slug": "/projets",
+    "seo": {
+      "title": "Projets d’architecture intérieure | Atmosphere Studio",
+      "description": "Découvrez les projets résidentiels d’Atmosphere Studio à Paris, Lisbonne et Bali : rénovation, architecture intérieure, direction d’ambiance, mobilier et stylisme.",
+      "image": "/assets/photos/atmosphere/paris-entryway.jpg"
+    },
+    "blocks": [
+      {
+        "ref": "project-gallery"
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "approach",
+    "slug": "/approche",
+    "seo": {
+      "title": "Studio et approche | Atmosphere Studio",
+      "description": "Découvrez l’approche d’Atmosphere Studio, studio d’architecture intérieure entre Paris, l’Île-de-France et La Réunion : usages, lumière et matières.",
+      "image": "/assets/photos/atmosphere/woman-portrait.jpg"
+    },
+    "blocks": [
+      {
+        "id": "approach-scroll-group",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "studio-founders-panel",
+            "behavior": "fixed",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "approach-method"
+              }
+            ]
+          },
+          {
+            "id": "approach-method-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "journal",
+    "slug": "/journal",
+    "seo": {
+      "title": "Journal d’architecture intérieure | Atmosphere Studio",
+      "description": "Notes d’Atmosphere Studio sur l’architecture intérieure, la lumière, les matières, les palettes et le minimalisme chaleureux."
+    },
+    "blocks": [
+      {
+        "ref": "journal-default"
+      },
+      {
+        "ref": "projects-featured"
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "contact",
+    "slug": "/contact",
+    "seo": {
+      "title": "Architecte d’intérieur : démarrer un projet | Atmosphere Studio",
+      "description": "Présentez votre projet résidentiel à Atmosphere Studio à Paris, en Île-de-France ou à La Réunion : rénovation, usages, calendrier et besoins."
+    },
+    "blocks": [
+      {
+        "ref": "contact-default"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "links",
+    "slug": "/liens",
+    "variant": "editorial",
+    "seo": {
+      "title": "Atmosphere Studio | Projets, studio et contact",
+      "description": "Accédez aux projets, à l’approche et au formulaire de contact d’Atmosphere Studio.",
+      "robots": {
+        "index": false,
+        "follow": true
+      }
+    },
+    "blocks": [
+      {
+        "ref": "links-profile"
+      },
+      {
+        "ref": "links-primary"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "legal",
+    "slug": "/mentions-legales",
+    "variant": "editorial",
+    "seo": {
+      "title": "Mentions légales | Atmosphere Studio",
+      "description": "Nature de l’étude de cas Atmosphere Studio, création par Channy How-Choong et Chow Studio, hébergement et propriété intellectuelle."
+    },
+    "blocks": [
+      {
+        "ref": "legal-notice-default"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "journal-minimalisme-chaleureux",
+    "slug": "/journal/minimalisme-chaleureux",
+    "variant": "editorial",
+    "seo": {
+      "title": "Minimalisme chaleureux : composer sans vider l’espace | Atmosphere Studio",
+      "description": "Matières, lumière, volumes et objets : les principes d’Atmosphere Studio pour créer un intérieur minimaliste, chaleureux et vivant."
+    },
+    "blocks": [
+      {
+        "id": "article-minimalisme-chaleureux",
+        "type": "Section",
+        "layout": "text",
+        "content": {
+          "header": {
+            "eyebrow": "Notes d’ambiance · Mars 2026",
+            "title": "Créer un minimalisme chaleureux sans vider l’espace",
+            "text": [
+              "Le minimalisme chaleureux ne consiste pas à retirer jusqu’à rendre le lieu impersonnel. Il commence par une lecture claire des usages : ce qui doit rester accessible, ce qui mérite d’être montré et ce qui peut disparaître dans des rangements intégrés.",
+              "La sensation de richesse vient ensuite des matières. Un bois veiné, un enduit légèrement irrégulier, un textile dense ou une pierre mate créent de la profondeur sans multiplier les objets. Une palette courte gagne à réunir plusieurs textures plutôt que plusieurs couleurs.",
+              "Enfin, quelques éléments choisis donnent le rythme : une assise sculpturale, une lampe basse, une œuvre ou une plante. L’espace reste calme, mais il conserve des signes de vie et une présence personnelle."
+            ]
+          }
+        }
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "journal-palette-neutre",
+    "slug": "/journal/palette-neutre",
+    "variant": "editorial",
+    "seo": {
+      "title": "Composer une palette neutre et sensible | Atmosphere Studio",
+      "description": "Comment associer ivoire, sable, pierre et bois pour construire une palette intérieure neutre, nuancée et durable."
+    },
+    "blocks": [
+      {
+        "id": "article-palette-neutre",
+        "type": "Section",
+        "layout": "text",
+        "content": {
+          "header": {
+            "eyebrow": "Matières · Février 2026",
+            "title": "Construire une palette neutre qui reste sensible",
+            "text": [
+              "Une palette neutre devient intéressante lorsqu’elle repose sur des écarts subtils plutôt que sur une couleur uniforme. Ivoire, sable, grège et pierre ne réagissent ni de la même manière à la lumière, ni aux matières qui les entourent.",
+              "Nous commençons par observer la lumière naturelle du lieu. Une pièce orientée au nord supporte souvent des nuances plus enveloppantes ; une lumière directe peut être équilibrée par des tons mats et légèrement grisés.",
+              "Le bois, les métaux, les textiles et les enduits apportent ensuite les contrastes nécessaires. L’objectif n’est pas de tout assortir, mais de construire une continuité dans laquelle chaque surface conserve sa texture et sa température."
+            ]
+          }
+        }
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "journal-lumiere-maison-calme",
+    "slug": "/journal/lumiere-maison-calme",
+    "variant": "editorial",
+    "seo": {
+      "title": "La lumière au cœur d’un intérieur apaisé | Atmosphere Studio",
+      "description": "Lumière naturelle, éclairage indirect et zones d’ombre : concevoir une atmosphère intérieure calme dès le début du projet."
+    },
+    "blocks": [
+      {
+        "id": "article-lumiere-maison-calme",
+        "type": "Section",
+        "layout": "text",
+        "content": {
+          "header": {
+            "eyebrow": "Guide · Janvier 2026",
+            "title": "La lumière comme point de départ d’un intérieur apaisé",
+            "text": [
+              "La lumière n’est pas une finition ajoutée à la fin du projet. Elle influence la perception des volumes, la couleur des matières et la manière dont les espaces accompagnent les différents moments de la journée.",
+              "Nous distinguons d’abord les usages : circuler, lire, cuisiner, recevoir ou se reposer ne demandent ni la même intensité ni la même hauteur de lumière. Plusieurs sources douces sont souvent plus confortables qu’un éclairage central unique.",
+              "Les zones d’ombre ont aussi leur importance. Elles donnent de la profondeur, reposent le regard et permettent à certains éléments de se détacher. Un intérieur apaisé n’est pas uniformément éclairé ; il est composé de transitions."
+            ]
+          }
+        }
+      },
+      {
+        "ref": "final-cta"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  },
+  {
+    "id": "not-found",
+    "slug": "/404",
+    "variant": "editorial",
+    "seo": {
+      "title": "Page introuvable | Atmosphere Studio",
+      "description": "Cette page Atmosphere Studio est introuvable.",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
+    },
+    "blocks": [
+      {
+        "ref": "not-found-default"
+      },
+      {
+        "ref": "site-footer"
+      }
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+@use "foundation/tokens" as *;
+@use "foundation/mixins";
+@use "foundation/typography";
+@use "variants/variants";
+@use "utilities/utilities";
+@use "layout/page";
+@use "layout/section";
+@use "layout/sectionGroup";
+@use "layout/grid";
+@use "layout/split";
+@use "components/actions";
+@use "components/card";
+@use "components/textBlock";
+@use "components/media";
+@use "components/gallery";
+@use "components/carousel";
+@use "components/contentSwitcher";
+@use "components/accordion";
+@use "components/embed";
+@use "components/scrollPanel";
+@use "components/scrollProgress";
+@use "components/scrollScene";
+@use "components/timeline";
+@use "components/schedule";
+@use "components/loader";
+@use "components/form";
+@use "components/siteShell";
+@use "components/burgerButton";
+@use "components/drawer";
+@use "components/systemPage";
+@use "components/brandingPage";
+@use "project/artDirection";
+
+:root {
+  color: var(--primary);
+  background: var(--secondary);
+  font-family: var(--font-body, "Poppins", sans-serif);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--secondary); }
+body { margin: 0; min-width: 20rem; min-height: 100svh; background: var(--secondary); color: var(--primary); }
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; }
+.page, .routeTransition { min-height: 100svh; }
+.page { overflow-x: clip; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}

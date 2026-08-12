@@ -1,0 +1,24 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--section-gap, #{$space-3});
+
+  > * {
+    min-width: 0;
+  }
+}
+
+@include tablet-up {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include desktop-up {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "site": {
+    "id": "atmosphere-architecture-template",
+    "name": "Atmosphere Studio",
+    "baseline": "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion",
+    "url": "https://atmosphere-studio.netlify.app",
+    "defaultLocale": "fr",
+    "supportedLocales": [
+      "fr"
+    ],
+    "seo": {
+      "defaultTitle": "Architecture intérieure Paris & La Réunion | Atmosphere Studio",
+      "defaultDescription": "Atmosphere Studio conçoit des intérieurs résidentiels à Paris, en Île-de-France et à La Réunion : rénovation, volumes, lumière, matières, mobilier et stylisme.",
+      "defaultImage": "/assets/photos/atmosphere/lisbon-living.jpg",
+      "imageAlt": "Intérieur lumineux aux matières naturelles conçu par Atmosphere Studio",
+      "siteType": "website",
+      "organizationType": "ProfessionalService",
+      "twitterCard": "summary_large_image",
+      "themeColor": "#F6F5F3",
+      "areaServed": [
+        {
+          "kind": "city",
+          "name": "Paris"
+        },
+        {
+          "kind": "region",
+          "name": "Île-de-France"
+        },
+        {
+          "kind": "region",
+          "name": "La Réunion"
+        }
+      ],
+      "knowsAbout": [
+        "Architecture intérieure",
+        "Architecte d’intérieur",
+        "Rénovation résidentielle",
+        "Direction d’ambiance",
+        "Mobilier et stylisme",
+        "Aménagement intérieur",
+        "Lumière",
+        "Matières"
+      ],
+      "offerCatalogName": "Services Atmosphere Studio",
+      "services": [
+        {
+          "name": "Architecture intérieure résidentielle",
+          "description": "Conception et rénovation de lieux de vie à Paris, en Île-de-France et à La Réunion, autour des usages, des volumes, des circulations, des matières et de la lumière."
+        },
+        {
+          "name": "Direction d’ambiance",
+          "description": "Définition d’une palette cohérente de couleurs, matières, mobilier et lumière."
+        },
+        {
+          "name": "Mobilier et stylisme",
+          "description": "Sélection du mobilier, des objets et des finitions pour prolonger l’intention du projet."
+        }
+      ],
+      "projectLocations": [
+        "Paris",
+        "Lisbonne",
+        "Bali"
+      ]
+    },
+    "pwa": {
+      "name": "Atmosphere Studio",
+      "shortName": "Atmosphere",
+      "description": "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion.",
+      "display": "standalone",
+      "startUrl": "/"
+    },
+    "contact": {
+      "email": "hello@atmosphere-studio.fr",
+      "phone": "",
+      "address": {
+        "street": "",
+        "postalCode": "",
+        "city": "Paris",
+        "country": "FR"
+      }
+    },
+    "socials": {
+      "instagram": {
+        "label": "Instagram",
+        "href": "https://instagram.com/atmospherestudio",
+        "enabled": false
+      },
+      "pinterest": {
+        "label": "Pinterest",
+        "href": "https://pinterest.com/atmospherestudio",
+        "enabled": false
+      },
+      "email": {
+        "label": "E-mail",
+        "href": "mailto:hello@atmosphere-studio.fr",
+        "enabled": true
+      }
+    },
+    "credits": {
+      "label": "Création du site",
+      "name": "Channy How-Choong",
+      "studio": "Chow Studio",
+      "href": "https://chow-studio.com/"
+    },
+    "contentMode": "business"
+  },
+  "ui": {
+    "navigation": {
+      "desktop": "inline"
+    },
+    "copy": {
+      "navigation": {
+        "mainLabel": "Navigation principale",
+        "openMenuLabel": "Ouvrir le menu",
+        "closeLabel": "Fermer",
+        "drawerLabels": {
+          "menu": "Atmosphere Studio",
+          "contact": "Projet",
+          "reservation": "Démarrer un projet"
+        }
+      },
+      "forms": {
+        "selectPlaceholder": "Sélectionner",
+        "defaultSubmitLabel": "Envoyer",
+        "requiredError": "Ce champ est requis.",
+        "emailError": "Saisissez une adresse e-mail valide.",
+        "numberError": "Saisissez une valeur valide.",
+        "genericError": "Vérifiez la valeur saisie."
+      },
+      "carousel": {
+        "defaultLabel": "Projets",
+        "navigationLabel": "Navigation du carrousel",
+        "previousLabel": "Précédent",
+        "nextLabel": "Suivant",
+        "positionSeparator": "sur"
+      },
+      "contentSwitcher": {
+        "controlsLabel": "Choisir un type de projet"
+      },
+      "schedule": {
+        "bookingLabel": "Nous écrire"
+      }
+    },
+    "loader": {
+      "messages": [
+        "Observer.",
+        "Composer.",
+        "Habiter."
+      ]
+    },
+    "experience": {
+      "scrollProgress": "rail",
+      "sectionReveal": true,
+      "parallax": true,
+      "footerReveal": true
+    }
+  },
+  "theme": {
+    "variant": "editorial",
+    "tone": "default",
+    "colors": {
+      "primary": "#222224",
+      "secondary": "#F6F5F3",
+      "special": "#d47182",
+      "accent": "#ae482d"
+    },
+    "fonts": {
+      "classicHeading": "Noto Serif Display",
+      "editorialHeading": "Noto Serif Display",
+      "organicHeading": "Noto Serif Display",
+      "body": "Poppins"
+    }
+  },
+  "integrations": {
+    "hosting": "netlify",
+    "forms": "netlify",
+    "cms": false,
+    "calendar": false,
+    "newsletter": false,
+    "commerce": false,
+    "maps": false,
+    "reviews": false,
+    "weather": false,
+    "analytics": false
+  }
+}

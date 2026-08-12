@@ -1,0 +1,143 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.brandingPage {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.brandingPage__intro {
+  min-height: min(78svh, 52rem);
+  display: grid;
+  align-items: end;
+}
+
+.brandingPage__keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+}
+
+.brandingPage__keywords span {
+  padding: 0.55em 0.9em;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-control, #{$radius-full});
+}
+
+.brandingPage__palette {
+  display: grid;
+  gap: $space-2;
+}
+
+.brandingPage__swatch {
+  display: grid;
+  grid-template-rows: minmax(12rem, 28vw) auto;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  border-radius: var(--radius-surface, #{$radius-default});
+}
+
+.brandingPage__swatchColor {
+  background: var(--swatch);
+}
+
+.brandingPage__swatchMeta {
+  display: grid;
+  gap: $space-1;
+  padding: $space-2;
+}
+
+.brandingPage__swatchMeta p,
+.brandingPage__swatchMeta span {
+  margin: 0;
+  opacity: $opacity-muted;
+}
+
+.brandingPage__typePairing {
+  display: grid;
+  gap: $space-2;
+}
+
+.brandingPage__typeSample {
+  display: grid;
+  align-content: space-between;
+  min-height: 18rem;
+  gap: $space-3;
+  padding: $space-3;
+  border-top: 1px solid currentColor;
+}
+
+.brandingPage__typeSample p,
+.brandingPage__typeSample span,
+.brandingPage__typeSample small {
+  margin: 0;
+}
+
+.brandingPage__typeSample--heading p {
+  max-width: 14ch;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.95;
+}
+
+.brandingPage__typeSample--body p {
+  max-width: 38ch;
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  line-height: 1.35;
+}
+
+.brandingPage__note {
+  max-width: $measure-text;
+  opacity: $opacity-muted;
+}
+
+.brandingPage__imagery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-2;
+  align-items: start;
+}
+
+.brandingPage__imagery > :first-child {
+  grid-column: 1 / -1;
+}
+
+.brandingPage__surfaces {
+  display: grid;
+  gap: $space-2;
+}
+
+.brandingPage__surface {
+  min-height: 14rem;
+  display: grid;
+  place-items: center;
+}
+
+.brandingPage__surface--organic {
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  @include shape-blob;
+}
+
+.brandingPage__status {
+  border-top: 1px solid currentColor;
+}
+
+@include tablet-up {
+  .brandingPage__palette,
+  .brandingPage__surfaces {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .brandingPage__typePairing {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .brandingPage__imagery {
+    grid-template-columns: 1.5fr 0.75fr 0.75fr;
+  }
+
+  .brandingPage__imagery > :first-child {
+    grid-column: auto;
+  }
+}

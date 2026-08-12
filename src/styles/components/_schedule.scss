@@ -1,0 +1,7 @@
+@use "../foundation/tokens" as *;
+
+.schedule__item {
+  display: grid;
+  gap: $space-2;
+  min-width: 0;
+}

@@ -1,0 +1,43 @@
+@use "../foundation/tokens" as *;
+
+.scrollProgress {
+  position: fixed;
+  z-index: $z-sticky;
+  pointer-events: none;
+}
+
+.scrollProgress::before,
+.scrollProgress__value {
+  position: absolute;
+  inset: 0;
+}
+
+.scrollProgress::before {
+  content: "";
+  background: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.scrollProgress__value {
+  display: block;
+  background: currentColor;
+}
+
+.scrollProgress[data-mode="top"] {
+  inset: 0 0 auto;
+  height: 2px;
+}
+
+.scrollProgress[data-mode="top"] .scrollProgress__value {
+  transform-origin: 0 50%;
+}
+
+.scrollProgress[data-mode="rail"] {
+  top: clamp(5rem, 12vh, 8rem);
+  right: $space-2;
+  bottom: $space-2;
+  width: 1px;
+}
+
+.scrollProgress[data-mode="rail"] .scrollProgress__value {
+  transform-origin: 50% 0;
+}

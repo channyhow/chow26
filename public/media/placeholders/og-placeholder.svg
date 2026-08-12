@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Open Graph placeholder</title>
+  <desc id="desc">Replace this file with the final 1200 by 630 social sharing image.</desc>
+  <rect width="1200" height="630" fill="#f6f5f3"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="none" stroke="#161616" stroke-width="2"/>
+  <text x="96" y="280" fill="#161616" font-family="Arial, sans-serif" font-size="64">Nom du studio</text>
+  <text x="96" y="348" fill="#161616" font-family="Arial, sans-serif" font-size="28">Remplacer par l’image sociale finale · 1200 × 630</text>
+</svg>

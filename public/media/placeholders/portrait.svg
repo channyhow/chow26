@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder portrait</title>
+  <desc id="desc">Neutral portrait placeholder image to replace with project media.</desc>
+  <rect width="1200" height="1600" fill="#f0efec"/>
+  <ellipse cx="600" cy="520" rx="230" ry="270" fill="#d7d7d2"/>
+  <path d="M220 1600v-260c0-310 170-500 380-500s380 190 380 500v260Z" fill="#c7c6c0"/>
+</svg>

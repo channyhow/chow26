@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /system
+Disallow: /branding
+Disallow: /netlify-forms.html
+Sitemap: https://atmosphere-studio.netlify.app/sitemap.xml

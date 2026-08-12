@@ -1,0 +1,64 @@
+@use "../foundation/tokens" as *;
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: $space-2;
+}
+
+.timeline__rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.timeline__rail::before,
+.timeline__progress {
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+}
+
+.timeline__rail::before {
+  content: "";
+  background: color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.timeline__progress {
+  transform-origin: top;
+  background: currentColor;
+}
+
+.timeline__list {
+  display: grid;
+  gap: var(--section-gap, #{$space-3});
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline__item {
+  position: relative;
+  min-width: 0;
+  padding-block: $space-1 $space-3;
+}
+
+.timeline__marker {
+  position: absolute;
+  top: $space-1;
+  left: calc(-2rem - #{$space-2});
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  min-height: 2rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-control, #{$radius-full});
+  background: var(--secondary);
+  font-size: $type-caption;
+}
+
+.timeline[data-mode="checklist"] .timeline__marker {
+  background: var(--primary);
+  color: var(--secondary);
+}

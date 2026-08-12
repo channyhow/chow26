@@ -1,0 +1,96 @@
+{
+  "contact": {
+    "id": "project-enquiry-form",
+    "name": "project-enquiry",
+    "submitLabel": "Démarrer un projet",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Nom",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "E-mail",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Téléphone",
+        "type": "tel"
+      },
+      {
+        "name": "location",
+        "label": "Localisation du projet",
+        "type": "text"
+      },
+      {
+        "name": "projectType",
+        "label": "Type de projet",
+        "type": "select",
+        "required": true,
+        "options": [
+          {
+            "label": "Appartement",
+            "value": "apartment"
+          },
+          {
+            "label": "Maison",
+            "value": "house"
+          },
+          {
+            "label": "Villa / résidence",
+            "value": "villa"
+          },
+          {
+            "label": "Lieu de vie / hospitalité",
+            "value": "hospitality"
+          },
+          {
+            "label": "Autre",
+            "value": "other"
+          }
+        ]
+      },
+      {
+        "name": "timeline",
+        "label": "Calendrier envisagé",
+        "type": "text"
+      },
+      {
+        "name": "message",
+        "label": "Le projet",
+        "type": "textarea",
+        "required": true,
+        "placeholder": "Surface, localisation, usages, état existant, calendrier, contraintes et ambiance recherchée…"
+      }
+    ]
+  },
+  "reservation": {
+    "id": "project-call-form",
+    "name": "project-call",
+    "submitLabel": "Envoyer",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Nom",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "E-mail",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "message",
+        "label": "Votre projet",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  }
+}

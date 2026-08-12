@@ -1,0 +1,67 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.accordion {
+  @include rule-top(100%);
+}
+
+.accordion__item {
+  @include rule-bottom(100%);
+}
+
+.accordion__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2;
+  padding-block: $space-2;
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+
+  &::after {
+    content: "+";
+    transition: transform $transition-interface;
+  }
+
+  @include hover { opacity: $opacity-muted; }
+  &:focus-visible { @include focus-ring; }
+}
+
+.accordion__item[open] .accordion__summary::after {
+  transform: rotate(45deg);
+}
+
+.accordion__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-#{$space-1});
+  transition:
+    grid-template-rows $transition-interface,
+    opacity $transition-interface,
+    transform $transition-interface;
+}
+
+.accordion__item[open] .accordion__content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.accordion__contentInner {
+  min-height: 0;
+  max-width: $measure-text;
+  overflow: hidden;
+  padding-bottom: $space-2;
+
+  p { margin: 0; }
+}
+
+@include reduced-motion {
+  .accordion__content,
+  .accordion__summary::after {
+    transition: none;
+  }
+}

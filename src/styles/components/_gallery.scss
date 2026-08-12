@@ -1,0 +1,61 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.gallery {
+  display: grid;
+  gap: $space-2;
+}
+
+.gallery__item {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-media, #{$radius-default});
+}
+
+.gallery[data-layout="grid"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.gallery[data-layout="masonry"] {
+  columns: 2;
+  column-gap: $space-2;
+
+  .gallery__item {
+    break-inside: avoid;
+    margin-bottom: $space-2;
+  }
+}
+
+.gallery[data-layout="editorial"] {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  .gallery__item {
+    grid-column: span 3;
+  }
+
+  .gallery__item:nth-child(3n + 1) {
+    grid-column: span 4;
+  }
+
+  .gallery__item:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
+}
+
+[data-variant="organic"] .gallery__item:nth-child(3n + 2) {
+  --radius-media: 55% 45% 48% 52% / 44% 58% 42% 56%;
+}
+
+[data-variant="organic"] .gallery__item:nth-child(3n + 3) {
+  --radius-media: 43% 57% 56% 44% / 55% 42% 58% 45%;
+}
+
+@include tablet-up {
+  .gallery[data-layout="grid"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery[data-layout="masonry"] {
+    columns: 3;
+  }
+}

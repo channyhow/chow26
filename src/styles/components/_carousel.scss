@@ -1,0 +1,108 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.carousel {
+  --carousel-media-ratio: #{$ratio-landscape};
+  display: grid;
+  gap: $space-2;
+}
+
+.carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(78%, 1fr);
+  gap: $space-2;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.carousel__item {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+.carousel__item > .card {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__item .media__frame {
+  aspect-ratio: var(--carousel-media-ratio);
+}
+
+.carousel__item .media__asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-self: end;
+  gap: $space-1;
+
+  button {
+    @include icon-control;
+
+    border-radius: $radius-full;
+    -webkit-tap-highlight-color: transparent;
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.22;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    @include hover {
+      &:not(:disabled) {
+        color: var(--secondary);
+        background: var(--primary);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.carousel__arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+[data-variant="organic"] {
+  .carousel__controls button {
+    border-radius: var(
+      --radius-control,
+      #{$radius-full}
+    );
+  }
+}
+
+@include reduced-motion {
+  .carousel__controls button {
+    transition: none;
+
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+@include tablet-up {
+  .carousel__track { grid-auto-columns: minmax(22rem, 38%); }
+}

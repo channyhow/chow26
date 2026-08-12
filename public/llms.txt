@@ -1,0 +1,64 @@
+# Atmosphere Studio
+
+> Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion
+
+## Identity
+
+- Canonical site: https://atmosphere-studio.netlify.app
+- Language: fr
+- Content type: Interior architecture studio website
+- Creator: Channy How-Choong · Chow Studio
+- Creator website: https://chow-studio.com/
+
+## Public pages
+
+- Architecture intérieure Paris & La Réunion | Atmosphere Studio: https://atmosphere-studio.netlify.app — Atmosphere Studio conçoit des intérieurs résidentiels à Paris, en Île-de-France et à La Réunion : rénovation, volumes, lumière, matières, mobilier et stylisme.
+- Projets d’architecture intérieure | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets — Découvrez les projets résidentiels d’Atmosphere Studio à Paris, Lisbonne et Bali : rénovation, architecture intérieure, direction d’ambiance, mobilier et stylisme.
+- Studio et approche | Atmosphere Studio: https://atmosphere-studio.netlify.app/approche — Découvrez l’approche d’Atmosphere Studio, studio d’architecture intérieure entre Paris, l’Île-de-France et La Réunion : usages, lumière et matières.
+- Journal d’architecture intérieure | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal — Notes d’Atmosphere Studio sur l’architecture intérieure, la lumière, les matières, les palettes et le minimalisme chaleureux.
+- Architecte d’intérieur : démarrer un projet | Atmosphere Studio: https://atmosphere-studio.netlify.app/contact — Présentez votre projet résidentiel à Atmosphere Studio à Paris, en Île-de-France ou à La Réunion : rénovation, usages, calendrier et besoins.
+- Mentions légales | Atmosphere Studio: https://atmosphere-studio.netlify.app/mentions-legales — Nature de l’étude de cas Atmosphere Studio, création par Channy How-Choong et Chow Studio, hébergement et propriété intellectuelle.
+- Minimalisme chaleureux : composer sans vider l’espace | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/minimalisme-chaleureux — Matières, lumière, volumes et objets : les principes d’Atmosphere Studio pour créer un intérieur minimaliste, chaleureux et vivant.
+- Composer une palette neutre et sensible | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/palette-neutre — Comment associer ivoire, sable, pierre et bois pour construire une palette intérieure neutre, nuancée et durable.
+- La lumière au cœur d’un intérieur apaisé | Atmosphere Studio: https://atmosphere-studio.netlify.app/journal/lumiere-maison-calme — Lumière naturelle, éclairage indirect et zones d’ombre : concevoir une atmosphère intérieure calme dès le début du projet.
+- Appartement à Paris | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/appartement-paris — Rénovation intérieure d’un appartement parisien par Atmosphere Studio : circulations clarifiées, bois sombre, matières naturelles et lumière douce.
+- Maison à Lisbonne | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/maison-lisbonne — Direction intérieure d’une maison à Lisbonne : lumière naturelle, enduits texturés, fibres et confort méditerranéen par Atmosphere Studio.
+- Villa à Bali | Atmosphere Studio: https://atmosphere-studio.netlify.app/projets/villa-bali — Concept intérieur d’une villa à Bali par Atmosphere Studio : architecture ouverte, matières naturelles, végétation et circulation apaisée.
+
+## Services represented
+
+- Architecture intérieure résidentielle
+- Direction d’ambiance
+- Mobilier et stylisme
+
+## Topics
+
+- Architecture intérieure
+- Architecte d’intérieur
+- Rénovation résidentielle
+- Direction d’ambiance
+- Mobilier et stylisme
+- Aménagement intérieur
+- Lumière
+- Matières
+
+## Studio setting
+
+- Paris
+- Île-de-France
+- La Réunion
+
+## Portfolio project locations
+
+- Paris
+- Lisbonne
+- Bali
+
+## Contact and attribution
+
+- Contact page: https://atmosphere-studio.netlify.app/contact
+- Email: hello@atmosphere-studio.fr
+- Location represented: Paris, FR
+- Site created by: Channy How-Choong · Chow Studio
+
+This file is generated from src/data/site.json, src/data/pages.json and src/data/collections.json. Keep those sources accurate.

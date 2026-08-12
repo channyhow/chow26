@@ -1,0 +1,391 @@
+{
+  "intro": {
+    "eyebrow": "UI System",
+    "title": "Chow Template",
+    "text": [
+      "Tous les composants visibles sont alimentés par ce fichier JSON afin de pouvoir juger le système complet au même endroit."
+    ]
+  },
+  "variants": [
+    "classic",
+    "editorial",
+    "organic"
+  ],
+  "tones": [
+    "default",
+    "inverse",
+    "accent"
+  ],
+  "previews": {
+    "textBlock": {
+      "purpose": "Hiérarchie éditoriale et contenu sémantique.",
+      "content": {
+        "eyebrow": "TextBlock",
+        "title": "Une hiérarchie éditoriale réutilisable.",
+        "subtitle": "Sous-titre ou information secondaire.",
+        "text": [
+          "Corps de texte pour vérifier l’échelle, la largeur de lecture et le rythme vertical."
+        ],
+        "meta": [
+          {
+            "label": "Meta",
+            "value": "Valeur"
+          }
+        ],
+        "links": [
+          {
+            "label": "Instagram",
+            "linkKey": "social.instagram",
+            "intent": "navigate"
+          }
+        ]
+      }
+    },
+    "cards": {
+      "purpose": "Une unité de preuve, offre, projet, produit ou contenu.",
+      "items": [
+        {
+          "id": "card-01",
+          "eyebrow": "Texte",
+          "title": "Carte textuelle",
+          "text": [
+            "Le contenu n’a pas besoin d’image pour devenir une carte."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "card-02",
+          "eyebrow": "Media",
+          "title": "Carte avec image",
+          "media": "placeholder-landscape",
+          "text": [
+            "Media et TextBlock restent les primitives internes."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "card-03",
+          "eyebrow": "Effect",
+          "title": "Carte glass",
+          "text": [
+            "Effet optionnel sans nouvelle variante React."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "glass"
+          }
+        }
+      ]
+    },
+    "grid": {
+      "purpose": "Scanner plusieurs contenus; ses enfants peuvent être texte, média ou cartes mixtes.",
+      "items": [
+        {
+          "id": "grid-01",
+          "eyebrow": "Text",
+          "title": "Texte seul",
+          "text": [
+            "Grid organise; il ne dicte pas le type de contenu."
+          ]
+        },
+        {
+          "id": "grid-02",
+          "eyebrow": "Mixed",
+          "title": "Image + texte",
+          "media": "profile-placeholder",
+          "text": [
+            "Utile pour équipe, service, projet, produit ou menu."
+          ]
+        },
+        {
+          "id": "grid-03",
+          "eyebrow": "Proof",
+          "title": "Une troisième unité",
+          "text": [
+            "Le responsive reste une décision de layout."
+          ]
+        }
+      ]
+    },
+    "split": {
+      "purpose": "Mettre deux contenus en relation sans créer un composant métier.",
+      "primary": {
+        "eyebrow": "Split",
+        "title": "Texte et média partagent une composition.",
+        "text": [
+          "Même primitive pour éditorial, service, contact ou réservation."
+        ]
+      },
+      "secondaryMedia": "profile-placeholder"
+    },
+    "gallery": {
+      "purpose": "Composition visuelle et preuve émotionnelle.",
+      "layouts": [
+        "grid",
+        "masonry",
+        "editorial"
+      ],
+      "media": [
+        "placeholder-landscape",
+        "profile-placeholder",
+        "placeholder-landscape",
+        "profile-placeholder",
+        "placeholder-landscape",
+        "profile-placeholder"
+      ]
+    },
+    "carousel": {
+      "purpose": "Explorer des contenus parallèles de poids similaire sans rallonger excessivement la page.",
+      "label": "Aperçu du carousel",
+      "items": [
+        {
+          "id": "carousel-01",
+          "eyebrow": "01",
+          "title": "Projet",
+          "media": "placeholder-landscape",
+          "text": [
+            "Swipe, scroll ou contrôles."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "carousel-02",
+          "eyebrow": "02",
+          "title": "Témoignage",
+          "text": [
+            "Un carousel peut contenir du texte seul."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "carousel-03",
+          "eyebrow": "03",
+          "title": "Service",
+          "media": "profile-placeholder",
+          "text": [
+            "Le contenu reste indépendant du mécanisme de navigation."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "carousel-04",
+          "eyebrow": "04",
+          "title": "Produit",
+          "text": [
+            "Assez d’items pour juger le snap et les contrôles."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "carousel-05",
+          "eyebrow": "05",
+          "title": "Article",
+          "media": "placeholder-landscape",
+          "text": [
+            "Les états début/fin désactivent les contrôles inutiles."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        },
+        {
+          "id": "carousel-06",
+          "eyebrow": "06",
+          "title": "Dernier élément",
+          "text": [
+            "La fin doit être aussi claire que le début."
+          ],
+          "appearance": {
+            "frame": true,
+            "effect": "none"
+          }
+        }
+      ]
+    },
+    "switcher": {
+      "purpose": "Comparer des catégories ou contextes dans une zone stable.",
+      "items": [
+        {
+          "id": "studio",
+          "label": "Studio",
+          "content": {
+            "title": "Au studio",
+            "text": [
+              "Un choix volontaire remplace le contenu affiché."
+            ]
+          }
+        },
+        {
+          "id": "business",
+          "label": "Entreprise",
+          "content": {
+            "title": "En entreprise",
+            "text": [
+              "Offres, menus, catégories ou étapes."
+            ]
+          }
+        },
+        {
+          "id": "private",
+          "label": "Privé",
+          "content": {
+            "title": "En privé",
+            "text": [
+              "Même API et même composition."
+            ]
+          }
+        }
+      ]
+    },
+    "accordion": {
+      "purpose": "FAQ et détail progressif; garder hors accordéon ce que tout le monde doit savoir.",
+      "items": [
+        {
+          "id": "accordion-01",
+          "title": "Une question fréquente",
+          "content": "Une réponse concise à remplacer par le contenu du client."
+        },
+        {
+          "id": "accordion-02",
+          "title": "Une deuxième question",
+          "content": "Le composant conserve details et summary natifs avec une transition visuelle légère."
+        },
+        {
+          "id": "accordion-03",
+          "title": "Quand éviter un accordéon ?",
+          "content": "Lorsque l’information est essentielle à tous les visiteurs ou nécessaire pour comprendre l’action principale."
+        }
+      ]
+    },
+    "timeline": {
+      "purpose": "Chronologie, processus, checklist, impact ou cycle de vie.",
+      "items": [
+        {
+          "id": "timeline-01",
+          "eyebrow": "2024",
+          "title": "Premier jalon",
+          "text": [
+            "Une étape, une date ou un point de parcours."
+          ]
+        },
+        {
+          "id": "timeline-02",
+          "eyebrow": "2025",
+          "title": "Deuxième jalon",
+          "text": [
+            "La ligne se dessine progressivement avec le scroll."
+          ]
+        },
+        {
+          "id": "timeline-03",
+          "eyebrow": "2026",
+          "title": "Troisième jalon",
+          "text": [
+            "Le même composant peut devenir checklist."
+          ]
+        }
+      ]
+    },
+    "scrollScene": {
+      "purpose": "Narration mémorable lorsque le mouvement explique progression, relation ou espace.",
+      "preset": "drift",
+      "content": {
+        "eyebrow": "ScrollScene",
+        "title": "Les formes se déplacent à des vitesses différentes.",
+        "text": [
+          "Reduced motion conserve une composition statique lisible."
+        ]
+      }
+    },
+    "scrollPanel": {
+      "purpose": "Storytelling séquentiel avec rythme de panneaux.",
+      "panels": [
+        {
+          "id": "panel-01",
+          "eyebrow": "Panel 01",
+          "title": "Première scène"
+        },
+        {
+          "id": "panel-02",
+          "eyebrow": "Panel 02",
+          "title": "Deuxième scène"
+        },
+        {
+          "id": "panel-03",
+          "eyebrow": "Panel 03",
+          "title": "Troisième scène"
+        }
+      ]
+    },
+    "schedule": {
+      "purpose": "Transformer des événements normalisés en contenu actionnable.",
+      "events": [
+        {
+          "id": "schedule-01",
+          "title": "Cours Studio",
+          "start": "2026-08-10T10:00:00+02:00",
+          "end": "2026-08-10T11:00:00+02:00",
+          "location": "Adresse à remplacer",
+          "description": "Un événement enrichi par la configuration Schedule."
+        },
+        {
+          "id": "schedule-02",
+          "title": "Séance Privée",
+          "start": "2026-08-12T18:30:00+02:00",
+          "end": "2026-08-12T19:30:00+02:00",
+          "location": "Lieu à confirmer",
+          "description": "Le titre peut déterminer média, libellé et lien de réservation."
+        },
+        {
+          "id": "schedule-03",
+          "title": "Cours Studio",
+          "start": "2026-08-15T09:00:00+02:00",
+          "end": "2026-08-15T10:00:00+02:00",
+          "location": "Adresse à remplacer",
+          "description": "Le même moteur convient à cours, concerts, événements ou rendez-vous."
+        }
+      ]
+    },
+    "embeds": {
+      "purpose": "Isoler les outils tiers facultatifs et les charger seulement lorsqu’ils sont nécessaires.",
+      "items": [
+        {
+          "provider": "maps",
+          "src": "https://www.openstreetmap.org/export/embed.html?bbox=2.28%2C48.84%2C2.36%2C48.88&layer=mapnik",
+          "title": "Map preview"
+        },
+        {
+          "provider": "instagram",
+          "src": "https://www.instagram.com/instagram/embed",
+          "title": "Instagram preview"
+        }
+      ]
+    },
+    "forms": {
+      "purpose": "Capturer une intention qualifiée avec le minimum de champs nécessaires.",
+      "keys": [
+        "contact",
+        "reservation"
+      ]
+    }
+  }
+}

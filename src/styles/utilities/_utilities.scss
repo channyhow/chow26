@@ -1,0 +1,70 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.frame {
+  padding: $padding-default;
+  border: 1px solid var(
+    --frame-rule-color,
+    color-mix(in srgb, currentColor 18%, transparent)
+  );
+  border-radius: var(--radius, #{$radius-default});
+  background: var(--surface, transparent);
+}
+
+.frame--compact {
+  padding: $padding-compact;
+}
+
+.border {
+  border: 1px solid var(--rule-color, #{$gray-300});
+}
+
+.borderTop {
+  border-top: 1px solid var(--rule-color, #{$gray-300});
+}
+
+.borderBottom {
+  border-bottom: 1px solid var(--rule-color, #{$gray-300});
+}
+
+.stack {
+  display: grid;
+  gap: var(--stack-gap, #{$space-3});
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, #{$space-2});
+}
+
+.effectGlass {
+  @include glass;
+}
+
+.effectGrain {
+  @include grain;
+}
+
+.shapeArch {
+  @include shape-arch;
+  overflow: hidden;
+}
+
+.shapeBlob {
+  @include shape-blob;
+  overflow: hidden;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

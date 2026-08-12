@@ -1,0 +1,32 @@
+@use "../foundation/tokens" as *;
+
+.embed {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: var(--radius-surface, #{$radius-default});
+  background: color-mix(in srgb, currentColor 4%, transparent);
+}
+
+.embed[data-provider="instagram"] {
+  aspect-ratio: 4 / 5;
+  max-width: 34rem;
+}
+
+.embed[data-provider="maps"] {
+  aspect-ratio: 16 / 9;
+}
+
+.embed[data-provider="calendar"],
+.embed[data-provider="tally"] {
+  aspect-ratio: auto;
+  min-height: 38rem;
+}
+
+.embed__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
+}

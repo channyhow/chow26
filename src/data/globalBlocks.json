@@ -1,0 +1,368 @@
+{
+  "home-opening": {
+    "id": "home-opening",
+    "type": "Section",
+    "layout": "media-overlay",
+    "content": {
+      "header": {
+        "eyebrow": "Atmosphere Studio · Paris · La Réunion",
+        "title": "Architecture intérieure. Usages, lumière, matières.",
+        "text": [
+          "Studio d’architecture intérieure entre Paris, l’Île-de-France et La Réunion, pour des projets résidentiels sobres, sensibles et faciles à habiter."
+        ],
+        "links": [
+          {
+            "label": "Voir les projets",
+            "href": "/projets",
+            "intent": "navigate",
+            "priority": "primary"
+          },
+          {
+            "label": "L’approche",
+            "href": "/approche",
+            "intent": "navigate",
+            "priority": "secondary"
+          }
+        ]
+      },
+      "media": "home-cover"
+    }
+  },
+  "projects-featured": {
+    "id": "projects-featured",
+    "type": "Section",
+    "layout": "carousel",
+    "source": {
+      "collection": "projects",
+      "query": {
+        "featured": true,
+        "limit": 3
+      }
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Projets sélectionnés",
+        "title": "Paris. Lisbonne. Bali.",
+        "text": [
+          "Trois lieux, trois réponses construites à partir des usages, de la lumière et des matières."
+        ]
+      }
+    }
+  },
+  "project-gallery": {
+    "id": "project-gallery",
+    "type": "Section",
+    "layout": "grid",
+    "source": {
+      "collection": "projects"
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Projets résidentiels",
+        "title": "Passages, matières, lumière.",
+        "text": [
+          "Chaque projet répond à un lieu, à ses usages et à une manière particulière d’habiter."
+        ]
+      }
+    }
+  },
+  "home-services": {
+    "id": "home-services",
+    "type": "Section",
+    "layout": "grid",
+    "source": {
+      "collection": "services",
+      "query": {
+        "featured": true,
+        "limit": 3
+      }
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Services",
+        "title": "Du plan au détail.",
+        "text": [
+          "Architecture intérieure, direction d’ambiance, mobilier et stylisme, selon l’état d’avancement du projet."
+        ]
+      }
+    }
+  },
+  "approach-default": {
+    "id": "approach-default",
+    "type": "Section",
+    "layout": "grid",
+    "source": {
+      "collection": "approach"
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Approche",
+        "title": "Les usages d’abord.",
+        "text": [
+          "Circulations, lumière, volumes et contraintes du lieu guident le projet. Les matières et le mobilier viennent ensuite préciser la réponse."
+        ]
+      }
+    }
+  },
+  "studio-founders": {
+    "id": "studio-founders",
+    "type": "Section",
+    "layout": "grid",
+    "content": {
+      "header": {
+        "eyebrow": "Le studio",
+        "title": "Observer avant de transformer.",
+        "text": [
+          "Fondé à la Réunion par Maëlle Payet et Guillaume Hoarau, Atmosphere Studio travaille à partir du lieu, de ses usages et de sa lumière pour construire des intérieurs clairs, sensibles et durables."
+        ]
+      },
+      "items": [
+        {
+          "eyebrow": "Cofondatrice · Architecture intérieure",
+          "title": "Maëlle Payet",
+          "text": [
+            "Maëlle travaille les volumes, les circulations et les usages, de l’intention initiale aux matières et aux finitions."
+          ],
+          "media": [
+            "studio-founder-1"
+          ]
+        },
+        {
+          "eyebrow": "Cofondateur · Direction d’ambiance",
+          "title": "Guillaume Hoarau",
+          "text": [
+            "Guillaume compose les couleurs, le mobilier et la lumière pour donner à chaque projet une atmosphère cohérente et personnelle."
+          ],
+          "media": [
+            "studio-founder-2"
+          ]
+        }
+      ]
+    }
+  },
+  "approach-method": {
+    "id": "approach-method",
+    "type": "Section",
+    "layout": "grid",
+    "source": {
+      "collection": "approach"
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Approche",
+        "title": "Du lieu à l’atmosphère.",
+        "text": [
+          "Trois principes guident les décisions, de la première esquisse aux derniers détails."
+        ]
+      }
+    }
+  },
+  "journal-default": {
+    "id": "journal-default",
+    "type": "Section",
+    "layout": "carousel",
+    "source": {
+      "collection": "journal",
+      "query": {
+        "featured": true,
+        "limit": 3
+      }
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Journal",
+        "title": "Notes d’architecture intérieure."
+      }
+    },
+    "itemAppearance": {
+      "frame": true,
+      "effect": "none"
+    }
+  },
+ "contact-default": {
+  "id": "contact-default",
+  "type": "Section",
+  "layout": "split",
+  "surface": "solid",
+  "color": "secondary",
+  "content": {
+    "header": {
+      "eyebrow": "Démarrer un projet",
+      "title": "Parlons du lieu.",
+      "text": [
+        "Localisation, typologie, calendrier et usages suffisent pour commencer. Le studio accompagne des projets à Paris, en Île-de-France et à La Réunion."
+      ]
+    },
+    "form": "contact"
+  }
+},
+  "final-cta": {
+    "id": "final-cta",
+    "type": "Section",
+    "layout": "statement",
+    "tone": "inverse",
+    "content": {
+      "header": {
+        "eyebrow": "Démarrer un projet",
+        "title": "Un lieu à transformer ?",
+        "text": [
+          "Quelques informations sur sa localisation, ses usages et vos besoins suffisent pour commencer."
+        ],
+        "links": [
+          {
+            "label": "Démarrer un projet",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "secondary"
+          }
+        ]
+      }
+    }
+  },
+  "links-profile": {
+    "id": "links-profile",
+    "type": "Section",
+    "layout": "statement",
+    "content": {
+      "header": {
+        "title": "Atmosphere Studio",
+        "text": [
+          "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion."
+        ],
+        "media": "lisbon-living"
+      }
+    }
+  },
+  "links-primary": {
+    "id": "links-primary",
+    "type": "Section",
+    "layout": "list",
+    "source": {
+      "collection": "links",
+      "query": {
+        "group": "primary",
+        "enabled": true
+      }
+    }
+  },
+  "legal-notice-default": {
+    "id": "legal-notice-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": "Informations",
+        "title": "Mentions légales"
+      },
+      "items": [
+        {
+          "eyebrow": "01",
+          "title": "Nature du projet",
+          "text": [
+            "Atmosphere Studio est une étude de cas fictive, conçue et développée par Channy How-Choong pour Chow Studio. Les noms, coordonnées, profils et projets servent de contenu de démonstration et ne représentent pas une agence réelle."
+          ]
+        },
+        {
+          "eyebrow": "02",
+          "title": "Édition & création",
+          "text": [
+            "Direction artistique, UX/UI design et développement : Channy How-Choong · Chow Studio."
+          ],
+          "links": [
+            {
+              "label": "Chow Studio",
+              "href": "https://chow-studio.com/",
+              "intent": "navigate",
+              "variant": "arrow"
+            }
+          ]
+        },
+        {
+          "eyebrow": "03",
+          "title": "Hébergement",
+          "text": [
+            "Ce site est hébergé par Netlify, Inc."
+          ]
+        },
+        {
+          "eyebrow": "04",
+          "title": "Propriété intellectuelle",
+          "text": [
+            "Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs. Ils sont présentés ici uniquement dans le cadre de cette étude de cas."
+          ]
+        }
+      ]
+    }
+  },
+  "site-footer": {
+    "id": "site-footer",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": [
+          "Atmosphere Studio",
+          "Architecture intérieure · Paris · Île-de-France · La Réunion."
+        ],
+        "links": [
+          {
+            "label": "Projets",
+            "href": "/projets",
+            "intent": "navigate"
+          },
+          {
+            "label": "Approche",
+            "href": "/approche",
+            "intent": "navigate"
+          },
+          {
+            "label": "Démarrer un projet",
+            "href": "/contact",
+            "intent": "contact"
+          },
+          {
+            "label": "Mentions légales",
+            "href": "/mentions-legales",
+            "intent": "navigate"
+          }
+        ],
+        "meta": [
+          {
+            "label": "Création du site",
+            "value": "Channy How-Choong · Chow Studio"
+          },
+          {
+            "label": "© 2026 CHOW STUDIO · TOUS DROITS RÉSERVÉS"
+          }
+        ]
+      }
+    }
+  },
+  "not-found-default": {
+    "id": "not-found-default",
+    "type": "Section",
+    "layout": "statement",
+    "variant": "editorial",
+    "content": {
+      "header": {
+        "eyebrow": "404 | Page introuvable",
+        "title": "Cette page n’existe plus, ou n’a jamais habité ici.",
+        "text": [
+          "Revenez à l’accueil ou poursuivez la visite à travers nos projets."
+        ],
+        "links": [
+          {
+            "label": "Retour à l’accueil",
+            "href": "/",
+            "intent": "navigate"
+          },
+          {
+            "label": "Voir les projets",
+            "href": "/projets",
+            "intent": "navigate"
+          }
+        ]
+      }
+    }
+  }
+}

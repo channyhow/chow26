@@ -1,0 +1,143 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.systemPage button {
+  @include standard-control;
+
+  @include hover {
+    opacity: $opacity-muted;
+  }
+}
+
+.systemPage button[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--secondary);
+  opacity: 1;
+}
+
+.systemPage__palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-2;
+}
+
+.systemPage__swatch {
+  display: grid;
+  align-items: end;
+  min-height: 8rem;
+  padding: $space-2;
+  border: 1px solid var(--rule-color);
+  border-radius: var(--radius-surface, #{$radius-default});
+}
+
+.systemPage__swatch[data-color="primary"] {
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+.systemPage__swatch[data-color="secondary"] {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.systemPage__swatch[data-color="accent"] {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.systemPage__swatch[data-color="special"] {
+  background: var(--special);
+  color: var(--primary);
+}
+
+
+.systemPage__businessContext {
+  display: grid;
+  gap: $space-4;
+}
+
+.systemPage__businessColumns {
+  display: grid;
+  gap: $space-3;
+}
+
+.systemPage__businessLabel {
+  margin: 0 0 $space-2;
+  font-size: $type-caption;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: $opacity-muted;
+}
+
+.systemPage__businessHierarchy,
+.systemPage__businessComponents {
+  margin: 0;
+}
+
+.systemPage__businessHierarchy {
+  display: grid;
+  gap: $space-1;
+  padding-left: 1.3em;
+}
+
+.systemPage__businessComponents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+  padding: 0;
+  list-style: none;
+}
+
+.systemPage__businessComponents li {
+  padding: 0.35em 0.7em;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: var(--radius-control, #{$radius-full});
+}
+
+.systemReference__principles {
+  align-items: stretch;
+}
+
+.systemReference__card {
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.systemReference__contexts {
+  display: grid;
+  gap: $space-4;
+}
+
+.systemReference__context {
+  display: grid;
+  gap: $space-2;
+  padding-block: $space-3;
+  border-top: 1px solid currentColor;
+}
+
+.systemReference__context h3,
+.systemReference__context p {
+  margin: 0;
+}
+
+.systemReference__hierarchy {
+  display: grid;
+  gap: $space-1;
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+.systemReference__note {
+  max-width: $measure-text;
+  opacity: $opacity-muted;
+}
+
+@include tablet-up {
+  .systemPage__businessColumns {
+    grid-template-columns: minmax(0, 1.5fr) minmax(14rem, 0.5fr);
+  }
+
+  .systemReference__contexts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-4;
+  }
+}

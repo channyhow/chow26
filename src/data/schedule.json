@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "bookingLink": "booking.default"
+  },
+  "eventTypes": {
+    "studio": {
+      "match": ["Studio", "Cours", "Class"],
+      "label": "Studio",
+      "media": "placeholder-landscape",
+      "bookingLink": "booking.studio"
+    },
+    "private": {
+      "match": ["Privé", "Private"],
+      "label": "Privé",
+      "media": "profile-placeholder",
+      "bookingLink": "booking.private"
+    }
+  }
+}

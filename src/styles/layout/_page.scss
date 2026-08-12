@@ -1,0 +1,56 @@
+@use "../foundation/tokens" as *;
+
+.page {
+  position: relative;
+}
+
+.page__content {
+  position: relative;
+  z-index: $z-raised;
+  background: var(--secondary);
+}
+
+.page__footer {
+  position: relative;
+  z-index: $z-base;
+  overflow: visible;
+  background: var(--theme-accent);
+}
+
+.page[data-footer-reveal="true"] {
+  --footer-reveal-height: clamp(24rem, 58svh, 44rem);
+}
+
+/* Footer reveal is a page-scroll effect, never a nested scroll area. */
+@media (min-width: $bp-tablet) {
+  .page[data-footer-reveal="true"] .page__content {
+    margin-bottom: var(--footer-reveal-height);
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.06);
+  }
+
+  .page[data-footer-reveal="true"] .page__footer {
+    position: fixed;
+    inset: auto 0 0;
+    height: var(--footer-reveal-height);
+    overflow: clip;
+    overscroll-behavior: none;
+  }
+
+  .page[data-footer-reveal="true"] .page__footer > .section {
+    min-height: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page[data-footer-reveal="true"] .page__content {
+    margin-bottom: 0;
+    box-shadow: none;
+  }
+
+  .page[data-footer-reveal="true"] .page__footer {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}

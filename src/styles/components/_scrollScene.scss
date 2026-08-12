@@ -1,0 +1,78 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.scrollScene {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: min(80svh, 48rem);
+}
+
+.scrollScene__content {
+  position: relative;
+  z-index: $z-raised;
+}
+
+.scrollScene__decor {
+  position: absolute;
+  inset: 0;
+  z-index: $z-base;
+  pointer-events: none;
+}
+
+.scrollScene__shape {
+  position: absolute;
+  display: block;
+  width: clamp(5rem, 16vw, 12rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: var(--radius-media, #{$radius-full});
+}
+
+.scrollScene__shape--slow {
+  top: 10%;
+  left: 4%;
+}
+
+.scrollScene__shape--medium {
+  top: 34%;
+  right: 8%;
+  width: clamp(4rem, 11vw, 8rem);
+}
+
+.scrollScene__shape--fast {
+  right: 26%;
+  bottom: 5%;
+  width: clamp(3rem, 8vw, 6rem);
+}
+
+.scrollScene__line {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  left: 50%;
+  width: 1px;
+  transform-origin: top;
+  background: color-mix(in srgb, currentColor 55%, transparent);
+}
+
+.scrollScene[data-preset="drift"] .scrollScene__shape:nth-child(2) {
+  @include shape-blob;
+}
+
+.scrollScene[data-preset="draw"] .scrollScene__shape {
+  opacity: 0.28;
+}
+
+[data-variant="organic"] .scrollScene__shape {
+  @include shape-blob;
+}
+
+[data-variant="editorial"] .scrollScene__shape {
+  border-radius: 0;
+}
+
+.scrollScene[data-reduced-motion="true"] .scrollScene__shape,
+.scrollScene[data-reduced-motion="true"] .scrollScene__line {
+  transform: none !important;
+}

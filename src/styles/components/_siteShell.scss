@@ -1,0 +1,24 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
+.site { min-height:100svh; background:var(--secondary); color:var(--primary); overflow-x:clip; }
+.site__canvas { min-height:100svh; }
+.skipLink { @include type-ui-compact; position:fixed; inset:$space-1 auto auto $space-1; z-index:$z-loader; padding:$space-1 $space-2; border-radius:var(--radius-control,#{$radius-full}); background:var(--primary); color:var(--secondary); text-decoration:none; transform:translateY(calc(-100% - #{$space-2})); transition:transform $transition-hover; }
+.skipLink:focus-visible { @include focus-ring; transform:translateY(0); }
+.header { position:fixed; inset:0 0 auto; z-index:$z-header; display:flex; align-items:center; justify-content:space-between; min-height:4rem; padding-inline:clamp($space-2,4vw,$space-4); color:var(--header-color,var(--primary)); pointer-events:none; transition:color $transition-interface; }
+.header__logo,.header__nav,.header .burgerButton { pointer-events:auto; }
+.header__logo { font-family:var(--font-heading,serif); color:inherit; text-decoration:none; font-weight:600; -webkit-tap-highlight-color:transparent; }
+.header__logo:focus:not(:focus-visible) { outline:0; }
+.header__logo:focus-visible { @include focus-ring; }
+.header__nav { display:none; align-items:center; gap:clamp($space-2,2.4vw,$space-3); }
+.header__nav a { @include type-ui; @include interactive-text; position:relative; }
+.header__nav a::after { content:""; position:absolute; inset:auto 0 -.3em; height:1px; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform $transition-hover; }
+.header__nav a { @include hover { &::after { transform:scaleX(1); transform-origin:left; } } }
+.header__nav a[aria-current="page"] { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.3em; }
+.header__nav a[data-nav-variant="cta"] { display:inline-flex; align-items:center; gap:.45em; }
+.header__nav a[data-nav-variant="cta"] span:last-child { transition:transform $transition-hover; }
+.header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform:translateX(.2em); } } }
+.site[data-drawer="contact"],.site[data-drawer="reservation"] { --header-color:var(--secondary); }
+@include desktop-up { .header[data-navigation="inline"] .header__nav { display:flex; } .header[data-navigation="inline"] .burgerButton { display:none; } }
+@include reduced-motion { .skipLink,.header { transition:none; } .header__nav a::after,.header__nav a[data-nav-variant="cta"] span:last-child { transition:none; } .header__nav a[data-nav-variant="cta"]:hover span:last-child { transform:none; } }

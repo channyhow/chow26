@@ -1,0 +1,60 @@
+@use "../foundation/tokens" as *;
+
+:root,
+[data-variant="classic"] {
+  --primary: #{$color-primary};
+  --secondary: #{$color-secondary};
+  --accent: #{$color-accent};
+  --font-heading: "DM Serif Display", serif;
+  --font-body: "DM Sans", sans-serif;
+  --section-space: #{$space-4};
+  --section-gap: #{$space-3};
+  --text-width: #{$measure-text};
+  --title-width: 14ch;
+  --radius: #{$radius-default};
+  --radius-control: #{$radius-default};
+  --radius-surface: #{$radius-default};
+  --radius-media: #{$radius-default};
+  --surface: transparent;
+  --rule-color: #{$gray-300};
+  --motion-distance: 0.5rem;
+}
+
+[data-variant="editorial"] {
+  --font-heading: "Playfair Display", serif;
+  --section-space: #{$space-5};
+  --section-gap: #{$space-4};
+  --text-width: 34rem;
+  --title-width: 9ch;
+  --radius: #{$radius-none};
+  --radius-control: #{$radius-default};
+  --radius-surface: #{$radius-none};
+  --radius-media: #{$radius-none};
+  --surface: transparent;
+  --rule-color: currentColor;
+  --motion-distance: 1.25rem;
+}
+
+[data-variant="organic"] {
+  --font-heading: "Fraunces", serif;
+  --section-space: #{$space-4};
+  --section-gap: #{$space-3};
+  --text-width: 38rem;
+  --title-width: 12ch;
+  --radius: #{$radius-large};
+  --radius-control: #{$radius-full};
+  --radius-surface: #{$radius-large};
+  --radius-media: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  --surface: #{$gray-100};
+  --rule-color: transparent;
+  --motion-distance: 0.85rem;
+}
+
+[data-tone="inverse"] {
+  --primary: #{$color-secondary};
+  --secondary: #{$color-primary};
+}
+
+[data-tone="accent"] {
+  --secondary: var(--accent);
+}

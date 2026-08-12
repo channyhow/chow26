@@ -1,0 +1,94 @@
+{
+  "principles": [
+    {
+      "title": "Clarity before novelty",
+      "text": "A visitor should understand what the business is, why it matters and what to do next before decorative interaction asks for attention."
+    },
+    {
+      "title": "One primary action per context",
+      "text": "Each section should have a clear purpose and one dominant next step. Secondary actions remain visually subordinate."
+    },
+    {
+      "title": "Proof near the decision",
+      "text": "Place reviews, work, credentials, process or concrete evidence close to the action they support rather than isolating all proof on one page."
+    },
+    {
+      "title": "Progressive disclosure",
+      "text": "Keep the first read concise. Use Accordion, ContentSwitcher, Carousel or deeper routes for information that helps interested users without overwhelming everyone."
+    },
+    {
+      "title": "Motion communicates",
+      "text": "Reveal hierarchy, progression, chronology or relationships with motion. Do not animate merely because an element can move."
+    },
+    {
+      "title": "Trust is conversion",
+      "text": "Accessibility, honest wording, clear pricing or process, useful contact information and fast loading increase confidence and are part of conversion design."
+    },
+    {
+      "title": "Mobile is a first-class composition",
+      "text": "Touch, reading order, short paths to action and lightweight media matter more than reproducing the desktop composition at a smaller size."
+    },
+    {
+      "title": "Sustainable by default",
+      "text": "Prefer fewer stronger images, native browser behavior, lazy third-party embeds, efficient media and reusable components over decorative payload."
+    }
+  ],
+  "contexts": [
+    {
+      "id": "restaurant",
+      "label": "Restaurant / hospitality",
+      "goal": "Create desire, remove practical uncertainty and move quickly toward reservation.",
+      "hierarchy": ["Hero + atmospheric Media", "Gallery: food, space, people", "ContentSwitcher: lunch / dinner / drinks", "Grid + Card: signatures or experiences", "Carousel: reviews / press", "Schedule or reservation Form", "Map Embed + practical information", "Final reservation CTA"],
+      "priorityComponents": ["Media", "Gallery", "ContentSwitcher", "Card", "Carousel", "Form", "Schedule", "Embed"],
+      "conversionNote": "Put availability, address and reservation close to moments of appetite. Avoid forcing users through long storytelling before they can book."
+    },
+    {
+      "id": "architect",
+      "label": "Architect / architecture studio",
+      "goal": "Demonstrate taste and competence, then make project fit and enquiry feel credible.",
+      "hierarchy": ["Hero + signature project", "Editorial Grid: selected projects", "ScrollScene: flagship project narrative", "ContentSwitcher: residential / hospitality / cultural", "Timeline: process from brief to delivery", "Carousel: testimonials / recognition", "TextBlock: studio approach", "Qualified project Form"],
+      "priorityComponents": ["Media", "Grid", "Gallery", "ScrollScene", "ContentSwitcher", "Timeline", "Form"],
+      "conversionNote": "Portfolio proof comes before sales copy. The enquiry form can qualify project type, location, timing and approximate scope."
+    },
+    {
+      "id": "musician",
+      "label": "Musician / performer",
+      "goal": "Turn attention into listening, attendance, following or booking.",
+      "hierarchy": ["Hero: current release or tour", "Audio/video Embed", "Schedule: upcoming dates", "Carousel: releases / press / performances", "Gallery: editorial and live imagery", "ContentSwitcher: music / live / video", "Newsletter or follow action", "Booking / contact Form"],
+      "priorityComponents": ["Media", "Embed", "Schedule", "Carousel", "Gallery", "ContentSwitcher", "Form"],
+      "conversionNote": "Listening and dates should be immediately reachable. Separate fan actions from professional booking actions."
+    },
+    {
+      "id": "artist",
+      "label": "Artist / creative practice",
+      "goal": "Let the work lead while making exhibitions, enquiries, commissions or sales understandable.",
+      "hierarchy": ["Hero: one strong work", "Gallery: selected works", "ContentSwitcher: series / medium / period", "ScrollScene: one body of work or process", "Timeline or Schedule: exhibitions", "Card/Grid: works, editions or commissions", "About / statement", "Commission or enquiry Form"],
+      "priorityComponents": ["Media", "Gallery", "ContentSwitcher", "ScrollScene", "Timeline", "Schedule", "Card", "Form"],
+      "conversionNote": "Avoid turning artwork into ecommerce cards unless buying is actually the task. Preserve image scale and context, then surface commercial actions deliberately."
+    },
+    {
+      "id": "developer",
+      "label": "Developer / designer / digital studio",
+      "goal": "Prove capability and judgement, explain services, then generate qualified leads.",
+      "hierarchy": ["Hero: positioning + strongest outcome", "Grid: selected case studies", "ScrollScene: flagship case study", "ContentSwitcher: design / development / strategy", "Timeline: working process", "Carousel: testimonials / outcomes", "Accordion: scope / technical FAQ", "Project enquiry Form"],
+      "priorityComponents": ["Grid", "Card", "ScrollScene", "ContentSwitcher", "Timeline", "Carousel", "Accordion", "Form"],
+      "conversionNote": "Lead with outcomes and finished work rather than a long tool list. Technical detail becomes progressive proof for visitors who need it."
+    },
+    {
+      "id": "association",
+      "label": "Association / nonprofit",
+      "goal": "Make the mission tangible and convert attention into participation, donation, membership or contact.",
+      "hierarchy": ["Hero: mission + immediate impact", "TextBlock + Media: why it matters", "Grid/Card: programs or actions", "Timeline: progress / impact", "Carousel: beneficiary or partner voices", "Schedule: events / volunteering", "Accordion: transparency / eligibility / FAQ", "Primary action: donate / join / volunteer"],
+      "priorityComponents": ["TextBlock", "Media", "Grid", "Card", "Timeline", "Carousel", "Schedule", "Accordion", "Form"],
+      "conversionNote": "Show concrete impact, governance and where support goes. Avoid guilt-based pressure or vague impact claims; trust and transparency are core conversion mechanisms."
+    },
+    {
+      "id": "green-commerce",
+      "label": "Green / ethical commerce",
+      "goal": "Sell a useful product while substantiating environmental or social claims without greenwashing.",
+      "hierarchy": ["Hero: product value first", "Grid/Card: products or categories", "Media: materials / use / production", "ContentSwitcher: features / sourcing / care", "Timeline: supply chain or lifecycle when meaningful", "Accordion: shipping / repair / returns / certifications", "Carousel: reviews / use cases", "Purchase CTA with clear delivery information"],
+      "priorityComponents": ["Card", "Grid", "Media", "ContentSwitcher", "Timeline", "Accordion", "Carousel"],
+      "conversionNote": "Specific evidence beats green language. State materials, origin, durability, repair, packaging and verified certifications where relevant; never imply environmental benefit that cannot be substantiated."
+    }
+  ]
+}

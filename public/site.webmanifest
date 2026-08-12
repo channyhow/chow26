@@ -1,0 +1,37 @@
+{
+  "id": "/",
+  "name": "Atmosphere Studio",
+  "short_name": "Atmosphere",
+  "description": "Studio d’architecture intérieure à Paris, en Île-de-France et à La Réunion.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "categories": [
+    "design",
+    "business"
+  ],
+  "prefer_related_applications": false,
+  "background_color": "#F6F5F3",
+  "theme_color": "#F6F5F3",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

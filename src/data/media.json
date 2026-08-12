@@ -1,0 +1,109 @@
+{
+  "home-cover": {
+    "id": "home-cover",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/lisbon-living.jpg",
+    "alt": "Atmosphere Studio — intérieur lumineux aux matières naturelles.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "paris-entryway": {
+    "id": "paris-entryway",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/paris-entryway.jpg",
+    "alt": "Entrée parisienne avec bois sombre et feuillage.",
+    "width": 1200,
+    "height": 1600,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "paris-bathroom": {
+    "id": "paris-bathroom",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/paris-bathroom.jpg",
+    "alt": "Salle de bain parisienne aux tons chauds.",
+    "width": 1200,
+    "height": 1600,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "lisbon-living": {
+    "id": "lisbon-living",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/lisbon-living.jpg",
+    "alt": "Salon lumineux à Lisbonne aux matières naturelles.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "lisbon-patio": {
+    "id": "lisbon-patio",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/lisbon-patio.jpg",
+    "alt": "Patio clair à Lisbonne avec assises naturelles.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "lisbon-entryway": {
+    "id": "lisbon-entryway",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/lisbon-entryway.jpg",
+    "alt": "Entrée du projet Lisbonne.",
+    "width": 1200,
+    "height": 1600,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "bali-entryway": {
+    "id": "bali-entryway",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/bali-entryway.jpg",
+    "alt": "Allée tropicale du projet Bali.",
+    "width": 1200,
+    "height": 1600,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "bali-bathroom": {
+    "id": "bali-bathroom",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/bali-bathroom.jpg",
+    "alt": "Salle de bain lumineuse du projet Bali.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+  "profile-placeholder": {
+    "id": "profile-placeholder",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/paris-entryway.jpg",
+    "alt": "Détail du projet Paris par Atmosphere Studio.",
+    "width": 1200,
+    "height": 1600,
+    "focalPoint": { "x": 50, "y": 40 }
+  },
+  "placeholder-landscape": {
+    "id": "placeholder-landscape",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/lisbon-patio.jpg",
+    "alt": "Projet résidentiel Atmosphere Studio.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
+    "studio-founder-1": {
+    "id": "studio-founder-1",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/woman-portrait.jpg",
+    "alt": "Portrait de Maëlle Payet, co-fondatrice d'Atmosphere Studio.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  },  "studio-founder-2": {
+    "id": "studio-founder-2",
+    "type": "image",
+    "src": "/assets/photos/atmosphere/man-portrait.jpg",
+    "alt": "Portrait de Guillaume Hoarau, co-fondateur d'Atmosphere Studio.",
+    "width": 1600,
+    "height": 1067,
+    "focalPoint": { "x": 50, "y": 50 }
+  }
+}

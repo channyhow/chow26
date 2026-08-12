@@ -1,0 +1,187 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+}
+
+.drawer::backdrop {
+  background: rgb(0 0 0 / 0.24);
+}
+
+.drawer[open]::backdrop {
+  animation: drawer-backdrop-in $transition-interface both;
+}
+
+.drawer__dismiss {
+  position: absolute;
+  inset: 0;
+  z-index: $z-base;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+.drawer__panel {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: $z-raised;
+  width: min(92vw, 46rem);
+  height: 100%;
+  padding: 0 $space-3 $space-3;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--drawer-surface);
+  color: var(--drawer-color);
+  box-shadow: $shadow-soft;
+  transform: translate3d($space-2, 0, 0);
+  opacity: 0;
+  backface-visibility: hidden;
+  --primary: var(--drawer-color);
+  --secondary: var(--drawer-surface);
+}
+
+.drawer[open] .drawer__panel {
+  animation: drawer-panel-in $transition-interface both;
+}
+
+.drawer__header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4rem;
+  gap: $space-2;
+  background: var(--drawer-surface);
+}
+
+.drawer__header .burgerButton {
+  --burger-background: var(--drawer-color);
+  --burger-color: var(--drawer-surface);
+}
+
+.drawer__logo {
+  font-family: var(--font-heading, serif);
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+.drawer__body {
+  display: grid;
+  gap: $space-3;
+  padding-top: $space-3;
+}
+
+.drawer__label {
+  @include type-ui-compact;
+  @include rule-bottom;
+
+  margin: 0;
+  padding-bottom: $space-2;
+}
+
+.drawer__nav,
+.drawer__content {
+  display: grid;
+  gap: $space-2;
+}
+
+.drawer__nav a {
+  @include type-heading-lg;
+  @include interactive-text;
+
+  width: fit-content;
+  line-height: 1;
+}
+
+.drawer__content a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.site[data-drawer="menu"] {
+  --drawer-surface: var(--theme-accent);
+  --drawer-color: var(--theme-primary);
+}
+
+.site[data-drawer="contact"],
+.site[data-drawer="reservation"] {
+  --drawer-surface: var(--theme-primary);
+  --drawer-color: var(--theme-secondary);
+}
+
+@keyframes drawer-panel-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes drawer-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: $bp-tablet) {
+  .drawer__panel {
+    width: 100%;
+    padding-inline: $space-2;
+    transform: none;
+  }
+
+  .drawer__dismiss {
+    display: none;
+  }
+
+  .drawer[open] .drawer__panel {
+    animation-name: drawer-panel-fade-in;
+  }
+}
+
+@keyframes drawer-panel-fade-in {
+  to { opacity: 1; }
+}
+
+@include reduced-motion {
+  .drawer[open]::backdrop,
+  .drawer[open] .drawer__panel {
+    animation: none;
+  }
+
+  .drawer[open] .drawer__panel {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,6 @@
+@use "../foundation/tokens" as *;
+.media { width: 100%; margin: 0; overflow: hidden; border-radius: var(--radius-media, #{$radius-default}); background: color-mix(in srgb, var(--primary) 5%, var(--secondary)); }
+.media__frame { width: 100%; overflow: hidden; }
+.media__asset { display: block; width: 100%; height: auto; object-fit: cover; }
+.media__caption { padding: $space-1 $space-2; font-size: $type-caption; line-height: 1.4; color: color-mix(in srgb, currentColor 65%, transparent); }
+[data-variant="organic"] .media:nth-of-type(even) { --radius-media: 54% 46% 43% 57% / 46% 58% 42% 54%; }

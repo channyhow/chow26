@@ -1,0 +1,19 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.split {
+  display: grid;
+  gap: var(--section-gap, #{$space-3});
+
+  &__primary,
+  &__secondary {
+    min-width: 0;
+  }
+}
+
+@include desktop-up {
+  .split {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: start;
+  }
+}

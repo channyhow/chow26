@@ -1,0 +1,25 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+
+.textBlock {
+  display: grid;
+  gap: $space-3;
+  width: 100%;
+  max-width: var(--text-width, #{$measure-text});
+
+  &__header,
+  &__content,
+  &__footer,
+  &__subtitle,
+  &__meta {
+    display: grid;
+    gap: $space-1;
+  }
+
+  &__eyebrow { @include type-eyebrow; margin: 0; }
+  &__title { @include type-heading; max-width: var(--title-width, 14ch); margin: 0; text-wrap: balance; }
+  &__subtitle p { @include type-lead; margin: 0; }
+  &__content { gap: $space-2; p { @include type-body; margin: 0; } }
+  &__footer { gap: $space-2; padding-top: $space-2; }
+  &__meta { @include type-meta;  }
+}

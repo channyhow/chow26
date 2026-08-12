@@ -1,0 +1,35 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+.contentSwitcher {
+  display: grid;
+  gap: $space-3;
+}
+
+.contentSwitcher__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+
+  button {
+    @include standard-control;
+
+    &[aria-selected="true"] {
+      background: var(--primary);
+      color: var(--secondary);
+    }
+
+    @include hover {
+      opacity: $opacity-muted;
+    }
+  }
+}
+
+.contentSwitcher__viewport {
+  min-width: 0;
+  overflow: clip;
+}
+
+.contentSwitcher__panel {
+  min-width: 0;
+}

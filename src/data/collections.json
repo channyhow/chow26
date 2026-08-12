@@ -1,0 +1,306 @@
+{
+  "projects": [
+    {
+      "id": "appartement-paris",
+      "eyebrow": "Paris · 2026 · Résidentiel",
+      "title": "Appartement à Paris",
+      "text": [
+        "Rénovation douce d’un appartement parisien autour des contrastes chaleureux, du végétal et d’une atmosphère enveloppante.",
+        "Mission : architecture intérieure, palette de matières, mobilier et stylisme."
+      ],
+      "media": "paris-entryway",
+      "tags": [
+        "architecture intérieure",
+        "résidentiel",
+        "matières naturelles"
+      ],
+      "featured": true,
+      "order": 1,
+      "slug": "appartement-paris",
+      "href": "/projets/appartement-paris",
+      "summary": "Un appartement parisien rééquilibré par le bois sombre, les tons terre et une présence végétale mesurée.",
+      "description": [
+        "Le projet part d’un appartement aux circulations fragmentées et à la lumière inégale. L’intervention clarifie les passages, crée des continuités visuelles et donne à chaque pièce une fonction plus lisible.",
+        "Une palette de bois profond, de pierre mate et de textiles naturels réchauffe l’ensemble sans l’alourdir. Le mobilier bas préserve les perspectives tandis que le végétal accompagne les seuils et adoucit les lignes.",
+        "Le résultat est un intérieur enveloppant, précis et facile à vivre, où les matières prennent le relais de l’ornement."
+      ],
+      "facts": [
+        {
+          "label": "Lieu",
+          "value": "Paris, France"
+        },
+        {
+          "label": "Typologie",
+          "value": "Appartement résidentiel"
+        },
+        {
+          "label": "Année",
+          "value": "2026"
+        },
+        {
+          "label": "Mission",
+          "value": "Architecture intérieure, matières, mobilier et stylisme"
+        }
+      ],
+      "gallery": [
+        "paris-entryway",
+        "paris-bathroom"
+      ],
+      "seo": {
+        "title": "Appartement à Paris | Atmosphere Studio",
+        "description": "Rénovation intérieure d’un appartement parisien par Atmosphere Studio : circulations clarifiées, bois sombre, matières naturelles et lumière douce.",
+        "image": "/assets/photos/atmosphere/paris-entryway.jpg"
+      }
+    },
+    {
+      "id": "maison-lisbonne",
+      "eyebrow": "Lisbonne · 2026 · Maison",
+      "title": "Maison à Lisbonne",
+      "text": [
+        "Direction d’ambiance pour une maison baignée de lumière, pensée autour des enduits texturés, du végétal et d’un confort méditerranéen.",
+        "Mission : direction d’ambiance, palette de matières, mobilier et stylisme."
+      ],
+      "media": "lisbon-living",
+      "tags": [
+        "maison",
+        "méditerranéen",
+        "lumière"
+      ],
+      "featured": true,
+      "order": 2,
+      "slug": "maison-lisbonne",
+      "href": "/projets/maison-lisbonne",
+      "summary": "Une maison lumineuse où les enduits texturés, les fibres naturelles et les vues vers le patio composent un calme méditerranéen.",
+      "description": [
+        "La maison s’organise autour de la lumière et de sa relation au patio. Les pièces de vie sont pensées comme une suite d’espaces ouverts, avec des seuils doux plutôt que des ruptures franches.",
+        "Les enduits minéraux, le bois clair et les fibres tressées créent une palette sobre qui évolue au fil de la journée. Quelques pièces de mobilier sculpturales structurent les volumes sans interrompre la circulation.",
+        "L’ensemble recherche moins l’effet que la durée : une atmosphère claire, tactile et suffisamment souple pour accompagner la vie quotidienne."
+      ],
+      "facts": [
+        {
+          "label": "Lieu",
+          "value": "Lisbonne, Portugal"
+        },
+        {
+          "label": "Typologie",
+          "value": "Maison"
+        },
+        {
+          "label": "Année",
+          "value": "2026"
+        },
+        {
+          "label": "Mission",
+          "value": "Direction d’ambiance, matières, mobilier et stylisme"
+        }
+      ],
+      "gallery": [
+        "lisbon-living",
+        "lisbon-patio",
+        "lisbon-entryway"
+      ],
+      "seo": {
+        "title": "Maison à Lisbonne | Atmosphere Studio",
+        "description": "Direction intérieure d’une maison à Lisbonne : lumière naturelle, enduits texturés, fibres et confort méditerranéen par Atmosphere Studio.",
+        "image": "/assets/photos/atmosphere/lisbon-living.jpg"
+      }
+    },
+    {
+      "id": "villa-bali",
+      "eyebrow": "Bali · 2026 · Villa",
+      "title": "Villa à Bali",
+      "text": [
+        "Concept intérieur pour une villa tropicale pensée comme une retraite douce, entre végétation, matières naturelles et circulation apaisée.",
+        "Mission : concept intérieur, mobilier, matières et direction d’ambiance."
+      ],
+      "media": "bali-entryway",
+      "tags": [
+        "villa",
+        "tropical",
+        "résidentiel"
+      ],
+      "featured": true,
+      "order": 3,
+      "slug": "villa-bali",
+      "href": "/projets/villa-bali",
+      "summary": "Une villa tropicale pensée comme une retraite ouverte, entre végétation dense, pierre claire et circulations apaisées.",
+      "description": [
+        "Le concept intérieur prolonge le paysage plutôt qu’il ne s’en isole. Les cheminements, les vues et les zones de repos sont alignés pour créer une transition continue entre dedans et dehors.",
+        "La pierre, le bois et les surfaces minérales répondent à la végétation sans chercher l’exotisme décoratif. Les volumes restent simples ; la lumière, l’air et les ombres donnent au lieu son rythme.",
+        "Chaque espace conserve une forme d’intimité tout en restant relié au jardin, pour une expérience calme, sensorielle et naturellement ventilée."
+      ],
+      "facts": [
+        {
+          "label": "Lieu",
+          "value": "Bali, Indonésie"
+        },
+        {
+          "label": "Typologie",
+          "value": "Villa"
+        },
+        {
+          "label": "Année",
+          "value": "2026"
+        },
+        {
+          "label": "Mission",
+          "value": "Concept intérieur, matières, mobilier et direction d’ambiance"
+        }
+      ],
+      "gallery": [
+        "bali-entryway",
+        "bali-bathroom"
+      ],
+      "seo": {
+        "title": "Villa à Bali | Atmosphere Studio",
+        "description": "Concept intérieur d’une villa à Bali par Atmosphere Studio : architecture ouverte, matières naturelles, végétation et circulation apaisée.",
+        "image": "/assets/photos/atmosphere/bali-entryway.jpg"
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "interior-architecture",
+      "eyebrow": "01",
+      "title": "Architecture intérieure",
+      "text": [
+        "Repenser les volumes, les usages, les circulations et les matières pour créer un lieu cohérent et facile à habiter."
+      ],
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "atmosphere-direction",
+      "eyebrow": "02",
+      "title": "Direction d’ambiance",
+      "text": [
+        "Construire une palette de matières, de couleurs, de mobilier et de lumière qui donne au lieu une présence sensible."
+      ],
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "styling",
+      "eyebrow": "03",
+      "title": "Mobilier et stylisme",
+      "text": [
+        "Affiner le mobilier, les objets et les finitions pour prolonger l’intention sans surcharger l’espace."
+      ],
+      "featured": true,
+      "order": 3
+    }
+  ],
+  "approach": [
+    {
+      "id": "uses",
+      "title": "Partir des usages",
+      "text": [
+        "Chaque projet commence par ce qui doit réellement se passer dans le lieu au quotidien."
+      ],
+      "order": 1
+    },
+    {
+      "id": "light",
+      "title": "Observer la lumière",
+      "text": [
+        "Volumes, orientations, ombres et lumière artificielle structurent l’ambiance avant les objets."
+      ],
+      "order": 2
+    },
+    {
+      "id": "materials",
+      "title": "Composer la matière",
+      "text": [
+        "Bois, enduits, céramique, fibres, végétal et couleurs sont composés avec retenue."
+      ],
+      "order": 3
+    }
+  ],
+  "journal": [
+    {
+      "id": "minimalisme-chaleureux",
+      "eyebrow": "Notes d’ambiance · Mars 2026",
+      "title": "Créer un minimalisme chaleureux sans vider l’espace",
+      "text": [
+        "Quelques pistes pour composer un intérieur calme, vivant et texturé."
+      ],
+      "featured": true,
+      "order": 1,
+      "href": "/journal/minimalisme-chaleureux"
+    },
+    {
+      "id": "palette-neutre",
+      "eyebrow": "Matières · Février 2026",
+      "title": "Construire une palette neutre qui reste sensible",
+      "text": [
+        "Ivoire, sable, pierre et bois peuvent créer une vraie richesse lorsqu’ils sont bien superposés."
+      ],
+      "featured": true,
+      "order": 2,
+      "href": "/journal/palette-neutre"
+    },
+    {
+      "id": "lumiere-maison-calme",
+      "eyebrow": "Guide · Janvier 2026",
+      "title": "La lumière comme point de départ d’un intérieur apaisé",
+      "text": [
+        "Luminaires, ombres et éclairages indirects peuvent transformer entièrement la perception d’un lieu."
+      ],
+      "featured": true,
+      "order": 3,
+      "href": "/journal/lumiere-maison-calme"
+    }
+  ],
+  "links": [
+    {
+      "id": "link-projects",
+      "title": "Découvrir les projets",
+      "links": [
+        {
+          "label": "Voir les projets",
+          "href": "/projets",
+          "intent": "navigate"
+        }
+      ],
+      "group": "primary",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "link-contact",
+      "title": "Présenter un projet",
+      "links": [
+        {
+          "label": "Démarrer un projet",
+          "href": "/contact",
+          "intent": "contact"
+        }
+      ],
+      "group": "primary",
+      "enabled": true,
+      "order": 2
+    }
+  ],
+  "reviews": [],
+  "events": [],
+  "products": [],
+  "locations": [
+    {
+      "id": "studio-paris",
+      "eyebrow": "Studio",
+      "title": "Paris, France",
+      "text": [
+        "Atmosphere Studio est un studio fictif d’architecture intérieure basé à Paris, créé pour cette étude de cas Chow Studio."
+      ],
+      "tags": [
+        "Paris",
+        "Île-de-France",
+        "architecture intérieure"
+      ],
+      "enabled": true,
+      "order": 1
+    }
+  ],
+  "tips": [],
+  "quotes": []
+}

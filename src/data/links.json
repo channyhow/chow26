@@ -1,0 +1,14 @@
+{
+  "booking": {
+    "default": "/contact",
+    "project": "/contact"
+  },
+  "social": {
+    "instagram": "https://instagram.com/atmospherestudio",
+    "pinterest": "https://pinterest.com/atmospherestudio"
+  },
+  "external": {
+    "email": "mailto:hello@atmosphere-studio.fr",
+    "calendar": ""
+  }
+}
