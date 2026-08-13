@@ -166,6 +166,13 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
 #projects-featured,
 #project-gallery { --section-space: var(--project-section-space-compact); }
 
+#project-gallery {
+.media, .card__media, .media__asset {
+  aspect-ratio: $ratio-wide;
+
+}
+}
+
 #projects-featured .card,
 #home-services .card {
   margin-top: 0;
@@ -388,7 +395,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
 #home-services .contentSwitcher__controls button:last-child { border-right: 0; }
 
 #home-services .contentSwitcher__controls button[aria-selected="true"] {
-  color: var(--secondary);
+  color: var(--accent);
 }
 
 #home-services .contentSwitcher__panel,
@@ -488,15 +495,16 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   gap: clamp(2.5rem, 7vw, 8rem);
   align-items: center;
   width: 100%;
-  max-width: 78rem;
+  // max-width: 78rem;
   margin-inline: auto;
   overflow: visible;
   background: transparent;
 }
 
 #studio-founders .card__media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: $ratio-square;
   overflow: hidden;
+  mix-blend-mode: multiply;
 }
 
 #studio-founders .card__media .media,

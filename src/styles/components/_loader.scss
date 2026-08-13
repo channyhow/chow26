@@ -22,7 +22,20 @@
   width: 0.8rem;
   height: 0.8rem;
   border: 1px solid currentColor;
-  animation: loader-mark $duration-slow $ease-soft infinite alternate;
+  transform-origin: center;
+  animation: loader-mark 1s $ease-soft infinite alternate;
+}
+
+@keyframes loader-mark {
+  from {
+    opacity: 0.45;
+    transform: rotate(0deg) scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(90deg) scale(1);
+  }
 }
 
 .loader__messages {

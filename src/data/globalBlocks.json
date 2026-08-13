@@ -188,7 +188,7 @@
     "type": "Section",
     "layout": "grid",
     "surface": "solid",
-    "color": "special",
+    "color": "accent",
     "content": {
       "header": {
         "eyebrow": "Le studio",
@@ -266,7 +266,7 @@
     "layout": "statement",
     "tone": "inverse",
     "surface": "solid",
-    "color": "special",
+    "color": "accent",
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",
