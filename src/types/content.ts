@@ -47,7 +47,7 @@ export type ActionIntent =
   | "share"
   | "submit";
 
-export type ActionVariant = "primary" | "outline" | "arrow";
+export type ActionVariant = "primary" | "outline" | "arrow" | "cta";
 
 export type Action = {
   label: string;
