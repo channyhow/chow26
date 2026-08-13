@@ -21,7 +21,7 @@
     "id": "atmosphere-laptop",
     "type": "image",
     "src": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg",
-    "alt": "Atmosphere — aperçu desktop du site d’architecture intérieure.",
+    "alt": "Atmosphere | aperçu desktop du site d’architecture intérieure.",
     "width": 1600,
     "height": 1067
   },
@@ -29,7 +29,7 @@
     "id": "atmosphere-tablet",
     "type": "image",
     "src": "/assets/photos/work/atmosphere/atmosphere__tablet.jpg",
-    "alt": "Atmosphere — aperçu tablette du site.",
+    "alt": "Atmosphere | aperçu tablette du site.",
     "width": 1600,
     "height": 1067
   },
@@ -37,7 +37,7 @@
     "id": "atmosphere-mobile-solo",
     "type": "image",
     "src": "/assets/photos/work/atmosphere/atmosphere__mobile-solo.jpg",
-    "alt": "Atmosphere — aperçu mobile du site.",
+    "alt": "Atmosphere | aperçu mobile du site.",
     "width": 1200,
     "height": 1600
   },
@@ -45,7 +45,7 @@
     "id": "kuro-laptop",
     "type": "image",
     "src": "/assets/photos/work/kuro/kuro__laptop.jpg",
-    "alt": "Kuro — aperçu desktop du site du restaurant japonais.",
+    "alt": "Kuro | aperçu desktop du site du restaurant japonais.",
     "width": 1600,
     "height": 1067
   },
@@ -53,7 +53,7 @@
     "id": "kuro-mobile",
     "type": "image",
     "src": "/assets/photos/work/kuro/kuro__mobile.jpg",
-    "alt": "Kuro — aperçu mobile du parcours restaurant et réservation.",
+    "alt": "Kuro | aperçu mobile du parcours restaurant et réservation.",
     "width": 1200,
     "height": 1600
   },
@@ -61,7 +61,7 @@
     "id": "kuro-grey",
     "type": "image",
     "src": "/assets/photos/work/kuro/mobile_on_grey_block.jpg",
-    "alt": "Kuro — interface mobile présentée sur fond gris.",
+    "alt": "Kuro | interface mobile présentée sur fond gris.",
     "width": 1600,
     "height": 1067
   },
@@ -70,7 +70,7 @@
     "type": "video",
     "src": "/assets/videos/kuro-compressed.mp4",
     "poster": "/assets/photos/work/kuro/kuro__laptop.jpg",
-    "alt": "Kuro — aperçu animé du site restaurant.",
+    "alt": "Kuro | aperçu animé du site restaurant.",
     "width": 1920,
     "height": 1080
   },
@@ -78,7 +78,7 @@
     "id": "maloya-mobile",
     "type": "image",
     "src": "/assets/photos/work/maloya/mobile_mockup_multi.jpg",
-    "alt": "Maloya — aperçu mobile de la plateforme musicale.",
+    "alt": "Maloya | aperçu mobile de la plateforme musicale.",
     "width": 1600,
     "height": 1067
   },
@@ -86,7 +86,7 @@
     "id": "maloya-tablet",
     "type": "image",
     "src": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya — aperçu tablette de la plateforme musicale.",
+    "alt": "Maloya | aperçu tablette de la plateforme musicale.",
     "width": 1600,
     "height": 1067
   },
@@ -95,7 +95,7 @@
     "type": "video",
     "src": "/assets/videos/maloya-compressed.mp4",
     "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya — aperçu animé de l’expérience digitale musicale.",
+    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
     "width": 1920,
     "height": 1080
   },
@@ -103,7 +103,7 @@
     "id": "mois-du-ker-textile",
     "type": "image",
     "src": "/assets/photos/work/mois-du-ker/mois-du-ker__textile.jpg",
-    "alt": "Mois du Kèr — identité de campagne appliquée sur textile.",
+    "alt": "Mois du Kèr | identité de campagne appliquée sur textile.",
     "width": 1600,
     "height": 1067
   },
@@ -111,7 +111,7 @@
     "id": "ravine-business-card",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_business card.jpg",
-    "alt": "Ravine — identité visuelle appliquée à des cartes de visite.",
+    "alt": "Ravine | identité visuelle appliquée à des cartes de visite.",
     "width": 1600,
     "height": 1067
   },
@@ -119,7 +119,7 @@
     "id": "ravine-flyer",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_flyer.jpg",
-    "alt": "Ravine — déclinaison de l’identité sur flyer.",
+    "alt": "Ravine | déclinaison de l’identité sur flyer.",
     "width": 1600,
     "height": 1067
   },
@@ -127,7 +127,7 @@
     "id": "ravine-textile",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_textile.jpg",
-    "alt": "Ravine — application textile de l’identité visuelle.",
+    "alt": "Ravine | application textile de l’identité visuelle.",
     "width": 1600,
     "height": 1067
   },
@@ -135,7 +135,7 @@
     "id": "ravine-homepage",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_homepage.jpg",
-    "alt": "Ravine — direction artistique de la page d’accueil.",
+    "alt": "Ravine | direction artistique de la page d’accueil.",
     "width": 1600,
     "height": 1067
   },
@@ -143,7 +143,7 @@
     "id": "ravine-laptop",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_laptop.jpg",
-    "alt": "Ravine — aperçu du projet éditorial sur ordinateur.",
+    "alt": "Ravine | aperçu du projet éditorial sur ordinateur.",
     "width": 1600,
     "height": 1067
   },
@@ -151,7 +151,7 @@
     "id": "ravine-desktop",
     "type": "image",
     "src": "/assets/photos/work/ravine/ravine_desktop.jpg",
-    "alt": "Ravine — composition éditoriale du site sur desktop.",
+    "alt": "Ravine | composition éditoriale du site sur desktop.",
     "width": 1600,
     "height": 1067
   },
@@ -160,7 +160,7 @@
     "type": "video",
     "src": "/assets/videos/ravine_branding.mp4",
     "poster": "/assets/photos/work/ravine/ravine_homepage.jpg",
-    "alt": "Ravine — identité visuelle présentée en mouvement.",
+    "alt": "Ravine | identité visuelle présentée en mouvement.",
     "width": 1920,
     "height": 1080
   },
@@ -168,7 +168,7 @@
     "id": "randorun-poster",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun__poster.jpg",
-    "alt": "RandoRunOi — série d’affiches de trail à La Réunion.",
+    "alt": "RandoRunOi | série d’affiches de trail à La Réunion.",
     "width": 1200,
     "height": 1600
   },
@@ -176,7 +176,7 @@
     "id": "randorun-cilaos",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun_CILAOS WOMEN TRAIL.jpg",
-    "alt": "RandoRunOi — affiche Cilaos Women Trail.",
+    "alt": "RandoRunOi | affiche Cilaos Women Trail.",
     "width": 1200,
     "height": 1600
   },
@@ -184,7 +184,7 @@
     "id": "randorun-cimasa",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun_CIMASARUN.jpg",
-    "alt": "RandoRunOi — affiche CimasaRun.",
+    "alt": "RandoRunOi | affiche CimasaRun.",
     "width": 1200,
     "height": 1600
   },
@@ -192,7 +192,7 @@
     "id": "randorun-mafate",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun_MAFATE TRAIL TOUR.jpg",
-    "alt": "RandoRunOi — affiche Mafate Trail Tour.",
+    "alt": "RandoRunOi | affiche Mafate Trail Tour.",
     "width": 1200,
     "height": 1600
   },
@@ -200,7 +200,7 @@
     "id": "randorun-raid974",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun_RAID974.jpg",
-    "alt": "RandoRunOi — affiche Raid 974.",
+    "alt": "RandoRunOi | affiche Raid 974.",
     "width": 1200,
     "height": 1600
   },
@@ -208,7 +208,7 @@
     "id": "randorun-masters",
     "type": "image",
     "src": "/assets/photos/work/randorun/randorun_TRAIL DES MASTERS.jpg",
-    "alt": "RandoRunOi — affiche Trail des Masters.",
+    "alt": "RandoRunOi | affiche Trail des Masters.",
     "width": 1200,
     "height": 1600
   },
@@ -216,7 +216,7 @@
     "id": "sasha-laptop",
     "type": "image",
     "src": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg",
-    "alt": "Sasha Yoga Flow — aperçu desktop du site de yoga.",
+    "alt": "Sasha Yoga Flow | aperçu desktop du site de yoga.",
     "width": 1600,
     "height": 1067
   },
@@ -224,7 +224,7 @@
     "id": "sasha-mobile",
     "type": "image",
     "src": "/assets/photos/work/sashayogaflow/mobile_ocre_marble.jpg",
-    "alt": "Sasha Yoga Flow — aperçu mobile du site et de la réservation.",
+    "alt": "Sasha Yoga Flow | aperçu mobile du site et de la réservation.",
     "width": 1200,
     "height": 1600
   },
@@ -232,7 +232,7 @@
     "id": "structure-laptop",
     "type": "image",
     "src": "/assets/photos/work/structure/structure__laptop.jpg",
-    "alt": "Structure — aperçu desktop du concept de site d’architecture.",
+    "alt": "Structure | aperçu desktop du concept de site d’architecture.",
     "width": 1600,
     "height": 1067
   },
@@ -240,7 +240,7 @@
     "id": "structure-mobile",
     "type": "image",
     "src": "/assets/photos/work/structure/structure__mobile-solo.jpg",
-    "alt": "Structure — aperçu mobile du concept de site d’architecture.",
+    "alt": "Structure | aperçu mobile du concept de site d’architecture.",
     "width": 1200,
     "height": 1600
   },
@@ -248,7 +248,7 @@
     "id": "structure-mobile-multi",
     "type": "image",
     "src": "/assets/photos/work/structure/structure__mobile-multi.jpg",
-    "alt": "Structure — déclinaisons mobiles de l’interface.",
+    "alt": "Structure | déclinaisons mobiles de l’interface.",
     "width": 1600,
     "height": 1067
   },
@@ -256,7 +256,7 @@
     "id": "contraste-laptop",
     "type": "image",
     "src": "/assets/photos/work/contraste/contraste__laptop.jpg",
-    "alt": "Contraste — aperçu desktop du concept de site d’architecture.",
+    "alt": "Contraste | aperçu desktop du concept de site d’architecture.",
     "width": 1600,
     "height": 1067
   },
@@ -264,7 +264,7 @@
     "id": "contraste-mobile",
     "type": "image",
     "src": "/assets/photos/work/contraste/contraste__mobile-multi.jpg",
-    "alt": "Contraste — déclinaisons mobiles de l’interface.",
+    "alt": "Contraste | déclinaisons mobiles de l’interface.",
     "width": 1600,
     "height": 1067
   }

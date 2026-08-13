@@ -54,9 +54,9 @@
   pointer-events: auto;
 }
 
-.header__logo {
-  @include brand-link;
-}
+// .header__logo {
+//   @include brand-link;
+// }
 
 .header__nav {
   display: none;
@@ -64,8 +64,8 @@
   gap: clamp($space-2, 2.4vw, $space-3);
 }
 
-.header__nav a {
-  @include type-ui;
+.header__logo,.header__nav a {
+  @include type-ui-compact;
   @include interactive-text;
 
   position: relative;

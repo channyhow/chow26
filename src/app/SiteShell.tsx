@@ -37,6 +37,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
     "--primary": foreground,
     "--secondary": background,
     "--accent": colors.accent,
+        "--special": colors.special,
+
     "--font-heading-classic": fontStack(fonts.classicHeading, "serif"),
     "--font-heading-editorial": fontStack(fonts.editorialHeading, "serif"),
     "--font-heading-organic": fontStack(fonts.organicHeading, "serif"),
