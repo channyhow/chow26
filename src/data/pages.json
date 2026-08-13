@@ -2,92 +2,19 @@
   {
     "id": "home",
     "slug": "/",
-    "seo": {
-      "title": "Chow Studio | Design web, identité visuelle & frontend",
-      "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
-      "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
-    },
-    "blocks": [
-      {
-        "id": "home-story",
-        "type": "Group",
-        "layout": "scroll-panel",
-        "panels": [
-          { "id": "home-opening-panel", "behavior": "fixed", "size": "full", "align": "center", "surface": "solid", "blocks": [{ "ref": "home-opening" }] },
-          { "id": "home-projects-panel", "behavior": "stack", "size": "full", "align": "center", "surface": "solid", "color": "special", "blocks": [{ "ref": "projects-featured" }] },
-          { "id": "home-approach-panel", "behavior": "stack", "size": "full", "align": "center", "surface": "solid", "color": "primary", "blocks": [{ "ref": "approach-default" }] },
-          { "id": "home-services-panel", "behavior": "stack", "size": "full", "align": "center", "surface": "solid", "color": "accent", "blocks": [{ "ref": "home-services" }] }
-        ]
-      },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
-    ]
+    "seo": {"title":"Chow Studio | Design web, identité visuelle & frontend","description":"Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.","image":"/assets/photos/work/atmosphere/atmosphere__laptop.jpg"},
+    "blocks": [{"id":"home-story","type":"Group","layout":"scroll-panel","panels":[{"id":"home-opening-panel","behavior":"fixed","size":"full","align":"center","surface":"solid","blocks":[{"ref":"home-opening"}]},{"id":"home-projects-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"special","blocks":[{"ref":"projects-featured"}]},{"id":"home-approach-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"primary","blocks":[{"ref":"approach-default"}]},{"id":"home-services-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"accent","blocks":[{"ref":"home-services"}]}]},{"ref":"final-cta"},{"ref":"site-footer"}]
   },
-  {
-    "id": "projects",
-    "slug": "/projets",
-    "seo": {
-      "title": "Projets sélectionnés | Chow Studio",
-      "description": "Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.",
-      "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
-    },
-    "blocks": [{ "ref": "project-gallery" }, { "ref": "final-cta" }, { "ref": "site-footer" }]
-  },
-  {
-    "id": "studio",
-    "slug": "/studio",
-    "seo": {
-      "title": "Studio, services & approche | Chow Studio",
-      "description": "Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.",
-      "image": "/assets/photos/portrait shot.jpg"
-    },
-    "blocks": [
-      { "ref": "home-services" },
-      { "ref": "approach-default" },
-      { "ref": "studio-founders" },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
-    ]
-  },
-  {
-    "id": "contact",
-    "slug": "/contact",
-    "seo": {
-      "title": "Parler d’un projet | Chow Studio",
-      "description": "Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin."
-    },
-    "blocks": [{ "ref": "contact-default" }, { "ref": "site-footer" }]
-  },
-  {
-    "id": "links",
-    "slug": "/liens",
-    "variant": "editorial",
-    "seo": {
-      "title": "Chow Studio | Projets, studio et contact",
-      "description": "Accédez aux projets, au studio et au contact de Chow Studio.",
-      "robots": { "index": false, "follow": true }
-    },
-    "blocks": [{ "ref": "links-profile" }, { "ref": "links-primary" }, { "ref": "site-footer" }]
-  },
-  {
-    "id": "legal",
-    "slug": "/mentions-legales",
-    "variant": "editorial",
-    "seo": { "title": "Mentions légales | Chow Studio", "description": "Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio." },
-    "blocks": [{ "ref": "legal-notice-default" }, { "ref": "site-footer" }]
-  },
-  {
-    "id": "privacy",
-    "slug": "/confidentialite",
-    "variant": "editorial",
-    "seo": { "title": "Confidentialité & données personnelles | Chow Studio", "description": "Politique de confidentialité de Chow Studio : données collectées, finalités, conservation, prestataires et droits RGPD." },
-    "blocks": [{ "ref": "privacy-default" }, { "ref": "site-footer" }]
-  },
-  {
-    "id": "not-found",
-    "slug": "/404",
-    "variant": "editorial",
-    "seo": { "title": "Page introuvable | Chow Studio", "description": "Cette page Chow Studio est introuvable.", "robots": { "index": false, "follow": false } },
-    "blocks": [{ "ref": "not-found-default" }, { "ref": "site-footer" }]
-  }
+  {"id":"projects","slug":"/projets","seo":{"title":"Projets sélectionnés | Chow Studio","description":"Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.","image":"/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"},"blocks":[{"ref":"project-gallery"},{"ref":"final-cta"},{"ref":"site-footer"}]},
+  {"id":"studio","slug":"/studio","seo":{"title":"Studio, services & approche | Chow Studio","description":"Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.","image":"/assets/photos/portrait shot.jpg"},"blocks":[{"ref":"home-services"},{"ref":"approach-default"},{"ref":"studio-founders"},{"ref":"final-cta"},{"ref":"site-footer"}]},
+  {"id":"approach-legacy","slug":"/approche","seo":{"title":"Studio | Chow Studio","description":"Services, approche et studio Chow Studio.","robots":{"index":false,"follow":true}},"blocks":[{"ref":"home-services"},{"ref":"approach-default"},{"ref":"studio-founders"},{"ref":"final-cta"},{"ref":"site-footer"}]},
+  {"id":"journal-archive","slug":"/journal","seo":{"title":"Journal | Chow Studio","description":"Archives éditoriales de Chow Studio.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"journal-default"},{"ref":"site-footer"}]},
+  {"id":"journal-site-clair","slug":"/journal/site-web-clair","seo":{"title":"Rendre un site web plus clair avant de le redesign | Chow Studio","description":"Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"site-footer"}]},
+  {"id":"journal-identite-systeme","slug":"/journal/identite-visuelle-systeme","seo":{"title":"Une identité visuelle doit fonctionner comme un système | Chow Studio","description":"Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"site-footer"}]},
+  {"id":"journal-design-developpement","slug":"/journal/design-et-developpement","seo":{"title":"Pourquoi rapprocher design et développement frontend | Chow Studio","description":"Design, UX et développement frontend pensés ensemble.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"site-footer"}]},
+  {"id":"contact","slug":"/contact","seo":{"title":"Parler d’un projet | Chow Studio","description":"Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin."},"blocks":[{"ref":"contact-default"},{"ref":"site-footer"}]},
+  {"id":"links","slug":"/liens","variant":"editorial","seo":{"title":"Chow Studio | Projets, studio et contact","description":"Accédez aux projets, au studio et au contact de Chow Studio.","robots":{"index":false,"follow":true}},"blocks":[{"ref":"links-profile"},{"ref":"links-primary"},{"ref":"site-footer"}]},
+  {"id":"legal","slug":"/mentions-legales","variant":"editorial","seo":{"title":"Mentions légales | Chow Studio","description":"Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio."},"blocks":[{"ref":"legal-notice-default"},{"ref":"site-footer"}]},
+  {"id":"privacy","slug":"/confidentialite","variant":"editorial","seo":{"title":"Confidentialité & données personnelles | Chow Studio","description":"Politique de confidentialité de Chow Studio : données collectées, finalités, conservation, prestataires et droits RGPD."},"blocks":[{"ref":"privacy-default"},{"ref":"site-footer"}]},
+  {"id":"not-found","slug":"/404","variant":"editorial","seo":{"title":"Page introuvable | Chow Studio","description":"Cette page Chow Studio est introuvable.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"not-found-default"},{"ref":"site-footer"}]}
 ]
