@@ -39,11 +39,15 @@ export function Timeline({
     damping: 28,
     mass: 0.3,
   });
-  const x = useTransform(
-    progress,
-    [0, 1],
-    ["0vw", `-${Math.max(items.length - 1, 0) * 100}vw`],
-  );
+const x = useTransform(
+  progress,
+  [0, 0.88, 1],
+  [
+    "0vw",
+    `-${Math.max(items.length - 1, 0) * 100}vw`,
+    `-${Math.max(items.length - 1, 0) * 100}vw`,
+  ],
+);
 
   if (!items.length) return null;
 

@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
 
 .floatingAction {
   position: fixed;
@@ -8,18 +9,35 @@
   z-index: 50;
 }
 
-.floatingAction__details { position: relative; }
+.floatingAction__details {
+  position: relative;
+}
 
 .floatingAction__trigger {
   @include standard-control;
+  @include type-ui-compact;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
   list-style: none;
-  background: var(--primary);
-  color: var(--secondary);
-  box-shadow: $shadow-soft;
+
+  background: var(--special);
+  color: #1d1d1b;
+  border: 1px solid rgba(29, 29, 27, 0.65);
+
+  @include hover {
+    background: #1d1d1b;
+    color: #d8d2c8;
+    border-color: #1d1d1b;
+  }
 }
 
-.floatingAction__trigger::-webkit-details-marker { display: none; }
+.floatingAction__trigger::-webkit-details-marker {
+  display: none;
+}
 
 .floatingAction__menu {
   position: absolute;
@@ -42,8 +60,13 @@
   transition: opacity $transition-hover;
 }
 
-.floatingAction__link:last-child { border-bottom: 0; }
-.floatingAction__link:hover { opacity: $opacity-muted; }
+.floatingAction__link:last-child {
+  border-bottom: 0;
+}
+
+.floatingAction__link:hover {
+  opacity: $opacity-muted;
+}
 
 .floatingAction__link:focus-visible,
 .floatingAction__trigger:focus-visible {
