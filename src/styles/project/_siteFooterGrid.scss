@@ -1,0 +1,33 @@
+@use "../foundation/tokens" as *;
+
+.siteFooter__main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-3;
+  align-items: start;
+}
+
+.siteFooter__nav,
+.siteFooter__support { min-width: 0; }
+
+.siteFooter__meta { margin-top: $space-4; }
+
+@media (min-width: $bp-tablet) {
+  .siteFooter__main {
+    grid-template-columns: minmax(0, 1.8fr) minmax(10rem, .85fr) minmax(13rem, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .siteFooter__nav,
+  .siteFooter__support {
+    padding-left: $space-2;
+    border-left: 1px solid currentColor;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .siteFooter__main {
+    grid-template-columns: minmax(0, 2fr) minmax(12rem, .8fr) minmax(16rem, 1fr);
+    gap: clamp(3rem, 5vw, 6rem);
+  }
+}
