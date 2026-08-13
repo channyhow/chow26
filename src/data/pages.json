@@ -33,6 +33,7 @@
                 "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
               ],
               "media":"ravine-business-card",
+              "meta":[{"label":"Budget","value":"À partir de 1 200 € HT"}],
               "tags":["Site web","Identité visuelle","Direction artistique","UX/UI","Frontend"],
               "links":[{"label":"Construire votre présence","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             },
@@ -45,6 +46,7 @@
                 "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
               ],
               "media":"atmosphere-laptop",
+              "meta":[{"label":"Budget","value":"À partir de 800 € HT"}],
               "tags":["Audit","Refonte","Architecture de contenu","UX/UI","Direction visuelle"],
               "links":[{"label":"Clarifier l’existant","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             },
@@ -57,6 +59,7 @@
                 "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
               ],
               "media":"structure-mobile-multi",
+              "meta":[{"label":"Budget","value":"Sur devis"}],
               "tags":["Refonte","Évolution du site","Design system","Direction visuelle","Supports complémentaires"],
               "links":[{"label":"Faire évoluer le projet","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             }
