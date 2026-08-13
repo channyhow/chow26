@@ -6,6 +6,7 @@ import type { Action } from "@/types/content";
 import type { FormField, FormSchema } from "@/types/forms";
 
 import { Actions } from "../navigation/Actions";
+import { TallyFormEmbed } from "./TallyFormEmbed";
 
 type FormControl =
   | HTMLInputElement
@@ -33,6 +34,16 @@ const normalizeText = (value: string) =>
     .join("")
     .trim();
 
+const resolveTallyFormId = (schema: FormSchema) => {
+  if (schema.formId) return schema.formId;
+
+  if (schema.name === "project-call") {
+    return import.meta.env.VITE_TALLY_RESERVATION_FORM_ID;
+  }
+
+  return import.meta.env.VITE_TALLY_CONTACT_FORM_ID;
+};
+
 export function Form({
   schema,
 }: {
@@ -40,6 +51,19 @@ export function Form({
 }) {
   const formCopy = siteData.ui.copy.forms;
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  if (schema.provider === "tally") {
+    return (
+      <div className="form form--tally">
+        <TallyFormEmbed
+          formId={resolveTallyFormId(schema)}
+          embedUrl={schema.embedUrl}
+          title={schema.title ?? "Formulaire de contact"}
+          fallbackHeight={schema.fallbackHeight}
+        />
+      </div>
+    );
+  }
 
   const formActions: Action[] = [
     {
@@ -128,14 +152,10 @@ export function Form({
 
       <div className="form__body">
         {schema.fields.map((field) => {
-          const fieldId =
-            `${schema.name}-${field.name}`;
-          const errorId =
-            `${fieldId}-error`;
+          const fieldId = `${schema.name}-${field.name}`;
+          const errorId = `${fieldId}-error`;
           const error = errors[field.name];
-          const maxLength =
-            field.maxLength ??
-            DEFAULT_MAX_LENGTH[field.type];
+          const maxLength = field.maxLength ?? DEFAULT_MAX_LENGTH[field.type];
 
           if (field.type === "checkbox") {
             return (
