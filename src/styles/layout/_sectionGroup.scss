@@ -11,6 +11,7 @@
   --panel-inline-end: auto;
   --panel-bg: var(--secondary);
   --panel-fg: var(--primary);
+  --section-fg: var(--panel-fg);
   --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 76%, transparent);
   width: var(--panel-width);
   margin-inline-start: var(--panel-inline-start);
@@ -19,6 +20,11 @@
   z-index: $z-raised;
   isolation: isolate;
   color: var(--panel-fg);
+}
+
+.sectionGroup__panel > .section {
+  --section-fg: var(--panel-fg);
+  color: var(--section-fg);
 }
 
 .sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
