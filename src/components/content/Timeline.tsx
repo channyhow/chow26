@@ -30,24 +30,24 @@ export function Timeline({
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const horizontal = orientation === "horizontal";
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: horizontal ? ["start start", "end end"] : ["start 75%", "end 40%"],
   });
+
   const progress = useSpring(scrollYProgress, {
     stiffness: 140,
     damping: 28,
     mass: 0.3,
   });
-const x = useTransform(
-  progress,
-  [0, 0.88, 1],
-  [
-    "0vw",
-    `-${Math.max(items.length - 1, 0) * 100}vw`,
-    `-${Math.max(items.length - 1, 0) * 100}vw`,
-  ],
-);
+
+  const endX = `-${Math.max(items.length - 1, 0) * 100}vw`;
+  const x = useTransform(
+    progress,
+    [0, 0.06, 0.88, 1],
+    ["0vw", "0vw", endX, endX],
+  );
 
   if (!items.length) return null;
 
