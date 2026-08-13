@@ -20,6 +20,11 @@ export type FormField = {
 export type FormSchema = {
   id: string;
   name: string;
+  provider?: "netlify" | "tally";
+  formId?: string;
+  embedUrl?: string;
+  title?: string;
+  fallbackHeight?: number;
   submitLabel?: string;
   fields: FormField[];
   links?: Action[];
