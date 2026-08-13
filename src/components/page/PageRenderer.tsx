@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageMeta } from "@/components/page/PageMeta";
 import { Section } from "@/components/section/Section";
 import { SectionGroup } from "@/components/groups/SectionGroup";
@@ -108,6 +109,13 @@ function renderEntry(entry: PageBlock) {
   return null;
 }
 
+function renderFooter(entry: PageBlock) {
+  if (!("ref" in entry)) return null;
+  const block = resolveBlock(entry.ref);
+  if (!block) return null;
+  return <SiteFooter key={entry.ref} block={prepareSection(block)} />;
+}
+
 export function PageRenderer({ page }: PageRendererProps) {
   const footerReveal = Boolean(siteData.ui.experience.footerReveal);
   const footerEntries = page.blocks.filter(
@@ -130,7 +138,7 @@ export function PageRenderer({ page }: PageRendererProps) {
         </div>
         {footerEntries.length ? (
           <footer className="page__footer">
-            {footerEntries.map(renderEntry)}
+            {footerEntries.map(renderFooter)}
           </footer>
         ) : null}
       </div>
