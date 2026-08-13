@@ -27,17 +27,22 @@ export function SiteFooter({ block }: SiteFooterProps) {
       aria-label="Pied de page"
     >
       <div className="siteFooter__inner">
-        <div className="siteFooter__identity">
-          {eyebrows[0] ? <p className="siteFooter__name">{eyebrows[0]}</p> : null}
-          {eyebrows.slice(1).map((eyebrow) => (
-            <p key={eyebrow} className="siteFooter__baseline">{eyebrow}</p>
-          ))}
-        </div>
+        <div className="siteFooter__main">
+          <div className="siteFooter__identity">
+            {eyebrows[0] ? <p className="siteFooter__name">{eyebrows[0]}</p> : null}
+            {eyebrows.slice(1).map((eyebrow) => (
+              <p key={eyebrow} className="siteFooter__baseline">{eyebrow}</p>
+            ))}
+          </div>
 
-        <nav className="siteFooter__navigation" aria-label="Navigation du pied de page">
-          <Actions links={primaryLinks} className="siteFooter__navGroup siteFooter__navGroup--primary" />
-          <Actions links={secondaryLinks} className="siteFooter__navGroup siteFooter__navGroup--secondary" />
-        </nav>
+          <nav className="siteFooter__nav" aria-label="Navigation du pied de page">
+            <Actions links={primaryLinks} className="siteFooter__navGroup" />
+          </nav>
+
+          <nav className="siteFooter__support" aria-label="Réseaux et informations">
+            <Actions links={secondaryLinks} className="siteFooter__navGroup" />
+          </nav>
+        </div>
 
         {meta.length ? (
           <div className="siteFooter__meta">
