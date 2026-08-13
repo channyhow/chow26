@@ -9,6 +9,40 @@ export type PageRendererProps = {
   page: PageData;
 };
 
+const studioServiceMeta: Record<string, { label: string; value: string }[]> = {
+  "studio-service-create": [
+    { label: "Identité", value: "Logo · Branding · Identité visuelle" },
+    { label: "Outils & intégrations", value: "Formulaires · Calendly · Newsletter" },
+    { label: "Budget", value: "À partir de 1 200 € HT" },
+  ],
+  "studio-service-clarify": [
+    { label: "Diagnostic", value: "Audit · UX/UI · Architecture de contenu" },
+    { label: "Optimisation", value: "SEO · Analytics · Accessibilité" },
+    { label: "Budget", value: "À partir de 800 € HT" },
+  ],
+  "studio-service-evolve": [
+    { label: "Conversion", value: "Réservation · Cartographie · Paiement" },
+    { label: "Automatisation", value: "Tally · Notion · Make" },
+    { label: "Budget", value: "Sur devis" },
+  ],
+};
+
+function prepareSection(entry: SectionBlock): SectionBlock {
+  if (entry.id !== "studio-services") return entry;
+
+  return {
+    ...entry,
+    layout: "content-switcher",
+    content: {
+      ...entry.content,
+      items: entry.content?.items?.map((item) => ({
+        ...item,
+        meta: studioServiceMeta[item.id ?? ""] ?? item.meta,
+      })),
+    },
+  };
+}
+
 function renderEntry(entry: PageBlock) {
   if ("ref" in entry) {
     const block = resolveBlock(entry.ref);
@@ -16,7 +50,8 @@ function renderEntry(entry: PageBlock) {
   }
 
   if (entry.type === "Section") {
-    return <Section key={entry.id} block={entry as SectionBlock} />;
+    const block = prepareSection(entry as SectionBlock);
+    return <Section key={entry.id} block={block} />;
   }
 
   if (entry.type === "Group") {
