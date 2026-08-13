@@ -1,87 +1,208 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-/* Chow Studio footer: deliberately more typographic and compact than the
-   hospitality/architecture footer treatment used by Atmosphere. */
+/* ==================================
+   CHOW STUDIO FOOTER
+   Uneven editorial index — deliberately distinct from Atmosphere.
+================================== */
+
 #site-footer {
-  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --section-space: clamp(3rem, 6vw, 5.5rem);
   --text-width: none;
   min-height: auto;
 }
 
-#site-footer .section__inner {
-  display: grid;
-  grid-template-columns: minmax(16rem, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(3rem, 8vw, 9rem);
-  align-items: end;
+#site-footer .section__inner,
+#site-footer .section__header,
+#site-footer .section__header .textBlock {
   width: 100%;
-}
-
-#site-footer .section__header {
-  width: 100%;
-  max-width: 30rem;
-  align-self: start;
+  max-width: none;
 }
 
 #site-footer .section__header .textBlock {
-  max-width: none;
-  gap: $space-2;
-}
-
-#site-footer .section__header .textBlock__title {
-  @include type-heading-lg;
-  max-width: 9ch;
-}
-
-#site-footer .section__body {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 clamp(2rem, 5vw, 6rem);
-  width: 100%;
-  border-top: 1px solid currentColor;
+  grid-template-columns:
+    minmax(17rem, 1.15fr)
+    minmax(13rem, 0.8fr)
+    minmax(16rem, 1fr);
+  grid-template-areas:
+    "identity navigation support"
+    "meta meta meta";
+  column-gap: clamp(2rem, 5vw, 6rem);
+  row-gap: clamp(3rem, 7vw, 6rem);
+  align-items: start;
 }
 
-#site-footer .card {
-  min-width: 0;
-  padding-block: $space-2;
-  border-bottom: 1px solid currentColor;
-  border-radius: 0;
+/* Identity / baseline */
+#site-footer .textBlock__header {
+  grid-area: identity;
+  min-height: clamp(10rem, 20vw, 17rem);
+  padding-left: $space-2;
+  border-left: 1px solid currentColor;
+}
+
+#site-footer .textBlock__eyebrows {
+  display: grid;
+  gap: $space-2;
+  align-content: start;
+}
+
+#site-footer .textBlock__eyebrow:first-child {
+  @include type-heading-lg;
+  max-width: 10ch;
+  text-transform: none;
+  letter-spacing: -0.03em;
+}
+
+#site-footer .textBlock__eyebrow:not(:first-child) {
+  max-width: 26rem;
+  line-height: 1.5;
+}
+
+/* Existing links become two distinct columns: navigation + support/social. */
+#site-footer .textBlock__footer {
+  grid-column: navigation / support-end;
+  grid-row: 1;
+  width: 100%;
+  padding-top: 0;
+}
+
+#site-footer .textBlock__footer .actions {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  grid-auto-flow: row;
+  gap: $space-1 clamp(2rem, 5vw, 6rem);
+  width: 100%;
+  min-height: clamp(10rem, 20vw, 17rem);
+  padding-left: $space-2;
+}
+
+#site-footer .textBlock__footer .actions::before,
+#site-footer .textBlock__footer .actions::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+#site-footer .textBlock__footer .actions::before {
+  left: 0;
+}
+
+#site-footer .textBlock__footer .actions::after {
+  left: calc(44.444% + clamp(1rem, 2.5vw, 3rem));
+}
+
+#site-footer .actions__link {
+  width: fit-content;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  @include type-ui-compact;
+}
+
+#site-footer .actions__link:nth-child(-n + 3) {
+  grid-column: 1;
+}
+
+#site-footer .actions__link:nth-child(n + 4) {
+  grid-column: 2;
+  padding-left: $space-2;
+}
+
+#site-footer .actions__link:hover {
   background: transparent;
 }
 
-#site-footer .card__body {
-  padding: 0;
-}
-
-#site-footer .card__body .textBlock {
-  max-width: none;
-  gap: $space-1;
-}
-
-#site-footer .card__body .textBlock__title,
-#site-footer .card__body .textBlock__content,
-#site-footer .card__body .textBlock__footer {
+/* Credit + copyright stay semantic data, but become a visible footer baseline. */
+#site-footer .textBlock__meta {
+  grid-area: meta;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $space-1 $space-3;
   width: 100%;
-  max-width: none;
+  padding-top: $space-2;
+  border-top: 1px solid currentColor;
+  @include type-ui-compact;
+}
+
+#site-footer .textBlock__meta > * {
+  display: block;
 }
 
 @media (max-width: $bp-desktop) {
-  #site-footer .section__inner {
-    grid-template-columns: 1fr;
+  #site-footer .section__header .textBlock {
+    grid-template-columns: minmax(15rem, 0.9fr) minmax(0, 1.1fr);
+    grid-template-areas:
+      "identity navigation"
+      "identity support"
+      "meta meta";
     gap: $space-4;
   }
 
-  #site-footer .section__header {
-    max-width: 38rem;
+  #site-footer .textBlock__footer {
+    grid-column: navigation;
+    grid-row: navigation / support-end;
+  }
+
+  #site-footer .textBlock__footer .actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+  }
+
+  #site-footer .textBlock__header {
+    min-height: 100%;
   }
 }
 
 @media (max-width: $bp-tablet) {
   #site-footer {
-    --section-space: clamp(3rem, 10vw, 4.5rem);
+    --section-space: clamp(2.5rem, 9vw, 4rem);
   }
 
-  #site-footer .section__body {
+  #site-footer .section__header .textBlock {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "identity"
+      "navigation"
+      "meta";
+    row-gap: $space-4;
+  }
+
+  #site-footer .textBlock__header,
+  #site-footer .textBlock__footer .actions {
+    min-height: 0;
+  }
+
+  #site-footer .textBlock__footer {
+    grid-area: navigation;
+  }
+
+  #site-footer .textBlock__footer .actions {
+    grid-template-columns: 1fr;
+    gap: $space-1;
+  }
+
+  #site-footer .textBlock__footer .actions::after {
+    display: none;
+  }
+
+  #site-footer .actions__link:nth-child(n) {
+    grid-column: 1;
+    padding-left: 0;
+  }
+
+  #site-footer .textBlock__meta {
+    display: grid;
+    justify-content: start;
   }
 }
