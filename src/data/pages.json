@@ -6,7 +6,88 @@
     "blocks": [{"id":"home-story","type":"Group","layout":"scroll-panel","panels":[{"id":"home-opening-panel","behavior":"fixed","size":"full","align":"center","surface":"solid","blocks":[{"ref":"home-opening"}]},{"id":"home-projects-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"special","blocks":[{"ref":"projects-featured"}]},{"id":"home-approach-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"primary","blocks":[{"ref":"approach-default"}]},{"id":"home-services-panel","behavior":"stack","size":"full","align":"center","surface":"solid","color":"accent","blocks":[{"ref":"home-services"}]}]},{"ref":"final-cta"},{"ref":"site-footer"}]
   },
   {"id":"projects","slug":"/projets","seo":{"title":"Projets sélectionnés | Chow Studio","description":"Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.","image":"/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"},"blocks":[{"ref":"project-gallery"},{"ref":"final-cta"},{"ref":"site-footer"}]},
-  {"id":"studio","slug":"/studio","seo":{"title":"Studio, services & approche | Chow Studio","description":"Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.","image":"/assets/photos/portrait shot.jpg"},"blocks":[{"ref":"home-services"},{"ref":"approach-default"},{"ref":"studio-founders"},{"ref":"final-cta"},{"ref":"site-footer"}]},
+  {
+    "id":"studio",
+    "slug":"/studio",
+    "seo":{"title":"Studio, services & approche | Chow Studio","description":"Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.","image":"/assets/photos/portrait shot.jpg"},
+    "blocks":[
+      {
+        "id":"studio-services",
+        "type":"Section",
+        "layout":"list",
+        "surface":"solid",
+        "color":"secondary",
+        "content":{
+          "header":{
+            "eyebrow":"Services",
+            "title":"Trois points de départ, un même objectif : rendre votre présence plus juste.",
+            "text":["Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."]
+          },
+          "items":[
+            {
+              "id":"studio-service-create",
+              "eyebrow":"01 · Vous partez de zéro ou presque.",
+              "title":"Créer",
+              "text":[
+                "Construire une présence cohérente dès le départ, en pensant le positionnement visuel, l’identité, le site et l’expérience digitale comme les différentes expressions d’un même système.",
+                "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
+              ],
+              "media":"ravine-business-card",
+              "tags":["Site web","Identité visuelle","Direction artistique","UX/UI","Frontend"],
+              "links":[{"label":"Construire votre présence","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
+            },
+            {
+              "id":"studio-service-clarify",
+              "eyebrow":"02 · Quelque chose existe déjà, mais manque de netteté.",
+              "title":"Clarifier",
+              "text":[
+                "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser.",
+                "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
+              ],
+              "media":"atmosphere-laptop",
+              "tags":["Audit","Refonte","Architecture de contenu","UX/UI","Direction visuelle"],
+              "links":[{"label":"Clarifier l’existant","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
+            },
+            {
+              "id":"studio-service-evolve",
+              "eyebrow":"03 · Votre système fonctionne, mais il est devenu trop limité.",
+              "title":"Faire évoluer",
+              "text":[
+                "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux contenus, usages et objectifs.",
+                "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
+              ],
+              "media":"structure-mobile-multi",
+              "tags":["Refonte","Évolution du site","Design system","Direction visuelle","Supports complémentaires"],
+              "links":[{"label":"Faire évoluer le projet","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
+            }
+          ]
+        }
+      },
+      {
+        "id":"studio-approach",
+        "type":"Section",
+        "layout":"list",
+        "surface":"solid",
+        "color":"primary",
+        "content":{
+          "header":{
+            "eyebrow":"Approche",
+            "title":"Comprendre d’abord. Construire ensuite.",
+            "text":["Le processus reste volontairement simple. Chaque étape réduit l’incertitude de la suivante, afin que les décisions visuelles et techniques répondent à quelque chose de concret."]
+          },
+          "items":[
+            {"id":"studio-approach-understand","eyebrow":"01 · Cadrage","title":"Comprendre","text":["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."]},
+            {"id":"studio-approach-structure","eyebrow":"02 · Architecture","title":"Structurer","text":["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."]},
+            {"id":"studio-approach-design","eyebrow":"03 · Direction","title":"Concevoir","text":["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."]},
+            {"id":"studio-approach-build","eyebrow":"04 · Réalisation","title":"Construire","text":["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."]}
+          ]
+        }
+      },
+      {"ref":"studio-founders"},
+      {"ref":"final-cta"},
+      {"ref":"site-footer"}
+    ]
+  },
   {"id":"approach-legacy","slug":"/approche","seo":{"title":"Studio | Chow Studio","description":"Services, approche et studio Chow Studio.","robots":{"index":false,"follow":true}},"blocks":[{"ref":"home-services"},{"ref":"approach-default"},{"ref":"studio-founders"},{"ref":"final-cta"},{"ref":"site-footer"}]},
   {"id":"journal-archive","slug":"/journal","seo":{"title":"Journal | Chow Studio","description":"Archives éditoriales de Chow Studio.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"journal-default"},{"ref":"site-footer"}]},
   {"id":"journal-site-clair","slug":"/journal/site-web-clair","seo":{"title":"Rendre un site web plus clair avant de le redesign | Chow Studio","description":"Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.","robots":{"index":false,"follow":false}},"blocks":[{"ref":"site-footer"}]},
