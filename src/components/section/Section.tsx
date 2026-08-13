@@ -16,12 +16,13 @@ import { resolveCollection } from "@/data/resolve";
 import { resolveMediaList } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type { SectionBlock } from "@/types/content";
+import type { SectionBlock, SectionColor } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
 export type SectionProps = {
   block: SectionBlock;
   suppressSceneMotion?: boolean;
+  inheritedColor?: SectionColor;
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
@@ -33,9 +34,10 @@ function SceneInner({ children }: { children: ReactNode }) {
   return <motion.div ref={ref} className="section__inner" style={{ y }}>{children}</motion.div>;
 }
 
-export function Section({ block, suppressSceneMotion = false }: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, inheritedColor }: SectionProps) {
   const reduceMotion = useReducedMotion();
   const layout = block.layout ?? "text";
+  const effectiveColor = block.color ?? inheritedColor;
   const header = block.content?.header;
   const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
   const formRef = block.content?.form;
@@ -88,7 +90,7 @@ export function Section({ block, suppressSceneMotion = false }: SectionProps) {
       data-variant={block.variant}
       data-tone={block.tone}
       data-surface={block.surface}
-      data-color={block.color}
+      data-color={effectiveColor}
       data-motion={block.motion ?? "reveal"}
     >
       {shouldTrackScroll ? (
