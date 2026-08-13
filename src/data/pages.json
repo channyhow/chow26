@@ -34,7 +34,7 @@
               ],
               "media":"ravine-business-card",
               "meta":[{"label":"Budget","value":"À partir de 1 200 € HT"}],
-              "tags":["Site web","Identité visuelle","Direction artistique","UX/UI","Frontend"],
+              "tags":["Logo","Branding","Identité visuelle","Direction artistique","Site web","UX/UI","Frontend"],
               "links":[{"label":"Construire votre présence","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             },
             {
@@ -47,7 +47,7 @@
               ],
               "media":"atmosphere-laptop",
               "meta":[{"label":"Budget","value":"À partir de 800 € HT"}],
-              "tags":["Audit","Refonte","Architecture de contenu","UX/UI","Direction visuelle"],
+              "tags":["Audit","Refonte","UX/UI","Architecture de contenu","Direction artistique","Site web","Frontend"],
               "links":[{"label":"Clarifier l’existant","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             },
             {
@@ -60,7 +60,7 @@
               ],
               "media":"structure-mobile-multi",
               "meta":[{"label":"Budget","value":"Sur devis"}],
-              "tags":["Refonte","Évolution du site","Design system","Direction visuelle","Supports complémentaires"],
+              "tags":["Refonte","Design system","Direction artistique","Site web","Frontend","Supports digitaux","Supports print"],
               "links":[{"label":"Faire évoluer le projet","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]
             }
           ]
