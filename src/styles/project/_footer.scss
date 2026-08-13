@@ -3,11 +3,11 @@
 
 /* ==================================
    CHOW STUDIO FOOTER
-   Uneven editorial index — deliberately distinct from Atmosphere.
+   Restrained two-zone editorial footer.
 ================================== */
 
 #site-footer {
-  --section-space: clamp(3rem, 6vw, 5.5rem);
+  --section-space: clamp(3rem, 6vw, 5rem);
   --text-width: none;
   min-height: auto;
 }
@@ -20,24 +20,21 @@
 }
 
 #site-footer .section__header .textBlock {
-  position: relative;
   display: grid;
-  grid-template-columns:
-    minmax(17rem, 1.15fr)
-    minmax(13rem, 0.8fr)
-    minmax(16rem, 1fr);
+  grid-template-columns: minmax(18rem, 1.25fr) minmax(24rem, 1fr);
   grid-template-areas:
-    "identity navigation support"
-    "meta meta meta";
-  column-gap: clamp(2rem, 5vw, 6rem);
-  row-gap: clamp(3rem, 7vw, 6rem);
+    "identity navigation"
+    "meta meta";
+  column-gap: clamp(3rem, 7vw, 8rem);
+  row-gap: clamp(3rem, 6vw, 5rem);
   align-items: start;
 }
 
-/* Identity / baseline */
 #site-footer .textBlock__header {
   grid-area: identity;
-  min-height: clamp(10rem, 20vw, 17rem);
+  display: grid;
+  align-content: start;
+  min-height: clamp(10rem, 18vw, 15rem);
   padding-left: $space-2;
   border-left: 1px solid currentColor;
 }
@@ -50,53 +47,29 @@
 
 #site-footer .textBlock__eyebrow:first-child {
   @include type-heading-lg;
-  max-width: 10ch;
+  max-width: 11ch;
   text-transform: none;
   letter-spacing: -0.03em;
 }
 
 #site-footer .textBlock__eyebrow:not(:first-child) {
-  max-width: 26rem;
+  max-width: 30rem;
   line-height: 1.5;
 }
 
-/* Existing links become two distinct columns: navigation + support/social. */
 #site-footer .textBlock__footer {
-  grid-column: navigation / support-end;
-  grid-row: 1;
+  grid-area: navigation;
   width: 100%;
   padding-top: 0;
 }
 
 #site-footer .textBlock__footer .actions {
-  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-  grid-auto-flow: row;
-  gap: $space-1 clamp(2rem, 5vw, 6rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-2 clamp(2rem, 5vw, 5rem);
+  align-content: start;
   width: 100%;
-  min-height: clamp(10rem, 20vw, 17rem);
-  padding-left: $space-2;
-}
-
-#site-footer .textBlock__footer .actions::before,
-#site-footer .textBlock__footer .actions::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: currentColor;
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-#site-footer .textBlock__footer .actions::before {
-  left: 0;
-}
-
-#site-footer .textBlock__footer .actions::after {
-  left: calc(44.444% + clamp(1rem, 2.5vw, 3rem));
+  min-height: clamp(10rem, 18vw, 15rem);
 }
 
 #site-footer .actions__link {
@@ -109,20 +82,12 @@
   @include type-ui-compact;
 }
 
-#site-footer .actions__link:nth-child(-n + 3) {
-  grid-column: 1;
-}
-
-#site-footer .actions__link:nth-child(n + 4) {
-  grid-column: 2;
-  padding-left: $space-2;
-}
-
-#site-footer .actions__link:hover {
+#site-footer .actions__link:hover,
+#site-footer .actions__link:focus-visible {
+  color: var(--accent);
   background: transparent;
 }
 
-/* Credit + copyright stay semantic data, but become a visible footer baseline. */
 #site-footer .textBlock__meta {
   grid-area: meta;
   display: flex;
@@ -142,25 +107,12 @@
 @media (max-width: $bp-desktop) {
   #site-footer .section__header .textBlock {
     grid-template-columns: minmax(15rem, 0.9fr) minmax(0, 1.1fr);
-    grid-template-areas:
-      "identity navigation"
-      "identity support"
-      "meta meta";
-    gap: $space-4;
+    column-gap: $space-4;
   }
 
-  #site-footer .textBlock__footer {
-    grid-column: navigation;
-    grid-row: navigation / support-end;
-  }
-
+  #site-footer .textBlock__header,
   #site-footer .textBlock__footer .actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: 0;
-  }
-
-  #site-footer .textBlock__header {
-    min-height: 100%;
+    min-height: clamp(9rem, 20vw, 13rem);
   }
 }
 
@@ -183,26 +135,20 @@
     min-height: 0;
   }
 
-  #site-footer .textBlock__footer {
-    grid-area: navigation;
-  }
-
   #site-footer .textBlock__footer .actions {
-    grid-template-columns: 1fr;
-    gap: $space-1;
-  }
-
-  #site-footer .textBlock__footer .actions::after {
-    display: none;
-  }
-
-  #site-footer .actions__link:nth-child(n) {
-    grid-column: 1;
-    padding-left: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2;
   }
 
   #site-footer .textBlock__meta {
     display: grid;
     justify-content: start;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  #site-footer .textBlock__footer .actions {
+    grid-template-columns: 1fr;
+    gap: $space-1;
   }
 }
