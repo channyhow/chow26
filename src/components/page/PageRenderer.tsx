@@ -27,26 +27,73 @@ const studioServiceMeta: Record<string, { label: string; value: string }[]> = {
   ],
 };
 
-function prepareSection(entry: SectionBlock): SectionBlock {
-  if (entry.id !== "studio-services") return entry;
+const footerLinks = [
+  { label: "Accueil", href: "/", intent: "navigate" },
+  { label: "Projets", href: "/projets", intent: "navigate" },
+  { label: "Studio", href: "/studio", intent: "navigate" },
+  {
+    label: "Parler d’un projet",
+    href: "/contact",
+    intent: "contact",
+    variant: "cta",
+  },
+  {
+    label: "Instagram · @hellochowstudio",
+    href: "https://www.instagram.com/hellochowstudio/",
+    intent: "navigate",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/channyhow",
+    intent: "navigate",
+  },
+  {
+    label: "Confidentialité",
+    href: "/confidentialite",
+    intent: "navigate",
+  },
+  {
+    label: "Mentions légales",
+    href: "/mentions-legales",
+    intent: "navigate",
+  },
+] as const;
 
-  return {
-    ...entry,
-    layout: "content-switcher",
-    content: {
-      ...entry.content,
-      items: entry.content?.items?.map((item) => ({
-        ...item,
-        meta: studioServiceMeta[item.id ?? ""] ?? item.meta,
-      })),
-    },
-  };
+function prepareSection(entry: SectionBlock): SectionBlock {
+  if (entry.id === "studio-services") {
+    return {
+      ...entry,
+      layout: "content-switcher",
+      content: {
+        ...entry.content,
+        items: entry.content?.items?.map((item) => ({
+          ...item,
+          meta: studioServiceMeta[item.id ?? ""] ?? item.meta,
+        })),
+      },
+    };
+  }
+
+  if (entry.id === "site-footer") {
+    return {
+      ...entry,
+      content: {
+        ...entry.content,
+        header: {
+          ...entry.content?.header,
+          links: [...footerLinks],
+        },
+      },
+    };
+  }
+
+  return entry;
 }
 
 function renderEntry(entry: PageBlock) {
   if ("ref" in entry) {
     const block = resolveBlock(entry.ref);
-    return block ? <Section key={entry.ref} block={block} /> : null;
+    return block ? <Section key={entry.ref} block={prepareSection(block)} /> : null;
   }
 
   if (entry.type === "Section") {
