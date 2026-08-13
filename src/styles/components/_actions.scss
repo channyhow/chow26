@@ -50,7 +50,8 @@
 }
 
 .actions__link:not([class*="actions__link--"]) .actions__label,
-.actions__link--arrow .actions__label {
+.actions__link--arrow .actions__label,
+.actions__link--cta .actions__label {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -91,7 +92,8 @@
   }
 }
 
-.actions__link--arrow {
+.actions__link--arrow,
+.actions__link--cta {
   @include hover {
     color: var(--accent);
 
@@ -114,7 +116,8 @@
 
   .actions__link:active,
   .actions__link--primary:hover,
-  .actions__link--arrow:hover .actions__arrow {
+  .actions__link--arrow:hover .actions__arrow,
+  .actions__link--cta:hover .actions__arrow {
     transform: none;
   }
 }
