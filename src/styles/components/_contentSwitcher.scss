@@ -91,9 +91,9 @@
   gap: clamp(3rem, 6vw, 6rem);
 }
 
+/* The service selector is the section introduction on Studio. */
 #studio-services > .section__inner > .section__header {
-  width: min(100%, 58rem);
-  max-width: none;
+  display: none;
 }
 
 #studio-services .contentSwitcher {
@@ -102,10 +102,10 @@
 
 #studio-services .contentSwitcher__panel .card {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.75fr);
+  grid-template-columns: minmax(0, 3fr) minmax(24rem, 2fr);
   grid-template-areas: "media body";
-  gap: clamp(2.5rem, 6vw, 7rem);
-  align-items: end;
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: stretch;
   width: 100%;
   margin: 0;
   overflow: visible;
@@ -114,6 +114,8 @@
 
 #studio-services .card__media {
   grid-area: media;
+  width: 100%;
+  min-width: 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
 }
@@ -131,14 +133,19 @@
 
 #studio-services .card__body {
   grid-area: body;
-  align-self: end;
+  align-self: stretch;
+  min-width: 0;
   padding: 0;
 }
 
 #studio-services .card__body .textBlock {
+  display: flex;
+  flex-direction: column;
   gap: clamp(#{$space-2}, 3vw, #{$space-3});
   width: 100%;
+  height: 100%;
   max-width: none;
+  min-width: 0;
 }
 
 #studio-services .card__body .textBlock__title {
@@ -147,23 +154,26 @@
 }
 
 #studio-services .card__body .textBlock__content {
-  width: min(100%, 34rem);
+  width: 100%;
+  max-width: 34rem;
 }
 
 #studio-services .card__body .textBlock__meta {
   display: grid;
   gap: 0;
   width: 100%;
-  margin-top: $space-2;
+  margin-top: auto;
   border-top: 1px solid currentColor;
 }
 
 #studio-services .card__body .textBlock__meta > * {
-  display: grid;
-  grid-template-columns: minmax(7rem, 0.4fr) minmax(0, 1fr);
-  gap: $space-2;
+  display: block;
+  width: 100%;
   padding-block: $space-1;
   border-bottom: 1px solid currentColor;
+  line-height: 1.4;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 #studio-services .card__body .textBlock__footer {
@@ -172,7 +182,7 @@
 
 @media (max-width: $bp-desktop) {
   #studio-services .contentSwitcher__panel .card {
-    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.85fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
     gap: clamp(2rem, 4vw, 4rem);
   }
 }
@@ -208,70 +218,7 @@
     aspect-ratio: 4 / 3;
   }
 
-  #studio-services .card__body .textBlock__meta > * {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
-}
-
-/* Chow Studio detailed services: the selector carries the section story. */
-#studio-services > .section__inner > .section__header {
-  display: none;
-}
-
-#studio-services .contentSwitcher__panel .card {
-  grid-template-columns: minmax(0, 1.28fr) minmax(19rem, 0.72fr);
-  align-items: stretch;
-  min-height: clamp(32rem, 64svh, 46rem);
-}
-
-#studio-services .card__media {
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  aspect-ratio: auto;
-}
-
-#studio-services .card__body {
-  align-self: stretch;
-  display: flex;
-  min-width: 0;
-}
-
-#studio-services .card__body .textBlock {
-  display: flex;
-  flex-direction: column;
-}
-
-#studio-services .card__body .textBlock__footer {
-  margin-top: auto;
-}
-
-#studio-services .card__body .textBlock__meta > * {
-  display: block;
-  width: 100%;
-  padding-block: $space-1;
-  line-height: 1.4;
-}
-
-@media (max-width: $bp-desktop) {
-  #studio-services .contentSwitcher__panel .card {
-    min-height: clamp(30rem, 58svh, 40rem);
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  #studio-services .contentSwitcher__panel .card {
-    min-height: 0;
-  }
-
-  #studio-services .card__media {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-  }
-
-  #studio-services .card__body .textBlock__footer {
-    margin-top: 0;
+  #studio-services .card__body .textBlock__meta {
+    margin-top: $space-2;
   }
 }
