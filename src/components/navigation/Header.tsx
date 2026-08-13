@@ -19,6 +19,12 @@ type HeaderSurface = "primary" | "secondary" | "accent" | "special";
 const normalizePath = (path: string) =>
   path === "/" ? path : path.replace(/\/+$/, "");
 
+const isHeaderSurface = (value?: string): value is HeaderSurface =>
+  value === "primary" ||
+  value === "secondary" ||
+  value === "accent" ||
+  value === "special";
+
 export function Header() {
   const { pathname } = useLocation();
   const currentPath = normalizePath(pathname);
@@ -32,20 +38,34 @@ export function Header() {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".section[data-color]"),
     );
+    const visible = new Set<HTMLElement>();
+
+    const updateSurface = () => {
+      const active = Array.from(visible).sort((a, b) => {
+        const aTop = Math.abs(a.getBoundingClientRect().top);
+        const bTop = Math.abs(b.getBoundingClientRect().top);
+        return aTop - bTop;
+      })[0];
+      const color = active?.dataset.color;
+
+      if (isHeaderSurface(color)) {
+        setSurface(color);
+      }
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const active = entries.find((entry) => entry.isIntersecting);
-        const color = (active?.target as HTMLElement | undefined)?.dataset.color;
+        entries.forEach((entry) => {
+          const section = entry.target as HTMLElement;
 
-        if (
-          color === "primary" ||
-          color === "secondary" ||
-          color === "accent" ||
-          color === "special"
-        ) {
-          setSurface(color);
-        }
+          if (entry.isIntersecting) {
+            visible.add(section);
+          } else {
+            visible.delete(section);
+          }
+        });
+
+        updateSurface();
       },
       {
         rootMargin: "-1px 0px -95% 0px",
