@@ -117,9 +117,9 @@
 
 @media (min-width: $bp-tablet) {
   #site-footer .section__header > .textBlock {
-    grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
     grid-template-areas:
-      "identity navigation"
+      "navigation identity"
       "meta meta";
     column-gap: clamp(3rem, 7vw, 7rem);
     row-gap: clamp(2.5rem, 5vw, 4rem);
@@ -132,7 +132,16 @@
 
   #site-footer .textBlock__footer .actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-2 $space-3;
+    grid-auto-flow: row;
+    gap: $space-1 clamp(2rem, 5vw, 5rem);
+  }
+
+  #site-footer .actions__link:nth-child(-n + 4) {
+    grid-column: 1;
+  }
+
+  #site-footer .actions__link:nth-child(n + 5) {
+    grid-column: 2;
   }
 
   #site-footer .textBlock__meta {
@@ -150,7 +159,7 @@
 
 @media (min-width: $bp-desktop) {
   #site-footer .section__header > .textBlock {
-    grid-template-columns: minmax(22rem, 1fr) minmax(30rem, 0.9fr);
+    grid-template-columns: minmax(34rem, 1.2fr) minmax(26rem, 0.8fr);
     column-gap: clamp(4rem, 8vw, 9rem);
   }
 }
