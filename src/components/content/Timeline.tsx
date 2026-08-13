@@ -12,6 +12,7 @@ import { TextBlock } from "@/components/content/TextBlock";
 import type { ContentItem, TimelineOrientation } from "@/types/content";
 
 export type TimelineMode = "chronology" | "checklist";
+type TimelineStyle = CSSProperties & { "--timeline-count": number };
 
 export type TimelineProps = {
   items: ContentItem[];
@@ -46,8 +47,8 @@ export function Timeline({
 
   if (!items.length) return null;
 
-  const style = horizontal
-    ? ({ "--timeline-count": items.length } as CSSProperties)
+  const style: TimelineStyle | undefined = horizontal
+    ? { "--timeline-count": items.length }
     : undefined;
 
   const list = (
