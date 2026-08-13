@@ -44,8 +44,9 @@
     "experience": {"scrollProgress":"rail","sectionReveal":true,"parallax":true,"footerReveal":true},
     "floatingAction": {
       "enabled": true,
-      "label": "Projet ↗",
+      "label": "Projet",
       "ariaLabel": "Actions projet",
+      "hideWhileVisible": "#home-opening",
       "items": [
         {"label":"Parler d’un projet","href":"/contact"},
         {"label":"Quel accompagnement ?","href":"/approche"}
