@@ -187,6 +187,8 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "grid",
+    "surface": "solid",
+    "color": "special",
     "content": {
       "header": {
         "eyebrow": "Le studio",
@@ -264,7 +266,7 @@
     "layout": "statement",
     "tone": "inverse",
     "surface": "solid",
-    "color": "primary",
+    "color": "special",
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",
@@ -422,6 +424,8 @@
     "id": "site-footer",
     "type": "Section",
     "layout": "list",
+     "surface": "solid",
+    "color": "primary",
     "content": {
       "header": {
         "eyebrow": [
