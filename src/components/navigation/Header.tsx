@@ -25,7 +25,7 @@ const isHeaderSurface = (value?: string): value is HeaderSurface =>
   value === "accent" ||
   value === "special";
 
-const getSurface = (element?: HTMLElement) =>
+const getSurface = (element?: HTMLElement | null) =>
   element?.dataset.panelColor ?? element?.dataset.color;
 
 export function Header() {
@@ -38,54 +38,42 @@ export function Header() {
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
 
   useEffect(() => {
-    const surfaces = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        ".sectionGroup__panel[data-panel-color], .section[data-color]",
-      ),
-    );
-    const visible = new Set<HTMLElement>();
+    let frame = 0;
 
-    const updateSurface = () => {
-      const candidates = Array.from(visible);
-      const visiblePanels = candidates.filter((element) =>
-        element.matches(".sectionGroup__panel[data-panel-color]"),
-      );
-      const pool = visiblePanels.length ? visiblePanels : candidates;
+    const resolveSurface = () => {
+      frame = 0;
 
-      const active = pool.sort((a, b) => {
-        const aTop = Math.abs(a.getBoundingClientRect().top);
-        const bTop = Math.abs(b.getBoundingClientRect().top);
-        return aTop - bTop;
-      })[0];
-      const color = getSurface(active);
+      const sampleX = Math.round(window.innerWidth / 2);
+      const sampleY = 32;
+      const layers = document.elementsFromPoint(sampleX, sampleY);
 
-      if (isHeaderSurface(color)) {
-        setSurface(color);
+      for (const layer of layers) {
+        const element = (layer as HTMLElement).closest<HTMLElement>(
+          ".sectionGroup__panel[data-panel-color], .section[data-color]",
+        );
+        const color = getSurface(element);
+
+        if (isHeaderSurface(color)) {
+          setSurface((current) => (current === color ? current : color));
+          return;
+        }
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const element = entry.target as HTMLElement;
+    const scheduleResolve = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(resolveSurface);
+    };
 
-          if (entry.isIntersecting) {
-            visible.add(element);
-          } else {
-            visible.delete(element);
-          }
-        });
+    scheduleResolve();
+    window.addEventListener("scroll", scheduleResolve, { passive: true });
+    window.addEventListener("resize", scheduleResolve);
 
-        updateSurface();
-      },
-      {
-        rootMargin: "-1px 0px -95% 0px",
-        threshold: 0,
-      },
-    );
-
-    surfaces.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", scheduleResolve);
+      window.removeEventListener("resize", scheduleResolve);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, [pathname]);
 
   return (
