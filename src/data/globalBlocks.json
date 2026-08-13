@@ -36,6 +36,8 @@
     "id": "project-gallery",
     "type": "Section",
     "layout": "grid",
+     "surface": "solid",
+            "color": "special",
     "source": { "collection": "projects" },
     "content": {
       "header": {
@@ -259,6 +261,8 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
+    "surface": "solid",
+    "color": "primary",
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",

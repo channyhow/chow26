@@ -62,6 +62,7 @@
       "description": "Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.",
       "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
     },
+    
     "blocks": [
       { "ref": "project-gallery" },
       { "ref": "final-cta" },
