@@ -66,7 +66,15 @@
   color: var(--section-fg);
 }
 
-.section[data-color="primary"] { --section-bg: var(--theme-primary); --section-fg: var(--theme-secondary); }
+.section[data-color="primary"] {
+  --section-bg: var(--theme-primary);
+  --section-fg: var(--theme-secondary);
+}
+
+.section[data-color="primary"] .section__header {
+  color: var(--theme-secondary);
+}
+
 .section[data-color="secondary"] { --section-bg: var(--theme-secondary); --section-fg: var(--theme-primary); }
 .section[data-color="accent"] { --section-bg: var(--theme-accent); --section-fg: var(--theme-primary); }
 .section[data-color="special"] { --section-bg: var(--theme-special); --section-fg: var(--theme-primary); }
