@@ -1,4 +1,5 @@
 import { useState, type KeyboardEvent, type ReactNode } from "react";
+import clsx from "clsx";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import siteData from "@/data/site.json";
@@ -10,7 +11,12 @@ export type ContentSwitcherItem = {
   content: ReactNode;
 };
 
-export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
+export type ContentSwitcherProps = {
+  items: ContentSwitcherItem[];
+  variant?: "default" | "detailed";
+};
+
+export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherProps) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const reduceMotion = useReducedMotion();
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeId));
@@ -54,13 +60,17 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
   };
 
   return (
-    <motion.div className="contentSwitcher" layout={!reduceMotion}>
+    <motion.div
+      className={clsx("contentSwitcher", `contentSwitcher--${variant}`)}
+      data-variant={variant}
+      layout={!reduceMotion}
+    >
       <div
         className="contentSwitcher__controls"
         role="tablist"
         aria-label={siteData.ui.copy.contentSwitcher.controlsLabel}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const selected = item.id === active.id;
           return (
             <button
@@ -74,7 +84,14 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
               onClick={() => setActiveId(item.id)}
               onKeyDown={onTabKeyDown}
             >
-              {item.label}
+              {variant === "detailed" ? (
+                <>
+                  <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{item.label}</span>
+                </>
+              ) : (
+                item.label
+              )}
             </button>
           );
         })}
@@ -88,9 +105,9 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
             role="tabpanel"
             aria-labelledby={`content-switcher-tab-${active.id}`}
             key={active.id}
-            initial={reduceMotion ? false : { opacity: 0, y: motionConfig.distance.subtle }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -motionConfig.distance.subtle }}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0 }}
             transition={{
               duration: motionConfig.duration.default,
               ease: motionConfig.easing.standard,
