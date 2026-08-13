@@ -4,10 +4,17 @@ import { resolveBlock } from "@/data/resolve";
 import { Section } from "@/components/section/Section";
 import type { BlockRef, PanelAlign, PanelBehavior, PanelSize, PanelSurface, SectionGroup as SectionGroupData, SectionColor } from "@/types/content";
 
-function renderBlocks(blocks: BlockRef[], suppressSceneMotion = false) {
+function renderBlocks(blocks: BlockRef[], suppressSceneMotion = false, inheritedColor?: SectionColor) {
   return blocks.map(({ ref }) => {
     const block = resolveBlock(ref);
-    return block ? <Section key={ref} block={block} suppressSceneMotion={suppressSceneMotion} /> : null;
+    return block ? (
+      <Section
+        key={ref}
+        block={block}
+        suppressSceneMotion={suppressSceneMotion}
+        inheritedColor={inheritedColor}
+      />
+    ) : null;
   });
 }
 
@@ -51,7 +58,7 @@ function Panel({ id, behavior, size, align, surface, color, blocks }: { id: stri
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, true)}
+      {renderBlocks(blocks, true, color)}
     </div>
   );
 }
