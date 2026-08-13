@@ -277,7 +277,8 @@
             "label": "Parler d’un projet",
             "href": "/contact",
             "intent": "contact",
-            "priority": "secondary"
+            "priority": "secondary",
+            "variant": "cta"
           }
         ]
       }
@@ -433,12 +434,14 @@
             "label": "Accompagnements",
             "href": "/approche",
             "intent": "navigate"
-          },
+          },                           
+
           { "label": "Journal", "href": "/journal", "intent": "navigate" },
           {
             "label": "Parler d’un projet",
             "href": "/contact",
-            "intent": "contact"
+            "intent": "contact",
+            "variant": "cta"
           },
           {
             "label": "LinkedIn",
