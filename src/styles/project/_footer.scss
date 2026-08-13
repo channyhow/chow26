@@ -1,0 +1,87 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+
+/* Chow Studio footer: deliberately more typographic and compact than the
+   hospitality/architecture footer treatment used by Atmosphere. */
+#site-footer {
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --text-width: none;
+  min-height: auto;
+}
+
+#site-footer .section__inner {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+  width: 100%;
+}
+
+#site-footer .section__header {
+  width: 100%;
+  max-width: 30rem;
+  align-self: start;
+}
+
+#site-footer .section__header .textBlock {
+  max-width: none;
+  gap: $space-2;
+}
+
+#site-footer .section__header .textBlock__title {
+  @include type-heading-lg;
+  max-width: 9ch;
+}
+
+#site-footer .section__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(2rem, 5vw, 6rem);
+  width: 100%;
+  border-top: 1px solid currentColor;
+}
+
+#site-footer .card {
+  min-width: 0;
+  padding-block: $space-2;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+}
+
+#site-footer .card__body {
+  padding: 0;
+}
+
+#site-footer .card__body .textBlock {
+  max-width: none;
+  gap: $space-1;
+}
+
+#site-footer .card__body .textBlock__title,
+#site-footer .card__body .textBlock__content,
+#site-footer .card__body .textBlock__footer {
+  width: 100%;
+  max-width: none;
+}
+
+@media (max-width: $bp-desktop) {
+  #site-footer .section__inner {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+  }
+
+  #site-footer .section__header {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  #site-footer {
+    --section-space: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  #site-footer .section__body {
+    grid-template-columns: 1fr;
+  }
+}
