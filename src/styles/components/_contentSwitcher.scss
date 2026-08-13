@@ -159,6 +159,7 @@
 }
 
 #studio-services .card__body .textBlock__meta {
+  // @include type-ui-compact;
   display: grid;
   gap: 0;
   width: 100%;

@@ -424,8 +424,6 @@
     "id": "site-footer",
     "type": "Section",
     "layout": "list",
-     "surface": "solid",
-    "color": "primary",
     "content": {
       "header": {
         "eyebrow": [
