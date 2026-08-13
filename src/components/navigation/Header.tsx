@@ -25,6 +25,9 @@ const isHeaderSurface = (value?: string): value is HeaderSurface =>
   value === "accent" ||
   value === "special";
 
+const getSurface = (element?: HTMLElement) =>
+  element?.dataset.panelColor ?? element?.dataset.color;
+
 export function Header() {
   const { pathname } = useLocation();
   const currentPath = normalizePath(pathname);
@@ -35,18 +38,26 @@ export function Header() {
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
 
   useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>(".section[data-color]"),
+    const surfaces = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        ".sectionGroup__panel[data-panel-color], .section[data-color]",
+      ),
     );
     const visible = new Set<HTMLElement>();
 
     const updateSurface = () => {
-      const active = Array.from(visible).sort((a, b) => {
+      const candidates = Array.from(visible);
+      const visiblePanels = candidates.filter((element) =>
+        element.matches(".sectionGroup__panel[data-panel-color]"),
+      );
+      const pool = visiblePanels.length ? visiblePanels : candidates;
+
+      const active = pool.sort((a, b) => {
         const aTop = Math.abs(a.getBoundingClientRect().top);
         const bTop = Math.abs(b.getBoundingClientRect().top);
         return aTop - bTop;
       })[0];
-      const color = active?.dataset.color;
+      const color = getSurface(active);
 
       if (isHeaderSurface(color)) {
         setSurface(color);
@@ -56,12 +67,12 @@ export function Header() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const section = entry.target as HTMLElement;
+          const element = entry.target as HTMLElement;
 
           if (entry.isIntersecting) {
-            visible.add(section);
+            visible.add(element);
           } else {
-            visible.delete(section);
+            visible.delete(element);
           }
         });
 
@@ -73,7 +84,7 @@ export function Header() {
       },
     );
 
-    sections.forEach((section) => observer.observe(section));
+    surfaces.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, [pathname]);
 
