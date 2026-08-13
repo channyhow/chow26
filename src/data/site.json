@@ -15,44 +15,150 @@
       "organizationType": "ProfessionalService",
       "twitterCard": "summary_large_image",
       "themeColor": "#F6F5F3",
-      "areaServed": [{"kind":"city","name":"Paris"},{"kind":"region","name":"Île-de-France"},{"kind":"region","name":"La Réunion"}],
-      "knowsAbout": ["Design web","Site vitrine sur mesure","Identité visuelle","Direction artistique digitale","Design d’interface","Développement frontend React","Refonte de site web","Expérience utilisateur"],
+      "areaServed": [
+        { "kind": "city", "name": "Paris" },
+        { "kind": "region", "name": "Île-de-France" },
+        { "kind": "region", "name": "La Réunion" }
+      ],
+      "knowsAbout": [
+        "Design web",
+        "Site vitrine sur mesure",
+        "Identité visuelle",
+        "Direction artistique digitale",
+        "Design d’interface",
+        "Développement frontend React",
+        "Refonte de site web",
+        "Expérience utilisateur"
+      ],
       "offerCatalogName": "Services Chow Studio",
       "services": [
-        {"name":"Sites web et refontes","description":"Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."},
-        {"name":"Identité visuelle et direction artistique","description":"Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."},
-        {"name":"Clarification et évolution digitale","description":"Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."}
+        {
+          "name": "Sites web et refontes",
+          "description": "Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."
+        },
+        {
+          "name": "Identité visuelle et direction artistique",
+          "description": "Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."
+        },
+        {
+          "name": "Clarification et évolution digitale",
+          "description": "Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."
+        }
       ],
       "projectLocations": ["Paris", "Île-de-France", "La Réunion"]
     },
-    "pwa": {"name":"Chow Studio","shortName":"Chow Studio","description":"Design web, identité visuelle et direction digitale entre Paris et La Réunion.","display":"standalone","startUrl":"/"},
-    "contact": {"email":"channyhow@gmail.com","phone":"+33 7 88 48 40 06","address":{"street":"","postalCode":"","city":"Paris","country":"FR"}},
-    "socials": {"linkedin":{"label":"LinkedIn","href":"https://www.linkedin.com/in/channyhow","enabled":true},"email":{"label":"E-mail","href":"mailto:channyhow@gmail.com","enabled":true}},
-    "credits": {"label":"Design et développement","name":"Channy How-Choong","studio":"Chow Studio","href":"https://chow-studio.com/"},
+    "pwa": {
+      "name": "Chow Studio",
+      "shortName": "Chow Studio",
+      "description": "Design web, identité visuelle et direction digitale entre Paris et La Réunion.",
+      "display": "standalone",
+      "startUrl": "/"
+    },
+    "contact": {
+      "email": "channyhow@gmail.com",
+      "phone": "+33 7 88 48 40 06",
+      "address": {
+        "street": "",
+        "postalCode": "",
+        "city": "Paris",
+        "country": "FR"
+      }
+    },
+    "socials": {
+      "linkedin": {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/channyhow",
+        "enabled": true
+      },
+      "email": {
+        "label": "E-mail",
+        "href": "mailto:channyhow@gmail.com",
+        "enabled": true
+      }
+    },
+    "credits": {
+      "label": "Design et développement",
+      "name": "Channy How-Choong",
+      "studio": "Chow Studio",
+      "href": "https://chow-studio.com/"
+    },
     "contentMode": "business"
   },
   "ui": {
-    "navigation": {"desktop":"inline"},
+    "navigation": { "desktop": "inline" },
     "copy": {
-      "navigation": {"mainLabel":"Navigation principale","openMenuLabel":"Ouvrir le menu","closeLabel":"Fermer","drawerLabels":{"menu":"Chow Studio","contact":"Projet","reservation":"Échanger"}},
-      "forms": {"selectPlaceholder":"Sélectionner","defaultSubmitLabel":"Envoyer","requiredError":"Ce champ est requis.","emailError":"Saisissez une adresse e-mail valide.","numberError":"Saisissez une valeur valide.","genericError":"Vérifiez la valeur saisie."},
-      "carousel": {"defaultLabel":"Projets","navigationLabel":"Navigation du carrousel","previousLabel":"Précédent","nextLabel":"Suivant","positionSeparator":"sur"},
-      "contentSwitcher": {"controlsLabel":"Choisir un besoin"},
-      "schedule": {"bookingLabel":"Échanger"}
+      "navigation": {
+        "mainLabel": "Navigation principale",
+        "openMenuLabel": "Ouvrir le menu",
+        "closeLabel": "Fermer",
+        "drawerLabels": {
+          "menu": "Chow Studio",
+          "contact": "Projet",
+          "reservation": "Échanger"
+        }
+      },
+      "forms": {
+        "selectPlaceholder": "Sélectionner",
+        "defaultSubmitLabel": "Envoyer",
+        "requiredError": "Ce champ est requis.",
+        "emailError": "Saisissez une adresse e-mail valide.",
+        "numberError": "Saisissez une valeur valide.",
+        "genericError": "Vérifiez la valeur saisie."
+      },
+      "carousel": {
+        "defaultLabel": "Projets",
+        "navigationLabel": "Navigation du carrousel",
+        "previousLabel": "Précédent",
+        "nextLabel": "Suivant",
+        "positionSeparator": "sur"
+      },
+      "contentSwitcher": { "controlsLabel": "Choisir un besoin" },
+      "schedule": { "bookingLabel": "Échanger" }
     },
-    "loader": {"messages":["Clarifier.","Concevoir.","Construire."]},
-    "experience": {"scrollProgress":"rail","sectionReveal":true,"parallax":true,"footerReveal":true},
+    "loader": { "messages": ["Clarifier.", "Concevoir.", "Construire."] },
+    "experience": {
+      "scrollProgress": "rail",
+      "sectionReveal": true,
+      "parallax": true,
+      "footerReveal": true
+    },
     "floatingAction": {
       "enabled": true,
       "label": "Projet",
       "ariaLabel": "Actions projet",
       "hideWhileVisible": "#home-opening",
       "items": [
-        {"label":"Parler d’un projet","href":"/contact"},
-        {"label":"Quel accompagnement ?","href":"/approche"}
+        { "label": "Parler d’un projet", "href": "/contact" },
+        { "label": "Quel accompagnement ?", "href": "/approche" }
       ]
     }
   },
-  "theme": {"variant":"editorial","tone":"default","colors":{"primary":"#161616","secondary":"#F6F5F3","special":"#D8D4CC","accent":"#D85234"},"fonts":{"classicHeading":"Flor de Ruina Semilla","editorialHeading":"DM Sans","organicHeading":"Flor de Ruina Semilla","body":"DM Sans"}},
-  "integrations": {"hosting":"netlify","forms":"netlify","cms":false,"calendar":false,"newsletter":false,"commerce":false,"maps":false,"reviews":false,"weather":false,"analytics":false}
+  "theme": {
+    "variant": "editorial",
+    "tone": "default",
+    "colors": {
+      "primary": "#161616",
+      "secondary": "#F6F5F3",
+      "special": "#D8D4CC",
+      "accent": "#D85234"
+    },
+    "fonts": {
+      "classicHeading": "Flor de Ruina Semilla",
+      "editorialHeading": "DM Sans",
+      "organicHeading": "Flor de Ruina Semilla",
+      "body": "DM Sans"
+    }
+  },
+  "integrations": {
+    "hosting": "netlify",
+    "forms": "netlify",
+    "cms": false,
+    "calendar": false,
+    "newsletter": false,
+    "commerce": false,
+    "maps": false,
+    "reviews": false,
+    "weather": false,
+    "analytics": false
+  }
 }

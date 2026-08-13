@@ -309,7 +309,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   @include type-ui-compact;
 }
 
-#approach-default .timeline__content { display: contents; }
+// #approach-default .timeline__content { display: contents; }
 
 #approach-default .timeline__content .textBlock__header,
 #approach-default .timeline__content .textBlock__content {
@@ -676,7 +676,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
     border-bottom: 1px solid currentColor;
   }
 
-  #approach-default .timeline__content { display: contents; }
+  // #approach-default .timeline__content { display: contents; }
 
   #approach-default .timeline__content .textBlock__title {
     @include type-heading-lg;

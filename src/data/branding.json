@@ -13,17 +13,44 @@
     "text": [
       "La direction privilégie une identité forte sans ajouter de décoration inutile : typographie, couleur, image, rythme et composition portent la personnalité du studio."
     ],
-    "keywords": ["Clair", "Éditorial", "Singulier", "Précis", "Flexible", "Construit"]
+    "keywords": [
+      "Clair",
+      "Éditorial",
+      "Singulier",
+      "Précis",
+      "Flexible",
+      "Construit"
+    ]
   },
   "storytelling": {
     "eyebrow": "Storytelling & conversion",
     "title": "Positionnement → preuve → besoin → méthode → conversation.",
     "chapters": [
-      {"step": "01", "title": "Dire clairement ce que fait Chow Studio", "text": "Le visiteur comprend immédiatement qu'il s'agit de design web, identité visuelle, direction digitale et frontend."},
-      {"step": "02", "title": "Montrer le travail", "text": "Les projets démontrent la variété des contextes, des directions et des réponses avant de développer les services."},
-      {"step": "03", "title": "Relier le travail aux besoins clients", "text": "Créer, clarifier ou faire évoluer devient la porte d'entrée vers les accompagnements."},
-      {"step": "04", "title": "Expliquer la méthode", "text": "Clarification, structure, conception et réalisation montrent comment le studio transforme un besoin en système cohérent."},
-      {"step": "05", "title": "Faciliter le premier contact", "text": "Le formulaire recueille uniquement les informations utiles pour comprendre le projet et préparer une première réponse."}
+      {
+        "step": "01",
+        "title": "Dire clairement ce que fait Chow Studio",
+        "text": "Le visiteur comprend immédiatement qu'il s'agit de design web, identité visuelle, direction digitale et frontend."
+      },
+      {
+        "step": "02",
+        "title": "Montrer le travail",
+        "text": "Les projets démontrent la variété des contextes, des directions et des réponses avant de développer les services."
+      },
+      {
+        "step": "03",
+        "title": "Relier le travail aux besoins clients",
+        "text": "Créer, clarifier ou faire évoluer devient la porte d'entrée vers les accompagnements."
+      },
+      {
+        "step": "04",
+        "title": "Expliquer la méthode",
+        "text": "Clarification, structure, conception et réalisation montrent comment le studio transforme un besoin en système cohérent."
+      },
+      {
+        "step": "05",
+        "title": "Faciliter le premier contact",
+        "text": "Le formulaire recueille uniquement les informations utiles pour comprendre le projet et préparer une première réponse."
+      }
     ]
   },
   "voice": {
@@ -33,21 +60,57 @@
       "Le texte doit rendre le travail compréhensible sans jargon de studio, promesses vagues ni vocabulaire artificiellement premium."
     ],
     "rules": [
-      {"title": "Expliquer les décisions", "text": ["Dire ce qui devait être résolu, pourquoi un choix a été fait et ce qu'il permet."]},
-      {"title": "Éviter les formules génériques", "text": ["Limiter sur mesure, expérience unique, univers immersif, raconter votre histoire et les expressions qui pourraient appartenir à n'importe quel studio."]},
-      {"title": "Études de cas structurées", "text": ["Contexte → problème → réponse → décisions → résultat ou portée réelle. Ne jamais inventer de métriques."]},
-      {"title": "CTA explicites", "text": ["Voir les projets, Voir les accompagnements, Parler d'un projet."]}
+      {
+        "title": "Expliquer les décisions",
+        "text": [
+          "Dire ce qui devait être résolu, pourquoi un choix a été fait et ce qu'il permet."
+        ]
+      },
+      {
+        "title": "Éviter les formules génériques",
+        "text": [
+          "Limiter sur mesure, expérience unique, univers immersif, raconter votre histoire et les expressions qui pourraient appartenir à n'importe quel studio."
+        ]
+      },
+      {
+        "title": "Études de cas structurées",
+        "text": [
+          "Contexte → problème → réponse → décisions → résultat ou portée réelle. Ne jamais inventer de métriques."
+        ]
+      },
+      {
+        "title": "CTA explicites",
+        "text": [
+          "Voir les projets, Voir les accompagnements, Parler d'un projet."
+        ]
+      }
     ]
   },
   "palette": [
-    {"name": "Ink", "value": "#161616", "role": "Texte, contraste et structure"},
-    {"name": "Warm White", "value": "#F6F5F3", "role": "Fond principal"},
-    {"name": "Soft Neutral", "value": "#D8D4CC", "role": "Surface secondaire"},
-    {"name": "Chow Red", "value": "#D85234", "role": "Accent et signature"}
+    {
+      "name": "Ink",
+      "value": "#161616",
+      "role": "Texte, contraste et structure"
+    },
+    { "name": "Warm White", "value": "#F6F5F3", "role": "Fond principal" },
+    {
+      "name": "Soft Neutral",
+      "value": "#D8D4CC",
+      "role": "Surface secondaire"
+    },
+    { "name": "Chow Red", "value": "#D85234", "role": "Accent et signature" }
   ],
   "typography": {
-    "heading": {"label": "Display local", "family": "À valider après migration des fontes locales", "sample": "Design, identité, direction."},
-    "body": {"label": "Texte courant", "family": "Système existant conservé", "sample": "Une présence digitale claire, cohérente et bien construite."},
+    "heading": {
+      "label": "Display local",
+      "family": "À valider après migration des fontes locales",
+      "sample": "Design, identité, direction."
+    },
+    "body": {
+      "label": "Texte courant",
+      "family": "Système existant conservé",
+      "sample": "Une présence digitale claire, cohérente et bien construite."
+    },
     "scale": "Conserver strictement l'échelle, les tokens et les mixins typographiques du starter.",
     "note": "La migration de marque peut changer les familles locales retenues, jamais la structure typographique existante. Butler et Averia restent des candidates à tester lors de l'art direction."
   },
@@ -58,7 +121,14 @@
       "Utiliser les mockups, détails d'identité, interfaces et images de projet pour expliquer autant que pour séduire.",
       "Varier cadrages et échelles afin d'éviter l'effet catalogue tout en gardant une lecture cohérente entre les études de cas."
     ],
-    "media": ["home-cover", "atmosphere-laptop", "sasha-laptop", "kuro-laptop", "maloya-tablet", "ravine-laptop"]
+    "media": [
+      "home-cover",
+      "atmosphere-laptop",
+      "sasha-laptop",
+      "kuro-laptop",
+      "maloya-tablet",
+      "ravine-laptop"
+    ]
   },
   "composition": {
     "eyebrow": "UI / UX",
@@ -77,7 +147,12 @@
     "text": [
       "Ne pas migrer de rayons, ombres, bordures, espacements ou géométrie depuis l'ancien site. Le starter reste la source de vérité."
     ],
-    "samples": ["existing-grid", "existing-section-system", "existing-media-layouts", "existing-spacing-tokens"]
+    "samples": [
+      "existing-grid",
+      "existing-section-system",
+      "existing-media-layouts",
+      "existing-spacing-tokens"
+    ]
   },
   "motion": {
     "eyebrow": "Mouvement",
@@ -85,24 +160,61 @@
     "text": [
       "Le mouvement accompagne la navigation, le changement de page et la découverte des contenus sans devenir un effet permanent. Le mode reduced motion doit rester vivant tout en supprimant les mouvements susceptibles de gêner."
     ],
-    "behaviors": ["Page transition", "Loader", "Reveal", "Grid reveal", "Parallax léger", "Footer reveal"]
+    "behaviors": [
+      "Page transition",
+      "Loader",
+      "Reveal",
+      "Grid reveal",
+      "Parallax léger",
+      "Footer reveal"
+    ]
   },
   "conversion": {
     "primary": "Voir les projets",
     "secondary": "Voir les accompagnements",
     "business": "Parler d'un projet",
-    "proof": ["Études de cas", "Méthode", "Double compétence design + frontend", "Contenus utiles"],
+    "proof": [
+      "Études de cas",
+      "Méthode",
+      "Double compétence design + frontend",
+      "Contenus utiles"
+    ],
     "mobile": "Le parcours doit permettre de comprendre rapidement le studio, voir une preuve et accéder au contact sans CTA intrusif répété."
   },
   "application": {
     "eyebrow": "Application",
     "title": "Une identité forte dans une architecture réutilisable.",
     "items": [
-      {"title": "Hiérarchie", "text": ["Positionnement, projet et besoin client restent lisibles avant les détails."]},
-      {"title": "Composition", "text": ["Les mêmes composants peuvent produire des rythmes différents grâce aux médias et aux layouts existants."]},
-      {"title": "Preuve", "text": ["Les études de cas expliquent les décisions plutôt que d'empiler des images."]},
-      {"title": "Conversion", "text": ["Les accompagnements et le formulaire transforment l'intérêt en conversation sans sur-vendre."]},
-      {"title": "CMS", "text": ["Projet, média, service, méthode et article restent des données séparées et réutilisables."]}
+      {
+        "title": "Hiérarchie",
+        "text": [
+          "Positionnement, projet et besoin client restent lisibles avant les détails."
+        ]
+      },
+      {
+        "title": "Composition",
+        "text": [
+          "Les mêmes composants peuvent produire des rythmes différents grâce aux médias et aux layouts existants."
+        ]
+      },
+      {
+        "title": "Preuve",
+        "text": [
+          "Les études de cas expliquent les décisions plutôt que d'empiler des images."
+        ]
+      },
+      {
+        "title": "Conversion",
+        "text": [
+          "Les accompagnements et le formulaire transforment l'intérêt en conversation sans sur-vendre."
+        ]
+      },
+      {
+        "title": "CMS",
+        "text": [
+          "Projet, média, service, méthode et article restent des données séparées et réutilisables."
+        ]
+      }
     ]
   },
   "status": {

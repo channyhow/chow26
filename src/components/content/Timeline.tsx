@@ -69,7 +69,7 @@ export function Timeline({
           viewport={!horizontal ? { once: true, amount: 0.55 } : undefined}
         >
           <span className="timeline__marker" aria-hidden="true">
-            {mode === "checklist" ? "✓" : String(index + 1).padStart(2, "0")}
+            {mode === "checklist" ? "✓" : index > 0 ? String(index).padStart(2, "0") : null}
           </span>
           <TextBlock content={item} titleAs="h3" className="timeline__content" />
         </motion.li>

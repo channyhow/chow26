@@ -20,14 +20,13 @@
     "layout": "carousel",
     "source": {
       "collection": "projects",
-      "query": { "featured": true, "limit": 3 }
+      "query": { "featured": true, "limit": 5 }
     },
     "content": {
       "header": {
         "eyebrow": "Projets sélectionnés",
-        "title": "Le travail comme preuve.",
         "text": [
-          "Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet. Chaque étude de cas montre le contexte, les choix et la réponse construite."
+          "Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet."
         ]
       }
     }
@@ -36,8 +35,8 @@
     "id": "project-gallery",
     "type": "Section",
     "layout": "grid",
-     "surface": "solid",
-            "color": "special",
+    "surface": "solid",
+    "color": "special",
     "source": { "collection": "projects" },
     "content": {
       "header": {
@@ -64,7 +63,10 @@
           {
             "label": "Voir tous les accompagnements",
             "href": "/approche",
-            "intent": "navigate"
+            "intent": "navigate",
+                          "priority": "secondary",
+                           "variant": "cta"
+
           }
         ]
       },
