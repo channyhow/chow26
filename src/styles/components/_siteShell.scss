@@ -48,6 +48,16 @@
   transition: color $transition-interface;
 }
 
+.header[data-over-color="primary"] {
+  color: var(--secondary);
+}
+
+.header[data-over-color="secondary"],
+.header[data-over-color="accent"],
+.header[data-over-color="special"] {
+  color: var(--primary);
+}
+
 .header__logo,
 .header__nav,
 .header .burgerButton {
@@ -111,9 +121,9 @@
   }
 }
 
-.site[data-drawer="contact"],
-.site[data-drawer="reservation"] {
-  --header-color: var(--secondary);
+.site[data-drawer="contact"] .header,
+.site[data-drawer="reservation"] .header {
+  color: var(--secondary);
 }
 
 @include desktop-up {
