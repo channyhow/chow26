@@ -16,6 +16,15 @@ export type ContentSwitcherProps = {
   variant?: "default" | "detailed";
 };
 
+const serviceLabels: Record<string, string> = {
+  "service-create": "Je lance mon projet",
+  "service-clarify": "Je veux clarifier l’existant",
+  "service-evolve": "Je veux le faire évoluer",
+  "studio-service-create": "Je lance mon projet",
+  "studio-service-clarify": "Je veux clarifier l’existant",
+  "studio-service-evolve": "Je veux le faire évoluer",
+};
+
 export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherProps) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const reduceMotion = useReducedMotion();
@@ -76,6 +85,8 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
       >
         {items.map((item, index) => {
           const selected = item.id === active.id;
+          const label = serviceLabels[item.id] ?? item.label;
+
           return (
             <button
               id={`content-switcher-tab-${item.id}`}
@@ -91,10 +102,10 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
               {resolvedVariant === "detailed" ? (
                 <>
                   <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
-                  <span>{item.label}</span>
+                  <span>{label}</span>
                 </>
               ) : (
-                item.label
+                label
               )}
             </button>
           );
