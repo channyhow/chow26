@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
 
 .contentSwitcher {
   display: grid;
@@ -32,4 +33,66 @@
 
 .contentSwitcher__panel {
   min-width: 0;
+}
+
+.contentSwitcher--detailed {
+  gap: clamp(#{$space-3}, 5vw, #{$space-5});
+}
+
+.contentSwitcher--detailed .contentSwitcher__controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+.contentSwitcher--detailed .contentSwitcher__controls button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: $space-2;
+  min-height: 5.5rem;
+  padding: $space-2;
+  border: 0;
+  border-right: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.contentSwitcher--detailed .contentSwitcher__controls button:last-child {
+  border-right: 0;
+}
+
+.contentSwitcher--detailed .contentSwitcher__controls button[aria-selected="true"] {
+  background: transparent;
+  color: inherit;
+}
+
+.contentSwitcher--detailed .contentSwitcher__controls button[aria-selected="true"] span:last-child {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+.contentSwitcher__index {
+  opacity: $opacity-muted;
+  @include type-ui-compact;
+}
+
+@media (max-width: $bp-tablet) {
+  .contentSwitcher--detailed .contentSwitcher__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .contentSwitcher--detailed .contentSwitcher__controls button {
+    min-height: 4.5rem;
+    border-right: 0;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .contentSwitcher--detailed .contentSwitcher__controls button:last-child {
+    border-bottom: 0;
+  }
 }
