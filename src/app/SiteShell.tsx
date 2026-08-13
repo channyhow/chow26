@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 
 import { Drawer } from "@/components/navigation/Drawer";
+import { FloatingAction } from "@/components/navigation/FloatingAction";
 import { Header } from "@/components/navigation/Header";
 import { ScrollProgress, type ScrollProgressMode } from "@/components/navigation/ScrollProgress";
 import siteData from "@/data/site.json";
@@ -53,14 +54,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-overlay={overlayOpen ? "open" : "closed"}
       style={themeStyle}
     >
-      <a className="skipLink" href="#main-content">
-        Aller au contenu principal
-      </a>
+      <a className="skipLink" href="#main-content">Aller au contenu principal</a>
       <ScrollProgress mode={scrollProgress} />
       <Header />
-      <main id="main-content" className="site__canvas" tabIndex={-1}>
-        {children}
-      </main>
+      <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
+      <FloatingAction />
       <Drawer />
     </div>
   );
