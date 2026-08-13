@@ -1,75 +1,79 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-/* ==================================
-   CHOW STUDIO FOOTER
-   Restrained two-zone editorial footer.
-================================== */
-
 #site-footer {
-  --section-space: clamp(3rem, 6vw, 5rem);
+  --section-space: clamp(2.5rem, 5vw, 4.5rem);
   --text-width: none;
   min-height: auto;
+  padding-block: var(--section-space);
 }
 
 #site-footer .section__inner,
 #site-footer .section__header,
-#site-footer .section__header .textBlock {
+#site-footer .section__header > .textBlock {
   width: 100%;
   max-width: none;
+  min-height: 0;
 }
 
-#site-footer .section__header .textBlock {
+#site-footer .section__header {
+  margin: 0;
+}
+
+#site-footer .section__header > .textBlock {
   display: grid;
-  grid-template-columns: minmax(18rem, 1.25fr) minmax(24rem, 1fr);
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "identity navigation"
-    "meta meta";
-  column-gap: clamp(3rem, 7vw, 8rem);
-  row-gap: clamp(3rem, 6vw, 5rem);
+    "identity"
+    "navigation"
+    "meta";
+  grid-template-rows: auto;
+  gap: $space-3;
   align-items: start;
 }
 
 #site-footer .textBlock__header {
   grid-area: identity;
-  display: grid;
-  align-content: start;
-  min-height: clamp(10rem, 18vw, 15rem);
-  padding-left: $space-2;
+  justify-items: start;
+  margin: 0;
+  padding: 0 0 0 $space-2;
   border-left: 1px solid currentColor;
+  text-align: left;
 }
 
 #site-footer .textBlock__eyebrows {
   display: grid;
-  gap: $space-2;
-  align-content: start;
+  gap: $space-1;
 }
 
 #site-footer .textBlock__eyebrow:first-child {
   @include type-heading-lg;
   max-width: 11ch;
+  margin: 0;
   text-transform: none;
   letter-spacing: -0.03em;
 }
 
 #site-footer .textBlock__eyebrow:not(:first-child) {
-  max-width: 30rem;
-  line-height: 1.5;
+  max-width: 32rem;
+  margin: 0;
+  line-height: 1.45;
 }
 
 #site-footer .textBlock__footer {
   grid-area: navigation;
   width: 100%;
-  padding-top: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #site-footer .textBlock__footer .actions {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $space-2 clamp(2rem, 5vw, 5rem);
-  align-content: start;
+  grid-template-columns: 1fr;
+  gap: $space-1;
+  align-items: start;
+  justify-content: start;
   width: 100%;
-  min-height: clamp(10rem, 18vw, 15rem);
 }
 
 #site-footer .actions__link {
@@ -90,11 +94,11 @@
 
 #site-footer .textBlock__meta {
   grid-area: meta;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: $space-1 $space-3;
+  align-self: auto;
+  display: grid;
+  gap: $space-1;
   width: 100%;
+  margin: 0;
   padding-top: $space-2;
   border-top: 1px solid currentColor;
   @include type-ui-compact;
@@ -102,53 +106,51 @@
 
 #site-footer .textBlock__meta > * {
   display: block;
+  margin: 0;
+  text-align: left;
 }
 
-@media (max-width: $bp-desktop) {
-  #site-footer .section__header .textBlock {
-    grid-template-columns: minmax(15rem, 0.9fr) minmax(0, 1.1fr);
-    column-gap: $space-4;
-  }
-
-  #site-footer .textBlock__header,
-  #site-footer .textBlock__footer .actions {
-    min-height: clamp(9rem, 20vw, 13rem);
-  }
+#site-footer .textBlock__meta span:last-child {
+  margin-left: 0;
+  text-align: left;
 }
 
-@media (max-width: $bp-tablet) {
-  #site-footer {
-    --section-space: clamp(2.5rem, 9vw, 4rem);
-  }
-
-  #site-footer .section__header .textBlock {
-    grid-template-columns: 1fr;
+@media (min-width: $bp-tablet) {
+  #site-footer .section__header > .textBlock {
+    grid-template-columns: minmax(18rem, 0.9fr) minmax(0, 1.1fr);
     grid-template-areas:
-      "identity"
-      "navigation"
-      "meta";
-    row-gap: $space-4;
+      "identity navigation"
+      "meta meta";
+    column-gap: clamp(3rem, 7vw, 7rem);
+    row-gap: clamp(2.5rem, 5vw, 4rem);
   }
 
   #site-footer .textBlock__header,
   #site-footer .textBlock__footer .actions {
-    min-height: 0;
+    min-height: clamp(10rem, 18vw, 14rem);
   }
 
   #site-footer .textBlock__footer .actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-2;
+    gap: $space-2 $space-3;
   }
 
   #site-footer .textBlock__meta {
-    display: grid;
-    justify-content: start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $space-1 $space-3;
+  }
+
+  #site-footer .textBlock__meta span:last-child {
+    margin-left: auto;
+    text-align: right;
   }
 }
 
-@media (max-width: $bp-mobile) {
-  #site-footer .textBlock__footer .actions {
-    grid-template-columns: 1fr;
-    gap: $space-1;
+@media (min-width: $bp-desktop) {
+  #site-footer .section__header > .textBlock {
+    grid-template-columns: minmax(22rem, 1fr) minmax(30rem, 0.9fr);
+    column-gap: clamp(4rem, 8vw, 9rem);
   }
 }
