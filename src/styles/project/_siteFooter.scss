@@ -1,0 +1,8 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+
+.siteFooter#site-footer {
+  min-height: 0;
+  color: var(--secondary);
+  background: var(--primary);
+}
