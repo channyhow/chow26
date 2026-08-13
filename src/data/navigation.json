@@ -1,8 +1,7 @@
 {
   "primary": [
     { "id": "projects", "label": "Projets", "href": "/projets", "enabled": true },
-    { "id": "approach", "label": "Accompagnements", "href": "/approche", "enabled": true },
-    { "id": "journal", "label": "Journal", "href": "/journal", "enabled": true },
+    { "id": "studio", "label": "Studio", "href": "/studio", "enabled": true },
     {
       "id": "contact",
       "label": "Parler d’un projet",
