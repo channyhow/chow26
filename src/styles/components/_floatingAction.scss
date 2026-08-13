@@ -43,10 +43,7 @@
 }
 
 .floatingAction__link:last-child { border-bottom: 0; }
-
-@include hover {
-  .floatingAction__link:hover { opacity: $opacity-muted; }
-}
+.floatingAction__link:hover { opacity: $opacity-muted; }
 
 .floatingAction__link:focus-visible,
 .floatingAction__trigger:focus-visible {
