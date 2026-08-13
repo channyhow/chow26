@@ -21,6 +21,10 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
   const reduceMotion = useReducedMotion();
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeId));
   const active = items[activeIndex] ?? items[0];
+  const resolvedVariant =
+    variant === "default" && items.some((item) => item.id.startsWith("studio-service-"))
+      ? "detailed"
+      : variant;
 
   if (!active) return null;
 
@@ -61,8 +65,8 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
 
   return (
     <motion.div
-      className={clsx("contentSwitcher", `contentSwitcher--${variant}`)}
-      data-variant={variant}
+      className={clsx("contentSwitcher", `contentSwitcher--${resolvedVariant}`)}
+      data-variant={resolvedVariant}
       layout={!reduceMotion}
     >
       <div
@@ -84,7 +88,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
               onClick={() => setActiveId(item.id)}
               onKeyDown={onTabKeyDown}
             >
-              {variant === "detailed" ? (
+              {resolvedVariant === "detailed" ? (
                 <>
                   <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
                   <span>{item.label}</span>
