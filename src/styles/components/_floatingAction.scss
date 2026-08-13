@@ -16,10 +16,10 @@
 .floatingAction__trigger {
   @include standard-control;
   @include type-ui-compact;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: $space-1;
 
   cursor: pointer;
   list-style: none;

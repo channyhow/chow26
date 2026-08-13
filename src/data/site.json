@@ -124,7 +124,7 @@
     },
     "floatingAction": {
       "enabled": true,
-      "label": "Projet",
+      "label": "Démarrer",
       "ariaLabel": "Actions projet",
       "hideWhileVisible": "#home-opening",
       "items": [

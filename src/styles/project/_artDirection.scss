@@ -542,6 +542,11 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   gap: $space-1;
 }
 
+#studio-services {
+  .media, .card__media {
+    aspect-ratio: $ratio-wide;
+  }
+}
 /* ==================================
    RESPONSIVE ART DIRECTION
 ================================== */
