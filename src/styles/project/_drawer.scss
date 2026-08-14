@@ -1,0 +1,28 @@
+@use "../foundation/tokens" as *;
+
+/* Chow-specific drawer composition. Keep the site header/logo above the drawer. */
+.drawer__panel:focus {
+  outline: 0;
+}
+
+.drawer__nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+@media (max-width: $bp-tablet) {
+  .site .drawer__nav {
+    gap: clamp(1.25rem, 4vw, 1.75rem);
+    padding-top: $space-2;
+  }
+
+  .site .drawer__nav a {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-transform: none;
+  }
+}
