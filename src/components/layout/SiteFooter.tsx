@@ -15,11 +15,12 @@ export function SiteFooter({ block }: SiteFooterProps) {
   const eyebrows = toArray(header?.eyebrow).filter(Boolean);
   const links = header?.links ?? [];
   const meta = header?.meta ?? [];
+
   const primaryLinks = links.slice(0, 4);
   const secondaryLinks = links.slice(4);
 
   return (
-    <section
+    <footer
       id={block.id}
       className="siteFooter"
       data-surface={block.surface}
@@ -29,19 +30,40 @@ export function SiteFooter({ block }: SiteFooterProps) {
       <div className="siteFooter__inner">
         <div className="siteFooter__main">
           <div className="siteFooter__identity">
-            {eyebrows[0] ? <p className="siteFooter__name">{eyebrows[0]}</p> : null}
-            {eyebrows.slice(1).map((eyebrow) => (
-              <p key={eyebrow} className="siteFooter__baseline">{eyebrow}</p>
-            ))}
+            {eyebrows[0] ? (
+              <p className="siteFooter__name">{eyebrows[0]}</p>
+            ) : null}
+
+            {eyebrows.length > 1 ? (
+              <div className="siteFooter__baselines">
+                {eyebrows.slice(1).map((eyebrow) => (
+                  <p key={eyebrow} className="siteFooter__baseline">
+                    {eyebrow}
+                  </p>
+                ))}
+              </div>
+            ) : null}
           </div>
 
-          <nav className="siteFooter__nav" aria-label="Navigation du pied de page">
-            <Actions links={primaryLinks} className="siteFooter__navGroup" />
-          </nav>
+          <div className="siteFooter__links">
+            {primaryLinks.length ? (
+              <nav
+                className="siteFooter__nav"
+                aria-label="Navigation du pied de page"
+              >
+                <Actions links={primaryLinks} className="siteFooter__navGroup" />
+              </nav>
+            ) : null}
 
-          <nav className="siteFooter__support" aria-label="Réseaux et informations">
-            <Actions links={secondaryLinks} className="siteFooter__navGroup" />
-          </nav>
+            {secondaryLinks.length ? (
+              <nav
+                className="siteFooter__support"
+                aria-label="Réseaux et informations"
+              >
+                <Actions links={secondaryLinks} className="siteFooter__navGroup" />
+              </nav>
+            ) : null}
+          </div>
         </div>
 
         {meta.length ? (
@@ -54,6 +76,6 @@ export function SiteFooter({ block }: SiteFooterProps) {
           </div>
         ) : null}
       </div>
-    </section>
+    </footer>
   );
 }
