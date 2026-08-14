@@ -1,6 +1,15 @@
-import { Action } from "./content";
+import type { Action } from "./content";
 
-export type FormFieldType = "text" | "email" | "tel" | "textarea" | "select" | "checkbox" | "date" | "time" | "number";
+export type FormFieldType =
+  | "text"
+  | "email"
+  | "tel"
+  | "textarea"
+  | "select"
+  | "checkbox"
+  | "date"
+  | "time"
+  | "number";
 
 export type FormField = {
   name: string;
@@ -17,10 +26,14 @@ export type FormField = {
   autoComplete?: string;
 };
 
+export type FormProvider = "netlify" | "tally";
+export type TallyFormKey = "contact" | "reservation";
+
 export type FormSchema = {
   id: string;
   name: string;
-  provider?: "netlify" | "tally";
+  provider?: FormProvider;
+  tallyKey?: TallyFormKey;
   formId?: string;
   embedUrl?: string;
   title?: string;
