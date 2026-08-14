@@ -2,6 +2,9 @@
   "contact": {
     "id": "project-enquiry-form",
     "name": "project-enquiry",
+    "provider": "tally",
+    "title": "Parler d’un projet",
+    "fallbackHeight": 720,
     "submitLabel": "Parler de mon projet",
     "fields": [
       {"name":"name","label":"Nom","type":"text","required":true},
