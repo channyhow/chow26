@@ -1,17 +1,6 @@
 @use "../foundation/tokens" as *;
 
-/* 404 is a two-row utility page: compact content + natural footer. */
-.page[data-page-id="not-found"] {
-  display: grid;
-  grid-template-rows: minmax(24rem, 1fr) auto;
-  min-height: 100svh;
-}
-
-.page[data-page-id="not-found"] .page__content {
-  min-height: 0;
-  background: var(--accent);
-}
-
+/* Chow 404: full viewport section, compact centered content, natural footer. */
 .page[data-page-id="not-found"] .page__footer {
   position: relative;
   height: auto;
@@ -19,8 +8,7 @@
 }
 
 #not-found-default {
-  height: 100%;
-  min-height: 0;
+  min-height: 100svh;
   display: grid;
   place-items: center;
   padding: clamp(#{$space-3}, 5vw, #{$space-4}) var(--project-gutter);
@@ -29,8 +17,12 @@
 }
 
 #not-found-default .section__inner {
+  align-self: center;
+  justify-self: center;
   width: 100%;
   max-width: none;
+  min-height: 0;
+  height: auto;
   display: grid;
   place-items: center;
 }
@@ -38,9 +30,12 @@
 #not-found-default .textBlock {
   width: min(100%, 48rem);
   max-width: none;
+  min-height: 0;
+  height: auto;
   display: grid;
+  grid-auto-rows: max-content;
+  align-content: start;
   justify-items: center;
-  align-content: center;
   gap: $space-2;
   text-align: center;
 }
@@ -50,6 +45,8 @@
 #not-found-default .textBlock__footer {
   width: 100%;
   max-width: none;
+  min-height: 0;
+  height: auto;
   justify-items: center;
   text-align: center;
 }
@@ -78,10 +75,6 @@
 }
 
 @media (max-width: $bp-tablet) {
-  .page[data-page-id="not-found"] {
-    grid-template-rows: minmax(22rem, 1fr) auto;
-  }
-
   #not-found-default .actions {
     width: min(100%, 24rem);
     flex-direction: column;
