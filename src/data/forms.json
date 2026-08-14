@@ -22,6 +22,9 @@
   "reservation": {
     "id": "project-call-form",
     "name": "project-call",
+    "provider": "tally",
+    "title": "Échanger sur votre projet",
+    "fallbackHeight": 640,
     "submitLabel": "Envoyer",
     "fields": [
       {"name":"name","label":"Nom","type":"text","required":true},
