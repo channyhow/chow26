@@ -64,9 +64,8 @@
             "label": "Voir tous les accompagnements",
             "href": "/approche",
             "intent": "navigate",
-                          "priority": "secondary",
-                           "variant": "cta"
-
+            "priority": "secondary",
+            "variant": "cta"
           }
         ]
       },
@@ -436,8 +435,7 @@
             "label": "Accompagnements",
             "href": "/approche",
             "intent": "navigate"
-          },                           
-
+          },
           { "label": "Journal", "href": "/journal", "intent": "navigate" },
           {
             "label": "Parler d’un projet",
@@ -476,6 +474,8 @@
     "type": "Section",
     "layout": "statement",
     "variant": "editorial",
+    "surface": "solid",
+    "color": "accent",
     "content": {
       "header": {
         "eyebrow": "404 | Page introuvable",
