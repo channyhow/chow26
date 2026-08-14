@@ -41,4 +41,6 @@ export type BrandProfile = {
   composition: "structured" | "editorial" | "organic";
   mediaTreatment: "clean" | "editorial" | "soft";
   spacing: "compact" | "balanced" | "spacious";
+  storyLayout: "text" | "split";
+  galleryLayout: "gallery" | "carousel";
 };
