@@ -1,0 +1,75 @@
+@use "../foundation/tokens" as *;
+
+/* Chow-specific 404 composition. Keep the content compact; the section owns the height. */
+#not-found-default {
+  min-height: calc(100svh - var(--header-height, 5rem));
+  display: grid;
+  place-items: center;
+  padding: clamp(#{$space-4}, 8svh, #{$space-5}) var(--project-gutter);
+  background: var(--accent);
+  color: var(--primary);
+}
+
+#not-found-default .section__inner {
+  width: 100%;
+  max-width: none;
+  display: grid;
+  place-items: center;
+}
+
+#not-found-default .textBlock {
+  width: min(100%, 48rem);
+  max-width: none;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: clamp(#{$space-2}, 2.5vw, #{$space-3});
+  text-align: center;
+}
+
+#not-found-default .textBlock__header,
+#not-found-default .textBlock__content,
+#not-found-default .textBlock__footer {
+  width: 100%;
+  max-width: none;
+  justify-items: center;
+  text-align: center;
+}
+
+#not-found-default .textBlock__header {
+  gap: $space-1;
+}
+
+#not-found-default .textBlock__title {
+  max-width: 14ch;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+#not-found-default .textBlock__content {
+  width: min(100%, 36rem);
+  margin-inline: auto;
+}
+
+#not-found-default .textBlock__footer {
+  padding-top: 0;
+}
+
+#not-found-default .actions {
+  justify-content: center;
+}
+
+@media (max-width: $bp-tablet) {
+  #not-found-default {
+    min-height: calc(100svh - var(--header-height, 4.5rem));
+  }
+
+  #not-found-default .actions {
+    width: min(100%, 24rem);
+    flex-direction: column;
+  }
+
+  #not-found-default .actions__link {
+    width: 100%;
+  }
+}
