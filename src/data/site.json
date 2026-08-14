@@ -104,7 +104,7 @@
         "openMenuLabel": "Ouvrir le menu",
         "closeLabel": "Fermer",
         "drawerLabels": {
-          "menu": "Chow Studio",
+          "menu": "Menu",
           "contact": "Projet",
           "reservation": "Échanger"
         }
@@ -136,8 +136,8 @@
     },
     "floatingAction": {
       "enabled": true,
-      "label": "Démarrer",
-      "ariaLabel": "Actions projet",
+      "label": "Koman i lé ?",
+      "ariaLabel": "Parler d’un projet",
       "hideWhileVisible": "#home-opening",
       "items": [
         { "label": "Parler d’un projet", "href": "/contact" },
