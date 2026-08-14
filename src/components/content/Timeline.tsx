@@ -1,53 +1,52 @@
-import { Children, useRef, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { TextBlock } from "@/components/content/TextBlock";
-import type { ContentItem, TimelineOrientation } from "@/types/content";
+import type { ContentItem } from "@/types/content";
 
 export type TimelineMode = "chronology" | "checklist";
-type TimelineStyle = CSSProperties & { "--timeline-count": number };
 
 export type TimelineProps = {
-  children?: ReactNode;
-  items?: ContentItem[];
+  items: ContentItem[];
   mode?: TimelineMode;
-  orientation?: TimelineOrientation;
   className?: string;
 };
 
-export function Timeline({ children, items = [], mode = "chronology", orientation = "vertical", className }: TimelineProps) {
-  const ref = useRef<HTMLDivElement>(null);
+function getDateLabel(item: ContentItem) {
+  if (typeof item.eyebrow === "string") return item.eyebrow;
+  return item.eyebrow?.[0];
+}
+
+export function Timeline({ items, mode = "chronology", className }: TimelineProps) {
   const reduceMotion = useReducedMotion();
-  const horizontal = orientation === "horizontal";
-  const content = Children.toArray(children).length
-    ? Children.toArray(children)
-    : items.map((item, index) => (
-        <TextBlock key={item.id ?? `${item.title ?? "timeline"}-${index}`} content={item} titleAs="h3" className="timeline__content" />
-      ));
-
-  const { scrollYProgress } = useScroll({ target: ref, offset: horizontal ? ["start start", "end end"] : ["start 75%", "end 40%"] });
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.3 });
-  const endX = `-${Math.max(content.length - 1, 0) * 100}vw`;
-  const x = useTransform(progress, [0, 0.06, 0.88, 1], ["0vw", "0vw", endX, endX]);
-
-  if (!content.length) return null;
-
-  const style: TimelineStyle | undefined = horizontal ? { "--timeline-count": content.length } : undefined;
-  const list = (
-    <motion.ol className="timeline__list" style={horizontal && !reduceMotion ? { x } : undefined}>
-      {content.map((child, index) => (
-        <motion.li className="timeline__item" key={index} initial={!horizontal && !reduceMotion ? { opacity: 0.35 } : false} whileInView={!horizontal && !reduceMotion ? { opacity: 1 } : undefined} viewport={!horizontal ? { once: true, amount: 0.55 } : undefined}>
-          <span className="timeline__marker" aria-hidden="true">{mode === "checklist" ? "✓" : String(index + 1).padStart(2, "0")}</span>
-          {child}
-        </motion.li>
-      ))}
-    </motion.ol>
-  );
+  if (!items.length) return null;
 
   return (
-    <div ref={ref} className={clsx("timeline", className)} data-mode={mode} data-orientation={orientation} style={style}>
-      {horizontal ? <div className="timeline__viewport">{list}</div> : <><div className="timeline__rail" aria-hidden="true"><motion.span className="timeline__progress" style={reduceMotion ? { scaleY: 1 } : { scaleY: progress }} /></div>{list}</>}
+    <div className={clsx("timeline", className)} data-mode={mode}>
+      <ol className="timeline__list">
+        {items.map((item, index) => {
+          const date = getDateLabel(item);
+          return (
+            <motion.li
+              className="timeline__item"
+              key={item.id ?? `${item.title ?? "timeline"}-${index}`}
+              initial={!reduceMotion ? { opacity: 0.45, y: 12 } : false}
+              whileInView={!reduceMotion ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: true, amount: 0.45 }}
+            >
+              <div className="timeline__axis" aria-hidden="true">
+                <span className="timeline__marker">
+                  {mode === "checklist" ? "✓" : String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="timeline__entry">
+                {date ? <p className="timeline__date">{date}</p> : null}
+                <TextBlock content={{ ...item, eyebrow: undefined }} titleAs="h3" className="timeline__content" />
+              </div>
+            </motion.li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
