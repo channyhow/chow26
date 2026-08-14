@@ -1,7 +1,10 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-.brandingPage { background: var(--secondary); color: var(--primary); }
+.brandingPage {
+  background: var(--secondary);
+  color: var(--primary);
+}
 
 .brandingPage__board {
   width: min(100%, #{$container-max});
@@ -10,108 +13,255 @@
 }
 
 .brandingPage__boardHeader,
-.brandingPage__boardFooter {
+.brandingPage__boardFooter,
+.brandingPage__projectHeader {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: $space-1 $space-3;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.brandingPage__boardHeader {
+  align-items: end;
   padding-bottom: $space-2;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .brandingPage__boardHeader h1,
 .brandingPage__boardHeader p,
-.brandingPage__introNote p,
-.brandingPage__typeStudy p,
-.brandingPage__typeStudy small,
-.brandingPage__boardFooter p { margin: 0; }
-
-.brandingPage__boardHeader h1 { @include type-heading-lg; }
-.brandingPage__boardHeader p,
-.brandingPage__introNote,
-.brandingPage__tileMeta,
-.brandingPage__boardFooter { @include type-caption; }
-
-.brandingPage__introNote {
-  min-height: clamp(9rem, 19vw, 16rem);
-  display: grid;
-  align-content: end;
-  gap: .25rem;
-  max-width: 16rem;
-  padding-block: $space-2;
+.brandingPage__manifesto p,
+.brandingPage__projectHeader h2,
+.brandingPage__projectHeader p,
+.brandingPage__module p,
+.brandingPage__module small,
+.brandingPage__boardFooter p,
+.brandingPage__sensoryGrid,
+.brandingPage__profileGrid {
+  margin: 0;
 }
 
-.brandingPage__moodboard {
+.brandingPage__boardHeader h1,
+.brandingPage__projectHeader h2 {
+  @include type-heading-lg;
+}
+
+.brandingPage__eyebrow,
+.brandingPage__boardHeader > p,
+.brandingPage__moduleLabel,
+.brandingPage__projectHeader > span,
+.brandingPage__projectHeader p,
+.brandingPage__boardFooter,
+.brandingPage__sensoryGrid dt,
+.brandingPage__profileGrid dt {
+  @include type-caption;
+}
+
+.brandingPage__manifesto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $space-2;
+  max-width: 58rem;
+  padding-block: clamp(#{$space-3}, 7vw, #{$space-5});
+}
+
+.brandingPage__manifesto p:first-child {
+  @include type-heading-lg;
+  max-width: 15ch;
+}
+
+.brandingPage__manifesto p:last-child {
+  max-width: 44rem;
+  opacity: $opacity-muted;
+}
+
+.brandingPage__projects {
+  display: grid;
+  gap: clamp(#{$space-5}, 10vw, 9rem);
+}
+
+.brandingPage__project {
+  display: grid;
+  gap: $space-3;
+}
+
+.brandingPage__projectHeader {
+  align-items: baseline;
+  padding-bottom: $space-2;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.brandingPage__projectHeader > div {
+  display: grid;
+  gap: .35rem;
+}
+
+.brandingPage__projectGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $space-2;
+}
+
+.brandingPage__module {
+  display: grid;
+  align-content: start;
+  gap: $space-2;
+  min-width: 0;
+  padding: $space-2;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  background: color-mix(in srgb, var(--primary) 2%, transparent);
+}
+
+.brandingPage__module--media,
+.brandingPage__module--inspiration,
+.brandingPage__module--sensory {
+  grid-column: 1 / -1;
+}
+
+.brandingPage__mediaGrid,
+.brandingPage__inspirationGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(.75rem, 2vw, 1.5rem);
-  align-items: start;
+  gap: $space-1;
 }
-
-.brandingPage__tile { display: grid; gap: .45rem; min-width: 0; }
-.brandingPage__tileMeta { display: flex; justify-content: space-between; gap: $space-1; line-height: 1.25; }
-.brandingPage__tileMeta span:last-child { text-align: right; }
 
 .brandingPage__media,
 .brandingPage__media .media__frame,
-.brandingPage__media .media__asset { width: 100%; }
-.brandingPage__media { margin: 0; }
-.brandingPage__media .media__frame { aspect-ratio: 4 / 3; overflow: hidden; }
-.brandingPage__media .media__asset { height: 100%; object-fit: cover; }
-.brandingPage__tile--e .media__frame,
-.brandingPage__tile--f .media__frame,
-.brandingPage__tile--placeholder .brandingPage__placeholder { aspect-ratio: 3 / 4; }
-
-.brandingPage__typeStudy,
-.brandingPage__paletteStudy,
-.brandingPage__placeholder {
-  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-  background: color-mix(in srgb, var(--primary) 2.5%, var(--secondary));
+.brandingPage__media .media__asset,
+.brandingPage__inspirationMedia,
+.brandingPage__inspirationMedia .media__frame,
+.brandingPage__inspirationMedia .media__asset {
+  width: 100%;
 }
 
-.brandingPage__typeStudy {
+.brandingPage__media .media__frame,
+.brandingPage__inspirationMedia .media__frame {
   aspect-ratio: 4 / 3;
-  display: grid;
-  grid-template-rows: 1fr auto auto;
-  align-items: end;
-  gap: $space-1;
-  padding: $space-2;
+  overflow: hidden;
 }
-.brandingPage__typeDisplay { align-self: center; font-family: var(--font-heading); font-size: clamp(4rem, 9vw, 8rem); line-height: .8; letter-spacing: -.06em; }
-.brandingPage__typeStudy p { @include type-heading-sm; max-width: 14ch; }
-.brandingPage__typeStudy small { @include type-caption; max-width: 30ch; }
 
-.brandingPage__paletteStudy { aspect-ratio: 4 / 3; display: grid; grid-template-columns: repeat(2, 1fr); padding: $space-1; }
-.brandingPage__paletteColor { display: grid; grid-template-rows: 1fr auto; gap: .35rem; padding: .35rem; }
-.brandingPage__paletteColor > span { min-height: 4rem; }
-.brandingPage__paletteColor small { @include type-caption; }
+.brandingPage__media .media__asset,
+.brandingPage__inspirationMedia .media__asset {
+  height: 100%;
+  object-fit: cover;
+}
 
-.brandingPage__placeholder { aspect-ratio: 3 / 4; display: grid; place-items: center; overflow: hidden; position: relative; }
-.brandingPage__placeholder img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
-.brandingPage__placeholder span { position: absolute; inset: auto $space-1 $space-1; @include type-caption; }
+.brandingPage__typeStack,
+.brandingPage__sensoryGrid,
+.brandingPage__profileGrid {
+  display: grid;
+  gap: $space-1;
+}
 
-.brandingPage__boardFooter { margin-top: clamp(3rem, 7vw, 6rem); padding-top: $space-2; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-bottom: 0; }
+.brandingPage__typeLine {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem $space-1;
+  align-items: baseline;
+  padding-block: $space-1;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.brandingPage__typeLine > span {
+  grid-row: 1 / span 2;
+  font-family: var(--font-heading);
+  font-size: clamp(2.75rem, 6vw, 6rem);
+  line-height: .8;
+}
+
+.brandingPage__typeLine p {
+  @include type-heading-sm;
+}
+
+.brandingPage__typeLine small,
+.brandingPage__inspiration small {
+  @include type-caption;
+  opacity: $opacity-muted;
+}
+
+.brandingPage__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.brandingPage__chips span {
+  padding: .45em .7em;
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: $radius-full;
+  @include type-caption;
+}
+
+.brandingPage__words {
+  @include type-heading-sm;
+}
+
+.brandingPage__rule {
+  max-width: 38rem;
+  opacity: $opacity-muted;
+}
+
+.brandingPage__inspiration {
+  display: grid;
+  align-content: start;
+  gap: .35rem;
+  min-height: 10rem;
+  padding: $space-1;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.brandingPage__inspiration p {
+  max-width: 30ch;
+}
+
+.brandingPage__sensoryGrid,
+.brandingPage__profileGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.brandingPage__sensoryGrid > div,
+.brandingPage__profileGrid > div {
+  display: grid;
+  gap: .25rem;
+  padding-block: $space-1;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.brandingPage__sensoryGrid dd,
+.brandingPage__profileGrid dd {
+  margin: 0;
+}
+
+.brandingPage__boardFooter {
+  margin-top: clamp(4rem, 9vw, 8rem);
+  padding-top: $space-2;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
 
 @media (min-width: $bp-tablet) {
-  .brandingPage__moodboard { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-flow: dense; }
-  .brandingPage__tile--a { grid-column: 3 / span 2; }
-  .brandingPage__tile--b { grid-column: 5 / span 2; }
-  .brandingPage__tile--c { grid-column: 1 / span 2; }
-  .brandingPage__tile--d { grid-column: 3 / span 2; }
-  .brandingPage__tile--e { grid-column: 5 / span 2; }
-  .brandingPage__tile--f { grid-column: 1 / span 2; }
-  .brandingPage__tile--g { grid-column: 4 / span 1; }
-  .brandingPage__tile--h { grid-column: 5 / span 2; }
+  .brandingPage__manifesto {
+    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+    align-items: end;
+  }
+
+  .brandingPage__projectGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brandingPage__mediaGrid,
+  .brandingPage__inspirationGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: $bp-desktop) {
-  .brandingPage__moodboard { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1rem, 1.5vw, 1.75rem); }
-  .brandingPage__tile--a { grid-column: 5 / span 3; }
-  .brandingPage__tile--b { grid-column: 8 / span 3; }
-  .brandingPage__tile--c { grid-column: 1 / span 3; }
-  .brandingPage__tile--d { grid-column: 4 / span 3; }
-  .brandingPage__tile--e { grid-column: 7 / span 3; }
-  .brandingPage__tile--f { grid-column: 10 / span 3; }
-  .brandingPage__tile--g { grid-column: 4 / span 2; }
-  .brandingPage__tile--h { grid-column: 8 / span 4; }
+  .brandingPage__projectGrid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .brandingPage__module--media { grid-column: 1 / span 8; }
+  .brandingPage__module:nth-child(2) { grid-column: 9 / span 4; }
+  .brandingPage__module:nth-child(3) { grid-column: 1 / span 4; }
+  .brandingPage__module--inspiration { grid-column: 5 / span 8; }
+  .brandingPage__module--sensory { grid-column: 1 / span 8; }
+  .brandingPage__module--profile { grid-column: 9 / span 4; }
 }
