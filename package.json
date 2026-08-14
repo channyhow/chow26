@@ -1,7 +1,7 @@
 {
-  "name": "chow-template",
+  "name": "chow-studio",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "assets:import": "node scripts/import-source-assets.mjs",
