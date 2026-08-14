@@ -37,6 +37,7 @@
 @use "project/responsive";
 @use "project/drawer" as project-drawer;
 @use "project/footer";
+@use "project/notFound";
 
 :root { color: var(--primary); background: var(--secondary); font-family: system-ui, sans-serif; font-synthesis: none; text-rendering: optimizeLegibility; }
 *, *::before, *::after { box-sizing: border-box; }

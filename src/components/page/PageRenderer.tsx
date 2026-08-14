@@ -124,7 +124,8 @@ function renderFooter(entry: PageBlock) {
 }
 
 export function PageRenderer({ page }: PageRendererProps) {
-  const footerReveal = Boolean(siteData.ui.experience.footerReveal);
+  const isNotFoundPage = page.id === "not-found" || page.slug === "/404";
+  const footerReveal = Boolean(siteData.ui.experience.footerReveal) && !isNotFoundPage;
   const footerEntries = page.blocks.filter(
     (entry) => "ref" in entry && entry.ref === "site-footer",
   );
@@ -137,6 +138,7 @@ export function PageRenderer({ page }: PageRendererProps) {
       <PageMeta seo={page.seo} />
       <div
         className="page"
+        data-page-id={page.id}
         data-variant={page.variant}
         data-footer-reveal={footerReveal && footerEntries.length ? "true" : "false"}
       >
