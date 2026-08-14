@@ -121,7 +121,7 @@
   }
 }
 
-@media (max-width: calc(#{$bp-tablet} - 1px)) {
+@media (max-width: $bp-mobile) {
   .siteFooter {
     padding-top: clamp(3rem, 12vw, 4.5rem);
     padding-bottom: clamp(6.5rem, 24vw, 8rem);

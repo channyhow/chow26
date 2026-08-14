@@ -70,74 +70,75 @@ export function BrandingPage() {
                   </header>
 
                   <div className="brandingPage__projectGrid">
-                    <section className="brandingPage__module brandingPage__module--media" aria-label="Médias du projet">
-                      <div className="brandingPage__moduleLabel">Média · 2/3 éléments du projet</div>
-                      <div className="brandingPage__mediaGrid">
-                        {media.map((item) => <Media key={item.id} media={item} className="brandingPage__media" />)}
-                      </div>
-                    </section>
+                    {media.map((item, index) => (
+                      <article key={item.id} className="brandingPage__tile brandingPage__tile--media">
+                        <Media media={item} className="brandingPage__media" />
+                        <div className="brandingPage__overlay">
+                          <small>Média {String(index + 1).padStart(2, "0")}</small>
+                          <span>{item.caption ?? item.alt ?? "Référence du projet"}</span>
+                        </div>
+                      </article>
+                    ))}
 
-                    <section className="brandingPage__module" aria-label="Typographie">
-                      <div className="brandingPage__moduleLabel">Typographie</div>
-                      <div className="brandingPage__typeStack">
-                        {(mood.typography ?? []).map((font, index) => (
-                          <div key={font} className="brandingPage__typeLine">
-                            <span>Aa</span>
-                            <p>{font}</p>
-                            <small>{index === 0 ? "Display / caractère" : "Support / lecture"}</small>
-                          </div>
+                    {(mood.typography ?? []).map((font, index) => (
+                      <article key={font} className="brandingPage__tile brandingPage__tile--type">
+                        <small>{index === 0 ? "Display / caractère" : "Support / lecture"}</small>
+                        <strong>Aa</strong>
+                        <p>{font}</p>
+                      </article>
+                    ))}
+
+                    <article className="brandingPage__tile brandingPage__tile--palette">
+                      <small>Couleurs</small>
+                      <div className="brandingPage__swatches">
+                        {(mood.colors ?? []).map((color) => (
+                          <span key={color} style={{ background: color }} title={color} />
                         ))}
                       </div>
-                    </section>
+                    </article>
 
-                    <section className="brandingPage__module" aria-label="Palette et mots">
-                      <div className="brandingPage__moduleLabel">Couleurs · mots · illustration</div>
-                      <div className="brandingPage__chips">
-                        {(mood.colors ?? []).map((color) => <span key={color}>{color}</span>)}
-                      </div>
-                      <p className="brandingPage__words">{(mood.words ?? []).join(" · ")}</p>
-                      <p className="brandingPage__rule">{mood.illustration}</p>
-                    </section>
+                    <article className="brandingPage__tile brandingPage__tile--words">
+                      <small>Mots</small>
+                      <p>{(mood.words ?? []).join(" · ")}</p>
+                    </article>
 
-                    <section className="brandingPage__module brandingPage__module--inspiration" aria-label="Inspiration">
-                      <div className="brandingPage__moduleLabel">Inspiration · 2/3 références</div>
-                      <div className="brandingPage__inspirationGrid">
-                        {(mood.inspiration ?? []).slice(0, 3).map((reference) => {
-                          const referenceMedia = reference.image ? resolveMedia(reference.image) : undefined;
-                          return (
-                            <div key={`${reference.label}-${reference.value}`} className="brandingPage__inspiration">
-                              {referenceMedia ? <Media media={referenceMedia} className="brandingPage__inspirationMedia" /> : null}
-                              <small>{reference.label}</small>
-                              <p>{reference.value}</p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </section>
+                    <article className="brandingPage__tile brandingPage__tile--illustration">
+                      <small>Illustration</small>
+                      <p>{mood.illustration}</p>
+                    </article>
 
-                    <section className="brandingPage__module brandingPage__module--sensory" aria-label="Références sensorielles">
-                      <div className="brandingPage__moduleLabel">Mise en humeur</div>
-                      <dl className="brandingPage__sensoryGrid">
-                        {sensoryFields.map(([key, label]) => mood[key] ? (
-                          <div key={key}>
-                            <dt>{label}</dt>
-                            <dd>{mood[key]}</dd>
+                    {(mood.inspiration ?? []).slice(0, 3).map((reference, index) => {
+                      const referenceMedia = reference.image ? resolveMedia(reference.image) : undefined;
+
+                      return referenceMedia ? (
+                        <article key={`${reference.label}-${reference.value}`} className="brandingPage__tile brandingPage__tile--media">
+                          <Media media={referenceMedia} className="brandingPage__media" />
+                          <div className="brandingPage__overlay">
+                            <small>Inspiration {String(index + 1).padStart(2, "0")} · {reference.label}</small>
+                            <span>{reference.value}</span>
                           </div>
-                        ) : null)}
-                      </dl>
-                    </section>
+                        </article>
+                      ) : (
+                        <article key={`${reference.label}-${reference.value}`} className="brandingPage__tile brandingPage__tile--reference">
+                          <small>{reference.label}</small>
+                          <p>{reference.value}</p>
+                        </article>
+                      );
+                    })}
 
-                    <section className="brandingPage__module brandingPage__module--profile" aria-label="Profil dérivé">
-                      <div className="brandingPage__moduleLabel">Algorithme · sortie</div>
-                      <dl className="brandingPage__profileGrid">
-                        {Object.entries(profile).map(([key, value]) => (
-                          <div key={key}>
-                            <dt>{key}</dt>
-                            <dd>{value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </section>
+                    {sensoryFields.map(([key, label]) => mood[key] ? (
+                      <article key={key} className="brandingPage__tile brandingPage__tile--sensory">
+                        <small>{label}</small>
+                        <p>{mood[key]}</p>
+                      </article>
+                    ) : null)}
+
+                    {Object.entries(profile).map(([key, value]) => (
+                      <article key={key} className="brandingPage__tile brandingPage__tile--profile">
+                        <small>Algorithme · {key}</small>
+                        <p>{value}</p>
+                      </article>
+                    ))}
                   </div>
                 </article>
               );
