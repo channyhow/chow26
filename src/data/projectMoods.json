@@ -1,0 +1,102 @@
+{
+  "atmosphere": {
+    "axes": { "editorial": 0.94, "organic": 0.42, "contrast": 0.62, "warmth": 0.74, "motion": 0.34, "density": 0.28 },
+    "typography": ["DM Sans", "Flor de Ruina Semilla"],
+    "media": ["atmosphere-laptop", "atmosphere-tablet", "atmosphere-mobile-solo"],
+    "inspiration": [
+      { "label": "Magazine", "value": "Architecture Digest / édition intérieure" },
+      { "label": "Image", "value": "Lumière naturelle, matières, cadrages habités" },
+      { "label": "Rythme", "value": "Feuilleter plutôt que scroller une landing page" }
+    ],
+    "colors": ["warm white", "ink", "terracotta", "stone"],
+    "illustration": "Aucune illustration décorative; plans, matières et photographie font signe.",
+    "words": ["matière", "lumière", "habiter", "calme", "éditorial"],
+    "film": "In the Mood for Love",
+    "place": "Une maison réunionnaise ouverte sur un jardin après la pluie",
+    "music": "Bossa lente, voix et instruments acoustiques",
+    "sound": "Ventilation naturelle, feuilles, pas sur un sol minéral",
+    "food": "Agrumes, thé, pain encore chaud",
+    "material": "Bois mat, pierre, lin",
+    "scent": "Bois humide et agrumes"
+  },
+  "kuro": {
+    "axes": { "editorial": 0.82, "organic": 0.18, "contrast": 0.96, "warmth": 0.32, "motion": 0.46, "density": 0.46 },
+    "typography": ["display serif", "neutral grotesk"],
+    "media": ["kuro-video", "kuro-laptop", "kuro-mobile"],
+    "inspiration": [
+      { "label": "Place", "value": "Petit comptoir japonais tard le soir" },
+      { "label": "Image", "value": "Photographie sombre, gestes précis, vapeur et reflets" },
+      { "label": "Print", "value": "Menus sobres, hiérarchie typographique nette" }
+    ],
+    "colors": ["black", "rice paper", "deep red"],
+    "illustration": "Marques discrètes inspirées du pinceau, jamais motif décoratif continu.",
+    "words": ["précis", "direct", "comptoir", "chaud", "nocturne"],
+    "film": "Perfect Days",
+    "place": "Un izakaya de quartier à Tokyo",
+    "music": "Jazz japonais discret",
+    "sound": "Couteau, vaisselle, bouillon, conversation basse",
+    "food": "Bouillon, riz, sésame grillé",
+    "material": "Bois sombre, acier, céramique",
+    "scent": "Bouillon et bois chauffé"
+  },
+  "sashayogaflow": {
+    "axes": { "editorial": 0.48, "organic": 0.92, "contrast": 0.34, "warmth": 0.88, "motion": 0.44, "density": 0.22 },
+    "typography": ["organic display", "soft grotesk"],
+    "media": ["sasha-laptop", "sasha-mobile"],
+    "inspiration": [
+      { "label": "Light", "value": "Soleil traversant un voilage" },
+      { "label": "Movement", "value": "Respiration, posture, continuité plutôt que performance" },
+      { "label": "Botanical", "value": "Ombres de feuilles, végétation réelle, pas d'illustration wellness générique" }
+    ],
+    "colors": ["sand", "soft black", "sun yellow-green", "warm white"],
+    "illustration": "Formes souples rares, utilisées comme rythme et non comme décoration.",
+    "words": ["respirer", "ancrage", "mouvement", "souplesse", "présence"],
+    "film": "After Yang",
+    "place": "Une varangue lumineuse le matin",
+    "music": "Ambient organique, cordes et souffle",
+    "sound": "Respiration, tissu, oiseaux lointains",
+    "food": "Fruits frais, thé clair",
+    "material": "Coton, liège, bois clair",
+    "scent": "Vétiver léger et linge propre"
+  },
+  "mois-du-ker": {
+    "axes": { "editorial": 0.62, "organic": 0.56, "contrast": 0.82, "warmth": 0.92, "motion": 0.22, "density": 0.38 },
+    "typography": ["bold humanist sans", "neutral body sans"],
+    "media": ["mois-du-ker-textile"],
+    "inspiration": [
+      { "label": "Territory", "value": "La Réunion portée comme signe affectif" },
+      { "label": "Campaign", "value": "Prévention claire, accessible, sans langage hospitalier froid" },
+      { "label": "Symbol", "value": "Un cœur qui parle à la fois de santé et d'attachement" }
+    ],
+    "colors": ["heart red", "warm white", "ink"],
+    "illustration": "Le signe cœur reste central; les autres formes restent secondaires.",
+    "words": ["kèr", "prévention", "prendre soin", "Réunion", "proximité"],
+    "film": "Documentaire local lumineux et direct",
+    "place": "Un marché réunionnais un matin de semaine",
+    "music": "Maloya acoustique léger",
+    "sound": "Voix, rue, marché, rythme discret",
+    "food": "Agrumes, épices, fruits locaux",
+    "material": "Textile imprimé, papier non couché",
+    "scent": "Citron combava"
+  },
+  "maloya": {
+    "axes": { "editorial": 0.72, "organic": 0.64, "contrast": 0.92, "warmth": 0.58, "motion": 0.88, "density": 0.44 },
+    "typography": ["expressive display", "condensed support sans", "neutral body sans"],
+    "media": ["maloya-video", "maloya-tablet", "maloya-mobile"],
+    "inspiration": [
+      { "label": "Stage", "value": "Lumière brute, fumée, mouvement et profondeur" },
+      { "label": "Territory", "value": "Relief, végétation et nuit réunionnaise" },
+      { "label": "Archive", "value": "Affiches, pochettes, images live et traces imprimées" }
+    ],
+    "colors": ["black", "warm white", "burnt orange", "deep green"],
+    "illustration": "Traces graphiques inspirées de l'affiche et de la scène, jamais pictogrammes décoratifs.",
+    "words": ["live", "rythme", "terre", "nuit", "transmission"],
+    "film": "Djali / documentaire musical tactile",
+    "place": "Une scène extérieure à La Réunion après la tombée du jour",
+    "music": "Maloya contemporain",
+    "sound": "Roulèr, kayamb, voix, public",
+    "food": "Cuisine au feu, épices, partage",
+    "material": "Papier affiche, tissu, métal de scène",
+    "scent": "Terre humide et fumée"
+  }
+}
