@@ -1,8 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
 import { Form } from "@/components/forms/Form";
-import { BurgerButton } from "@/components/navigation/BurgerButton";
 import formsData from "@/data/forms.json";
 import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
@@ -23,17 +21,27 @@ export function Drawer() {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
+    const previousOverflow = document.documentElement.style.overflow;
+
     if (drawer && !dialog.open) {
-      dialog.showModal();
-      dialog
-        .querySelector<HTMLButtonElement>(".drawer__header .burgerButton")
-        ?.focus({ preventScroll: true });
-      return;
+      dialog.show();
+      document.documentElement.style.overflow = "hidden";
+
+      window.requestAnimationFrame(() => {
+        dialog
+          .querySelector<HTMLElement>(
+            ".drawer__nav a, .drawer__content input, .drawer__content select, .drawer__content textarea, .drawer__content button, .drawer__content iframe",
+          )
+          ?.focus({ preventScroll: true });
+      });
+    } else if (!drawer && dialog.open) {
+      dialog.close();
+      document.documentElement.style.overflow = previousOverflow;
     }
 
-    if (!drawer && dialog.open) {
-      dialog.close();
-    }
+    return () => {
+      document.documentElement.style.overflow = previousOverflow;
+    };
   }, [drawer]);
 
   return (
@@ -44,9 +52,11 @@ export function Drawer() {
       aria-label={labels[renderedView]}
       data-view={renderedView}
       onClose={closeOverlay}
-      onCancel={(event) => {
-        event.preventDefault();
-        closeOverlay();
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeOverlay();
+        }
       }}
     >
       <button
@@ -57,27 +67,13 @@ export function Drawer() {
       />
 
       <div className="drawer__panel">
-        <header className="drawer__header">
-          <Link
-            className="drawer__logo"
-            to="/"
-            onClick={closeOverlay}
-          >
-            {siteData.site.name}
-          </Link>
-
-          <BurgerButton />
-        </header>
-
         <div className="drawer__body" key={renderedView}>
-          {/* <p className="drawer__label">{labels[renderedView]}</p> */}
-
           {renderedView === "menu" ? (
             <nav className="drawer__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
               {navigationItems.map((item) => (
-                <Link key={item.id} to={item.href} onClick={closeOverlay}>
+                <a key={item.id} href={item.href} onClick={closeOverlay}>
                   {item.label}
-                </Link>
+                </a>
               ))}
             </nav>
           ) : (
