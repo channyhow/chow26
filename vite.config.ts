@@ -32,6 +32,7 @@ function seoIndexPlugin(): Plugin {
   const siteUrl = site.url.replace(/\/$/, "");
   const imageUrl = new URL(seo.defaultImage, `${siteUrl}/`).toString();
   const businessId = `${siteUrl}/#business`;
+  const creatorId = `${siteUrl}/#creator`;
 
   const sameAs = Object.values(site.socials)
     .filter((social) => social.enabled && /^https?:\/\//.test(social.href))
@@ -46,37 +47,27 @@ function seoIndexPlugin(): Plugin {
 
   const services = (seo.services ?? []).filter((service) => service.name);
 
-  const creatorId = `${siteUrl}/#creator`;
-  const creator = site.credits?.studio
+  const creator = site.credits?.name
     ? {
-        "@type": "Organization",
+        "@type": "Person",
         "@id": creatorId,
-        name: site.credits.studio,
-        ...(site.credits.href ? { url: site.credits.href } : {}),
-        ...(site.credits.name
-          ? {
-              founder: {
-                "@type": "Person",
-                name: site.credits.name,
-              },
-            }
-          : {}),
+        name: site.credits.name,
+        ...(sameAs.length ? { sameAs } : {}),
+        worksFor: { "@id": businessId },
       }
     : undefined;
-
-  const alternateName = "Chow Studio — Design web, identité visuelle et frontend";
 
   const business = {
     "@type": seo.organizationType,
     "@id": businessId,
     name: site.name,
-    alternateName,
     url: siteUrl,
     description: seo.defaultDescription,
     ...(site.contact.email ? { email: site.contact.email } : {}),
     ...(site.contact.phone ? { telephone: site.contact.phone } : {}),
     image: imageUrl,
     ...(sameAs.length ? { sameAs } : {}),
+    ...(creator ? { founder: { "@id": creatorId } } : {}),
     ...(site.contact.address.city || site.contact.address.country
       ? {
           address: {
@@ -109,6 +100,7 @@ function seoIndexPlugin(): Plugin {
                 "@type": "Service",
                 name: service.name,
                 ...(service.description ? { description: service.description } : {}),
+                provider: { "@id": businessId },
               },
             })),
           },
@@ -126,7 +118,6 @@ function seoIndexPlugin(): Plugin {
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: site.name,
-        alternateName,
         description: seo.defaultDescription,
         inLanguage: site.defaultLocale,
         publisher: { "@id": businessId },
