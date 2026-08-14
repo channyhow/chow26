@@ -58,6 +58,9 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     />
   ));
   const cardsGrid = cards.length ? <Grid className="section__body">{cards}</Grid> : null;
+  const carouselSlides = cards.length
+    ? cards
+    : mediaItems.map((item) => <Media key={item.id} media={item} className="section__media" sizes="(min-width: 64rem) 82vw, 92vw" />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsGrid;
   const switcherItems = items.flatMap((item, index) => {
     const id = item.id ?? `item-${index + 1}`;
@@ -76,7 +79,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   if (layout === "split") body = <Split primary={header ? <TextBlock content={header} /> : null} secondary={secondary} />;
   else if (layout === "media-overlay") body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}</div>;
   else if (layout === "gallery") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null}</>;
-  else if (layout === "carousel") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{cards.length ? <Carousel>{cards}</Carousel> : null}</>;
+  else if (layout === "carousel") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{carouselSlides.length ? <Carousel>{carouselSlides}</Carousel> : null}</>;
   else if (layout === "timeline") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null}</>;
   else if (layout === "content-switcher") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null}</>;
   else if (layout === "media") body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{media ? <Media media={media} className="section__media" /> : null}</>;
