@@ -9,9 +9,11 @@
   gap: $space-2;
 }
 
-.actions__link {
+.actions:not(.actions--unstyled) .actions__link {
   @include type-ui-compact;
+}
 
+.actions__link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
