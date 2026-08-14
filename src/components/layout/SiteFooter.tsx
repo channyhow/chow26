@@ -51,11 +51,7 @@ export function SiteFooter({ block }: SiteFooterProps) {
                 className="siteFooter__nav"
                 aria-label="Navigation du pied de page"
               >
-                <Actions
-                  links={primaryLinks}
-                  className="siteFooter__navGroup"
-                  unstyled
-                />
+                <Actions links={primaryLinks} className="siteFooter__navGroup" />
               </nav>
             ) : null}
 
@@ -64,11 +60,7 @@ export function SiteFooter({ block }: SiteFooterProps) {
                 className="siteFooter__support"
                 aria-label="Réseaux et informations"
               >
-                <Actions
-                  links={secondaryLinks}
-                  className="siteFooter__navGroup"
-                  unstyled
-                />
+                <Actions links={secondaryLinks} className="siteFooter__navGroup" />
               </nav>
             ) : null}
           </div>
