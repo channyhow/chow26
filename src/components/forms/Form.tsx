@@ -3,7 +3,7 @@ import { useState, type FormEvent } from "react";
 import siteData from "@/data/site.json";
 
 import type { Action } from "@/types/content";
-import type { FormField, FormSchema } from "@/types/forms";
+import type { FormField, FormSchema, TallyFormKey } from "@/types/forms";
 
 import { Actions } from "../navigation/Actions";
 import { TallyFormEmbed } from "./TallyFormEmbed";
@@ -18,6 +18,11 @@ const DEFAULT_MAX_LENGTH: Partial<Record<FormField["type"], number>> = {
   email: 254,
   tel: 32,
   textarea: 3000,
+};
+
+const TALLY_FORM_IDS: Record<TallyFormKey, string | undefined> = {
+  contact: import.meta.env.VITE_TALLY_CONTACT_FORM_ID,
+  reservation: import.meta.env.VITE_TALLY_RESERVATION_FORM_ID,
 };
 
 const normalizeText = (value: string) =>
@@ -36,22 +41,17 @@ const normalizeText = (value: string) =>
 
 const resolveTallyFormId = (schema: FormSchema) => {
   if (schema.formId) return schema.formId;
-
-  if (schema.name === "project-call") {
-    return import.meta.env.VITE_TALLY_RESERVATION_FORM_ID;
-  }
-
-  return import.meta.env.VITE_TALLY_CONTACT_FORM_ID;
+  if (!schema.tallyKey) return undefined;
+  return TALLY_FORM_IDS[schema.tallyKey];
 };
 
 export function Form({ schema }: { schema: FormSchema }) {
   const formCopy = siteData.ui.copy.forms;
   const [errors, setErrors] = useState<Record<string, string>>({});
+
   const tallyFormId = resolveTallyFormId(schema);
   const hasTallySource = Boolean(tallyFormId || schema.embedUrl);
-  const useTally =
-    hasTallySource &&
-    (schema.provider === "tally" || schema.name === "project-enquiry");
+  const useTally = schema.provider === "tally" && hasTallySource;
 
   if (useTally) {
     return (
@@ -59,9 +59,14 @@ export function Form({ schema }: { schema: FormSchema }) {
         <TallyFormEmbed
           formId={tallyFormId}
           embedUrl={schema.embedUrl}
-          title={schema.title ?? "Formulaire de contact"}
+          title={schema.title ?? "Formulaire"}
           fallbackHeight={schema.fallbackHeight}
         />
+        {schema.links?.length ? (
+          <footer className="form__footer">
+            <Actions links={schema.links} className="form__actions" />
+          </footer>
+        ) : null}
       </div>
     );
   }
@@ -227,6 +232,7 @@ export function Form({ schema }: { schema: FormSchema }) {
 
       <footer className="form__footer">
         <Actions links={formActions} className="form__actions" />
+        {schema.links?.length ? <Actions links={schema.links} className="form__actions form__actions--secondary" /> : null}
       </footer>
     </form>
   );
