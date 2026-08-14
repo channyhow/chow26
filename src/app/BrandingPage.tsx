@@ -15,16 +15,6 @@ const projectNames: Record<string, string> = {
   maloya: "Maloya",
 };
 
-const sensoryFields = [
-  ["film", "Film"],
-  ["place", "Lieu"],
-  ["music", "Musique"],
-  ["sound", "Son"],
-  ["food", "Food"],
-  ["material", "Matière"],
-  ["scent", "Odeur"],
-] as const;
-
 export function BrandingPage() {
   return (
     <>
@@ -48,106 +38,80 @@ export function BrandingPage() {
 
           <div className="brandingPage__manifesto">
             <p>{brandingData.concept.title}</p>
-            <p>Chaque projet part d’indices concrets. Le profil dérivé choisit ensuite parmi les variants, surfaces, mouvements et traitements déjà disponibles dans le design system.</p>
+            <p>Neuf indices maximum définissent l’atmosphère. Les médias du projet restent séparés : le moodboard explique le langage, la galerie montre ce qu’il devient.</p>
           </div>
 
           <div className="brandingPage__projects">
-            {Object.entries(projectMoods).map(([projectId, mood], projectIndex) => {
+            {Object.entries(projectMoods).map(([projectId, mood]) => {
               const profile = deriveBrandProfile(mood.axes);
-              const media = (mood.media ?? []).slice(0, 3).flatMap((mediaId) => {
+              const media = (mood.media ?? []).flatMap((mediaId) => {
                 const resolved = resolveMedia(mediaId);
                 return resolved ? [resolved] : [];
               });
+              const typography = (mood.typography ?? []).join(" · ");
+              const inspiration = mood.inspiration ?? [];
+
+              const moodItems = [
+                { label: "Typographies", value: typography || "À définir", kind: "type" },
+                { label: "Palette", value: mood.colors ?? [], kind: "palette" },
+                { label: "Mots", value: (mood.words ?? []).join(" · "), kind: "words" },
+                { label: "Lieu", value: mood.place ?? inspiration[0]?.value ?? "À définir", kind: "text" },
+                { label: "Film", value: mood.film ?? "À définir", kind: "text" },
+                { label: "Musique / son", value: [mood.music, mood.sound].filter(Boolean).join(" · "), kind: "text" },
+                { label: "Matière / odeur", value: [mood.material, mood.scent].filter(Boolean).join(" · "), kind: "text" },
+                { label: "Food", value: mood.food ?? "À définir", kind: "text" },
+                { label: "Geste graphique", value: mood.illustration ?? inspiration[2]?.value ?? "À définir", kind: "text" },
+              ] as const;
 
               return (
                 <article key={projectId} className="brandingPage__project">
                   <header className="brandingPage__projectHeader">
-                    <span>{String(projectIndex + 1).padStart(2, "0")}.</span>
                     <div>
                       <h2>{projectNames[projectId] ?? projectId}</h2>
                       <p>{profile.variant} · {profile.composition} · {profile.mediaTreatment} · {profile.spacing}</p>
                     </div>
                   </header>
 
-                  <div className="brandingPage__projectGrid">
-                    {media.map((item, index) => (
-                      <article key={item.id} className="brandingPage__tile brandingPage__tile--media">
-                        <Media media={item} className="brandingPage__media" />
-                        <div className="brandingPage__overlay">
-                          <small>Média {String(index + 1).padStart(2, "0")}</small>
-                          <span>{item.caption ?? item.alt ?? "Référence du projet"}</span>
+                  <div className="brandingPage__moodGrid">
+                    {moodItems.map((item) => (
+                      <article key={item.label} className={`brandingPage__moodItem brandingPage__moodItem--${item.kind}`}>
+                        <small>{item.label}</small>
+                        <div className="brandingPage__moodSquare">
+                          {item.kind === "palette" && Array.isArray(item.value) ? (
+                            <div className="brandingPage__swatches">
+                              {item.value.map((color) => <span key={color} style={{ background: color }} title={color} />)}
+                            </div>
+                          ) : item.kind === "type" ? (
+                            <div className="brandingPage__typeSample"><strong>Aa</strong><p>{item.value}</p></div>
+                          ) : (
+                            <p>{item.value}</p>
+                          )}
                         </div>
                       </article>
                     ))}
+                  </div>
 
-                    {(mood.typography ?? []).map((font, index) => (
-                      <article key={font} className="brandingPage__tile brandingPage__tile--type">
-                        <small>{index === 0 ? "Display / caractère" : "Support / lecture"}</small>
-                        <strong>Aa</strong>
-                        <p>{font}</p>
-                      </article>
-                    ))}
-
-                    <article className="brandingPage__tile brandingPage__tile--palette">
-                      <small>Couleurs</small>
-                      <div className="brandingPage__swatches">
-                        {(mood.colors ?? []).map((color) => (
-                          <span key={color} style={{ background: color }} title={color} />
+                  {media.length ? (
+                    <section className="brandingPage__mediaSection" aria-label={`Médias du projet ${projectNames[projectId] ?? projectId}`}>
+                      <header><small>Médias du projet</small></header>
+                      <div className="brandingPage__mediaGrid">
+                        {media.map((item) => (
+                          <article key={item.id} className="brandingPage__mediaTile">
+                            <Media media={item} />
+                            <div className="brandingPage__overlay"><span>{item.caption ?? item.alt ?? "Média du projet"}</span></div>
+                          </article>
                         ))}
                       </div>
-                    </article>
-
-                    <article className="brandingPage__tile brandingPage__tile--words">
-                      <small>Mots</small>
-                      <p>{(mood.words ?? []).join(" · ")}</p>
-                    </article>
-
-                    <article className="brandingPage__tile brandingPage__tile--illustration">
-                      <small>Illustration</small>
-                      <p>{mood.illustration}</p>
-                    </article>
-
-                    {(mood.inspiration ?? []).slice(0, 3).map((reference, index) => {
-                      const referenceMedia = reference.image ? resolveMedia(reference.image) : undefined;
-
-                      return referenceMedia ? (
-                        <article key={`${reference.label}-${reference.value}`} className="brandingPage__tile brandingPage__tile--media">
-                          <Media media={referenceMedia} className="brandingPage__media" />
-                          <div className="brandingPage__overlay">
-                            <small>Inspiration {String(index + 1).padStart(2, "0")} · {reference.label}</small>
-                            <span>{reference.value}</span>
-                          </div>
-                        </article>
-                      ) : (
-                        <article key={`${reference.label}-${reference.value}`} className="brandingPage__tile brandingPage__tile--reference">
-                          <small>{reference.label}</small>
-                          <p>{reference.value}</p>
-                        </article>
-                      );
-                    })}
-
-                    {sensoryFields.map(([key, label]) => mood[key] ? (
-                      <article key={key} className="brandingPage__tile brandingPage__tile--sensory">
-                        <small>{label}</small>
-                        <p>{mood[key]}</p>
-                      </article>
-                    ) : null)}
-
-                    {Object.entries(profile).map(([key, value]) => (
-                      <article key={key} className="brandingPage__tile brandingPage__tile--profile">
-                        <small>Algorithme · {key}</small>
-                        <p>{value}</p>
-                      </article>
-                    ))}
-                  </div>
+                    </section>
+                  ) : null}
                 </article>
               );
             })}
           </div>
 
           <footer className="brandingPage__boardFooter">
-            <p>Références → axes → profil → composants existants.</p>
-            <p>Pas de style aléatoire. Pas de nouveau composant sans besoin réel.</p>
+            <p>9 indices → profil → composants existants.</p>
+            <p>Les médias restent une preuve séparée du moodboard.</p>
           </footer>
         </section>
       </main>
