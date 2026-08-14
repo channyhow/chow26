@@ -6,6 +6,7 @@ import type { Action } from "@/types/content";
 export type ActionsProps = {
   links?: Action[];
   className?: string;
+  unstyled?: boolean;
 };
 
 function isProjectStartAction(label: string) {
@@ -33,11 +34,12 @@ function resolveVariant(action: Action, index: number, actionCount: number) {
 export function Actions({
   links = [],
   className,
+  unstyled = false,
 }: ActionsProps) {
   if (!links.length) return null;
 
   return (
-    <div className={clsx("actions", className)}>
+    <div className={clsx("actions", unstyled && "actions--unstyled", className)}>
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
         const variant = resolveVariant(action, index, links.length);
