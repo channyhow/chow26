@@ -25,17 +25,30 @@ const buildTallyUrl = ({
 
   if (!source) return undefined;
 
-  const url = new URL(source, window.location.origin);
-  url.searchParams.set("alignLeft", "1");
-  url.searchParams.set("hideTitle", "1");
-  url.searchParams.set("transparentBackground", "1");
-  url.searchParams.set("dynamicHeight", "1");
-
-  return url.toString();
+  try {
+    const url = new URL(source);
+    url.searchParams.set("alignLeft", "1");
+    url.searchParams.set("hideTitle", "1");
+    url.searchParams.set("transparentBackground", "1");
+    url.searchParams.set("dynamicHeight", "1");
+    return url.toString();
+  } catch {
+    return undefined;
+  }
 };
 
-const loadTallyEmbeds = () => {
-  window.Tally?.loadEmbeds?.();
+const hydrateTallyEmbeds = () => {
+  if (window.Tally?.loadEmbeds) {
+    window.Tally.loadEmbeds();
+    return;
+  }
+
+  document
+    .querySelectorAll<HTMLIFrameElement>("iframe[data-tally-src]:not([src])")
+    .forEach((iframe) => {
+      const source = iframe.dataset.tallySrc;
+      if (source) iframe.src = source;
+    });
 };
 
 export function TallyFormEmbed({
@@ -47,7 +60,7 @@ export function TallyFormEmbed({
   const src = buildTallyUrl({ formId, embedUrl });
 
   useEffect(() => {
-    if (!src) return;
+    if (!src || typeof document === "undefined") return;
 
     const existingScript = document.querySelector<HTMLScriptElement>(
       `script[src="${TALLY_SCRIPT}"]`,
@@ -55,25 +68,29 @@ export function TallyFormEmbed({
 
     if (existingScript) {
       if (window.Tally) {
-        loadTallyEmbeds();
+        hydrateTallyEmbeds();
         return;
       }
 
-      existingScript.addEventListener("load", loadTallyEmbeds, { once: true });
+      existingScript.addEventListener("load", hydrateTallyEmbeds, { once: true });
+      existingScript.addEventListener("error", hydrateTallyEmbeds, { once: true });
 
       return () => {
-        existingScript.removeEventListener("load", loadTallyEmbeds);
+        existingScript.removeEventListener("load", hydrateTallyEmbeds);
+        existingScript.removeEventListener("error", hydrateTallyEmbeds);
       };
     }
 
     const script = document.createElement("script");
     script.src = TALLY_SCRIPT;
     script.async = true;
-    script.addEventListener("load", loadTallyEmbeds, { once: true });
+    script.addEventListener("load", hydrateTallyEmbeds, { once: true });
+    script.addEventListener("error", hydrateTallyEmbeds, { once: true });
     document.body.appendChild(script);
 
     return () => {
-      script.removeEventListener("load", loadTallyEmbeds);
+      script.removeEventListener("load", hydrateTallyEmbeds);
+      script.removeEventListener("error", hydrateTallyEmbeds);
     };
   }, [src]);
 
