@@ -1,6 +1,6 @@
 @use "../foundation/tokens" as *;
 
-/* Chow 404: full viewport section, compact centered content, natural footer. */
+/* Chow 404: full viewport section, compact intrinsic content, natural footer. */
 .page[data-page-id="not-found"] .page__footer {
   position: relative;
   height: auto;
@@ -9,16 +9,13 @@
 
 #not-found-default {
   min-height: 100svh;
-  display: grid;
-  place-items: center;
+  justify-content: center;
   padding: clamp(#{$space-3}, 5vw, #{$space-4}) var(--project-gutter);
-  background: var(--accent);
-  color: var(--primary);
 }
 
 #not-found-default .section__inner {
+  flex: 0 0 auto;
   align-self: center;
-  justify-self: center;
   width: 100%;
   max-width: none;
   min-height: 0;
