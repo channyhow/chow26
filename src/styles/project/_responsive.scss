@@ -1,0 +1,52 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+
+/* Project-detail safeguards kept separate from art-direction composition so
+   case studies stay reusable while narrow layouts remain predictable. */
+
+.projectHero .section__mediaOverlay {
+  min-height: min(88svh, 58rem);
+}
+
+.projectStory .textBlock__meta {
+  flex-wrap: wrap;
+  width: min(100%, 58rem);
+}
+
+.projectStory .textBlock__meta span {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: $bp-tablet) {
+  .projectHero .section__mediaOverlay {
+    min-height: 72svh;
+  }
+
+  .projectHero .section__overlayContent {
+    padding: clamp(5rem, 12svh, 7rem) var(--project-gutter) clamp(2.5rem, 7svh, 4rem);
+  }
+
+  .projectHero .textBlock,
+  .projectHero .textBlock__header,
+  .projectStory .textBlock__content,
+  .projectStory .textBlock__meta {
+    width: 100%;
+  }
+
+  .projectHero .textBlock__title {
+    max-width: 10ch;
+    font-size: clamp(2.5rem, 12vw, 4.25rem);
+  }
+
+  #project-gallery .gallery__item:nth-child(2),
+  #project-gallery .gallery__item:nth-child(5) {
+    margin-top: 0;
+  }
+
+  #project-gallery .media,
+  #project-gallery .media__asset {
+    aspect-ratio: auto;
+  }
+}
