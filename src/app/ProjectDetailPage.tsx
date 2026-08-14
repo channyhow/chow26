@@ -3,9 +3,13 @@ import { useParams } from "react-router-dom";
 import { PageRenderer } from "@/components/page/PageRenderer";
 import { Seo } from "@/components/page/Seo";
 import collections from "@/data/collections.json";
+import projectMoodsData from "@/data/projectMoods.json";
+import { deriveBrandProfile } from "@/utils/deriveBrandProfile";
+import type { ProjectMood } from "@/types/branding";
 import type { PageData, ProjectRecord } from "@/types/content";
 
 const projects = collections.projects as ProjectRecord[];
+const projectMoods = projectMoodsData as Record<string, ProjectMood>;
 
 const notFoundPage: PageData = {
   id: "project-not-found",
@@ -23,17 +27,27 @@ const notFoundPage: PageData = {
 };
 
 function createProjectPage(project: ProjectRecord): PageData {
+  const mood = projectMoods[project.id];
+  const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
+  const profileClasses = profile
+    ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
+    : "projectProfile projectProfile--structured";
+
   return {
     id: `project-${project.id}`,
     slug: project.href,
-    variant: "editorial",
+    variant: profile?.variant ?? "editorial",
     seo: project.seo,
     blocks: [
       {
         id: `project-${project.id}-hero`,
         type: "Section",
         layout: "media-overlay",
-        className: "projectHero",
+        variant: profile?.variant,
+        tone: profile?.tone,
+        color: profile?.color,
+        motion: profile?.motion,
+        className: `projectHero ${profileClasses}`,
         content: {
           header: {
             eyebrow: project.eyebrow,
@@ -47,7 +61,9 @@ function createProjectPage(project: ProjectRecord): PageData {
         id: `project-${project.id}-story`,
         type: "Section",
         layout: "text",
-        className: "projectStory",
+        variant: profile?.variant,
+        motion: profile?.motion,
+        className: `projectStory ${profileClasses}`,
         content: {
           header: {
             eyebrow: "Le projet",
@@ -61,6 +77,12 @@ function createProjectPage(project: ProjectRecord): PageData {
         id: `project-${project.id}-gallery`,
         type: "Section",
         layout: "gallery",
+        variant: profile?.variant,
+        motion: profile?.motion,
+        itemAppearance: profile?.cardEffect && profile.cardEffect !== "none"
+          ? { effect: profile.cardEffect }
+          : undefined,
+        className: `projectGallery ${profileClasses}`,
         content: {
           header: {
             eyebrow: "Galerie",
