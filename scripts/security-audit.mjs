@@ -1,17 +1,8 @@
-import { readdir, readFile, stat } from "node:fs/promises";
-import { extname, relative, resolve } from "node:path";
+import { execFileSync } from "node:child_process";
+import { readFile, stat } from "node:fs/promises";
+import { extname, resolve } from "node:path";
 
 const root = process.cwd();
-const ignoredDirectories = new Set([
-  ".git",
-  ".netlify",
-  ".vercel",
-  "coverage",
-  "dist",
-  "node_modules",
-  "project_sources",
-  "upload",
-]);
 
 const textExtensions = new Set([
   ".css",
@@ -51,25 +42,16 @@ const unsafeSourcePatterns = [
   ["document.write", /\bdocument\.write\s*\(/],
 ];
 
-const files = [];
-const visit = async (directory) => {
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && ignoredDirectories.has(entry.name)) continue;
-
-    const absolute = resolve(directory, entry.name);
-    if (entry.isDirectory()) {
-      await visit(absolute);
-    } else if (entry.isFile()) {
-      files.push(absolute);
-    }
-  }
-};
-
-await visit(root);
+const trackedFiles = execFileSync("git", ["ls-files", "-z"], {
+  cwd: root,
+  encoding: "utf8",
+})
+  .split("\0")
+  .filter(Boolean);
 
 const errors = [];
-for (const absolute of files) {
-  const path = relative(root, absolute).replaceAll("\\", "/");
+
+for (const path of trackedFiles) {
   const name = path.split("/").at(-1) ?? path;
 
   if (
@@ -81,6 +63,8 @@ for (const absolute of files) {
   }
 
   if (!textExtensions.has(extname(name)) && name !== ".gitignore") continue;
+
+  const absolute = resolve(root, path);
   if ((await stat(absolute)).size > 1_000_000) continue;
 
   const source = await readFile(absolute, "utf8");
@@ -103,5 +87,7 @@ if (errors.length) {
   errors.forEach((error) => console.error(`- ${error}`));
   process.exitCode = 1;
 } else {
-  console.log(`Security audit passed: ${files.length} repository files checked for secrets and unsafe source patterns.`);
+  console.log(
+    `Security audit passed: ${trackedFiles.length} tracked repository files checked for secrets and unsafe source patterns.`,
+  );
 }
