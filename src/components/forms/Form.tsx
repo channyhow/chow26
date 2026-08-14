@@ -48,9 +48,10 @@ export function Form({ schema }: { schema: FormSchema }) {
   const formCopy = siteData.ui.copy.forms;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const tallyFormId = resolveTallyFormId(schema);
+  const hasTallySource = Boolean(tallyFormId || schema.embedUrl);
   const useTally =
-    schema.provider === "tally" ||
-    (schema.name === "project-enquiry" && Boolean(tallyFormId));
+    hasTallySource &&
+    (schema.provider === "tally" || schema.name === "project-enquiry");
 
   if (useTally) {
     return (
