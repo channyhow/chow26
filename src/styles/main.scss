@@ -35,7 +35,7 @@
 @use "components/brandingPage";
 @use "project/artDirection";
 @use "project/responsive";
-@use "project/drawer";
+@use "project/drawer" as project-drawer;
 @use "project/footer";
 
 :root { color: var(--primary); background: var(--secondary); font-family: system-ui, sans-serif; font-synthesis: none; text-rendering: optimizeLegibility; }

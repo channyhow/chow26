@@ -39,7 +39,7 @@ const footerLinks = [
     variant: "cta",
   },
   {
-    label: "Instagram · @hellochowstudio",
+    label: "Instagram",
     href: "https://www.instagram.com/hellochowstudio/",
     intent: "navigate",
   },
