@@ -13,11 +13,11 @@
 }
 
 .gallery[data-layout="grid"] {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 }
 
 .gallery[data-layout="masonry"] {
-  columns: 2;
+  columns: 1;
   column-gap: $space-2;
 
   .gallery__item {
@@ -27,18 +27,12 @@
 }
 
 .gallery[data-layout="editorial"] {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: 1fr;
 
-  .gallery__item {
-    grid-column: span 3;
-  }
-
-  .gallery__item:nth-child(3n + 1) {
-    grid-column: span 4;
-  }
-
+  .gallery__item,
+  .gallery__item:nth-child(3n + 1),
   .gallery__item:nth-child(3n + 2) {
-    grid-column: span 2;
+    grid-column: auto;
   }
 }
 
@@ -51,6 +45,24 @@
 }
 
 @include tablet-up {
+  .gallery[data-layout="grid"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery[data-layout="masonry"] {
+    columns: 2;
+  }
+
+  .gallery[data-layout="editorial"] {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    .gallery__item { grid-column: span 3; }
+    .gallery__item:nth-child(3n + 1) { grid-column: span 4; }
+    .gallery__item:nth-child(3n + 2) { grid-column: span 2; }
+  }
+}
+
+@include desktop-up {
   .gallery[data-layout="grid"] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
