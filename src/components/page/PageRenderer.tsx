@@ -124,7 +124,7 @@ function renderFooter(entry: PageBlock) {
 }
 
 export function PageRenderer({ page }: PageRendererProps) {
-  const footerReveal = Boolean(siteData.ui.experience.footerReveal);
+  const footerReveal = Boolean(siteData.ui.experience.footerReveal) && page.id !== "not-found";
   const footerEntries = page.blocks.filter(
     (entry) => "ref" in entry && entry.ref === "site-footer",
   );
