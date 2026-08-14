@@ -1,4 +1,5 @@
 import { useState, type KeyboardEvent, type ReactNode } from "react";
+import clsx from "clsx";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import siteData from "@/data/site.json";
@@ -10,11 +11,29 @@ export type ContentSwitcherItem = {
   content: ReactNode;
 };
 
-export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
+export type ContentSwitcherProps = {
+  items: ContentSwitcherItem[];
+  variant?: "default" | "detailed";
+};
+
+const serviceLabels: Record<string, string> = {
+  "service-create": "Je lance mon projet",
+  "service-clarify": "Je veux clarifier l’existant",
+  "service-evolve": "Je veux le faire évoluer",
+  "studio-service-create": "Je lance mon projet",
+  "studio-service-clarify": "Je veux clarifier l’existant",
+  "studio-service-evolve": "Je veux le faire évoluer",
+};
+
+export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherProps) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const reduceMotion = useReducedMotion();
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeId));
   const active = items[activeIndex] ?? items[0];
+  const resolvedVariant =
+    variant === "default" && items.some((item) => item.id.startsWith("studio-service-"))
+      ? "detailed"
+      : variant;
 
   if (!active) return null;
 
@@ -54,14 +73,20 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
   };
 
   return (
-    <motion.div className="contentSwitcher" layout={!reduceMotion}>
+    <motion.div
+      className={clsx("contentSwitcher", `contentSwitcher--${resolvedVariant}`)}
+      data-variant={resolvedVariant}
+      layout={!reduceMotion}
+    >
       <div
         className="contentSwitcher__controls"
         role="tablist"
         aria-label={siteData.ui.copy.contentSwitcher.controlsLabel}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const selected = item.id === active.id;
+          const label = serviceLabels[item.id] ?? item.label;
+
           return (
             <button
               id={`content-switcher-tab-${item.id}`}
@@ -74,7 +99,14 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
               onClick={() => setActiveId(item.id)}
               onKeyDown={onTabKeyDown}
             >
-              {item.label}
+              {resolvedVariant === "detailed" ? (
+                <>
+                  <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{label}</span>
+                </>
+              ) : (
+                label
+              )}
             </button>
           );
         })}
@@ -88,9 +120,9 @@ export function ContentSwitcher({ items }: { items: ContentSwitcherItem[] }) {
             role="tabpanel"
             aria-labelledby={`content-switcher-tab-${active.id}`}
             key={active.id}
-            initial={reduceMotion ? false : { opacity: 0, y: motionConfig.distance.subtle }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -motionConfig.distance.subtle }}
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0 }}
             transition={{
               duration: motionConfig.duration.default,
               ease: motionConfig.easing.standard,

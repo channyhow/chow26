@@ -1,26 +1,227 @@
 {
-  "intro":{"eyebrow":"Direction de marque","title":"Les projets d'abord. Le reste vient après.","text":["Atmosphere Studio repose sur de grandes images, une grille précise, des légendes utiles et beaucoup d'espace.","La preuve vient des projets. Les services et le contact arrivent après que le visiteur a compris la manière de travailler."]},
-  "concept":{"eyebrow":"Concept","title":"Calme, matière, lumière, usage.","text":["L'interface utilise le vide comme un outil de composition, pas comme un effet de luxe. Les images portent l'essentiel du récit."],"keywords":["Habité","Lumineux","Tactile","Éditorial","Spatial","Précis"]},
-  "storytelling":{"eyebrow":"Storytelling & conversion","title":"Projet → détail → intention → méthode → conversation.","chapters":[
-    {"step":"01","title":"Montrer un projet fort","text":"Une image, un lieu, une idée directrice. Pas de grille de services en ouverture."},
-    {"step":"02","title":"Varier les projets","text":"Paris, Lisbonne et Bali apparaissent avec des compositions différentes pour éviter l'effet catalogue."},
-    {"step":"03","title":"Expliquer par les détails","text":"Lumière, circulation, matière et mobilier montrent les décisions de conception."},
-    {"step":"04","title":"Présenter la méthode","text":"Approche, services et processus viennent après la preuve visuelle."},
-    {"step":"05","title":"Qualifier le projet","text":"Le formulaire demande lieu, typologie, calendrier et besoin afin de commencer sur des informations utiles."}
-  ]},
-  "voice":{"eyebrow":"Ton éditorial","title":"Précis, sobre, sans langage d'architecte automatique.","text":["Le texte explique des choix spatiaux et des usages. Il n'a pas besoin de rendre chaque projet 'poétique' ou 'intemporel'."],"rules":[
-    {"title":"Décrire les décisions","text":["Parler de lumière, circulation, proportions, matière, contraintes et usages réels."]},
-    {"title":"Éviter le luxe générique","text":["Limiter âme, écrin, intemporel, expérience unique, espaces qui racontent votre histoire et équivalents."]},
-    {"title":"Cas d'étude courts","text":["Contexte → contrainte → intention → intervention → résultat. Pas de long manifeste autour de chaque projet."]},
-    {"title":"CTA clairs","text":["Voir les projets, Découvrir l'approche, Démarrer un projet."]}
-  ]},
-  "palette":[{"name":"Ink","value":"#222224","role":"Texte, structure, contraste"},{"name":"Warm Cream","value":"#F6F5F3","role":"Fond principal"},{"name":"Soft Rose","value":"#dea3ae","role":"Accent ponctuel"},{"name":"Garden Green","value":"#7cae84","role":"Accent naturel"},{"name":"Mineral Blue","value":"#2daabc","role":"Accent éditorial secondaire"},{"name":"Terracotta","value":"#d85234","role":"Détail chaud"}],
-  "typography":{"heading":{"label":"Editorial serif","family":"Noto Serif Display","sample":"Paris — appartement résidentiel."},"body":{"label":"Texte courant","family":"Poppins","sample":"Lumière, circulation, matériaux et usages structurent le projet."},"scale":"Titres amples mais rarement géants ; corps petit à moyen ; légendes et métadonnées importantes.","note":"Noto Serif Display porte les moments éditoriaux. Poppins reste fonctionnelle."},
-  "imagery":{"eyebrow":"Photographie","title":"Le projet avant le décor.","text":["Privilégier les relations spatiales, les passages, la lumière, les matières et les usages.","Alterner grands plans, portraits verticaux et détails. Éviter l'imagerie immobilière uniforme."],"media":["home-cover","paris-entryway","paris-bathroom","lisbon-living","lisbon-patio","bali-entryway","bali-bathroom"]},
-  "composition":{"eyebrow":"UI / UX","title":"Grille nette, asymétrie contrôlée.","rules":["Grandes images et légendes étroites.","Full-bleed, image décalée et galerie horizontale selon le projet.","Éviter trois Cards identiques comme motif principal.","Métadonnées projet constantes et discrètes.","Sur mobile, préserver l'ordre image → contexte → détail → action."]},
-  "geometry":{"eyebrow":"Composition","title":"La grille structure plus que les boîtes.","text":["Très peu de surfaces encadrées. Marges, règles et proportions font l'essentiel du travail."],"samples":["editorial-grid","asymmetry","full-bleed-media","caption-rail"]},
-  "motion":{"eyebrow":"Mouvement","title":"Discret et spatial.","text":["Reveals lents, parallax léger uniquement quand l'image le supporte, galeries horizontales simples. Pas de mouvement décoratif permanent."],"behaviors":["Reveal","Parallax léger","Horizontal gallery","Sticky media ponctuel","Footer reveal"]},
-  "conversion":{"primary":"Voir les projets","secondary":"Découvrir l'approche","business":"Démarrer un projet","proof":["Projets","Processus","Détails et matières","Services reliés aux réalisations"],"mobile":"Le contact apparaît après suffisamment de preuve ; il ne coupe pas la découverte dès le début."},
-  "application":{"eyebrow":"Application","title":"Un portfolio construit autour des projets.","items":[{"title":"Hiérarchie","text":["Projet, localisation et intention avant les détails techniques."]},{"title":"Composition","text":["Chaque projet a son propre rythme dans le même système."]},{"title":"Preuve","text":["Le travail démontre l'expertise avant les promesses."]},{"title":"Conversion","text":["Le brief arrive après la preuve et qualifie le projet."]},{"title":"CMS","text":["Projet, média, service et article restent des données distinctes."]}]},
-  "status":{"eyebrow":"Direction retenue","title":"Éditorial, spatial, précis.","text":["Palette, typographie et photographies viennent du projet Atmosphere et restent rationalisées dans le starter."]}
+  "intro": {
+    "eyebrow": "Direction de marque",
+    "title": "Clarté, personnalité, cohérence.",
+    "text": [
+      "Chow Studio conçoit des identités et expériences digitales où la direction visuelle et la construction du produit avancent ensemble.",
+      "Le portfolio doit donner envie par le travail lui-même, puis permettre de comprendre rapidement ce que le studio peut apporter à un nouveau projet."
+    ]
+  },
+  "concept": {
+    "eyebrow": "Concept",
+    "title": "Éditorial, direct, construit.",
+    "text": [
+      "La direction privilégie une identité forte sans ajouter de décoration inutile : typographie, couleur, image, rythme et composition portent la personnalité du studio."
+    ],
+    "keywords": [
+      "Clair",
+      "Éditorial",
+      "Singulier",
+      "Précis",
+      "Flexible",
+      "Construit"
+    ]
+  },
+  "storytelling": {
+    "eyebrow": "Storytelling & conversion",
+    "title": "Positionnement → preuve → besoin → méthode → conversation.",
+    "chapters": [
+      {
+        "step": "01",
+        "title": "Dire clairement ce que fait Chow Studio",
+        "text": "Le visiteur comprend immédiatement qu'il s'agit de design web, identité visuelle, direction digitale et frontend."
+      },
+      {
+        "step": "02",
+        "title": "Montrer le travail",
+        "text": "Les projets démontrent la variété des contextes, des directions et des réponses avant de développer les services."
+      },
+      {
+        "step": "03",
+        "title": "Relier le travail aux besoins clients",
+        "text": "Créer, clarifier ou faire évoluer devient la porte d'entrée vers les accompagnements."
+      },
+      {
+        "step": "04",
+        "title": "Expliquer la méthode",
+        "text": "Clarification, structure, conception et réalisation montrent comment le studio transforme un besoin en système cohérent."
+      },
+      {
+        "step": "05",
+        "title": "Faciliter le premier contact",
+        "text": "Le formulaire recueille uniquement les informations utiles pour comprendre le projet et préparer une première réponse."
+      }
+    ]
+  },
+  "voice": {
+    "eyebrow": "Ton éditorial",
+    "title": "Clair, humain, précis.",
+    "text": [
+      "Le texte doit rendre le travail compréhensible sans jargon de studio, promesses vagues ni vocabulaire artificiellement premium."
+    ],
+    "rules": [
+      {
+        "title": "Expliquer les décisions",
+        "text": [
+          "Dire ce qui devait être résolu, pourquoi un choix a été fait et ce qu'il permet."
+        ]
+      },
+      {
+        "title": "Éviter les formules génériques",
+        "text": [
+          "Limiter sur mesure, expérience unique, univers immersif, raconter votre histoire et les expressions qui pourraient appartenir à n'importe quel studio."
+        ]
+      },
+      {
+        "title": "Études de cas structurées",
+        "text": [
+          "Contexte → problème → réponse → décisions → résultat ou portée réelle. Ne jamais inventer de métriques."
+        ]
+      },
+      {
+        "title": "CTA explicites",
+        "text": [
+          "Voir les projets, Voir les accompagnements, Parler d'un projet."
+        ]
+      }
+    ]
+  },
+  "palette": [
+    {
+      "name": "Ink",
+      "value": "#161616",
+      "role": "Texte, contraste et structure"
+    },
+    { "name": "Warm White", "value": "#F6F5F3", "role": "Fond principal" },
+    {
+      "name": "Soft Neutral",
+      "value": "#D8D4CC",
+      "role": "Surface secondaire"
+    },
+    { "name": "Chow Red", "value": "#D85234", "role": "Accent et signature" }
+  ],
+  "typography": {
+    "heading": {
+      "label": "Display local",
+      "family": "À valider après migration des fontes locales",
+      "sample": "Design, identité, direction."
+    },
+    "body": {
+      "label": "Texte courant",
+      "family": "Système existant conservé",
+      "sample": "Une présence digitale claire, cohérente et bien construite."
+    },
+    "scale": "Conserver strictement l'échelle, les tokens et les mixins typographiques du starter.",
+    "note": "La migration de marque peut changer les familles locales retenues, jamais la structure typographique existante. Butler et Averia restent des candidates à tester lors de l'art direction."
+  },
+  "imagery": {
+    "eyebrow": "Image",
+    "title": "Le projet comme matière éditoriale.",
+    "text": [
+      "Utiliser les mockups, détails d'identité, interfaces et images de projet pour expliquer autant que pour séduire.",
+      "Varier cadrages et échelles afin d'éviter l'effet catalogue tout en gardant une lecture cohérente entre les études de cas."
+    ],
+    "media": [
+      "home-cover",
+      "atmosphere-laptop",
+      "sasha-laptop",
+      "kuro-laptop",
+      "maloya-tablet",
+      "ravine-laptop"
+    ]
+  },
+  "composition": {
+    "eyebrow": "UI / UX",
+    "title": "Un système stable, des compositions qui respirent.",
+    "rules": [
+      "Préserver les composants et layouts existants.",
+      "Créer la différence par le contenu, les médias, la couleur, le rythme et la composition plutôt que par de nouveaux composants.",
+      "Éviter les répétitions de Cards identiques lorsqu'une composition éditoriale existante suffit.",
+      "Garder les métadonnées projet constantes et faciles à scanner.",
+      "Sur mobile, maintenir une progression claire : contexte → preuve → détail → action."
+    ]
+  },
+  "geometry": {
+    "eyebrow": "Composition",
+    "title": "La structure existe déjà.",
+    "text": [
+      "Ne pas migrer de rayons, ombres, bordures, espacements ou géométrie depuis l'ancien site. Le starter reste la source de vérité."
+    ],
+    "samples": [
+      "existing-grid",
+      "existing-section-system",
+      "existing-media-layouts",
+      "existing-spacing-tokens"
+    ]
+  },
+  "motion": {
+    "eyebrow": "Mouvement",
+    "title": "Élégant et utile.",
+    "text": [
+      "Le mouvement accompagne la navigation, le changement de page et la découverte des contenus sans devenir un effet permanent. Le mode reduced motion doit rester vivant tout en supprimant les mouvements susceptibles de gêner."
+    ],
+    "behaviors": [
+      "Page transition",
+      "Loader",
+      "Reveal",
+      "Grid reveal",
+      "Parallax léger",
+      "Footer reveal"
+    ]
+  },
+  "conversion": {
+    "primary": "Voir les projets",
+    "secondary": "Voir les accompagnements",
+    "business": "Parler d'un projet",
+    "proof": [
+      "Études de cas",
+      "Méthode",
+      "Double compétence design + frontend",
+      "Contenus utiles"
+    ],
+    "mobile": "Le parcours doit permettre de comprendre rapidement le studio, voir une preuve et accéder au contact sans CTA intrusif répété."
+  },
+  "application": {
+    "eyebrow": "Application",
+    "title": "Une identité forte dans une architecture réutilisable.",
+    "items": [
+      {
+        "title": "Hiérarchie",
+        "text": [
+          "Positionnement, projet et besoin client restent lisibles avant les détails."
+        ]
+      },
+      {
+        "title": "Composition",
+        "text": [
+          "Les mêmes composants peuvent produire des rythmes différents grâce aux médias et aux layouts existants."
+        ]
+      },
+      {
+        "title": "Preuve",
+        "text": [
+          "Les études de cas expliquent les décisions plutôt que d'empiler des images."
+        ]
+      },
+      {
+        "title": "Conversion",
+        "text": [
+          "Les accompagnements et le formulaire transforment l'intérêt en conversation sans sur-vendre."
+        ]
+      },
+      {
+        "title": "CMS",
+        "text": [
+          "Projet, média, service, méthode et article restent des données séparées et réutilisables."
+        ]
+      }
+    ]
+  },
+  "status": {
+    "eyebrow": "Direction retenue",
+    "title": "Chow Studio dans le système chow26.",
+    "text": [
+      "Identité, contenu, palette, médias et choix de fontes peuvent évoluer. Architecture, composants, tokens structurels et logique responsive restent ceux du starter."
+    ]
+  }
 }

@@ -14,7 +14,8 @@
   position: relative;
   z-index: $z-base;
   overflow: visible;
-  background: var(--theme-accent);
+  background: var(--theme-primary);
+  color: var(--secondary);
 }
 
 .page[data-footer-reveal="true"] {

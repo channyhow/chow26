@@ -17,16 +17,16 @@ export function RouteLoader({ disabled = false }: { disabled?: boolean }) {
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       transition={{
-        delay: motionConfig.duration.fast,
-        duration: motionConfig.duration.default,
+        delay: 1.1,
+        duration: motionConfig.duration.slow,
         ease: motionConfig.easing.soft,
       }}
       style={{ pointerEvents: "none" }}
     >
+      <span className="loader__mark" />
       <div className="loader__messages">
         <span>{message}</span>
       </div>
-      <span className="loader__line" />
     </motion.div>
   );
 }

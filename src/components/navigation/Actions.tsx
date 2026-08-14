@@ -17,6 +17,8 @@ function isProjectStartAction(label: string) {
 }
 
 function resolveVariant(action: Action, index: number, actionCount: number) {
+  if (action.variant) return action.variant;
+
   if (actionCount === 2) {
     return index === 0 ? "primary" : "arrow";
   }
@@ -25,10 +27,7 @@ function resolveVariant(action: Action, index: number, actionCount: number) {
     return "arrow";
   }
 
-  return (
-    action.variant ??
-    (action.priority === "primary" ? "primary" : undefined)
-  );
+  return action.priority === "primary" ? "primary" : undefined;
 }
 
 export function Actions({
@@ -42,6 +41,7 @@ export function Actions({
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
         const variant = resolveVariant(action, index, links.length);
+        const hasArrow = variant === "arrow" || variant === "cta";
 
         const classNames = clsx(
           "actions__link",
@@ -51,7 +51,7 @@ export function Actions({
         const content = (
           <>
             <span className="actions__label">{action.label}</span>
-            {variant === "arrow" ? (
+            {hasArrow ? (
               <span className="actions__arrow" aria-hidden="true">→</span>
             ) : null}
           </>

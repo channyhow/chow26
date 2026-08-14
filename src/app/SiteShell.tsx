@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 
 import { Drawer } from "@/components/navigation/Drawer";
+import { FloatingAction } from "@/components/navigation/FloatingAction";
 import { Header } from "@/components/navigation/Header";
 import { ScrollProgress, type ScrollProgressMode } from "@/components/navigation/ScrollProgress";
 import siteData from "@/data/site.json";
@@ -8,6 +9,9 @@ import { selectDrawerView, selectOverlayOpen, useUIStore } from "@/state/uiStore
 import type { StyleVariant, Tone } from "@/types/content";
 
 type ThemeStyle = CSSProperties & Record<`--${string}`, string>;
+
+const fontStack = (family: string, fallback: "serif" | "sans-serif") =>
+  `"${family}", ${fallback === "serif" ? "Georgia, 'Times New Roman', serif" : "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"}`;
 
 export function SiteShell({ children }: { children: ReactNode }) {
   const drawer = useUIStore(selectDrawerView);
@@ -33,12 +37,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
     "--primary": foreground,
     "--secondary": background,
     "--accent": colors.accent,
-    "--font-heading-classic": `"${fonts.classicHeading}"`,
-    "--font-heading-editorial": `"${fonts.editorialHeading}"`,
-    "--font-heading-organic": `"${fonts.organicHeading}"`,
-    "--font-body-project": `"${fonts.body}"`,
-    "--font-heading": `"${headingFont}"`,
-    "--font-body": `"${fonts.body}"`,
+        "--special": colors.special,
+
+    "--font-heading-classic": fontStack(fonts.classicHeading, "serif"),
+    "--font-heading-editorial": fontStack(fonts.editorialHeading, "serif"),
+    "--font-heading-organic": fontStack(fonts.organicHeading, "serif"),
+    "--font-body-project": fontStack(fonts.body, "sans-serif"),
+    "--font-heading": fontStack(headingFont, "serif"),
+    "--font-body": fontStack(fonts.body, "sans-serif"),
   };
 
   return (
@@ -50,14 +56,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-overlay={overlayOpen ? "open" : "closed"}
       style={themeStyle}
     >
-      <a className="skipLink" href="#main-content">
-        Aller au contenu principal
-      </a>
+      <a className="skipLink" href="#main-content">Aller au contenu principal</a>
       <ScrollProgress mode={scrollProgress} />
       <Header />
-      <main id="main-content" className="site__canvas" tabIndex={-1}>
-        {children}
-      </main>
+      <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
+      <FloatingAction />
       <Drawer />
     </div>
   );

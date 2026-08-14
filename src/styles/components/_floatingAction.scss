@@ -1,0 +1,75 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
+.floatingAction {
+  position: fixed;
+  right: clamp(#{$space-2}, 3vw, #{$space-3});
+  bottom: clamp(#{$space-2}, 3vw, #{$space-3});
+  z-index: 50;
+}
+
+.floatingAction__details {
+  position: relative;
+}
+
+.floatingAction__trigger {
+  @include standard-control;
+  @include type-ui-compact;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-1;
+
+  cursor: pointer;
+  list-style: none;
+
+  background: var(--special);
+  color: #1d1d1b;
+  border: 1px solid rgba(29, 29, 27, 0.65);
+
+  @include hover {
+    background: #1d1d1b;
+    color: #d8d2c8;
+    border-color: #1d1d1b;
+  }
+}
+
+.floatingAction__trigger::-webkit-details-marker {
+  display: none;
+}
+
+.floatingAction__menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + #{$space-1});
+  display: grid;
+  min-width: min(18rem, calc(100vw - #{$space-4}));
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: $radius-default;
+  background: var(--secondary);
+  color: var(--primary);
+  box-shadow: $shadow-soft;
+}
+
+.floatingAction__link {
+  padding: $space-2;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  transition: opacity $transition-hover;
+}
+
+.floatingAction__link:last-child {
+  border-bottom: 0;
+}
+
+.floatingAction__link:hover {
+  opacity: $opacity-muted;
+}
+
+.floatingAction__link:focus-visible,
+.floatingAction__trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

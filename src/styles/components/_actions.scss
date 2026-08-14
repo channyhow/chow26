@@ -35,9 +35,7 @@
     opacity $transition-hover,
     transform $transition-hover;
 
-  &:focus-visible {
-    @include focus-ring;
-  }
+  &:focus-visible { @include focus-ring; }
 
   &:active:not(:disabled, [aria-disabled="true"]) {
     transform: translateY(1px);
@@ -51,7 +49,9 @@
   }
 }
 
-.actions__link:not([class*="actions__link--"]) .actions__label {
+.actions__link:not([class*="actions__link--"]) .actions__label,
+.actions__link--arrow .actions__label,
+.actions__link--cta .actions__label {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -86,36 +86,19 @@
 }
 
 .actions__link--outline {
-  background: transparent;
-  color: inherit;
-
   @include hover {
     border-color: var(--accent);
     color: var(--accent);
   }
 }
 
-.actions__link--arrow {
-  color: inherit;
-
-  .actions__label {
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    transition: background-size $transition-hover;
-  }
-
+.actions__link--arrow,
+.actions__link--cta {
   @include hover {
     color: var(--accent);
 
-    .actions__label {
-      background-size: 100% 1px;
-    }
-
-    .actions__arrow {
-      transform: translateX(0.2em);
-    }
+    .actions__label { background-size: 100% 1px; }
+    .actions__arrow { transform: translateX(0.2em); }
   }
 }
 
@@ -133,7 +116,8 @@
 
   .actions__link:active,
   .actions__link--primary:hover,
-  .actions__link--arrow:hover .actions__arrow {
+  .actions__link--arrow:hover .actions__arrow,
+  .actions__link--cta:hover .actions__arrow {
     transform: none;
   }
 }

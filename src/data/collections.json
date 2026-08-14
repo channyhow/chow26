@@ -1,190 +1,370 @@
 {
   "projects": [
     {
-      "id": "appartement-paris",
-      "eyebrow": "Paris · 2026 · Résidentiel",
-      "title": "Appartement à Paris",
+      "id": "atmosphere",
+      "eyebrow": "Architecture intérieure · 2026",
+      "title": "Atmosphere",
       "text": [
-        "Rénovation douce d’un appartement parisien autour des contrastes chaleureux, du végétal et d’une atmosphère enveloppante.",
-        "Mission : architecture intérieure, palette de matières, mobilier et stylisme."
+        "Une direction digitale chaleureuse et éditoriale pour un studio d’architecture intérieure.",
+        "Mission : direction visuelle et UI design."
       ],
-      "media": "paris-entryway",
-      "tags": [
-        "architecture intérieure",
-        "résidentiel",
-        "matières naturelles"
-      ],
+      "media": "atmosphere-laptop",
+      "tags": ["architecture intérieure", "web design", "direction visuelle"],
       "featured": true,
       "order": 1,
-      "slug": "appartement-paris",
-      "href": "/projets/appartement-paris",
-      "summary": "Un appartement parisien rééquilibré par le bois sombre, les tons terre et une présence végétale mesurée.",
+      "slug": "atmosphere",
+      "href": "/projets/atmosphere",
+      "summary": "Une présence digitale éditoriale qui laisse les matières, la lumière et les volumes porter le récit.",
       "description": [
-        "Le projet part d’un appartement aux circulations fragmentées et à la lumière inégale. L’intervention clarifie les passages, crée des continuités visuelles et donne à chaque pièce une fonction plus lisible.",
-        "Une palette de bois profond, de pierre mate et de textiles naturels réchauffe l’ensemble sans l’alourdir. Le mobilier bas préserve les perspectives tandis que le végétal accompagne les seuils et adoucit les lignes.",
-        "Le résultat est un intérieur enveloppant, précis et facile à vivre, où les matières prennent le relais de l’ornement."
+        "Le projet part d’un enjeu simple : traduire la sensibilité d’un studio d’architecture intérieure sans transformer son site en catalogue d’effets.",
+        "La hiérarchie, le rythme éditorial et la place donnée aux images construisent une expérience plus incarnée, tandis que l’interface reste suffisamment calme pour laisser les projets prendre le premier rôle.",
+        "Cette étude de cas explore la manière dont direction artistique et UI peuvent renforcer la perception d’un studio sans ajouter de complexité inutile."
       ],
       "facts": [
-        {
-          "label": "Lieu",
-          "value": "Paris, France"
-        },
-        {
-          "label": "Typologie",
-          "value": "Appartement résidentiel"
-        },
-        {
-          "label": "Année",
-          "value": "2026"
-        },
-        {
-          "label": "Mission",
-          "value": "Architecture intérieure, matières, mobilier et stylisme"
-        }
+        { "label": "Type", "value": "Site d’architecture" },
+        { "label": "Année", "value": "2026" },
+        { "label": "Mission", "value": "Direction visuelle, UI design" },
+        { "label": "Focus", "value": "Éditorial, matières, projets" }
       ],
-      "gallery": [
-        "paris-entryway",
-        "paris-bathroom"
-      ],
+      "gallery": ["atmosphere-tablet", "atmosphere-mobile-solo"],
       "seo": {
-        "title": "Appartement à Paris | Atmosphere Studio",
-        "description": "Rénovation intérieure d’un appartement parisien par Atmosphere Studio : circulations clarifiées, bois sombre, matières naturelles et lumière douce.",
-        "image": "/assets/photos/atmosphere/paris-entryway.jpg"
+        "title": "Atmosphere | Site d’architecture intérieure — Chow Studio",
+        "description": "Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.",
+        "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
       }
     },
     {
-      "id": "maison-lisbonne",
-      "eyebrow": "Lisbonne · 2026 · Maison",
-      "title": "Maison à Lisbonne",
+      "id": "kuro",
+      "eyebrow": "Restaurant japonais · 2026",
+      "title": "Kuro",
       "text": [
-        "Direction d’ambiance pour une maison baignée de lumière, pensée autour des enduits texturés, du végétal et d’un confort méditerranéen.",
-        "Mission : direction d’ambiance, palette de matières, mobilier et stylisme."
+        "Une présence digitale sombre et précise, pensée autour du lieu et d’une réservation sans détour.",
+        "Mission : UI design et intégration frontend."
       ],
-      "media": "lisbon-living",
-      "tags": [
-        "maison",
-        "méditerranéen",
-        "lumière"
-      ],
+      "media": "kuro-video",
+      "tags": ["restaurant", "web design", "responsive", "conversion"],
       "featured": true,
       "order": 2,
-      "slug": "maison-lisbonne",
-      "href": "/projets/maison-lisbonne",
-      "summary": "Une maison lumineuse où les enduits texturés, les fibres naturelles et les vues vers le patio composent un calme méditerranéen.",
+      "slug": "kuro",
+      "href": "/projets/kuro",
+      "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
       "description": [
-        "La maison s’organise autour de la lumière et de sa relation au patio. Les pièces de vie sont pensées comme une suite d’espaces ouverts, avec des seuils doux plutôt que des ruptures franches.",
-        "Les enduits minéraux, le bois clair et les fibres tressées créent une palette sobre qui évolue au fil de la journée. Quelques pièces de mobilier sculpturales structurent les volumes sans interrompre la circulation.",
-        "L’ensemble recherche moins l’effet que la durée : une atmosphère claire, tactile et suffisamment souple pour accompagner la vie quotidienne."
+        "Kuro est une présence web imaginée pour un restaurant japonais de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et réserver.",
+        "La direction visuelle sombre et éditoriale soutient l’expérience tandis que la carte, les informations pratiques et les points de réservation restent clairement hiérarchisés.",
+        "Le projet associe direction d’interface et intégration frontend afin que l’intention visuelle reste cohérente jusque dans l’expérience responsive."
       ],
       "facts": [
-        {
-          "label": "Lieu",
-          "value": "Lisbonne, Portugal"
-        },
-        {
-          "label": "Typologie",
-          "value": "Maison"
-        },
-        {
-          "label": "Année",
-          "value": "2026"
-        },
-        {
-          "label": "Mission",
-          "value": "Direction d’ambiance, matières, mobilier et stylisme"
-        }
+        { "label": "Type", "value": "Site de restaurant" },
+        { "label": "Année", "value": "2026" },
+        { "label": "Mission", "value": "UI design, intégration frontend" },
+        { "label": "Focus", "value": "Réservation, atmosphère, responsive" }
       ],
-      "gallery": [
-        "lisbon-living",
-        "lisbon-patio",
-        "lisbon-entryway"
-      ],
+      "gallery": ["kuro-laptop", "kuro-mobile"],
       "seo": {
-        "title": "Maison à Lisbonne | Atmosphere Studio",
-        "description": "Direction intérieure d’une maison à Lisbonne : lumière naturelle, enduits texturés, fibres et confort méditerranéen par Atmosphere Studio.",
-        "image": "/assets/photos/atmosphere/lisbon-living.jpg"
+        "title": "Kuro | Web design pour restaurant — Chow Studio",
+        "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
+        "image": "/assets/photos/work/kuro/kuro__laptop.jpg"
       }
     },
     {
-      "id": "villa-bali",
-      "eyebrow": "Bali · 2026 · Villa",
-      "title": "Villa à Bali",
+      "id": "sashayogaflow",
+      "eyebrow": "Yoga & bien-être · 2025",
+      "title": "Sasha Yoga Flow",
       "text": [
-        "Concept intérieur pour une villa tropicale pensée comme une retraite douce, entre végétation, matières naturelles et circulation apaisée.",
-        "Mission : concept intérieur, mobilier, matières et direction d’ambiance."
+        "Une expérience mobile-first qui rassemble cours, planning, informations et réservation dans un même mouvement.",
+        "Mission : direction visuelle et UI design."
       ],
-      "media": "bali-entryway",
-      "tags": [
-        "villa",
-        "tropical",
-        "résidentiel"
-      ],
+      "media": "sasha-laptop",
+      "tags": ["yoga", "wellness", "web design", "mobile-first"],
       "featured": true,
       "order": 3,
-      "slug": "villa-bali",
-      "href": "/projets/villa-bali",
-      "summary": "Une villa tropicale pensée comme une retraite ouverte, entre végétation dense, pierre claire et circulations apaisées.",
+      "slug": "sashayogaflow",
+      "href": "/projets/sashayogaflow",
+      "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
       "description": [
-        "Le concept intérieur prolonge le paysage plutôt qu’il ne s’en isole. Les cheminements, les vues et les zones de repos sont alignés pour créer une transition continue entre dedans et dehors.",
-        "La pierre, le bois et les surfaces minérales répondent à la végétation sans chercher l’exotisme décoratif. Les volumes restent simples ; la lumière, l’air et les ombres donnent au lieu son rythme.",
-        "Chaque espace conserve une forme d’intimité tout en restant relié au jardin, pour une expérience calme, sensorielle et naturellement ventilée."
+        "Le projet rassemble dans un même espace les formats de cours, le planning, les informations pratiques et les accès à la réservation.",
+        "La priorité mobile-first répond à un usage concret : consulter rapidement une séance, comprendre l’offre et passer à l’action depuis son téléphone.",
+        "La direction visuelle apporte une identité plus personnelle à l’expérience sans compromettre la lisibilité ni la simplicité du parcours."
       ],
       "facts": [
-        {
-          "label": "Lieu",
-          "value": "Bali, Indonésie"
-        },
-        {
-          "label": "Typologie",
-          "value": "Villa"
-        },
-        {
-          "label": "Année",
-          "value": "2026"
-        },
-        {
-          "label": "Mission",
-          "value": "Concept intérieur, matières, mobilier et direction d’ambiance"
-        }
+        { "label": "Type", "value": "Branding & web design" },
+        { "label": "Année", "value": "2025" },
+        { "label": "Mission", "value": "Direction visuelle, UI design" },
+        { "label": "Focus", "value": "Mobile-first, réservation" }
+      ],
+      "gallery": ["sasha-laptop", "sasha-mobile"],
+      "seo": {
+        "title": "Sasha Yoga Flow | Site yoga & réservation — Chow Studio",
+        "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
+        "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
+      }
+    },
+    {
+      "id": "mois-du-ker",
+      "eyebrow": "Campagne de sensibilisation · La Réunion · 2025",
+      "title": "Mois du Kèr",
+      "text": [
+        "Une identité claire et chaleureuse pour parler de santé cardiovasculaire sans distance inutile.",
+        "Mission : identité visuelle."
+      ],
+      "media": "mois-du-ker-textile",
+      "tags": ["identité visuelle", "campagne", "santé", "La Réunion"],
+      "featured": true,
+      "order": 4,
+      "slug": "mois-du-ker",
+      "href": "/projets/mois-du-ker",
+      "summary": "Une identité de campagne où le cœur relie prévention cardiovasculaire et attachement à La Réunion.",
+      "description": [
+        "Mois du Kèr est une campagne de prévention destinée à sensibiliser la population réunionnaise aux risques cardiovasculaires et à encourager des habitudes de vie plus actives.",
+        "L’identité devait rester immédiatement compréhensible tout en portant une dimension locale et affective. Le cœur devient ainsi à la fois symbole de prévention et signe d’un territoire que l’on porte avec soi.",
+        "Le système graphique est conçu pour conserver cette lecture sur différents supports physiques et digitaux."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Branding & campagne" },
+        { "label": "Lieu", "value": "La Réunion" },
+        { "label": "Année", "value": "2025" },
+        { "label": "Mission", "value": "Identité visuelle" }
+      ],
+      "gallery": ["mois-du-ker-textile"],
+      "seo": {
+        "title": "Mois du Kèr | Identité de campagne — Chow Studio",
+        "description": "Création de l’identité visuelle du Mois du Kèr, campagne de sensibilisation cardiovasculaire à La Réunion, par Chow Studio.",
+        "image": "/assets/photos/work/mois-du-ker/mois-du-ker__textile.jpg"
+      }
+    },
+    {
+      "id": "maloya",
+      "eyebrow": "Musique · 2026 · Concept",
+      "title": "Maloya",
+      "text": [
+        "Une plateforme immersive où vidéos, concerts et univers visuel trouvent la même scène.",
+        "Mission : UI design et direction visuelle."
+      ],
+      "media": "maloya-video",
+      "tags": ["musique", "responsive", "vidéo", "UI design"],
+      "featured": true,
+      "order": 5,
+      "slug": "maloya",
+      "href": "/projets/maloya",
+      "summary": "Un concept de plateforme musicale qui rassemble contenus, tournée et univers visuel dans une expérience pensée pour le mobile.",
+      "description": [
+        "Maloya est un concept digital imaginé pour un groupe de musique souhaitant réunir son univers dans un espace unique plutôt que de disperser vidéos, réseaux sociaux, dates et contact.",
+        "La vidéo joue un rôle central dans la direction visuelle tandis que la structure garde les informations de tournée et les points de contact facilement accessibles.",
+        "Le projet explore l’équilibre entre immersion artistique et efficacité d’une expérience responsive."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Concept website" },
+        { "label": "Année", "value": "2026" },
+        { "label": "Mission", "value": "UI design, direction visuelle" },
+        { "label": "Focus", "value": "Vidéo, expérience mobile" }
+      ],
+      "gallery": ["maloya-tablet", "maloya-mobile"],
+      "seo": {
+        "title": "Maloya | Concept de site pour groupe de musique — Chow Studio",
+        "description": "Concept de plateforme musicale immersive : vidéo, dates, contenus et expérience mobile réunis dans une direction digitale par Chow Studio.",
+        "image": "/assets/photos/work/maloya/tablet_mockup.jpg"
+      }
+    },
+    {
+      "id": "ravine-branding",
+      "eyebrow": "Identité visuelle · 2023",
+      "title": "Ravine — Identité",
+      "text": [
+        "Un système graphique sensible, décliné du papier à l’écran sans perdre son accent.",
+        "Mission : direction artistique."
+      ],
+      "media": "ravine-business-card",
+      "tags": ["identité visuelle", "branding", "print"],
+      "featured": false,
+      "order": 6,
+      "slug": "ravine-branding",
+      "href": "/projets/ravine-branding",
+      "summary": "Un univers cohérent construit autour d’un nom, d’un logo, d’une palette et d’une direction typographique capables de vivre sur plusieurs supports.",
+      "description": [
+        "Ravine développe une identité conçue comme un système plutôt que comme un logo isolé.",
+        "La direction artistique organise les relations entre signe, typographie, couleur et image afin que l’identité conserve son caractère du print au digital.",
+        "Les déclinaisons montrent comment quelques règles suffisamment solides peuvent produire de la variété sans perdre la reconnaissance."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Identité visuelle" },
+        { "label": "Année", "value": "2023" },
+        { "label": "Mission", "value": "Direction artistique" },
+        { "label": "Focus", "value": "Print, système graphique" }
+      ],
+      "gallery": ["ravine-flyer", "ravine-textile", "ravine-homepage"],
+      "seo": {
+        "title": "Ravine | Identité visuelle — Chow Studio",
+        "description": "Étude de cas d’identité visuelle : logo, typographie, palette et déclinaisons print et digitales conçues comme un système cohérent.",
+        "image": "/assets/photos/work/ravine/ravine_business card.jpg"
+      }
+    },
+    {
+      "id": "ravine-web",
+      "eyebrow": "Éditorial digital · La Réunion · 2024",
+      "title": "Ravine — Web",
+      "text": [
+        "Une exploration web inspirée par les paysages et les récits de La Réunion, entre structure et immersion.",
+        "Mission : direction visuelle et frontend."
+      ],
+      "media": "ravine-laptop",
+      "tags": ["web design", "éditorial", "La Réunion", "frontend"],
+      "featured": false,
+      "order": 7,
+      "slug": "ravine-web",
+      "href": "/projets/ravine-web",
+      "summary": "Une exploration éditoriale où structure de contenu, direction artistique et frontend construisent une lecture contemporaine de La Réunion.",
+      "description": [
+        "Ravine transpose l’univers du projet dans une expérience digitale construite autour des paysages, des récits et des contrastes de La Réunion.",
+        "Le travail porte autant sur l’ordre du contenu que sur sa mise en scène : l’immersion ne remplace jamais la lecture.",
+        "La réalisation frontend prolonge cette direction en maintenant le rythme et la hiérarchie sur les différents formats d’écran."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Site web éditorial" },
+        { "label": "Année", "value": "2024" },
+        { "label": "Mission", "value": "Direction visuelle, frontend" },
+        { "label": "Focus", "value": "Storytelling, immersion" }
+      ],
+      "gallery": ["ravine-desktop"],
+      "seo": {
+        "title": "Ravine | Web design éditorial — Chow Studio",
+        "description": "Exploration web éditoriale autour de La Réunion : storytelling, direction artistique et développement frontend par Chow Studio.",
+        "image": "/assets/photos/work/ravine/ravine_laptop.jpg"
+      }
+    },
+    {
+      "id": "randorunoi",
+      "eyebrow": "Trail & territoire · La Réunion · 2025",
+      "title": "RandoRunOi",
+      "text": [
+        "Une série d’affiches ancrée dans les reliefs réunionnais.",
+        "Mission : direction visuelle et print."
+      ],
+      "media": "randorun-poster",
+      "tags": ["affiche", "print", "sport", "La Réunion"],
+      "featured": false,
+      "order": 8,
+      "slug": "randorunoi",
+      "href": "/projets/randorunoi",
+      "summary": "Cinq affiches qui donnent une continuité visuelle aux événements tout en laissant chaque paysage réunionnais identifier sa course.",
+      "description": [
+        "RandoRunOi est une association de trail basée à La Réunion pour laquelle une série de cinq affiches a été imaginée.",
+        "Les photographies de paysages ancrent chaque événement dans son territoire. Le système graphique crée suffisamment de continuité pour identifier la série sans uniformiser les courses.",
+        "Le projet montre comment une direction visuelle simple peut renforcer simultanément reconnaissance, information et caractère local."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Série d’affiches" },
+        { "label": "Lieu", "value": "La Réunion" },
+        { "label": "Année", "value": "2025" },
+        { "label": "Mission", "value": "Direction visuelle, print" }
       ],
       "gallery": [
-        "bali-entryway",
-        "bali-bathroom"
+        "randorun-cilaos",
+        "randorun-cimasa",
+        "randorun-mafate",
+        "randorun-raid974",
+        "randorun-masters"
       ],
       "seo": {
-        "title": "Villa à Bali | Atmosphere Studio",
-        "description": "Concept intérieur d’une villa à Bali par Atmosphere Studio : architecture ouverte, matières naturelles, végétation et circulation apaisée.",
-        "image": "/assets/photos/atmosphere/bali-entryway.jpg"
+        "title": "RandoRunOi | Direction visuelle trail — Chow Studio",
+        "description": "Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.",
+        "image": "/assets/photos/work/randorun/randorun__poster.jpg"
+      }
+    },
+    {
+      "id": "structure",
+      "eyebrow": "Architecture · 2026 · Concept",
+      "title": "Structure",
+      "text": [
+        "Une exploration rationnelle : grille nette, hiérarchie franche, navigation directe."
+      ],
+      "media": "structure-mobile",
+      "tags": ["architecture", "web design", "UI design"],
+      "featured": false,
+      "order": 9,
+      "slug": "structure",
+      "href": "/projets/structure",
+      "summary": "Un concept de site d’architecture où la grille et la hiérarchie rendent l’information immédiatement lisible.",
+      "description": [
+        "Structure explore une approche systémique du site de studio d’architecture.",
+        "La grille, la hiérarchie et une navigation directe donnent la priorité aux projets et aux informations essentielles plutôt qu’aux effets d’interface.",
+        "Le concept sert de laboratoire pour une présence digitale rationnelle, modulaire et facile à parcourir."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Concept de site d’architecture" },
+        { "label": "Année", "value": "2026" },
+        { "label": "Mission", "value": "Direction visuelle, UI design" },
+        { "label": "Focus", "value": "Grille, hiérarchie" }
+      ],
+      "gallery": ["structure-laptop", "structure-mobile-multi"],
+      "seo": {
+        "title": "Structure | Concept de site d’architecture — Chow Studio",
+        "description": "Concept web pour studio d’architecture : grille, hiérarchie et navigation directe explorées par Chow Studio.",
+        "image": "/assets/photos/work/structure/structure__laptop.jpg"
+      }
+    },
+    {
+      "id": "contraste",
+      "eyebrow": "Architecture · 2026 · Concept",
+      "title": "Contraste",
+      "text": [
+        "Une interface sobre et mesurée, construite autour des espaces blancs et du rythme des projets."
+      ],
+      "media": "contraste-laptop",
+      "tags": ["architecture", "web design", "minimal"],
+      "featured": false,
+      "order": 10,
+      "slug": "contraste",
+      "href": "/projets/contraste",
+      "summary": "Une exploration web qui utilise espace, contraste et hiérarchie pour mettre les réalisations d’un cabinet d’architecture au premier plan.",
+      "description": [
+        "Contraste est un concept web pensé pour un cabinet d’architecture contemporain à l’expression sobre.",
+        "L’interface travaille surtout la hiérarchie visuelle, les espaces blancs et le rythme entre projets afin de créer une lecture élégante sans ajouter d’ornement inutile.",
+        "Le résultat explore une autre manière de donner du caractère à une présence digitale : par la composition plutôt que par l’accumulation."
+      ],
+      "facts": [
+        { "label": "Type", "value": "Concept de site d’architecture" },
+        { "label": "Année", "value": "2026" },
+        { "label": "Mission", "value": "Direction visuelle, UI design" },
+        { "label": "Focus", "value": "Contraste, minimalisme" }
+      ],
+      "gallery": ["contraste-laptop", "contraste-mobile"],
+      "seo": {
+        "title": "Contraste | Concept web architecture — Chow Studio",
+        "description": "Concept de site pour cabinet d’architecture : espaces blancs, hiérarchie des projets et direction visuelle sobre par Chow Studio.",
+        "image": "/assets/photos/work/contraste/contraste__laptop.jpg"
       }
     }
   ],
   "services": [
     {
-      "id": "interior-architecture",
-      "eyebrow": "01",
-      "title": "Architecture intérieure",
+      "id": "site-vitrine",
+      "eyebrow": "01 · Créer",
+      "title": "Site web sur mesure",
       "text": [
-        "Repenser les volumes, les usages, les circulations et les matières pour créer un lieu cohérent et facile à habiter."
+        "Pour présenter clairement une activité, structurer les contenus et construire une expérience responsive qui mène naturellement vers le bon point de contact.",
+        "À partir de 800 € · généralement 2 à 4 semaines."
       ],
       "featured": true,
       "order": 1
     },
     {
-      "id": "atmosphere-direction",
-      "eyebrow": "02",
-      "title": "Direction d’ambiance",
+      "id": "branding",
+      "eyebrow": "02 · Construire",
+      "title": "Identité visuelle",
       "text": [
-        "Construire une palette de matières, de couleurs, de mobilier et de lumière qui donne au lieu une présence sensible."
+        "Pour poser une direction reconnaissable et cohérente : logo, palette, typographies et principes suffisamment solides pour fonctionner du web aux supports de communication.",
+        "À partir de 500 € · généralement 2 à 4 semaines."
       ],
       "featured": true,
       "order": 2
     },
     {
-      "id": "styling",
-      "eyebrow": "03",
-      "title": "Mobilier et stylisme",
+      "id": "refonte",
+      "eyebrow": "03 · Faire évoluer",
+      "title": "Refonte & clarification",
       "text": [
-        "Affiner le mobilier, les objets et les finitions pour prolonger l’intention sans surcharger l’espace."
+        "Pour garder ce qui fonctionne, remettre de l’ordre dans les contenus et reconstruire une présence plus lisible, crédible et simple à faire évoluer.",
+        "À partir de 900 € · généralement 2 à 6 semaines."
       ],
       "featured": true,
       "order": 3
@@ -192,72 +372,80 @@
   ],
   "approach": [
     {
-      "id": "uses",
-      "title": "Partir des usages",
+      "id": "clarify",
+      "title": "Clarifier",
       "text": [
-        "Chaque projet commence par ce qui doit réellement se passer dans le lieu au quotidien."
+        "Comprendre le contexte, le public, les objectifs, les contraintes et ce qui doit réellement changer avant de dessiner une réponse."
       ],
       "order": 1
     },
     {
-      "id": "light",
-      "title": "Observer la lumière",
+      "id": "structure",
+      "title": "Structurer",
       "text": [
-        "Volumes, orientations, ombres et lumière artificielle structurent l’ambiance avant les objets."
+        "Donner au contenu son ordre et définir les parcours avant de travailler la forme. La hiérarchie devient une décision de projet, pas une correction de dernière minute."
       ],
       "order": 2
     },
     {
-      "id": "materials",
-      "title": "Composer la matière",
+      "id": "design-build",
+      "title": "Concevoir & réaliser",
       "text": [
-        "Bois, enduits, céramique, fibres, végétal et couleurs sont composés avec retenue."
+        "Construire la direction visuelle et l’expérience en gardant responsive, accessibilité et faisabilité dans la même conversation."
       ],
       "order": 3
+    },
+    {
+      "id": "deliver",
+      "title": "Livrer & transmettre",
+      "text": [
+        "Mettre en ligne un projet propre, documenté et suffisamment solide pour évoluer sans dépendre d’une reconstruction à chaque changement."
+      ],
+      "order": 4
     }
   ],
   "journal": [
     {
-      "id": "minimalisme-chaleureux",
-      "eyebrow": "Notes d’ambiance · Mars 2026",
-      "title": "Créer un minimalisme chaleureux sans vider l’espace",
+      "id": "site-web-clair",
+      "eyebrow": "UX & contenu",
+      "title": "Avant de redesign un site, clarifier ce qu’il doit faire",
       "text": [
-        "Quelques pistes pour composer un intérieur calme, vivant et texturé."
+        "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle pour construire un site plus clair et plus utile."
       ],
       "featured": true,
       "order": 1,
-      "href": "/journal/minimalisme-chaleureux"
+      "href": "/journal/site-web-clair"
     },
     {
-      "id": "palette-neutre",
-      "eyebrow": "Matières · Février 2026",
-      "title": "Construire une palette neutre qui reste sensible",
+      "id": "identite-visuelle-systeme",
+      "eyebrow": "Identité visuelle",
+      "title": "Une identité utile ne s’arrête pas au logo",
       "text": [
-        "Ivoire, sable, pierre et bois peuvent créer une vraie richesse lorsqu’ils sont bien superposés."
+        "Logo, typographie, couleur, image et règles d’usage : pourquoi une identité visuelle utile doit fonctionner comme un système."
       ],
       "featured": true,
       "order": 2,
-      "href": "/journal/palette-neutre"
+      "href": "/journal/identite-visuelle-systeme"
     },
     {
-      "id": "lumiere-maison-calme",
-      "eyebrow": "Guide · Janvier 2026",
-      "title": "La lumière comme point de départ d’un intérieur apaisé",
+      "id": "design-et-developpement",
+      "eyebrow": "Design & frontend",
+      "title": "Quand le design connaît déjà la manière dont il sera construit",
       "text": [
-        "Luminaires, ombres et éclairages indirects peuvent transformer entièrement la perception d’un lieu."
+        "Ce que change une approche où design, UX et développement frontend sont pensés ensemble dès le début d’un projet web."
       ],
       "featured": true,
       "order": 3,
-      "href": "/journal/lumiere-maison-calme"
+      "href": "/journal/design-et-developpement"
     }
   ],
   "links": [
     {
       "id": "link-projects",
-      "title": "Découvrir les projets",
+      "title": "Voir le travail",
       "links": [
         {
-          "label": "Voir les projets",
+          "label": "Découvrir les projets",
           "href": "/projets",
           "intent": "navigate"
         }
@@ -267,18 +455,32 @@
       "order": 1
     },
     {
-      "id": "link-contact",
-      "title": "Présenter un projet",
+      "id": "link-services",
+      "title": "Comprendre les accompagnements",
       "links": [
         {
-          "label": "Démarrer un projet",
+          "label": "Voir les accompagnements",
+          "href": "/approche",
+          "intent": "navigate"
+        }
+      ],
+      "group": "primary",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "link-contact",
+      "title": "Vous avez un projet ?",
+      "links": [
+        {
+          "label": "Parler d’un projet",
           "href": "/contact",
           "intent": "contact"
         }
       ],
       "group": "primary",
       "enabled": true,
-      "order": 2
+      "order": 3
     }
   ],
   "reviews": [],
@@ -287,16 +489,12 @@
   "locations": [
     {
       "id": "studio-paris",
-      "eyebrow": "Studio",
-      "title": "Paris, France",
+      "eyebrow": "Studio indépendant",
+      "title": "Paris · La Réunion",
       "text": [
-        "Atmosphere Studio est un studio fictif d’architecture intérieure basé à Paris, créé pour cette étude de cas Chow Studio."
+        "Chow Studio travaille entre Paris et La Réunion et accompagne également des projets à distance."
       ],
-      "tags": [
-        "Paris",
-        "Île-de-France",
-        "architecture intérieure"
-      ],
+      "tags": ["Paris", "Île-de-France", "La Réunion", "à distance"],
       "enabled": true,
       "order": 1
     }

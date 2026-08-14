@@ -5,6 +5,31 @@
 [build.environment]
   NODE_VERSION = "22.23.2"
 
+# Preserve useful legacy Chow Studio URLs and any backlinks pointing to them.
+[[redirects]]
+  from = "/work"
+  to = "/projets"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work/*"
+  to = "/projets"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comprendre"
+  to = "/approche"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comprendre/*"
+  to = "/approche"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404/index.html"
@@ -13,7 +38,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; upgrade-insecure-requests"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
     Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=()"

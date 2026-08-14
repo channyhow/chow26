@@ -5,8 +5,8 @@
   --primary: #{$color-primary};
   --secondary: #{$color-secondary};
   --accent: #{$color-accent};
-  --font-heading: "DM Serif Display", serif;
-  --font-body: "DM Sans", sans-serif;
+  --font-heading: var(--font-heading-classic);
+  --font-body: var(--font-body-project);
   --section-space: #{$space-4};
   --section-gap: #{$space-3};
   --text-width: #{$measure-text};
@@ -21,7 +21,8 @@
 }
 
 [data-variant="editorial"] {
-  --font-heading: "Playfair Display", serif;
+  --font-heading: var(--font-heading-editorial);
+  --font-body: var(--font-body-project);
   --section-space: #{$space-5};
   --section-gap: #{$space-4};
   --text-width: 34rem;
@@ -36,7 +37,8 @@
 }
 
 [data-variant="organic"] {
-  --font-heading: "Fraunces", serif;
+  --font-heading: var(--font-heading-organic);
+  --font-body: var(--font-body-project);
   --section-space: #{$space-4};
   --section-gap: #{$space-3};
   --text-width: 38rem;
@@ -51,10 +53,10 @@
 }
 
 [data-tone="inverse"] {
-  --primary: #{$color-secondary};
-  --secondary: #{$color-primary};
+  --primary: var(--theme-secondary);
+  --secondary: var(--theme-primary);
 }
 
 [data-tone="accent"] {
-  --secondary: var(--accent);
+  --secondary: var(--theme-accent);
 }

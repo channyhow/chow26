@@ -1,3 +1,4 @@
+@use "foundation/fonts";
 @use "foundation/tokens" as *;
 @use "foundation/mixins";
 @use "foundation/typography";
@@ -24,17 +25,19 @@
 @use "components/schedule";
 @use "components/loader";
 @use "components/form";
+@use "components/floatingAction";
 @use "components/siteShell";
 @use "components/burgerButton";
 @use "components/drawer";
 @use "components/systemPage";
 @use "components/brandingPage";
 @use "project/artDirection";
+@use "project/footer";
 
 :root {
   color: var(--primary);
   background: var(--secondary);
-  font-family: var(--font-body, "Poppins", sans-serif);
+  font-family: system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }

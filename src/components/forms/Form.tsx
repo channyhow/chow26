@@ -6,6 +6,7 @@ import type { Action } from "@/types/content";
 import type { FormField, FormSchema } from "@/types/forms";
 
 import { Actions } from "../navigation/Actions";
+import { TallyFormEmbed } from "./TallyFormEmbed";
 
 type FormControl =
   | HTMLInputElement
@@ -33,19 +34,40 @@ const normalizeText = (value: string) =>
     .join("")
     .trim();
 
-export function Form({
-  schema,
-}: {
-  schema: FormSchema;
-}) {
+const resolveTallyFormId = (schema: FormSchema) => {
+  if (schema.formId) return schema.formId;
+
+  if (schema.name === "project-call") {
+    return import.meta.env.VITE_TALLY_RESERVATION_FORM_ID;
+  }
+
+  return import.meta.env.VITE_TALLY_CONTACT_FORM_ID;
+};
+
+export function Form({ schema }: { schema: FormSchema }) {
   const formCopy = siteData.ui.copy.forms;
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const tallyFormId = resolveTallyFormId(schema);
+  const useTally =
+    schema.provider === "tally" ||
+    (schema.name === "project-enquiry" && Boolean(tallyFormId));
+
+  if (useTally) {
+    return (
+      <div className="form form--tally">
+        <TallyFormEmbed
+          formId={tallyFormId}
+          embedUrl={schema.embedUrl}
+          title={schema.title ?? "Formulaire de contact"}
+          fallbackHeight={schema.fallbackHeight}
+        />
+      </div>
+    );
+  }
 
   const formActions: Action[] = [
     {
-      label:
-        schema.submitLabel ??
-        formCopy.defaultSubmitLabel,
+      label: schema.submitLabel ?? formCopy.defaultSubmitLabel,
       intent: "submit",
       priority: "primary",
       variant: "primary",
@@ -53,14 +75,8 @@ export function Form({
   ];
 
   const getErrorMessage = (control: FormControl) => {
-    if (control.validity.valueMissing) {
-      return formCopy.requiredError;
-    }
-
-    if (control.validity.typeMismatch && control.type === "email") {
-      return formCopy.emailError;
-    }
-
+    if (control.validity.valueMissing) return formCopy.requiredError;
+    if (control.validity.typeMismatch && control.type === "email") return formCopy.emailError;
     if (
       control.validity.badInput ||
       control.validity.rangeOverflow ||
@@ -69,13 +85,11 @@ export function Form({
     ) {
       return formCopy.numberError;
     }
-
     return formCopy.genericError;
   };
 
   const handleInvalid = (event: FormEvent<FormControl>) => {
     event.preventDefault();
-
     const control = event.currentTarget;
     setErrors((current) => ({
       ...current,
@@ -86,7 +100,6 @@ export function Form({
   const clearError = (name: string) => {
     setErrors((current) => {
       if (!current[name]) return current;
-
       const next = { ...current };
       delete next[name];
       return next;
@@ -108,42 +121,25 @@ export function Form({
       data-netlify="true"
       data-netlify-honeypot="website"
     >
-      <input
-        type="hidden"
-        name="form-name"
-        value={schema.name}
-      />
+      <input type="hidden" name="form-name" value={schema.name} />
 
       <p hidden aria-hidden="true">
         <label>
           Ne pas remplir ce champ
-          <input
-            name="website"
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-          />
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" />
         </label>
       </p>
 
       <div className="form__body">
         {schema.fields.map((field) => {
-          const fieldId =
-            `${schema.name}-${field.name}`;
-          const errorId =
-            `${fieldId}-error`;
+          const fieldId = `${schema.name}-${field.name}`;
+          const errorId = `${fieldId}-error`;
           const error = errors[field.name];
-          const maxLength =
-            field.maxLength ??
-            DEFAULT_MAX_LENGTH[field.type];
+          const maxLength = field.maxLength ?? DEFAULT_MAX_LENGTH[field.type];
 
           if (field.type === "checkbox") {
             return (
-              <label
-                className="form__field form__field--checkbox"
-                key={field.name}
-                htmlFor={fieldId}
-              >
+              <label className="form__field form__field--checkbox" key={field.name} htmlFor={fieldId}>
                 <input
                   id={fieldId}
                   className="form__control form__control--checkbox"
@@ -155,33 +151,15 @@ export function Form({
                   onInvalid={handleInvalid}
                   onChange={() => clearError(field.name)}
                 />
-
-                <span className="form__label">
-                  {field.label}
-                </span>
-
-                {error ? (
-                  <span
-                    id={errorId}
-                    className="form__error"
-                    role="alert"
-                  >
-                    {error}
-                  </span>
-                ) : null}
+                <span className="form__label">{field.label}</span>
+                {error ? <span id={errorId} className="form__error" role="alert">{error}</span> : null}
               </label>
             );
           }
 
           return (
-            <label
-              className="form__field"
-              key={field.name}
-              htmlFor={fieldId}
-            >
-              <span className="form__label">
-                {field.label}
-              </span>
+            <label className="form__field" key={field.name} htmlFor={fieldId}>
+              <span className="form__label">{field.label}</span>
 
               {field.type === "textarea" ? (
                 <textarea
@@ -213,17 +191,9 @@ export function Form({
                   onInvalid={handleInvalid}
                   onChange={() => clearError(field.name)}
                 >
-                  <option value="" disabled>
-                    {formCopy.selectPlaceholder}
-                  </option>
-
+                  <option value="" disabled>{formCopy.selectPlaceholder}</option>
                   {field.options?.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
+                    <option key={option.value} value={option.value}>{option.label}</option>
                   ))}
                 </select>
               ) : (
@@ -248,25 +218,14 @@ export function Form({
                 />
               )}
 
-              {error ? (
-                <span
-                  id={errorId}
-                  className="form__error"
-                  role="alert"
-                >
-                  {error}
-                </span>
-              ) : null}
+              {error ? <span id={errorId} className="form__error" role="alert">{error}</span> : null}
             </label>
           );
         })}
       </div>
 
       <footer className="form__footer">
-        <Actions
-          links={formActions}
-          className="form__actions"
-        />
+        <Actions links={formActions} className="form__actions" />
       </footer>
     </form>
   );

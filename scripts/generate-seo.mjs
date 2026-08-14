@@ -96,7 +96,7 @@ const llms = [
   "",
   `- Canonical site: ${baseUrl}`,
   `- Language: ${site.defaultLocale}`,
-  "- Content type: Interior architecture studio website",
+  "- Content type: Independent design, identity and frontend studio website",
   `- Creator: ${site.credits.name} · ${site.credits.studio}`,
   ...(site.credits.href ? [`- Creator website: ${site.credits.href}`] : []),
   "",
@@ -126,7 +126,7 @@ const llms = [
   ...(areas.length
     ? [
         "",
-        "## Studio setting",
+        "## Service areas",
         "",
         ...areas.map((area) => `- ${area}`),
       ]
@@ -134,7 +134,7 @@ const llms = [
   ...(projectLocations.length
     ? [
         "",
-        "## Portfolio project locations",
+        "## Geographic focus",
         "",
         ...projectLocations.map((location) => `- ${location}`),
       ]
@@ -144,7 +144,7 @@ const llms = [
   "",
   `- Contact page: ${baseUrl}/contact`,
   ...(site.contact.email ? [`- Email: ${site.contact.email}`] : []),
-  `- Location represented: ${site.contact.address.city}, ${site.contact.address.country}`,
+  `- Studio base: ${site.contact.address.city}, ${site.contact.address.country}`,
   `- Site created by: ${site.credits.name} · ${site.credits.studio}`,
   "",
   "This file is generated from src/data/site.json, src/data/pages.json and src/data/collections.json. Keep those sources accurate.",

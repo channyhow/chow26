@@ -1,27 +1,161 @@
-import type { CSSProperties } from "react";
-
 import brandingData from "@/data/branding.json";
-import { Card } from "@/components/content/Card";
 import { Media } from "@/components/content/Media";
-import { TextBlock } from "@/components/content/TextBlock";
-import { Grid } from "@/components/layout/Grid";
 import { PageMeta } from "@/components/page/PageMeta";
 import { resolveMedia } from "@/data/resolveMedia";
-import type { ContentItem } from "@/types/content";
+
+type MoodboardItem = {
+  id: string;
+  index: string;
+  label: string;
+  mediaId?: string;
+  kind?: "image" | "type" | "palette" | "placeholder";
+  position: string;
+};
+
+const moodboardItems: MoodboardItem[] = [
+  {
+    id: "ravine",
+    index: "01",
+    label: "Identité · Ravine",
+    mediaId: "ravine-business-card",
+    position: "a",
+  },
+  {
+    id: "type",
+    index: "02",
+    label: "Typographie · contraste",
+    kind: "type",
+    position: "b",
+  },
+  {
+    id: "ker",
+    index: "03",
+    label: "Campagne · Mois du Kèr",
+    mediaId: "mois-du-ker-textile",
+    position: "c",
+  },
+  {
+    id: "palette",
+    index: "04",
+    label: "Palette · système",
+    kind: "palette",
+    position: "d",
+  },
+  {
+    id: "randorun",
+    index: "05",
+    label: "Édition · RandoRun",
+    mediaId: "randorun-poster",
+    position: "e",
+  },
+  {
+    id: "sasha",
+    index: "06",
+    label: "Digital · bien-être",
+    mediaId: "sasha-mobile",
+    position: "f",
+  },
+  {
+    id: "future-photo",
+    index: "07",
+    label: "Photographie · matière",
+    kind: "placeholder",
+    position: "g",
+  },
+  {
+    id: "atmosphere",
+    index: "08",
+    label: "Direction digitale · architecture",
+    mediaId: "atmosphere-laptop",
+    position: "h",
+  },
+];
 
 export function BrandingPage() {
-  const imagery = brandingData.imagery.media.map((id) => resolveMedia(id)).filter(Boolean);
-  return <><PageMeta seo={{ title: "Direction de marque | Chow Studio", description: "Direction de marque, récit, UX et système visuel.", robots: { index: false, follow: false } }} /><div className="page brandingPage" data-variant="editorial">
-    <section className="section brandingPage__intro"><div className="section__inner stack"><TextBlock content={brandingData.intro as ContentItem} titleAs="h1" /></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={brandingData.concept as ContentItem} /><div className="brandingPage__keywords" aria-label="Mots-clés de direction">{brandingData.concept.keywords.map((keyword) => <span key={keyword}>{keyword}</span>)}</div></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={{ eyebrow: brandingData.storytelling.eyebrow, title: brandingData.storytelling.title }} /><Grid>{brandingData.storytelling.chapters.map((chapter) => <Card key={chapter.step} item={{ eyebrow: chapter.step, title: chapter.title, text: [chapter.text] }} />)}</Grid></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={{ eyebrow: brandingData.voice.eyebrow, title: brandingData.voice.title, text: brandingData.voice.text }} /><Grid>{brandingData.voice.rules.map((rule) => <Card key={rule.title} item={rule as ContentItem} />)}</Grid></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={{ eyebrow: "Couleurs", title: "Une palette courte, des rôles clairs." }} /><div className="brandingPage__palette">{brandingData.palette.map((color) => <article className="brandingPage__swatch" key={color.name} style={{ "--swatch": color.value } as CSSProperties}><div className="brandingPage__swatchColor" aria-hidden="true" /><div className="brandingPage__swatchMeta"><strong>{color.name}</strong><span>{color.value}</span><p>{color.role}</p></div></article>)}</div></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={{ eyebrow: "Typographie", title: "Hiérarchie, contraste, lisibilité." }} /><div className="brandingPage__typePairing"><article className="brandingPage__typeSample brandingPage__typeSample--heading"><span>{brandingData.typography.heading.label}</span><p>{brandingData.typography.heading.sample}</p><small>{brandingData.typography.heading.family}</small></article><article className="brandingPage__typeSample brandingPage__typeSample--body"><span>{brandingData.typography.body.label}</span><p>{brandingData.typography.body.sample}</p><small>{brandingData.typography.body.family}</small></article></div><p className="brandingPage__note">{brandingData.typography.note}</p></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={brandingData.imagery as ContentItem} /><div className="brandingPage__imagery">{imagery.map((media) => media ? <Media key={media.id} media={media} /> : null)}</div></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={brandingData.geometry as ContentItem} /><div className="brandingPage__surfaces"><div className="frame brandingPage__surface">Frame</div><div className="frame effectGlass brandingPage__surface">Glass</div><div className="brandingPage__surface brandingPage__surface--organic">Organic</div></div></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={brandingData.motion as ContentItem} /><div className="brandingPage__keywords" aria-label="Comportements de mouvement">{brandingData.motion.behaviors.map((behavior) => <span key={behavior}>{behavior}</span>)}</div></div></section>
-    <section className="section"><div className="section__inner stack"><TextBlock content={{ eyebrow: brandingData.application.eyebrow, title: brandingData.application.title }} /><Grid>{brandingData.application.items.map((item) => <Card key={item.title} item={item as ContentItem} />)}</Grid></div></section>
-    <section className="section brandingPage__status"><div className="section__inner stack"><TextBlock content={brandingData.status as ContentItem} /></div></section>
-  </div></>;
+  return (
+    <>
+      <PageMeta
+        seo={{
+          title: "Moodboard & direction de marque | Chow Studio",
+          description: "Moodboard de direction visuelle, identité, typographie, couleur et applications Chow Studio.",
+          robots: { index: false, follow: false },
+        }}
+      />
+
+      <main className="page brandingPage" data-variant="editorial">
+        <section className="brandingPage__board" aria-labelledby="branding-moodboard-title">
+          <header className="brandingPage__boardHeader">
+            <h1 id="branding-moodboard-title">Moodboard</h1>
+            <p>Chow Studio · direction visuelle</p>
+          </header>
+
+          <div className="brandingPage__introNote">
+            <p>(2026)</p>
+            <p>Identité visuelle<br />et direction digitale</p>
+          </div>
+
+          <div className="brandingPage__moodboard">
+            {moodboardItems.map((item) => {
+              const media = item.mediaId ? resolveMedia(item.mediaId) : undefined;
+              const kind = item.kind ?? "image";
+
+              return (
+                <article
+                  key={item.id}
+                  className={`brandingPage__tile brandingPage__tile--${item.position} brandingPage__tile--${kind}`}
+                >
+                  <div className="brandingPage__tileMeta">
+                    <span>{item.index}.</span>
+                    <span>{item.label}</span>
+                  </div>
+
+                  {kind === "image" && media ? (
+                    <Media media={media} className="brandingPage__media" />
+                  ) : null}
+
+                  {kind === "image" && !media ? (
+                    <div className="brandingPage__placeholder" aria-label={`${item.label} · média à venir`}>
+                      <img src="/media/placeholders/landscape.svg" alt="" />
+                      <span>Média à venir</span>
+                    </div>
+                  ) : null}
+
+                  {kind === "placeholder" ? (
+                    <div className="brandingPage__placeholder" aria-label={`${item.label} · direction à compléter`}>
+                      <img src="/media/placeholders/portrait.svg" alt="" />
+                      <span>Direction à compléter</span>
+                    </div>
+                  ) : null}
+
+                  {kind === "type" ? (
+                    <div className="brandingPage__typeStudy">
+                      <span className="brandingPage__typeDisplay">Aa</span>
+                      <p>{brandingData.typography.heading.sample}</p>
+                      <small>{brandingData.typography.body.sample}</small>
+                    </div>
+                  ) : null}
+
+                  {kind === "palette" ? (
+                    <div className="brandingPage__paletteStudy">
+                      {brandingData.palette.slice(0, 4).map((color) => (
+                        <div key={color.name} className="brandingPage__paletteColor">
+                          <span style={{ background: color.value }} aria-hidden="true" />
+                          <small>{color.name}</small>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
+
+          <footer className="brandingPage__boardFooter">
+            <p>Clarté · contraste · matière · rythme</p>
+            <p>Images et applications évoluent avec les projets.</p>
+          </footer>
+        </section>
+      </main>
+    </>
+  );
 }

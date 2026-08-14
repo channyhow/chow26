@@ -2,14 +2,15 @@ import type { FormSchema } from "@/types/forms";
 
 export type StyleVariant = "classic" | "editorial" | "organic";
 export type Tone = "default" | "inverse" | "accent";
-export type SectionSurface =
+export type SectionColor =
   | "primary"
   | "secondary"
-  |  "special"
-  | "accent"
-  | "transparent";
+  | "special"
+  | "accent";
+export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
 export type CardEffect = "none" | "glass" | "grain";
+export type TimelineOrientation = "vertical" | "horizontal";
 
 export type CardAppearance = {
   frame?: boolean;
@@ -24,12 +25,14 @@ export type SectionLayout =
   | "gallery"
   | "carousel"
   | "media"
-  | "media-overlay";
+  | "media-overlay"
+  | "timeline"
+  | "content-switcher";
 export type GroupLayout = "flow" | "scroll-panel" | "sticky" | "overlap";
 export type PanelMode = "scene" | "stack";
 export type PanelSize = "sm" | "md" | "lg" | "full";
 export type PanelAlign = "left" | "center" | "right";
-export type PanelSurface = "solid" | "glass" | "transparent";
+export type PanelSurface = SectionSurface;
 export type PanelBehavior = "fixed" | "moving" | "stack";
 
 export type ActionIntent =
@@ -44,7 +47,7 @@ export type ActionIntent =
   | "share"
   | "submit";
 
-export type ActionVariant = "primary" | "outline" | "arrow";
+export type ActionVariant = "primary" | "outline" | "arrow" | "cta";
 
 export type Action = {
   label: string;
@@ -117,7 +120,9 @@ export type SectionBlock = {
   variant?: StyleVariant;
   tone?: Tone;
   surface?: SectionSurface;
+  color?: SectionColor;
   layout?: SectionLayout;
+  timelineOrientation?: TimelineOrientation;
   source?: SourceRef;
   content?: SectionContent;
   frame?: boolean;
@@ -136,7 +141,7 @@ export type PanelLane = {
   size?: PanelSize;
   align?: PanelAlign;
   surface?: PanelSurface;
-  color?: SectionSurface;
+  color?: SectionColor;
   blocks: BlockRef[];
 };
 
@@ -149,7 +154,7 @@ export type SectionGroup = {
     size?: PanelSize;
     align?: PanelAlign;
     surface?: PanelSurface;
-    color?: SectionSurface;
+    color?: SectionColor;
   };
   panels?: PanelLane[];
   motion?: {

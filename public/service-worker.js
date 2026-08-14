@@ -1,4 +1,4 @@
-const CACHE_VERSION = "atmosphere-v2";
+const CACHE_VERSION = "chow-studio-v1";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = "/offline.html";
@@ -7,7 +7,6 @@ const APP_SHELL = [
   "/",
   OFFLINE_URL,
   "/site.webmanifest",
-  "/favicon.svg",
   "/favicon.ico",
   "/favicon-16x16.png",
   "/favicon-32x32.png",
@@ -40,7 +39,7 @@ self.addEventListener("activate", (event) => {
           keys
             .filter(
               (key) =>
-                key.startsWith("atmosphere-") &&
+                (key.startsWith("atmosphere-") || key.startsWith("chow-studio-")) &&
                 key !== STATIC_CACHE &&
                 key !== PAGE_CACHE,
             )
