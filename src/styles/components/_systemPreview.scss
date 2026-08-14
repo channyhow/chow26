@@ -1,0 +1,2 @@
+@use "../foundation/tokens" as *;
+.systemPage .loader { position: relative; inset: auto; z-index: auto; width: 100%; min-height: clamp(10rem, 28svh, 16rem); padding: $space-3; border-radius: var(--radius-surface, #{$radius-default}); }
