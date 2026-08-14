@@ -137,6 +137,7 @@ export function PageRenderer({ page }: PageRendererProps) {
       <PageMeta seo={page.seo} />
       <div
         className="page"
+        data-page-id={page.id}
         data-variant={page.variant}
         data-footer-reveal={footerReveal && footerEntries.length ? "true" : "false"}
       >
