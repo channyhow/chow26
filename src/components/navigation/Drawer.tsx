@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import { Form } from "@/components/forms/Form";
 import formsData from "@/data/forms.json";
@@ -71,9 +72,9 @@ export function Drawer() {
           {renderedView === "menu" ? (
             <nav className="drawer__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
               {navigationItems.map((item) => (
-                <a key={item.id} href={item.href} onClick={closeOverlay}>
+                <Link key={item.id} to={item.href} onClick={closeOverlay}>
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           ) : (
