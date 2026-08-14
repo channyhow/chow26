@@ -1,7 +1,7 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-.siteFooter#site-footer {
+.siteFooter {
   min-height: 0;
   padding:
     clamp(3rem, 6vw, 5.5rem)
@@ -32,12 +32,14 @@
 }
 
 .siteFooter__name,
-.siteFooter__baseline {
-  margin: 0;
+.siteFooter__baseline,
+.siteFooter__meta {
+  @include type-ui-compact;
 }
 
-.siteFooter__name {
-  font-size: 1rem;
+.siteFooter__name,
+.siteFooter__baseline {
+  margin: 0;
 }
 
 .siteFooter__baselines {
@@ -114,7 +116,7 @@
 }
 
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
-  .siteFooter#site-footer {
+  .siteFooter {
     padding-top: clamp(3rem, 12vw, 4.5rem);
   }
 
