@@ -1,5 +1,6 @@
 {
   "primary": [
+    { "id": "home", "label": "Accueil", "href": "/", "enabled": true },
     { "id": "projects", "label": "Projets", "href": "/projets", "enabled": true },
     { "id": "studio", "label": "Studio", "href": "/studio", "enabled": true },
     {
