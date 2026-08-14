@@ -5,25 +5,36 @@ import type { Action, ContentItem, SectionBlock, SectionGroup, StyleVariant, Ton
 import type { CalendarEvent } from "@/types/schedule";
 
 export type SystemComponentName =
-  | "TextBlock"
+  | "Accordion"
   | "Actions"
-  | "Media"
+  | "BurgerButton"
   | "Card"
-  | "Grid"
-  | "Split"
-  | "Gallery"
   | "Carousel"
   | "ContentSwitcher"
-  | "Accordion"
-  | "Timeline"
-  | "ScrollScene"
-  | "ScrollPanel"
-  | "Loader"
-  | "Schedule"
+  | "Drawer"
   | "Embed"
+  | "FloatingAction"
   | "Form"
+  | "Gallery"
+  | "Grid"
+  | "Header"
+  | "HorizontalScroll"
+  | "Loader"
+  | "Media"
+  | "PageMeta"
+  | "PageRenderer"
+  | "RouteLoader"
+  | "Schedule"
+  | "ScrollPanel"
+  | "ScrollProgress"
+  | "ScrollScene"
   | "Section"
-  | "SectionGroup";
+  | "SectionGroup"
+  | "Seo"
+  | "SiteFooter"
+  | "Split"
+  | "TextBlock"
+  | "Timeline";
 
 export type SystemPreview = {
   id: string;
@@ -58,7 +69,7 @@ export type SystemData = {
   intro: ContentItem;
   variants: StyleVariant[];
   tones: Tone[];
-  shell: {
+  shell?: {
     title: string;
     description: string;
     drawerTriggers: Array<{
@@ -66,5 +77,5 @@ export type SystemData = {
       view: "menu" | "contact" | "reservation";
     }>;
   };
-  previews: SystemPreview[];
+  previews: Record<string, unknown> | SystemPreview[];
 };
