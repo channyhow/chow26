@@ -17,8 +17,8 @@ export function RouteLoader({ disabled = false }: { disabled?: boolean }) {
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       transition={{
-        delay: 1.1,
-        duration: motionConfig.duration.slow,
+        delay: 0.15,
+        duration: motionConfig.duration.fast,
         ease: motionConfig.easing.soft,
       }}
       style={{ pointerEvents: "none" }}
