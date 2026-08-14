@@ -15,7 +15,6 @@
   color: inherit;
   text-decoration: none;
   transition: color $transition-hover;
-
   @include hover { color: var(--accent); }
   &:focus-visible { @include focus-ring; }
 }
@@ -26,7 +25,6 @@
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-
   &:focus:not(:focus-visible) { outline: 0; }
   &:focus-visible { @include focus-ring; }
 }
@@ -43,7 +41,6 @@
     color $transition-hover,
     border-color $transition-hover,
     transform $transition-hover;
-
   &:focus-visible { @include focus-ring; }
 }
 
@@ -78,25 +75,13 @@
     box-shadow $transition-hover,
     background $transition-hover,
     opacity $transition-hover;
-
-  &::placeholder {
-    color: currentColor;
-    opacity: $opacity-soft;
-  }
-
-  @include hover {
-    border-color: color-mix(in srgb, currentColor 48%, transparent);
-  }
-
+  &::placeholder { color: currentColor; opacity: $opacity-soft; }
+  @include hover { border-color: color-mix(in srgb, currentColor 48%, transparent); }
   &:focus-visible {
     border-color: var(--accent);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 24%, transparent);
   }
-
-  &:disabled {
-    opacity: $opacity-disabled;
-    cursor: not-allowed;
-  }
+  &:disabled { opacity: $opacity-disabled; cursor: not-allowed; }
 }
 
 @mixin pill-outline {
@@ -104,13 +89,8 @@
   border-radius: var(--radius-control, #{$radius-full});
 }
 
-@mixin rule-top($strength: 18%) {
-  border-top: 1px solid color-mix(in srgb, currentColor $strength, transparent);
-}
-
-@mixin rule-bottom($strength: 18%) {
-  border-bottom: 1px solid color-mix(in srgb, currentColor $strength, transparent);
-}
+@mixin rule-top($strength: 18%) { border-top: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
+@mixin rule-bottom($strength: 18%) { border-bottom: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 
 @mixin glass {
   background: color-mix(in srgb, var(--surface, #{$color-secondary}) 72%, transparent);
@@ -121,7 +101,6 @@
 
 @mixin grain {
   position: relative;
-
   &::after {
     content: "";
     position: absolute;
@@ -134,10 +113,44 @@
   }
 }
 
-@mixin shape-arch {
-  border-radius: $radius-full $radius-full $radius-default $radius-default;
+@mixin media-fill($fit: cover, $position: center) {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: $fit;
+  object-position: $position;
 }
 
-@mixin shape-blob {
-  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+@mixin media-frame($ratio: $ratio-landscape, $fit: cover, $position: center) {
+  aspect-ratio: $ratio;
+  overflow: hidden;
+  > .media,
+  > .media__frame,
+  .media__frame,
+  .media__asset { width: 100%; height: 100%; }
+  .media__asset { @include media-fill($fit, $position); }
 }
+
+@mixin meta-chips($gap: $space-1) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+  > * { flex: 0 0 auto; }
+}
+
+@mixin split-composition($media: 1fr, $content: 1fr, $gap: $space-3, $align: center) {
+  display: grid;
+  grid-template-columns: minmax(0, $media) minmax(0, $content);
+  gap: $gap;
+  align-items: $align;
+  min-width: 0;
+}
+
+@mixin sticky-editorial($top: clamp(6rem, 10svh, 8rem)) {
+  position: sticky;
+  top: $top;
+  align-self: start;
+}
+
+@mixin shape-arch { border-radius: $radius-full $radius-full $radius-default $radius-default; }
+@mixin shape-blob { border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; }
