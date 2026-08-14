@@ -29,6 +29,10 @@ const notFoundPage: PageData = {
 function createProjectPage(project: ProjectRecord): PageData {
   const mood = projectMoods[project.id];
   const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
+  const storyLayout = profile?.storyLayout ?? "text";
+  const galleryLayout = profile?.galleryLayout ?? "gallery";
+  const storyMedia = storyLayout === "split" ? project.gallery[0] : undefined;
+  const galleryMedia = storyMedia ? project.gallery.slice(1) : project.gallery;
   const profileClasses = profile
     ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
     : "projectProfile projectProfile--structured";
@@ -60,7 +64,7 @@ function createProjectPage(project: ProjectRecord): PageData {
       {
         id: `project-${project.id}-story`,
         type: "Section",
-        layout: "text",
+        layout: storyLayout,
         variant: profile?.variant,
         motion: profile?.motion,
         className: `projectStory ${profileClasses}`,
@@ -71,12 +75,13 @@ function createProjectPage(project: ProjectRecord): PageData {
             text: project.description,
             meta: project.facts,
           },
+          media: storyMedia,
         },
       },
       {
         id: `project-${project.id}-gallery`,
         type: "Section",
-        layout: "gallery",
+        layout: galleryLayout,
         variant: profile?.variant,
         motion: profile?.motion,
         itemAppearance: profile?.cardEffect && profile.cardEffect !== "none"
@@ -85,10 +90,10 @@ function createProjectPage(project: ProjectRecord): PageData {
         className: `projectGallery ${profileClasses}`,
         content: {
           header: {
-            eyebrow: "Galerie",
+            eyebrow: galleryLayout === "carousel" ? "Séquence" : "Galerie",
             title: `Détails de ${project.title}.`,
           },
-          media: project.gallery,
+          media: galleryMedia,
         },
       },
       { ref: "projects-featured" },
