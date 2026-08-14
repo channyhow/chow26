@@ -37,26 +37,13 @@
 }
 
 .siteFooter__name {
-  @include type-heading-lg;
-
-  max-width: 10ch;
-  font-size: clamp(3rem, 11vw, 6rem);
-  line-height: .9;
-  letter-spacing: -.045em;
+  font-size: 1rem;
 }
 
 .siteFooter__baselines {
   display: grid;
   gap: .35rem;
   max-width: 28rem;
-}
-
-.siteFooter__baseline {
-  font-family: var(--font-body);
-  font-size: clamp(.76rem, .9vw, .9rem);
-  line-height: 1.4;
-  letter-spacing: .055em;
-  text-transform: uppercase;
 }
 
 .siteFooter__links {
@@ -85,11 +72,6 @@
   border: 0;
   background: transparent;
   color: inherit;
-  font-family: var(--font-body);
-  font-size: clamp(.84rem, 1vw, .98rem);
-  line-height: 1.25;
-  letter-spacing: .035em;
-  text-transform: uppercase;
 }
 
 .siteFooter .actions__link:hover,
@@ -104,11 +86,6 @@
   width: 100%;
   padding-top: $space-2;
   border-top: 1px solid color-mix(in srgb, currentColor 42%, transparent);
-  font-family: var(--font-body);
-  font-size: clamp(.68rem, .8vw, .8rem);
-  line-height: 1.35;
-  letter-spacing: .045em;
-  text-transform: uppercase;
 }
 
 @media (min-width: $bp-tablet) {
@@ -130,11 +107,6 @@
 }
 
 @media (min-width: $bp-desktop) {
-  .siteFooter__name {
-    max-width: 12ch;
-    font-size: clamp(4.5rem, 7vw, 7.5rem);
-  }
-
   .siteFooter__main {
     grid-template-columns: minmax(0, 2fr) minmax(24rem, .9fr);
     gap: clamp(4rem, 8vw, 9rem);
