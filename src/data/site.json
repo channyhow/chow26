@@ -2,15 +2,15 @@
   "site": {
     "id": "chow-studio",
     "name": "Chow Studio",
-    "baseline": "Sites, identités et directions visuelles, pensés avec clarté.",
+    "baseline": "Design web, identité visuelle et direction digitale entre Paris et La Réunion.",
     "url": "https://chow-studio.com",
     "defaultLocale": "fr",
     "supportedLocales": ["fr"],
     "seo": {
-      "defaultTitle": "Chow Studio | Design web, identité visuelle et direction digitale",
-      "defaultDescription": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales claires, singulières et bien construites, entre Paris et La Réunion.",
+      "defaultTitle": "Chow Studio | Design web & identité visuelle — Paris",
+      "defaultDescription": "Chow Studio conçoit des sites web, identités visuelles, refontes et directions digitales sur mesure à Paris et La Réunion.",
       "defaultImage": "/assets/photos/homepage31200.webp",
-      "imageAlt": "Chow Studio — design web, identité visuelle et direction digitale",
+      "imageAlt": "Chow Studio — design web, identité visuelle et direction digitale à Paris et La Réunion",
       "siteType": "website",
       "organizationType": "ProfessionalService",
       "twitterCard": "summary_large_image",
@@ -18,34 +18,41 @@
       "areaServed": [
         { "kind": "city", "name": "Paris" },
         { "kind": "region", "name": "Île-de-France" },
-        { "kind": "region", "name": "La Réunion" }
+        { "kind": "region", "name": "La Réunion" },
+        { "kind": "country", "name": "France" }
       ],
       "knowsAbout": [
         "Design web",
-        "Site vitrine sur mesure",
-        "Identité visuelle",
-        "Direction artistique digitale",
-        "Design d’interface",
-        "Développement frontend React",
+        "Création de site web sur mesure",
         "Refonte de site web",
+        "Identité visuelle",
+        "Branding",
+        "Direction artistique digitale",
+        "UX/UI design",
+        "Développement frontend React",
+        "Design responsive",
         "Expérience utilisateur"
       ],
-      "offerCatalogName": "Services Chow Studio",
+      "offerCatalogName": "Design web, identité visuelle et direction digitale",
       "services": [
         {
-          "name": "Sites web et refontes",
+          "name": "Création et refonte de sites web",
           "description": "Conception et développement de sites vitrines et expériences digitales sur mesure, de la structure à la mise en ligne."
         },
         {
-          "name": "Identité visuelle et direction artistique",
-          "description": "Création ou évolution d’identités visuelles et de directions digitales cohérentes avec le positionnement du projet."
+          "name": "Identité visuelle et branding",
+          "description": "Création ou évolution d’identités visuelles, systèmes graphiques et directions artistiques cohérents avec le positionnement du projet."
         },
         {
-          "name": "Clarification et évolution digitale",
-          "description": "Audit, cadrage et amélioration d’expériences existantes pour clarifier les contenus, les parcours et les priorités."
+          "name": "Direction digitale et UX/UI design",
+          "description": "Cadrage, architecture de contenu, UX/UI et direction visuelle pour construire ou faire évoluer une présence digitale claire et cohérente."
+        },
+        {
+          "name": "Développement frontend",
+          "description": "Intégration frontend responsive, accessible et maintenable pour traduire la direction visuelle en expérience web performante."
         }
       ],
-      "projectLocations": ["Paris", "Île-de-France", "La Réunion"]
+      "projectLocations": ["Paris", "Île-de-France", "La Réunion", "France"]
     },
     "pwa": {
       "name": "Chow Studio",
@@ -65,6 +72,11 @@
       }
     },
     "socials": {
+      "instagram": {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/hellochowstudio/",
+        "enabled": true
+      },
       "linkedin": {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/channyhow",
@@ -129,7 +141,7 @@
       "hideWhileVisible": "#home-opening",
       "items": [
         { "label": "Parler d’un projet", "href": "/contact" },
-        { "label": "Quel accompagnement ?", "href": "/approche" }
+        { "label": "Quel accompagnement ?", "href": "/studio" }
       ]
     }
   },
@@ -151,7 +163,7 @@
   },
   "integrations": {
     "hosting": "netlify",
-    "forms": "netlify",
+    "forms": "tally",
     "cms": false,
     "calendar": false,
     "newsletter": false,
