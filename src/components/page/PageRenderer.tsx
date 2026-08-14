@@ -61,6 +61,13 @@ const footerLinks = [
 ] as const;
 
 function prepareSection(entry: SectionBlock): SectionBlock {
+  if (entry.id === "studio-founders") {
+    return {
+      ...entry,
+      color: "special",
+    };
+  }
+
   if (entry.id === "studio-services") {
     return {
       ...entry,
