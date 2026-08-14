@@ -62,6 +62,14 @@ export function deriveBrandProfile(input: MoodAxes): BrandProfile {
       ? "grain"
       : "none";
 
+  const storyLayout = composition === "structured" || axes.density >= 0.66
+    ? "text"
+    : "split";
+
+  const galleryLayout = axes.motion >= 0.75 && axes.editorial >= 0.55
+    ? "carousel"
+    : "gallery";
+
   return {
     variant,
     tone,
@@ -71,5 +79,7 @@ export function deriveBrandProfile(input: MoodAxes): BrandProfile {
     composition,
     mediaTreatment,
     spacing,
+    storyLayout,
+    galleryLayout,
   };
 }
