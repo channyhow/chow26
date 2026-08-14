@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 import siteData from "@/data/site.json";
@@ -10,22 +10,23 @@ type FloatingActionConfig = typeof siteData.ui.floatingAction & {
 export function FloatingAction() {
   const { pathname } = useLocation();
   const config = siteData.ui.floatingAction as FloatingActionConfig;
-  const [hidden, setHidden] = useState(false);
+  const actionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!config.hideWhileVisible) {
-      setHidden(false);
-      return;
-    }
+    const action = actionRef.current;
+    if (!action) return;
+
+    action.dataset.hidden = "false";
+
+    if (!config.hideWhileVisible) return;
 
     const target = document.querySelector(config.hideWhileVisible);
-    if (!target) {
-      setHidden(false);
-      return;
-    }
+    if (!target) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setHidden(entry.isIntersecting),
+      ([entry]) => {
+        action.dataset.hidden = entry.isIntersecting ? "true" : "false";
+      },
       { threshold: 0.12 },
     );
 
@@ -37,9 +38,10 @@ export function FloatingAction() {
 
   return (
     <aside
+      ref={actionRef}
       className="floatingAction"
       aria-label={config.ariaLabel}
-      data-hidden={hidden ? "true" : "false"}
+      data-hidden="false"
     >
       <details className="floatingAction__details">
         <summary className="floatingAction__trigger">
