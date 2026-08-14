@@ -1,59 +1,37 @@
 @use "../foundation/tokens" as *;
 
-/* Chow 404: full viewport section, compact intrinsic content, natural footer. */
-.page[data-page-id="not-found"] .page__footer {
-  position: relative;
-  height: auto;
-  overflow: visible;
-}
-
+/* Chow 404: full viewport section, compact centered content. */
 #not-found-default {
+  --section-space: clamp(#{$space-3}, 7svh, #{$space-5});
   min-height: 100svh;
-  justify-content: center;
-  padding: clamp(#{$space-3}, 5vw, #{$space-4}) var(--project-gutter);
+  display: grid;
+  align-items: center;
 }
 
 #not-found-default .section__inner {
-  flex: 0 0 auto;
-  align-self: center;
   width: 100%;
-  max-width: none;
-  min-height: 0;
-  height: auto;
+  max-width: 48rem;
   display: grid;
   place-items: center;
 }
 
 #not-found-default .textBlock {
-  width: min(100%, 48rem);
+  width: min(100%, 42rem);
   max-width: none;
-  min-height: 0;
-  height: auto;
-  display: grid;
-  grid-auto-rows: max-content;
-  align-content: start;
-  justify-items: center;
-  gap: $space-2;
-  text-align: center;
-}
-
-#not-found-default .textBlock__header,
-#not-found-default .textBlock__content,
-#not-found-default .textBlock__footer {
-  width: 100%;
-  max-width: none;
-  min-height: 0;
-  height: auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(#{$space-2}, 2.5vw, #{$space-3});
   text-align: center;
 }
 
 #not-found-default .textBlock__header {
-  gap: $space-1;
+  width: 100%;
+  gap: clamp(#{$space-1}, 1.5vw, #{$space-2});
 }
 
 #not-found-default .textBlock__title {
-  max-width: 14ch;
+  max-width: 10ch;
   margin-inline: auto;
   text-wrap: balance;
 }
@@ -64,6 +42,7 @@
 }
 
 #not-found-default .textBlock__footer {
+  width: 100%;
   padding-top: 0;
 }
 
@@ -72,8 +51,12 @@
 }
 
 @media (max-width: $bp-tablet) {
+  #not-found-default .section__inner {
+    max-width: 36rem;
+  }
+
   #not-found-default .actions {
-    width: min(100%, 24rem);
+    width: min(100%, 22rem);
     flex-direction: column;
   }
 
