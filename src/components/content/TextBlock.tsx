@@ -17,6 +17,8 @@ const toArray = <T,>(value?: T | T[]): T[] => {
   return Array.isArray(value) ? value : [value];
 };
 
+const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
+
 const motionRoots = {
   article: motion.article,
   div: motion.div,
@@ -90,11 +92,30 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
 
       {hasMeta ? (
         <motion.div className="textBlock__meta" variants={revealItem}>
-          {content.meta?.map((item) => (
-            <span key={`${item.label}-${item.value ?? ""}`}>
-              {item.value ? `${item.label}: ${item.value}` : item.label}
-            </span>
-          ))}
+          {content.meta?.map((item) => {
+            const text = item.value ? `${item.label}: ${item.value}` : item.label;
+
+            if (item.href) {
+              const external = isExternalHref(item.href);
+
+              return (
+                <a
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                >
+                  {text}{external ? " ↗" : ""}
+                </a>
+              );
+            }
+
+            return (
+              <span key={`${item.label}-${item.value ?? ""}`}>
+                {text}
+              </span>
+            );
+          })}
         </motion.div>
       ) : null}
     </Root>
