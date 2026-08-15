@@ -38,5 +38,13 @@
       "intent": "navigate",
       "variant": "arrow"
     }
+  ],
+  "mois-du-ker": [
+    {
+      "label": "Voir le dossier",
+      "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
   ]
 }
