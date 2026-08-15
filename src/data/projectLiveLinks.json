@@ -30,5 +30,13 @@
       "intent": "navigate",
       "variant": "arrow"
     }
+  ],
+  "randorunoi": [
+    {
+      "label": "Voir le site",
+      "href": "https://www.randorunoi.com/",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
   ]
 }
