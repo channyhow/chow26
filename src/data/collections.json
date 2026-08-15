@@ -14,6 +14,9 @@
       "order": 1,
       "slug": "atmosphere",
       "href": "/projets/atmosphere",
+      "links": [
+        { "label": "Voir le site", "href": "https://atmosphere-studio.netlify.app", "intent": "navigate" }
+      ],
       "summary": "Une présence digitale éditoriale qui laisse les matières, la lumière et les volumes porter le récit.",
       "description": [
         "Le projet part d’un enjeu simple : traduire la sensibilité d’un studio d’architecture intérieure sans transformer son site en catalogue d’effets.",
@@ -47,6 +50,9 @@
       "order": 2,
       "slug": "kuro",
       "href": "/projets/kuro",
+      "links": [
+        { "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" }
+      ],
       "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
       "description": [
         "Kuro est une présence web imaginée pour un restaurant japonais de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et réserver.",
@@ -80,6 +86,9 @@
       "order": 3,
       "slug": "sashayogaflow",
       "href": "/projets/sashayogaflow",
+      "links": [
+        { "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" }
+      ],
       "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
       "description": [
         "Le projet rassemble dans un même espace les formats de cours, le planning, les informations pratiques et les accès à la réservation.",
@@ -113,6 +122,9 @@
       "order": 4,
       "slug": "mois-du-ker",
       "href": "/projets/mois-du-ker",
+      "links": [
+        { "label": "Voir le dossier", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" }
+      ],
       "summary": "Une identité de campagne où le cœur relie prévention cardiovasculaire et attachement à La Réunion.",
       "description": [
         "Mois du Kèr est une campagne de prévention destinée à sensibiliser la population réunionnaise aux risques cardiovasculaires et à encourager des habitudes de vie plus actives.",
@@ -146,6 +158,9 @@
       "order": 5,
       "slug": "maloya",
       "href": "/projets/maloya",
+      "links": [
+        { "label": "Voir le site", "href": "https://maloya-concept.netlify.app", "intent": "navigate" }
+      ],
       "summary": "Un concept de plateforme musicale qui rassemble contenus, tournée et univers visuel dans une expérience pensée pour le mobile.",
       "description": [
         "Maloya est un concept digital imaginé pour un groupe de musique souhaitant réunir son univers dans un espace unique plutôt que de disperser vidéos, réseaux sociaux, dates et contact.",
@@ -245,6 +260,9 @@
       "order": 8,
       "slug": "randorunoi",
       "href": "/projets/randorunoi",
+      "links": [
+        { "label": "Voir le site", "href": "https://www.randorunoi.com/", "intent": "navigate" }
+      ],
       "summary": "Cinq affiches qui donnent une continuité visuelle aux événements tout en laissant chaque paysage réunionnais identifier sa course.",
       "description": [
         "RandoRunOi est une association de trail basée à La Réunion pour laquelle une série de cinq affiches a été imaginée.",
