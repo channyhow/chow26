@@ -3,13 +3,15 @@ import { useParams } from "react-router-dom";
 import { PageRenderer } from "@/components/page/PageRenderer";
 import { Seo } from "@/components/page/Seo";
 import collections from "@/data/collections.json";
+import projectLiveLinksData from "@/data/projectLiveLinks.json";
 import projectMoodsData from "@/data/projectMoods.json";
 import { deriveBrandProfile } from "@/utils/deriveBrandProfile";
 import type { ProjectMood } from "@/types/branding";
-import type { PageData, ProjectRecord } from "@/types/content";
+import type { Action, PageData, ProjectRecord } from "@/types/content";
 
 const projects = collections.projects as ProjectRecord[];
 const projectMoods = projectMoodsData as Record<string, ProjectMood>;
+const projectLiveLinks = projectLiveLinksData as Record<string, Action[]>;
 
 const notFoundPage: PageData = {
   id: "project-not-found",
@@ -33,6 +35,7 @@ function createProjectPage(project: ProjectRecord): PageData {
   const galleryLayout = profile?.galleryLayout ?? "gallery";
   const storyMedia = storyLayout === "split" ? project.gallery[0] : undefined;
   const galleryMedia = storyMedia ? project.gallery.slice(1) : project.gallery;
+  const projectLinks = project.links?.length ? project.links : projectLiveLinks[project.id];
   const profileClasses = profile
     ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
     : "projectProfile projectProfile--structured";
@@ -74,6 +77,7 @@ function createProjectPage(project: ProjectRecord): PageData {
             title: project.summary,
             text: project.description,
             meta: project.facts,
+            links: projectLinks,
           },
           media: storyMedia,
         },
