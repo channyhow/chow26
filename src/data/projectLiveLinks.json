@@ -1,0 +1,34 @@
+{
+  "atmosphere": [
+    {
+      "label": "Voir le site",
+      "href": "https://atmosphere-studio.netlify.app",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
+  ],
+  "kuro": [
+    {
+      "label": "Voir le site",
+      "href": "https://omakase-kuro.netlify.app",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
+  ],
+  "sashayogaflow": [
+    {
+      "label": "Voir le site",
+      "href": "https://sashayogaflow.com",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
+  ],
+  "maloya": [
+    {
+      "label": "Voir le site",
+      "href": "https://maloya-concept.netlify.app",
+      "intent": "navigate",
+      "variant": "arrow"
+    }
+  ]
+}
