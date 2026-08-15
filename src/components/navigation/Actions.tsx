@@ -16,6 +16,10 @@ function isProjectStartAction(label: string) {
     .toLocaleLowerCase("fr") === "demarrer un projet";
 }
 
+function isExternalHref(href: string) {
+  return /^https?:\/\//i.test(href);
+}
+
 function resolveVariant(action: Action, index: number, actionCount: number) {
   if (action.variant) return action.variant;
 
@@ -75,11 +79,15 @@ export function Actions({
 
         if (!href) return null;
 
+        const external = isExternalHref(href);
+
         return (
           <a
             key={`${action.label}-${action.linkKey ?? href}`}
             className={classNames}
             href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
             data-intent={intent}
             data-priority={action.priority ?? "secondary"}
           >
