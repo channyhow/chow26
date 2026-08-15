@@ -1,6 +1,6 @@
 # Chow Studio
 
-> Sites, identités et directions visuelles, pensés avec clarté.
+> Design web, identité visuelle et direction digitale entre Paris et La Réunion.
 
 ## Identity
 
@@ -31,19 +31,22 @@
 
 ## Services represented
 
-- Sites web et refontes
-- Identité visuelle et direction artistique
-- Clarification et évolution digitale
+- Création et refonte de sites web
+- Identité visuelle et branding
+- Direction digitale et UX/UI design
+- Développement frontend
 
 ## Topics
 
 - Design web
-- Site vitrine sur mesure
-- Identité visuelle
-- Direction artistique digitale
-- Design d’interface
-- Développement frontend React
+- Création de site web sur mesure
 - Refonte de site web
+- Identité visuelle
+- Branding
+- Direction artistique digitale
+- UX/UI design
+- Développement frontend React
+- Design responsive
 - Expérience utilisateur
 
 ## Service areas
@@ -51,12 +54,14 @@
 - Paris
 - Île-de-France
 - La Réunion
+- France
 
 ## Geographic focus
 
 - Paris
 - Île-de-France
 - La Réunion
+- France
 
 ## Contact and attribution
 

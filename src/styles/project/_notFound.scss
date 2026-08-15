@@ -54,6 +54,10 @@
   #not-found-default .section__inner {
     max-width: 36rem;
   }
+  
+  #not-found-default .textBlock__footer {
+    justify-items: center;
+}
 
   #not-found-default .actions {
     width: min(100%, 22rem);

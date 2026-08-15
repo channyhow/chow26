@@ -558,6 +558,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
  .card__body .textBlock__meta {
   @include type-ui-compact;}
 }
+
 /* ==================================
    RESPONSIVE ART DIRECTION
 ================================== */
