@@ -74,6 +74,7 @@ function createProjectPage(project: ProjectRecord): PageData {
             title: project.summary,
             text: project.description,
             meta: project.facts,
+            links: project.links,
           },
           media: storyMedia,
         },
