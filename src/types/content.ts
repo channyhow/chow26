@@ -61,6 +61,7 @@ export type Action = {
 export type MetaItem = {
   label: string;
   value?: string;
+  href?: string;
 };
 
 export type MediaRef = string;
