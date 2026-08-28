@@ -10,7 +10,7 @@
   background: var(--secondary);
 }
 
-.page__footer {
+.page__footer, #site-footer {
   position: relative;
   z-index: $z-base;
   overflow: visible;

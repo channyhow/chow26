@@ -255,8 +255,7 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
-    "surface": "solid",
-    "color": "accent",
+    
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",

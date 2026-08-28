@@ -690,7 +690,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
     gap: clamp(1.5rem, 3vw, 3rem);
     padding: clamp(2.5rem, 6vw, 4rem) var(--project-gutter);
     border-right: 0;
-    border-bottom: 1px solid currentColor;
+    // border-bottom: 1px solid currentColor;
   }
 
   // #approach-default .timeline__content { display: contents; }

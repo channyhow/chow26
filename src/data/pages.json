@@ -26,7 +26,7 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
+            "surface": "glass",
             "color": "special",
             "blocks": [{ "ref": "projects-featured" }]
           },
@@ -47,11 +47,19 @@
             "surface": "solid",
             "color": "special",
             "blocks": [{ "ref": "home-services" }]
+          },
+          {
+            "id": "home-services-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" },
+      { "ref": "site-footer" }]
           }
         ]
-      },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
+      }
     ]
   },
   {
