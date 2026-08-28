@@ -258,7 +258,6 @@
   {
     "id": "journal-archive",
     "slug": "/journal",
-    "variant": "editorial",
     "seo": {
       "title": "Journal | Chow Studio",
       "description": "Archives éditoriales de Chow Studio.",
@@ -269,7 +268,6 @@
   {
     "id": "journal-site-clair",
     "slug": "/journal/site-web-clair",
-    "variant": "editorial",
     "seo": {
       "title": "Rendre un site web plus clair avant de le redesign | Chow Studio",
       "description": "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.",
@@ -280,7 +278,6 @@
   {
     "id": "journal-identite-systeme",
     "slug": "/journal/identite-visuelle-systeme",
-    "variant": "editorial",
     "seo": {
       "title": "Une identité visuelle doit fonctionner comme un système | Chow Studio",
       "description": "Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.",
@@ -291,7 +288,6 @@
   {
     "id": "journal-design-developpement",
     "slug": "/journal/design-et-developpement",
-    "variant": "editorial",
     "seo": {
       "title": "Pourquoi rapprocher design et développement frontend | Chow Studio",
       "description": "Design, UX et développement frontend pensés ensemble.",
