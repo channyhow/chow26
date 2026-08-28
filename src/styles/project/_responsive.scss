@@ -1,8 +1,10 @@
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
-/* Project-detail safeguards kept separate from art-direction composition so
-   case studies stay reusable while narrow layouts remain predictable. */
+/* Project-detail safeguards and final responsive art-direction corrections.
+   This file loads after _artDirection.scss, so selectors here intentionally
+   resolve narrow-layout conflicts without duplicating component primitives. */
 
 .projectHero .section__mediaOverlay {
   min-height: min(88svh, 58rem);
@@ -17,6 +19,89 @@
   min-width: 0;
   max-width: 100%;
   white-space: normal;
+}
+
+/* The timeline now uses the shared HorizontalScroll DOM. Keep the art direction
+   on the content item, not on obsolete timeline viewport/list selectors. */
+#approach-default .timeline[data-orientation="horizontal"] {
+  width: 100%;
+  height: auto;
+}
+
+#approach-default .horizontalScroll {
+  width: 100%;
+}
+
+#approach-default .horizontalScroll__viewport {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+#approach-default .horizontalScroll__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+}
+
+#approach-default .horizontalScroll__item {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100svh;
+  padding: clamp(3.5rem, 7svh, 6rem) var(--project-gutter);
+}
+
+#approach-default .horizontalScroll__item > .timeline__item {
+  display: block;
+  width: min(42rem, calc(100vw - 8rem));
+  height: auto;
+  min-height: 0;
+  margin-inline: auto;
+  padding: 0;
+}
+
+#approach-default .timeline__entry,
+#approach-default .timeline__content,
+#approach-default .timeline__content .textBlock__header,
+#approach-default .timeline__content .textBlock__content {
+  width: 100%;
+  max-width: none;
+}
+
+#approach-default .timeline__entry {
+  padding: 0;
+}
+
+#approach-default .timeline__content {
+  display: grid;
+  gap: clamp(#{$space-2}, 3vw, #{$space-3});
+}
+
+#approach-default .timeline__content .textBlock__title {
+  @include type-heading-xl;
+  max-width: 14ch;
+}
+
+#approach-default .timeline__content .textBlock__content {
+  width: min(100%, 40ch);
+  justify-self: start;
+}
+
+@media (max-width: $bp-desktop) {
+  #approach-default .horizontalScroll__item > .timeline__item {
+    width: min(36rem, calc(100vw - 5rem));
+  }
+
+  #approach-default .timeline__content .textBlock__title {
+    @include type-heading-lg;
+    max-width: 15ch;
+  }
+
+  #approach-default .timeline__content .textBlock__content {
+    width: min(100%, 38ch);
+  }
 }
 
 @media (max-width: $bp-tablet) {
@@ -48,5 +133,66 @@
   #project-gallery .media,
   #project-gallery .media__asset {
     aspect-ratio: auto;
+  }
+
+  #approach-default .horizontalScroll__item {
+    padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  #approach-default .horizontalScroll__item > .timeline__item {
+    width: min(31rem, calc(100vw - 3rem));
+  }
+
+  #approach-default .timeline__content {
+    gap: $space-2;
+  }
+
+  #approach-default .timeline__content .textBlock__title {
+    max-width: 16ch;
+  }
+
+  #approach-default .timeline__content .textBlock__content {
+    width: min(100%, 36ch);
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  #approach-default .horizontalScroll__item {
+    padding-inline: 1rem;
+  }
+
+  #approach-default .horizontalScroll__item > .timeline__item {
+    width: min(100%, 28rem);
+  }
+
+  #approach-default .timeline__content .textBlock__title {
+    @include type-heading-md;
+    max-width: 17ch;
+  }
+
+  #approach-default .timeline__content .textBlock__content {
+    width: min(100%, 34ch);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #approach-default .horizontalScroll {
+    height: auto;
+  }
+
+  #approach-default .horizontalScroll__viewport {
+    position: static;
+    height: auto;
+    overflow-x: auto;
+  }
+
+  #approach-default .horizontalScroll__track {
+    height: auto;
+    transform: none !important;
+  }
+
+  #approach-default .horizontalScroll__item {
+    height: auto;
+    min-height: 70svh;
   }
 }
