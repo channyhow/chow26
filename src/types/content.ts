@@ -10,6 +10,7 @@ export type SectionColor =
 export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
 export type CardEffect = "none" | "glass" | "grain";
+export type TimelineOrientation = "vertical" | "horizontal";
 
 export type CardAppearance = {
   frame?: boolean;
@@ -33,7 +34,7 @@ export type PanelMode = "scene" | "stack";
 export type PanelSize = "sm" | "md" | "lg" | "full";
 export type PanelAlign = "left" | "center" | "right";
 export type PanelSurface = SectionSurface;
-export type PanelBehavior = "fixed" | "moving" | "stack";
+export type PanelBehavior = "fixed" | "moving" | "stack" | "cover";
 
 export type ActionIntent =
   | "navigate"
@@ -123,6 +124,7 @@ export type SectionBlock = {
   surface?: SectionSurface;
   color?: SectionColor;
   layout?: SectionLayout;
+  timelineOrientation?: TimelineOrientation;
   source?: SourceRef;
   content?: SectionContent;
   frame?: boolean;
@@ -135,6 +137,8 @@ export type BlockRef = {
   ref: string;
 };
 
+export type PanelBlock = BlockRef | SectionBlock;
+
 export type PanelLane = {
   id: string;
   behavior?: PanelBehavior;
@@ -142,7 +146,7 @@ export type PanelLane = {
   align?: PanelAlign;
   surface?: PanelSurface;
   color?: SectionColor;
-  blocks: BlockRef[];
+  blocks: PanelBlock[];
 };
 
 export type SectionGroup = {
@@ -165,7 +169,7 @@ export type SectionGroup = {
       | "sticky-story"
       | "horizontal-rail";
   };
-  blocks?: BlockRef[];
+  blocks?: PanelBlock[];
 };
 
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;

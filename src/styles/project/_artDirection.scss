@@ -301,7 +301,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   align-items: center;
   gap: clamp(2rem, 4vw, 5rem);
   padding: clamp(4rem, 8svh, 6rem) var(--project-gutter);
-  border-right: 1px solid currentColor;
+  // border-right: 1px solid currentColor;
 }
 
 #approach-default .timeline__marker {
@@ -690,7 +690,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
     gap: clamp(1.5rem, 3vw, 3rem);
     padding: clamp(2.5rem, 6vw, 4rem) var(--project-gutter);
     border-right: 0;
-    border-bottom: 1px solid currentColor;
+    // border-bottom: 1px solid currentColor;
   }
 
   // #approach-default .timeline__content { display: contents; }

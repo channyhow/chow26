@@ -10,7 +10,10 @@
   background: var(--secondary);
 }
 
-.page__footer {
+/* Footer base styling is semantic, not dependent on where the footer lives.
+   Top-level page footers and footers rendered inside scroll panels share it. */
+.page__footer,
+.siteFooter {
   position: relative;
   z-index: $z-base;
   overflow: visible;
@@ -22,14 +25,16 @@
   --footer-reveal-height: clamp(24rem, 58svh, 44rem);
 }
 
-/* Footer reveal is a page-scroll effect, never a nested scroll area. */
+/* Footer reveal only applies to the direct page-level footer wrapper.
+   A footer inside a scroll panel keeps the same visual styling without becoming
+   fixed inside the panel. */
 @media (min-width: $bp-tablet) {
-  .page[data-footer-reveal="true"] .page__content {
+  .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: var(--footer-reveal-height);
     box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.06);
   }
 
-  .page[data-footer-reveal="true"] .page__footer {
+  .page[data-footer-reveal="true"] > .page__footer {
     position: fixed;
     inset: auto 0 0;
     height: var(--footer-reveal-height);
@@ -37,18 +42,18 @@
     overscroll-behavior: none;
   }
 
-  .page[data-footer-reveal="true"] .page__footer > .section {
+  .page[data-footer-reveal="true"] > .page__footer > .siteFooter {
     min-height: 100%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page[data-footer-reveal="true"] .page__content {
+  .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: 0;
     box-shadow: none;
   }
 
-  .page[data-footer-reveal="true"] .page__footer {
+  .page[data-footer-reveal="true"] > .page__footer {
     position: relative;
     height: auto;
     overflow: visible;

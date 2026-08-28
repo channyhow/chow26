@@ -7,6 +7,7 @@ import { ScrollProgress, type ScrollProgressMode } from "@/components/navigation
 import siteData from "@/data/site.json";
 import { selectDrawerView, selectOverlayOpen, useUIStore } from "@/state/uiStore";
 import type { StyleVariant, Tone } from "@/types/content";
+import { SmoothScroll } from "./SmoothScroll";
 
 type ThemeStyle = CSSProperties & Record<`--${string}`, string>;
 
@@ -37,8 +38,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     "--primary": foreground,
     "--secondary": background,
     "--accent": colors.accent,
-        "--special": colors.special,
-
+    "--special": colors.special,
     "--font-heading-classic": fontStack(fonts.classicHeading, "serif"),
     "--font-heading-editorial": fontStack(fonts.editorialHeading, "serif"),
     "--font-heading-organic": fontStack(fonts.organicHeading, "serif"),
@@ -56,6 +56,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-overlay={overlayOpen ? "open" : "closed"}
       style={themeStyle}
     >
+      <SmoothScroll />
       <a className="skipLink" href="#main-content">Aller au contenu principal</a>
       <ScrollProgress mode={scrollProgress} />
       <Header />

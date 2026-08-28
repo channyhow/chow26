@@ -13,7 +13,7 @@
   background: var(--primary);
 }
 
-.siteFooter__inner {
+.siteFooter__inner, #site-footer.section__inner {
   display: grid;
   gap: clamp(2.5rem, 6vw, 5rem);
   width: min(100%, #{$container-max});

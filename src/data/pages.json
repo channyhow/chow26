@@ -23,16 +23,16 @@
           },
           {
             "id": "home-projects-panel",
-            "behavior": "stack",
+            "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
+            "surface": "glass",
             "color": "special",
             "blocks": [{ "ref": "projects-featured" }]
           },
           {
             "id": "home-approach-panel",
-            "behavior": "stack",
+            "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -41,17 +41,24 @@
           },
           {
             "id": "home-services-panel",
-            "behavior": "stack",
+            "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "special",
             "blocks": [{ "ref": "home-services" }]
+          },
+          {
+            "id": "home-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
-      },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
+      }
     ]
   },
   {
@@ -63,9 +70,31 @@
       "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
     },
     "blocks": [
-      { "ref": "project-gallery" },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
+      {
+        "id": "projects-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "projects-gallery-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "project-gallery" }]
+          },
+          {
+            "id": "projects-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
     ]
   },
   {
@@ -78,166 +107,184 @@
     },
     "blocks": [
       {
-        "id": "studio-services",
-        "type": "Section",
-        "layout": "list",
-        "surface": "solid",
-        "color": "secondary",
-        "content": {
-          "header": {
-            "eyebrow": "Services",
-            "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
-            "text": [
-              "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
+        "id": "studio-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "studio-services-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "id": "studio-services",
+                "type": "Section",
+                "layout": "list",
+                "surface": "solid",
+                "color": "secondary",
+                "content": {
+                  "header": {
+                    "eyebrow": "Services",
+                    "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
+                    "text": [
+                      "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
+                    ]
+                  },
+                  "items": [
+                    {
+                      "id": "studio-service-create",
+                      "eyebrow": "01 · Vous partez de zéro ou presque.",
+                      "title": "Créer",
+                      "text": [
+                        "Construire une présence cohérente dès le départ, en pensant le positionnement visuel, l’identité, le site et l’expérience digitale comme les différentes expressions d’un même système.",
+                        "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
+                      ],
+                      "media": "ravine-business-card",
+                      "meta": [
+                        { "label": "Identité", "value": "Logo · Branding · Identité visuelle" },
+                        { "label": "Digital", "value": "Site web · UX/UI · Frontend" },
+                        { "label": "Budget", "value": "À partir de 1 200 € HT" }
+                      ],
+                      "tags": ["Logo", "Branding", "Identité visuelle"],
+                      "links": [
+                        {
+                          "label": "Construire votre présence",
+                          "href": "/contact",
+                          "intent": "contact",
+                          "priority": "secondary",
+                          "variant": "cta"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "studio-service-clarify",
+                      "eyebrow": "02 · Quelque chose existe déjà, mais manque de netteté.",
+                      "title": "Clarifier",
+                      "text": [
+                        "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser.",
+                        "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
+                      ],
+                      "media": "atmosphere-laptop",
+                      "meta": [
+                        { "label": "Diagnostic", "value": "Audit · UX/UI · Architecture de contenu" },
+                        { "label": "Refonte", "value": "Site web · Direction artistique · Frontend" },
+                        { "label": "Budget", "value": "À partir de 800 € HT" }
+                      ],
+                      "tags": ["Audit", "Refonte", "UX/UI"],
+                      "links": [
+                        {
+                          "label": "Clarifier l’existant",
+                          "href": "/contact",
+                          "intent": "contact",
+                          "priority": "secondary",
+                          "variant": "cta"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "studio-service-evolve",
+                      "eyebrow": "03 · Votre système fonctionne, mais il est devenu trop limité.",
+                      "title": "Faire évoluer",
+                      "text": [
+                        "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux contenus, usages et objectifs.",
+                        "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
+                      ],
+                      "media": "structure-mobile-multi",
+                      "meta": [
+                        { "label": "Système", "value": "Design system · Direction artistique · Refonte" },
+                        { "label": "Extension", "value": "Site web · Frontend · Nouveaux supports" },
+                        { "label": "Budget", "value": "Sur devis" }
+                      ],
+                      "tags": ["Design system", "Refonte", "Frontend"],
+                      "links": [
+                        {
+                          "label": "Faire évoluer le projet",
+                          "href": "/contact",
+                          "intent": "contact",
+                          "priority": "secondary",
+                          "variant": "cta"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             ]
           },
-          "items": [
-            {
-              "id": "studio-service-create",
-              "eyebrow": "01 · Vous partez de zéro ou presque.",
-              "title": "Créer",
-              "text": [
-                "Construire une présence cohérente dès le départ, en pensant le positionnement visuel, l’identité, le site et l’expérience digitale comme les différentes expressions d’un même système.",
-                "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
-              ],
-              "media": "ravine-business-card",
-              "meta": [
-                {
-                  "label": "Identité",
-                  "value": "Logo · Branding · Identité visuelle"
-                },
-                { "label": "Digital", "value": "Site web · UX/UI · Frontend" },
-                { "label": "Budget", "value": "À partir de 1 200 € HT" }
-              ],
-              "tags": ["Logo", "Branding", "Identité visuelle"],
-              "links": [
-                {
-                  "label": "Construire votre présence",
-                  "href": "/contact",
-                  "intent": "contact",
-                  "priority": "secondary",
-                  "variant": "cta"
+          {
+            "id": "studio-approach-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [
+              {
+                "id": "studio-approach",
+                "type": "Section",
+                "layout": "list",
+                "surface": "solid",
+                "color": "primary",
+                "content": {
+                  "header": {
+                    "title": "Comprendre d’abord. Construire ensuite.",
+                    "text": [
+                      "Le processus reste volontairement simple. Chaque étape réduit l’incertitude de la suivante, afin que les décisions visuelles et techniques répondent à quelque chose de concret."
+                    ]
+                  },
+                  "items": [
+                    {
+                      "id": "studio-approach-understand",
+                      "eyebrow": "01 · Cadrage",
+                      "title": "Comprendre",
+                      "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."]
+                    },
+                    {
+                      "id": "studio-approach-structure",
+                      "eyebrow": "02 · Architecture",
+                      "title": "Structurer",
+                      "text": ["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."]
+                    },
+                    {
+                      "id": "studio-approach-design",
+                      "eyebrow": "03 · Direction",
+                      "title": "Concevoir",
+                      "text": ["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."]
+                    },
+                    {
+                      "id": "studio-approach-build",
+                      "eyebrow": "04 · Réalisation",
+                      "title": "Construire",
+                      "text": ["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."]
+                    }
+                  ]
                 }
-              ]
-            },
-            {
-              "id": "studio-service-clarify",
-              "eyebrow": "02 · Quelque chose existe déjà, mais manque de netteté.",
-              "title": "Clarifier",
-              "text": [
-                "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser.",
-                "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
-              ],
-              "media": "atmosphere-laptop",
-              "meta": [
-                {
-                  "label": "Diagnostic",
-                  "value": "Audit · UX/UI · Architecture de contenu"
-                },
-                {
-                  "label": "Refonte",
-                  "value": "Site web · Direction artistique · Frontend"
-                },
-                { "label": "Budget", "value": "À partir de 800 € HT" }
-              ],
-              "tags": ["Audit", "Refonte", "UX/UI"],
-              "links": [
-                {
-                  "label": "Clarifier l’existant",
-                  "href": "/contact",
-                  "intent": "contact",
-                  "priority": "secondary",
-                  "variant": "cta"
-                }
-              ]
-            },
-            {
-              "id": "studio-service-evolve",
-              "eyebrow": "03 · Votre système fonctionne, mais il est devenu trop limité.",
-              "title": "Faire évoluer",
-              "text": [
-                "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux contenus, usages et objectifs.",
-                "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
-              ],
-              "media": "structure-mobile-multi",
-              "meta": [
-                {
-                  "label": "Système",
-                  "value": "Design system · Direction artistique · Refonte"
-                },
-                {
-                  "label": "Extension",
-                  "value": "Site web · Frontend · Nouveaux supports"
-                },
-                { "label": "Budget", "value": "Sur devis" }
-              ],
-              "tags": ["Design system", "Refonte", "Frontend"],
-              "links": [
-                {
-                  "label": "Faire évoluer le projet",
-                  "href": "/contact",
-                  "intent": "contact",
-                  "priority": "secondary",
-                  "variant": "cta"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "id": "studio-approach",
-        "type": "Section",
-        "layout": "list",
-        "surface": "solid",
-        "color": "primary",
-        "content": {
-          "header": {
-            "eyebrow": "Approche",
-            "title": "Comprendre d’abord. Construire ensuite.",
-            "text": [
-              "Le processus reste volontairement simple. Chaque étape réduit l’incertitude de la suivante, afin que les décisions visuelles et techniques répondent à quelque chose de concret."
+              }
             ]
           },
-          "items": [
-            {
-              "id": "studio-approach-understand",
-              "eyebrow": "01 · Cadrage",
-              "title": "Comprendre",
-              "text": [
-                "Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."
-              ]
-            },
-            {
-              "id": "studio-approach-structure",
-              "eyebrow": "02 · Architecture",
-              "title": "Structurer",
-              "text": [
-                "Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."
-              ]
-            },
-            {
-              "id": "studio-approach-design",
-              "eyebrow": "03 · Direction",
-              "title": "Concevoir",
-              "text": [
-                "Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."
-              ]
-            },
-            {
-              "id": "studio-approach-build",
-              "eyebrow": "04 · Réalisation",
-              "title": "Construire",
-              "text": [
-                "Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."
-              ]
-            }
-          ]
-        }
-      },
-      { "ref": "studio-founders" },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
+          {
+            "id": "studio-founders-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [{ "ref": "studio-founders" }]
+          },
+          {
+            "id": "studio-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
     ]
   },
   {
@@ -249,11 +296,49 @@
       "robots": { "index": false, "follow": true }
     },
     "blocks": [
-      { "ref": "home-services" },
-      { "ref": "approach-default" },
-      { "ref": "studio-founders" },
-      { "ref": "final-cta" },
-      { "ref": "site-footer" }
+      {
+        "id": "approach-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "approach-services-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [{ "ref": "home-services" }]
+          },
+          {
+            "id": "approach-process-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [{ "ref": "approach-default" }]
+          },
+          {
+            "id": "approach-founders-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [{ "ref": "studio-founders" }]
+          },
+          {
+            "id": "approach-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
     ]
   },
   {
@@ -264,7 +349,33 @@
       "description": "Archives éditoriales de Chow Studio.",
       "robots": { "index": false, "follow": false }
     },
-    "blocks": [{ "ref": "journal-default" }, { "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "journal-archive-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "journal-archive-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "journal-default" }]
+          },
+          {
+            "id": "journal-archive-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "journal-site-clair",
@@ -274,7 +385,24 @@
       "description": "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.",
       "robots": { "index": false, "follow": false }
     },
-    "blocks": [{ "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "journal-site-clair-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "journal-site-clair-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "journal-identite-systeme",
@@ -284,7 +412,24 @@
       "description": "Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.",
       "robots": { "index": false, "follow": false }
     },
-    "blocks": [{ "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "journal-identite-systeme-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "journal-identite-systeme-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "journal-design-developpement",
@@ -294,7 +439,24 @@
       "description": "Design, UX et développement frontend pensés ensemble.",
       "robots": { "index": false, "follow": false }
     },
-    "blocks": [{ "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "journal-design-developpement-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "journal-design-developpement-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "contact",
@@ -303,7 +465,33 @@
       "title": "Parler d’un projet | Chow Studio",
       "description": "Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin."
     },
-    "blocks": [{ "ref": "contact-default" }, { "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "contact-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "contact-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "contact-default" }]
+          },
+          {
+            "id": "contact-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "links",
@@ -315,9 +503,31 @@
       "robots": { "index": false, "follow": true }
     },
     "blocks": [
-      { "ref": "links-profile" },
-      { "ref": "links-primary" },
-      { "ref": "site-footer" }
+      {
+        "id": "links-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "links-profile-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "links-profile" }, { "ref": "links-primary" }]
+          },
+          {
+            "id": "links-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
     ]
   },
   {
@@ -328,7 +538,33 @@
       "title": "Mentions légales | Chow Studio",
       "description": "Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio."
     },
-    "blocks": [{ "ref": "legal-notice-default" }, { "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "legal-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "legal-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "legal-notice-default" }]
+          },
+          {
+            "id": "legal-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "privacy",
@@ -338,7 +574,33 @@
       "title": "Confidentialité & données personnelles | Chow Studio",
       "description": "Politique de confidentialité de Chow Studio : données collectées, finalités, conservation, prestataires et droits RGPD."
     },
-    "blocks": [{ "ref": "privacy-default" }, { "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "privacy-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "privacy-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "privacy-default" }]
+          },
+          {
+            "id": "privacy-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "not-found",
@@ -349,6 +611,32 @@
       "description": "Cette page Chow Studio est introuvable.",
       "robots": { "index": false, "follow": false }
     },
-    "blocks": [{ "ref": "not-found-default" }, { "ref": "site-footer" }]
+    "blocks": [
+      {
+        "id": "not-found-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "not-found-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "accent",
+            "blocks": [{ "ref": "not-found-default" }]
+          },
+          {
+            "id": "not-found-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
   }
 ]

@@ -3,7 +3,10 @@
 
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
-.sectionGroup[data-layout="scroll-panel"] { --panel-glass-blur: 1.1rem; display: flow-root; }
+.sectionGroup[data-layout="scroll-panel"] {
+  --panel-glass-blur: 1.1rem;
+  display: flow-root;
+}
 
 .sectionGroup__panel {
   --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
@@ -17,7 +20,7 @@
   margin-inline-start: var(--panel-inline-start);
   margin-inline-end: var(--panel-inline-end);
   position: relative;
-  z-index: $z-raised;
+  z-index: calc(var(--panel-index, 0) + 1);
   isolation: isolate;
   color: var(--panel-fg);
 }
@@ -27,60 +30,121 @@
   color: var(--section-fg);
 }
 
-.sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
-.sectionGroup__panel[data-panel-size="lg"] { --panel-width: min(48rem, calc(100% - #{$space-3 * 2})); }
-.sectionGroup__panel[data-panel-size="full"] { --panel-width: 100%; --panel-inline-start: 0; --panel-inline-end: 0; }
-.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) { --panel-inline-start: $space-3; --panel-inline-end: auto; }
-.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) { --panel-inline-start: auto; --panel-inline-end: $space-3; }
+.sectionGroup__panel[data-panel-size="sm"] {
+  --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
+}
 
-.sectionGroup__panel[data-panel-color="primary"] { --panel-bg: var(--theme-primary); --panel-fg: var(--theme-secondary); }
-.sectionGroup__panel[data-panel-color="secondary"] { --panel-bg: var(--theme-secondary); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="accent"] { --panel-bg: var(--theme-accent); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="special"] { --panel-bg: var(--theme-special); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="transparent"] { --panel-bg: transparent; --panel-fg: inherit; }
+.sectionGroup__panel[data-panel-size="md"] {
+  --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
+}
+
+.sectionGroup__panel[data-panel-size="lg"] {
+  --panel-width: min(48rem, calc(100% - #{$space-3 * 2}));
+}
+
+.sectionGroup__panel[data-panel-size="full"] {
+  --panel-width: 100%;
+  --panel-inline-start: 0;
+  --panel-inline-end: 0;
+}
+
+.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) {
+  --panel-inline-start: $space-3;
+  --panel-inline-end: auto;
+}
+
+.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) {
+  --panel-inline-start: auto;
+  --panel-inline-end: $space-3;
+}
+
+.sectionGroup__panel[data-panel-color="primary"] {
+  --panel-bg: var(--theme-primary);
+  --panel-fg: var(--theme-secondary);
+}
+
+.sectionGroup__panel[data-panel-color="secondary"] {
+  --panel-bg: var(--theme-secondary);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="accent"] {
+  --panel-bg: var(--theme-accent);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="special"] {
+  --panel-bg: var(--theme-special);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="transparent"] {
+  --panel-bg: transparent;
+  --panel-fg: inherit;
+}
 
 .sectionGroup__panel[data-panel-surface="transparent"] { background: transparent; }
 .sectionGroup__panel[data-panel-surface="solid"] { background: var(--panel-bg); }
-.sectionGroup__panel[data-panel-surface="glass"] { background: var(--panel-glass-bg); backdrop-filter: blur(var(--panel-glass-blur)); -webkit-backdrop-filter: blur(var(--panel-glass-blur)); }
-
-.sectionGroup__panel[data-panel-behavior="fixed"] {
-  position: sticky;
-  top: 0;
-  z-index: $z-base;
-}
-
-.sectionGroup__panel[data-panel-behavior="fixed"] > .section {
-  min-height: 100svh;
-}
-
-.sectionGroup__panel[data-panel-behavior="moving"] {
-  position: relative;
-  z-index: $z-raised;
-}
-
-.sectionGroup__panel[data-panel-behavior="stack"] {
-  position: sticky;
-  top: var(--panel-stack-top, 0);
-  min-height: 100svh;
-  z-index: $z-raised;
+.sectionGroup__panel[data-panel-surface="glass"] {
+  background: var(--panel-glass-bg);
+  backdrop-filter: blur(var(--panel-glass-blur));
+  -webkit-backdrop-filter: blur(var(--panel-glass-blur));
 }
 
 @supports (animation-timeline: view()) {
-  .sectionGroup__panel[data-panel-surface="glass"] { animation: panel-glass-in linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+  .sectionGroup__panel[data-panel-surface="glass"] {
+    animation: panel-glass-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
 }
 
 @keyframes panel-glass-in {
-  from { background: color-mix(in srgb, var(--panel-bg) 12%, transparent); backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); }
-  to { background: var(--panel-glass-bg); backdrop-filter: blur(var(--panel-glass-blur)); -webkit-backdrop-filter: blur(var(--panel-glass-blur)); }
+  from {
+    background: color-mix(in srgb, var(--panel-bg) 12%, transparent);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+  }
+  to {
+    background: var(--panel-glass-bg);
+    backdrop-filter: blur(var(--panel-glass-blur));
+    -webkit-backdrop-filter: blur(var(--panel-glass-blur));
+  }
 }
 
 @include desktop-up {
+  .sectionGroup__panel[data-panel-behavior="fixed"] {
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="moving"] {
+    position: relative;
+  }
+
+  /* Stack and cover both pin after their own overflow has passed. Cover differs
+     through z-index: each successive panel receives a higher panel index and
+     therefore rises over the previous plane. Width and alignment remain JSON-driven. */
+  .sectionGroup__panel[data-panel-behavior="stack"],
+  .sectionGroup__panel[data-panel-behavior="cover"] {
+    position: sticky;
+    top: var(--panel-stack-top, 0);
+    min-height: 100svh;
+  }
+
   .sectionGroup[data-layout="overlap"] > .section + .section {
     margin-top: calc($space-4 * -1);
   }
 }
 
 @include reduced-motion {
+  .sectionGroup__panel {
+    position: relative !important;
+    top: auto !important;
+    min-height: 0 !important;
+  }
+
   .sectionGroup__panel[data-panel-surface="glass"] {
     animation: none;
   }
