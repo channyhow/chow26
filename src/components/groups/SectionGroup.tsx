@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useReducedMotion } from "motion/react";
 
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
 import { resolveBlock } from "@/data/resolve";
 import type {
@@ -20,15 +21,20 @@ function renderBlocks(
 ) {
   return blocks.map(({ ref }) => {
     const block = resolveBlock(ref);
+    if (!block) return null;
 
-    return block ? (
+    if (ref === "site-footer") {
+      return <SiteFooter key={ref} block={block} />;
+    }
+
+    return (
       <Section
         key={ref}
         block={block}
         suppressSceneMotion={suppressSceneMotion}
         inheritedColor={inheritedColor}
       />
-    ) : null;
+    );
   });
 }
 
