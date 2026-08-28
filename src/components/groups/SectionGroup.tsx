@@ -3,6 +3,7 @@ import { useReducedMotion } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
+import { prepareSection } from "@/data/prepareSection";
 import { resolveBlock } from "@/data/resolve";
 import type {
   PanelAlign,
@@ -21,8 +22,9 @@ function renderBlocks(
 ) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
-      const block = resolveBlock(entry.ref);
-      if (!block) return null;
+      const resolved = resolveBlock(entry.ref);
+      if (!resolved) return null;
+      const block = prepareSection(resolved);
 
       if (entry.ref === "site-footer") {
         return <SiteFooter key={entry.ref} block={block} />;
@@ -38,10 +40,12 @@ function renderBlocks(
       );
     }
 
+    const block = prepareSection(entry);
+
     return (
       <Section
         key={entry.id || `panel-section-${index + 1}`}
-        block={entry}
+        block={block}
         suppressSceneMotion={suppressSceneMotion}
         inheritedColor={inheritedColor}
       />
