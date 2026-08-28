@@ -19,24 +19,27 @@ function getDateLabel(item: ContentItem) {
   return item.eyebrow?.[0];
 }
 
-function EntryContent({ item}: { item: ContentItem; index: number; mode: TimelineMode }) {
+function EntryContent({ item }: { item: ContentItem }) {
   const date = getDateLabel(item);
+
   return (
-    <>
-      {/* <div className="timeline__axis" aria-hidden="true">
-        <span className="timeline__marker">
-          {mode === "checklist" ? "✓" : String(index + 1).padStart(2, "0")}
-        </span>
-      </div> */}
-      <div className="timeline__entry">
-        {date ? <p className="timeline__date">{date}</p> : null}
-        <TextBlock content={{ ...item, eyebrow: undefined }} titleAs="h3" className="timeline__content" />
-      </div>
-    </>
+    <div className="timeline__entry">
+      {date ? <p className="timeline__date">{date}</p> : null}
+      <TextBlock
+        content={{ ...item, eyebrow: undefined }}
+        titleAs="h3"
+        className="timeline__content"
+      />
+    </div>
   );
 }
 
-export function Timeline({ items, mode = "chronology", orientation = "vertical", className }: TimelineProps) {
+export function Timeline({
+  items,
+  mode = "chronology",
+  orientation = "vertical",
+  className,
+}: TimelineProps) {
   const reduceMotion = useReducedMotion();
   if (!items.length) return null;
 
@@ -48,7 +51,11 @@ export function Timeline({ items, mode = "chronology", orientation = "vertical",
 
   if (orientation === "horizontal") {
     return (
-      <div className={clsx("timeline", className)} data-mode={mode} data-orientation="horizontal">
+      <div
+        className={clsx("timeline", className)}
+        data-mode={mode}
+        data-orientation="horizontal"
+      >
         <HorizontalScroll>
           {items.map((item, index) => (
             <motion.article
@@ -56,7 +63,7 @@ export function Timeline({ items, mode = "chronology", orientation = "vertical",
               key={item.id ?? `${item.title ?? "timeline"}-${index}`}
               {...reveal}
             >
-              <EntryContent item={item} index={index} mode={mode} />
+              <EntryContent item={item} />
             </motion.article>
           ))}
         </HorizontalScroll>
@@ -65,7 +72,11 @@ export function Timeline({ items, mode = "chronology", orientation = "vertical",
   }
 
   return (
-    <div className={clsx("timeline", className)} data-mode={mode} data-orientation="vertical">
+    <div
+      className={clsx("timeline", className)}
+      data-mode={mode}
+      data-orientation="vertical"
+    >
       <ol className="timeline__list">
         {items.map((item, index) => (
           <motion.li
@@ -73,7 +84,7 @@ export function Timeline({ items, mode = "chronology", orientation = "vertical",
             key={item.id ?? `${item.title ?? "timeline"}-${index}`}
             {...reveal}
           >
-            <EntryContent item={item} index={index} mode={mode} />
+            <EntryContent item={item} />
           </motion.li>
         ))}
       </ol>
