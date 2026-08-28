@@ -10,6 +10,7 @@ export type SectionColor =
 export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
 export type CardEffect = "none" | "glass" | "grain";
+export type TimelineOrientation = "vertical" | "horizontal";
 
 export type CardAppearance = {
   frame?: boolean;
@@ -123,6 +124,7 @@ export type SectionBlock = {
   surface?: SectionSurface;
   color?: SectionColor;
   layout?: SectionLayout;
+  timelineOrientation?: TimelineOrientation;
   source?: SourceRef;
   content?: SectionContent;
   frame?: boolean;
