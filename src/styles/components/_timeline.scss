@@ -77,40 +77,61 @@
   max-width: 28ch;
 }
 
-/* Horizontal timelines keep each step compact, but give the copy enough measure
-   to avoid the narrow column effect from the vertical axis grid. */
+/* Horizontal timeline: one readable editorial column per viewport. The item
+   remains compact on large screens, but expands close to the available width
+   on smaller screens instead of inheriting the narrow vertical timeline measure. */
 .timeline[data-orientation="horizontal"] .timeline__item {
   display: block;
-  width: min(34rem, calc(100vw - 6rem));
+  width: clamp(28rem, 42vw, 38rem);
+  max-width: calc(100vw - 4rem);
   margin-inline: auto;
 }
 
 .timeline[data-orientation="horizontal"] .timeline__entry {
+  width: 100%;
   padding: 0;
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content {
-  width: min(100%, 34rem);
+  width: 100%;
+  max-width: none;
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
-  max-width: 16ch;
+  max-width: 18ch;
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
-  max-width: 38ch;
+  max-width: 42ch;
+}
+
+@media (max-width: 64rem) {
+  .timeline[data-orientation="horizontal"] .timeline__item {
+    width: min(34rem, calc(100vw - 3rem));
+  }
 }
 
 @media (max-width: 48rem) {
   .timeline[data-orientation="horizontal"] .timeline__item {
-    width: min(26rem, calc(100vw - 3rem));
+    width: calc(100vw - 2rem);
+    max-width: none;
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
-    max-width: 14ch;
+    max-width: 16ch;
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
-    max-width: 32ch;
+    max-width: 36ch;
+  }
+}
+
+@media (max-width: 30rem) {
+  .timeline[data-orientation="horizontal"] .timeline__item {
+    width: calc(100vw - 1.5rem);
+  }
+
+  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
+    max-width: none;
   }
 }
