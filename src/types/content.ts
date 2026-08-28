@@ -137,6 +137,8 @@ export type BlockRef = {
   ref: string;
 };
 
+export type PanelBlock = BlockRef | SectionBlock;
+
 export type PanelLane = {
   id: string;
   behavior?: PanelBehavior;
@@ -144,7 +146,7 @@ export type PanelLane = {
   align?: PanelAlign;
   surface?: PanelSurface;
   color?: SectionColor;
-  blocks: BlockRef[];
+  blocks: PanelBlock[];
 };
 
 export type SectionGroup = {
@@ -167,7 +169,7 @@ export type SectionGroup = {
       | "sticky-story"
       | "horizontal-rail";
   };
-  blocks?: BlockRef[];
+  blocks?: PanelBlock[];
 };
 
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;
