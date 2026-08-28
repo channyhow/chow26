@@ -97,7 +97,7 @@
   max-width: 16ch;
 }
 
-.timeline[data-orientation="horizontal"] .timeline__content .textBlock__text {
+.timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
   max-width: 38ch;
 }
 
@@ -110,7 +110,7 @@
     max-width: 14ch;
   }
 
-  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__text {
+  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
     max-width: 32ch;
   }
 }
