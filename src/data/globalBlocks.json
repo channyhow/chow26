@@ -54,7 +54,6 @@
     "layout": "content-switcher",
     "content": {
       "header": {
-        "eyebrow": "Accompagnements",
         "title": "De quoi avez-vous besoin ?",
         "text": [
           "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."
@@ -141,7 +140,6 @@
       "items": [
         {
           "id": "approach-intro-title",
-          "eyebrow": "L’approche",
           "title": "Comprendre d’abord. Construire ensuite.",
           "text": [
             "Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."
@@ -149,7 +147,6 @@
         },
         {
           "id": "approach-understand",
-          "eyebrow": "Cadrage",
           "title": "Comprendre",
           "text": [
             "Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."
@@ -157,7 +154,6 @@
         },
         {
           "id": "approach-structure",
-          "eyebrow": "Architecture",
           "title": "Structurer",
           "text": [
             "Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."
@@ -165,7 +161,6 @@
         },
         {
           "id": "approach-design",
-          "eyebrow": "Direction",
           "title": "Concevoir",
           "text": [
             "Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."
@@ -173,7 +168,6 @@
         },
         {
           "id": "approach-build",
-          "eyebrow": "Réalisation",
           "title": "Construire",
           "text": [
             "La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."
@@ -190,7 +184,6 @@
     "color": "accent",
     "content": {
       "header": {
-        "eyebrow": "Le studio",
         "title": "Un même regard, du concept à l’interface.",
         "text": [
           "Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."
@@ -198,7 +191,6 @@
       },
       "items": [
         {
-          "eyebrow": "Design · Direction artistique · Frontend",
           "title": "Channy How-Choong",
           "text": [
             "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
@@ -215,7 +207,6 @@
     "source": { "collection": "approach" },
     "content": {
       "header": {
-        "eyebrow": "Méthode",
         "title": "Clarifier, structurer, concevoir, livrer.",
         "text": [
           "Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."

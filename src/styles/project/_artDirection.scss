@@ -301,7 +301,7 @@ body:has(#home-opening) .header { --header-color: var(--primary); }
   align-items: center;
   gap: clamp(2rem, 4vw, 5rem);
   padding: clamp(4rem, 8svh, 6rem) var(--project-gutter);
-  border-right: 1px solid currentColor;
+  // border-right: 1px solid currentColor;
 }
 
 #approach-default .timeline__marker {

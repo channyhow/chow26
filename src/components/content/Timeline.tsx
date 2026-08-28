@@ -19,15 +19,15 @@ function getDateLabel(item: ContentItem) {
   return item.eyebrow?.[0];
 }
 
-function EntryContent({ item, index, mode }: { item: ContentItem; index: number; mode: TimelineMode }) {
+function EntryContent({ item}: { item: ContentItem; index: number; mode: TimelineMode }) {
   const date = getDateLabel(item);
   return (
     <>
-      <div className="timeline__axis" aria-hidden="true">
+      {/* <div className="timeline__axis" aria-hidden="true">
         <span className="timeline__marker">
           {mode === "checklist" ? "✓" : String(index + 1).padStart(2, "0")}
         </span>
-      </div>
+      </div> */}
       <div className="timeline__entry">
         {date ? <p className="timeline__date">{date}</p> : null}
         <TextBlock content={{ ...item, eyebrow: undefined }} titleAs="h3" className="timeline__content" />
