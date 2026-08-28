@@ -34,7 +34,7 @@ export type PanelMode = "scene" | "stack";
 export type PanelSize = "sm" | "md" | "lg" | "full";
 export type PanelAlign = "left" | "center" | "right";
 export type PanelSurface = SectionSurface;
-export type PanelBehavior = "fixed" | "moving" | "stack";
+export type PanelBehavior = "fixed" | "moving" | "stack" | "cover";
 
 export type ActionIntent =
   | "navigate"
