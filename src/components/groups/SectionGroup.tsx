@@ -5,9 +5,9 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
 import { resolveBlock } from "@/data/resolve";
 import type {
-  BlockRef,
   PanelAlign,
   PanelBehavior,
+  PanelBlock,
   PanelSize,
   PanelSurface,
   SectionColor,
@@ -15,27 +15,42 @@ import type {
 } from "@/types/content";
 
 function renderBlocks(
-  blocks: BlockRef[],
+  blocks: PanelBlock[],
   suppressSceneMotion = false,
   inheritedColor?: SectionColor,
 ) {
-  return blocks.map(({ ref }) => {
-    const block = resolveBlock(ref);
-    if (!block) return null;
+  return blocks.map((entry, index) => {
+    if ("ref" in entry) {
+      const block = resolveBlock(entry.ref);
+      if (!block) return null;
 
-    if (ref === "site-footer") {
-      return <SiteFooter key={ref} block={block} />;
+      if (entry.ref === "site-footer") {
+        return <SiteFooter key={entry.ref} block={block} />;
+      }
+
+      return (
+        <Section
+          key={entry.ref}
+          block={block}
+          suppressSceneMotion={suppressSceneMotion}
+          inheritedColor={inheritedColor}
+        />
+      );
     }
 
     return (
       <Section
-        key={ref}
-        block={block}
+        key={entry.id || `panel-section-${index + 1}`}
+        block={entry}
         suppressSceneMotion={suppressSceneMotion}
         inheritedColor={inheritedColor}
       />
     );
   });
+}
+
+function panelKey(block: PanelBlock, index: number) {
+  return "ref" in block ? block.ref : block.id || `panel-${index + 1}`;
 }
 
 function Panel({
@@ -54,7 +69,7 @@ function Panel({
   align: PanelAlign;
   surface: PanelSurface;
   color?: SectionColor;
-  blocks: BlockRef[];
+  blocks: PanelBlock[];
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -147,7 +162,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
         : isPanel && mode === "stack"
           ? blocks.map((block, index) => (
               <Panel
-                key={block.ref}
+                key={panelKey(block, index)}
                 id={`${group.id}-${index + 1}`}
                 behavior="stack"
                 size={defaultSize}
@@ -173,7 +188,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                   />
                   {blocks.slice(1).map((block, index) => (
                     <Panel
-                      key={block.ref}
+                      key={panelKey(block, index + 1)}
                       id={`${group.id}-panel-${index + 1}`}
                       behavior="moving"
                       size={defaultSize}
