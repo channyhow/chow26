@@ -123,6 +123,9 @@
     position: relative;
   }
 
+  /* Stack and cover both pin after their own overflow has passed. Cover differs
+     through z-index: each successive panel receives a higher panel index and
+     therefore rises over the previous plane. Width and alignment remain JSON-driven. */
   .sectionGroup__panel[data-panel-behavior="stack"],
   .sectionGroup__panel[data-panel-behavior="cover"] {
     position: sticky;
