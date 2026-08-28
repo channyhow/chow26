@@ -30,6 +30,10 @@
   color: var(--section-fg);
 }
 
+.sectionGroup__panel[data-panel-id$="-final-panel"] {
+  min-height: auto;
+}
+
 .sectionGroup__panel[data-panel-size="sm"] {
   --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
 }
