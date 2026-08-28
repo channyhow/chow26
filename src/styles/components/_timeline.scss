@@ -90,14 +90,14 @@
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content {
-  max-width: 34rem;
+  width: min(100%, 34rem);
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
   max-width: 16ch;
 }
 
-.timeline[data-orientation="horizontal"] .timeline__content .textBlock__body {
+.timeline[data-orientation="horizontal"] .timeline__content .textBlock__text {
   max-width: 38ch;
 }
 
@@ -110,7 +110,7 @@
     max-width: 14ch;
   }
 
-  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__body {
+  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__text {
     max-width: 32ch;
   }
 }
