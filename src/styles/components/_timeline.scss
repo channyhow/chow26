@@ -4,6 +4,7 @@
 .timeline {
   width: 100%;
 }
+
 .timeline__list {
   display: grid;
   gap: 0;
@@ -11,6 +12,7 @@
   padding: 0;
   list-style: none;
 }
+
 .timeline__item {
   position: relative;
   display: grid;
@@ -18,11 +20,13 @@
   gap: $space-2;
   min-width: 0;
 }
+
 .timeline__axis {
   position: relative;
   display: flex;
   justify-content: center;
 }
+
 .timeline__axis::after {
   content: "";
   position: absolute;
@@ -31,9 +35,11 @@
   width: 1px;
   background: color-mix(in srgb, currentColor 20%, transparent);
 }
+
 .timeline__item:last-child .timeline__axis::after {
   display: none;
 }
+
 .timeline__marker {
   position: relative;
   z-index: 1;
@@ -41,28 +47,70 @@
   place-items: center;
   width: 2rem;
   height: 2rem;
-//   border: 1px solid currentColor;
   border-radius: var(--radius-control, #{$radius-full});
   background: var(--secondary);
   @include type-caption;
 }
+
 .timeline[data-mode="checklist"] .timeline__marker {
   background: var(--primary);
   color: var(--secondary);
 }
+
 .timeline__entry {
   min-width: 0;
   padding: 0 0 clamp(#{$space-3}, 5vw, #{$space-4});
 }
+
 .timeline__date {
   margin: 0 0 $space-1;
   @include type-ui-compact;
   opacity: $opacity-muted;
 }
+
 .timeline__content {
   width: 100%;
   max-width: none;
 }
+
 .timeline__content .textBlock__title {
   max-width: 28ch;
+}
+
+/* Horizontal timelines keep each step compact, but give the copy enough measure
+   to avoid the narrow column effect from the vertical axis grid. */
+.timeline[data-orientation="horizontal"] .timeline__item {
+  display: block;
+  width: min(34rem, calc(100vw - 6rem));
+  margin-inline: auto;
+}
+
+.timeline[data-orientation="horizontal"] .timeline__entry {
+  padding: 0;
+}
+
+.timeline[data-orientation="horizontal"] .timeline__content {
+  max-width: 34rem;
+}
+
+.timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
+  max-width: 16ch;
+}
+
+.timeline[data-orientation="horizontal"] .timeline__content .textBlock__body {
+  max-width: 38ch;
+}
+
+@media (max-width: 48rem) {
+  .timeline[data-orientation="horizontal"] .timeline__item {
+    width: min(26rem, calc(100vw - 3rem));
+  }
+
+  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
+    max-width: 14ch;
+  }
+
+  .timeline[data-orientation="horizontal"] .timeline__content .textBlock__body {
+    max-width: 32ch;
+  }
 }
