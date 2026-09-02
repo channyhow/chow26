@@ -535,8 +535,8 @@
     "slug": "/mentions-legales",
     "variant": "editorial",
     "seo": {
-      "title": "Mentions légales | Chow Studio",
-      "description": "Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio."
+      "title": "Mentions légales & conditions de vente | Chow Studio",
+      "description": "Mentions légales, propriété intellectuelle et conditions de vente des prestations de Chow Studio."
     },
     "blocks": [
       {
@@ -552,6 +552,15 @@
             "surface": "solid",
             "color": "secondary",
             "blocks": [{ "ref": "legal-notice-default" }]
+          },
+          {
+            "id": "legal-terms-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [{ "ref": "terms-of-sale-default" }]
           },
           {
             "id": "legal-final-panel",
