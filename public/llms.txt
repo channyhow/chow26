@@ -16,7 +16,7 @@
 - Projets sélectionnés | Chow Studio: https://chow-studio.com/projets — Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.
 - Studio, services & approche | Chow Studio: https://chow-studio.com/studio — Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.
 - Parler d’un projet | Chow Studio: https://chow-studio.com/contact — Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin.
-- Mentions légales | Chow Studio: https://chow-studio.com/mentions-legales — Mentions légales, propriété intellectuelle, création et hébergement du site Chow Studio.
+- Mentions légales & conditions de vente | Chow Studio: https://chow-studio.com/mentions-legales — Mentions légales, propriété intellectuelle et conditions de vente des prestations de Chow Studio.
 - Confidentialité & données personnelles | Chow Studio: https://chow-studio.com/confidentialite — Politique de confidentialité de Chow Studio : données collectées, finalités, conservation, prestataires et droits RGPD.
 - Atmosphere | Site d’architecture intérieure — Chow Studio: https://chow-studio.com/projets/atmosphere — Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.
 - Kuro | Web design pour restaurant — Chow Studio: https://chow-studio.com/projets/kuro — Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.

@@ -1,19 +1,520 @@
 {
-  "home-opening": {"id":"home-opening","type":"Section","layout":"media-overlay","content":{"header":{"eyebrow":"Chow Studio · Paris · La Réunion","title":"Sites, identités et directions visuelles, pensés avec clarté.","text":["Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue."]},"media":"kuro-grey"}},
-  "projects-featured": {"id":"projects-featured","type":"Section","layout":"carousel","source":{"collection":"projects","query":{"featured":true,"limit":5}},"content":{"header":{"eyebrow":"Projets sélectionnés","text":["Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet."]}}},
-  "project-gallery": {"id":"project-gallery","type":"Section","layout":"grid","surface":"solid","color":"special","source":{"collection":"projects"},"content":{"header":{"eyebrow":"Projets & études de cas","title":"Des réponses différentes pour des contextes différents.","text":["Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."]}}},
-  "home-services": {"id":"home-services","type":"Section","layout":"content-switcher","content":{"header":{"title":"De quoi avez-vous besoin ?","text":["Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."],"links":[{"label":"Voir tous les accompagnements","href":"/approche","intent":"navigate","priority":"secondary","variant":"cta"}]},"items":[{"id":"service-create","eyebrow":"Vous partez de zéro ou presque.","title":"Créer","text":["Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."],"media":"ravine-business-card","tags":["Site web","Identité visuelle","Direction artistique"],"links":[{"label":"Construire votre présence","href":"/contact","intent":"contact","priority":"primary"}]},{"id":"service-clarify","eyebrow":"Quelque chose existe déjà, mais manque de netteté.","title":"Clarifier","text":["Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."],"media":"atmosphere-laptop","tags":["Audit","Refonte","Architecture de contenu","UX/UI"],"links":[{"label":"Clarifier l’existant","href":"/contact","intent":"contact","priority":"primary"}]},{"id":"service-evolve","eyebrow":"Votre système fonctionne, mais il est devenu trop limité.","title":"Faire évoluer","text":["Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux besoins."],"media":"structure-mobile-multi","tags":["Refonte","Évolution du site","Direction visuelle","Supports complémentaires"],"links":[{"label":"Faire évoluer le projet","href":"/contact","intent":"contact","priority":"primary"}]}]}},
-  "approach-default": {"id":"approach-default","type":"Section","layout":"timeline","timelineOrientation":"horizontal","content":{"items":[{"id":"approach-intro-title","title":"Comprendre d’abord. Construire ensuite.","text":["Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."]},{"id":"approach-understand","title":"Comprendre","text":["Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."]},{"id":"approach-structure","title":"Structurer","text":["Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."]},{"id":"approach-design","title":"Concevoir","text":["Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."]},{"id":"approach-build","title":"Construire","text":["La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."]}]}},
-  "studio-founders": {"id":"studio-founders","type":"Section","layout":"grid","surface":"solid","color":"accent","content":{"header":{"title":"Un même regard, du concept à l’interface.","text":["Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."]},"items":[{"title":"Channy How-Choong","text":["Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."],"media":["studio-founder-1"]}]}},
-  "approach-method": {"id":"approach-method","type":"Section","layout":"grid","source":{"collection":"approach"},"content":{"header":{"title":"Clarifier, structurer, concevoir, livrer.","text":["Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."]}}},
-  "journal-default": {"id":"journal-default","type":"Section","layout":"carousel","source":{"collection":"journal","query":{"featured":true,"limit":3}},"content":{"header":{"eyebrow":"Journal","title":"Design, structure et présence digitale.","text":["Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."]}},"itemAppearance":{"frame":true,"effect":"none"}},
-  "contact-default": {"id":"contact-default","type":"Section","layout":"split","surface":"solid","color":"accent","content":{"header":{"eyebrow":"Parler d’un projet","title":"Quelques lignes suffisent pour commencer.","text":["Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."]},"form":"contact"}},
-  "final-cta": {"id":"final-cta","type":"Section","layout":"statement","tone":"inverse","content":{"header":{"eyebrow":"Un projet en tête ?","title":"Commençons par le rendre clair.","text":["Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."],"links":[{"label":"Parler d’un projet","href":"/contact","intent":"contact","priority":"secondary","variant":"cta"}]}}},
-  "links-profile": {"id":"links-profile","type":"Section","layout":"statement","content":{"header":{"title":"Chow Studio","text":["Design web, identité visuelle et direction digitale entre Paris et La Réunion."],"media":"studio-founder-1"}}},
-  "links-primary": {"id":"links-primary","type":"Section","layout":"list","source":{"collection":"links","query":{"group":"primary","enabled":true}}},
-  "legal-notice-default": {"id":"legal-notice-default","type":"Section","layout":"list","content":{"header":{"title":"Mentions légales"},"items":[{"title":"Édition","text":["Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."]},{"title":"Design & développement","text":["Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."]},{"title":"Hébergement","text":["Ce site est hébergé par Netlify, Inc."]},{"title":"Propriété intellectuelle du site","text":["Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."]}]}},
-  "terms-of-sale-default": {"id":"terms-of-sale-default","type":"Section","layout":"list","content":{"header":{"title":"Conditions de vente","text":["Ces conditions encadrent les prestations réalisées par Chow Studio. Le devis ou la proposition commerciale précise le périmètre propre à chaque projet et complète ces conditions."]},"items":[{"title":"Devis & périmètre","text":["Le devis ou la proposition commerciale définit les livrables, le périmètre, le prix, le calendrier indicatif et, le cas échéant, le nombre de cycles de révisions inclus. Toute prestation qui dépasse ce périmètre peut faire l’objet d’un devis ou d’une facturation complémentaire."]},{"title":"Révisions & modifications","text":["Les prestations peuvent inclure un nombre limité de révisions, défini dans le devis ou la proposition commerciale. Une révision correspond à un ajustement apporté dans le cadre du périmètre, du contenu et de la direction préalablement validés.","Une demande qui modifie le brief, le périmètre, la direction créative, les fonctionnalités ou un élément déjà validé ne constitue pas une révision. Elle est considérée comme une modification ou une prestation complémentaire et peut faire l’objet d’un devis ou d’une facturation supplémentaire."]},{"title":"Paiement","text":["Les montants, échéances, acomptes éventuels et modalités de paiement sont indiqués dans le devis et les factures correspondantes. Le démarrage ou la poursuite d’une prestation peut être conditionné au règlement des sommes prévues."]},{"title":"Délais & collaboration","text":["Le calendrier dépend notamment de la transmission des contenus, validations et retours nécessaires au projet. Un retard dans ces éléments peut entraîner un décalage du planning sans modifier automatiquement le périmètre convenu."]},{"title":"Livraison & fichiers sources","text":["La livraison porte sur les éléments et formats prévus au devis. Les fichiers de travail, fichiers sources ou éléments éditables ne sont inclus que lorsqu’ils sont expressément prévus dans la prestation."]},{"title":"Propriété intellectuelle des prestations","text":["Les créations réalisées par Chow Studio restent soumises aux droits de propriété intellectuelle de leur autrice. Les droits d’exploitation éventuellement cédés ou concédés au client sont ceux expressément prévus dans le devis, le contrat ou tout accord écrit applicable.","La livraison ou le paiement d’une création n’emporte pas, à lui seul, cession générale des droits de reproduction, d’adaptation ou de modification. Les déclinaisons, adaptations ou animations d’une identité visuelle doivent rester dans le cadre des droits effectivement accordés et respecter le droit moral de l’autrice."]}]}},
-  "privacy-default": {"id":"privacy-default","type":"Section","layout":"list","content":{"header":{"title":"Confidentialité & données personnelles","text":["Cette page explique simplement quelles données Chow Studio collecte sur ce site, pourquoi elles sont utilisées et comment exercer vos droits."]},"items":[{"title":"Responsable du traitement","text":["Les données collectées sur ce site sont traitées par Channy How-Choong · Chow Studio. Pour toute question relative à vos données personnelles ou pour exercer vos droits, vous pouvez écrire à channyhow@gmail.com."]},{"title":"Formulaires de contact","text":["Lorsque vous utilisez un formulaire, les informations que vous choisissez de transmettre — notamment nom, adresse e-mail, entreprise éventuelle, besoin, calendrier, budget et message — sont utilisées uniquement pour comprendre votre demande, vous répondre et, le cas échéant, préparer une relation contractuelle.","La base juridique de ce traitement est l’exécution de mesures précontractuelles prises à votre demande. Les champs indiqués comme obligatoires sont nécessaires pour pouvoir traiter la demande ; les autres sont facultatifs."]},{"title":"Destinataires & hébergement","text":["Les informations envoyées via les formulaires sont destinées à Chow Studio et aux prestataires techniques strictement nécessaires au fonctionnement du site et à la réception des demandes. Le site est hébergé par Netlify. Chow Studio ne vend pas les données transmises via le site."]},{"title":"Durée de conservation","text":["Les données d’une demande qui ne donne pas lieu à une relation contractuelle sont conservées pendant le temps nécessaire à son traitement puis, lorsqu’elles restent utiles au suivi d’une relation de prospect, au maximum trois ans à compter de leur collecte ou du dernier contact émanant de la personne. Les données devant être conservées pour respecter une obligation légale ou défendre un droit peuvent faire l’objet d’un archivage distinct pendant la durée applicable."]},{"title":"Cookies & mesure d’audience","text":["Dans sa configuration actuelle, le site n’utilise pas d’outil de mesure d’audience et ne dépose pas de traceur publicitaire ou marketing. Il n’affiche donc pas de bannière de consentement inutile. Si des outils nécessitant un consentement sont activés ultérieurement, ils devront être bloqués avant consentement et cette politique sera mise à jour.","Des traceurs strictement nécessaires au fonctionnement ou à la sécurité du service peuvent, le cas échéant, être utilisés sans consentement lorsqu’ils entrent dans les exemptions prévues par la réglementation."]},{"title":"Intelligence artificielle","text":["Aucune donnée envoyée par les visiteurs via les formulaires du site n’est, dans la configuration actuelle, transmise automatiquement à un service d’intelligence artificielle. Si une fonctionnalité impliquant un tel traitement est ajoutée, les informations pertinentes sur sa finalité, son fonctionnement et ses destinataires devront être indiquées avant sa mise en service."]},{"title":"Vos droits","text":["Vous pouvez demander l’accès à vos données, leur rectification, leur effacement ou la limitation de leur traitement lorsque ces droits sont applicables. Vous pouvez exercer ces droits en écrivant à channyhow@gmail.com.","Si vous estimez, après avoir contacté Chow Studio, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL."]},{"title":"Mise à jour","text":["Cette politique est mise à jour lorsque les traitements de données, les prestataires ou les fonctionnalités du site évoluent. Dernière mise à jour : 13 août 2026."]}]}},
-  "site-footer": {"id":"site-footer","type":"Section","layout":"list","content":{"header":{"eyebrow":["Chow Studio","Design web · Identité visuelle · Direction digitale · Paris · La Réunion"],"links":[{"label":"Projets","href":"/projets","intent":"navigate"},{"label":"Accompagnements","href":"/approche","intent":"navigate"},{"label":"Journal","href":"/journal","intent":"navigate"},{"label":"Parler d’un projet","href":"/contact","intent":"contact","variant":"cta"},{"label":"LinkedIn","href":"https://www.linkedin.com/in/channyhow","intent":"navigate"},{"label":"Confidentialité","href":"/confidentialite","intent":"navigate"},{"label":"Mentions légales","href":"/mentions-legales","intent":"navigate"}],"meta":[{"label":"Design et développement","value":"Channy How-Choong · Chow Studio"},{"label":"© 2026 Chow Studio· Tous droits réservés"}]}}},
-  "not-found-default": {"id":"not-found-default","type":"Section","layout":"statement","variant":"editorial","surface":"solid","color":"accent","content":{"header":{"eyebrow":"404 | Page introuvable","title":"Cette page n’est plus ici.","text":["Revenez à l’accueil ou poursuivez avec les projets du studio."],"links":[{"label":"Retour à l’accueil","href":"/","intent":"navigate"},{"label":"Voir les projets","href":"/projets","intent":"navigate"}]}}}
+  "home-opening": {
+    "id": "home-opening",
+    "type": "Section",
+    "layout": "media-overlay",
+    "content": {
+      "header": {
+        "eyebrow": "Chow Studio · Paris · La Réunion",
+        "title": "Sites, identités et directions visuelles, pensés avec clarté.",
+        "text": [
+          "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue."
+        ]
+      },
+      "media": "kuro-grey"
+    }
+  },
+  "projects-featured": {
+    "id": "projects-featured",
+    "type": "Section",
+    "layout": "carousel",
+    "source": {
+      "collection": "projects",
+      "query": { "featured": true, "limit": 5 }
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Projets sélectionnés",
+        "text": [
+          "Identité, direction artistique, UX/UI et développement se combinent différemment selon le projet."
+        ]
+      }
+    }
+  },
+  "project-gallery": {
+    "id": "project-gallery",
+    "type": "Section",
+    "layout": "grid",
+    "surface": "solid",
+    "color": "special",
+    "source": { "collection": "projects" },
+    "content": {
+      "header": {
+        "eyebrow": "Projets & études de cas",
+        "title": "Des réponses différentes pour des contextes différents.",
+        "text": [
+          "Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."
+        ]
+      }
+    }
+  },
+  "home-services": {
+    "id": "home-services",
+    "type": "Section",
+    "layout": "content-switcher",
+    "content": {
+      "header": {
+        "title": "De quoi avez-vous besoin ?",
+        "text": [
+          "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."
+        ],
+        "links": [
+          {
+            "label": "Voir tous les accompagnements",
+            "href": "/approche",
+            "intent": "navigate",
+            "priority": "secondary",
+            "variant": "cta"
+          }
+        ]
+      },
+      "items": [
+        {
+          "id": "service-create",
+          "eyebrow": "Vous partez de zéro ou presque.",
+          "title": "Créer",
+          "text": [
+            "Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."
+          ],
+          "media": "ravine-business-card",
+          "tags": ["Site web", "Identité visuelle", "Direction artistique"],
+          "links": [
+            {
+              "label": "Construire votre présence",
+              "href": "/contact",
+              "intent": "contact",
+              "priority": "primary"
+            }
+          ]
+        },
+        {
+          "id": "service-clarify",
+          "eyebrow": "Quelque chose existe déjà, mais manque de netteté.",
+          "title": "Clarifier",
+          "text": [
+            "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."
+          ],
+          "media": "atmosphere-laptop",
+          "tags": ["Audit", "Refonte", "Architecture de contenu", "UX/UI"],
+          "links": [
+            {
+              "label": "Clarifier l’existant",
+              "href": "/contact",
+              "intent": "contact",
+              "priority": "primary"
+            }
+          ]
+        },
+        {
+          "id": "service-evolve",
+          "eyebrow": "Votre système fonctionne, mais il est devenu trop limité.",
+          "title": "Faire évoluer",
+          "text": [
+            "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux besoins."
+          ],
+          "media": "structure-mobile-multi",
+          "tags": [
+            "Refonte",
+            "Évolution du site",
+            "Direction visuelle",
+            "Supports complémentaires"
+          ],
+          "links": [
+            {
+              "label": "Faire évoluer le projet",
+              "href": "/contact",
+              "intent": "contact",
+              "priority": "primary"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "approach-default": {
+    "id": "approach-default",
+    "type": "Section",
+    "layout": "timeline",
+    "timelineOrientation": "horizontal",
+    "content": {
+      "items": [
+        {
+          "id": "approach-intro-title",
+          "title": "Comprendre d’abord. Construire ensuite.",
+          "text": [
+            "Le travail avance dans un ordre simple : comprendre ce qui doit être résolu, donner une structure claire au projet, construire sa direction visuelle puis la traduire en une expérience réellement utilisable."
+          ]
+        },
+        {
+          "id": "approach-understand",
+          "title": "Comprendre",
+          "text": [
+            "Le projet, son public, son positionnement, ses contenus et ses contraintes sont clarifiés avant de décider de la forme."
+          ]
+        },
+        {
+          "id": "approach-structure",
+          "title": "Structurer",
+          "text": [
+            "Les priorités deviennent une hiérarchie, des parcours et une structure suffisamment simple pour guider le reste du projet."
+          ]
+        },
+        {
+          "id": "approach-design",
+          "title": "Concevoir",
+          "text": [
+            "Typographie, image, rythme, interface et identité sont réunis dans une direction cohérente plutôt que traités comme des couches séparées."
+          ]
+        },
+        {
+          "id": "approach-build",
+          "title": "Construire",
+          "text": [
+            "La direction est traduite en une expérience responsive, accessible et maintenable, puis ajustée jusqu’à ce que forme et usage racontent la même chose."
+          ]
+        }
+      ]
+    }
+  },
+  "studio-founders": {
+    "id": "studio-founders",
+    "type": "Section",
+    "layout": "grid",
+    "surface": "solid",
+    "color": "accent",
+    "content": {
+      "header": {
+        "title": "Un même regard, du concept à l’interface.",
+        "text": [
+          "Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."
+        ]
+      },
+      "items": [
+        {
+          "title": "Channy How-Choong",
+          "text": [
+            "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
+          ],
+          "media": ["studio-founder-1"]
+        }
+      ]
+    }
+  },
+  "approach-method": {
+    "id": "approach-method",
+    "type": "Section",
+    "layout": "grid",
+    "source": { "collection": "approach" },
+    "content": {
+      "header": {
+        "title": "Clarifier, structurer, concevoir, livrer.",
+        "text": [
+          "Chaque projet commence par les bonnes questions. Le périmètre, les contenus et les priorités sont posés avant de décider de la forme. Cela permet de garder une direction claire et d’éviter d’ajouter de la complexité sans raison."
+        ]
+      }
+    }
+  },
+  "journal-default": {
+    "id": "journal-default",
+    "type": "Section",
+    "layout": "carousel",
+    "source": {
+      "collection": "journal",
+      "query": { "featured": true, "limit": 3 }
+    },
+    "content": {
+      "header": {
+        "eyebrow": "Journal",
+        "title": "Design, structure et présence digitale.",
+        "text": [
+          "Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."
+        ]
+      }
+    },
+    "itemAppearance": { "frame": true, "effect": "none" }
+  },
+  "contact-default": {
+    "id": "contact-default",
+    "type": "Section",
+    "layout": "split",
+    "surface": "solid",
+    "color": "accent",
+    "content": {
+      "header": {
+        "eyebrow": "Parler d’un projet",
+        "title": "Quelques lignes suffisent pour commencer.",
+        "text": [
+          "Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."
+        ]
+      },
+      "form": "contact"
+    }
+  },
+  "final-cta": {
+    "id": "final-cta",
+    "type": "Section",
+    "layout": "statement",
+    "tone": "inverse",
+    "content": {
+      "header": {
+        "eyebrow": "Un projet en tête ?",
+        "title": "Commençons par le rendre clair.",
+        "text": [
+          "Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."
+        ],
+        "links": [
+          {
+            "label": "Parler d’un projet",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "secondary",
+            "variant": "cta"
+          }
+        ]
+      }
+    }
+  },
+  "links-profile": {
+    "id": "links-profile",
+    "type": "Section",
+    "layout": "statement",
+    "content": {
+      "header": {
+        "title": "Chow Studio",
+        "text": [
+          "Design web, identité visuelle et direction digitale entre Paris et La Réunion."
+        ],
+        "media": "studio-founder-1"
+      }
+    }
+  },
+  "links-primary": {
+    "id": "links-primary",
+    "type": "Section",
+    "layout": "list",
+    "source": {
+      "collection": "links",
+      "query": { "group": "primary", "enabled": true }
+    }
+  },
+  "legal-notice-default": {
+    "id": "legal-notice-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": { "title": "Mentions légales" },
+      "items": [
+        {
+          "title": "Édition",
+          "text": [
+            "Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."
+          ]
+        },
+        {
+          "title": "Design & développement",
+          "text": [
+            "Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
+          ]
+        },
+        {
+          "title": "Hébergement",
+          "text": ["Ce site est hébergé par Netlify, Inc."]
+        },
+        {
+          "title": "Propriété intellectuelle du site",
+          "text": [
+            "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."
+          ]
+        }
+      ]
+    }
+  },
+  "terms-of-sale-default": {
+    "id": "terms-of-sale-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "title": "Conditions de vente",
+        "text": [
+          "Ces conditions encadrent les prestations réalisées par Chow Studio. Le devis ou la proposition commerciale précise le périmètre propre à chaque projet et complète ces conditions."
+        ]
+      },
+      "items": [
+        {
+          "title": "Devis & périmètre",
+          "text": [
+            "Le devis ou la proposition commerciale définit les livrables, le périmètre, le prix, le calendrier indicatif et, le cas échéant, le nombre de cycles de révisions inclus. Toute prestation qui dépasse ce périmètre peut faire l’objet d’un devis ou d’une facturation complémentaire."
+          ]
+        },
+        {
+          "title": "Révisions & modifications",
+          "text": [
+            "Les prestations peuvent inclure un nombre limité de révisions, défini dans le devis ou la proposition commerciale. Une révision correspond à un ajustement apporté dans le cadre du périmètre, du contenu et de la direction préalablement validés.",
+            "Une demande qui modifie le brief, le périmètre, la direction créative, les fonctionnalités ou un élément déjà validé ne constitue pas une révision. Elle est considérée comme une modification ou une prestation complémentaire et peut faire l’objet d’un devis ou d’une facturation supplémentaire."
+          ]
+        },
+        {
+          "title": "Paiement",
+          "text": [
+            "Les montants, échéances, acomptes éventuels et modalités de paiement sont indiqués dans le devis et les factures correspondantes. Le démarrage ou la poursuite d’une prestation peut être conditionné au règlement des sommes prévues."
+          ]
+        },
+        {
+          "title": "Délais & collaboration",
+          "text": [
+            "Le calendrier dépend notamment de la transmission des contenus, validations et retours nécessaires au projet. Un retard dans ces éléments peut entraîner un décalage du planning sans modifier automatiquement le périmètre convenu."
+          ]
+        },
+        {
+          "title": "Livraison & fichiers sources",
+          "text": [
+            "La livraison porte sur les éléments et formats prévus au devis. Les fichiers de travail, fichiers sources ou éléments éditables ne sont inclus que lorsqu’ils sont expressément prévus dans la prestation."
+          ]
+        },
+        {
+          "title": "Propriété intellectuelle des prestations",
+          "text": [
+            "Les créations réalisées par Chow Studio restent soumises aux droits de propriété intellectuelle de leur autrice. Les droits d’exploitation éventuellement cédés ou concédés au client sont ceux expressément prévus dans le devis, le contrat ou tout accord écrit applicable.",
+            "La livraison ou le paiement d’une création n’emporte pas, à lui seul, cession générale des droits de reproduction, d’adaptation ou de modification. Les déclinaisons, adaptations ou animations d’une identité visuelle doivent rester dans le cadre des droits effectivement accordés et respecter le droit moral de l’autrice."
+          ]
+        }
+      ]
+    }
+  },
+  "privacy-default": {
+    "id": "privacy-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "title": "Confidentialité & données personnelles",
+        "text": [
+          "Cette page explique simplement quelles données Chow Studio collecte sur ce site, pourquoi elles sont utilisées et comment exercer vos droits."
+        ]
+      },
+      "items": [
+        {
+          "title": "Responsable du traitement",
+          "text": [
+            "Les données collectées sur ce site sont traitées par Channy How-Choong · Chow Studio. Pour toute question relative à vos données personnelles ou pour exercer vos droits, vous pouvez écrire à channyhow@gmail.com."
+          ]
+        },
+        {
+          "title": "Formulaires de contact",
+          "text": [
+            "Lorsque vous utilisez un formulaire, les informations que vous choisissez de transmettre — notamment nom, adresse e-mail, entreprise éventuelle, besoin, calendrier, budget et message — sont utilisées uniquement pour comprendre votre demande, vous répondre et, le cas échéant, préparer une relation contractuelle.",
+            "La base juridique de ce traitement est l’exécution de mesures précontractuelles prises à votre demande. Les champs indiqués comme obligatoires sont nécessaires pour pouvoir traiter la demande ; les autres sont facultatifs."
+          ]
+        },
+        {
+          "title": "Destinataires & hébergement",
+          "text": [
+            "Les informations envoyées via les formulaires sont destinées à Chow Studio et aux prestataires techniques strictement nécessaires au fonctionnement du site et à la réception des demandes. Le site est hébergé par Netlify. Chow Studio ne vend pas les données transmises via le site."
+          ]
+        },
+        {
+          "title": "Durée de conservation",
+          "text": [
+            "Les données d’une demande qui ne donne pas lieu à une relation contractuelle sont conservées pendant le temps nécessaire à son traitement puis, lorsqu’elles restent utiles au suivi d’une relation de prospect, au maximum trois ans à compter de leur collecte ou du dernier contact émanant de la personne. Les données devant être conservées pour respecter une obligation légale ou défendre un droit peuvent faire l’objet d’un archivage distinct pendant la durée applicable."
+          ]
+        },
+        {
+          "title": "Cookies & mesure d’audience",
+          "text": [
+            "Dans sa configuration actuelle, le site n’utilise pas d’outil de mesure d’audience et ne dépose pas de traceur publicitaire ou marketing. Il n’affiche donc pas de bannière de consentement inutile. Si des outils nécessitant un consentement sont activés ultérieurement, ils devront être bloqués avant consentement et cette politique sera mise à jour.",
+            "Des traceurs strictement nécessaires au fonctionnement ou à la sécurité du service peuvent, le cas échéant, être utilisés sans consentement lorsqu’ils entrent dans les exemptions prévues par la réglementation."
+          ]
+        },
+        {
+          "title": "Intelligence artificielle",
+          "text": [
+            "Aucune donnée envoyée par les visiteurs via les formulaires du site n’est, dans la configuration actuelle, transmise automatiquement à un service d’intelligence artificielle. Si une fonctionnalité impliquant un tel traitement est ajoutée, les informations pertinentes sur sa finalité, son fonctionnement et ses destinataires devront être indiquées avant sa mise en service."
+          ]
+        },
+        {
+          "title": "Vos droits",
+          "text": [
+            "Vous pouvez demander l’accès à vos données, leur rectification, leur effacement ou la limitation de leur traitement lorsque ces droits sont applicables. Vous pouvez exercer ces droits en écrivant à channyhow@gmail.com.",
+            "Si vous estimez, après avoir contacté Chow Studio, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL."
+          ]
+        }
+      ]
+    }
+  },
+  "site-footer": {
+    "id": "site-footer",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": [
+          "Chow Studio",
+          "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
+        ],
+        "links": [
+          { "label": "Projets", "href": "/projets", "intent": "navigate" },
+          {
+            "label": "Accompagnements",
+            "href": "/approche",
+            "intent": "navigate"
+          },
+          { "label": "Journal", "href": "/journal", "intent": "navigate" },
+          {
+            "label": "Parler d’un projet",
+            "href": "/contact",
+            "intent": "contact",
+            "variant": "cta"
+          },
+          {
+            "label": "LinkedIn",
+            "href": "https://www.linkedin.com/in/channyhow",
+            "intent": "navigate"
+          },
+          {
+            "label": "Confidentialité",
+            "href": "/confidentialite",
+            "intent": "navigate"
+          },
+          {
+            "label": "Mentions légales",
+            "href": "/mentions-legales",
+            "intent": "navigate"
+          }
+        ],
+        "meta": [
+          {
+            "label": "Design et développement",
+            "value": "Channy How-Choong · Chow Studio"
+          },
+          { "label": "© 2026 Chow Studio· Tous droits réservés" }
+        ]
+      }
+    }
+  },
+  "not-found-default": {
+    "id": "not-found-default",
+    "type": "Section",
+    "layout": "statement",
+    "variant": "editorial",
+    "surface": "solid",
+    "color": "accent",
+    "content": {
+      "header": {
+        "eyebrow": "404 | Page introuvable",
+        "title": "Cette page n’est plus ici.",
+        "text": [
+          "Revenez à l’accueil ou poursuivez avec les projets du studio."
+        ],
+        "links": [
+          { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
+          {
+            "label": "Voir les projets",
+            "href": "/projets",
+            "intent": "navigate"
+          }
+        ]
+      }
+    }
+  }
 }
