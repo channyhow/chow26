@@ -255,7 +255,6 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
-    
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",
@@ -326,9 +325,69 @@
         },
         {
           "eyebrow": "04",
-          "title": "Propriété intellectuelle",
+          "title": "Propriété intellectuelle du site",
           "text": [
             "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."
+          ]
+        }
+      ]
+    }
+  },
+  "terms-of-sale-default": {
+    "id": "terms-of-sale-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": "Prestations",
+        "title": "Conditions de vente",
+        "text": [
+          "Ces conditions encadrent les prestations réalisées par Chow Studio. Le devis ou la proposition commerciale précise le périmètre propre à chaque projet et complète ces conditions."
+        ]
+      },
+      "items": [
+        {
+          "eyebrow": "01",
+          "title": "Devis & périmètre",
+          "text": [
+            "Le devis ou la proposition commerciale définit les livrables, le périmètre, le prix, le calendrier indicatif et, le cas échéant, le nombre de cycles de révisions inclus. Toute prestation qui dépasse ce périmètre peut faire l’objet d’un devis ou d’une facturation complémentaire."
+          ]
+        },
+        {
+          "eyebrow": "02",
+          "title": "Révisions & modifications",
+          "text": [
+            "Les prestations peuvent inclure un nombre limité de révisions, défini dans le devis ou la proposition commerciale. Une révision correspond à un ajustement apporté dans le cadre du périmètre, du contenu et de la direction préalablement validés.",
+            "Une demande qui modifie le brief, le périmètre, la direction créative, les fonctionnalités ou un élément déjà validé ne constitue pas une révision. Elle est considérée comme une modification ou une prestation complémentaire et peut faire l’objet d’un devis ou d’une facturation supplémentaire."
+          ]
+        },
+        {
+          "eyebrow": "03",
+          "title": "Paiement",
+          "text": [
+            "Les montants, échéances, acomptes éventuels et modalités de paiement sont indiqués dans le devis et les factures correspondantes. Le démarrage ou la poursuite d’une prestation peut être conditionné au règlement des sommes prévues."
+          ]
+        },
+        {
+          "eyebrow": "04",
+          "title": "Délais & collaboration",
+          "text": [
+            "Le calendrier dépend notamment de la transmission des contenus, validations et retours nécessaires au projet. Un retard dans ces éléments peut entraîner un décalage du planning sans modifier automatiquement le périmètre convenu."
+          ]
+        },
+        {
+          "eyebrow": "05",
+          "title": "Livraison & fichiers sources",
+          "text": [
+            "La livraison porte sur les éléments et formats prévus au devis. Les fichiers de travail, fichiers sources ou éléments éditables ne sont inclus que lorsqu’ils sont expressément prévus dans la prestation."
+          ]
+        },
+        {
+          "eyebrow": "06",
+          "title": "Propriété intellectuelle des prestations",
+          "text": [
+            "Les créations réalisées par Chow Studio restent soumises aux droits de propriété intellectuelle de leur autrice. Les droits d’exploitation éventuellement cédés ou concédés au client sont ceux expressément prévus dans le devis, le contrat ou tout accord écrit applicable.",
+            "La livraison ou le paiement d’une création n’emporte pas, à lui seul, cession générale des droits de reproduction, d’adaptation ou de modification. Les déclinaisons, adaptations ou animations d’une identité visuelle doivent rester dans le cadre des droits effectivement accordés et respecter le droit moral de l’autrice."
           ]
         }
       ]
