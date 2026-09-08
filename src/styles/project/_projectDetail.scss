@@ -27,7 +27,7 @@
 }
 
 .projectHero .textBlock__title {
-  @include type-display-xl;
+  @include type-display-lg;
   max-width: 10ch;
   letter-spacing: -0.045em;
   line-height: 0.94;
@@ -41,23 +41,25 @@
 }
 
 .projectHero .textBlock__meta {
-  grid-column: 1 / -1;
+    @include type-ui-compact;
+
+  // grid-column: 1 / -1;
   width: 100%;
   max-width: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $space-3;
-  margin-top: $space-3;
+  // gap: $space-3;
+  margin-top: $space-1;
   padding-top: $space-2;
-  border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  // border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
 }
 
 .projectHero .textBlock__meta > * {
   flex: 0 1 auto;
   min-width: 0;
   white-space: nowrap;
-  font-size: $type-body-sm;
+  // font-size: $type-body-sm;
 }
 
 .projectHero .split__secondary {
