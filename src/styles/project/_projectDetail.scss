@@ -49,25 +49,24 @@
 }
 
 .projectHero .textBlock__meta {
-    @include type-ui-compact;
+  @include type-ui-compact;
 
-  // grid-column: 1 / -1;
   width: 100%;
   max-width: var(--project-measure);
+
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  // gap: $space-3;
+  justify-content: flex-start;
+  gap: $space-1 $space-3;
+
   margin-top: $space-1;
   padding-top: $space-2;
-  // border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
 }
 
 .projectHero .textBlock__meta > * {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   min-width: 0;
-  white-space: nowrap;
-  // font-size: $type-body-sm;
 }
 
 .projectHero .split__secondary {
@@ -189,6 +188,8 @@
     justify-content: flex-start;
   }
 }
+
+
 
 @media (max-width: 63.999rem) {
   .projectHero,
