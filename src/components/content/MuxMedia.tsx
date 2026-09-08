@@ -175,6 +175,7 @@ export function MuxMedia({
           "aria-hidden": "true",
           style: {
             "--controls": "none",
+            "--media-object-fit": "contain",
             width: "100%",
             height: "100%",
             display: "block",
