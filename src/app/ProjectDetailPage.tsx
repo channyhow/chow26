@@ -114,17 +114,6 @@ function createProjectPage(project: ProjectRecord): PageData {
         },
       },
       ...storyBlocks,
-      {
-        id: `project-${project.id}-cta`,
-        type: "Section",
-        layout: "text",
-        variant: "editorial",
-        motion: "reveal",
-        className: "projectCta",
-        content: {
-          header: { title: "Un projet dans le même esprit ?" },
-        },
-      },
       { ref: "projects-featured" },
       { ref: "site-footer" },
     ],
