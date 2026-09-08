@@ -11,6 +11,7 @@ export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
 export type CardEffect = "none" | "glass" | "grain";
 export type TimelineOrientation = "vertical" | "horizontal";
+export type ProjectLayout = "a" | "b";
 
 export type CardAppearance = {
   frame?: boolean;
@@ -94,6 +95,7 @@ export type ProjectRecord = ContentItem & {
   description: string[];
   facts: MetaItem[];
   gallery: MediaRef[];
+  projectLayout?: ProjectLayout;
   seo: PageSeo;
 };
 

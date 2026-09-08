@@ -3,13 +3,9 @@ import { useParams } from "react-router-dom";
 import { PageRenderer } from "@/components/page/PageRenderer";
 import { Seo } from "@/components/page/Seo";
 import collections from "@/data/collections.json";
-import projectMoodsData from "@/data/projectMoods.json";
-import { deriveBrandProfile } from "@/utils/deriveBrandProfile";
-import type { ProjectMood } from "@/types/branding";
 import type { MetaItem, PageData, ProjectRecord, SectionBlock } from "@/types/content";
 
 const projects = collections.projects as ProjectRecord[];
-const projectMoods = projectMoodsData as Record<string, ProjectMood>;
 
 const notFoundPage: PageData = {
   id: "project-not-found",
@@ -38,46 +34,33 @@ const isDateMeta = (item: MetaItem) =>
   /^(année|annee|year|date)$/i.test(item.label.trim());
 
 function createProjectPage(project: ProjectRecord): PageData {
-  const mood = projectMoods[project.id];
-  const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
-  const isMdk = project.id === "mois-du-ker";
-  const detailLayout = (project.order ?? 0) % 2 === 0 ? "b" : "a";
+  const detailLayout = project.projectLayout ?? "a";
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
     if (!link.href) return [];
     return [{ label: link.label, href: link.href }];
   });
   const projectMeta = [...project.facts.filter((item) => !isDateMeta(item)), ...linkedMeta];
-  const profileClasses = profile
-    ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
-    : "projectProfile projectProfile--structured";
-  const detailClasses = `projectDetail projectDetail--${detailLayout} ${profileClasses}`;
+  const detailClasses = `projectDetail projectDetail--${detailLayout}`;
   const description = project.description.map(stripVisibleYear);
   const storyMedia = project.gallery ?? [];
-  const heroEyebrow = isMdk
-    ? undefined
-    : Array.isArray(project.eyebrow)
-      ? project.eyebrow.map(stripVisibleYear)
-      : project.eyebrow
-        ? stripVisibleYear(project.eyebrow)
-        : undefined;
 
   const storyBlocks: SectionBlock[] = storyMedia.length
     ? storyMedia.map((media, index) => {
         const start = Math.floor((index * description.length) / storyMedia.length);
         const end = Math.floor(((index + 1) * description.length) / storyMedia.length);
         const text = description.slice(start, Math.max(start + 1, end));
+        const baseDirection = detailLayout === "b" ? 1 : 0;
+        const isReverse = (index + baseDirection) % 2 === 1;
 
         return {
           id: `project-${project.id}-story-${index + 1}`,
           type: "Section",
           layout: "split",
-          variant: profile?.variant,
-          motion: profile?.motion,
-          className: `projectStoryMedia ${detailClasses} projectStoryMedia--${index % 2 === 0 ? "forward" : "reverse"}`,
+          variant: "editorial",
+          motion: "reveal",
+          className: `projectStoryMedia ${detailClasses} projectStoryMedia--${isReverse ? "reverse" : "forward"}`,
           content: {
-            header: {
-              text,
-            },
+            header: { text },
             media,
           },
         };
@@ -87,13 +70,11 @@ function createProjectPage(project: ProjectRecord): PageData {
           id: `project-${project.id}-story`,
           type: "Section",
           layout: "text",
-          variant: profile?.variant,
-          motion: profile?.motion,
+          variant: "editorial",
+          motion: "reveal",
           className: `projectStoryText ${detailClasses}`,
           content: {
-            header: {
-              text: description,
-            },
+            header: { text: description },
           },
         },
       ];
@@ -101,20 +82,19 @@ function createProjectPage(project: ProjectRecord): PageData {
   return {
     id: `project-${project.id}`,
     slug: project.href,
-    variant: profile?.variant ?? "editorial",
+    variant: "editorial",
     seo: project.seo,
     blocks: [
       {
         id: `project-${project.id}-hero`,
         type: "Section",
         layout: "split",
-        variant: profile?.variant,
+        variant: "editorial",
         color: "secondary",
-        motion: profile?.motion,
+        motion: "reveal",
         className: `projectHero ${detailClasses}`,
         content: {
           header: {
-            eyebrow: heroEyebrow,
             title: project.title,
             subtitle: project.summary,
           },
@@ -126,13 +106,11 @@ function createProjectPage(project: ProjectRecord): PageData {
         id: `project-${project.id}-meta`,
         type: "Section",
         layout: "text",
-        variant: profile?.variant,
+        variant: "editorial",
         motion: "reveal",
         className: `projectMeta ${detailClasses}`,
         content: {
-          header: {
-            meta: projectMeta,
-          },
+          header: { meta: projectMeta },
         },
       },
       {
@@ -143,9 +121,7 @@ function createProjectPage(project: ProjectRecord): PageData {
         motion: "reveal",
         className: "projectCta",
         content: {
-          header: {
-            title: "Un projet dans le même esprit ?",
-          },
+          header: { title: "Un projet dans le même esprit ?" },
         },
       },
       { ref: "projects-featured" },
