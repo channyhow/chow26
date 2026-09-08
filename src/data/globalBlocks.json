@@ -174,8 +174,7 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "grid",
-    "surface": "solid",
-    "color": "accent",
+  
     "content": {
       "header": {
         "title": "Un même regard, du concept à l’interface.",
