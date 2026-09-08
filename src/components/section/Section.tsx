@@ -42,6 +42,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
   const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion;
+  const scenePreset = block.motionPreset ?? "parallax";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
 
@@ -75,7 +76,33 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   let body: ReactNode;
 
   if (layout === "split") {
-    body = <Split primary={header ? <TextBlock content={header} /> : null} secondary={secondary} />;
+    const primary = header ? <TextBlock content={header} /> : null;
+    body = shouldTrackScroll ? (
+      <Split
+        primary={primary ? (
+          <ScrollScene
+            preset={scenePreset}
+            direction="forward"
+            className="section__scrollLayer"
+            decorative={false}
+          >
+            {primary}
+          </ScrollScene>
+        ) : null}
+        secondary={secondary ? (
+          <ScrollScene
+            preset={scenePreset}
+            direction="reverse"
+            className="section__scrollLayer"
+            decorative={false}
+          >
+            {secondary}
+          </ScrollScene>
+        ) : null}
+      />
+    ) : (
+      <Split primary={primary} secondary={secondary} />
+    );
   } else if (layout === "media-overlay") {
     body = (
       <div className="section__mediaOverlay">
@@ -140,6 +167,16 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     );
   }
 
+  const sceneBody = shouldTrackScroll && layout !== "split" ? (
+    <ScrollScene
+      preset={scenePreset}
+      className="section__scrollScene"
+      decorative={false}
+    >
+      <div className="section__inner">{body}</div>
+    </ScrollScene>
+  ) : null;
+
   return (
     <motion.section
       id={block.id}
@@ -153,13 +190,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       data-motion-preset={block.motionPreset}
     >
       {shouldTrackScroll ? (
-        <ScrollScene
-          preset={block.motionPreset ?? "parallax"}
-          className="section__scrollScene"
-          decorative={false}
-        >
-          <div className="section__inner">{body}</div>
-        </ScrollScene>
+        layout === "split" ? <div className="section__inner">{body}</div> : sceneBody
       ) : (
         <motion.div
           className="section__inner"
