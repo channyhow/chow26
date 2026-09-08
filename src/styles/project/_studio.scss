@@ -1,8 +1,9 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
 
 #studio-founders {
-  --media-background: transparent;
+  // --media-background: transparent;
   --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
 }
 
@@ -44,7 +45,7 @@
   max-width: 70rem;
   margin-inline: auto;
   overflow: visible;
-  background: transparent;
+  // background: transparent;
 }
 
 #studio-founders .card__mediaWrap {
@@ -55,13 +56,14 @@
 #studio-founders .card__media .media,
 #studio-founders .card__media .media__frame {
   width: 100%;
-  background: transparent;
-  mix-blend-mode: normal;
+  background: none;
+  
 }
 
 #studio-founders .card__media {
-  aspect-ratio: $ratio-portrait;
-  overflow: hidden;
+  padding-top: $flow-default;
+  aspect-ratio: $ratio-square;
+
 }
 
 #studio-founders .card__media .media,
@@ -72,7 +74,7 @@
 
 #studio-founders .card__media .media__asset {
   object-fit: cover;
-  filter: grayscale(1);
+  overflow: hidden;  filter: grayscale(1);
   mix-blend-mode: multiply;
 }
 
@@ -93,7 +95,7 @@
 }
 
 #studio-founders .card__body .textBlock__title {
-  @include type-heading-sm;
+  @include type-heading-md;
   font-weight: $font-weight-semibold;
   max-width: none;
 }

@@ -16,38 +16,7 @@
         "description": "Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.",
         "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
       }
-    },
-    {
-      "id": "kuro", "eyebrow": "Restaurant japonais · 2026", "title": "Kuro",
-      "text": ["Une présence digitale sombre et précise, pensée autour du lieu et d’une réservation sans détour.", "Mission : UI design et intégration frontend."],
-      "media": "kuro-video", "tags": ["restaurant", "web design", "responsive", "conversion"], "featured": true, "order": 2, "slug": "kuro", "href": "/projets/kuro", "projectLayout": "b",
-      "links": [{ "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" }],
-      "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
-      "description": ["Kuro est une présence web imaginée pour un **restaurant japonais** de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et **réserver**.", "La **direction visuelle** sombre et éditoriale soutient l’expérience tandis que la carte, les informations pratiques et les points de réservation restent clairement hiérarchisés.", "Le projet associe direction d’interface et intégration frontend afin que l’intention visuelle reste cohérente jusque dans l’expérience **responsive**."],
-      "facts": [{ "label": "Type", "value": "Site de restaurant" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, intégration frontend" }, { "label": "Focus", "value": "Réservation, atmosphère, responsive" }],
-      "gallery": ["kuro-laptop", "kuro-mobile"],
-      "seo": {
-        "title": "Kuro | Web design pour restaurant | Chow Studio",
-        "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
-        "image": "/assets/photos/work/kuro/kuro__laptop.jpg"
-      }
-    },
-    {
-      "id": "sashayogaflow", "eyebrow": "Yoga & bien-être · 2025", "title": "Sasha Yoga Flow",
-      "text": ["Une expérience mobile-first qui rassemble cours, planning, informations et réservation dans un même mouvement.", "Mission : direction visuelle et UI design."],
-      "media": "sasha-laptop", "tags": ["yoga", "wellness", "web design", "mobile-first"], "featured": true, "order": 3, "slug": "sashayogaflow", "href": "/projets/sashayogaflow", "projectLayout": "b",
-      "links": [{ "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" }],
-      "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
-      "description": ["Le projet rassemble dans un même espace les **cours**, le **planning**, les informations pratiques et les accès à la **réservation**.", "La priorité **mobile-first** répond à un usage concret : consulter rapidement une séance, comprendre l’offre et passer à l’action depuis son téléphone.", "La direction visuelle apporte une **identité plus personnelle** à l’expérience sans compromettre la lisibilité ni la simplicité du parcours."],
-      "facts": [{ "label": "Type", "value": "Branding & web design" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Mobile-first, réservation" }],
-      "gallery": ["sasha-laptop", "sasha-mobile"],
-      "seo": {
-        "title": "Sasha Yoga Flow | Site yoga & réservation | Chow Studio",
-        "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
-        "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
-      }
-    },
-    {
+    },{
       "id": "mois-du-ker",
       "eyebrow": "Campagne de prévention cardiovasculaire · la Réunion",
       "title": "Mois du Kèr",
@@ -80,6 +49,37 @@
         "image": "/assets/photos/work/mois-du-ker/mdk_tshirt.jpg"
       }
     },
+    {
+      "id": "kuro", "eyebrow": "Restaurant japonais · 2026", "title": "Kuro",
+      "text": ["Une présence digitale sombre et précise, pensée autour du lieu et d’une réservation sans détour.", "Mission : UI design et intégration frontend."],
+      "media": "kuro-video", "tags": ["restaurant", "web design", "responsive", "conversion"], "featured": true, "order": 2, "slug": "kuro", "href": "/projets/kuro", "projectLayout": "b",
+      "links": [{ "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" }],
+      "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
+      "description": ["Kuro est une présence web imaginée pour un **restaurant japonais** de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et **réserver**.", "La **direction visuelle** sombre et éditoriale soutient l’expérience tandis que la carte, les informations pratiques et les points de réservation restent clairement hiérarchisés.", "Le projet associe direction d’interface et intégration frontend afin que l’intention visuelle reste cohérente jusque dans l’expérience **responsive**."],
+      "facts": [{ "label": "Type", "value": "Site de restaurant" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, intégration frontend" }, { "label": "Focus", "value": "Réservation, atmosphère, responsive" }],
+      "gallery": ["kuro-laptop", "kuro-mobile"],
+      "seo": {
+        "title": "Kuro | Web design pour restaurant | Chow Studio",
+        "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
+        "image": "/assets/photos/work/kuro/kuro__laptop.jpg"
+      }
+    },
+    {
+      "id": "sashayogaflow", "eyebrow": "Yoga & bien-être · 2025", "title": "Sasha Yoga Flow",
+      "text": ["Une expérience mobile-first qui rassemble cours, planning, informations et réservation dans un même mouvement.", "Mission : direction visuelle et UI design."],
+      "media": "sasha-laptop", "tags": ["yoga", "wellness", "web design", "mobile-first"], "featured": true, "order": 3, "slug": "sashayogaflow", "href": "/projets/sashayogaflow", "projectLayout": "b",
+      "links": [{ "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" }],
+      "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
+      "description": ["Le projet rassemble dans un même espace les **cours**, le **planning**, les informations pratiques et les accès à la **réservation**.", "La priorité **mobile-first** répond à un usage concret : consulter rapidement une séance, comprendre l’offre et passer à l’action depuis son téléphone.", "La direction visuelle apporte une **identité plus personnelle** à l’expérience sans compromettre la lisibilité ni la simplicité du parcours."],
+      "facts": [{ "label": "Type", "value": "Branding & web design" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Mobile-first, réservation" }],
+      "gallery": ["sasha-laptop", "sasha-mobile"],
+      "seo": {
+        "title": "Sasha Yoga Flow | Site yoga & réservation | Chow Studio",
+        "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
+        "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
+      }
+    },
+    
     {
       "id": "maloya", "eyebrow": "Musique · 2026 · Concept", "title": "Maloya",
       "text": ["Une plateforme immersive où vidéos, concerts et univers visuel trouvent la même scène.", "Mission : UI design et direction visuelle."],
