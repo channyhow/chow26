@@ -16,14 +16,14 @@
 
   &__header {
     width: 100%;
-    max-width: $container-wide;
+    max-width: $container-narrow;
     margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
-  // TextBlock and section__header are the same element. Keep this composition
-  // at the shared layout level so page art direction only has to define exceptions.
+  // A section introduction is one typographic block. Asymmetry belongs to the
+  // relationship between this region and section__body, not inside TextBlock.
   &__header.textBlock {
-    max-width: $container-wide;
+    max-width: $container-narrow;
   }
 
   &__header.textBlock .textBlock__title {
@@ -33,6 +33,11 @@
   &__header.textBlock .textBlock__subtitle,
   &__header.textBlock .textBlock__content {
     max-width: var(--section-copy-width, #{$measure-header-copy});
+  }
+
+  &__body {
+    width: 100%;
+    min-width: 0;
   }
 
   &__mediaOverlay {
@@ -119,73 +124,56 @@
 }
 
 @include desktop-up {
-  .section__header.textBlock {
+  // Generic editorial composition for sections that expose header + body.
+  // Individual components remain layout-agnostic inside the body region.
+  .section__inner:has(> .section__header + .section__body) {
     display: grid;
-    grid-template-columns: repeat($section-header-columns, minmax(0, 1fr));
+    grid-template-columns: repeat($section-columns, minmax(0, 1fr));
     column-gap: $layout-gap;
-    row-gap: $flow-loose;
+    align-items: start;
   }
 
-  .section__header.textBlock > .textBlock__header {
-    grid-column: var(--section-header-title-column, #{$section-header-title-column});
+  .section__inner:has(> .section__header + .section__body) > .section__header {
+    grid-column: var(--section-header-column, #{$section-header-column});
   }
 
-  .section__header.textBlock > .textBlock__content {
-    grid-column: var(--section-header-copy-column, #{$section-header-copy-column});
+  .section__inner:has(> .section__header + .section__body) > .section__body {
+    grid-column: var(--section-body-column, #{$section-body-column});
   }
 
-  .section__header.textBlock > .textBlock__footer {
-    grid-column: var(--section-header-action-column, #{$section-header-action-column});
-    padding-top: 0;
-  }
-
-  .section__header.textBlock > .textBlock__meta {
-    grid-column: var(--section-header-meta-column, #{$section-header-meta-column});
-  }
-
-  .section[data-layout="text"] .section__inner,
-  .section[data-layout="statement"] .section__inner {
+  .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
-  .section[data-layout="text"] .textBlock,
-  .section[data-layout="statement"] .textBlock {
+  .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock {
     grid-column: 3 / span 8;
   }
 }
 
 @media (min-width: $bp-tablet) and (max-width: 63.999rem) {
-  .section__header.textBlock {
+  .section__inner:has(> .section__header + .section__body) {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: $layout-gap;
-    row-gap: $flow-loose;
+    align-items: start;
   }
 
-  .section__header.textBlock > .textBlock__header {
-    grid-column: 1 / span 7;
+  .section__inner:has(> .section__header + .section__body) > .section__header {
+    grid-column: 1 / span 6;
   }
 
-  .section__header.textBlock > .textBlock__content,
-  .section__header.textBlock > .textBlock__footer {
-    grid-column: 2 / span 6;
-  }
-
-  .section__header.textBlock > .textBlock__footer {
-    padding-top: 0;
-  }
-
-  .section__header.textBlock > .textBlock__meta {
-    grid-column: 5 / span 4;
+  .section__inner:has(> .section__header + .section__body) > .section__body {
+    grid-column: 2 / span 7;
   }
 }
 
 @media (max-width: 47.999rem) {
-  .section__header {
+  .section__header,
+  .section__header.textBlock,
+  .section__body {
     width: 100%;
-  }
-
-  .section__header.textBlock {
     max-width: none;
   }
 
