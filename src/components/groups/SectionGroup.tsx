@@ -57,6 +57,21 @@ function panelKey(block: PanelBlock, index: number) {
   return "ref" in block ? block.ref : block.id || `panel-${index + 1}`;
 }
 
+function resolvePanelPresentation(
+  id: string,
+  surface: PanelSurface,
+  color?: SectionColor,
+) {
+  if (id === "studio-founders-panel") {
+    return {
+      surface: "glass" as PanelSurface,
+      color: "accent" as SectionColor,
+    };
+  }
+
+  return { surface, color };
+}
+
 function Panel({
   id,
   behavior,
@@ -79,6 +94,7 @@ function Panel({
   const ref = useRef<HTMLDivElement>(null);
   const needsStickyOffset = behavior === "stack" || behavior === "cover";
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
+  const presentation = resolvePanelPresentation(id, surface, color);
 
   useEffect(() => {
     if (!needsStickyOffset) return;
@@ -119,11 +135,11 @@ function Panel({
       data-panel-behavior={behavior}
       data-panel-size={size}
       data-panel-align={align}
-      data-panel-surface={surface}
-      data-panel-color={color}
+      data-panel-surface={presentation.surface}
+      data-panel-color={presentation.color}
       style={style}
     >
-      {renderBlocks(blocks, false, color)}
+      {renderBlocks(blocks, false, presentation.color)}
     </div>
   );
 }
