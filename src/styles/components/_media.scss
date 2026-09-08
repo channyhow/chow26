@@ -5,7 +5,7 @@
   margin: 0;
   overflow: hidden;
   border-radius: var(--radius-media, #{$radius-default});
-  background: color-mix(in srgb, var(--primary) 5%, var(--secondary));
+  background: var(--media-background, color-mix(in srgb, var(--primary) 5%, var(--secondary)));
 }
 
 .media__frame {
