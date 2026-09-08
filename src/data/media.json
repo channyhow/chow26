@@ -107,6 +107,14 @@
     "width": 1600,
     "height": 1067
   },
+  "mdk-logo-evolution": {
+    "id": "mdk-logo-evolution",
+    "type": "mux",
+    "playbackKey": "mdk-logo-evolution",
+    "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
+    "width": 1080,
+    "height": 1920
+  },
   "ravine-business-card": {
     "id": "ravine-business-card",
     "type": "image",
