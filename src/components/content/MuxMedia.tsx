@@ -165,16 +165,20 @@ export function MuxMedia({
           "metadata-video-title": alt,
           muted: true,
           loop: true,
+          controls: false,
           autoplay: autoPlay && isVisible,
           preload: priority || isNearViewport ? "metadata" : "none",
           tabindex: -1,
           "aria-hidden": "true",
           style: {
+            "--controls": "none",
+            "--media-object-fit": "cover",
             width: "100%",
             height: "100%",
             display: "block",
             position: "absolute",
             inset: "0",
+            pointerEvents: "none",
           },
         })
       : null;
