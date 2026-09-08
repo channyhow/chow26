@@ -23,6 +23,8 @@ const sectionMotionDefaults: Record<
   Pick<SectionBlock, "motion" | "motionPreset">
 > = {
   "home-opening": { motion: "scene", motionPreset: "parallax" },
+  "projects-featured": { motion: "scene", motionPreset: "ambient" },
+  "project-gallery": { motion: "scene", motionPreset: "ambient" },
   "home-services": { motion: "scene", motionPreset: "ambient" },
   "approach-default": { motion: "scene", motionPreset: "draw" },
   "studio-founders": { motion: "scene", motionPreset: "parallax" },
@@ -34,7 +36,7 @@ const footerLinks = [
   { label: "Projets", href: "/projets", intent: "navigate" },
   { label: "Studio", href: "/studio", intent: "navigate" },
   {
-    label: "Parler d’un projet",
+    label: "Contact",
     href: "/contact",
     intent: "contact",
     variant: "cta",
@@ -66,13 +68,6 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
     ...(sectionMotionDefaults[entry.id] ?? {}),
     ...entry,
   };
-
-  if (prepared.id === "studio-founders") {
-    return {
-      ...prepared,
-      color: "special",
-    };
-  }
 
   if (prepared.id === "studio-services") {
     return {
