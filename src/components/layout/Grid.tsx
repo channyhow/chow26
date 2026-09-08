@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
+import { responsiveQueries } from "@/utils/responsive";
 
 export type GridProps = {
   children: ReactNode;
@@ -15,18 +16,27 @@ type GridRange = {
   step: number;
 };
 
+const gridRanges = {
+  mobile: { initial: 4, step: 1 },
+  tablet: { initial: 4, step: 2 },
+  desktop: { initial: 6, step: 3 },
+} satisfies Record<string, GridRange>;
+
 function getGridRange(): GridRange {
-  if (typeof window === "undefined") return { initial: 6, step: 3 };
-  if (window.matchMedia("(min-width: 64rem)").matches) return { initial: 6, step: 3 };
-  if (window.matchMedia("(min-width: 48rem)").matches) return { initial: 4, step: 2 };
-  return { initial: 4, step: 1 };
+  if (typeof window === "undefined") return gridRanges.desktop;
+  if (window.matchMedia(responsiveQueries.desktopUp).matches) return gridRanges.desktop;
+  if (window.matchMedia(responsiveQueries.tabletUp).matches) return gridRanges.tablet;
+  return gridRanges.mobile;
 }
 
 export function Grid({ children, className, progressive = false }: GridProps) {
   const reduceMotion = useReducedMotion();
   const childArray = useMemo(() => Children.toArray(children), [children]);
-  const [range, setRange] = useState<GridRange>(() => getGridRange());
-  const [visibleCount, setVisibleCount] = useState(() => progressive ? getGridRange().initial : childArray.length);
+  const initialRange = useMemo(() => getGridRange(), []);
+  const [range, setRange] = useState<GridRange>(initialRange);
+  const [visibleCount, setVisibleCount] = useState(() =>
+    progressive ? initialRange.initial : childArray.length,
+  );
 
   useEffect(() => {
     if (!progressive) {
@@ -34,8 +44,8 @@ export function Grid({ children, className, progressive = false }: GridProps) {
       return;
     }
 
-    const desktop = window.matchMedia("(min-width: 64rem)");
-    const tablet = window.matchMedia("(min-width: 48rem)");
+    const desktop = window.matchMedia(responsiveQueries.desktopUp);
+    const tablet = window.matchMedia(responsiveQueries.tabletUp);
 
     const syncRange = () => {
       const next = getGridRange();
