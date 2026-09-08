@@ -1,5 +1,11 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
+.gridReveal {
+  display: grid;
+  gap: $space-3;
+}
 
 .grid {
   display: grid;
@@ -8,6 +14,44 @@
 
   > * {
     min-width: 0;
+  }
+}
+
+.gridReveal__more {
+  @include type-ui-compact;
+
+  justify-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: $control-min-height;
+  padding: $space-2 0 $space-1;
+  border: 0;
+  border-top: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gridReveal__moreIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.9em;
+  transition: transform $transition-hover;
+}
+
+.gridReveal__more:focus-visible {
+  @include focus-ring;
+}
+
+@include hover {
+  .gridReveal__more:hover .gridReveal__moreIcon {
+    transform: translateY(0.2rem);
   }
 }
 
@@ -20,5 +64,15 @@
 @include desktop-up {
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@include reduced-motion {
+  .gridReveal__moreIcon {
+    transition: none;
+  }
+
+  .gridReveal__more:hover .gridReveal__moreIcon {
+    transform: none;
   }
 }
