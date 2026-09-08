@@ -181,7 +181,7 @@
   object-fit: contain;
 }
 
-@include tablet-down {
+@media (max-width: 63.999rem) {
   .projectHero--mdk .section__mediaOverlay {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(55svh, auto) auto;
@@ -236,7 +236,7 @@
   }
 }
 
-@include mobile-only {
+@media (max-width: 29.999rem) {
   .projectHero--mdk .textBlock__title {
     font-size: clamp(3.6rem, 18vw, 6rem);
   }
