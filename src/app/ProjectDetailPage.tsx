@@ -28,33 +28,50 @@ const notFoundPage: PageData = {
 
 const mdkEditorialDescription = [
   "**Le Kèr** est d’abord né d’un manque, celui de la Réunion lorsqu’on en est loin. Home Is Where the Heart Is d’Elvis Presley accompagne cette idée d’un chez-soi que l’on continue de porter avec soi. Le cœur devient kèr, en créole réunionnais.",
-  "Lorsque le projet de **prévention cardiovasculaire** de Jérôme Corré se présente, le lien fonctionne naturellement. Le Kèr prend alors un autre sens, tout aussi évident. Il parle toujours de la Réunion, mais aussi du cœur dont il faut prendre soin. C’est autour de cette double lecture que Channy How conçoit le logo et l’identité visuelle du Mois du Kèr pour Chow Studio.",
-  "**Le cœur anatomique** s’impose assez vite. Il n’y a rien de vraiment discret dans cette identité. Illustratif et coloré, il puise librement dans les couleurs de la Réunion, entre ciel, mer, soleil, lave, flamboyants et letchis, sans chercher à attribuer une signification précise à chacune.",
-  "Le cœur étant déjà très détaillé, la **typographie** reste volontairement simple, condensée et directe. Elle équilibre l’illustration et permet au nom d’exister aussi sans elle. **KÈR** garde une place particulière. Son écriture conserve la façon dont le mot sonne en créole réunionnais et lui donne suffisamment de présence pour pouvoir vivre seul dans une forme plus compacte de l’identité.",
-  "Créée en **2025**, l’identité accompagne aujourd’hui la deuxième édition du Mois du Kèr à la Réunion. Avec le temps, elle continue d’évoluer. Le cœur peut prendre toute la place ou vivre seul, tandis que KÈR peut se détacher du nom complet. Les explorations présentées ici prolongent simplement cette identité sous de nouvelles formes.",
+  "Lorsque le projet de **prévention cardiovasculaire** de Jérôme Corré se présente, le lien fonctionne naturellement. Le Kèr prend alors un autre sens, tout aussi évident. Il parle toujours de la Réunion, mais aussi du cœur dont il faut prendre soin. C’est autour de cette **double lecture** que se construit le logo et l’identité visuelle du Mois du Kèr.",
+  "**Le cœur anatomique** est illustratif, coloré et volontairement très présent. Il puise librement dans les **couleurs de la Réunion**, entre ciel, mer, soleil, lave, flamboyants et letchis, sans chercher à attribuer une signification précise à chacune.",
+  "Le cœur étant déjà très détaillé, la **typographie** reste simple, condensée et directe. Elle équilibre l’illustration et permet au nom d’exister aussi sans elle. **KÈR** garde une place particulière. Son écriture conserve la façon dont le mot sonne en créole réunionnais et lui donne suffisamment de présence pour pouvoir vivre seul dans une forme plus compacte de l’identité.",
+  "L’identité accompagne aujourd’hui le Mois du Kèr à la Réunion et continue d’évoluer. Le cœur peut prendre toute la place ou vivre seul, tandis que KÈR peut se détacher du nom complet. Les explorations présentées ici prolongent simplement cette identité sous de nouvelles formes.",
 ];
+
+const stripVisibleYear = (value: string) =>
+  value
+    .replace(/\s*·\s*(?:19|20)\d{2}\b/g, "")
+    .replace(/\b(?:19|20)\d{2}\b/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s*·\s*$/g, "")
+    .trim();
+
+const isDateMeta = (item: MetaItem) =>
+  /^(année|annee|year|date)$/i.test(item.label.trim());
 
 function createProjectPage(project: ProjectRecord): PageData {
   const mood = projectMoods[project.id];
   const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
   const isMdk = project.id === "mois-du-ker";
-  const storyLayout = isMdk ? "text" : (profile?.storyLayout ?? "text");
-  const galleryLayout = isMdk ? "gallery" : (profile?.galleryLayout ?? "gallery");
+  const detailLayout = (project.order ?? 0) % 2 === 0 ? "b" : "a";
   const projectGallery = isMdk
     ? ["mdk-color-palette", "mois-du-ker-textile", "mdk-heartbeat"]
     : project.gallery;
-  const storyMedia = storyLayout === "split" ? projectGallery[0] : undefined;
-  const galleryMedia = storyMedia ? projectGallery.slice(1) : projectGallery;
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
     const href = link.href;
     if (!href) return [];
 
     return [{ label: link.label, href }];
   });
-  const projectMeta = [...project.facts, ...linkedMeta];
+  const projectMeta = [...project.facts.filter((item) => !isDateMeta(item)), ...linkedMeta];
   const profileClasses = profile
     ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
     : "projectProfile projectProfile--structured";
+  const detailClasses = `projectDetail projectDetail--${detailLayout} ${profileClasses}`;
+  const description = (isMdk ? mdkEditorialDescription : project.description).map(stripVisibleYear);
+  const heroEyebrow = isMdk
+    ? undefined
+    : Array.isArray(project.eyebrow)
+      ? project.eyebrow.map(stripVisibleYear)
+      : project.eyebrow
+        ? stripVisibleYear(project.eyebrow)
+        : undefined;
 
   return {
     id: `project-${project.id}`,
@@ -70,10 +87,10 @@ function createProjectPage(project: ProjectRecord): PageData {
         tone: profile?.tone,
         color: profile?.color,
         motion: profile?.motion,
-        className: `projectHero ${isMdk ? "projectHero--mdk" : ""} ${profileClasses}`,
+        className: `projectHero ${detailClasses}`,
         content: {
           header: {
-            eyebrow: isMdk ? undefined : project.eyebrow,
+            eyebrow: heroEyebrow,
             title: project.title,
             subtitle: project.summary,
           },
@@ -83,40 +100,58 @@ function createProjectPage(project: ProjectRecord): PageData {
       {
         id: `project-${project.id}-story`,
         type: "Section",
-        layout: storyLayout,
+        layout: "text",
         variant: profile?.variant,
         motion: profile?.motion,
-        className: `projectStory ${isMdk ? "projectStory--mdk" : ""} ${profileClasses}`,
+        className: `projectStory ${detailClasses}`,
         content: {
           header: {
             eyebrow: isMdk ? undefined : "Le projet",
             title: isMdk ? undefined : project.summary,
-            text: isMdk ? mdkEditorialDescription : project.description,
+            text: description,
             meta: projectMeta,
           },
-          media: storyMedia,
         },
       },
       {
         id: `project-${project.id}-gallery`,
         type: "Section",
-        layout: galleryLayout,
+        layout: "gallery",
         variant: profile?.variant,
         motion: profile?.motion,
         itemAppearance: profile?.cardEffect && profile.cardEffect !== "none"
           ? { effect: profile.cardEffect }
           : undefined,
-        className: `projectGallery ${isMdk ? "projectGallery--mdk" : ""} ${profileClasses}`,
+        className: `projectGallery ${detailClasses}`,
         content: {
-          header: isMdk ? undefined : {
-            eyebrow: galleryLayout === "carousel" ? "Séquence" : "Galerie",
-            title: `Détails de ${project.title}.`,
+          media: projectGallery,
+        },
+      },
+      {
+        id: `project-${project.id}-cta`,
+        type: "Section",
+        layout: "text",
+        variant: "editorial",
+        color: "primary",
+        motion: "reveal",
+        className: "projectCta",
+        content: {
+          header: {
+            title: "Un projet dans le même esprit ?",
+            text: "Parlons de ce que vous avez en tête.",
+            links: [
+              {
+                label: "Parler de votre projet",
+                href: "/contact",
+                intent: "contact",
+                variant: "arrow",
+                priority: "primary",
+              },
+            ],
           },
-          media: galleryMedia,
         },
       },
       { ref: "projects-featured" },
-      { ref: "final-cta" },
       { ref: "site-footer" },
     ],
   };
