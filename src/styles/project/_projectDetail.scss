@@ -87,12 +87,23 @@
   grid-column: 7 / -1;
 }
 
+.projectHero.projectDetail--b .section__mediaOverlay {
+  min-height: auto;
+  align-items: center;
+  padding-top: clamp(8rem, 14vw, 13rem);
+  padding-bottom: clamp(#{$space-4}, 8vw, 8rem);
+}
+
 .projectHero.projectDetail--b .section__media {
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 5;
+  align-self: center;
+  justify-self: start;
+  width: min(100%, 36rem);
 }
 
 .projectHero.projectDetail--b .section__overlayContent {
-  grid-column: 8 / -1;
+  grid-column: 7 / -1;
+  align-self: center;
 }
 
 .projectStory {
@@ -148,12 +159,9 @@
 }
 
 .projectStory strong {
-  font-weight: 650;
-  background-image: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--accent) 26%, transparent) 0 32%,
-    transparent 32% 100%
-  );
+  font-weight: 680;
+  color: color-mix(in srgb, currentColor 82%, var(--accent) 18%);
+  background: none;
 }
 
 .projectStory .textBlock__meta {
@@ -191,6 +199,8 @@
 
 .projectGallery .gallery__item {
   min-width: 0;
+  width: 100%;
+  max-width: none;
   margin: 0;
   overflow: visible;
   border-radius: $radius-none;
@@ -199,11 +209,21 @@
 .projectGallery .gallery__item .media,
 .projectGallery .gallery__item .media__frame,
 .projectGallery .gallery__item .media__asset {
+  display: block;
   width: 100%;
+  max-width: none;
+}
+
+.projectGallery .gallery__item .media {
   height: auto;
 }
 
+.projectGallery .gallery__item .media__frame {
+  height: 100%;
+}
+
 .projectGallery .gallery__item .media__asset {
+  height: 100%;
   object-fit: contain;
 }
 
@@ -211,12 +231,24 @@
   grid-column: span 5;
 }
 
+.projectGallery .gallery__item[data-orientation="portrait"] .media__frame {
+  aspect-ratio: 4 / 5;
+}
+
 .projectGallery .gallery__item[data-orientation="square"] {
   grid-column: span 6;
 }
 
+.projectGallery .gallery__item[data-orientation="square"] .media__frame {
+  aspect-ratio: 1;
+}
+
 .projectGallery .gallery__item[data-orientation="landscape"] {
   grid-column: span 8;
+}
+
+.projectGallery .gallery__item[data-orientation="landscape"] .media__frame {
+  aspect-ratio: 3 / 2;
 }
 
 .projectGallery.projectDetail--a .gallery__item:nth-child(odd) {
@@ -259,11 +291,12 @@
 }
 
 .projectCta .textBlock__footer {
-  margin-top: clamp(#{$space-3}, 5vw, #{$space-4});
+  margin-top: clamp(#{$space-2}, 3vw, #{$space-3});
 }
 
 @media (max-width: 63.999rem) {
-  .projectHero .section__mediaOverlay {
+  .projectHero .section__mediaOverlay,
+  .projectHero.projectDetail--b .section__mediaOverlay {
     grid-template-columns: 1fr;
     min-height: auto;
     padding-top: 8rem;
@@ -284,7 +317,7 @@
   .projectHero.projectDetail--a .section__media,
   .projectHero.projectDetail--b .section__media {
     grid-row: 2;
-    width: min(100%, 46rem);
+    width: min(100%, 42rem);
   }
 
   .projectHero.projectDetail--b .section__media {
