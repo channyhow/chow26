@@ -2,6 +2,8 @@ import { createPrivateKey, sign } from "node:crypto";
 
 const MEDIA_ENV_KEYS = {
   "mdk-logo-evolution": "MUX_PLAYBACK_MDK_LOGO_EVOLUTION",
+  "mdk-color-palette": "MUX_PLAYBACK_MDK_COLOR_PALETTE",
+  "mdk-heartbeat": "MUX_PLAYBACK_MDK_HEARTBEAT",
 };
 
 const TOKEN_TTL_SECONDS = 15 * 60;
