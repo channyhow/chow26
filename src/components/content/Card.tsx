@@ -30,7 +30,9 @@ export function Card({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const mediaOrientation = getMediaOrientation(media);
-  const visibleItem = isProject ? { ...item, eyebrow: undefined } : item;
+  const visibleItem = isProject
+    ? { ...item, eyebrow: undefined, links: undefined }
+    : item;
   const cardClassName = clsx(
     "card",
     isProject && "projectCard",
