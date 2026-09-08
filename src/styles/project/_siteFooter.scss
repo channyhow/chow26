@@ -2,34 +2,35 @@
 @use "../foundation/typography" as *;
 
 .siteFooter {
-  --footer-gutter: clamp(#{$space-2}, 5vw, #{$space-4});
+  --footer-gutter: #{$page-gutter};
 
   min-height: 50vh;
   padding:
-    clamp(3rem, 6vw, 5.5rem)
+    $section-space
     var(--footer-gutter)
-    clamp(2rem, 4vw, 3.5rem);
+    clamp(#{$space-3}, 4vw, #{$space-4});
   color: var(--secondary);
   background: var(--primary);
 }
 
-.siteFooter__inner, #site-footer.section__inner {
+.siteFooter__inner,
+#site-footer.section__inner {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: $section-content-gap;
   width: min(100%, #{$container-max});
   margin-inline: auto;
 }
 
 .siteFooter__main {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: $section-content-gap;
   align-items: start;
 }
 
 .siteFooter__identity {
   display: grid;
   align-content: start;
-  gap: $space-2;
+  gap: $flow-default;
   min-width: 0;
 }
 
@@ -46,14 +47,14 @@
 
 .siteFooter__baselines {
   display: grid;
-  gap: .35rem;
+  gap: $flow-tight;
   max-width: 28rem;
 }
 
 .siteFooter__links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: $layout-gap;
   min-width: 0;
 }
 
@@ -66,7 +67,7 @@
   display: grid;
   align-content: start;
   justify-content: start;
-  gap: .65rem;
+  gap: $flow-tight;
 }
 
 .siteFooter .actions__link {
@@ -86,38 +87,30 @@
 
 .siteFooter__meta {
   display: grid;
-  gap: .45rem;
+  gap: $flow-tight;
   width: 100%;
-  padding-top: $space-2;
+  padding-top: $flow-default;
   border-top: 1px solid color-mix(in srgb, currentColor 42%, transparent);
 }
 
 @media (min-width: $bp-tablet) {
   .siteFooter__main {
-    grid-template-columns: minmax(0, 1.1fr) minmax(22rem, .9fr);
-    gap: clamp(#{$space-3}, 5vw, #{$space-4});
-  }
-
-  .siteFooter__links {
-    gap: clamp(#{$space-2}, 3vw, #{$space-3});
+    grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+    gap: $section-content-gap;
   }
 
   .siteFooter__meta {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: $space-1 $space-3;
+    gap: $flow-tight $flow-loose;
   }
 }
 
 @media (min-width: $bp-desktop) {
   .siteFooter__main {
     grid-template-columns: minmax(0, 1.55fr) minmax(30rem, 1.15fr);
-    gap: clamp(4rem, 7vw, 8rem);
-  }
-
-  .siteFooter__links {
-    gap: clamp(2.5rem, 5vw, 5rem);
+    gap: clamp(#{$space-4}, 7vw, 8rem);
   }
 }
 
@@ -127,20 +120,8 @@
     padding-bottom: clamp(6.5rem, 24vw, 8rem);
   }
 
-  .siteFooter__inner {
-    gap: clamp(2.5rem, 10vw, 4rem);
-  }
-
-  .siteFooter__main {
-    gap: clamp(2.75rem, 11vw, 4.25rem);
-  }
-
   .siteFooter__links {
     align-items: start;
-  }
-
-  .siteFooter__navGroup.actions {
-    gap: .7rem;
   }
 
   .siteFooter__meta {
