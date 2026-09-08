@@ -26,14 +26,6 @@ const notFoundPage: PageData = {
   ],
 };
 
-const mdkEditorialDescription = [
-  "**Le Kèr** est d’abord né d’un manque, celui de la Réunion lorsqu’on en est loin. Home Is Where the Heart Is d’Elvis Presley accompagne cette idée d’un chez-soi que l’on continue de porter avec soi. Le cœur devient kèr, en créole réunionnais.",
-  "Lorsque le projet de **prévention cardiovasculaire** de Jérôme Corré se présente, le lien fonctionne naturellement. Le Kèr prend alors un autre sens, tout aussi évident. Il parle toujours de la Réunion, mais aussi du cœur dont il faut prendre soin. C’est autour de cette **double lecture** que se construit le logo et l’identité visuelle du Mois du Kèr.",
-  "**Le cœur anatomique** est illustratif, coloré et volontairement très présent. Il puise librement dans les **couleurs de la Réunion**, entre ciel, mer, soleil, lave, flamboyants et letchis, sans chercher à attribuer une signification précise à chacune.",
-  "Le cœur étant déjà très détaillé, la **typographie** reste simple, condensée et directe. Elle équilibre l’illustration et permet au nom d’exister aussi sans elle. **KÈR** garde une place particulière. Son écriture conserve la façon dont le mot sonne en créole réunionnais et lui donne suffisamment de présence pour pouvoir vivre seul dans une forme plus compacte de l’identité.",
-  "L’identité accompagne aujourd’hui le Mois du Kèr à la Réunion et continue d’évoluer. Le cœur peut prendre toute la place ou vivre seul, tandis que KÈR peut se détacher du nom complet. Les explorations présentées ici prolongent simplement cette identité sous de nouvelles formes.",
-];
-
 const stripVisibleYear = (value: string) =>
   value
     .replace(/\s*·\s*(?:19|20)\d{2}\b/g, "")
@@ -64,7 +56,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     ? `projectProfile projectProfile--${profile.composition} projectProfile--media-${profile.mediaTreatment} projectProfile--spacing-${profile.spacing}`
     : "projectProfile projectProfile--structured";
   const detailClasses = `projectDetail projectDetail--${detailLayout} ${profileClasses}`;
-  const description = (isMdk ? mdkEditorialDescription : project.description).map(stripVisibleYear);
+  const description = project.description.map(stripVisibleYear);
   const heroEyebrow = isMdk
     ? undefined
     : Array.isArray(project.eyebrow)
