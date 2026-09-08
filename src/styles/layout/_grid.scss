@@ -4,13 +4,13 @@
 
 .gridReveal {
   display: grid;
-  gap: $space-3;
+  gap: $section-content-gap;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--section-gap, #{$space-3});
+  gap: var(--section-gap, #{$layout-gap});
 
   > * {
     min-width: 0;
@@ -25,7 +25,7 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   min-height: $control-min-height;
-  padding: $space-2 0 $space-1;
+  padding: $flow-default 0 $flow-tight;
   border: 0;
   border-top: 1px solid currentColor;
   background: transparent;
