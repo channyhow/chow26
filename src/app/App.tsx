@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 import { SiteShell } from "@/app/SiteShell";
 import { PageRenderer } from "@/components/page/PageRenderer";
-import { ProjectDetailPage } from "@/app/ProjectDetailPage";
 import { RouteLoader } from "@/components/page/RouteLoader";
 import { Seo } from "@/components/page/Seo";
 import pages from "@/data/pages.json";
@@ -13,6 +12,9 @@ import type { PageData } from "@/types/content";
 
 const BrandingPage = lazy(() =>
   import("@/app/BrandingPage").then((module) => ({ default: module.BrandingPage })),
+);
+const ProjectDetailPage = lazy(() =>
+  import("@/app/ProjectDetailPage").then((module) => ({ default: module.ProjectDetailPage })),
 );
 const SystemPage = lazy(() =>
   import("@/app/SystemPage").then((module) => ({ default: module.SystemPage })),
@@ -25,10 +27,7 @@ const pageData = pages as PageData[];
 const internalRobots = { index: false, follow: false } as const;
 
 function normalizePath(pathname: string) {
-  if (pathname === "/") {
-    return pathname;
-  }
-
+  if (pathname === "/") return pathname;
   return pathname.replace(/\/+$/, "");
 }
 
@@ -49,14 +48,11 @@ function ScrollToTop() {
 function RoutedPage() {
   const location = useLocation();
   const pathname = normalizePath(location.pathname);
-
   const page =
     pageData.find((item) => normalizePath(item.slug) === pathname) ??
     pageData.find((item) => item.id === "not-found");
 
-  if (!page) {
-    return null;
-  }
+  if (!page) return null;
 
   const isNotFound = page.id === "not-found";
 
@@ -124,7 +120,14 @@ export function App() {
                 </Suspense>
               )}
             />
-            <Route path="/projets/:slug" element={<ProjectDetailPage />} />
+            <Route
+              path="/projets/:slug"
+              element={(
+                <Suspense fallback={null}>
+                  <ProjectDetailPage />
+                </Suspense>
+              )}
+            />
             <Route path="*" element={<RoutedPage />} />
           </Routes>
         </motion.div>
