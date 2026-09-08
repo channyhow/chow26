@@ -37,9 +37,7 @@
 }
 
 .carousel__item .media__asset {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  @include media-fill;
 }
 
 .carousel__controls {
@@ -50,7 +48,6 @@
   button {
     @include icon-control;
 
-    border-radius: $radius-full;
     -webkit-tap-highlight-color: transparent;
 
     &:disabled {
@@ -81,15 +78,6 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
-}
-
-[data-variant="organic"] {
-  .carousel__controls button {
-    border-radius: var(
-      --radius-control,
-      #{$radius-full}
-    );
-  }
 }
 
 @include reduced-motion {
