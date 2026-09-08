@@ -8,6 +8,13 @@
 
 .projectHero {
   --section-space: 0;
+  --split-primary-column: 1 / span 5;
+  --split-secondary-column: 7 / span 6;
+}
+
+.projectHero.projectDetail--b {
+  --split-primary-column: 8 / span 5;
+  --split-secondary-column: 1 / span 6;
 }
 
 .projectHero .section__inner {
@@ -19,10 +26,11 @@
 
 .projectHero .split {
   align-items: center;
-  gap: $space-5;
+  gap: $space-3;
 }
 
 .projectHero .textBlock {
+  width: 100%;
   max-width: var(--project-measure);
 }
 
@@ -45,7 +53,7 @@
 
   // grid-column: 1 / -1;
   width: 100%;
-  max-width: none;
+  max-width: var(--project-measure);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,17 +90,19 @@
   object-fit: cover;
 }
 
-.projectHero.projectDetail--b .split__primary {
-  order: 2;
-}
-
-.projectHero.projectDetail--b .split__secondary {
-  order: 1;
-}
-
 .projectStoryMedia,
 .projectStoryText {
   --section-space: $space-5;
+}
+
+.projectStoryMedia--forward {
+  --split-primary-column: 2 / span 4;
+  --split-secondary-column: 7 / span 5;
+}
+
+.projectStoryMedia--reverse {
+  --split-primary-column: 8 / span 4;
+  --split-secondary-column: 2 / span 5;
 }
 
 .projectStoryMedia .section__inner,
@@ -102,11 +112,12 @@
 
 .projectStoryMedia .split {
   align-items: center;
-  gap: $space-5;
+  gap: $space-3;
 }
 
 .projectStoryMedia .textBlock,
 .projectStoryText .textBlock {
+  width: 100%;
   max-width: var(--project-measure);
 }
 
@@ -157,14 +168,6 @@
   object-fit: cover;
 }
 
-.projectStoryMedia--reverse .split__primary {
-  order: 2;
-}
-
-.projectStoryMedia--reverse .split__secondary {
-  order: 1;
-}
-
 .projectCta {
   --section-space: $space-5;
 }
@@ -183,12 +186,19 @@
 
 @media (max-width: 74rem) {
   .projectHero .textBlock__meta {
-    flex-wrap: wrap;
     justify-content: flex-start;
   }
 }
 
 @media (max-width: 63.999rem) {
+  .projectHero,
+  .projectHero.projectDetail--b,
+  .projectStoryMedia--forward,
+  .projectStoryMedia--reverse {
+    --split-primary-column: 1 / -1;
+    --split-secondary-column: 1 / -1;
+  }
+
   .projectHero .section__inner,
   .projectStoryMedia .section__inner,
   .projectStoryText .section__inner {
@@ -198,13 +208,6 @@
   .projectHero .split,
   .projectStoryMedia .split {
     gap: $space-4;
-  }
-
-  .projectHero.projectDetail--b .split__primary,
-  .projectHero.projectDetail--b .split__secondary,
-  .projectStoryMedia--reverse .split__primary,
-  .projectStoryMedia--reverse .split__secondary {
-    order: initial;
   }
 
   .projectHero .media,
