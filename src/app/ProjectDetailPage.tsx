@@ -97,22 +97,12 @@ function createProjectPage(project: ProjectRecord): PageData {
           header: {
             title: project.title,
             subtitle: project.summary,
+            meta: projectMeta,
           },
           media: project.media,
         },
       },
       ...storyBlocks,
-      {
-        id: `project-${project.id}-meta`,
-        type: "Section",
-        layout: "text",
-        variant: "editorial",
-        motion: "reveal",
-        className: `projectMeta ${detailClasses}`,
-        content: {
-          header: { meta: projectMeta },
-        },
-      },
       {
         id: `project-${project.id}-cta`,
         type: "Section",
