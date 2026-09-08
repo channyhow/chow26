@@ -265,8 +265,8 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "special",
+            "surface": "glass",
+            "color": "accent",
             "blocks": [{ "ref": "studio-founders" }]
           },
           {
@@ -315,7 +315,7 @@
             "blocks": [{ "ref": "approach-default" }]
           },
           {
-            "id": "approach-founders-panel",
+            "id": "studio-founders-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
