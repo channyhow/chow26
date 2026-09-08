@@ -8,9 +8,15 @@
   min-height: min(80svh, 48rem);
 }
 
-.section__scrollScene {
+.section__scrollScene,
+.section__scrollLayer {
+  width: 100%;
   min-height: 0;
   overflow: visible;
+}
+
+.section__scrollLayer .scrollScene__content {
+  width: 100%;
 }
 
 .scrollScene__content {
