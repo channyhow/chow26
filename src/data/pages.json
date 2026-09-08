@@ -474,18 +474,10 @@
             "surface": "solid",
             "color": "secondary",
             "blocks": [{ "ref": "contact-default" }]
-          },
-          {
-            "id": "contact-final-panel",
-            "behavior": "stack",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
+        
         ]
-      }
+      },{ "ref": "site-footer" }
     ]
   },
   {
