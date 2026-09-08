@@ -3,17 +3,17 @@ import type { Variants } from "motion/react";
 export const motionConfig = {
   duration: {
     fast: 0.18,
-    default: 0.36,
-    slow: 0.56,
+    default: 0.4,
+    slow: 0.64,
   },
   delay: {
-    stagger: 0.06,
-    staggerFast: 0.05,
+    stagger: 0.08,
+    staggerFast: 0.06,
   },
   distance: {
-    route: 4,
-    reveal: 8,
-    subtle: 8,
+    route: 6,
+    reveal: 16,
+    subtle: 12,
   },
   easing: {
     standard: [0.16, 1, 0.3, 1] as const,
@@ -21,8 +21,8 @@ export const motionConfig = {
   },
   viewport: {
     once: true,
-    amount: 0.16,
-    margin: "0px 0px -8% 0px",
+    amount: 0.14,
+    margin: "0px 0px -6% 0px",
   },
 } as const;
 
@@ -33,7 +33,7 @@ export const revealTransition = {
 
 export const revealItem: Variants = {
   hidden: {
-    opacity: 0.94,
+    opacity: 0.88,
     y: motionConfig.distance.reveal,
   },
   visible: {
