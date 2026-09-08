@@ -38,6 +38,7 @@ $type-body-sm: 0.9375rem;
 $type-body: clamp(1.0625rem, 0.35vw + 1rem, 1.125rem);
 $type-ui: clamp(0.9375rem, 0.25vw + 0.9rem, 1rem);
 $type-ui-compact: clamp(0.8125rem, 0.3vw + 0.76rem, 0.9rem);
+$type-nav: clamp(0.72rem, 0.22vw + 0.68rem, 0.8rem);
 $type-lead: clamp(1.1875rem, 1.4vw, 1.35rem);
 $type-heading-sm: clamp(1rem, 1.1vw, 1.2rem);
 $type-heading-md: clamp(1.125rem, 1.35vw, 1.5rem);
