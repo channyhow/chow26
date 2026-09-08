@@ -3,7 +3,7 @@
 
 .textBlock {
   display: grid;
-  gap: $space-3;
+  gap: $space-2;
   width: 100%;
   max-width: var(--text-width, #{$measure-text});
 
@@ -39,7 +39,7 @@
   }
   &__footer {
     gap: $space-2;
-    padding-top: $space-2;
+    padding-top: $space-1;
   }
   &__meta {
     @include type-meta;
