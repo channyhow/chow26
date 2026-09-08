@@ -42,7 +42,6 @@ function createProjectPage(project: ProjectRecord): PageData {
   const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
   const isMdk = project.id === "mois-du-ker";
   const detailLayout = (project.order ?? 0) % 2 === 0 ? "b" : "a";
-  const projectGallery = project.gallery;
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
     const href = link.href;
     if (!href) return [];
@@ -114,7 +113,7 @@ function createProjectPage(project: ProjectRecord): PageData {
           : undefined,
         className: `projectGallery ${detailClasses}`,
         content: {
-          media: projectGallery,
+          media: project.gallery,
         },
       },
       {
@@ -122,22 +121,11 @@ function createProjectPage(project: ProjectRecord): PageData {
         type: "Section",
         layout: "text",
         variant: "editorial",
-        color: "primary",
         motion: "reveal",
         className: "projectCta",
         content: {
           header: {
             title: "Un projet dans le même esprit ?",
-            text: "Parlons de ce que vous avez en tête.",
-            links: [
-              {
-                label: "Parler de votre projet",
-                href: "/contact",
-                intent: "contact",
-                variant: "arrow",
-                priority: "primary",
-              },
-            ],
           },
         },
       },
