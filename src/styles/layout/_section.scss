@@ -122,23 +122,6 @@
 }
 
 @include desktop-up {
-  // Keep the editorial header/body offset opt-in for now. Studio founders is
-  // the only section using it while the composition is evaluated in context.
-  #studio-founders .section__inner:has(> .section__header + .section__body) {
-    display: grid;
-    grid-template-columns: repeat($section-columns, minmax(0, 1fr));
-    column-gap: $layout-gap;
-    align-items: start;
-  }
-
-  #studio-founders .section__inner > .section__header {
-    grid-column: var(--section-header-column, #{$section-header-column});
-  }
-
-  #studio-founders .section__inner > .section__body {
-    grid-column: var(--section-body-column, #{$section-body-column});
-  }
-
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
   .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -147,23 +130,6 @@
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
   .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock {
     grid-column: 3 / span 8;
-  }
-}
-
-@media (min-width: $bp-tablet) and (max-width: 63.999rem) {
-  #studio-founders .section__inner:has(> .section__header + .section__body) {
-    display: grid;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: $layout-gap;
-    align-items: start;
-  }
-
-  #studio-founders .section__inner > .section__header {
-    grid-column: 1 / span 6;
-  }
-
-  #studio-founders .section__inner > .section__body {
-    grid-column: 2 / span 7;
   }
 }
 
