@@ -37,7 +37,7 @@
   }
 
   .card__mediaWrap {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: $ratio-wide;
     display: grid;
     place-items: center;
     overflow: hidden;
