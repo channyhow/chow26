@@ -36,9 +36,8 @@
 @use "project/artDirection";
 @use "project/studio";
 @use "project/projectDetail";
-@use "project/responsive";
 @use "project/drawer" as chowDrawer;
-@use "project/footer";
+@use "project/siteFooter";
 @use "project/notFound";
 
 :root {
