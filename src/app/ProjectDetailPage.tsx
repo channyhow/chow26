@@ -65,7 +65,8 @@ function createProjectPage(project: ProjectRecord): PageData {
           type: "Section",
           layout: "split",
           variant: "editorial",
-          motion: "reveal",
+          motion: "scene",
+          motionPreset: "parallax",
           className: `projectStoryMedia ${detailClasses} projectStoryMedia--${isReverse ? "reverse" : "forward"}`,
           content: {
             header: { text },
@@ -79,7 +80,8 @@ function createProjectPage(project: ProjectRecord): PageData {
           type: "Section",
           layout: "text",
           variant: "editorial",
-          motion: "reveal",
+          motion: "scene",
+          motionPreset: "parallax",
           className: `projectStoryText ${detailClasses}`,
           content: {
             header: { text: description },
@@ -99,7 +101,8 @@ function createProjectPage(project: ProjectRecord): PageData {
         layout: "split",
         variant: "editorial",
         color: "secondary",
-        motion: "reveal",
+        motion: "scene",
+        motionPreset: "parallax",
         className: `projectHero ${detailClasses}`,
         content: {
           header: {
