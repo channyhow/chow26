@@ -56,10 +56,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
-  }
-
-  &__mediaOverlay > .section__media {
-    @include media-frame($ratio-landscape);
+    @include media-cover;
   }
 
   &__overlayContent {
