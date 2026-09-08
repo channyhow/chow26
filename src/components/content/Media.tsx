@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import clsx from "clsx";
 import { useReducedMotion } from "motion/react";
 
@@ -13,6 +13,11 @@ export type MediaProps = {
   autoPlay?: boolean;
 };
 
+const getMediaOrientation = (media: MediaItem) => {
+  if (media.width === media.height) return "square";
+  return media.width > media.height ? "landscape" : "portrait";
+};
+
 export function Media({
   media,
   className,
@@ -25,6 +30,9 @@ export function Media({
   const position = media.focalPoint
     ? `${media.focalPoint.x}% ${media.focalPoint.y}%`
     : "50% 50%";
+  const mediaStyle = {
+    "--media-ratio": `${media.width} / ${media.height}`,
+  } as CSSProperties;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -61,14 +69,17 @@ export function Media({
 
   if (media.type === "mux") {
     return (
-      <figure className={clsx("media", className)}>
+      <figure
+        className={clsx("media", className)}
+        data-media-type={media.type}
+        data-orientation={getMediaOrientation(media)}
+        style={mediaStyle}
+      >
         <div className="media__frame">
           <MuxMedia
             className="media__asset"
-            playbackKey={media.playbackKey}
+            mediaKey={media.id}
             alt={media.alt ?? ""}
-            width={media.width}
-            height={media.height}
             priority={priority}
             autoPlay={autoPlay}
           />
@@ -85,7 +96,12 @@ export function Media({
 
   if (media.type === "video") {
     return (
-      <figure className={clsx("media", className)}>
+      <figure
+        className={clsx("media", className)}
+        data-media-type={media.type}
+        data-orientation={getMediaOrientation(media)}
+        style={mediaStyle}
+      >
         <div className="media__frame">
           <video
             ref={videoRef}
@@ -118,7 +134,12 @@ export function Media({
     : undefined;
 
   return (
-    <figure className={clsx("media", className)}>
+    <figure
+      className={clsx("media", className)}
+      data-media-type={media.type}
+      data-orientation={getMediaOrientation(media)}
+      style={mediaStyle}
+    >
       <div className="media__frame">
         <img
           className="media__asset"

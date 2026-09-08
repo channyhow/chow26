@@ -1,10 +1,6 @@
 import { createPrivateKey, sign } from "node:crypto";
 
-const MEDIA_ENV_KEYS = {
-  "mdk-logo-evolution": "MUX_PLAYBACK_MDK_LOGO_EVOLUTION",
-  "mdk-color-palette": "MUX_PLAYBACK_MDK_COLOR_PALETTE",
-  "mdk-heartbeat": "MUX_PLAYBACK_MDK_HEARTBEAT",
-};
+import mediaData from "../../src/data/media.json";
 
 const TOKEN_TTL_SECONDS = 15 * 60;
 
@@ -46,38 +42,41 @@ export default async (request) => {
   }
 
   const url = new URL(request.url);
-  const media = url.searchParams.get("media");
-  const playbackEnvKey = media ? MEDIA_ENV_KEYS[media] : undefined;
+  const mediaKey = url.searchParams.get("media");
+  const media = mediaKey ? mediaData[mediaKey] : undefined;
 
-  if (!playbackEnvKey) {
+  if (!media || media.type !== "mux" || !media.playbackId) {
     return Response.json({ error: "Unknown media" }, { status: 404 });
   }
 
-  const playbackId = process.env[playbackEnvKey];
   const keyId = process.env.MUX_SIGNING_KEY_ID;
   const privateKeyBase64 = process.env.MUX_SIGNING_PRIVATE_KEY;
 
-  if (!playbackId || !keyId || !privateKeyBase64) {
+  if (!keyId || !privateKeyBase64) {
     console.error("Mux signing environment is incomplete");
     return Response.json({ error: "Video unavailable" }, { status: 503 });
   }
 
   try {
     const playbackToken = createJwt({
-      playbackId,
+      playbackId: media.playbackId,
       audience: "v",
       keyId,
       privateKeyBase64,
     });
     const thumbnailToken = createJwt({
-      playbackId,
+      playbackId: media.playbackId,
       audience: "t",
       keyId,
       privateKeyBase64,
     });
 
     return Response.json(
-      { playbackId, playbackToken, thumbnailToken },
+      {
+        playbackId: media.playbackId,
+        playbackToken,
+        thumbnailToken,
+      },
       {
         headers: {
           "Cache-Control": "private, max-age=300",

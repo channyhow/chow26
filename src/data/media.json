@@ -110,7 +110,7 @@
   "mdk-logo-evolution": {
     "id": "mdk-logo-evolution",
     "type": "mux",
-    "playbackKey": "mdk-logo-evolution",
+    "playbackId": "y00ycTIaXMmXNykktCQDLdfMG6eTFrp8YfmBoT8ImXqQ",
     "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
     "width": 1080,
     "height": 1920
@@ -118,7 +118,7 @@
   "mdk-color-palette": {
     "id": "mdk-color-palette",
     "type": "mux",
-    "playbackKey": "mdk-color-palette",
+    "playbackId": "X78LIgQ2XXw02fZquupTip4h9U67kpPiDe02LjR6TUKqE",
     "alt": "Mois du Kèr | exploration animée de la palette de couleurs de l’identité.",
     "width": 1080,
     "height": 1350
@@ -126,7 +126,7 @@
   "mdk-heartbeat": {
     "id": "mdk-heartbeat",
     "type": "mux",
-    "playbackKey": "mdk-heartbeat",
+    "playbackId": "TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M",
     "alt": "Mois du Kèr | cœur anatomique animé au rythme d’un battement.",
     "width": 1080,
     "height": 1350

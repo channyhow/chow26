@@ -39,7 +39,7 @@ export type VideoMediaItem = MediaBase & {
 
 export type MuxMediaItem = MediaBase & {
   type: "mux";
-  playbackKey: string;
+  playbackId: string;
 };
 
 export type MediaItem = ImageMediaItem | VideoMediaItem | MuxMediaItem;

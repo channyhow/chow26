@@ -58,6 +58,8 @@ export function Header() {
           return;
         }
       }
+
+      setSurface((current) => (current === "secondary" ? current : "secondary"));
     };
 
     const scheduleResolve = () => {
