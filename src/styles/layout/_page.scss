@@ -1,4 +1,5 @@
 @use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
 
 .page {
   position: relative;
@@ -28,7 +29,7 @@
 /* Footer reveal only applies to the direct page-level footer wrapper.
    A footer inside a scroll panel keeps the same visual styling without becoming
    fixed inside the panel. */
-@media (min-width: $bp-tablet) {
+@include tablet-up {
   .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: var(--footer-reveal-height);
     box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.06);
@@ -47,7 +48,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: 0;
     box-shadow: none;
