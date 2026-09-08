@@ -45,6 +45,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   const scenePreset = block.motionPreset ?? "parallax";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
+  const isProjectArchive = block.id === "project-gallery";
 
   const cards = items.map((item, index) => (
     <Card
@@ -54,7 +55,11 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       effect={block.itemAppearance?.effect}
     />
   ));
-  const cardsGrid = cards.length ? <Grid className="section__body">{cards}</Grid> : null;
+  const cardsGrid = cards.length ? (
+    <Grid className="section__body" progressive={isProjectArchive}>
+      {cards}
+    </Grid>
+  ) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media
     ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" />
