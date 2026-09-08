@@ -2,6 +2,8 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
+$bp-home-compact: 32rem;
+
 /* ==================================
    CHOW STUDIO
    Page-level composition only.
@@ -21,6 +23,14 @@
 
 .carousel {
   --carousel-media-ratio: #{$ratio-landscape};
+}
+
+#contact-default {
+  min-height: 100svh;
+}
+
+#contact-default .split {
+  align-items: start;
 }
 
 /* ==================================
@@ -53,14 +63,7 @@ body:has(#home-opening) .header {
   width: min(52vw, 58rem);
   height: min(58svh, 40rem);
   opacity: 0.96;
-}
-
-#home-opening .section__mediaOverlay > .media img,
-#home-opening .section__mediaOverlay > .media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  @include media-cover;
 }
 
 #home-opening .section__mediaOverlay::after {
@@ -103,7 +106,7 @@ body:has(#home-opening) .header {
   grid-area: content;
   align-self: start;
   width: min(100%, 28rem);
-  margin-top: clamp(1rem, 3svh, 3rem);
+  margin-top: clamp(#{$space-2}, 3svh, 3rem);
 }
 
 #home-opening .textBlock__footer {
@@ -124,8 +127,10 @@ body:has(#home-opening) .header {
   background: transparent;
 }
 
-#home-opening .actions > :first-child:hover {
-  background: transparent;
+@include hover {
+  #home-opening .actions > :first-child:hover {
+    background: transparent;
+  }
 }
 
 /* ==================================
@@ -152,7 +157,7 @@ body:has(#home-opening) .header {
 ================================== */
 
 #approach-default {
-  --section-space: clamp(4rem, 7vw, 6rem);
+  --section-space: clamp(#{$space-4}, 7vw, #{$space-5});
   overflow: clip;
 }
 
@@ -189,7 +194,7 @@ body:has(#home-opening) .header {
   place-items: center;
   width: 100vw;
   height: 100svh;
-  padding: clamp(3.5rem, 7svh, 6rem) var(--project-gutter);
+  padding: clamp(3.5rem, 7svh, #{$space-5}) var(--project-gutter);
 }
 
 #approach-default .horizontalScroll__item > .timeline__item {
@@ -234,6 +239,7 @@ body:has(#home-opening) .header {
 
 #home-services {
   --section-space: clamp(4.5rem, 8vw, 7rem);
+  --home-services-gap: clamp(#{$space-3}, 4vw, #{$space-4});
 }
 
 #home-services .section__inner {
@@ -246,8 +252,7 @@ body:has(#home-opening) .header {
 
 #home-services > .section__inner > .section__header {
   grid-area: header;
-  position: sticky;
-  top: clamp(6rem, 10svh, 8rem);
+  @include sticky-editorial;
   width: min(100%, 30rem);
   max-width: none;
 }
@@ -260,7 +265,7 @@ body:has(#home-opening) .header {
 #home-services .contentSwitcher {
   width: 100%;
   min-width: 0;
-  gap: clamp(2rem, 4vw, 4rem);
+  gap: var(--home-services-gap);
 }
 
 #home-services .contentSwitcher__controls {
@@ -276,7 +281,7 @@ body:has(#home-opening) .header {
   padding: $space-2 $space-1;
   border: 0;
   border-right: 1px solid currentColor;
-  border-radius: 0;
+  border-radius: $radius-none;
   background: transparent;
   color: currentColor;
   text-align: center;
@@ -298,11 +303,9 @@ body:has(#home-opening) .header {
 }
 
 #home-services .card {
-  display: grid;
+  @include split-composition(1.2fr, 0.8fr, var(--home-services-gap), end);
   grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
   grid-template-areas: "media body";
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: end;
   margin-top: 0;
   border-radius: $radius-none;
   background: transparent;
@@ -310,20 +313,7 @@ body:has(#home-opening) .header {
 
 #home-services .card__media {
   grid-area: media;
-  aspect-ratio: $ratio-square;
-  overflow: hidden;
-}
-
-#home-services .card__media .media,
-#home-services .card__media .media__frame,
-#home-services .card__media .media__asset {
-  width: 100%;
-  height: 100%;
-}
-
-#home-services .card__media .media__asset {
-  object-fit: cover;
-  object-position: center;
+  @include media-frame($ratio-square);
 }
 
 #home-services .card__body {
@@ -345,16 +335,14 @@ body:has(#home-opening) .header {
 }
 
 #home-services .card__body .textBlock__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-1;
+  @include meta-chips;
 }
 
 /* ==================================
    RESPONSIVE PAGE COMPOSITION
 ================================== */
 
-@media (max-width: 80rem) {
+@media (max-width: $container-wide) {
   #home-opening .section__mediaOverlay > .media {
     right: -8vw;
     bottom: -2svh;
@@ -365,7 +353,7 @@ body:has(#home-opening) .header {
 
   #home-opening .textBlock {
     grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
-    column-gap: clamp(2rem, 5vw, 5rem);
+    column-gap: clamp(#{$space-3}, 5vw, 5rem);
   }
 
   #home-opening .textBlock__header {
@@ -395,13 +383,13 @@ body:has(#home-opening) .header {
 
   #home-services .card {
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
+    gap: clamp(#{$space-3}, 4vw, 3.5rem);
   }
 }
 
-@media (max-width: $bp-desktop) {
+@include desktop-down {
   #home-opening .section__overlayContent {
-    padding: clamp(6.5rem, 11svh, 8rem) var(--project-gutter) clamp(2.5rem, 5svh, 4rem);
+    padding: clamp(6.5rem, 11svh, 8rem) var(--project-gutter) clamp(2.5rem, 5svh, #{$space-4});
   }
 
   #home-opening .section__mediaOverlay > .media {
@@ -444,7 +432,7 @@ body:has(#home-opening) .header {
   }
 
   #home-services .contentSwitcher__controls button {
-    min-height: 4rem;
+    min-height: $space-4;
     padding-inline: $space-1;
   }
 
@@ -467,9 +455,9 @@ body:has(#home-opening) .header {
   }
 }
 
-@media (max-width: $bp-tablet) {
+@include tablet-down {
   .site {
-    --project-gutter: clamp(1rem, 5vw, 2rem);
+    --project-gutter: clamp(#{$space-2}, 5vw, #{$space-3});
   }
 
   #home-opening .section__overlayContent {
@@ -567,7 +555,7 @@ body:has(#home-opening) .header {
   }
 }
 
-@media (max-width: 32rem) {
+@media (max-width: $bp-home-compact) {
   #home-opening .section__mediaOverlay > .media {
     right: -44vw;
     width: 125vw;
@@ -593,7 +581,7 @@ body:has(#home-opening) .header {
   }
 }
 
-@media (max-width: $bp-mobile) {
+@include mobile-down {
   #approach-default .horizontalScroll__item {
     padding-inline: $space-2;
   }
