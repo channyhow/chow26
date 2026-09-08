@@ -43,7 +43,7 @@
   z-index: $z-raised;
   width: min(92vw, 46rem);
   height: 100%;
-  padding: 4rem $space-3 $space-3;
+  padding: $space-4 $space-3 $space-3;
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--drawer-surface);
@@ -109,10 +109,10 @@
   to { opacity: 1; }
 }
 
-@media (max-width: $bp-tablet) {
+@include tablet-down {
   .drawer__panel {
     width: 100%;
-    padding: 4rem $space-2 $space-2;
+    padding: $space-4 $space-2 $space-2;
     transform: none;
   }
 
