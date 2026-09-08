@@ -20,14 +20,6 @@ const getMediaOrientation = (media?: MediaItem) => {
   return media.width > media.height ? "landscape" : "portrait";
 };
 
-const stripVisibleYear = (value: string) =>
-  value
-    .replace(/\s*·\s*(?:19|20)\d{2}\b/g, "")
-    .replace(/\b(?:19|20)\d{2}\b/g, "")
-    .replace(/\s{2,}/g, " ")
-    .replace(/\s*·\s*$/g, "")
-    .trim();
-
 export function Card({
   item,
   frame = false,
@@ -38,14 +30,7 @@ export function Card({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const mediaOrientation = getMediaOrientation(media);
-  const visibleItem = isProject && item.eyebrow
-    ? {
-        ...item,
-        eyebrow: Array.isArray(item.eyebrow)
-          ? item.eyebrow.map(stripVisibleYear)
-          : stripVisibleYear(item.eyebrow),
-      }
-    : item;
+  const visibleItem = isProject ? { ...item, eyebrow: undefined } : item;
   const cardClassName = clsx(
     "card",
     isProject && "projectCard",
