@@ -64,7 +64,7 @@
 .form__control--checkbox {
   width: 1.25rem;
   min-height: auto;
-  aspect-ratio: 1;
+  aspect-ratio: $ratio-square;
   padding: 0;
   appearance: none;
   background: transparent;
@@ -98,7 +98,7 @@
   }
 }
 
-@media (max-width: #{$bp-tablet - 0.001rem}) {
+@include tablet-down {
   .form__actions,
   .form__actions .actions__link {
     width: 100%;
