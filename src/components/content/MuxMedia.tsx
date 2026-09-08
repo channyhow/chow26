@@ -85,11 +85,11 @@ export function MuxMedia({
 
     const loadObserver = new IntersectionObserver(
       ([entry]) => setIsNearViewport(Boolean(entry?.isIntersecting)),
-      { rootMargin: "300px 0px", threshold: 0 },
+      { rootMargin: "500px 0px", threshold: 0 },
     );
     const playbackObserver = new IntersectionObserver(
       ([entry]) => setIsVisible(Boolean(entry?.isIntersecting)),
-      { threshold: 0.1 },
+      { threshold: 0.08 },
     );
 
     loadObserver.observe(anchor);
@@ -158,7 +158,7 @@ export function MuxMedia({
   }, [tokens]);
 
   const player =
-    tokens && !reduceMotion
+    tokens && !reduceMotion && playerReady
       ? createElement("mux-player", {
           ref: (node: MuxPlayerElement | null) => {
             playerRef.current = node;
@@ -169,7 +169,8 @@ export function MuxMedia({
           "metadata-video-title": alt,
           muted: true,
           loop: true,
-          preload: priority ? "metadata" : "none",
+          autoplay: autoPlay && isVisible,
+          preload: priority || isNearViewport ? "metadata" : "none",
           tabindex: -1,
           "aria-hidden": "true",
           style: {
@@ -177,6 +178,8 @@ export function MuxMedia({
             width: "100%",
             height: "100%",
             display: "block",
+            position: "absolute",
+            inset: "0",
           },
         })
       : null;
@@ -185,11 +188,11 @@ export function MuxMedia({
     <div
       ref={containerRef}
       className={className}
-      style={{ aspectRatio: `${width} / ${height}` }}
+      style={{ aspectRatio: `${width} / ${height}`, position: "relative" }}
       role="img"
       aria-label={alt}
     >
-      {reduceMotion && thumbnailSrc ? (
+      {thumbnailSrc ? (
         <img
           src={thumbnailSrc}
           alt=""
@@ -197,11 +200,10 @@ export function MuxMedia({
           height={height}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
         />
-      ) : (
-        player
-      )}
+      ) : null}
+      {!reduceMotion ? player : null}
     </div>
   );
 }
