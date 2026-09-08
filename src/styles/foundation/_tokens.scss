@@ -49,12 +49,11 @@ $container-narrow: 56rem;
 $container-wide: 80rem;
 $container-max: 96rem;
 
-// Shared editorial composition for section introductions.
-$section-header-columns: 12;
-$section-header-title-column: 1 / span 7;
-$section-header-copy-column: 4 / span 6;
-$section-header-action-column: 4 / span 6;
-$section-header-meta-column: 8 / span 5;
+// Shared editorial composition: keep the header cohesive and offset the
+// section's content region against it on the same twelve-column grid.
+$section-columns: 12;
+$section-header-column: 1 / span 7;
+$section-body-column: 4 / span 9;
 
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
