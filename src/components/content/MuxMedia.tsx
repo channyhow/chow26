@@ -66,26 +66,39 @@ export function MuxMedia({
   className,
 }: MuxMediaProps) {
   const reduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<MuxPlayerElement | null>(null);
   const [tokens, setTokens] = useState<MuxTokenResponse | null>(null);
   const [isNearViewport, setIsNearViewport] = useState(priority);
+  const [isVisible, setIsVisible] = useState(priority);
+  const [playerReady, setPlayerReady] = useState(false);
 
   useEffect(() => {
+    const anchor = containerRef.current;
+    if (!anchor) return;
+
     if (priority || typeof IntersectionObserver === "undefined") {
       setIsNearViewport(true);
+      setIsVisible(true);
       return;
     }
 
-    const anchor = playerRef.current;
-    if (!anchor) return;
-
-    const observer = new IntersectionObserver(
+    const loadObserver = new IntersectionObserver(
       ([entry]) => setIsNearViewport(Boolean(entry?.isIntersecting)),
-      { rootMargin: "300px 0px", threshold: 0.01 },
+      { rootMargin: "300px 0px", threshold: 0 },
+    );
+    const playbackObserver = new IntersectionObserver(
+      ([entry]) => setIsVisible(Boolean(entry?.isIntersecting)),
+      { threshold: 0.1 },
     );
 
-    observer.observe(anchor);
-    return () => observer.disconnect();
+    loadObserver.observe(anchor);
+    playbackObserver.observe(anchor);
+
+    return () => {
+      loadObserver.disconnect();
+      playbackObserver.disconnect();
+    };
   }, [priority]);
 
   useEffect(() => {
@@ -112,69 +125,83 @@ export function MuxMedia({
 
   useEffect(() => {
     if (!tokens || reduceMotion) return;
-    void ensureMuxPlayer().catch((error: unknown) => console.error(error));
+
+    let active = true;
+    void ensureMuxPlayer()
+      .then(() => {
+        if (active) setPlayerReady(true);
+      })
+      .catch((error: unknown) => console.error(error));
+
+    return () => {
+      active = false;
+    };
   }, [reduceMotion, tokens]);
+
+  useEffect(() => {
+    const player = playerRef.current;
+    if (!player || !playerReady || reduceMotion || !autoPlay) {
+      player?.pause?.();
+      return;
+    }
+
+    if (isVisible) {
+      void player.play?.().catch(() => undefined);
+    } else {
+      player.pause?.();
+    }
+  }, [autoPlay, isVisible, playerReady, reduceMotion]);
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
     return `https://image.mux.com/${tokens.playbackId}/thumbnail.webp?token=${tokens.thumbnailToken}`;
   }, [tokens]);
 
-  if (reduceMotion) {
-    return thumbnailSrc ? (
-      <img
-        className={className}
-        src={thumbnailSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-      />
-    ) : (
-      <div
-        ref={(node) => {
-          playerRef.current = node;
-        }}
-        className={className}
-        style={{ aspectRatio: `${width} / ${height}` }}
-        aria-label={alt}
-      />
-    );
-  }
+  const player =
+    tokens && !reduceMotion
+      ? createElement("mux-player", {
+          ref: (node: MuxPlayerElement | null) => {
+            playerRef.current = node;
+          },
+          "playback-id": tokens.playbackId,
+          "playback-token": tokens.playbackToken,
+          "thumbnail-token": tokens.thumbnailToken,
+          "metadata-video-title": alt,
+          muted: true,
+          loop: true,
+          preload: priority ? "metadata" : "none",
+          tabindex: -1,
+          "aria-hidden": "true",
+          style: {
+            "--controls": "none",
+            width: "100%",
+            height: "100%",
+            display: "block",
+          },
+        })
+      : null;
 
-  if (!tokens) {
-    return (
-      <div
-        ref={(node) => {
-          playerRef.current = node;
-        }}
-        className={className}
-        style={{ aspectRatio: `${width} / ${height}` }}
-        aria-label={alt}
-      />
-    );
-  }
-
-  return createElement("mux-player", {
-    ref: (node: MuxPlayerElement | null) => {
-      playerRef.current = node;
-    },
-    className,
-    "playback-id": tokens.playbackId,
-    "playback-token": tokens.playbackToken,
-    "thumbnail-token": tokens.thumbnailToken,
-    "metadata-video-title": alt,
-    autoplay: autoPlay ? "muted" : undefined,
-    muted: true,
-    loop: true,
-    preload: priority ? "metadata" : "none",
-    title: alt,
-    style: {
-      "--controls": "none",
-      width: "100%",
-      height: "100%",
-      display: "block",
-    },
-  });
+  return (
+    <div
+      ref={containerRef}
+      className={className}
+      style={{ aspectRatio: `${width} / ${height}` }}
+      role="img"
+      aria-label={alt}
+    >
+      {reduceMotion && thumbnailSrc ? (
+        <img
+          src={thumbnailSrc}
+          alt=""
+          width={width}
+          height={height}
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      ) : (
+        player
+      )}
+    </div>
+  );
 }
