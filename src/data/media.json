@@ -115,6 +115,22 @@
     "width": 1080,
     "height": 1920
   },
+  "mdk-color-palette": {
+    "id": "mdk-color-palette",
+    "type": "mux",
+    "playbackKey": "mdk-color-palette",
+    "alt": "Mois du Kèr | exploration animée de la palette de couleurs de l’identité.",
+    "width": 1080,
+    "height": 1350
+  },
+  "mdk-heartbeat": {
+    "id": "mdk-heartbeat",
+    "type": "mux",
+    "playbackKey": "mdk-heartbeat",
+    "alt": "Mois du Kèr | cœur anatomique animé au rythme d’un battement.",
+    "width": 1080,
+    "height": 1350
+  },
   "ravine-business-card": {
     "id": "ravine-business-card",
     "type": "image",
