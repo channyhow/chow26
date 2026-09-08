@@ -1,6 +1,6 @@
-import { useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Card } from "@/components/content/Card";
 import { Carousel } from "@/components/content/Carousel";
@@ -12,6 +12,7 @@ import { TextBlock } from "@/components/content/TextBlock";
 import { Timeline } from "@/components/content/Timeline";
 import { Form } from "@/components/forms/Form";
 import { Grid } from "@/components/layout/Grid";
+import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { forms } from "@/data";
 import { resolveCollection } from "@/data/resolve";
@@ -28,14 +29,6 @@ export type SectionProps = {
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
-
-function SceneInner({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["1.5rem", "-1.5rem"]);
-
-  return <motion.div ref={ref} className="section__inner" style={{ y }}>{children}</motion.div>;
-}
 
 export function Section({ block, suppressSceneMotion = false, inheritedColor }: SectionProps) {
   const reduceMotion = useReducedMotion();
@@ -157,9 +150,16 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       data-surface={block.surface}
       data-color={effectiveColor}
       data-motion={block.motion ?? "reveal"}
+      data-motion-preset={block.motionPreset}
     >
       {shouldTrackScroll ? (
-        <SceneInner>{body}</SceneInner>
+        <ScrollScene
+          preset={block.motionPreset ?? "parallax"}
+          className="section__scrollScene"
+          decorative={false}
+        >
+          <div className="section__inner">{body}</div>
+        </ScrollScene>
       ) : (
         <motion.div
           className="section__inner"
