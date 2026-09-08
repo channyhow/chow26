@@ -20,8 +20,6 @@
     margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
-  // A section introduction is one typographic block. Asymmetry belongs to the
-  // relationship between this region and section__body, not inside TextBlock.
   &__header.textBlock {
     max-width: $container-narrow;
   }
@@ -124,20 +122,20 @@
 }
 
 @include desktop-up {
-  // Generic editorial composition for sections that expose header + body.
-  // Individual components remain layout-agnostic inside the body region.
-  .section__inner:has(> .section__header + .section__body) {
+  // Keep the editorial header/body offset opt-in for now. Studio founders is
+  // the only section using it while the composition is evaluated in context.
+  #studio-founders .section__inner:has(> .section__header + .section__body) {
     display: grid;
     grid-template-columns: repeat($section-columns, minmax(0, 1fr));
     column-gap: $layout-gap;
     align-items: start;
   }
 
-  .section__inner:has(> .section__header + .section__body) > .section__header {
+  #studio-founders .section__inner > .section__header {
     grid-column: var(--section-header-column, #{$section-header-column});
   }
 
-  .section__inner:has(> .section__header + .section__body) > .section__body {
+  #studio-founders .section__inner > .section__body {
     grid-column: var(--section-body-column, #{$section-body-column});
   }
 
@@ -153,18 +151,18 @@
 }
 
 @media (min-width: $bp-tablet) and (max-width: 63.999rem) {
-  .section__inner:has(> .section__header + .section__body) {
+  #studio-founders .section__inner:has(> .section__header + .section__body) {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: $layout-gap;
     align-items: start;
   }
 
-  .section__inner:has(> .section__header + .section__body) > .section__header {
+  #studio-founders .section__inner > .section__header {
     grid-column: 1 / span 6;
   }
 
-  .section__inner:has(> .section__header + .section__body) > .section__body {
+  #studio-founders .section__inner > .section__body {
     grid-column: 2 / span 7;
   }
 }
