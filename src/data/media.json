@@ -102,10 +102,10 @@
   "mois-du-ker-textile": {
     "id": "mois-du-ker-textile",
     "type": "image",
-    "src": "/assets/photos/work/mois-du-ker/mois-du-ker__textile.jpg",
+    "src": "/assets/photos/work/mois-du-ker/mdk_tshirt.jpg",
     "alt": "Mois du Kèr | identité de campagne appliquée sur textile.",
-    "width": 1600,
-    "height": 1067
+    "width": 1200,
+    "height": 1200
   },
   "mdk-logo-evolution": {
     "id": "mdk-logo-evolution",
