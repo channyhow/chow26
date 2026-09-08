@@ -6,9 +6,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import siteData from "@/data/site.json";
+import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
 
 type Direction = "previous" | "next";
 
@@ -82,25 +83,30 @@ export function Carousel({
 
   return (
     <section className="carousel" aria-label={carouselLabel}>
-      <div
+      <motion.div
         ref={trackRef}
         className="carousel__track"
         role="group"
         aria-roledescription="carrousel"
         aria-label={carouselLabel}
         onScroll={updateControls}
+        variants={fastStaggerContainer}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView="visible"
+        viewport={motionConfig.viewport}
       >
         {Children.map(children, (child, index) => (
-          <div
+          <motion.div
             className="carousel__item"
             role="group"
             aria-roledescription="diapositive"
             aria-label={`${index + 1} ${copy.positionSeparator} ${count}`}
+            variants={revealItem}
           >
             {child}
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {count > 1 && (
         <div
