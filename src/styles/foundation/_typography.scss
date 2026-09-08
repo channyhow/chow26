@@ -3,13 +3,14 @@
 @mixin type-caption {
   font-family: var(--font-body);
   font-size: $type-caption;
+  font-weight: $font-weight-medium;
   line-height: 1.3;
 }
 
 @mixin type-eyebrow {
   font-family: var(--font-body);
   font-size: $type-ui-compact;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
   line-height: 1.1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -18,7 +19,7 @@
 @mixin type-meta {
   font-family: var(--font-body);
   font-size: $type-ui-compact;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
   line-height: 1.35;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -27,14 +28,14 @@
 @mixin type-ui {
   font-family: var(--font-heading);
   font-size: $type-ui;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
   line-height: 1.15;
 }
 
 @mixin type-ui-compact {
   font-family: var(--font-body);
   font-size: $type-ui-compact;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
   line-height: 1.3;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -43,7 +44,7 @@
 @mixin type-nav {
   font-family: var(--font-body);
   font-size: $type-nav;
-  font-weight: 500;
+  font-weight: $font-weight-semibold;
   line-height: 1.2;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -52,28 +53,28 @@
 @mixin type-body-sm {
   font-family: var(--font-body);
   font-size: $type-body-sm;
-  font-weight: 450;
+  font-weight: $font-weight-medium;
   line-height: 1.5;
 }
 
 @mixin type-body {
   font-family: var(--font-body);
   font-size: $type-body;
-  font-weight: 450;
+  font-weight: $font-weight-medium;
   line-height: 1.58;
 }
 
 @mixin type-lead {
   font-family: var(--font-body);
   font-size: $type-lead;
-  font-weight: 450;
+  font-weight: $font-weight-medium;
   line-height: 1.48;
 }
 
 @mixin type-heading-sm {
   font-family: var(--font-heading);
   font-size: $type-heading-sm;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 1.08;
   letter-spacing: -0.01em;
 }
@@ -81,7 +82,7 @@
 @mixin type-heading-md {
   font-family: var(--font-heading);
   font-size: $type-heading-md;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 1.06;
   letter-spacing: -0.015em;
 }
@@ -89,7 +90,7 @@
 @mixin type-heading-lg {
   font-family: var(--font-heading);
   font-size: $type-heading-lg;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 1.02;
   letter-spacing: -0.018em;
 }
@@ -97,7 +98,7 @@
 @mixin type-heading-xl {
   font-family: var(--font-heading);
   font-size: $type-heading-xl;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
@@ -105,7 +106,7 @@
 @mixin type-display-lg {
   font-family: var(--font-heading);
   font-size: $type-display-lg;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 0.92;
   letter-spacing: -0.025em;
 }
@@ -113,14 +114,13 @@
 @mixin type-display-xl {
   font-family: var(--font-heading);
   font-size: $type-display-xl;
-  font-weight: 400;
+  font-weight: $font-weight-medium;
   line-height: 0.88;
   letter-spacing: -0.03em;
 }
 
 @mixin type-heading {
   @include type-heading-xl;
-  font-weight: 500;
 }
 
 @mixin type-display {
