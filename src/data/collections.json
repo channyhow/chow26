@@ -40,7 +40,7 @@
       "eyebrow": "Campagne de prévention cardiovasculaire · la Réunion",
       "title": "Mois du Kèr",
       "text": ["Une identité directe où le Kèr relie attachement à la Réunion et prévention cardiovasculaire.", "Mission : conception du logo & identité visuelle."],
-      "media": "mois-du-ker-textile",
+      "media": "mdk-logo-evolution",
       "tags": ["logo", "identité visuelle", "prévention cardiovasculaire", "la Réunion"],
       "featured": true, "order": 4, "slug": "mois-du-ker", "href": "/projets/mois-du-ker",
       "links": [{ "label": "Voir le dossier", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" }],
@@ -53,7 +53,7 @@
         "Créée en 2025, l’identité accompagne aujourd’hui la deuxième édition du Mois du Kèr à la Réunion. Avec le temps, elle continue d’évoluer. Le cœur peut prendre toute la place ou vivre seul, tandis que KÈR peut se détacher du nom complet. Les explorations présentées ici prolongent simplement cette identité sous de nouvelles formes."
       ],
       "facts": [{ "label": "Type", "value": "Identité de campagne" }, { "label": "Lieu", "value": "la Réunion" }, { "label": "Conception", "value": "Channy How · Chow Studio" }, { "label": "Mission", "value": "Logo & identité visuelle" }],
-      "gallery": ["mois-du-ker-textile"],
+      "gallery": ["mdk-logo-evolution"],
       "seo": {"title": "Mois du Kèr | Logo & identité visuelle — Chow Studio", "description": "Channy How, Chow Studio, a conçu le logo et l’identité visuelle du Mois du Kèr, campagne de prévention cardiovasculaire à la Réunion.", "image": "/assets/photos/work/mois-du-ker/mois-du-ker__textile.jpg"}
     },
     {
