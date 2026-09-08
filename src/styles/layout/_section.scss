@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-block: var(--section-space, #{$space-4});
-  padding-inline: clamp(#{$space-2}, 5vw, #{$space-4});
+  padding-block: var(--section-space, #{$section-space});
+  padding-inline: $page-gutter;
 
   &__inner {
     flex: 1 1 auto;
@@ -15,7 +15,7 @@
   }
 
   &__header {
-    margin-bottom: var(--section-gap, #{$space-3});
+    margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
   &__mediaOverlay {
@@ -53,7 +53,7 @@
     z-index: $z-raised;
     display: flex;
     align-items: center;
-    padding-inline: clamp(#{$space-2}, 5vw, #{$space-4});
+    padding-inline: $page-gutter;
     padding-block: clamp(#{$space-4}, 12vh, 9rem);
   }
 }
@@ -90,42 +90,11 @@
 .section[data-layout="text"] .section__inner { display: grid; justify-items: start; }
 
 #contact-default {
-  --section-space: clamp(3rem, 6vw, 6rem);
   min-height: 100svh;
-  background: linear-gradient(
-    90deg,
-    var(--theme-accent) 0 50%,
-    var(--theme-secondary) 50% 100%
-  );
 }
 
 #contact-default .split {
   align-items: start;
-}
-
-#contact-default .split__primary,
-#contact-default .split__secondary {
-  animation: contact-settle $duration-slow $ease-soft both;
-  will-change: transform, opacity;
-}
-
-#contact-default .split__primary {
-  animation-delay: 70ms;
-}
-
-#contact-default .split__secondary {
-  animation-delay: 150ms;
-}
-
-@keyframes contact-settle {
-  from {
-    opacity: 0.92;
-    transform: translate3d(0, 0.6rem, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 @include desktop-up {
@@ -140,30 +109,8 @@
   }
 }
 
-@media (max-width: 63.999rem) {
-  #contact-default {
-    background: var(--theme-accent);
-  }
-
-  #contact-default .split__secondary {
-    position: relative;
-    margin-top: $space-3;
-    padding-block: $space-3;
-    padding-inline: clamp(#{$space-2}, 5vw, #{$space-4});
-    background: var(--theme-secondary);
-  }
-}
-
 @media (max-width: 47.999rem) {
   .section__overlayContent {
     padding-block: clamp(#{$space-4}, 10vh, 6rem);
-  }
-}
-
-@include reduced-motion {
-  #contact-default .split__primary,
-  #contact-default .split__secondary {
-    animation: none;
-    will-change: auto;
   }
 }
