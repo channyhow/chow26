@@ -42,9 +42,7 @@ function createProjectPage(project: ProjectRecord): PageData {
   const profile = mood ? deriveBrandProfile(mood.axes) : undefined;
   const isMdk = project.id === "mois-du-ker";
   const detailLayout = (project.order ?? 0) % 2 === 0 ? "b" : "a";
-  const projectGallery = isMdk
-    ? ["mdk-color-palette", "mois-du-ker-textile", "mdk-heartbeat"]
-    : project.gallery;
+  const projectGallery = project.gallery;
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
     const href = link.href;
     if (!href) return [];
