@@ -30,7 +30,7 @@ export function ScrollScene({
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 47.999rem)");
-    const updateScale = () => setMotionScale(media.matches ? 0.55 : 1);
+    const updateScale = () => setMotionScale(media.matches ? 0.65 : 1);
 
     updateScale();
     media.addEventListener("change", updateScale);
@@ -43,16 +43,17 @@ export function ScrollScene({
   });
 
   const distance = (value: number) => value * sign * motionScale;
-  const contentY = useTransform(scrollYProgress, [0, 1], [distance(24), distance(-24)]);
-  const ambientY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-8), distance(8)]);
-  const slowY = useTransform(scrollYProgress, [0, 1], [distance(32), distance(-32)]);
-  const mediumY = useTransform(scrollYProgress, [0, 1], [distance(56), distance(-56)]);
-  const fastY = useTransform(scrollYProgress, [0, 1], [distance(88), distance(-88)]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [distance(38), distance(-38)]);
+  const ambientY = useTransform(scrollYProgress, [0, 1], [distance(22), distance(-22)]);
+  const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-12), distance(12)]);
+  const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
+  const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
+  const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
+  const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
   const rotate = useTransform(
     scrollYProgress,
     [0, 1],
-    [distance(-8), distance(10)],
+    [distance(-9), distance(11)],
   );
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
@@ -63,7 +64,9 @@ export function ScrollScene({
       ? { y: contentY }
       : preset === "ambient"
         ? { x: ambientX, y: ambientY }
-        : undefined
+        : preset === "draw"
+          ? { y: drawY }
+          : undefined
     : undefined;
 
   return (
