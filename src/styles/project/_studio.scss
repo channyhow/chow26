@@ -3,37 +3,92 @@
 
 #studio-founders {
   --media-background: transparent;
+  --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
 }
 
-// TextBlock receives section__header directly, so this is a compound element.
+#studio-founders .section__inner {
+  display: grid;
+  align-items: start;
+}
+
 #studio-founders .section__header.textBlock {
   width: 100%;
-  max-width: none;
+  max-width: $container-narrow;
   grid-auto-rows: max-content;
   align-content: start;
   gap: $flow-default;
 }
 
-// Keep the portrait transparent against the accent panel and let the image,
-// not the media container, carry the grayscale / multiply treatment.
+#studio-founders .section__body {
+  width: 100%;
+  min-width: 0;
+}
+
+// This section only has one founder: keep Grid from applying the generic
+// three-column archive layout, then compose the card itself editorially.
+#studio-founders .gridReveal,
+#studio-founders .grid {
+  width: 100%;
+}
+
+#studio-founders .grid {
+  grid-template-columns: 1fr;
+}
+
+#studio-founders .card {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.8fr) minmax(20rem, 1.2fr);
+  align-items: center;
+  gap: clamp(#{$space-3}, 6vw, #{$space-5});
+  width: 100%;
+  max-width: 70rem;
+  margin-inline: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+#studio-founders .card__mediaWrap {
+  min-width: 0;
+}
+
 #studio-founders .card__media,
 #studio-founders .card__media .media,
 #studio-founders .card__media .media__frame {
+  width: 100%;
   background: transparent;
   mix-blend-mode: normal;
 }
 
+#studio-founders .card__media {
+  aspect-ratio: $ratio-portrait;
+  overflow: hidden;
+}
+
+#studio-founders .card__media .media,
+#studio-founders .card__media .media__frame,
 #studio-founders .card__media .media__asset {
+  height: 100%;
+}
+
+#studio-founders .card__media .media__asset {
+  object-fit: cover;
   filter: grayscale(1);
   mix-blend-mode: multiply;
 }
 
-// TextBlock receives card__body directly as well.
 #studio-founders .card__body.textBlock {
+  align-self: center;
   grid-auto-rows: max-content;
   align-content: start;
-  gap: clamp(1rem, 2vw, 1.75rem);
+  gap: $flow-default;
   width: min(100%, 36rem);
+  max-width: none;
+  padding: 0;
+}
+
+#studio-founders .card__body .textBlock__header,
+#studio-founders .card__body .textBlock__content {
+  width: 100%;
   max-width: none;
 }
 
@@ -41,4 +96,52 @@
   @include type-heading-sm;
   font-weight: $font-weight-semibold;
   max-width: none;
+}
+
+@include desktop-up {
+  // The header remains one block. The asymmetry is between the intro and the
+  // founder content, with the latter shifted into the page rather than shrunk.
+  #studio-founders .section__inner {
+    grid-template-columns: repeat($section-columns, minmax(0, 1fr));
+    column-gap: $layout-gap;
+  }
+
+  #studio-founders .section__header {
+    grid-column: 1 / span 7;
+  }
+
+  #studio-founders .section__body {
+    grid-column: 3 / span 10;
+  }
+}
+
+@media (min-width: $bp-tablet) and (max-width: 63.999rem) {
+  #studio-founders .section__inner {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: $layout-gap;
+  }
+
+  #studio-founders .section__header {
+    grid-column: 1 / span 7;
+  }
+
+  #studio-founders .section__body {
+    grid-column: 2 / span 7;
+  }
+
+  #studio-founders .card {
+    grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.2fr);
+    gap: $space-3;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  #studio-founders .card {
+    grid-template-columns: 1fr;
+    max-width: 36rem;
+  }
+
+  #studio-founders .card__mediaWrap {
+    width: min(100%, 28rem);
+  }
 }
