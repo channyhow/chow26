@@ -114,6 +114,29 @@ function createProjectPage(project: ProjectRecord): PageData {
         },
       },
       ...storyBlocks,
+      {
+        id: `project-${project.id}-cta`,
+        type: "Section",
+        layout: "text",
+        variant: "editorial",
+        motion: "reveal",
+        className: "projectCta",
+        content: {
+          header: {
+            title: "Quelque chose en tête ?",
+            text: ["Une idée, un projet à faire évoluer ou une présence à construire."],
+            links: [
+              {
+                label: "Parlons-en",
+                href: "/contact",
+                intent: "contact",
+                priority: "primary",
+                variant: "cta",
+              },
+            ],
+          },
+        },
+      },
       { ref: "projects-featured" },
       { ref: "site-footer" },
     ],
