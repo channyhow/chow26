@@ -4,6 +4,7 @@
 
 .projectDetail {
   --project-measure: 36rem;
+  --project-media-measure: 34rem;
 }
 
 .projectHero {
@@ -20,16 +21,18 @@
 .projectHero .section__inner {
   width: 100%;
   max-width: none;
-  padding-top: $space-5;
-  padding-bottom: $space-5;
+  padding-block: $space-5;
 }
 
-.projectHero .split {
+.projectHero .split,
+.projectStoryMedia .split {
   align-items: center;
   gap: $space-3;
 }
 
-.projectHero .textBlock {
+.projectHero .textBlock,
+.projectStoryMedia .textBlock,
+.projectStoryText .textBlock {
   width: 100%;
   max-width: var(--project-measure);
 }
@@ -42,7 +45,7 @@
 }
 
 .projectHero .textBlock__subtitle {
-  max-width: 34rem;
+  max-width: var(--project-media-measure);
   margin-top: $space-2;
   font-size: $type-lead;
   line-height: 1.45;
@@ -50,47 +53,46 @@
 
 .projectHero .textBlock__meta {
   @include type-ui-compact;
+  @include meta-chips($space-1 $space-3);
 
   width: 100%;
   max-width: var(--project-measure);
-
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: $space-1 $space-3;
-
   margin-top: $space-1;
   padding-top: $space-2;
 }
 
 .projectHero .textBlock__meta > * {
-  flex: 0 0 auto;
   min-width: 0;
 }
 
-.projectHero .split__secondary {
+.projectHero .split__secondary,
+.projectStoryMedia .split__secondary {
   display: grid;
   place-items: center;
 }
 
-.projectHero .media {
-  width: min(100%, 34rem);
+.projectHero .media,
+.projectStoryMedia .media {
+  width: min(100%, var(--project-media-measure));
   margin: 0 auto;
   border-radius: $radius-none;
 }
 
-.projectHero .media[data-media-type="mux"] .media__frame {
-  aspect-ratio: 4 / 5;
+.projectHero .media[data-media-type="mux"] .media__frame,
+.projectStoryMedia .media[data-media-type="mux"] .media__frame {
+  aspect-ratio: $ratio-portrait;
 }
 
-.projectHero .media[data-media-type="mux"] .media__asset {
+.projectHero .media[data-media-type="mux"] .media__asset,
+.projectStoryMedia .media[data-media-type="mux"] .media__asset {
   --media-object-fit: cover;
   object-fit: cover;
 }
 
 .projectStoryMedia,
-.projectStoryText {
+.projectStoryText,
+.projectCta {
   --section-space: $space-5;
 }
 
@@ -109,17 +111,6 @@
   padding-block: $space-5;
 }
 
-.projectStoryMedia .split {
-  align-items: center;
-  gap: $space-3;
-}
-
-.projectStoryMedia .textBlock,
-.projectStoryText .textBlock {
-  width: 100%;
-  max-width: var(--project-measure);
-}
-
 .projectStoryMedia .textBlock__content,
 .projectStoryText .textBlock__content {
   gap: $space-3;
@@ -133,42 +124,16 @@
 
 .projectStoryMedia strong,
 .projectStoryText strong {
-  font-weight: 680;
+  font-weight: $font-weight-strong;
   color: color-mix(in srgb, currentColor 84%, var(--accent) 16%);
 }
 
-.projectStoryMedia .split__secondary {
-  display: grid;
-  place-items: center;
-}
-
-.projectStoryMedia .media {
-  width: min(100%, 34rem);
-  margin: 0 auto;
-  border-radius: $radius-none;
-}
-
-.projectStoryMedia .media[data-media-type="mux"] .media__frame {
-  aspect-ratio: 4 / 5;
-}
-
-.projectStoryMedia .media[data-media-type="mux"] .media__asset {
-  --media-object-fit: cover;
-  object-fit: cover;
-}
-
 .projectStoryMedia .media[data-media-type="image"][data-orientation="square"] .media__frame {
-  aspect-ratio: 1;
+  aspect-ratio: $ratio-square;
 }
 
-.projectStoryMedia .media[data-media-type="image"] .media__asset {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.projectCta {
-  --section-space: $space-5;
+.projectStoryMedia .media[data-media-type="image"] {
+  @include media-cover;
 }
 
 .projectCta .textBlock {
@@ -183,15 +148,7 @@
   line-height: 1.08;
 }
 
-@media (max-width: 74rem) {
-  .projectHero .textBlock__meta {
-    justify-content: flex-start;
-  }
-}
-
-
-
-@media (max-width: 63.999rem) {
+@include desktop-down {
   .projectHero,
   .projectHero.projectDetail--b,
   .projectStoryMedia--forward,
@@ -213,13 +170,13 @@
 
   .projectHero .media,
   .projectStoryMedia .media {
-    width: min(100%, 32rem);
+    --project-media-measure: 32rem;
   }
 }
 
-@media (max-width: 47.999rem) {
+@include tablet-down {
   .projectHero .textBlock__title {
-    font-size: clamp(3.4rem, 16vw, 6rem);
+    font-size: clamp(3.4rem, 16vw, #{$space-5});
   }
 
   .projectHero .textBlock__meta {
