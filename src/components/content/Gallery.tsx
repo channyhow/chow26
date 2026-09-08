@@ -6,6 +6,12 @@ import type { MediaItem } from "@/types/media";
 
 export type GalleryLayout = "grid" | "masonry" | "editorial";
 
+const getMediaOrientation = (item: MediaItem) => {
+  if (!item.width || !item.height) return undefined;
+  if (item.width === item.height) return "square";
+  return item.width > item.height ? "landscape" : "portrait";
+};
+
 export function Gallery({
   items,
   layout = "grid",
@@ -25,7 +31,13 @@ export function Gallery({
       viewport={motionConfig.viewport}
     >
       {items.map((item) => (
-        <motion.div className="gallery__item" key={item.id} variants={revealItem}>
+        <motion.div
+          className="gallery__item"
+          key={item.id}
+          variants={revealItem}
+          data-media-type={item.type}
+          data-orientation={getMediaOrientation(item)}
+        >
           <Media media={item} />
         </motion.div>
       ))}
