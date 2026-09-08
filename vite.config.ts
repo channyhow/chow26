@@ -1,8 +1,9 @@
 import { fileURLToPath, URL } from "node:url";
 
 import react from "@vitejs/plugin-react";
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
 
+import muxTokenHandler from "./netlify/functions/mux-token.mjs";
 import collectionsData from "./src/data/collections.json";
 import globalBlocksData from "./src/data/globalBlocks.json";
 import { blockRegistrySchema, collectionsSchema } from "./src/data/schemas";
@@ -25,6 +26,33 @@ const areaTypeMap: Record<string, string> = {
   country: "Country",
   place: "Place",
 };
+
+function muxTokenDevPlugin(): Plugin {
+  return {
+    name: "chow-mux-token-dev",
+    apply: "serve",
+    configureServer(server) {
+      server.middlewares.use("/.netlify/functions/mux-token", async (req, res) => {
+        try {
+          const origin = `http://${req.headers.host ?? "localhost"}`;
+          const request = new Request(new URL(req.url ?? "", origin), {
+            method: req.method,
+          });
+          const response = await muxTokenHandler(request);
+
+          res.statusCode = response.status;
+          response.headers.forEach((value, key) => res.setHeader(key, value));
+          res.end(await response.text());
+        } catch (error) {
+          console.error("Unable to serve local Mux token", error);
+          res.statusCode = 500;
+          res.setHeader("Content-Type", "application/json; charset=utf-8");
+          res.end(JSON.stringify({ error: "Video unavailable" }));
+        }
+      });
+    },
+  };
+}
 
 function seoIndexPlugin(): Plugin {
   const site = siteData.site;
@@ -151,11 +179,15 @@ function seoIndexPlugin(): Plugin {
   };
 }
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   validateStaticData();
 
+  if (mode === "development") {
+    Object.assign(process.env, loadEnv(mode, process.cwd(), "MUX_"));
+  }
+
   return {
-    plugins: [seoIndexPlugin(), react()],
+    plugins: [seoIndexPlugin(), muxTokenDevPlugin(), react()],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
