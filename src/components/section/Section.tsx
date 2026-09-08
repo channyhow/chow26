@@ -56,7 +56,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     />
   ));
   const cardsGrid = cards.length ? (
-    <Grid className="section__body" progressive={isProjectArchive}>
+    <Grid progressive={isProjectArchive}>
       {cards}
     </Grid>
   ) : null;
@@ -78,6 +78,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     }];
   });
 
+  const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
 
   if (layout === "split") {
@@ -123,51 +124,57 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null}
+        {region(mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null)}
       </>
     );
   } else if (layout === "carousel") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null}
+        {region(cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null)}
       </>
     );
   } else if (layout === "timeline") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null}
+        {region(items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null)}
       </>
     );
   } else if (layout === "horizontal-scroll") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {cards.length || mediaCards.length ? <HorizontalScroll>{cards.length ? cards : mediaCards}</HorizontalScroll> : null}
+        {region(cards.length || mediaCards.length ? <HorizontalScroll>{cards.length ? cards : mediaCards}</HorizontalScroll> : null)}
       </>
     );
   } else if (layout === "content-switcher") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null}
+        {region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}
       </>
     );
   } else if (layout === "media") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {media ? <Media media={media} className="section__media" /> : null}
+        {region(media ? <Media media={media} className="section__media" /> : null)}
       </>
     );
   } else {
-    body = (
+    const content = (
       <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
         {media ? <Media media={media} className="section__media" /> : null}
         {form ? <Form schema={form} /> : null}
         {cardsGrid}
+      </>
+    );
+
+    body = (
+      <>
+        {header ? <TextBlock content={header} className="section__header" /> : null}
+        {region(media || form || cardsGrid ? content : null)}
       </>
     );
   }
