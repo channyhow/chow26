@@ -69,6 +69,24 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
     ...entry,
   };
 
+  if (prepared.id === "home-services") {
+    return {
+      ...prepared,
+      content: {
+        ...prepared.content,
+        header: {
+          ...prepared.content?.header,
+          links: prepared.content?.header?.links?.map((link) => ({
+            ...link,
+            label: "Voir les services",
+            href: "/studio",
+            intent: "navigate",
+          })),
+        },
+      },
+    };
+  }
+
   if (prepared.id === "studio-services") {
     return {
       ...prepared,
