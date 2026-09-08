@@ -64,18 +64,15 @@
   pointer-events: auto;
 }
 
-// .header__logo {
-//   @include brand-link;
-// }
-
 .header__nav {
   display: none;
   align-items: center;
   gap: clamp($space-2, 2.4vw, $space-3);
 }
 
-.header__logo,.header__nav a {
-  @include type-ui-compact;
+.header__logo,
+.header__nav a {
+  @include type-nav;
   @include interactive-text;
 
   position: relative;
