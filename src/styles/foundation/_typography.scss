@@ -104,6 +104,8 @@
 
 @mixin type-heading {
   @include type-heading-xl;
+  font-weight: 500;
+  // text-transform: uppercase;
 }
 
 @mixin type-display {
