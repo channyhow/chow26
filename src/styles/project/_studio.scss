@@ -1,0 +1,44 @@
+@use "../foundation/typography" as *;
+@use "../foundation/tokens" as *;
+
+#studio-founders {
+  --media-background: transparent;
+}
+
+// TextBlock receives section__header directly, so this is a compound element.
+#studio-founders .section__header.textBlock {
+  width: 100%;
+  max-width: none;
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: $flow-default;
+}
+
+// Keep the portrait transparent against the accent panel and let the image,
+// not the media container, carry the grayscale / multiply treatment.
+#studio-founders .card__media,
+#studio-founders .card__media .media,
+#studio-founders .card__media .media__frame {
+  background: transparent;
+  mix-blend-mode: normal;
+}
+
+#studio-founders .card__media .media__asset {
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+}
+
+// TextBlock receives card__body directly as well.
+#studio-founders .card__body.textBlock {
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  width: min(100%, 36rem);
+  max-width: none;
+}
+
+#studio-founders .card__body .textBlock__title {
+  @include type-heading-sm;
+  font-weight: $font-weight-semibold;
+  max-width: none;
+}
