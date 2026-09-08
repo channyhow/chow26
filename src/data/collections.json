@@ -12,7 +12,7 @@
       "facts": [{ "label": "Type", "value": "Site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Éditorial, matières, projets" }],
       "gallery": ["atmosphere-tablet", "atmosphere-mobile-solo"],
       "seo": {
-        "title": "Atmosphere | Site d’architecture intérieure — Chow Studio",
+        "title": "Atmosphere | Site d’architecture intérieure | Chow Studio",
         "description": "Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.",
         "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
       }
@@ -27,7 +27,7 @@
       "facts": [{ "label": "Type", "value": "Site de restaurant" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, intégration frontend" }, { "label": "Focus", "value": "Réservation, atmosphère, responsive" }],
       "gallery": ["kuro-laptop", "kuro-mobile"],
       "seo": {
-        "title": "Kuro | Web design pour restaurant — Chow Studio",
+        "title": "Kuro | Web design pour restaurant | Chow Studio",
         "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
         "image": "/assets/photos/work/kuro/kuro__laptop.jpg"
       }
@@ -42,7 +42,7 @@
       "facts": [{ "label": "Type", "value": "Branding & web design" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Mobile-first, réservation" }],
       "gallery": ["sasha-laptop", "sasha-mobile"],
       "seo": {
-        "title": "Sasha Yoga Flow | Site yoga & réservation — Chow Studio",
+        "title": "Sasha Yoga Flow | Site yoga & réservation | Chow Studio",
         "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
         "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
       }
@@ -75,7 +75,7 @@
       ],
       "gallery": ["mdk-color-palette", "mois-du-ker-textile", "mdk-heartbeat"],
       "seo": {
-        "title": "Mois du Kèr | Logo & identité visuelle — Chow Studio",
+        "title": "Mois du Kèr | Logo & identité visuelle | Chow Studio",
         "description": "Channy How, Chow Studio, a conçu le logo et l’identité visuelle du Mois du Kèr, campagne de prévention cardiovasculaire à la Réunion.",
         "image": "/assets/photos/work/mois-du-ker/mdk_tshirt.jpg"
       }
@@ -90,13 +90,13 @@
       "facts": [{ "label": "Type", "value": "Concept website" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, direction visuelle" }, { "label": "Focus", "value": "Vidéo, expérience mobile" }],
       "gallery": ["maloya-tablet", "maloya-mobile"],
       "seo": {
-        "title": "Maloya | Concept de site pour groupe de musique — Chow Studio",
+        "title": "Maloya | Concept de site pour groupe de musique | Chow Studio",
         "description": "Concept de plateforme musicale immersive : vidéo, dates, contenus et expérience mobile réunis dans une direction digitale par Chow Studio.",
         "image": "/assets/photos/work/maloya/tablet_mockup.jpg"
       }
     },
     {
-      "id": "ravine-branding", "eyebrow": "Identité visuelle · 2023", "title": "Ravine — Identité",
+      "id": "ravine-branding", "eyebrow": "Identité visuelle · 2023", "title": "Ravine",
       "text": ["Un système graphique sensible, décliné du papier à l’écran sans perdre son accent.", "Mission : direction artistique."],
       "media": "ravine-business-card", "tags": ["identité visuelle", "branding", "print"], "featured": false, "order": 6, "slug": "ravine-branding", "href": "/projets/ravine-branding", "projectLayout": "b",
       "summary": "Un univers cohérent construit autour d’un nom, d’un logo, d’une palette et d’une direction typographique capables de vivre sur plusieurs supports.",
@@ -104,13 +104,13 @@
       "facts": [{ "label": "Type", "value": "Identité visuelle" }, { "label": "Année", "value": "2023" }, { "label": "Mission", "value": "Direction artistique" }, { "label": "Focus", "value": "Print, système graphique" }],
       "gallery": ["ravine-flyer", "ravine-textile", "ravine-homepage"],
       "seo": {
-        "title": "Ravine | Identité visuelle — Chow Studio",
+        "title": "Ravine | Identité visuelle | Chow Studio",
         "description": "Étude de cas d’identité visuelle : logo, typographie, palette et déclinaisons print et digitales conçues comme un système cohérent.",
         "image": "/assets/photos/work/ravine/ravine_business card.jpg"
       }
     },
     {
-      "id": "ravine-web", "eyebrow": "Éditorial digital · La Réunion · 2024", "title": "Ravine — Web",
+      "id": "ravine-web", "eyebrow": "Éditorial digital · La Réunion · 2024", "title": "Ravine | Web",
       "text": ["Une exploration web inspirée par les paysages et les récits de La Réunion, entre structure et immersion.", "Mission : direction visuelle et frontend."],
       "media": "ravine-laptop", "tags": ["web design", "éditorial", "La Réunion", "frontend"], "featured": false, "order": 7, "slug": "ravine-web", "href": "/projets/ravine-web", "projectLayout": "a",
       "summary": "Une exploration éditoriale où structure de contenu, direction artistique et frontend construisent une lecture contemporaine de La Réunion.",
@@ -118,7 +118,7 @@
       "facts": [{ "label": "Type", "value": "Site web éditorial" }, { "label": "Année", "value": "2024" }, { "label": "Mission", "value": "Direction visuelle, frontend" }, { "label": "Focus", "value": "Storytelling, immersion" }],
       "gallery": ["ravine-desktop"],
       "seo": {
-        "title": "Ravine | Web design éditorial — Chow Studio",
+        "title": "Ravine | Web design éditorial | Chow Studio",
         "description": "Exploration web éditoriale autour de La Réunion : storytelling, direction artistique et développement frontend par Chow Studio.",
         "image": "/assets/photos/work/ravine/ravine_laptop.jpg"
       }
@@ -132,7 +132,7 @@
       "description": ["RandoRunOi est une association de trail basée à La Réunion pour laquelle une série de **cinq affiches** a été imaginée.", "Les photographies de **paysages** ancrent chaque événement dans son territoire. Le **système graphique** crée suffisamment de continuité pour identifier la série sans uniformiser les courses.", "Le projet montre comment une direction visuelle simple peut renforcer simultanément reconnaissance, information et **caractère local**."],
       "facts": [{ "label": "Type", "value": "Série d’affiches" }, { "label": "Lieu", "value": "La Réunion" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, print" }],
       "gallery": ["randorun-cilaos", "randorun-cimasa", "randorun-mafate", "randorun-raid974", "randorun-masters"],
-      "seo": {"title": "RandoRunOi | Direction visuelle trail — Chow Studio", "description": "Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.", "image": "/assets/photos/work/randorun/randorun__poster.jpg"}
+      "seo": {"title": "RandoRunOi | Direction visuelle trail | Chow Studio", "description": "Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.", "image": "/assets/photos/work/randorun/randorun__poster.jpg"}
     },
     {
       "id": "structure", "eyebrow": "Architecture · 2026 · Concept", "title": "Structure", "text": ["Une exploration rationnelle : grille nette, hiérarchie franche, navigation directe."],
@@ -142,7 +142,7 @@
       "facts": [{ "label": "Type", "value": "Concept de site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Grille, hiérarchie" }],
       "gallery": ["structure-laptop", "structure-mobile-multi"],
       "seo": {
-        "title": "Structure | Concept de site d’architecture — Chow Studio",
+        "title": "Structure | Concept de site d’architecture | Chow Studio",
         "description": "Concept web pour studio d’architecture : grille, hiérarchie et navigation directe explorées par Chow Studio.",
         "image": "/assets/photos/work/structure/structure__laptop.jpg"
       }
@@ -155,7 +155,7 @@
       "facts": [{ "label": "Type", "value": "Concept de site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Contraste, minimalisme" }],
       "gallery": ["contraste-laptop", "contraste-mobile"],
       "seo": {
-        "title": "Contraste | Concept web architecture — Chow Studio",
+        "title": "Contraste | Concept web architecture | Chow Studio",
         "description": "Concept de site pour cabinet d’architecture : espaces blancs, hiérarchie des projets et direction visuelle sobre par Chow Studio.",
         "image": "/assets/photos/work/contraste/contraste__laptop.jpg"
       }

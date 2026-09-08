@@ -35,7 +35,6 @@
     "source": { "collection": "projects" },
     "content": {
       "header": {
-        "eyebrow": "Projets & études de cas",
         "title": "Des réponses différentes pour des contextes différents.",
         "text": [
           "Sites web, identités et directions visuelles conçus à partir d’un besoin réel : positionner, clarifier, convertir ou faire évoluer une présence existante."
@@ -219,7 +218,6 @@
     },
     "content": {
       "header": {
-        "eyebrow": "Journal",
         "title": "Design, structure et présence digitale.",
         "text": [
           "Notes de travail sur les choix qui rendent un site plus clair, une identité plus cohérente et une expérience plus utile."
@@ -298,29 +296,25 @@
     "type": "Section",
     "layout": "list",
     "content": {
-      "header": { "eyebrow": "Informations", "title": "Mentions légales" },
+      "header": { "title": "Mentions légales" },
       "items": [
         {
-          "eyebrow": "01",
           "title": "Édition",
           "text": [
             "Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."
           ]
         },
         {
-          "eyebrow": "02",
           "title": "Design & développement",
           "text": [
             "Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
           ]
         },
         {
-          "eyebrow": "03",
           "title": "Hébergement",
           "text": ["Ce site est hébergé par Netlify, Inc."]
         },
         {
-          "eyebrow": "04",
           "title": "Propriété intellectuelle",
           "text": [
             "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."

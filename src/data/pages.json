@@ -127,7 +127,6 @@
                 "color": "secondary",
                 "content": {
                   "header": {
-                    "eyebrow": "Services",
                     "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
                     "text": [
                       "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
@@ -238,25 +237,21 @@
                   "items": [
                     {
                       "id": "studio-approach-understand",
-                      "eyebrow": "01 · Cadrage",
                       "title": "Comprendre",
                       "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."]
                     },
                     {
                       "id": "studio-approach-structure",
-                      "eyebrow": "02 · Architecture",
                       "title": "Structurer",
                       "text": ["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."]
                     },
                     {
                       "id": "studio-approach-design",
-                      "eyebrow": "03 · Direction",
                       "title": "Concevoir",
                       "text": ["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."]
                     },
                     {
                       "id": "studio-approach-build",
-                      "eyebrow": "04 · Réalisation",
                       "title": "Construire",
                       "text": ["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."]
                     }
