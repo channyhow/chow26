@@ -9,6 +9,7 @@ export type SectionColor =
   | "accent";
 export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
+export type ScrollMotionPreset = "parallax" | "ambient" | "draw";
 export type CardEffect = "none" | "glass" | "grain";
 export type TimelineOrientation = "vertical" | "horizontal";
 export type ProjectLayout = "a" | "b";
@@ -132,6 +133,7 @@ export type SectionBlock = {
   frame?: boolean;
   itemAppearance?: CardAppearance;
   motion?: MotionLevel;
+  motionPreset?: ScrollMotionPreset;
   className?: string;
 };
 
