@@ -4,7 +4,7 @@
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
 .sectionGroup[data-layout="scroll-panel"] {
-  --panel-glass-blur: 1.1rem;
+  --panel-glass-blur: #{$glass-blur};
   display: flow-root;
 }
 
