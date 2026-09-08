@@ -123,7 +123,7 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, true, color)}
+      {renderBlocks(blocks, false, color)}
     </div>
   );
 }

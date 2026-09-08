@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
@@ -24,20 +24,36 @@ export function ScrollScene({
 }: ScrollSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  const [motionScale, setMotionScale] = useState(1);
   const motionEnabled = enabled && !reduceMotion;
   const sign = direction === "reverse" ? -1 : 1;
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 47.999rem)");
+    const updateScale = () => setMotionScale(media.matches ? 0.55 : 1);
+
+    updateScale();
+    media.addEventListener("change", updateScale);
+    return () => media.removeEventListener("change", updateScale);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [24 * sign, -24 * sign]);
-  const ambientY = useTransform(scrollYProgress, [0, 1], [14 * sign, -14 * sign]);
-  const ambientX = useTransform(scrollYProgress, [0, 1], [-8 * sign, 8 * sign]);
-  const slowY = useTransform(scrollYProgress, [0, 1], [32 * sign, -32 * sign]);
-  const mediumY = useTransform(scrollYProgress, [0, 1], [56 * sign, -56 * sign]);
-  const fastY = useTransform(scrollYProgress, [0, 1], [88 * sign, -88 * sign]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-8 * sign, 10 * sign]);
+  const distance = (value: number) => value * sign * motionScale;
+  const contentY = useTransform(scrollYProgress, [0, 1], [distance(24), distance(-24)]);
+  const ambientY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
+  const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-8), distance(8)]);
+  const slowY = useTransform(scrollYProgress, [0, 1], [distance(32), distance(-32)]);
+  const mediumY = useTransform(scrollYProgress, [0, 1], [distance(56), distance(-56)]);
+  const fastY = useTransform(scrollYProgress, [0, 1], [distance(88), distance(-88)]);
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [distance(-8), distance(10)],
+  );
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   const showMovingShapes = preset === "ambient";

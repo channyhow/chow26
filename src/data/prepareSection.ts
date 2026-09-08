@@ -18,6 +18,17 @@ const studioServiceMeta: Record<string, { label: string; value: string }[]> = {
   ],
 };
 
+const sectionMotionDefaults: Record<
+  string,
+  Pick<SectionBlock, "motion" | "motionPreset">
+> = {
+  "home-opening": { motion: "scene", motionPreset: "parallax" },
+  "home-services": { motion: "scene", motionPreset: "ambient" },
+  "approach-default": { motion: "scene", motionPreset: "draw" },
+  "studio-founders": { motion: "scene", motionPreset: "parallax" },
+  "final-cta": { motion: "scene", motionPreset: "ambient" },
+};
+
 const footerLinks = [
   { label: "Accueil", href: "/", intent: "navigate" },
   { label: "Projets", href: "/projets", intent: "navigate" },
@@ -51,20 +62,27 @@ const footerLinks = [
 ] as const;
 
 export function prepareSection(entry: SectionBlock): SectionBlock {
-  if (entry.id === "studio-founders") {
+  const prepared: SectionBlock = {
+    ...(sectionMotionDefaults[entry.id] ?? {}),
+    ...entry,
+  };
+
+  if (prepared.id === "studio-founders") {
     return {
-      ...entry,
+      ...prepared,
       color: "special",
     };
   }
 
-  if (entry.id === "studio-services") {
+  if (prepared.id === "studio-services") {
     return {
-      ...entry,
+      ...prepared,
       layout: "content-switcher",
+      motion: prepared.motion ?? "scene",
+      motionPreset: prepared.motionPreset ?? "ambient",
       content: {
-        ...entry.content,
-        items: entry.content?.items?.map((item) => ({
+        ...prepared.content,
+        items: prepared.content?.items?.map((item) => ({
           ...item,
           meta: studioServiceMeta[item.id ?? ""] ?? item.meta,
         })),
@@ -72,18 +90,26 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
     };
   }
 
-  if (entry.id === "site-footer") {
+  if (prepared.id === "studio-approach") {
     return {
-      ...entry,
+      ...prepared,
+      motion: prepared.motion ?? "scene",
+      motionPreset: prepared.motionPreset ?? "draw",
+    };
+  }
+
+  if (prepared.id === "site-footer") {
+    return {
+      ...prepared,
       content: {
-        ...entry.content,
+        ...prepared.content,
         header: {
-          ...entry.content?.header,
+          ...prepared.content?.header,
           links: [...footerLinks],
         },
       },
     };
   }
 
-  return entry;
+  return prepared;
 }
