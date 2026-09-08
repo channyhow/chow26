@@ -10,7 +10,7 @@
 
   &__mediaWrap { min-width: 0; }
   &__media { border-radius: 0; }
-  &__body { max-width: none; padding: $space-2; }
+  &__body { max-width: none; padding: $flow-default; }
 
   .media__asset {
     transition: transform $transition-reveal;
@@ -63,18 +63,21 @@
   }
 
   .card__body {
-    gap: $space-2;
+    display: grid;
+    gap: $flow-default;
+    padding: $flow-default;
   }
 
+  .textBlock,
   .textBlock__header,
-  .textBlock__content {
-    gap: $space-1;
+  .textBlock__content,
+  .textBlock__footer {
+    gap: $flow-tight;
   }
 
   .textBlock__footer {
-    gap: $space-1;
     padding-top: 0;
-    margin-top: $space-1;
+    margin-top: $flow-tight;
   }
 
   .textBlock__meta { display: none; }
@@ -103,5 +106,5 @@
 
 .card[href]:focus-visible {
   outline: 2px solid currentColor;
-  outline-offset: $space-1;
+  outline-offset: $flow-tight;
 }
