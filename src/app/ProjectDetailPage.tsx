@@ -6,7 +6,7 @@ import collections from "@/data/collections.json";
 import projectMoodsData from "@/data/projectMoods.json";
 import { deriveBrandProfile } from "@/utils/deriveBrandProfile";
 import type { ProjectMood } from "@/types/branding";
-import type { MetaItem, PageData, ProjectRecord } from "@/types/content";
+import type { MetaItem, PageData, ProjectRecord, SectionBlock } from "@/types/content";
 
 const projects = collections.projects as ProjectRecord[];
 const projectMoods = projectMoodsData as Record<string, ProjectMood>;
@@ -43,10 +43,8 @@ function createProjectPage(project: ProjectRecord): PageData {
   const isMdk = project.id === "mois-du-ker";
   const detailLayout = (project.order ?? 0) % 2 === 0 ? "b" : "a";
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
-    const href = link.href;
-    if (!href) return [];
-
-    return [{ label: link.label, href }];
+    if (!link.href) return [];
+    return [{ label: link.label, href: link.href }];
   });
   const projectMeta = [...project.facts.filter((item) => !isDateMeta(item)), ...linkedMeta];
   const profileClasses = profile
@@ -54,6 +52,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     : "projectProfile projectProfile--structured";
   const detailClasses = `projectDetail projectDetail--${detailLayout} ${profileClasses}`;
   const description = project.description.map(stripVisibleYear);
+  const storyMedia = project.gallery ?? [];
   const heroEyebrow = isMdk
     ? undefined
     : Array.isArray(project.eyebrow)
@@ -61,6 +60,43 @@ function createProjectPage(project: ProjectRecord): PageData {
       : project.eyebrow
         ? stripVisibleYear(project.eyebrow)
         : undefined;
+
+  const storyBlocks: SectionBlock[] = storyMedia.length
+    ? storyMedia.map((media, index) => {
+        const start = Math.floor((index * description.length) / storyMedia.length);
+        const end = Math.floor(((index + 1) * description.length) / storyMedia.length);
+        const text = description.slice(start, Math.max(start + 1, end));
+
+        return {
+          id: `project-${project.id}-story-${index + 1}`,
+          type: "Section",
+          layout: "split",
+          variant: profile?.variant,
+          motion: profile?.motion,
+          className: `projectStoryMedia ${detailClasses} projectStoryMedia--${index % 2 === 0 ? "forward" : "reverse"}`,
+          content: {
+            header: {
+              text,
+            },
+            media,
+          },
+        };
+      })
+    : [
+        {
+          id: `project-${project.id}-story`,
+          type: "Section",
+          layout: "text",
+          variant: profile?.variant,
+          motion: profile?.motion,
+          className: `projectStoryText ${detailClasses}`,
+          content: {
+            header: {
+              text: description,
+            },
+          },
+        },
+      ];
 
   return {
     id: `project-${project.id}`,
@@ -71,10 +107,9 @@ function createProjectPage(project: ProjectRecord): PageData {
       {
         id: `project-${project.id}-hero`,
         type: "Section",
-        layout: "media-overlay",
+        layout: "split",
         variant: profile?.variant,
-        tone: profile?.tone,
-        color: profile?.color,
+        color: "secondary",
         motion: profile?.motion,
         className: `projectHero ${detailClasses}`,
         content: {
@@ -86,34 +121,18 @@ function createProjectPage(project: ProjectRecord): PageData {
           media: project.media,
         },
       },
+      ...storyBlocks,
       {
-        id: `project-${project.id}-story`,
+        id: `project-${project.id}-meta`,
         type: "Section",
         layout: "text",
         variant: profile?.variant,
-        motion: profile?.motion,
-        className: `projectStory ${detailClasses}`,
+        motion: "reveal",
+        className: `projectMeta ${detailClasses}`,
         content: {
           header: {
-            eyebrow: isMdk ? undefined : "Le projet",
-            title: isMdk ? undefined : project.summary,
-            text: description,
             meta: projectMeta,
           },
-        },
-      },
-      {
-        id: `project-${project.id}-gallery`,
-        type: "Section",
-        layout: "gallery",
-        variant: profile?.variant,
-        motion: profile?.motion,
-        itemAppearance: profile?.cardEffect && profile.cardEffect !== "none"
-          ? { effect: profile.cardEffect }
-          : undefined,
-        className: `projectGallery ${detailClasses}`,
-        content: {
-          media: project.gallery,
         },
       },
       {
