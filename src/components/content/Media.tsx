@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import { useReducedMotion } from "motion/react";
 
+import { MuxMedia } from "@/components/content/MuxMedia";
 import type { MediaItem } from "@/types/media";
 
 export type MediaProps = {
@@ -57,6 +58,30 @@ export function Media({
       video.pause();
     };
   }, [autoPlay, media.type, priority, reduceMotion]);
+
+  if (media.type === "mux") {
+    return (
+      <figure className={clsx("media", className)}>
+        <div className="media__frame">
+          <MuxMedia
+            className="media__asset"
+            playbackKey={media.playbackKey}
+            alt={media.alt ?? ""}
+            width={media.width}
+            height={media.height}
+            priority={priority}
+            autoPlay={autoPlay}
+          />
+        </div>
+
+        {media.caption ? (
+          <figcaption className="media__caption">
+            {media.caption}
+          </figcaption>
+        ) : null}
+      </figure>
+    );
+  }
 
   if (media.type === "video") {
     return (
