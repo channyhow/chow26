@@ -2,6 +2,119 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
+/* ==================================
+   STUDIO — SERVICES
+================================== */
+
+#studio-services {
+  --section-space: #{$section-space};
+  --text-width: none;
+  scroll-margin-top: calc(#{$space-4} + #{$space-2});
+}
+
+#studio-services .section__inner {
+  display: grid;
+  gap: $section-content-gap;
+}
+
+#studio-services > .section__inner > .section__header {
+  display: none;
+}
+
+#studio-services .contentSwitcher {
+  width: 100%;
+}
+
+#studio-services .contentSwitcher__panel .card {
+  @include split-composition(3fr, 2fr, clamp(#{$space-3}, 5vw, #{$space-5}), stretch);
+  grid-template-areas: "media body";
+  width: 100%;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+#studio-services .card__media {
+  grid-area: media;
+  width: 100%;
+  min-width: 0;
+  @include media-frame($ratio-landscape);
+}
+
+#studio-services .card__body {
+  grid-area: body;
+  align-self: stretch;
+  min-width: 0;
+  padding: 0;
+}
+
+#studio-services .card__body .textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $flow-default;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+#studio-services .card__body .textBlock__title {
+  @include type-heading-xl;
+  max-width: 10ch;
+}
+
+#studio-services .card__body .textBlock__content {
+  width: 100%;
+  max-width: 34rem;
+}
+
+#studio-services .card__body .textBlock__meta {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid currentColor;
+}
+
+#studio-services .card__body .textBlock__meta > * {
+  display: block;
+  width: 100%;
+  padding-block: $flow-tight;
+  border-bottom: 1px solid currentColor;
+  line-height: 1.4;
+}
+
+#studio-services .card__body .textBlock__footer {
+  width: fit-content;
+  margin-top: $flow-tight;
+  padding-top: 0;
+}
+
+@include desktop-down {
+  #studio-services .contentSwitcher__panel .card {
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+    gap: $layout-gap;
+  }
+}
+
+@include tablet-down {
+  #studio-services .contentSwitcher__panel .card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "media"
+      "body";
+    gap: $section-content-gap;
+  }
+
+  #studio-services .card__body .textBlock__meta {
+    margin-top: $flow-default;
+  }
+}
+
+/* ==================================
+   STUDIO — FOUNDER
+================================== */
+
 #studio-founders {
   --media-background: transparent;
   --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
@@ -35,10 +148,8 @@
 }
 
 #studio-founders .card {
-  display: grid;
+  @include split-composition(0.8fr, 1.2fr, clamp(#{$space-3}, 6vw, #{$space-5}), center);
   grid-template-columns: minmax(15rem, 0.8fr) minmax(20rem, 1.2fr);
-  align-items: center;
-  gap: clamp(#{$space-3}, 6vw, #{$space-5});
   width: 100%;
   max-width: 70rem;
   margin-inline: auto;
@@ -51,27 +162,18 @@
   background: transparent;
 }
 
-#studio-founders .card__media,
+#studio-founders .card__media {
+  padding-top: $flow-default;
+  background: transparent;
+  @include media-frame($ratio-square);
+}
+
 #studio-founders .card__media .media,
 #studio-founders .card__media .media__frame {
-  width: 100%;
   background: transparent;
 }
 
-#studio-founders .card__media {
-  padding-top: $flow-default;
-  aspect-ratio: $ratio-square;
-}
-
-#studio-founders .card__media .media,
-#studio-founders .card__media .media__frame,
 #studio-founders .card__media .media__asset {
-  height: 100%;
-}
-
-#studio-founders .card__media .media__asset {
-  object-fit: cover;
-  overflow: hidden;
   filter: grayscale(1);
   mix-blend-mode: multiply;
 }
@@ -113,7 +215,7 @@
   }
 }
 
-@media (min-width: $bp-tablet) and (max-width: 63.999rem) {
+@include between($bp-tablet, $bp-desktop) {
   #studio-founders .section__inner {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: $layout-gap;
@@ -133,7 +235,7 @@
   }
 }
 
-@media (max-width: 47.999rem) {
+@include tablet-down {
   #studio-founders .card {
     grid-template-columns: 1fr;
     max-width: 36rem;
