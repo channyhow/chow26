@@ -13,10 +13,8 @@ type MuxPlayerElement = HTMLElement & {
 };
 
 export type MuxMediaProps = {
-  playbackKey: string;
+  mediaKey: string;
   alt: string;
-  width: number;
-  height: number;
   priority?: boolean;
   autoPlay?: boolean;
   className?: string;
@@ -57,10 +55,8 @@ function ensureMuxPlayer() {
 }
 
 export function MuxMedia({
-  playbackKey,
+  mediaKey,
   alt,
-  width,
-  height,
   priority = false,
   autoPlay = true,
   className,
@@ -106,7 +102,7 @@ export function MuxMedia({
 
     const controller = new AbortController();
 
-    fetch(`/.netlify/functions/mux-token?media=${encodeURIComponent(playbackKey)}`, {
+    fetch(`/.netlify/functions/mux-token?media=${encodeURIComponent(mediaKey)}`, {
       signal: controller.signal,
       credentials: "same-origin",
     })
@@ -121,7 +117,7 @@ export function MuxMedia({
       });
 
     return () => controller.abort();
-  }, [isNearViewport, playbackKey, tokens]);
+  }, [isNearViewport, mediaKey, tokens]);
 
   useEffect(() => {
     if (!tokens || reduceMotion) return;
@@ -174,8 +170,6 @@ export function MuxMedia({
           tabindex: -1,
           "aria-hidden": "true",
           style: {
-            "--controls": "none",
-            "--media-object-fit": "contain",
             width: "100%",
             height: "100%",
             display: "block",
@@ -189,7 +183,7 @@ export function MuxMedia({
     <div
       ref={containerRef}
       className={className}
-      style={{ aspectRatio: `${width} / ${height}`, position: "relative" }}
+      style={{ width: "100%", height: "100%", position: "relative" }}
       role="img"
       aria-label={alt}
     >
@@ -197,11 +191,9 @@ export function MuxMedia({
         <img
           src={thumbnailSrc}
           alt=""
-          width={width}
-          height={height}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       ) : null}
       {!reduceMotion ? player : null}
