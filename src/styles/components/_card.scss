@@ -9,7 +9,7 @@
   background: var(--surface, transparent);
 
   &__mediaWrap { min-width: 0; }
-  &__media { border-radius: 0; }
+  &__media { border-radius: $radius-none; }
   &__body { max-width: none; padding: $flow-default; }
 
   .media__asset {
@@ -30,36 +30,21 @@
 }
 
 .projectCard {
-  .card__mediaWrap,
-  .media,
-  .media__frame {
-    width: 100%;
-  }
-
   .card__mediaWrap {
-    aspect-ratio: $ratio-wide;
     display: grid;
     place-items: center;
-    overflow: hidden;
     background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+    @include media-frame($ratio-wide);
   }
 
   .media,
   .media__frame {
-    height: 100%;
     background: transparent;
   }
 
   .media__frame {
     display: grid;
     place-items: center;
-  }
-
-  .media__asset {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
   }
 
   .card__body {
@@ -105,6 +90,5 @@
 }
 
 .card[href]:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: $flow-tight;
+  @include focus-ring;
 }
