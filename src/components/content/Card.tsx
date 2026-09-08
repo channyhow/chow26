@@ -5,19 +5,13 @@ import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
 import { resolveMedia } from "@/data/resolveMedia";
 import type { CardEffect, ContentItem } from "@/types/content";
-import type { MediaItem } from "@/types/media";
+import { getMediaOrientation } from "@/utils/media";
 
 export type CardProps = {
   item: ContentItem;
   frame?: boolean;
   effect?: CardEffect;
   className?: string;
-};
-
-const getMediaOrientation = (media?: MediaItem) => {
-  if (!media?.width || !media?.height) return undefined;
-  if (media.width === media.height) return "square";
-  return media.width > media.height ? "landscape" : "portrait";
 };
 
 export function Card({
@@ -29,7 +23,6 @@ export function Card({
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
-  const mediaOrientation = getMediaOrientation(media);
   const visibleItem = isProject
     ? { ...item, eyebrow: undefined, links: undefined }
     : item;
@@ -41,13 +34,14 @@ export function Card({
     effect === "grain" && "effectGrain",
     className,
   );
+
   const content = (
     <>
       {media ? (
         <div
           className="card__mediaWrap"
           data-media-type={media.type}
-          data-orientation={mediaOrientation}
+          data-orientation={getMediaOrientation(media)}
         >
           <Media media={media} className="card__media" />
         </div>
