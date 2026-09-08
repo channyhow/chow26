@@ -8,6 +8,7 @@
   border-radius: var(--radius-surface, #{$radius-default});
   background: var(--surface, transparent);
 
+  &__mediaWrap { min-width: 0; }
   &__media { border-radius: 0; }
   &__body { max-width: none; padding: $space-2; }
 
@@ -26,6 +27,41 @@
   &:focus-within .media__asset {
     transform: scale(1.02);
   }
+}
+
+.projectCard {
+  .card__mediaWrap,
+  .media,
+  .media__frame {
+    width: 100%;
+  }
+
+  .card__mediaWrap {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+  }
+
+  .media,
+  .media__frame {
+    height: 100%;
+    background: transparent;
+  }
+
+  .media__frame {
+    display: grid;
+    place-items: center;
+  }
+
+  .media__asset {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .textBlock__meta { display: none; }
 }
 
 [data-variant="organic"] .card {
@@ -53,4 +89,3 @@
   outline: 2px solid currentColor;
   outline-offset: $space-1;
 }
-
