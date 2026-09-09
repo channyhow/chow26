@@ -9,6 +9,7 @@ export type GridProps = {
   children: ReactNode;
   className?: string;
   progressive?: boolean;
+  lead?: ReactNode;
 };
 
 type GridRange = {
@@ -29,7 +30,7 @@ function getGridRange(): GridRange {
   return gridRanges.mobile;
 }
 
-export function Grid({ children, className, progressive = false }: GridProps) {
+export function Grid({ children, className, progressive = false, lead }: GridProps) {
   const reduceMotion = useReducedMotion();
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
@@ -67,15 +68,16 @@ export function Grid({ children, className, progressive = false }: GridProps) {
   const hasMore = progressive && visibleCount < childArray.length;
 
   return (
-    <div className={clsx("gridReveal", progressive && "gridReveal--progressive")}>
+    <div className="gridReveal">
       <motion.div
         id={progressive ? "project-grid" : undefined}
-        className={clsx("grid", className)}
+        className={clsx("grid", lead && "grid--withLead", className)}
         variants={fastStaggerContainer}
         initial={reduceMotion ? false : "hidden"}
         whileInView="visible"
         viewport={motionConfig.viewport}
       >
+        {lead ? <div className="grid__lead">{lead}</div> : null}
         <AnimatePresence initial={false}>
           {visibleChildren.map((child, index) => (
             <motion.div
