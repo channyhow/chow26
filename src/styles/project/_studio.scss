@@ -194,11 +194,11 @@
   max-width: none;
 }
 
-#studio-founders .card__body .textBlock__title {
-  @include type-heading-md;
-  font-weight: $font-weight-semibold;
-  max-width: none;
-}
+// #studio-founders .card__body .textBlock__title {
+//   @include type-heading-md;
+//   font-weight: $font-weight-semibold;
+//   max-width: none;
+// }
 
 @include desktop-up {
   #studio-founders .section__inner {

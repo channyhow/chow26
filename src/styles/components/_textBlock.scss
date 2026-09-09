@@ -34,6 +34,7 @@
 
   &__content {
     gap: $flow-default;
+  color: color-mix(in srgb, currentColor 62%, transparent);
 
     p {
       @include type-body;

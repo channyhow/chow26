@@ -96,6 +96,7 @@ body:has(#home-opening) .header {
 }
 
 #home-opening .textBlock__header {
+  @include type-heading-xl;
   grid-area: header;
   align-self: end;
   width: min(100%, 72rem);
@@ -296,7 +297,9 @@ body:has(#home-opening) .header {
   }
 
   #home-opening .textBlock__title {
-    font-size: clamp(2.75rem, 5vw, 4.75rem);
+// @include type-heading-xl;
+//     width: 10ch;
+    // font-size: clamp(2.6rem, 11vw, 4.15rem);
   }
 
   #home-opening .textBlock__content {
@@ -354,8 +357,8 @@ body:has(#home-opening) .header {
 
   #home-opening .textBlock__title {
     width: min(11ch, 100%);
-    font-size: clamp(2.7rem, 7.5vw, 4.6rem);
-  }
+@include type-heading-xl;
+     }
 
   #home-opening .textBlock__content {
     width: min(100%, 26rem);
@@ -467,7 +470,7 @@ body:has(#home-opening) .header {
 
   #home-opening .textBlock__title {
     width: 9ch;
-    font-size: clamp(2.35rem, 12vw, 3.65rem);
+    // font-size: clamp(2.35rem, 12vw, 3.65rem);
   }
 
   #home-opening .textBlock__content {
