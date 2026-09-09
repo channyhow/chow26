@@ -33,8 +33,8 @@
     "id": "projects-featured-gallery",
     "type": "Section",
     "layout": "grid",
-    "motion": "scene",
-    "motionPreset": "ambient",
+  "motion": "scene",
+  "motionPreset": "parallax",
     "className": "homeProjectsGallery",
     "source": {
       "collection": "projects",
@@ -81,8 +81,8 @@
     "type": "Section",
     "layout": "split",
     "className": "home-preview home-preview--services",
-    "motion": "scene",
-    "motionPreset": "ambient",
+     "motion": "scene",
+  "motionPreset": "parallax",
     "content": {
       "header": {
         "title": "Créer, clarifier ou faire évoluer une présence.",
@@ -228,7 +228,7 @@
     "tone": "inverse",
     "className": "home-preview home-preview--contact",
     "motion": "scene",
-    "motionPreset": "ambient",
+    "motionPreset": "recede",
     "content": {
       "header": {
         "title": "Vous avez un projet en tête ?",
