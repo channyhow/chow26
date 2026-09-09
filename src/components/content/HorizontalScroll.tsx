@@ -37,15 +37,23 @@ export function HorizontalScroll({ children, className, labels }: HorizontalScro
   if (!count) return null;
 
   const style: HorizontalScrollStyle = { "--horizontal-scroll-count": count };
-  const activeLabel = labels?.length === count ? labels[activeIndex] : undefined;
+  const hasLabels = labels?.length === count;
 
   return (
     <div ref={ref} className={clsx("horizontalScroll", className)} style={style}>
       <div className="horizontalScroll__viewport">
-        {activeLabel ? (
+        {hasLabels ? (
           <div className="horizontalScroll__progress" aria-hidden="true">
-            <div className="horizontalScroll__labels" aria-live="off">
-              <span key={activeLabel}>{activeLabel}</span>
+            <div className="horizontalScroll__labels">
+              {labels.map((label, index) => (
+                <span
+                  key={`${label}-${index}`}
+                  className={clsx({ "is-active": index === activeIndex })}
+                  data-active={index === activeIndex || undefined}
+                >
+                  {label}
+                </span>
+              ))}
             </div>
             <div className="horizontalScroll__rule">
               <motion.span style={!reduceMotion ? { x: indicatorX } : undefined} />
