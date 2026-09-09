@@ -104,7 +104,12 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
       {hasMeta ? (
         <motion.div className="textBlock__meta" variants={revealItem}>
           {content.meta?.map((item) => {
-            const text = item.value ? `${item.label}: ${item.value}` : item.label;
+            const content = (
+              <>
+                <span className="textBlock__metaLabel">{item.label}</span>
+                {item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}
+              </>
+            );
 
             if (item.href) {
               const external = isExternalHref(item.href);
@@ -116,14 +121,14 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                 >
-                  {text}{external ? " ↗" : ""}
+                  {content}{external ? <span aria-hidden="true"> ↗</span> : null}
                 </a>
               );
             }
 
             return (
               <span key={`${item.label}-${item.value ?? ""}`}>
-                {text}
+                {content}
               </span>
             );
           })}
