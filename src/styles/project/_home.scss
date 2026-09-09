@@ -8,7 +8,7 @@
    remain data-owned; this file only controls Home composition and art direction. */
 
 /* The opening is the loudest typographic moment on the site. The existing
-   positioning copy stays data-owned; composition alone exposes the 12-col grid. */
+   positioning copy stays data-owned; composition alone exposes the shared grid. */
 #home-opening {
   --section-title-width: none;
   --section-copy-width: 34rem;
@@ -21,9 +21,7 @@
 }
 
 #home-opening .section__header.textBlock {
-  display: grid;
-  grid-template-columns: repeat($section-columns, minmax(0, 1fr));
-  column-gap: $layout-gap;
+  @include site-grid;
   align-items: end;
   width: 100%;
   max-width: none;
@@ -70,8 +68,7 @@
 }
 
 #projects-featured-gallery .section__inner {
-  display: grid;
-  grid-template-columns: repeat($section-columns, minmax(0, 1fr));
+  @include site-grid;
   align-items: center;
   min-height: inherit;
   padding-inline: var(--project-gutter);
@@ -216,14 +213,28 @@
   margin-top: 0;
 }
 
+@include between($bp-tablet, $bp-desktop) {
+  #home-opening .textBlock__header,
+  #home-opening .textBlock__title {
+    grid-column: 1 / -1;
+  }
+
+  #home-opening .textBlock__content {
+    grid-column: 5 / -1;
+  }
+
+  #projects-featured-gallery .section__header {
+    grid-column: 1 / span 2;
+  }
+
+  #projects-featured-gallery .section__body {
+    grid-column: 3 / -1;
+  }
+}
+
 @include tablet-down {
   #home-opening .section__overlayContent {
     padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
-  }
-
-  #home-opening .section__header.textBlock {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: $layout-gap;
   }
 
   #home-opening .textBlock__header,
@@ -254,13 +265,12 @@
   }
 
   #projects-featured-gallery .section__inner {
-    grid-template-columns: 1fr;
-    gap: $space-4;
+    gap: $space-4 $grid-gap;
   }
 
   #projects-featured-gallery .section__header,
   #projects-featured-gallery .section__body {
-    grid-column: 1;
+    grid-column: 1 / -1;
     width: 100%;
     max-width: none;
   }
@@ -271,7 +281,6 @@
 
   #home-services .split,
   #final-cta .split {
-    grid-template-columns: 1fr;
     gap: $space-4;
     min-height: 0;
   }
@@ -280,7 +289,7 @@
   #home-services .split__secondary,
   #final-cta .split__primary,
   #final-cta .split__secondary {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: auto;
   }
 
