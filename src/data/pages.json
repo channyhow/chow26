@@ -22,13 +22,22 @@
             "blocks": [{ "ref": "home-opening" }]
           },
           {
-            "id": "home-projects-panel",
+            "id": "home-projects-carousel-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "projects-featured" }]
+            "blocks": [{ "ref": "projects-featured-carousel" }]
+          },
+          {
+            "id": "home-projects-gallery-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "projects-featured-gallery" }]
           },
           {
             "id": "home-approach-panel",
@@ -122,9 +131,11 @@
               {
                 "id": "studio-services",
                 "type": "Section",
-                "layout": "list",
+                "layout": "content-switcher",
                 "surface": "solid",
                 "color": "secondary",
+                "motion": "scene",
+                "motionPreset": "ambient",
                 "content": {
                   "header": {
                     "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
@@ -144,7 +155,7 @@
                       "media": "ravine-business-card",
                       "meta": [
                         { "label": "Identité", "value": "Logo · Branding · Identité visuelle" },
-                        { "label": "Digital", "value": "Site web · UX/UI · Frontend" },
+                        { "label": "Outils & intégrations", "value": "Formulaires · Calendly · Newsletter" },
                         { "label": "Budget", "value": "À partir de 1 200 € HT" }
                       ],
                       "tags": ["Logo", "Branding", "Identité visuelle"],
@@ -169,7 +180,7 @@
                       "media": "atmosphere-laptop",
                       "meta": [
                         { "label": "Diagnostic", "value": "Audit · UX/UI · Architecture de contenu" },
-                        { "label": "Refonte", "value": "Site web · Direction artistique · Frontend" },
+                        { "label": "Optimisation", "value": "SEO · Analytics · Accessibilité" },
                         { "label": "Budget", "value": "À partir de 800 € HT" }
                       ],
                       "tags": ["Audit", "Refonte", "UX/UI"],
@@ -193,8 +204,8 @@
                       ],
                       "media": "structure-mobile-multi",
                       "meta": [
-                        { "label": "Système", "value": "Design system · Direction artistique · Refonte" },
-                        { "label": "Extension", "value": "Site web · Frontend · Nouveaux supports" },
+                        { "label": "Conversion", "value": "Réservation · Cartographie · Paiement" },
+                        { "label": "Automatisation", "value": "Tally · Notion · Make" },
                         { "label": "Budget", "value": "Sur devis" }
                       ],
                       "tags": ["Design system", "Refonte", "Frontend"],
@@ -227,6 +238,8 @@
                 "layout": "list",
                 "surface": "solid",
                 "color": "primary",
+                "motion": "scene",
+                "motionPreset": "draw",
                 "content": {
                   "header": {
                     "title": "Comprendre d’abord. Construire ensuite.",
