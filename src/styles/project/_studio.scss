@@ -226,9 +226,16 @@
   max-width: none;
 }
 
-#studio-approach > .section__inner > .section__body,
+#studio-approach > .section__inner > .section__body {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100svh - #{$header-height});
+}
+
 #studio-approach .gridReveal {
   width: 100%;
+  margin-block: auto;
 }
 
 #studio-approach .grid {
@@ -301,7 +308,8 @@
     --section-space: #{$section-space};
   }
 
-  #studio-approach > .section__inner {
+  #studio-approach > .section__inner,
+  #studio-approach > .section__inner > .section__body {
     min-height: auto;
   }
 
