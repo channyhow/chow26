@@ -123,14 +123,13 @@
               {
                 "id": "studio-services",
                 "type": "Section",
-                "layout": "content-switcher",
+"layout": "horizontal-scroll",
                 "surface": "solid",
                 "color": "secondary",
                 "motion": "scene",
                 "motionPreset": "ambient",
                 "content": {
                   "header": {
-                    "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
                     "text": [
                       "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
                     ]
