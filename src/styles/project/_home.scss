@@ -5,25 +5,25 @@
 /* Home continues the opening's visual language: sparse content, quiet type and
    a small number of meaningful planes rather than a stack of component demos. */
 
-#home-projects-panel,
-#home-services-panel {
+[data-panel-id="home-projects-panel"],
+[data-panel-id="home-services-panel"] {
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
 }
 
-#home-approach-panel {
+[data-panel-id="home-approach-panel"] {
   --panel-bg: var(--theme-primary);
   --panel-fg: var(--theme-secondary);
 }
 
-#home-final-panel {
+[data-panel-id="home-final-panel"] {
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
 }
 
-#home-projects-panel,
-#home-services-panel,
-#home-final-panel {
+[data-panel-id="home-projects-panel"],
+[data-panel-id="home-services-panel"],
+[data-panel-id="home-final-panel"] {
   --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 82%, transparent);
 }
 
@@ -53,12 +53,14 @@
 #approach-default .section__header,
 #home-services .section__header,
 #final-cta .section__header {
+  grid-area: auto;
   grid-column: 3 / span 6;
   width: 100%;
   max-width: 34rem;
 }
 
 #home-services .section__header {
+  position: static;
   grid-column: 6 / span 6;
 }
 
@@ -161,7 +163,7 @@
 }
 
 @include desktop-up {
-  #home-projects-panel[data-panel-surface="glass"] {
+  [data-panel-id="home-projects-panel"][data-panel-surface="glass"] {
     --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 72%, transparent);
   }
 
