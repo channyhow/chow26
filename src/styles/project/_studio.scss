@@ -217,11 +217,12 @@
 #studio-approach > .section__inner {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(#{$space-4}, 6vw, #{$space-5}) $layout-gap;
+  column-gap: $layout-gap;
   align-items: start;
 }
 
 #studio-approach > .section__inner > .section__header {
+  grid-column: 1;
   width: 100%;
   max-width: none;
   margin: 0;
@@ -234,14 +235,23 @@
 
 #studio-approach > .section__inner > .section__header .textBlock__content {
   @include type-body-sm;
-  max-width: 34ch;
+  max-width: 30ch;
   color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
-#studio-approach > .section__inner > .section__body,
-#studio-approach .gridReveal,
+#studio-approach > .section__inner > .section__body {
+  grid-column: 2 / -1;
+  width: 100%;
+  min-width: 0;
+}
+
+#studio-approach .gridReveal {
+  width: 100%;
+}
+
 #studio-approach .grid {
-  display: contents;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(#{$space-4}, 6vw, #{$space-5}) $layout-gap;
 }
 
 #studio-approach .card {
@@ -269,19 +279,28 @@
 
 @include tablet-down {
   #studio-approach > .section__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     row-gap: $space-4;
+  }
+
+  #studio-approach > .section__inner > .section__header,
+  #studio-approach > .section__inner > .section__body {
+    grid-column: 1;
+  }
+
+  #studio-approach .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @include mobile-down {
   #studio-approach > .section__inner {
-    grid-template-columns: 1fr;
     row-gap: $space-3;
   }
 
-  #studio-approach > .section__inner > .section__header {
-    margin-bottom: $space-2;
+  #studio-approach .grid {
+    grid-template-columns: 1fr;
+    row-gap: $space-3;
   }
 }
 
