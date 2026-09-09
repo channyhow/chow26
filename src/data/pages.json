@@ -256,13 +256,12 @@
                 "motion": "scene",
                 "motionPreset": "draw",
                 "content": {
-                  "header": {
+                  
+                  "items": [{
                     "title": "Comprendre d’abord. Construire ensuite.",
-                    "text": [
-                      "Le processus reste volontairement simple. Chaque étape réduit l’incertitude de la suivante, afin que les décisions visuelles et techniques répondent à quelque chose de concret."
-                    ]
+                  
+                                          "id": "studio-approach-title"
                   },
-                  "items": [
                     {
                       "id": "studio-approach-understand",
                       "title": "Comprendre",
