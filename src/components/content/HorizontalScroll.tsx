@@ -24,11 +24,12 @@ export function HorizontalScroll({ children, className, labels }: HorizontalScro
   const [activeIndex, setActiveIndex] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.3 });
+  const horizontalProgress = useTransform(progress, [0, 0.06, 0.88, 1], [0, 0, 1, 1]);
   const endX = `-${Math.max(count - 1, 0) * 100}vw`;
-  const x = useTransform(progress, [0, 0.06, 0.88, 1], ["0vw", "0vw", endX, endX]);
-  const indicatorX = useTransform(progress, [0, 1], ["0%", `${Math.max(count - 1, 0) * 100}%`]);
+  const x = useTransform(horizontalProgress, [0, 1], ["0vw", endX]);
+  const indicatorX = useTransform(horizontalProgress, [0, 1], ["0%", `${Math.max(count - 1, 0) * 100}%`]);
 
-  useMotionValueEvent(progress, "change", (latest) => {
+  useMotionValueEvent(horizontalProgress, "change", (latest) => {
     const nextIndex = Math.min(count - 1, Math.max(0, Math.round(latest * (count - 1))));
     setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
   });
@@ -36,22 +37,15 @@ export function HorizontalScroll({ children, className, labels }: HorizontalScro
   if (!count) return null;
 
   const style: HorizontalScrollStyle = { "--horizontal-scroll-count": count };
+  const activeLabel = labels?.length === count ? labels[activeIndex] : undefined;
 
   return (
     <div ref={ref} className={clsx("horizontalScroll", className)} style={style}>
       <div className="horizontalScroll__viewport">
-        {labels?.length === count ? (
+        {activeLabel ? (
           <div className="horizontalScroll__progress" aria-hidden="true">
-            <div className="horizontalScroll__labels">
-              {labels.map((label, index) => (
-                <span
-                  key={`${label}-${index}`}
-                  className={clsx({ "is-active": index === activeIndex })}
-                  data-active={index === activeIndex || undefined}
-                >
-                  {label}
-                </span>
-              ))}
+            <div className="horizontalScroll__labels" aria-live="off">
+              <span key={activeLabel}>{activeLabel}</span>
             </div>
             <div className="horizontalScroll__rule">
               <motion.span style={!reduceMotion ? { x: indicatorX } : undefined} />
