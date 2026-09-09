@@ -221,17 +221,12 @@
 #studio-approach > .section__inner {
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: calc(100svh - #{$header-height});
   width: 100%;
   max-width: none;
 }
 
-#studio-approach > .section__inner > .section__body {
-  width: min(100%, 78rem);
-  margin-inline: auto;
-}
-
+#studio-approach > .section__inner > .section__body,
 #studio-approach .gridReveal {
   width: 100%;
 }
@@ -239,36 +234,35 @@
 #studio-approach .grid {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: $layout-gap;
-  row-gap: clamp(#{$space-3}, 4vw, #{$space-5});
+  row-gap: clamp(#{$space-4}, 7vw, 7rem);
   align-items: start;
 }
 
 #studio-approach .grid__item:nth-child(1) {
-  grid-column: 1 / span 5;
-  grid-row: 1;
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 2;
 }
 
 #studio-approach .grid__item:nth-child(2) {
-  grid-column: 7 / span 4;
+  grid-column: 5 / span 4;
   grid-row: 1;
-  margin-top: $space-2;
 }
 
 #studio-approach .grid__item:nth-child(3) {
-  grid-column: 2 / span 4;
-  grid-row: 2;
-  margin-top: $space-3;
+  grid-column: 9 / -1;
+  grid-row: 1;
+  margin-top: clamp(#{$space-3}, 5vw, #{$space-5});
 }
 
 #studio-approach .grid__item:nth-child(4) {
-  grid-column: 8 / span 4;
+  grid-column: 5 / span 4;
   grid-row: 2;
 }
 
 #studio-approach .grid__item:nth-child(5) {
-  grid-column: 5 / span 4;
-  grid-row: 3;
-  margin-top: -$space-2;
+  grid-column: 9 / -1;
+  grid-row: 2;
+  margin-top: clamp(#{$space-3}, 5vw, #{$space-5});
 }
 
 #studio-approach .card {
@@ -286,9 +280,9 @@
 }
 
 #studio-approach .grid__item:first-child .textBlock__title {
-  @include type-heading-xl;
-  max-width: 9ch;
-  line-height: 0.95;
+  @include type-heading-lg;
+  max-width: 8ch;
+  line-height: 0.98;
 }
 
 #studio-approach .grid__item:not(:first-child) .textBlock__title {
@@ -311,10 +305,6 @@
     min-height: auto;
   }
 
-  #studio-approach > .section__inner > .section__body {
-    width: min(100%, 48rem);
-  }
-
   #studio-approach .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: $space-4 $layout-gap;
@@ -328,7 +318,7 @@
 
   #studio-approach .grid__item:first-child {
     grid-column: 1 / -1;
-    width: min(100%, 32rem);
+    width: min(100%, 26rem);
   }
 
   #studio-approach .grid__item:nth-child(3),
