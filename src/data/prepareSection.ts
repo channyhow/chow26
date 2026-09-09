@@ -119,7 +119,9 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
         ...prepared.content,
         header: {
           title: "Sites, identités & expériences digitales.",
-          text: ["Design et développement frontend entre Paris et la Réunion."],
+          text: [
+            "J’accompagne les marques, studios et projets qui veulent transformer une idée, une identité ou un site existant en une présence claire, singulière et facile à faire évoluer. Direction visuelle, UX/UI et développement frontend sont pensés ensemble, entre Paris et la Réunion.",
+          ],
         },
       },
     };
