@@ -57,7 +57,6 @@
       "collection": "projects",
       "query": {
         "featured": true,
-        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"],
         "limit": 4
       }
     },
