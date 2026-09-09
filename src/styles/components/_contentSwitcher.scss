@@ -36,15 +36,33 @@
 }
 
 .contentSwitcher--detailed {
-  gap: $section-content-gap;
+  --content-switcher-available: calc(100svh - #{$header-height});
+  --content-switcher-step: 62svh;
+  height: calc(
+    var(--content-switcher-available) +
+      (var(--content-switcher-count, 1) - 1) * var(--content-switcher-step)
+  );
+  display: block;
+}
+
+.contentSwitcher--detailed .contentSwitcher__sticky {
+  position: sticky;
+  top: $header-height;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(#{$space-2}, 3.5svh, #{$space-4});
+  height: var(--content-switcher-available);
+  padding-block: clamp(#{$space-2}, 3svh, #{$space-4});
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--content-switcher-count, 1), minmax(0, 1fr));
   gap: 0;
-  border-top: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
+  width: 100%;
+  padding-bottom: $flow-tight;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 38%, transparent);
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls button {
@@ -52,47 +70,91 @@
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: $flow-default;
-  min-height: 5.5rem;
-  padding: $flow-default;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0 $flow-default $flow-tight 0;
   border: 0;
-  border-right: 1px solid currentColor;
   border-radius: $radius-none;
   background: transparent;
   color: inherit;
   text-align: left;
-}
-
-.contentSwitcher--detailed .contentSwitcher__controls button:last-child {
-  border-right: 0;
+  opacity: $opacity-muted;
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls button[aria-selected="true"] {
   background: transparent;
   color: inherit;
+  opacity: 1;
 }
 
-.contentSwitcher--detailed .contentSwitcher__controls button[aria-selected="true"] span:last-child {
-  text-decoration: underline;
-  text-underline-offset: 0.35em;
+.contentSwitcher--detailed .contentSwitcher__controls button span:last-child {
+  @include type-ui-compact-lower;
 }
 
 .contentSwitcher__index {
-  opacity: $opacity-muted;
   @include type-ui-compact;
+  opacity: $opacity-muted;
+}
+
+.contentSwitcher--detailed .contentSwitcher__rule {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.contentSwitcher--detailed .contentSwitcher__rule > span {
+  display: block;
+  width: calc(100% / var(--content-switcher-count, 1));
+  height: 100%;
+  background: currentColor;
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.contentSwitcher--detailed .contentSwitcher__viewport {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.contentSwitcher--detailed .contentSwitcher__panel {
+  width: 100%;
 }
 
 @include tablet-down {
-  .contentSwitcher--detailed .contentSwitcher__controls {
-    grid-template-columns: 1fr;
+  .contentSwitcher--detailed {
+    --content-switcher-step: 72svh;
+  }
+
+  .contentSwitcher--detailed .contentSwitcher__sticky {
+    gap: $space-3;
+    padding-block: $space-2;
   }
 
   .contentSwitcher--detailed .contentSwitcher__controls button {
-    min-height: 4.5rem;
-    border-right: 0;
-    border-bottom: 1px solid currentColor;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    min-height: 3rem;
+    padding-right: $flow-tight;
   }
 
-  .contentSwitcher--detailed .contentSwitcher__controls button:last-child {
-    border-bottom: 0;
+  .contentSwitcher--detailed .contentSwitcher__controls button span:last-child {
+    font-size: $type-caption;
+  }
+}
+
+@include reduced-motion {
+  .contentSwitcher--detailed {
+    height: auto;
+  }
+
+  .contentSwitcher--detailed .contentSwitcher__sticky {
+    position: static;
+    height: auto;
   }
 }
