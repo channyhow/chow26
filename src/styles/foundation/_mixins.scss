@@ -18,6 +18,22 @@
 }
 @mixin reduced-motion { @media (prefers-reduced-motion: reduce) { @content; } }
 
+// Shared structural grid. Keep page-specific asymmetry in child spans/offsets,
+// not by redefining a different column system for each section.
+@mixin site-grid($gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
+  column-gap: $gap;
+
+  @include tablet-up {
+    grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+  }
+}
+
 @mixin focus-ring {
   outline: 2px solid currentColor;
   outline-offset: 3px;
