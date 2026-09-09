@@ -26,7 +26,7 @@ const sectionMotionDefaults: Record<
   "projects-featured": { motion: "scene", motionPreset: "ambient" },
   "project-gallery": { motion: "scene", motionPreset: "ambient" },
   "home-services": { motion: "scene", motionPreset: "ambient" },
-  "approach-default": { motion: "scene", motionPreset: "draw" },
+  "approach-default": { motion: "scene", motionPreset: "ambient" },
   "studio-founders": { motion: "scene", motionPreset: "parallax" },
   "final-cta": { motion: "scene", motionPreset: "ambient" },
 };
@@ -51,21 +51,9 @@ const footerLinks = [
     href: "https://www.linkedin.com/in/channyhow",
     intent: "navigate",
   },
-  {
-    label: "CGV",
-    href: "/cgv",
-    intent: "navigate",
-  },
-  {
-    label: "Confidentialité",
-    href: "/confidentialite",
-    intent: "navigate",
-  },
-  {
-    label: "Mentions légales",
-    href: "/mentions-legales",
-    intent: "navigate",
-  },
+  { label: "CGV", href: "/cgv", intent: "navigate" },
+  { label: "Confidentialité", href: "/confidentialite", intent: "navigate" },
+  { label: "Mentions légales", href: "/mentions-legales", intent: "navigate" },
 ] as const;
 
 const legalNoticeContent = {
@@ -122,19 +110,94 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
     ...entry,
   };
 
-  if (prepared.id === "home-services") {
+  // Home is deliberately a sparse preview of the richer detail pages. Keep the
+  // canonical blocks intact in data; only their homepage presentation is reduced.
+  if (prepared.id === "home-opening") {
     return {
       ...prepared,
       content: {
         ...prepared.content,
         header: {
-          ...prepared.content?.header,
-          links: prepared.content?.header?.links?.map((link) => ({
-            ...link,
-            label: "Voir les services",
-            href: "/studio",
-            intent: "navigate",
-          })),
+          title: "Sites, identités & expériences digitales.",
+          text: ["Design et développement frontend entre Paris et la Réunion."],
+        },
+      },
+    };
+  }
+
+  if (prepared.id === "projects-featured") {
+    return {
+      ...prepared,
+      content: {
+        ...prepared.content,
+        header: undefined,
+      },
+    };
+  }
+
+  if (prepared.id === "approach-default") {
+    return {
+      ...prepared,
+      layout: "statement",
+      className: [prepared.className, "home-preview", "home-preview--approach"].filter(Boolean).join(" "),
+      content: {
+        header: {
+          title: "Comprendre d’abord. Construire ensuite.",
+          text: ["Design et développement avancent ensemble, du concept à l’interface."],
+          links: [
+            {
+              label: "Découvrir le studio",
+              href: "/studio",
+              intent: "navigate",
+              priority: "secondary",
+              variant: "cta",
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  if (prepared.id === "home-services") {
+    return {
+      ...prepared,
+      layout: "statement",
+      className: [prepared.className, "home-preview", "home-preview--services"].filter(Boolean).join(" "),
+      content: {
+        header: {
+          title: "Créer, clarifier ou faire évoluer une présence.",
+          text: ["Identité, site web et développement frontend selon ce dont le projet a réellement besoin."],
+          links: [
+            {
+              label: "Voir les accompagnements",
+              href: "/studio",
+              intent: "navigate",
+              priority: "secondary",
+              variant: "cta",
+            },
+          ],
+        },
+      },
+    };
+  }
+
+  if (prepared.id === "final-cta") {
+    return {
+      ...prepared,
+      className: [prepared.className, "home-preview", "home-preview--contact"].filter(Boolean).join(" "),
+      content: {
+        ...prepared.content,
+        header: {
+          title: "Vous avez un projet en tête ?",
+          links: [
+            {
+              label: "Parlons-en",
+              href: "/contact",
+              intent: "contact",
+              priority: "primary",
+              variant: "cta",
+            },
+          ],
         },
       },
     };
