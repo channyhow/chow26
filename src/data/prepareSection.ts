@@ -22,7 +22,6 @@ const sectionMotionDefaults: Record<
   string,
   Pick<SectionBlock, "motion" | "motionPreset">
 > = {
-  "home-opening": { motion: "scene", motionPreset: "parallax" },
   "projects-featured": { motion: "scene", motionPreset: "ambient" },
   "project-gallery": { motion: "scene", motionPreset: "ambient" },
   "home-services": { motion: "scene", motionPreset: "ambient" },
@@ -109,23 +108,6 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
     ...(sectionMotionDefaults[entry.id] ?? {}),
     ...entry,
   };
-
-  // Home is deliberately a sparse preview of the richer detail pages. Keep the
-  // canonical blocks intact in data; only their homepage presentation is reduced.
-  if (prepared.id === "home-opening") {
-    return {
-      ...prepared,
-      content: {
-        ...prepared.content,
-        header: {
-          title: "Sites, identités et directions visuelles, pensés avec clarté.",
-          text: [
-            "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue, entre Paris et la Réunion.",
-          ],
-        },
-      },
-    };
-  }
 
   if (prepared.id === "projects-featured") {
     return {
