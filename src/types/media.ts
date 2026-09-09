@@ -1,4 +1,5 @@
 export type MediaKind = "image" | "video" | "mux";
+export type MediaFit = "cover" | "contain";
 
 export type FocalPoint = {
   x: number;
@@ -17,6 +18,7 @@ type MediaBase = {
   alt?: string;
   width: number;
   height: number;
+  fit?: MediaFit;
   focalPoint?: FocalPoint;
   caption?: string;
   credit?: string;
