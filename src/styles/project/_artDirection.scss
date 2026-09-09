@@ -153,7 +153,8 @@ body:has(#home-opening) .header {
 }
 
 /* ==================================
-   APPROACH — HORIZONTAL STORYTELLING
+   APPROACH
+   Horizontal mechanics belong to the shared HorizontalScroll/Timeline system.
 ================================== */
 
 #approach-default {
@@ -165,76 +166,6 @@ body:has(#home-opening) .header {
   width: 100%;
   max-width: none;
   padding-inline: 0;
-}
-
-#approach-default .timeline[data-orientation="horizontal"] {
-  width: 100%;
-  height: auto;
-}
-
-#approach-default .horizontalScroll {
-  width: 100%;
-}
-
-#approach-default .horizontalScroll__viewport {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
-}
-
-#approach-default .horizontalScroll__track {
-  display: flex;
-  width: max-content;
-  height: 100%;
-}
-
-#approach-default .horizontalScroll__item {
-  display: grid;
-  align-items: center;
-  width: 100vw;
-  height: 100svh;
-  padding: clamp(3.5rem, 7svh, #{$space-5}) var(--project-gutter);
-}
-
-#approach-default .horizontalScroll__item > .timeline__item {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  min-height: 0;
-  margin-inline: 0;
-  padding: 0;
-}
-
-#approach-default .timeline__entry,
-#approach-default .timeline__content,
-#approach-default .timeline__content .textBlock__header,
-#approach-default .timeline__content .textBlock__content {
-  width: 100%;
-  max-width: none;
-}
-
-#approach-default .timeline__entry {
-  padding: 0;
-}
-
-#approach-default .timeline__content {
-  display: grid;
-  grid-template-columns: minmax(13rem, 0.68fr) minmax(20rem, 1.2fr);
-  gap: var(--project-gap-wide);
-  align-items: center;
-}
-
-#approach-default .timeline__content .textBlock__title {
-  @include type-heading-xl;
-  max-width: 10ch;
-}
-
-#approach-default .timeline__content .textBlock__content {
-  align-self: center;
-  justify-self: end;
-  width: min(100%, 34rem);
 }
 
 /* ==================================
@@ -444,21 +375,6 @@ body:has(#home-opening) .header {
     grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.8fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
-
-  #approach-default .timeline__content {
-    grid-template-columns: 1fr;
-    gap: clamp(#{$space-2}, 3vw, #{$space-3});
-  }
-
-  #approach-default .timeline__content .textBlock__title {
-    @include type-heading-lg;
-    max-width: 15ch;
-  }
-
-  #approach-default .timeline__content .textBlock__content {
-    justify-self: start;
-    width: min(100%, 38ch);
-  }
 }
 
 @include tablet-down {
@@ -534,14 +450,6 @@ body:has(#home-opening) .header {
   #home-services .card__body {
     width: 100%;
   }
-
-  #approach-default .horizontalScroll__item {
-    padding-inline: var(--project-gutter);
-  }
-
-  #approach-default .horizontalScroll__item > .timeline__item {
-    width: 100%;
-  }
 }
 
 @media (max-width: $bp-home-compact) {
@@ -586,30 +494,5 @@ body:has(#home-opening) .header {
     border-right: 0;
     border-bottom: 1px solid currentColor;
     text-align: left;
-  }
-}
-
-@include reduced-motion {
-  #approach-default .horizontalScroll {
-    height: auto;
-  }
-
-  #approach-default .horizontalScroll__viewport {
-    position: static;
-    height: auto;
-    overflow: visible;
-  }
-
-  #approach-default .horizontalScroll__track {
-    display: grid;
-    width: 100%;
-    height: auto;
-    transform: none !important;
-  }
-
-  #approach-default .horizontalScroll__item {
-    width: 100%;
-    height: auto;
-    min-height: 70svh;
   }
 }
