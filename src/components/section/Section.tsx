@@ -48,6 +48,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneRange = block.motionRange ?? "through";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
+  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header
+    ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
+    : null;
 
   const cards = items.map((item, index) => (
     <Card
@@ -58,7 +61,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     />
   ));
   const cardsGrid = cards.length ? (
-    <Grid progressive={Boolean(block.progressive)}>
+    <Grid progressive={Boolean(block.progressive)} lead={projectGridLead}>
       {cards}
     </Grid>
   ) : null;
@@ -130,7 +133,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media ? <Media media={media} className="section__media" /> : null)}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsGrid}</>;
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsGrid ? content : null)}</>;
+    body = <>{header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsGrid ? content : null)}</>;
   }
 
   const sceneBody = shouldTrackScroll && layout !== "split" ? (
