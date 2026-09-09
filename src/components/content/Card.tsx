@@ -23,6 +23,8 @@ export function Card({
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
+  const mediaOrientation = getMediaOrientation(media);
+  const projectMediaFit = isProject && mediaOrientation === "portrait" ? "contain" : "cover";
   const visibleItem = isProject
     ? { ...item, eyebrow: undefined, links: undefined }
     : item;
@@ -41,9 +43,9 @@ export function Card({
         <div
           className="card__mediaWrap"
           data-media-type={media.type}
-          data-orientation={getMediaOrientation(media)}
+          data-orientation={mediaOrientation}
         >
-          <Media media={media} className="card__media" />
+          <Media media={media} className="card__media" fit={projectMediaFit} />
         </div>
       ) : null}
       <TextBlock content={visibleItem} titleAs="h3" className="card__body" />
