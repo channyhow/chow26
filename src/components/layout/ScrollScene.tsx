@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
-export type ScrollScenePreset = "parallax" | "ambient" | "draw";
+export type ScrollScenePreset = "parallax" | "ambient" | "draw" | "recede";
 export type ScrollSceneDirection = "forward" | "reverse";
 
 export type ScrollSceneProps = {
@@ -47,6 +47,8 @@ export function ScrollScene({
   const ambientY = useTransform(scrollYProgress, [0, 1], [distance(22), distance(-22)]);
   const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-12), distance(12)]);
   const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
+  const recedeY = useTransform(scrollYProgress, [0, 0.2, 1], [0, 0, 28 * motionScale]);
+  const recedeOpacity = useTransform(scrollYProgress, [0, 0.2, 1], [1, 1, 0.62]);
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
@@ -66,7 +68,9 @@ export function ScrollScene({
         ? { x: ambientX, y: ambientY }
         : preset === "draw"
           ? { y: drawY }
-          : undefined
+          : preset === "recede"
+            ? { y: recedeY, opacity: recedeOpacity }
+            : undefined
     : undefined;
 
   return (
