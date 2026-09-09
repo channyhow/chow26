@@ -61,6 +61,20 @@
       "display": "standalone",
       "startUrl": "/"
     },
+    "business": {
+      "legalName": "Channy How-Choong",
+      "tradeName": "Chow Studio",
+      "siren": "913 912 143",
+      "siret": "913 912 143 00017",
+      "activity": "Conseil en relations publiques et communication",
+      "ape": "70.21Z",
+      "registeredAddress": {
+        "street": "9 rue Ernest Renan",
+        "postalCode": "92130",
+        "city": "Issy-les-Moulineaux",
+        "country": "FR"
+      }
+    },
     "contact": {
       "email": "channyhow@gmail.com",
       "phone": "+33 7 88 48 40 06",
