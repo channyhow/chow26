@@ -31,12 +31,12 @@
   min-width: 0;
 }
 
-#studio-services .contentSwitcher__panel .card {
+#studio-services .card {
   display: grid;
   grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
   grid-template-areas: "media body";
   align-items: center;
-  column-gap: var(--studio-service-gap);
+  gap: var(--studio-service-gap);
   width: fit-content;
   max-width: 100%;
   margin-inline: auto;
@@ -150,7 +150,7 @@
     padding-inline: $page-gutter;
   }
 
-  #studio-services .contentSwitcher__panel .card {
+  #studio-services .card {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "media"
