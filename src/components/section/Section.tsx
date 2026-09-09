@@ -42,12 +42,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
-  const isHorizontalScroll = layout === "horizontal-scroll";
-  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline && !isHorizontalScroll;
+  const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
+  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
   const scenePreset = block.motionPreset ?? "parallax";
   const sceneRange = block.motionRange ?? "through";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
-  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal && !isHorizontalScroll;
+  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
 
   const cards = items.map((item, index) => (
     <Card
