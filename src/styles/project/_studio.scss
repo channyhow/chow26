@@ -211,7 +211,7 @@
 }
 
 /* ==================================
-   STUDIO — APPROACH + FOUNDER STORY
+   STUDIO — SHARED EDITORIAL GRID
 ================================== */
 
 @include desktop-up {
@@ -227,11 +227,51 @@
   }
 }
 
+#studio-approach,
+#studio-founders {
+  --studio-grid-line: color-mix(in srgb, currentColor 16%, transparent);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#studio-approach::before,
+#studio-founders::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc((100% / 12) - 1px),
+      var(--studio-grid-line) calc((100% / 12) - 1px),
+      var(--studio-grid-line) calc(100% / 12)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(clamp(5rem, 10vh, 8rem) - 1px),
+      var(--studio-grid-line) calc(clamp(5rem, 10vh, 8rem) - 1px),
+      var(--studio-grid-line) clamp(5rem, 10vh, 8rem)
+    );
+}
+
+#studio-approach > .section__inner,
+#studio-founders > .section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================================
+   STUDIO — APPROACH
+================================== */
+
 #studio-approach {
-  --section-space: 0;
-  display: flex;
-  align-items: center;
-  min-height: 82svh;
+  --section-space: clamp(#{$space-4}, 8vh, 7rem);
+  min-height: 100svh;
 }
 
 #studio-approach > .section__inner {
@@ -239,57 +279,62 @@
   max-width: none;
 }
 
-#studio-approach > .section__inner > .section__body {
-  width: 100%;
-}
-
 #studio-approach .gridReveal {
-  width: min(100%, 78rem);
-  margin-inline: auto;
+  width: 100%;
 }
 
 #studio-approach .grid {
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: $layout-gap;
-  row-gap: clamp(#{$space-3}, 5vw, #{$space-5});
-  align-items: center;
+  column-gap: 0;
+  row-gap: clamp(#{$space-4}, 7vh, 6rem);
+  align-items: start;
+}
+
+#studio-approach .grid__item {
+  min-width: 0;
 }
 
 #studio-approach .grid__item:nth-child(1) {
-  grid-column: 4 / span 6;
-  grid-row: 2;
-  align-self: center;
-  justify-self: center;
-  width: min(100%, 34rem);
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  padding-inline: $space-2;
 }
 
 #studio-approach .grid__item:nth-child(2) {
-  grid-column: 1 / span 4;
-  grid-row: 1;
+  grid-column: 1 / span 3;
+  grid-row: 2;
 }
 
 #studio-approach .grid__item:nth-child(3) {
-  grid-column: 9 / span 4;
-  grid-row: 1;
-  margin-top: $space-2;
+  grid-column: 4 / span 3;
+  grid-row: 2;
 }
 
 #studio-approach .grid__item:nth-child(4) {
-  grid-column: 1 / span 4;
-  grid-row: 3;
-  width: min(100%, 92%);
+  grid-column: 7 / span 3;
+  grid-row: 2;
 }
 
 #studio-approach .grid__item:nth-child(5) {
-  grid-column: 9 / span 4;
-  grid-row: 3;
-  margin-top: $space-3;
+  grid-column: 10 / span 3;
+  grid-row: 2;
 }
 
 #studio-approach .card {
   min-width: 0;
   overflow: visible;
   background: transparent;
+}
+
+#studio-approach .grid__item:not(:first-child) .card {
+  height: 100%;
+  padding: $space-2;
+  border-left: 1px solid var(--studio-grid-line);
+}
+
+#studio-approach .grid__item:last-child .card {
+  border-right: 1px solid var(--studio-grid-line);
 }
 
 #studio-approach .card__body {
@@ -301,14 +346,15 @@
 }
 
 #studio-approach .grid__item:first-child .textBlock {
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 #studio-approach .grid__item:first-child .textBlock__title {
-  @include type-heading-lg;
-  max-width: 12ch;
-  line-height: 0.98;
+  @include type-heading-xl;
+  max-width: 11ch;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
 }
 
 #studio-approach .grid__item:not(:first-child) .textBlock__title {
@@ -318,47 +364,55 @@
 
 #studio-approach .grid__item:not(:first-child) .textBlock__content {
   @include type-body-sm;
-  max-width: 30ch;
+  max-width: 26ch;
   color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
 @include tablet-down {
   #studio-approach {
-    --section-space: #{$section-space};
     min-height: auto;
   }
 
-  #studio-approach .gridReveal {
-    width: 100%;
+  #studio-approach::before,
+  #studio-founders::before {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc((100% / 4) - 1px),
+        var(--studio-grid-line) calc((100% / 4) - 1px),
+        var(--studio-grid-line) calc(100% / 4)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(#{$space-5} - 1px),
+        var(--studio-grid-line) calc(#{$space-5} - 1px),
+        var(--studio-grid-line) $space-5
+      );
   }
 
   #studio-approach .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-4 $layout-gap;
+    row-gap: $space-4;
   }
 
   #studio-approach .grid__item:nth-child(n) {
     grid-column: auto;
     grid-row: auto;
-    margin-top: 0;
     width: 100%;
   }
 
   #studio-approach .grid__item:first-child {
     grid-column: 1 / -1;
-    grid-row: 2;
-    width: min(100%, 30rem);
-    justify-self: center;
   }
 
-  #studio-approach .grid__item:nth-child(2),
-  #studio-approach .grid__item:nth-child(3) {
-    grid-row: 1;
+  #studio-approach .grid__item:not(:first-child) .card {
+    border-right: 0;
   }
 
-  #studio-approach .grid__item:nth-child(4),
-  #studio-approach .grid__item:nth-child(5) {
-    grid-row: 3;
+  #studio-approach .grid__item:nth-child(odd):not(:first-child) .card {
+    border-right: 1px solid var(--studio-grid-line);
   }
 }
 
@@ -368,31 +422,35 @@
     gap: $space-3;
   }
 
-  #studio-approach .grid__item:nth-child(n) {
-    grid-column: 1;
-    grid-row: auto;
-    margin-top: 0;
+  #studio-approach .grid__item:first-child .textBlock__title {
+    @include type-heading-lg;
+    max-width: 9ch;
   }
 
-  #studio-approach .grid__item:first-child {
-    grid-row: 1;
+  #studio-approach .grid__item:not(:first-child) .card,
+  #studio-approach .grid__item:nth-child(odd):not(:first-child) .card {
+    border-right: 0;
+    border-left: 0;
+    border-top: 1px solid var(--studio-grid-line);
+    padding-inline: 0;
+    padding-top: $space-2;
   }
 }
 
 /* ==================================
-   STUDIO — FOUNDER
+   STUDIO — FOUNDER / ABOUT
 ================================== */
 
 #studio-founders {
   --media-background: transparent;
   --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
-  min-height: 96svh;
+  min-height: 100svh;
 }
 
 #studio-founders .section__inner {
   display: grid;
-  align-items: start;
-  align-content: center;
+  align-items: center;
+  min-height: 100svh;
 }
 
 #studio-founders .section__header.textBlock {
@@ -403,14 +461,11 @@
   gap: $flow-default;
 }
 
-#studio-founders .section__body {
-  width: 100%;
-  min-width: 0;
-}
-
+#studio-founders .section__body,
 #studio-founders .gridReveal,
 #studio-founders .grid {
   width: 100%;
+  min-width: 0;
 }
 
 #studio-founders .grid {
@@ -418,22 +473,28 @@
 }
 
 #studio-founders .card {
-  @include split-composition(0.8fr, 1.2fr, clamp(#{$space-3}, 6vw, #{$space-5}), center);
-  grid-template-columns: minmax(15rem, 0.8fr) minmax(20rem, 1.2fr);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 0;
+  align-items: center;
   width: 100%;
-  max-width: 70rem;
-  margin-inline: auto;
+  max-width: none;
+  margin: 0;
   overflow: visible;
   background: transparent;
 }
 
 #studio-founders .card__mediaWrap {
+  grid-column: 1 / span 5;
   min-width: 0;
+  padding: $space-2;
   background: transparent;
+  border-left: 1px solid var(--studio-grid-line);
+  border-right: 1px solid var(--studio-grid-line);
 }
 
 #studio-founders .card__media {
-  padding-top: $flow-default;
+  padding-top: 0;
   background: transparent;
   @include media-frame($ratio-square);
 }
@@ -449,13 +510,28 @@
 }
 
 #studio-founders .card__body.textBlock {
+  grid-column: 7 / span 5;
   align-self: center;
   grid-auto-rows: max-content;
   align-content: start;
   gap: $flow-default;
-  width: min(100%, 36rem);
+  width: 100%;
   max-width: none;
-  padding: 0;
+  padding: $space-2;
+  border-left: 1px solid var(--studio-grid-line);
+  border-right: 1px solid var(--studio-grid-line);
+}
+
+#studio-founders .card__body .textBlock__title {
+  @include type-heading-lg;
+  max-width: 9ch;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+#studio-founders .card__body .textBlock__subtitle {
+  @include type-heading-sm;
+  max-width: 22ch;
 }
 
 #studio-founders .card__body .textBlock__header,
@@ -464,39 +540,10 @@
   max-width: none;
 }
 
-@include desktop-up {
-  #studio-founders .section__inner {
-    grid-template-columns: repeat($section-columns, minmax(0, 1fr));
-    column-gap: $layout-gap;
-  }
-
-  #studio-founders .section__header {
-    grid-column: 1 / span 7;
-  }
-
-  #studio-founders .section__body {
-    grid-column: 3 / span 10;
-  }
-}
-
-@include between($bp-tablet, $bp-desktop) {
-  #studio-founders .section__inner {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: $layout-gap;
-  }
-
-  #studio-founders .section__header {
-    grid-column: 1 / span 7;
-  }
-
-  #studio-founders .section__body {
-    grid-column: 2 / span 7;
-  }
-
-  #studio-founders .card {
-    grid-template-columns: minmax(13rem, 0.8fr) minmax(0, 1.2fr);
-    gap: $space-3;
-  }
+#studio-founders .card__body .textBlock__content {
+  @include type-body-sm;
+  max-width: 36ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
 @include tablet-down {
@@ -504,12 +551,41 @@
     min-height: auto;
   }
 
+  #studio-founders .section__inner {
+    min-height: auto;
+  }
+
   #studio-founders .card {
-    grid-template-columns: 1fr;
-    max-width: 36rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: $space-4;
   }
 
   #studio-founders .card__mediaWrap {
-    width: min(100%, 28rem);
+    grid-column: 1;
+    width: 100%;
+  }
+
+  #studio-founders .card__body.textBlock {
+    grid-column: 2;
+    padding: $space-2;
+  }
+}
+
+@include mobile-down {
+  #studio-founders .card {
+    grid-template-columns: 1fr;
+    gap: $space-3;
+  }
+
+  #studio-founders .card__mediaWrap,
+  #studio-founders .card__body.textBlock {
+    grid-column: 1;
+    border-inline: 0;
+    padding-inline: 0;
+  }
+
+  #studio-founders .card__body.textBlock {
+    border-top: 1px solid var(--studio-grid-line);
+    padding-top: $space-2;
   }
 }
