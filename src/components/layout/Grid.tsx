@@ -10,6 +10,7 @@ export type GridProps = {
   className?: string;
   progressive?: boolean;
   lead?: ReactNode;
+  motionPreset?: string;
 };
 
 type GridRange = {
@@ -30,7 +31,7 @@ function getGridRange(): GridRange {
   return gridRanges.mobile;
 }
 
-export function Grid({ children, className, progressive = false, lead }: GridProps) {
+export function Grid({ children, className, progressive = false, lead, motionPreset }: GridProps) {
   const reduceMotion = useReducedMotion();
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
@@ -66,6 +67,7 @@ export function Grid({ children, className, progressive = false, lead }: GridPro
 
   const visibleChildren = progressive ? childArray.slice(0, visibleCount) : childArray;
   const hasMore = progressive && visibleCount < childArray.length;
+  const usesDrawMotion = motionPreset === "draw";
 
   return (
     <div className="gridReveal">
@@ -79,18 +81,30 @@ export function Grid({ children, className, progressive = false, lead }: GridPro
       >
         {lead ? <div className="grid__lead">{lead}</div> : null}
         <AnimatePresence initial={false}>
-          {visibleChildren.map((child, index) => (
-            <motion.div
-              className="grid__item"
-              key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
-              variants={revealItem}
-              initial={reduceMotion ? false : { opacity: 0, y: motionConfig.distance.subtle }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: motionConfig.duration.default, ease: motionConfig.easing.soft }}
-            >
-              {child}
-            </motion.div>
-          ))}
+          {visibleChildren.map((child, index) => {
+            const drawOffset = index % 2 === 0 ? -motionConfig.distance.subtle : motionConfig.distance.subtle;
+
+            return (
+              <motion.div
+                className="grid__item"
+                key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
+                variants={usesDrawMotion ? undefined : revealItem}
+                initial={reduceMotion ? false : usesDrawMotion
+                  ? { opacity: 0, x: drawOffset, y: motionConfig.distance.subtle }
+                  : { opacity: 0, y: motionConfig.distance.subtle }}
+                whileInView={usesDrawMotion ? { opacity: 1, x: 0, y: 0 } : undefined}
+                animate={usesDrawMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={usesDrawMotion ? motionConfig.viewport : undefined}
+                transition={{
+                  duration: usesDrawMotion ? motionConfig.duration.slow : motionConfig.duration.default,
+                  ease: motionConfig.easing.soft,
+                  delay: reduceMotion ? 0 : index * (usesDrawMotion ? 0.08 : 0),
+                }}
+              >
+                {child}
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </motion.div>
 
