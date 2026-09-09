@@ -138,22 +138,18 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
   if (prepared.id === "approach-default") {
     return {
       ...prepared,
-      layout: "statement",
-      className: [prepared.className, "home-preview", "home-preview--approach"].filter(Boolean).join(" "),
       content: {
-        header: {
-          title: "Comprendre d’abord. Construire ensuite.",
-          text: ["Design et développement avancent ensemble, du concept à l’interface."],
-          links: [
-            {
-              label: "Découvrir le studio",
-              href: "/studio",
-              intent: "navigate",
-              priority: "secondary",
-              variant: "cta",
-            },
-          ],
-        },
+        ...prepared.content,
+        items: prepared.content?.items?.map((item, index) =>
+          index === 0
+            ? {
+                ...item,
+                text: [
+                  "Chaque projet commence par comprendre ce qui doit réellement fonctionner : le public, les objectifs, les contenus, les contraintes et ce qui freine aujourd’hui. À partir de là, je structure le parcours, construis une direction visuelle cohérente puis la traduis en une interface responsive, accessible et performante. Design et développement avancent ensemble pour éviter les écarts entre l’idée et ce qui est réellement livré.",
+                ],
+              }
+            : item,
+        ),
       },
     };
   }
