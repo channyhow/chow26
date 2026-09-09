@@ -42,7 +42,7 @@ body:has(#home-opening) .header {
 }
 
 #home-opening {
-  --title-width: none;
+  --section-title-width: none;
   min-height: 100svh;
   overflow: hidden;
   color: var(--primary);
@@ -96,11 +96,15 @@ body:has(#home-opening) .header {
 }
 
 #home-opening .textBlock__header {
-  @include type-heading-xl;
   grid-area: header;
   align-self: end;
   width: min(100%, 72rem);
   gap: clamp(#{$space-2}, 2vw, #{$space-3});
+}
+
+#home-opening .textBlock__title {
+  @include type-heading-xl;
+  max-width: none;
 }
 
 #home-opening .textBlock__content {
@@ -296,12 +300,6 @@ body:has(#home-opening) .header {
     width: min(100%, 50rem);
   }
 
-  #home-opening .textBlock__title {
-// @include type-heading-xl;
-//     width: 10ch;
-    // font-size: clamp(2.6rem, 11vw, 4.15rem);
-  }
-
   #home-opening .textBlock__content {
     width: min(100%, 25rem);
   }
@@ -357,8 +355,7 @@ body:has(#home-opening) .header {
 
   #home-opening .textBlock__title {
     width: min(11ch, 100%);
-@include type-heading-xl;
-     }
+  }
 
   #home-opening .textBlock__content {
     width: min(100%, 26rem);
@@ -470,7 +467,6 @@ body:has(#home-opening) .header {
 
   #home-opening .textBlock__title {
     width: 9ch;
-    // font-size: clamp(2.35rem, 12vw, 3.65rem);
   }
 
   #home-opening .textBlock__content {
