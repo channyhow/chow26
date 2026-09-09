@@ -4,11 +4,13 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 
 export type ScrollScenePreset = "parallax" | "ambient" | "draw" | "recede";
 export type ScrollSceneDirection = "forward" | "reverse";
+export type ScrollSceneRange = "through" | "exit";
 
 export type ScrollSceneProps = {
   children: ReactNode;
   preset?: ScrollScenePreset;
   direction?: ScrollSceneDirection;
+  range?: ScrollSceneRange;
   className?: string;
   decorative?: boolean;
   enabled?: boolean;
@@ -18,6 +20,7 @@ export function ScrollScene({
   children,
   preset = "parallax",
   direction = "forward",
+  range = "through",
   className,
   decorative = false,
   enabled = true,
@@ -39,7 +42,9 @@ export function ScrollScene({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: range === "exit"
+      ? ["start start", "end start"]
+      : ["start end", "end start"],
   });
 
   const distance = (value: number) => value * sign * motionScale;
@@ -79,6 +84,7 @@ export function ScrollScene({
       className={clsx("scrollScene", className)}
       data-preset={preset}
       data-direction={direction}
+      data-range={range}
       data-enabled={motionEnabled ? "true" : "false"}
       data-reduced-motion={reduceMotion ? "true" : "false"}
     >
