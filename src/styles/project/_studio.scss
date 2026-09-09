@@ -129,8 +129,7 @@
 #studio-services .textBlock__metaValue {
   @include type-caption;
   min-width: 0;
-  letter-spacing: 0.01em;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 @include desktop-down {
