@@ -22,7 +22,7 @@
   }
 
   &__title {
-    @include type-heading;
+    @include type-body-bold;
     margin: 0;
     text-wrap: balance;
   }

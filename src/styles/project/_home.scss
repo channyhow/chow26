@@ -144,61 +144,61 @@
   margin-bottom: clamp(#{$space-4}, 10svh, 8rem);
 }
 
-.home-preview .textBlock__header,
-.home-preview .textBlock__content {
-  gap: $flow-default;
-}
+// .home-preview .textBlock__header,
+// .home-preview .textBlock__content {
+//   gap: $flow-default;
+// }
 
-.home-preview .textBlock__title,
-.home-preview .textBlock__content,
-.home-preview .actions {
-  @include type-body;
-}
+// .home-preview .textBlock__title,
+// .home-preview .textBlock__content,
+// .home-preview .actions {
+//   @include type-body;
+// }
 
-.home-preview .textBlock__title {
-  max-width: 30ch;
-  font-family: var(--font-body);
-  font-weight: $font-weight-medium;
-  line-height: 1.35;
-  letter-spacing: 0;
-}
+// .home-preview .textBlock__title {
+//   max-width: 30ch;
+//   font-family: var(--font-body);
+//   font-weight: $font-weight-medium;
+//   line-height: 1.35;
+//   letter-spacing: 0;
+// }
 
-.home-preview .textBlock__content {
-  max-width: 42ch;
-  color: color-mix(in srgb, currentColor 58%, transparent);
-}
+// .home-preview .textBlock__content {
+//   max-width: 42ch;
+//   color: color-mix(in srgb, currentColor 58%, transparent);
+// }
 
-.home-preview .textBlock__footer {
-  padding-top: $flow-default;
-}
+// .home-preview .textBlock__footer {
+//   padding-top: $flow-default;
+// }
 
-.home-preview .actions {
-  gap: $flow-default;
-}
+// .home-preview .actions {
+//   gap: $flow-default;
+// }
 
-.home-preview .actions a {
-  min-height: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: currentColor;
-  font-family: var(--font-body);
-  font-size: inherit;
-  font-weight: $font-weight-medium;
-  line-height: 1.35;
-  text-decoration: none;
-}
+// .home-preview .actions a {
+//   min-height: 0;
+//   padding: 0;
+//   border: 0;
+//   background: transparent;
+//   color: currentColor;
+//   font-family: var(--font-body);
+//   font-size: inherit;
+//   font-weight: $font-weight-medium;
+//   line-height: 1.35;
+//   text-decoration: none;
+// }
 
-@include hover {
-  .home-preview .actions a:hover {
-    background: transparent;
-    opacity: $opacity-muted;
-  }
-}
+// @include hover {
+//   .home-preview .actions a:hover {
+//     background: transparent;
+//     opacity: $opacity-muted;
+//   }
+// }
 
-.home-preview .actions a:focus-visible {
-  @include focus-ring;
-}
+// .home-preview .actions a:focus-visible {
+//   @include focus-ring;
+// }
 
 #approach-default .textBlock__title {
   color: currentColor;
@@ -208,9 +208,9 @@
   color: color-mix(in srgb, currentColor 62%, transparent);
 }
 
-#home-services .textBlock__title {
-  color: var(--accent);
-}
+// #home-services .textBlock__title {
+//   color: var(--accent);
+// }
 
 #final-cta .textBlock__title {
   color: color-mix(in srgb, currentColor 58%, transparent);

@@ -72,6 +72,12 @@
   font-weight: $font-weight-medium;
   line-height: 1.58;
 }
+@mixin type-body-bold {
+  font-family: var(--font-body);
+  font-size: $type-body;
+  font-weight: $font-weight-semibold;
+  line-height: 1.58;
+}
 
 @mixin type-lead {
   font-family: var(--font-body);

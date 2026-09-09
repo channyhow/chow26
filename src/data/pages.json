@@ -21,22 +21,14 @@
             "surface": "solid",
             "blocks": [{ "ref": "home-opening" }]
           },
-          {
-            "id": "home-projects-carousel-panel",
-            "behavior": "cover",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "special",
-            "blocks": [{ "ref": "projects-featured-carousel" }]
-          },
+       
           {
             "id": "home-projects-gallery-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "secondary",
+            "surface": "glass",
+            "color": "primary",
             "blocks": [{ "ref": "projects-featured-gallery" }]
           },
           {

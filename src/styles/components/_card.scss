@@ -16,7 +16,7 @@
     transition: transform $transition-reveal;
   }
 
-  .textBlock__title { @include type-ui-compact-lower; max-width: 22ch; }
+  .textBlock__title { max-width: 22ch;  }
   .textBlock__subtitle p { @include type-body; }
   .textBlock__meta { @include type-body-sm; }
 
