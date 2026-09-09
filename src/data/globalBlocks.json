@@ -155,15 +155,11 @@
     "layout": "grid",
     "motion": "none",
     "content": {
-      "header": {
-        "title": "Un même regard, du concept à l’interface.",
-        "text": [
-          "Chow Studio est le studio indépendant de Channy How-Choong, designer et développeuse frontend. Cette double pratique permet de penser la direction visuelle, l’expérience et sa réalisation comme un seul projet plutôt que comme des étapes déconnectées."
-        ]
-      },
+    
       "items": [
         {
-          "title": "Channy How-Choong",
+          "title": "Channy How",
+          "subtitle":  "Un même regard, du concept à l’interface.",
           "text": [
             "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
           ],

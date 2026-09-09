@@ -244,8 +244,8 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "glass",
-            "color": "secondary",
+            "surface": "solid",
+            "color": "special",
             "blocks": [
               {
                 "id": "studio-approach",
@@ -291,8 +291,8 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "accent",
+            "surface": "glass",
+            "color": "special",
             "blocks": [{ "ref": "studio-founders" }]
           },
           {
