@@ -79,6 +79,8 @@ export type ContentItem = {
   links?: Action[];
   meta?: MetaItem[];
   tags?: string[];
+  category?: string;
+  group?: string;
   href?: string;
   enabled?: boolean;
   featured?: boolean;
@@ -90,6 +92,22 @@ export type ContentItem = {
   facts?: MetaItem[];
   gallery?: MediaRef[];
   seo?: PageSeo;
+};
+
+export type ProjectRecord = ContentItem & {
+  id: string;
+  title: string;
+  text: string[];
+  media: MediaRef;
+  href: string;
+  slug: string;
+  summary: string;
+  description: string[];
+  facts: MetaItem[];
+  gallery?: MediaRef[];
+  links?: Action[];
+  seo: PageSeo;
+  projectLayout?: ProjectLayout;
 };
 
 export type SectionHeader = {
@@ -112,8 +130,11 @@ export type SectionContent = {
 export type SourceQuery = {
   featured?: boolean;
   enabled?: boolean;
+  category?: string;
   group?: string;
   limit?: number;
+  excludeIds?: string[];
+  prioritizeIds?: string[];
 };
 
 export type SourceRef = {
