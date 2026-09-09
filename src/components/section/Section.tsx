@@ -41,7 +41,8 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
-  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion;
+  const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
+  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline;
   const scenePreset = block.motionPreset ?? "parallax";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
