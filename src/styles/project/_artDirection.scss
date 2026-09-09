@@ -191,7 +191,7 @@ body:has(#home-opening) .header {
 
 #approach-default .horizontalScroll__item {
   display: grid;
-  place-items: center;
+  align-items: center;
   width: 100vw;
   height: 100svh;
   padding: clamp(3.5rem, 7svh, #{$space-5}) var(--project-gutter);
@@ -199,10 +199,11 @@ body:has(#home-opening) .header {
 
 #approach-default .horizontalScroll__item > .timeline__item {
   display: block;
-  width: min(42rem, calc(100vw - 8rem));
+  width: 100%;
+  max-width: none;
   height: auto;
   min-height: 0;
-  margin-inline: auto;
+  margin-inline: 0;
   padding: 0;
 }
 
@@ -220,17 +221,20 @@ body:has(#home-opening) .header {
 
 #approach-default .timeline__content {
   display: grid;
-  gap: clamp(#{$space-2}, 3vw, #{$space-3});
+  grid-template-columns: minmax(13rem, 0.68fr) minmax(20rem, 1.2fr);
+  gap: var(--project-gap-wide);
+  align-items: center;
 }
 
 #approach-default .timeline__content .textBlock__title {
   @include type-heading-xl;
-  max-width: 14ch;
+  max-width: 10ch;
 }
 
 #approach-default .timeline__content .textBlock__content {
-  width: min(100%, 40ch);
-  justify-self: start;
+  align-self: center;
+  justify-self: end;
+  width: min(100%, 34rem);
 }
 
 /* ==================================
@@ -441,8 +445,9 @@ body:has(#home-opening) .header {
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  #approach-default .horizontalScroll__item > .timeline__item {
-    width: min(36rem, calc(100vw - 5rem));
+  #approach-default .timeline__content {
+    grid-template-columns: 1fr;
+    gap: clamp(#{$space-2}, 3vw, #{$space-3});
   }
 
   #approach-default .timeline__content .textBlock__title {
@@ -451,6 +456,7 @@ body:has(#home-opening) .header {
   }
 
   #approach-default .timeline__content .textBlock__content {
+    justify-self: start;
     width: min(100%, 38ch);
   }
 }
@@ -526,77 +532,60 @@ body:has(#home-opening) .header {
   }
 
   #home-services .card__body {
-    align-self: start;
-  }
-
-  #home-services .card__body .textBlock__content,
-  #home-services .card__body .textBlock__footer {
     width: 100%;
   }
 
   #approach-default .horizontalScroll__item {
-    padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+    padding-inline: var(--project-gutter);
   }
 
   #approach-default .horizontalScroll__item > .timeline__item {
-    width: min(31rem, calc(100vw - 3rem));
-  }
-
-  #approach-default .timeline__content {
-    gap: $space-2;
-  }
-
-  #approach-default .timeline__content .textBlock__title {
-    max-width: 16ch;
-  }
-
-  #approach-default .timeline__content .textBlock__content {
-    width: min(100%, 36ch);
+    width: 100%;
   }
 }
 
 @media (max-width: $bp-home-compact) {
+  #home-opening .section__overlayContent {
+    padding-top: 5.25rem;
+    padding-inline: $space-2;
+  }
+
   #home-opening .section__mediaOverlay > .media {
-    right: -44vw;
-    width: 125vw;
-    opacity: 0.45;
+    right: -42vw;
+    bottom: 20svh;
+    width: 128vw;
+    height: 28svh;
   }
 
   #home-opening .textBlock__title {
-    font-size: clamp(2.35rem, 12vw, 3.6rem);
+    width: 9ch;
+    font-size: clamp(2.35rem, 12vw, 3.65rem);
+  }
+
+  #home-opening .textBlock__content {
+    width: min(100%, 19rem);
+  }
+
+  #home-opening .textBlock__footer {
+    width: 100%;
+  }
+
+  #home-opening .actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   #home-services .contentSwitcher__controls {
     grid-template-columns: 1fr;
-    overflow: visible;
+    border-bottom: 0;
   }
 
   #home-services .contentSwitcher__controls button {
+    justify-content: flex-start;
+    min-height: $space-4;
     border-right: 0;
     border-bottom: 1px solid currentColor;
-  }
-
-  #home-services .contentSwitcher__controls button:last-child {
-    border-bottom: 0;
-  }
-}
-
-@include mobile-down {
-  #approach-default .horizontalScroll__item {
-    padding-inline: $space-2;
-  }
-
-  #approach-default .horizontalScroll__item > .timeline__item {
-    width: min(100%, 28rem);
-  }
-
-  #approach-default .timeline__content .textBlock__title {
-    @include type-heading-md;
-    max-width: 17ch;
-  }
-
-  #approach-default .timeline__content .textBlock__content {
-    width: min(100%, 34ch);
+    text-align: left;
   }
 }
 
@@ -608,15 +597,18 @@ body:has(#home-opening) .header {
   #approach-default .horizontalScroll__viewport {
     position: static;
     height: auto;
-    overflow-x: auto;
+    overflow: visible;
   }
 
   #approach-default .horizontalScroll__track {
+    display: grid;
+    width: 100%;
     height: auto;
     transform: none !important;
   }
 
   #approach-default .horizontalScroll__item {
+    width: 100%;
     height: auto;
     min-height: 70svh;
   }
