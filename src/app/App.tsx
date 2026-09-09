@@ -7,7 +7,6 @@ import { PageRenderer } from "@/components/page/PageRenderer";
 import { RouteLoader } from "@/components/page/RouteLoader";
 import { Seo } from "@/components/page/Seo";
 import pages from "@/data/pages.json";
-import { preparePages } from "@/data/preparePages";
 import { motionConfig } from "@/motion/config";
 import type { PageData } from "@/types/content";
 
@@ -24,7 +23,7 @@ const SystemReference = lazy(() =>
   import("@/app/SystemReference").then((module) => ({ default: module.SystemReference })),
 );
 
-const pageData = preparePages(pages as PageData[]);
+const pageData = pages as PageData[];
 const internalRobots = { index: false, follow: false } as const;
 
 function normalizePath(pathname: string) {
