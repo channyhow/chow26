@@ -9,6 +9,9 @@
 #studio-services {
   --section-space: 0;
   --text-width: none;
+  --studio-service-media: 30rem;
+  --studio-service-copy: 28rem;
+  --studio-service-gap: clamp(#{$space-3}, 5vw, #{$space-5});
   scroll-margin-top: calc(#{$header-height} + #{$space-2});
 }
 
@@ -30,31 +33,28 @@
 
 #studio-services .contentSwitcher__panel .card {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(17rem, 4fr);
+  grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
   grid-template-areas: "media body";
   align-items: center;
-  column-gap: clamp(#{$space-3}, 7vw, #{$space-5});
-  width: min(100%, 74rem);
+  column-gap: var(--studio-service-gap);
+  width: fit-content;
+  max-width: 100%;
   margin-inline: auto;
   overflow: visible;
   background: transparent;
 }
 
-#studio-services .card {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(17rem, 4fr);
-  grid-template-areas: "media body";
-}
-
 #studio-services .card__mediaWrap {
   grid-area: media;
+  width: 100%;
   min-width: 0;
   justify-self: start;
 }
 
 #studio-services .card__media {
-  width: min(100%, 30rem);
+  width: 100%;
   min-width: 0;
+  aspect-ratio: $ratio-square;
   background: transparent;
   @include media-frame($ratio-square);
 }
@@ -62,7 +62,8 @@
 #studio-services .card__body {
   grid-area: body;
   align-self: center;
-  width: min(100%, 28rem);
+  width: 100%;
+  max-width: var(--studio-service-copy);
   min-width: 0;
   padding: $space-2 0 0;
 }
@@ -133,20 +134,16 @@
 }
 
 @include desktop-down {
-  #studio-services .contentSwitcher__panel .card {
-    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.9fr);
-    column-gap: $layout-gap;
-    width: min(100%, 66rem);
-  }
-
-  #studio-services .card__media {
-    width: min(100%, 27rem);
+  #studio-services {
+    --studio-service-media: 27rem;
+    --studio-service-gap: $layout-gap;
   }
 }
 
 @include tablet-down {
   #studio-services {
     --section-space: #{$section-space};
+    --studio-service-media: 28rem;
   }
 
   #studio-services > .section__inner {
@@ -154,17 +151,17 @@
   }
 
   #studio-services .contentSwitcher__panel .card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "media"
       "body";
-    gap: $section-content-gap;
+    row-gap: $section-content-gap;
     width: min(100%, 34rem);
     padding-block: $space-2;
   }
 
-  #studio-services .card__media {
-    width: min(100%, 28rem);
+  #studio-services .card__mediaWrap {
+    width: min(100%, var(--studio-service-media));
   }
 
   #studio-services .card__body {
