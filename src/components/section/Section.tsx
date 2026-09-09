@@ -44,6 +44,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline;
   const scenePreset = block.motionPreset ?? "parallax";
+  const sceneRange = block.motionRange ?? "through";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
 
@@ -89,6 +90,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
           <ScrollScene
             preset={scenePreset}
             direction="forward"
+            range={sceneRange}
             className="section__scrollLayer"
             decorative={false}
           >
@@ -99,6 +101,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
           <ScrollScene
             preset={scenePreset}
             direction="reverse"
+            range={sceneRange}
             className="section__scrollLayer"
             decorative={false}
           >
@@ -182,6 +185,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneBody = shouldTrackScroll && layout !== "split" ? (
     <ScrollScene
       preset={scenePreset}
+      range={sceneRange}
       className="section__scrollScene"
       decorative={false}
     >
@@ -201,6 +205,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       data-color={ownsVisualPlane ? block.color : undefined}
       data-motion={block.motion ?? "reveal"}
       data-motion-preset={block.motionPreset}
+      data-motion-range={block.motionRange}
     >
       {shouldTrackScroll ? (
         layout === "split" ? <div className="section__inner">{body}</div> : sceneBody
