@@ -68,6 +68,54 @@ const footerLinks = [
   },
 ] as const;
 
+const legalNoticeContent = {
+  header: {
+    title: "Mentions légales",
+    text: [
+      "Informations relatives à l’éditeur, à l’hébergement et aux droits applicables au site Chow Studio.",
+    ],
+  },
+  items: [
+    {
+      title: "Éditeur du site",
+      text: [
+        "Channy How-Choong, entrepreneure individuelle exerçant sous le nom commercial Chow Studio.",
+        "SIREN : 913 912 143 · SIRET : 913 912 143 00017 · Code APE : 70.21Z — Conseil en relations publiques et communication.",
+        "Contact : channyhow@gmail.com · +33 7 88 48 40 06.",
+      ],
+    },
+    {
+      title: "Direction de la publication",
+      text: ["Directrice de la publication : Channy How-Choong."],
+    },
+    {
+      title: "Design & développement",
+      text: [
+        "Direction visuelle, UX/UI design et développement frontend : Channy How-Choong · Chow Studio.",
+      ],
+    },
+    {
+      title: "Hébergement",
+      text: [
+        "Le site est hébergé par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis.",
+      ],
+    },
+    {
+      title: "Propriété intellectuelle",
+      text: [
+        "Sauf mention contraire, les textes, créations graphiques, interfaces et autres éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Toute reproduction, adaptation ou diffusion non autorisée est interdite.",
+        "Les marques, photographies, contenus et créations appartenant à des clients ou à des tiers restent la propriété de leurs titulaires respectifs et sont présentés uniquement dans le cadre de la documentation des projets concernés.",
+      ],
+    },
+    {
+      title: "Données personnelles",
+      text: [
+        "Les informations relatives au traitement des données personnelles, aux formulaires et aux droits des personnes sont détaillées dans la page Confidentialité & données personnelles.",
+      ],
+    },
+  ],
+};
+
 export function prepareSection(entry: SectionBlock): SectionBlock {
   const prepared: SectionBlock = {
     ...(sectionMotionDefaults[entry.id] ?? {}),
@@ -113,6 +161,13 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
       ...prepared,
       motion: prepared.motion ?? "scene",
       motionPreset: prepared.motionPreset ?? "draw",
+    };
+  }
+
+  if (prepared.id === "legal-notice-default") {
+    return {
+      ...prepared,
+      content: legalNoticeContent,
     };
   }
 
