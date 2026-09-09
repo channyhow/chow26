@@ -52,9 +52,14 @@ $container-narrow: 56rem;
 $container-wide: 80rem;
 $container-max: 96rem;
 
-// Shared editorial composition: keep the header cohesive and offset the
-// section's content region against it on the same twelve-column grid.
-$section-columns: 12;
+// One underlying grid for the whole site. Sections can deliberately leave
+// columns empty or offset children; alignment stays shared without forcing
+// every composition to look symmetrical.
+$grid-columns-mobile: 4;
+$grid-columns-tablet: 8;
+$grid-columns-desktop: 12;
+$grid-gap: $layout-gap;
+$section-columns: $grid-columns-desktop;
 $section-header-column: 1 / span 7;
 $section-body-column: 4 / span 9;
 
