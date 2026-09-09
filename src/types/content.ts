@@ -8,9 +8,10 @@ export type SectionColor =
   | "special"
   | "accent";
 export type SectionSurface = "solid" | "glass" | "transparent";
-export type MotionLevel = "none" | "reveal" | "scene";
-export type ScrollMotionPreset = "parallax" | "ambient" | "draw" | "recede";
+export type MotionLevel = "none" | "micro" | "reveal" | "scene";
+export type ScrollMotionPreset = "drift" | "parallax" | "ambient" | "draw" | "recede";
 export type ScrollMotionRange = "through" | "exit";
+export type MotionIntensity = "quiet" | "default" | "expressive";
 export type CardEffect = "none" | "glass" | "grain";
 export type TimelineOrientation = "vertical" | "horizontal";
 export type ProjectLayout = "a" | "b";
@@ -176,6 +177,7 @@ export type SectionBlock = {
   motion?: MotionLevel;
   motionPreset?: ScrollMotionPreset;
   motionRange?: ScrollMotionRange;
+  motionIntensity?: MotionIntensity;
   className?: string;
 };
 
