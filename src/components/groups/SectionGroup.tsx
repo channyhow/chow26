@@ -14,11 +14,7 @@ import type {
   SectionGroup as SectionGroupData,
 } from "@/types/content";
 
-function renderBlocks(
-  blocks: PanelBlock[],
-  suppressSceneMotion = false,
-  inheritedColor?: SectionColor,
-) {
+function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel = false) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
       const block = resolveBlock(entry.ref);
@@ -33,7 +29,7 @@ function renderBlocks(
           key={entry.ref}
           block={block}
           suppressSceneMotion={suppressSceneMotion}
-          inheritedColor={inheritedColor}
+          visualContext={inPanel ? "inherit" : "own"}
         />
       );
     }
@@ -43,7 +39,7 @@ function renderBlocks(
         key={entry.id || `panel-section-${index + 1}`}
         block={entry}
         suppressSceneMotion={suppressSceneMotion}
-        inheritedColor={inheritedColor}
+        visualContext={inPanel ? "inherit" : "own"}
       />
     );
   });
@@ -119,7 +115,7 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, false, color)}
+      {renderBlocks(blocks, false, true)}
     </div>
   );
 }
