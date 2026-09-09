@@ -10,7 +10,7 @@
 }
 
 .actions__link {
-  @include type-ui-compact;
+  @include type-body-bold;
 
   display: inline-flex;
   align-items: center;

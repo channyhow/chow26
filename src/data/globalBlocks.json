@@ -43,10 +43,7 @@
         "limit": 3
       }
     },
-    "content": {
-      "header": {
-        "title": "Trois projets, trois réponses.",
-        "links": [
+    "content": { "links": [
           {
             "label": "Voir tous les projets",
             "href": "/projets",
@@ -55,7 +52,7 @@
             "variant": "arrow"
           }
         ]
-      }
+    
     }
   },
   "project-gallery": {
@@ -82,10 +79,11 @@
   "home-services": {
     "id": "home-services",
     "type": "Section",
-    "layout": "statement",
+    "layout": "split",
     "className": "home-preview home-preview--services",
     "motion": "scene",
     "motionPreset": "ambient",
+    "media": "kuro-grey",
     "content": {
       "header": {
         "title": "Créer, clarifier ou faire évoluer une présence.",
