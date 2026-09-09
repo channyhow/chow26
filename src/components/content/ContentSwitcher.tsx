@@ -1,6 +1,20 @@
-import { useState, type KeyboardEvent, type ReactNode } from "react";
+import {
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import clsx from "clsx";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
@@ -16,16 +30,19 @@ export type ContentSwitcherProps = {
   variant?: "default" | "detailed";
 };
 
+type DetailedStyle = CSSProperties & { "--content-switcher-count": number };
+
 const serviceLabels: Record<string, string> = {
-  "service-create": "Je lance mon projet",
-  "service-clarify": "Je veux clarifier l’existant",
-  "service-evolve": "Je veux le faire évoluer",
-  "studio-service-create": "Je lance mon projet",
-  "studio-service-clarify": "Je veux clarifier l’existant",
-  "studio-service-evolve": "Je veux le faire évoluer",
+  "service-create": "Créer",
+  "service-clarify": "Clarifier",
+  "service-evolve": "Faire évoluer",
+  "studio-service-create": "Créer",
+  "studio-service-clarify": "Clarifier",
+  "studio-service-evolve": "Faire évoluer",
 };
 
 export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const reduceMotion = useReducedMotion();
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeId));
@@ -34,17 +51,59 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
     variant === "default" && items.some((item) => item.id.startsWith("studio-service-"))
       ? "detailed"
       : variant;
+  const isDetailed = resolvedVariant === "detailed";
+  const { scrollYProgress } = useScroll({
+    target: rootRef,
+    offset: ["start start", "end end"],
+  });
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 26,
+    mass: 0.3,
+  });
+  const indicatorX = useTransform(
+    progress,
+    [0, 1],
+    ["0%", `${Math.max(items.length - 1, 0) * 100}%`],
+  );
+
+  useMotionValueEvent(progress, "change", (value) => {
+    if (!isDetailed || reduceMotion || !items.length) return;
+
+    const nextIndex = Math.min(
+      items.length - 1,
+      Math.floor(Math.min(value, 0.9999) * items.length),
+    );
+    const next = items[nextIndex];
+
+    if (next && next.id !== activeId) setActiveId(next.id);
+  });
 
   if (!active) return null;
 
-  const selectIndex = (index: number) => {
+  const scrollToIndex = (index: number) => {
     const item = items[index];
-
     if (!item) return;
 
     setActiveId(item.id);
+
+    if (!isDetailed || reduceMotion || !rootRef.current || items.length <= 1) return;
+
+    const root = rootRef.current;
+    const start = root.getBoundingClientRect().top + window.scrollY;
+    const range = Math.max(0, root.offsetHeight - window.innerHeight);
+
+    window.scrollTo({
+      top: start + (range * index) / (items.length - 1),
+      behavior: "smooth",
+    });
+  };
+
+  const selectIndex = (index: number) => {
+    scrollToIndex(index);
     requestAnimationFrame(() => {
-      document.getElementById(`content-switcher-tab-${item.id}`)?.focus();
+      const item = items[index];
+      if (item) document.getElementById(`content-switcher-tab-${item.id}`)?.focus();
     });
   };
 
@@ -72,66 +131,93 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
     selectIndex(nextIndex);
   };
 
+  const controls = (
+    <div
+      className="contentSwitcher__controls"
+      role="tablist"
+      aria-label={siteData.ui.copy.contentSwitcher.controlsLabel}
+    >
+      {items.map((item, index) => {
+        const selected = item.id === active.id;
+        const label = serviceLabels[item.id] ?? item.label;
+
+        return (
+          <button
+            id={`content-switcher-tab-${item.id}`}
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={selected}
+            aria-controls={`content-switcher-panel-${item.id}`}
+            tabIndex={selected ? 0 : -1}
+            onClick={() => scrollToIndex(index)}
+            onKeyDown={onTabKeyDown}
+          >
+            {isDetailed ? (
+              <>
+                <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
+                <span>{label}</span>
+              </>
+            ) : (
+              label
+            )}
+          </button>
+        );
+      })}
+      {isDetailed ? (
+        <div className="contentSwitcher__rule" aria-hidden="true">
+          <motion.span style={!reduceMotion ? { x: indicatorX } : undefined} />
+        </div>
+      ) : null}
+    </div>
+  );
+
+  const viewport = (
+    <motion.div className="contentSwitcher__viewport" layout={!reduceMotion && !isDetailed}>
+      <AnimatePresence initial={false} mode="wait">
+        <motion.div
+          id={`content-switcher-panel-${active.id}`}
+          className="contentSwitcher__panel"
+          role="tabpanel"
+          aria-labelledby={`content-switcher-tab-${active.id}`}
+          key={active.id}
+          initial={reduceMotion ? false : { opacity: 0, y: isDetailed ? 8 : 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: isDetailed ? -8 : 0 }}
+          transition={{
+            duration: motionConfig.duration.default,
+            ease: motionConfig.easing.standard,
+          }}
+        >
+          {active.content}
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
+  );
+
+  const style = isDetailed
+    ? ({ "--content-switcher-count": items.length } as DetailedStyle)
+    : undefined;
+
   return (
     <motion.div
+      ref={rootRef}
       className={clsx("contentSwitcher", `contentSwitcher--${resolvedVariant}`)}
       data-variant={resolvedVariant}
-      layout={!reduceMotion}
+      layout={!reduceMotion && !isDetailed}
+      style={style}
     >
-      <div
-        className="contentSwitcher__controls"
-        role="tablist"
-        aria-label={siteData.ui.copy.contentSwitcher.controlsLabel}
-      >
-        {items.map((item, index) => {
-          const selected = item.id === active.id;
-          const label = serviceLabels[item.id] ?? item.label;
-
-          return (
-            <button
-              id={`content-switcher-tab-${item.id}`}
-              key={item.id}
-              type="button"
-              role="tab"
-              aria-selected={selected}
-              aria-controls={`content-switcher-panel-${item.id}`}
-              tabIndex={selected ? 0 : -1}
-              onClick={() => setActiveId(item.id)}
-              onKeyDown={onTabKeyDown}
-            >
-              {resolvedVariant === "detailed" ? (
-                <>
-                  <span className="contentSwitcher__index">{String(index + 1).padStart(2, "0")}</span>
-                  <span>{label}</span>
-                </>
-              ) : (
-                label
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      <motion.div className="contentSwitcher__viewport" layout={!reduceMotion}>
-        <AnimatePresence initial={false} mode="wait">
-          <motion.div
-            id={`content-switcher-panel-${active.id}`}
-            className="contentSwitcher__panel"
-            role="tabpanel"
-            aria-labelledby={`content-switcher-tab-${active.id}`}
-            key={active.id}
-            initial={reduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0 }}
-            transition={{
-              duration: motionConfig.duration.default,
-              ease: motionConfig.easing.standard,
-            }}
-          >
-            {active.content}
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+      {isDetailed ? (
+        <div className="contentSwitcher__sticky">
+          {controls}
+          {viewport}
+        </div>
+      ) : (
+        <>
+          {controls}
+          {viewport}
+        </>
+      )}
     </motion.div>
   );
 }
