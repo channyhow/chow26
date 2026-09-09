@@ -18,7 +18,7 @@
 #studio-services > .section__inner {
   width: 100%;
   max-width: none;
-  padding-inline: $page-gutter;
+  padding-inline: 0;
 }
 
 #studio-services > .section__inner > .section__header {
@@ -29,6 +29,33 @@
 #studio-services .contentSwitcher {
   width: 100%;
   min-width: 0;
+}
+
+#studio-services .horizontalScroll__progress {
+  padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
+}
+
+#studio-services .horizontalScroll__labels {
+  display: block;
+  min-height: 1.4em;
+}
+
+#studio-services .horizontalScroll__labels span {
+  display: none;
+  opacity: 1;
+}
+
+#studio-services .horizontalScroll__labels span.is-active {
+  display: block;
+}
+
+#studio-services .horizontalScroll__rule {
+  background: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+#studio-services .horizontalScroll__rule span {
+  height: 2px;
+  background: color-mix(in srgb, currentColor 72%, transparent);
 }
 
 #studio-services .horizontalScroll__item {
