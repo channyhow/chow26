@@ -55,7 +55,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]

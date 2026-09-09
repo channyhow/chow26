@@ -98,6 +98,22 @@
     "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
     "width": 1920,
     "height": 1080
+  },  "maloya-menu": {
+    "id": "maloya-menu",
+    "type": "video",
+    "src": "/assets/videos/maloya-menu.mp4",
+    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
+    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
+    "width": 1350,
+    "height": 1080
+  },  "maloya-mobile-vid": {
+    "id": "maloya-mobile-vid",
+    "type": "video",
+    "src": "/assets/videos/maloya-mobile.mp4",
+    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
+    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
+    "width": 1080,
+    "height": 1350
   },
   "mois-du-ker-textile": {
     "id": "mois-du-ker-textile",

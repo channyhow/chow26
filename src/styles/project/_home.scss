@@ -137,7 +137,7 @@
 #final-cta .split {
   align-items: center;
   min-height: inherit;
-  --section-gap: clamp(#{$space-4}, 6vw, #{$space-6});
+  --section-gap: $space-4;
 }
 
 #home-services .textBlock,

@@ -10,8 +10,8 @@
     $section-space
     var(--footer-gutter)
     clamp(#{$space-3}, 4vw, #{$space-4});
-  color: var(--secondary);
-  background: var(--primary);
+  // color: var(--secondary);
+  // background: var(--primary);
 }
 
 .siteFooter__inner,
