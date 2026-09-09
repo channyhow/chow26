@@ -211,6 +211,81 @@
 }
 
 /* ==================================
+   STUDIO — APPROACH
+================================== */
+
+#studio-approach > .section__inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(#{$space-4}, 6vw, #{$space-5}) $layout-gap;
+  align-items: start;
+}
+
+#studio-approach > .section__inner > .section__header {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+#studio-approach > .section__inner > .section__header .textBlock__title {
+  @include type-heading-lg;
+  max-width: 9ch;
+}
+
+#studio-approach > .section__inner > .section__header .textBlock__content {
+  @include type-body-sm;
+  max-width: 34ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+}
+
+#studio-approach > .section__inner > .section__body,
+#studio-approach .gridReveal,
+#studio-approach .grid {
+  display: contents;
+}
+
+#studio-approach .card {
+  min-width: 0;
+  background: transparent;
+}
+
+#studio-approach .card__body {
+  padding: 0;
+}
+
+#studio-approach .card__body .textBlock {
+  gap: $flow-default;
+}
+
+#studio-approach .card__body .textBlock__title {
+  @include type-heading-sm;
+}
+
+#studio-approach .card__body .textBlock__content {
+  @include type-body-sm;
+  max-width: 32ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+}
+
+@include tablet-down {
+  #studio-approach > .section__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: $space-4;
+  }
+}
+
+@include mobile-down {
+  #studio-approach > .section__inner {
+    grid-template-columns: 1fr;
+    row-gap: $space-3;
+  }
+
+  #studio-approach > .section__inner > .section__header {
+    margin-bottom: $space-2;
+  }
+}
+
+/* ==================================
    STUDIO — FOUNDER
 ================================== */
 
