@@ -40,12 +40,11 @@
   background: transparent;
 }
 
-#studio-services .card{
+#studio-services .card {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(17rem, 4fr);
   grid-template-areas: "media body";
 }
-
 
 #studio-services .card__mediaWrap {
   grid-area: media;
@@ -107,19 +106,31 @@
   display: grid;
   gap: 0;
   width: 100%;
-  margin-top: $space-2;
-  border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  margin-top: $space-3;
+  border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent);
 }
 
 #studio-services .card__body .textBlock__meta > * {
-  @include type-caption;
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+  gap: $flow-default;
   width: 100%;
   padding-block: $flow-tight;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent);
-  color: color-mix(in srgb, currentColor 64%, transparent);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  color: color-mix(in srgb, currentColor 58%, transparent);
+}
+
+#studio-services .textBlock__metaLabel {
+  @include type-ui-compact;
+  font-size: $type-ui-compact;
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+#studio-services .textBlock__metaValue {
+  @include type-caption;
+  min-width: 0;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 @include desktop-down {
@@ -160,6 +171,11 @@
   #studio-services .card__body {
     width: min(100%, 30rem);
     padding-top: 0;
+  }
+
+  #studio-services .card__body .textBlock__meta > * {
+    grid-template-columns: 1fr;
+    gap: $flow-tight;
   }
 }
 
