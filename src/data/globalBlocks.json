@@ -153,8 +153,7 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "grid",
-    "motion": "scene",
-    "motionPreset": "parallax",
+    "motion": "none",
     "content": {
       "header": {
         "title": "Un même regard, du concept à l’interface.",

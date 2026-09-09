@@ -7,12 +7,12 @@
    every section into the same component composition. */
 
 [data-panel-id="home-projects-carousel-panel"][data-panel-color],
-[data-panel-id="home-projects-gallery-panel"][data-panel-color],
 [data-panel-id="home-services-panel"][data-panel-color] {
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
 }
 
+[data-panel-id="home-projects-gallery-panel"][data-panel-color],
 [data-panel-id="home-approach-panel"][data-panel-color] {
   --panel-bg: var(--theme-primary);
   --panel-fg: var(--theme-secondary);

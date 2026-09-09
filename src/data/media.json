@@ -130,8 +130,8 @@
     "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
     "width": 1080,
     "height": 1920,
-    "fit": "contain",
-    "focalPoint": { "x": 50, "y": 50 }
+    "fit": "cover",
+    "focalPoint": { "x": 50, "y": 64 }
   },
   "mdk-color-palette": {
     "id": "mdk-color-palette",
