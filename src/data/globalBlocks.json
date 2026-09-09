@@ -25,7 +25,6 @@
       "collection": "projects",
       "query": {
         "featured": true,
-        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"],
         "limit": 5
       }
     }
@@ -41,7 +40,6 @@
       "collection": "projects",
       "query": {
         "featured": true,
-        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"],
         "limit": 3
       }
     },
@@ -68,11 +66,9 @@
     "color": "special",
     "motion": "scene",
     "motionPreset": "ambient",
+    "progressive": true,
     "source": {
-      "collection": "projects",
-      "query": {
-        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"]
-      }
+      "collection": "projects"
     },
     "content": {
       "header": {
