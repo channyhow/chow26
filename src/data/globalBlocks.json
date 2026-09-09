@@ -3,11 +3,14 @@
     "id": "home-opening",
     "type": "Section",
     "layout": "media-overlay",
+    "motion": "scene",
+    "motionPreset": "recede",
     "content": {
       "header": {
         "title": "Sites, identités et directions visuelles, pensés avec clarté.",
         "text": [
-"Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue, depuis Paris et la Réunion."        ]
+          "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue, depuis Paris et la Réunion."
+        ]
       },
       "media": "kuro-grey"
     }
@@ -174,7 +177,6 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "grid",
-  
     "content": {
       "header": {
         "title": "Un même regard, du concept à l’interface.",
@@ -247,7 +249,6 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
-    
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",
