@@ -52,6 +52,11 @@ const footerLinks = [
     intent: "navigate",
   },
   {
+    label: "CGV",
+    href: "/cgv",
+    intent: "navigate",
+  },
+  {
     label: "Confidentialité",
     href: "/confidentialite",
     intent: "navigate",
