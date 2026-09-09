@@ -15,17 +15,48 @@
       "media": "kuro-grey"
     }
   },
-  "projects-featured": {
-    "id": "projects-featured",
+  "projects-featured-carousel": {
+    "id": "projects-featured-carousel",
     "type": "Section",
     "layout": "carousel",
+    "motion": "scene",
+    "motionPreset": "ambient",
     "source": {
       "collection": "projects",
-      "query": { "featured": true, "limit": 5 }
+      "query": {
+        "featured": true,
+        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"],
+        "limit": 5
+      }
+    }
+  },
+  "projects-featured-gallery": {
+    "id": "projects-featured-gallery",
+    "type": "Section",
+    "layout": "grid",
+    "motion": "scene",
+    "motionPreset": "ambient",
+    "className": "homeProjectsGallery",
+    "source": {
+      "collection": "projects",
+      "query": {
+        "featured": true,
+        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"],
+        "limit": 3
+      }
     },
     "content": {
       "header": {
-        "eyebrow": "Et aussi"
+        "title": "Trois projets, trois réponses.",
+        "links": [
+          {
+            "label": "Voir tous les projets",
+            "href": "/projets",
+            "intent": "navigate",
+            "priority": "secondary",
+            "variant": "arrow"
+          }
+        ]
       }
     }
   },
@@ -35,7 +66,14 @@
     "layout": "grid",
     "surface": "solid",
     "color": "special",
-    "source": { "collection": "projects" },
+    "motion": "scene",
+    "motionPreset": "ambient",
+    "source": {
+      "collection": "projects",
+      "query": {
+        "prioritizeIds": ["atmosphere", "mois-du-ker", "kuro", "sashayogaflow"]
+      }
+    },
     "content": {
       "header": {
         "title": "Des réponses différentes pour des contextes différents.",
@@ -48,84 +86,26 @@
   "home-services": {
     "id": "home-services",
     "type": "Section",
-    "layout": "content-switcher",
+    "layout": "statement",
+    "className": "home-preview home-preview--services",
+    "motion": "scene",
+    "motionPreset": "ambient",
     "content": {
       "header": {
-        "title": "De quoi avez-vous besoin ?",
+        "title": "Créer, clarifier ou faire évoluer une présence.",
         "text": [
-          "Le bon accompagnement dépend moins d’une liste de livrables que de votre point de départ. Choisissez la situation qui ressemble le plus à la vôtre."
+          "Identité, site web et développement frontend selon ce dont le projet a réellement besoin."
         ],
         "links": [
           {
-            "label": "Voir tous les accompagnements",
-            "href": "/approche",
+            "label": "Voir les accompagnements",
+            "href": "/studio",
             "intent": "navigate",
             "priority": "secondary",
             "variant": "cta"
           }
         ]
-      },
-      "items": [
-        {
-          "id": "service-create",
-          "eyebrow": "Vous partez de zéro ou presque.",
-          "title": "Créer",
-          "text": [
-            "Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."
-          ],
-          "media": "ravine-business-card",
-          "tags": ["Site web", "Identité visuelle", "Direction artistique"],
-          "links": [
-            {
-              "label": "Construire votre présence",
-              "href": "/contact",
-              "intent": "contact",
-              "priority": "primary"
-            }
-          ]
-        },
-        {
-          "id": "service-clarify",
-          "eyebrow": "Quelque chose existe déjà, mais manque de netteté.",
-          "title": "Clarifier",
-          "text": [
-            "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."
-          ],
-          "media": "atmosphere-laptop",
-          "tags": ["Audit", "Refonte", "Architecture de contenu", "UX/UI"],
-          "links": [
-            {
-              "label": "Clarifier l’existant",
-              "href": "/contact",
-              "intent": "contact",
-              "priority": "primary"
-            }
-          ]
-        },
-        {
-          "id": "service-evolve",
-          "eyebrow": "Votre système fonctionne, mais il est devenu trop limité.",
-          "title": "Faire évoluer",
-          "text": [
-            "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux besoins."
-          ],
-          "media": "structure-mobile-multi",
-          "tags": [
-            "Refonte",
-            "Évolution du site",
-            "Direction visuelle",
-            "Supports complémentaires"
-          ],
-          "links": [
-            {
-              "label": "Faire évoluer le projet",
-              "href": "/contact",
-              "intent": "contact",
-              "priority": "primary"
-            }
-          ]
-        }
-      ]
+      }
     }
   },
   "approach-default": {
@@ -133,6 +113,8 @@
     "type": "Section",
     "layout": "timeline",
     "timelineOrientation": "horizontal",
+    "motion": "scene",
+    "motionPreset": "ambient",
     "content": {
       "items": [
         {
@@ -177,6 +159,8 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "grid",
+    "motion": "scene",
+    "motionPreset": "parallax",
     "content": {
       "header": {
         "title": "Un même regard, du concept à l’interface.",
@@ -238,7 +222,7 @@
         "eyebrow": "Parler d’un projet",
         "title": "Quelques lignes suffisent pour commencer.",
         "text": [
-          "Dites-moi où en est le projet, ce qui existe déjà et ce que vous souhaitez faire évoluer. Un site, une identité, une refonte ou simplement une situation encore difficile à formuler : nous pouvons commencer par là."
+          "Quelques informations sur le point de départ, ce qui existe déjà et ce qui doit évoluer suffisent pour commencer : site, identité, refonte ou besoin encore difficile à formuler."
         ]
       },
       "form": "contact"
@@ -249,19 +233,18 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
+    "className": "home-preview home-preview--contact",
+    "motion": "scene",
+    "motionPreset": "ambient",
     "content": {
       "header": {
-        "eyebrow": "Un projet en tête ?",
-        "title": "Commençons par le rendre clair.",
-        "text": [
-          "Expliquez simplement votre point de départ, vos besoins et ce que vous aimeriez changer."
-        ],
+        "title": "Vous avez un projet en tête ?",
         "links": [
           {
             "label": "Parler d’un projet",
             "href": "/contact",
             "intent": "contact",
-            "priority": "secondary",
+            "priority": "primary",
             "variant": "cta"
           }
         ]
@@ -296,28 +279,48 @@
     "type": "Section",
     "layout": "list",
     "content": {
-      "header": { "title": "Mentions légales" },
+      "header": {
+        "title": "Mentions légales",
+        "text": [
+          "Informations relatives à l’éditeur, à l’hébergement et aux droits applicables au site Chow Studio."
+        ]
+      },
       "items": [
         {
-          "title": "Édition",
+          "title": "Éditeur du site",
           "text": [
-            "Chow Studio est le studio indépendant de Channy How-Choong. Les coordonnées professionnelles et informations de contact sont disponibles sur ce site."
+            "Channy How-Choong, entrepreneure individuelle exerçant sous le nom commercial Chow Studio.",
+            "SIREN : 913 912 143 · SIRET : 913 912 143 00017 · Code APE : 70.21Z — Conseil en relations publiques et communication.",
+            "Contact : channyhow@gmail.com · +33 7 88 48 40 06."
           ]
+        },
+        {
+          "title": "Direction de la publication",
+          "text": ["Directrice de la publication : Channy How-Choong."]
         },
         {
           "title": "Design & développement",
           "text": [
-            "Direction artistique, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
+            "Direction visuelle, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
           ]
         },
         {
           "title": "Hébergement",
-          "text": ["Ce site est hébergé par Netlify, Inc."]
+          "text": [
+            "Le site est hébergé par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis."
+          ]
         },
         {
           "title": "Propriété intellectuelle",
           "text": [
-            "Sauf mention contraire, les contenus, créations graphiques et éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Les marques, photographies et contenus appartenant à des tiers restent la propriété de leurs titulaires respectifs."
+            "Sauf mention contraire, les textes, créations graphiques, interfaces et autres éléments originaux présentés sur ce site sont protégés par le droit de la propriété intellectuelle. Toute reproduction, adaptation ou diffusion non autorisée est interdite.",
+            "Les marques, photographies, contenus et créations appartenant à des clients ou à des tiers restent la propriété de leurs titulaires respectifs et sont présentés uniquement dans le cadre de la documentation des projets concernés."
+          ]
+        },
+        {
+          "title": "Données personnelles",
+          "text": [
+            "Les informations relatives au traitement des données personnelles, aux formulaires et aux droits des personnes sont détaillées dans la page Confidentialité & données personnelles."
           ]
         }
       ]
@@ -409,24 +412,26 @@
           "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
         ],
         "links": [
+          { "label": "Accueil", "href": "/", "intent": "navigate" },
           { "label": "Projets", "href": "/projets", "intent": "navigate" },
+          { "label": "Studio", "href": "/studio", "intent": "navigate" },
           {
-            "label": "Accompagnements",
-            "href": "/approche",
-            "intent": "navigate"
-          },
-          { "label": "Journal", "href": "/journal", "intent": "navigate" },
-          {
-            "label": "Parler d’un projet",
+            "label": "Contact",
             "href": "/contact",
             "intent": "contact",
             "variant": "cta"
+          },
+          {
+            "label": "Instagram",
+            "href": "https://www.instagram.com/hellochowstudio/",
+            "intent": "navigate"
           },
           {
             "label": "LinkedIn",
             "href": "https://www.linkedin.com/in/channyhow",
             "intent": "navigate"
           },
+          { "label": "CGV", "href": "/cgv", "intent": "navigate" },
           {
             "label": "Confidentialité",
             "href": "/confidentialite",
