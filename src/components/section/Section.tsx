@@ -61,7 +61,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     />
   ));
   const cardsGrid = cards.length ? (
-    <Grid progressive={Boolean(block.progressive)} lead={projectGridLead}>
+    <Grid progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset}>
       {cards}
     </Grid>
   ) : null;
