@@ -12,6 +12,7 @@ export type MediaProps = {
   priority?: boolean;
   sizes?: string;
   autoPlay?: boolean;
+  fit?: "cover" | "contain";
 };
 
 export function Media({
@@ -20,6 +21,7 @@ export function Media({
   priority = false,
   sizes = "100vw",
   autoPlay = true,
+  fit = "cover",
 }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
@@ -71,6 +73,8 @@ export function Media({
         alt={media.alt ?? ""}
         priority={priority}
         autoPlay={autoPlay}
+        fit={fit}
+        position={position}
       />
     );
   } else if (media.type === "video") {
@@ -86,7 +90,7 @@ export function Media({
         playsInline
         loop
         preload={priority ? "metadata" : "none"}
-        style={{ objectPosition: position }}
+        style={{ objectFit: fit, objectPosition: position }}
       />
     );
   } else {
@@ -108,7 +112,7 @@ export function Media({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        style={{ objectPosition: position }}
+        style={{ objectFit: fit, objectPosition: position }}
       />
     );
   }
