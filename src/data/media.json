@@ -113,7 +113,9 @@
     "playbackId": "y00ycTIaXMmXNykktCQDLdfMG6eTFrp8YfmBoT8ImXqQ",
     "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
     "width": 1080,
-    "height": 1920
+    "height": 1920,
+    "fit": "contain",
+    "focalPoint": { "x": 50, "y": 50 }
   },
   "mdk-color-palette": {
     "id": "mdk-color-palette",
