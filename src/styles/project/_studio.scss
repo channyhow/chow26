@@ -227,19 +227,22 @@
 }
 
 #studio-approach > .section__inner > .section__body {
+  display: flex;
+  align-items: center;
   width: 100%;
+  min-height: 100svh;
 }
 
 #studio-approach .gridReveal {
   width: min(100%, 78rem);
-  margin-inline: auto;
+  margin: auto;
 }
 
 #studio-approach .grid {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: $layout-gap;
   row-gap: clamp(#{$space-3}, 5vw, #{$space-5});
-  align-items: start;
+  align-items: center;
 }
 
 #studio-approach .grid__item:nth-child(1) {
@@ -314,7 +317,8 @@
     --section-space: #{$section-space};
   }
 
-  #studio-approach > .section__inner {
+  #studio-approach > .section__inner,
+  #studio-approach > .section__inner > .section__body {
     min-height: auto;
   }
 
