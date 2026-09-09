@@ -43,16 +43,16 @@
         "limit": 3
       }
     },
-    "content": { "links": [
-          {
-            "label": "Voir tous les projets",
-            "href": "/projets",
-            "intent": "navigate",
-            "priority": "secondary",
-            "variant": "arrow"
-          }
-        ]
-    
+    "content": {
+      "links": [
+        {
+          "label": "Voir tous les projets",
+          "href": "/projets",
+          "intent": "navigate",
+          "priority": "secondary",
+          "variant": "arrow"
+        }
+      ]
     }
   },
   "project-gallery": {
@@ -83,7 +83,6 @@
     "className": "home-preview home-preview--services",
     "motion": "scene",
     "motionPreset": "ambient",
-    "media": "kuro-grey",
     "content": {
       "header": {
         "title": "Créer, clarifier ou faire évoluer une présence.",
@@ -99,7 +98,8 @@
             "variant": "cta"
           }
         ]
-      }
+      },
+      "media": "kuro-grey"
     }
   },
   "approach-default": {
@@ -225,7 +225,7 @@
   "final-cta": {
     "id": "final-cta",
     "type": "Section",
-    "layout": "statement",
+    "layout": "split",
     "tone": "inverse",
     "className": "home-preview home-preview--contact",
     "motion": "scene",
@@ -233,6 +233,9 @@
     "content": {
       "header": {
         "title": "Vous avez un projet en tête ?",
+        "text": [
+          "Une idée, une présence à construire ou quelque chose qui mérite simplement d’être clarifié."
+        ],
         "links": [
           {
             "label": "Parler d’un projet",
@@ -242,7 +245,8 @@
             "variant": "cta"
           }
         ]
-      }
+      },
+      "media": "studio-founder-1"
     }
   },
   "links-profile": {
