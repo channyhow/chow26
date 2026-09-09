@@ -6,7 +6,7 @@
    a small number of meaningful planes rather than a stack of component demos. */
 
 [data-panel-id="home-projects-carousel-panel"][data-panel-color],
-[data-panel-id="home-projects-editorial-panel"][data-panel-color],
+[data-panel-id="home-projects-gallery-panel"][data-panel-color],
 [data-panel-id="home-services-panel"][data-panel-color] {
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
@@ -23,14 +23,14 @@
 }
 
 [data-panel-id="home-projects-carousel-panel"],
-[data-panel-id="home-projects-editorial-panel"],
+[data-panel-id="home-projects-gallery-panel"],
 [data-panel-id="home-services-panel"],
 [data-panel-id="home-final-panel"] {
   --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 82%, transparent);
 }
 
 #projects-featured-carousel,
-#projects-featured-editorial,
+#projects-featured-gallery,
 #home-services,
 #final-cta {
   --section-space: clamp(#{$space-5}, 12vw, 11rem);
@@ -40,13 +40,13 @@
   --section-space: 0;
 }
 
-#projects-featured-editorial,
+#projects-featured-gallery,
 #home-services,
 #final-cta {
   min-height: min(82svh, 54rem);
 }
 
-#projects-featured-editorial .section__inner,
+#projects-featured-gallery .section__inner,
 #home-services .section__inner,
 #final-cta .section__inner {
   display: grid;
@@ -64,7 +64,7 @@
   padding-inline: 0;
 }
 
-#projects-featured-editorial .section__header {
+#projects-featured-gallery .section__header {
   grid-column: 1 / span 3;
   align-self: start;
   width: 100%;
@@ -72,56 +72,56 @@
   margin: 0;
 }
 
-#projects-featured-editorial .section__body {
+#projects-featured-gallery .section__body {
   grid-column: 5 / -1;
   min-width: 0;
 }
 
-#projects-featured-editorial .grid {
+#projects-featured-gallery .grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(#{$space-3}, 4vw, #{$space-5});
   align-items: start;
 }
 
-#projects-featured-editorial .grid__item:nth-child(2) {
+#projects-featured-gallery .grid__item:nth-child(2) {
   margin-top: clamp(#{$space-4}, 8vw, 8rem);
 }
 
-#projects-featured-editorial .grid__item:nth-child(3) {
+#projects-featured-gallery .grid__item:nth-child(3) {
   width: min(100%, 88%);
 }
 
-#projects-featured-editorial .projectCard {
+#projects-featured-gallery .projectCard {
   overflow: visible;
   border-radius: 0;
   background: transparent;
 }
 
-#projects-featured-editorial .projectCard .card__body {
+#projects-featured-gallery .projectCard .card__body {
   padding: $flow-default 0 0;
 }
 
-#projects-featured-editorial .grid__item:nth-child(1) .card__mediaWrap {
+#projects-featured-gallery .grid__item:nth-child(1) .card__mediaWrap {
   aspect-ratio: $ratio-landscape;
 }
 
-#projects-featured-editorial .grid__item:nth-child(2) .card__mediaWrap {
+#projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
   aspect-ratio: $ratio-portrait;
 }
 
-#projects-featured-editorial .grid__item:nth-child(3) .card__mediaWrap {
+#projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
   aspect-ratio: $ratio-square;
 }
 
-#projects-featured-editorial .section__header .textBlock__title {
+#projects-featured-gallery .section__header .textBlock__title {
   @include type-heading-md;
 }
 
-#projects-featured-editorial .section__header .textBlock__footer {
+#projects-featured-gallery .section__header .textBlock__footer {
   padding-top: $flow-default;
 }
 
-#projects-featured-editorial .section__header .actions a {
+#projects-featured-gallery .section__header .actions a {
   @include interactive-text;
 }
 
@@ -221,7 +221,7 @@
 }
 
 /* Featured work remains the visual proof. The carousel stays immersive while
-   the editorial selection below slows the rhythm down and invites browsing. */
+   the gallery selection below slows the rhythm down and invites browsing. */
 #projects-featured-carousel {
   min-height: 100svh;
 }
@@ -248,31 +248,31 @@
 
 @include tablet-down {
   #projects-featured-carousel,
-  #projects-featured-editorial,
+  #projects-featured-gallery,
   #home-services,
   #final-cta {
     --section-space: clamp(#{$space-4}, 14vw, #{$space-5});
   }
 
-  #projects-featured-editorial,
+  #projects-featured-gallery,
   #home-services,
   #final-cta {
     min-height: 68svh;
   }
 
-  #projects-featured-editorial .section__inner {
+  #projects-featured-gallery .section__inner {
     grid-template-columns: 1fr;
     gap: $space-4;
   }
 
-  #projects-featured-editorial .section__header,
-  #projects-featured-editorial .section__body {
+  #projects-featured-gallery .section__header,
+  #projects-featured-gallery .section__body {
     grid-column: 1;
     width: 100%;
     max-width: none;
   }
 
-  #projects-featured-editorial .section__header {
+  #projects-featured-gallery .section__header {
     width: min(100%, 24rem);
   }
 
@@ -294,19 +294,19 @@
 }
 
 @include mobile-down {
-  #projects-featured-editorial .grid {
+  #projects-featured-gallery .grid {
     grid-template-columns: 1fr;
   }
 
-  #projects-featured-editorial .grid__item:nth-child(2) {
+  #projects-featured-gallery .grid__item:nth-child(2) {
     margin-top: 0;
   }
 
-  #projects-featured-editorial .grid__item:nth-child(3) {
+  #projects-featured-gallery .grid__item:nth-child(3) {
     width: 100%;
   }
 
-  #projects-featured-editorial .grid__item:nth-child(2) .card__mediaWrap {
+  #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
     aspect-ratio: $ratio-landscape;
   }
 }
