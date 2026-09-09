@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useReducedMotion } from "motion/react";
 
 import { MuxMedia } from "@/components/content/MuxMedia";
-import type { MediaItem } from "@/types/media";
+import type { MediaFit, MediaItem } from "@/types/media";
 import { getMediaObjectPosition, getMediaOrientation } from "@/utils/media";
 
 export type MediaProps = {
@@ -12,7 +12,7 @@ export type MediaProps = {
   priority?: boolean;
   sizes?: string;
   autoPlay?: boolean;
-  fit?: "cover" | "contain";
+  fit?: MediaFit;
 };
 
 export function Media({
@@ -21,11 +21,12 @@ export function Media({
   priority = false,
   sizes = "100vw",
   autoPlay = true,
-  fit = "cover",
+  fit,
 }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const position = getMediaObjectPosition(media);
+  const resolvedFit = fit ?? media.fit ?? "cover";
   const mediaStyle = {
     "--media-ratio": `${media.width} / ${media.height}`,
   } as CSSProperties;
@@ -73,7 +74,7 @@ export function Media({
         alt={media.alt ?? ""}
         priority={priority}
         autoPlay={autoPlay}
-        fit={fit}
+        fit={resolvedFit}
         position={position}
       />
     );
@@ -90,7 +91,7 @@ export function Media({
         playsInline
         loop
         preload={priority ? "metadata" : "none"}
-        style={{ objectFit: fit, objectPosition: position }}
+        style={{ objectFit: resolvedFit, objectPosition: position }}
       />
     );
   } else {
@@ -112,7 +113,7 @@ export function Media({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        style={{ objectFit: fit, objectPosition: position }}
+        style={{ objectFit: resolvedFit, objectPosition: position }}
       />
     );
   }
