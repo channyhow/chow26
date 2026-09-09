@@ -19,7 +19,7 @@ import { resolveCollection } from "@/data/resolve";
 import { resolveMediaList } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type { SectionBlock } from "@/types/content";
+import type { MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
 export type SectionProps = {
@@ -41,13 +41,16 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
+  const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
-  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
-  const scenePreset = block.motionPreset ?? "parallax";
+  const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
+  const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
+  const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
-  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
+  const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header
     ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
@@ -97,12 +100,26 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = shouldTrackScroll ? (
       <Split
         primary={primary ? (
-          <ScrollScene preset={scenePreset} direction="forward" range={sceneRange} className="section__scrollLayer" decorative={false}>
+          <ScrollScene
+            preset={scenePreset}
+            intensity={sceneIntensity}
+            direction="forward"
+            range={sceneRange}
+            className="section__scrollLayer"
+            decorative={false}
+          >
             {primary}
           </ScrollScene>
         ) : null}
         secondary={secondary ? (
-          <ScrollScene preset={scenePreset} direction="reverse" range={sceneRange} className="section__scrollLayer" decorative={false}>
+          <ScrollScene
+            preset={scenePreset}
+            intensity={sceneIntensity}
+            direction="reverse"
+            range={sceneRange}
+            className="section__scrollLayer"
+            decorative={false}
+          >
             {secondary}
           </ScrollScene>
         ) : null}
@@ -142,7 +159,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   }
 
   const sceneBody = shouldTrackScroll && layout !== "split" ? (
-    <ScrollScene preset={scenePreset} range={sceneRange} className="section__scrollScene" decorative={false}>
+    <ScrollScene
+      preset={scenePreset}
+      intensity={sceneIntensity}
+      range={sceneRange}
+      className="section__scrollScene"
+      decorative={false}
+    >
       <div className="section__inner">{body}</div>
     </ScrollScene>
   ) : null;
@@ -157,9 +180,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       data-visual-context={visualContext}
       data-surface={ownsVisualPlane ? block.surface : undefined}
       data-color={ownsVisualPlane ? block.color : undefined}
-      data-motion={block.motion ?? "reveal"}
-      data-motion-preset={block.motionPreset}
+      data-motion={motionLevel}
+      data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)}
       data-motion-range={block.motionRange}
+      data-motion-intensity={sceneIntensity}
     >
       {shouldTrackScroll ? (
         layout === "split" ? <div className="section__inner">{body}</div> : sceneBody
