@@ -18,6 +18,8 @@ export type MuxMediaProps = {
   priority?: boolean;
   autoPlay?: boolean;
   className?: string;
+  fit?: "cover" | "contain";
+  position?: string;
 };
 
 const MUX_PLAYER_SRC =
@@ -60,6 +62,8 @@ export function MuxMedia({
   priority = false,
   autoPlay = true,
   className,
+  fit = "cover",
+  position = "50% 50%",
 }: MuxMediaProps) {
   const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -172,7 +176,8 @@ export function MuxMedia({
           "aria-hidden": "true",
           style: {
             "--controls": "none",
-            "--media-object-fit": "cover",
+            "--media-object-fit": fit,
+            "--media-object-position": position,
             width: "100%",
             height: "100%",
             display: "block",
@@ -197,7 +202,13 @@ export function MuxMedia({
           alt=""
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: fit,
+            objectPosition: position,
+            display: "block",
+          }}
         />
       ) : null}
       {!reduceMotion ? player : null}
