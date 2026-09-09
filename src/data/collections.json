@@ -26,7 +26,7 @@
       ],
       "media": "mdk-logo-evolution",
       "tags": ["logo", "identité visuelle", "prévention cardiovasculaire", "la Réunion"],
-      "featured": true, "order": 4, "slug": "mois-du-ker", "href": "/projets/mois-du-ker", "projectLayout": "b",
+      "featured": true, "order": 2, "slug": "mois-du-ker", "href": "/projets/mois-du-ker", "projectLayout": "b",
       "links": [{ "label": "Voir le dossier", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" }],
       "summary": "Le Kèr, imaginé autour du lien à la Réunion, devient le point de départ de l’identité visuelle d’une campagne de prévention cardiovasculaire.",
       "description": [
@@ -52,7 +52,7 @@
     {
       "id": "kuro", "eyebrow": "Restaurant japonais · 2026", "title": "Kuro",
       "text": ["Une présence digitale sombre et précise, pensée autour du lieu et d’une réservation sans détour.", "Mission : UI design et intégration frontend."],
-      "media": "kuro-video", "tags": ["restaurant", "web design", "responsive", "conversion"], "featured": true, "order": 2, "slug": "kuro", "href": "/projets/kuro", "projectLayout": "b",
+      "media": "kuro-video", "tags": ["restaurant", "web design", "responsive", "conversion"], "featured": true, "order": 3, "slug": "kuro", "href": "/projets/kuro", "projectLayout": "b",
       "links": [{ "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" }],
       "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
       "description": ["Kuro est une présence web imaginée pour un **restaurant japonais** de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et **réserver**.", "La **direction visuelle** sombre et éditoriale soutient l’expérience tandis que la carte, les informations pratiques et les points de réservation restent clairement hiérarchisés.", "Le projet associe direction d’interface et intégration frontend afin que l’intention visuelle reste cohérente jusque dans l’expérience **responsive**."],
@@ -67,7 +67,7 @@
     {
       "id": "sashayogaflow", "eyebrow": "Yoga & bien-être · 2025", "title": "Sasha Yoga Flow",
       "text": ["Une expérience mobile-first qui rassemble cours, planning, informations et réservation dans un même mouvement.", "Mission : direction visuelle et UI design."],
-      "media": "sasha-laptop", "tags": ["yoga", "wellness", "web design", "mobile-first"], "featured": true, "order": 3, "slug": "sashayogaflow", "href": "/projets/sashayogaflow", "projectLayout": "b",
+      "media": "sasha-laptop", "tags": ["yoga", "wellness", "web design", "mobile-first"], "featured": true, "order": 4, "slug": "sashayogaflow", "href": "/projets/sashayogaflow", "projectLayout": "b",
       "links": [{ "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" }],
       "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
       "description": ["Le projet rassemble dans un même espace les **cours**, le **planning**, les informations pratiques et les accès à la **réservation**.", "La priorité **mobile-first** répond à un usage concret : consulter rapidement une séance, comprendre l’offre et passer à l’action depuis son téléphone.", "La direction visuelle apporte une **identité plus personnelle** à l’expérience sans compromettre la lisibilité ni la simplicité du parcours."],
@@ -79,7 +79,6 @@
         "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
       }
     },
-    
     {
       "id": "maloya", "eyebrow": "Musique · 2026 · Concept", "title": "Maloya",
       "text": ["Une plateforme immersive où vidéos, concerts et univers visuel trouvent la même scène.", "Mission : UI design et direction visuelle."],
