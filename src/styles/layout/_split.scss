@@ -2,9 +2,7 @@
 @use "../foundation/mixins" as *;
 
 .split {
-  display: grid;
-  grid-template-columns: repeat($section-columns, minmax(0, 1fr));
-  column-gap: var(--section-gap, #{$flow-loose});
+  @include site-grid(var(--section-gap, #{$flow-loose}));
   row-gap: var(--section-gap, #{$flow-loose});
 
   &__primary,
