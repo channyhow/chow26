@@ -19,21 +19,21 @@ import { resolveCollection } from "@/data/resolve";
 import { resolveMediaList } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type { SectionBlock, SectionColor } from "@/types/content";
+import type { SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
 export type SectionProps = {
   block: SectionBlock;
   suppressSceneMotion?: boolean;
-  inheritedColor?: SectionColor;
+  visualContext?: "own" | "inherit";
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
 
-export function Section({ block, suppressSceneMotion = false, inheritedColor }: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, visualContext = "own" }: SectionProps) {
   const reduceMotion = useReducedMotion();
   const layout = block.layout ?? "text";
-  const effectiveColor = block.color ?? inheritedColor;
+  const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
   const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
   const formRef = block.content?.form;
@@ -196,8 +196,9 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       data-layout={layout}
       data-variant={block.variant}
       data-tone={block.tone}
-      data-surface={block.surface}
-      data-color={effectiveColor}
+      data-visual-context={visualContext}
+      data-surface={ownsVisualPlane ? block.surface : undefined}
+      data-color={ownsVisualPlane ? block.color : undefined}
       data-motion={block.motion ?? "reveal"}
       data-motion-preset={block.motionPreset}
     >
