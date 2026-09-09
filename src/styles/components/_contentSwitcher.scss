@@ -36,23 +36,28 @@
 }
 
 .contentSwitcher--detailed {
-  --content-switcher-available: calc(100svh - #{$header-height});
+  --content-switcher-top: calc(#{$header-height} + #{$space-2});
+  --content-switcher-available: calc(100svh - var(--content-switcher-top));
   --content-switcher-step: 62svh;
+  display: block;
+  width: 100%;
+  min-width: 0;
   height: calc(
     var(--content-switcher-available) +
       (var(--content-switcher-count, 1) - 1) * var(--content-switcher-step)
   );
-  display: block;
 }
 
 .contentSwitcher--detailed .contentSwitcher__sticky {
   position: sticky;
-  top: $header-height;
+  top: var(--content-switcher-top);
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: clamp(#{$space-2}, 3.5svh, #{$space-4});
+  gap: clamp(#{$space-2}, 3svh, #{$space-3});
+  width: 100%;
+  min-width: 0;
   height: var(--content-switcher-available);
-  padding-block: clamp(#{$space-2}, 3svh, #{$space-4});
+  padding-block: $space-2 $space-3;
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls {
@@ -60,9 +65,11 @@
   display: grid;
   grid-template-columns: repeat(var(--content-switcher-count, 1), minmax(0, 1fr));
   gap: 0;
-  width: 100%;
+  width: min(100%, #{$container-wide});
+  min-width: 0;
+  margin-inline: auto;
   padding-bottom: $flow-tight;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls button {
@@ -71,14 +78,14 @@
   align-items: center;
   gap: $flow-default;
   min-width: 0;
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   padding: 0 $flow-default $flow-tight 0;
   border: 0;
   border-radius: $radius-none;
   background: transparent;
   color: inherit;
   text-align: left;
-  opacity: $opacity-muted;
+  opacity: $opacity-soft;
 }
 
 .contentSwitcher--detailed .contentSwitcher__controls button[aria-selected="true"] {
@@ -118,22 +125,25 @@
   display: grid;
   align-items: center;
   width: 100%;
+  min-width: 0;
   min-height: 0;
   overflow: hidden;
 }
 
 .contentSwitcher--detailed .contentSwitcher__panel {
   width: 100%;
+  min-width: 0;
 }
 
 @include tablet-down {
   .contentSwitcher--detailed {
+    --content-switcher-top: calc(#{$header-height} + #{$space-1});
     --content-switcher-step: 72svh;
   }
 
   .contentSwitcher--detailed .contentSwitcher__sticky {
-    gap: $space-3;
-    padding-block: $space-2;
+    gap: $space-2;
+    padding-block: $space-1 $space-2;
   }
 
   .contentSwitcher--detailed .contentSwitcher__controls button {
