@@ -72,7 +72,7 @@
 
 .header__logo,
 .header__nav a {
-  @include type-nav;
+  @include type-ui-compact;
   @include interactive-text;
 
   position: relative;
