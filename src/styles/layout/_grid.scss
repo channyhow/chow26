@@ -1,6 +1,6 @@
-@use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 @use "../foundation/typography" as *;
+@use "../foundation/tokens" as *;
 
 .gridReveal {
   display: grid;
@@ -15,6 +15,18 @@
   > * {
     min-width: 0;
   }
+}
+
+.grid--editorial {
+  @include site-grid;
+  row-gap: var(--section-row-gap, var(--section-gap, #{$layout-gap}));
+}
+
+.grid--editorial > .grid__item {
+  grid-column: var(--grid-column-mobile, auto);
+  grid-row: var(--grid-row-mobile, auto);
+  align-self: var(--grid-align-mobile, auto);
+  justify-self: var(--grid-justify-mobile, auto);
 }
 
 .grid__lead {
@@ -74,14 +86,28 @@
 }
 
 @include tablet-up {
-  .grid {
+  .grid:not(.grid--editorial) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--editorial > .grid__item {
+    grid-column: var(--grid-column-tablet, var(--grid-column-mobile, auto));
+    grid-row: var(--grid-row-tablet, var(--grid-row-mobile, auto));
+    align-self: var(--grid-align-tablet, var(--grid-align-mobile, auto));
+    justify-self: var(--grid-justify-tablet, var(--grid-justify-mobile, auto));
   }
 }
 
 @include desktop-up {
-  .grid {
+  .grid:not(.grid--editorial) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--editorial > .grid__item {
+    grid-column: var(--grid-column-desktop, var(--grid-column-tablet, var(--grid-column-mobile, auto)));
+    grid-row: var(--grid-row-desktop, var(--grid-row-tablet, var(--grid-row-mobile, auto)));
+    align-self: var(--grid-align-desktop, var(--grid-align-tablet, var(--grid-align-mobile, auto)));
+    justify-self: var(--grid-justify-desktop, var(--grid-justify-tablet, var(--grid-justify-mobile, auto)));
   }
 }
 
