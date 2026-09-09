@@ -32,7 +32,27 @@ export function resolveCollection(source?: SourceRef): ContentItem[] {
     result = result.filter((item) => Boolean(item.enabled) === query.enabled);
   }
 
-  result.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  if (query?.excludeIds?.length) {
+    const excluded = new Set(query.excludeIds);
+    result = result.filter((item) => !item.id || !excluded.has(item.id));
+  }
+
+  const priority = new Map(
+    (query?.prioritizeIds ?? []).map((id, index) => [id, index]),
+  );
+
+  result.sort((a, b) => {
+    const aPriority = a.id ? priority.get(a.id) : undefined;
+    const bPriority = b.id ? priority.get(b.id) : undefined;
+
+    if (aPriority !== undefined || bPriority !== undefined) {
+      if (aPriority === undefined) return 1;
+      if (bPriority === undefined) return -1;
+      return aPriority - bPriority;
+    }
+
+    return (a.order ?? 0) - (b.order ?? 0);
+  });
 
   if (query?.limit) {
     result = result.slice(0, query.limit);
