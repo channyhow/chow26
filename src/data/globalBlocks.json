@@ -99,7 +99,7 @@
           }
         ]
       },
-      "media": "maloya-mobile-vid"
+      "media": "atmosphere_mobile-vid"
     }
   },
   "approach-default": {
@@ -287,8 +287,8 @@
           "title": "Éditeur du site",
           "text": [
             "Channy How-Choong, entrepreneure individuelle exerçant sous le nom commercial Chow Studio.",
-            "SIREN : 913 912 143 · SIRET : 913 912 143 00017 · Code APE : 70.21Z — Conseil en relations publiques et communication.",
-            "Contact : channyhow@gmail.com · +33 7 88 48 40 06."
+            "SIREN : 913 912 143  | SIRET : 913 912 143 00017  | Code APE : 70.21Z — Conseil en relations publiques et communication.",
+            "Contact : channyhow@gmail.com  | +33 7 88 48 40 06."
           ]
         },
         {
@@ -298,7 +298,7 @@
         {
           "title": "Design & développement",
           "text": [
-            "Direction visuelle, UX/UI design et développement frontend : Channy How-Choong · Chow Studio."
+            "Direction visuelle, UX/UI design et développement frontend : Channy How-Choong  | Chow Studio."
           ]
         },
         {
@@ -340,7 +340,7 @@
           "eyebrow": "01",
           "title": "Responsable du traitement",
           "text": [
-            "Les données collectées sur ce site sont traitées par Channy How-Choong · Chow Studio. Pour toute question relative à vos données personnelles ou pour exercer vos droits, vous pouvez écrire à channyhow@gmail.com."
+            "Les données collectées sur ce site sont traitées par Channy How-Choong  | Chow Studio. Pour toute question relative à vos données personnelles ou pour exercer vos droits, vous pouvez écrire à channyhow@gmail.com."
           ]
         },
         {
@@ -406,7 +406,7 @@
       "header": {
         "eyebrow": [
           "Chow Studio",
-          "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
+          "Design web  | Identité visuelle  | Direction digitale  | Paris  | La Réunion"
         ],
         "links": [
           { "label": "Accueil", "href": "/", "intent": "navigate" },
@@ -443,9 +443,9 @@
         "meta": [
           {
             "label": "Design et développement",
-            "value": "Channy How-Choong · Chow Studio"
+            "value": "Channy How"
           },
-          { "label": "© 2026 Chow Studio· Tous droits réservés" }
+          { "label": "© 2026 Chow Studio | Tous droits réservés" }
         ]
       }
     }

@@ -28,7 +28,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "primary",
+            "color": "secondary",
             "blocks": [{ "ref": "projects-featured-gallery" }]
           },
           {

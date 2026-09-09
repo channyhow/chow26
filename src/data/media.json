@@ -25,6 +25,15 @@
     "width": 1600,
     "height": 1067
   },
+    "atmosphere_mobile-vid": {
+    "id": "atmosphere_mobile-vid",
+    "type": "mux",
+  "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
+  "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.",    "width": 1080,
+    "height": 1920,
+    "fit": "cover",
+    "focalPoint": { "x": 50, "y": 64 }
+  },
   "atmosphere-tablet": {
     "id": "atmosphere-tablet",
     "type": "image",
