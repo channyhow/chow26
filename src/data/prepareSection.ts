@@ -118,9 +118,9 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
       content: {
         ...prepared.content,
         header: {
-          title: "Sites, identités & expériences digitales.",
+          title: "Sites, identités et directions visuelles, pensés avec clarté.",
           text: [
-            "J’accompagne les marques, studios et projets qui veulent transformer une idée, une identité ou un site existant en une présence claire, singulière et facile à faire évoluer. Direction visuelle, UX/UI et développement frontend sont pensés ensemble, entre Paris et la Réunion.",
+            "Chow Studio accompagne les marques, studios et projets qui ont besoin de clarifier leur présence, construire une identité cohérente et la traduire en une expérience digitale bien conçue, entre Paris et la Réunion.",
           ],
         },
       },
@@ -138,22 +138,7 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
   }
 
   if (prepared.id === "approach-default") {
-    return {
-      ...prepared,
-      content: {
-        ...prepared.content,
-        items: prepared.content?.items?.map((item, index) =>
-          index === 0
-            ? {
-                ...item,
-                text: [
-                  "Chaque projet commence par comprendre ce qui doit réellement fonctionner : le public, les objectifs, les contenus, les contraintes et ce qui freine aujourd’hui. À partir de là, je structure le parcours, construis une direction visuelle cohérente puis la traduis en une interface responsive, accessible et performante. Design et développement avancent ensemble pour éviter les écarts entre l’idée et ce qui est réellement livré.",
-                ],
-              }
-            : item,
-        ),
-      },
-    };
+    return prepared;
   }
 
   if (prepared.id === "home-services") {
@@ -173,6 +158,21 @@ export function prepareSection(entry: SectionBlock): SectionBlock {
               priority: "secondary",
               variant: "cta",
             },
+          ],
+        },
+      },
+    };
+  }
+
+  if (prepared.id === "contact-default") {
+    return {
+      ...prepared,
+      content: {
+        ...prepared.content,
+        header: {
+          ...prepared.content?.header,
+          text: [
+            "Quelques informations sur le point de départ, ce qui existe déjà et ce qui doit évoluer suffisent pour commencer : site, identité, refonte ou besoin encore difficile à formuler.",
           ],
         },
       },
