@@ -46,7 +46,6 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   const scenePreset = block.motionPreset ?? "parallax";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
-  const isProjectArchive = block.id === "project-gallery";
 
   const cards = items.map((item, index) => (
     <Card
@@ -57,7 +56,7 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
     />
   ));
   const cardsGrid = cards.length ? (
-    <Grid progressive={isProjectArchive}>
+    <Grid progressive={Boolean(block.progressive)}>
       {cards}
     </Grid>
   ) : null;
