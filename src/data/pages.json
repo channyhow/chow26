@@ -91,7 +91,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -244,15 +244,14 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "primary",
+            "surface": "glass",
+            "color": "secondary",
             "blocks": [
               {
                 "id": "studio-approach",
                 "type": "Section",
                 "layout": "list",
-                "surface": "solid",
-                "color": "primary",
+          
                 "motion": "scene",
                 "motionPreset": "draw",
                 "content": {
@@ -292,7 +291,7 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "accent",
             "blocks": [{ "ref": "studio-founders" }]
           },
@@ -302,7 +301,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
