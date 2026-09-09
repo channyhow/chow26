@@ -33,8 +33,8 @@
     "id": "projects-featured-gallery",
     "type": "Section",
     "layout": "grid",
-  "motion": "scene",
-  "motionPreset": "parallax",
+"motion": "scene",
+"motionPreset": "recede",
     "className": "homeProjectsGallery",
     "source": {
       "collection": "projects",
