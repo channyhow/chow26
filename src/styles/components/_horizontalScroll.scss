@@ -32,15 +32,13 @@
 }
 
 .horizontalScroll__labels span {
-  display: flex;
-  align-items: baseline;
-  gap: $flow-default;
   min-width: 0;
+  opacity: 0.42;
+  transition: opacity $duration-fast $ease-standard;
 }
 
-.horizontalScroll__labels b {
-  @include type-ui-compact;
-  font-weight: $font-weight-medium;
+.horizontalScroll__labels span.is-active {
+  opacity: 1;
 }
 
 .horizontalScroll__rule {
