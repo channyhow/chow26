@@ -211,31 +211,41 @@
 }
 
 /* ==================================
-   STUDIO — APPROACH
+   STUDIO — APPROACH + FOUNDER STORY
 ================================== */
+
+@include desktop-up {
+  .sectionGroup__panel:has(#studio-approach),
+  .sectionGroup__panel:has(#studio-founders) {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+
+  .sectionGroup__panel:has(#studio-founders) {
+    background: var(--theme-special);
+  }
+}
 
 #studio-approach {
   --section-space: 0;
+  display: flex;
+  align-items: center;
+  min-height: 82svh;
 }
 
 #studio-approach > .section__inner {
-  display: flex;
-  align-items: center;
-  min-height: 100svh;
   width: 100%;
   max-width: none;
 }
 
 #studio-approach > .section__inner > .section__body {
-  display: flex;
-  align-items: center;
   width: 100%;
-  min-height: 100svh;
 }
 
 #studio-approach .gridReveal {
   width: min(100%, 78rem);
-  margin: auto;
+  margin-inline: auto;
 }
 
 #studio-approach .grid {
@@ -315,10 +325,6 @@
 @include tablet-down {
   #studio-approach {
     --section-space: #{$section-space};
-  }
-
-  #studio-approach > .section__inner,
-  #studio-approach > .section__inner > .section__body {
     min-height: auto;
   }
 
@@ -380,11 +386,13 @@
 #studio-founders {
   --media-background: transparent;
   --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
+  min-height: 96svh;
 }
 
 #studio-founders .section__inner {
   display: grid;
   align-items: start;
+  align-content: center;
 }
 
 #studio-founders .section__header.textBlock {
@@ -492,6 +500,10 @@
 }
 
 @include tablet-down {
+  #studio-founders {
+    min-height: auto;
+  }
+
   #studio-founders .card {
     grid-template-columns: 1fr;
     max-width: 36rem;
