@@ -50,6 +50,12 @@
     "width": 1200,
     "height": 1600
   },
+  "atmosphere_mobile-vid": {
+    "id": "atmosphere_mobile-vid",
+    "type": "mux",
+    "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
+    "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure."
+  },
   "kuro-laptop": {
     "id": "kuro-laptop",
     "type": "image",
