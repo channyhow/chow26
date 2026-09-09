@@ -3,9 +3,8 @@ import { PageMeta } from "@/components/page/PageMeta";
 import { Section } from "@/components/section/Section";
 import { SectionGroup } from "@/components/groups/SectionGroup";
 import siteData from "@/data/site.json";
-import { prepareSection } from "@/data/prepareSection";
 import { resolveBlock } from "@/data/resolve";
-import type { PageBlock, PageData, SectionBlock } from "@/types/content";
+import type { PageBlock, PageData } from "@/types/content";
 
 export type PageRendererProps = {
   page: PageData;
@@ -14,12 +13,11 @@ export type PageRendererProps = {
 function renderEntry(entry: PageBlock) {
   if ("ref" in entry) {
     const block = resolveBlock(entry.ref);
-    return block ? <Section key={entry.ref} block={prepareSection(block)} /> : null;
+    return block ? <Section key={entry.ref} block={block} /> : null;
   }
 
   if (entry.type === "Section") {
-    const block = prepareSection(entry as SectionBlock);
-    return <Section key={entry.id} block={block} />;
+    return <Section key={entry.id} block={entry} />;
   }
 
   if (entry.type === "Group") {
@@ -33,7 +31,7 @@ function renderFooter(entry: PageBlock) {
   if (!("ref" in entry)) return null;
   const block = resolveBlock(entry.ref);
   if (!block) return null;
-  return <SiteFooter key={entry.ref} block={prepareSection(block)} />;
+  return <SiteFooter key={entry.ref} block={block} />;
 }
 
 export function PageRenderer({ page }: PageRendererProps) {
