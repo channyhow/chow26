@@ -59,6 +59,12 @@ const toDisplayMeta = (item: MetaItem): MetaItem => ({
   href: item.href,
 });
 
+function withoutAlternate(template: StoryTemplate): SectionTemplate {
+  const copy: StoryTemplate = { ...template };
+  delete copy.alternate;
+  return copy;
+}
+
 function sectionFromTemplate(
   id: string,
   template: SectionTemplate,
@@ -116,7 +122,7 @@ function createProjectPage(project: ProjectRecord): PageData {
         const isReverse = template.alternate
           ? (index + baseDirection) % 2 === 1
           : false;
-        const { alternate: _alternate, ...sectionTemplate } = template;
+        const sectionTemplate = withoutAlternate(template);
 
         return sectionFromTemplate(
           `project-${project.id}-story-${index + 1}`,
@@ -138,7 +144,7 @@ function createProjectPage(project: ProjectRecord): PageData {
       })
     : [
         (() => {
-          const { alternate: _alternate, ...template } = projectDetail.story.withoutMedia;
+          const template = withoutAlternate(projectDetail.story.withoutMedia);
           return sectionFromTemplate(
             `project-${project.id}-story`,
             {
