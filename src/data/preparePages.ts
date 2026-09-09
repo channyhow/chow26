@@ -1,5 +1,10 @@
 import type { PageData, PanelLane, SectionGroup } from "@/types/content";
 
+const featuredProjectQuery = {
+  featured: true,
+  prioritizeIds: ["atmosphere", "mois-du-ker"],
+} as const;
+
 const homeProjectPanels: PanelLane[] = [
   {
     id: "home-projects-carousel-panel",
@@ -15,7 +20,7 @@ const homeProjectPanels: PanelLane[] = [
         layout: "carousel",
         source: {
           collection: "projects",
-          query: { featured: true, limit: 5 },
+          query: { ...featuredProjectQuery, limit: 5 },
         },
       },
     ],
@@ -35,7 +40,7 @@ const homeProjectPanels: PanelLane[] = [
         className: "homeProjectsEditorial",
         source: {
           collection: "projects",
-          query: { featured: true, limit: 3 },
+          query: { ...featuredProjectQuery, limit: 3 },
         },
         content: {
           header: {
