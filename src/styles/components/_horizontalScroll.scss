@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
 
 .horizontalScroll {
   height: calc(100svh + (var(--horizontal-scroll-count) - 1) * 58svh);
@@ -9,9 +10,53 @@
 .horizontalScroll__viewport {
   position: sticky;
   top: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   width: 100%;
   height: 100svh;
   overflow: hidden;
+}
+
+.horizontalScroll__progress {
+  align-self: end;
+  width: 100%;
+  padding: clamp(#{$space-2}, 4svh, #{$space-4}) clamp(#{$space-2}, 5vw, #{$space-5}) 0;
+}
+
+.horizontalScroll__labels {
+  display: grid;
+  grid-template-columns: repeat(var(--horizontal-scroll-count), minmax(0, 1fr));
+  gap: $layout-gap;
+  padding-bottom: $flow-default;
+  @include type-ui-compact-lower;
+}
+
+.horizontalScroll__labels span {
+  display: flex;
+  align-items: baseline;
+  gap: $flow-default;
+  min-width: 0;
+}
+
+.horizontalScroll__labels b {
+  @include type-ui-compact;
+  font-weight: $font-weight-medium;
+}
+
+.horizontalScroll__rule {
+  position: relative;
+  height: 1px;
+  background: currentColor;
+}
+
+.horizontalScroll__rule span {
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: 0;
+  display: block;
+  width: calc(100% / var(--horizontal-scroll-count));
+  height: 3px;
+  background: currentColor;
 }
 
 .horizontalScroll__track {
@@ -22,20 +67,41 @@
 
 .horizontalScroll__item {
   flex: 0 0 100vw;
-  width: 100vw;
-  min-width: 0;
-  height: 100svh;
   display: grid;
   align-items: center;
-  padding: clamp(3rem, 7svh, #{$space-5}) clamp(#{$space-2}, 5vw, #{$space-5});
+  width: 100vw;
+  min-width: 0;
+  height: 100%;
+  padding: clamp(#{$space-3}, 5svh, #{$space-5}) clamp(#{$space-2}, 5vw, #{$space-5});
 }
 
 @include tablet-down {
   .horizontalScroll {
-    height: calc(100svh + (var(--horizontal-scroll-count) - 1) * 66svh);
+    height: auto;
+  }
+
+  .horizontalScroll__viewport {
+    position: static;
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontalScroll__progress {
+    display: none;
+  }
+
+  .horizontalScroll__track {
+    display: grid;
+    width: 100%;
+    height: auto;
+    transform: none !important;
   }
 
   .horizontalScroll__item {
+    width: 100%;
+    height: auto;
+    min-height: 80svh;
     padding-inline: clamp(1.5rem, 6vw, 2.5rem);
   }
 }
@@ -47,15 +113,24 @@
 
   .horizontalScroll__viewport {
     position: static;
+    display: block;
     height: auto;
-    overflow-x: auto;
+    overflow: visible;
+  }
+
+  .horizontalScroll__progress {
+    display: none;
   }
 
   .horizontalScroll__track {
+    display: grid;
+    width: 100%;
     height: auto;
+    transform: none !important;
   }
 
   .horizontalScroll__item {
+    width: 100%;
     height: auto;
     min-height: 70svh;
   }
