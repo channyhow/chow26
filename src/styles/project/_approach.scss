@@ -1,0 +1,31 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+
+/* ==================================
+   APPROACH — REVERSED EDITORIAL COMPOSITION
+   Keep semantic reading order intact while mirroring the desktop layout.
+================================== */
+
+@include desktop-up {
+  #approach-default .horizontalScroll__item > .timeline__item {
+    width: min(58rem, calc(100vw - 8rem));
+  }
+
+  #approach-default .timeline__content {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    grid-template-areas: "content header";
+    column-gap: var(--project-gap-wide);
+    align-items: end;
+  }
+
+  #approach-default .timeline__content .textBlock__header {
+    grid-area: header;
+    justify-self: end;
+  }
+
+  #approach-default .timeline__content .textBlock__content {
+    grid-area: content;
+    align-self: end;
+    justify-self: start;
+  }
+}
