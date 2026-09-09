@@ -17,6 +17,24 @@
   }
 }
 
+.grid__lead {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.grid__lead .section__gridLead {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.grid__lead .textBlock__title {
+  @include type-heading-xl;
+  max-width: 7ch;
+  line-height: 0.95;
+}
+
 .gridReveal__more {
   @include type-ui-compact;
 
