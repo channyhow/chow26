@@ -38,6 +38,32 @@ const toDisplayMeta = (item: MetaItem): MetaItem => ({
   href: item.href,
 });
 
+function createRelatedProjects(project: ProjectRecord): SectionBlock {
+  return {
+    id: `project-${project.id}-related`,
+    type: "Section",
+    layout: "carousel",
+    variant: "editorial",
+    className: "projectRelated",
+    source: {
+      collection: "projects",
+      query: {
+        featured: true,
+        excludeIds: [project.id],
+        prioritizeIds: project.id === "mois-du-ker"
+          ? ["atmosphere", "kuro"]
+          : ["mois-du-ker"],
+        limit: 4,
+      },
+    },
+    content: {
+      header: {
+        title: "À découvrir aussi",
+      },
+    },
+  };
+}
+
 function createProjectPage(project: ProjectRecord): PageData {
   const detailLayout = project.projectLayout ?? "a";
   const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
@@ -127,7 +153,7 @@ function createProjectPage(project: ProjectRecord): PageData {
             text: ["Une idée, un projet à faire évoluer ou une présence à construire."],
             links: [
               {
-                label: "Parlons-en",
+                label: "Parler d’un projet",
                 href: "/contact",
                 intent: "contact",
                 priority: "primary",
@@ -137,7 +163,7 @@ function createProjectPage(project: ProjectRecord): PageData {
           },
         },
       },
-      { ref: "projects-featured" },
+      createRelatedProjects(project),
       { ref: "site-footer" },
     ],
   };
