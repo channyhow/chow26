@@ -103,7 +103,7 @@
 @include desktop-up {
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
   .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
-    grid-template-columns: repeat($section-columns, minmax(0, 1fr));
+    @include site-grid;
   }
 
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
