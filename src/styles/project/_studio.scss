@@ -31,6 +31,10 @@
   min-width: 0;
 }
 
+#studio-services .horizontalScroll__item {
+  justify-items: center;
+}
+
 #studio-services .card {
   display: grid;
   grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
@@ -148,6 +152,10 @@
 
   #studio-services > .section__inner {
     padding-inline: $page-gutter;
+  }
+
+  #studio-services .horizontalScroll__item {
+    justify-items: stretch;
   }
 
   #studio-services .card {
