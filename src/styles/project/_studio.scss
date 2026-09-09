@@ -246,9 +246,9 @@
     repeating-linear-gradient(
       to right,
       transparent 0,
-      transparent calc((100% / 12) - 1px),
-      var(--studio-grid-line) calc((100% / 12) - 1px),
-      var(--studio-grid-line) calc(100% / 12)
+      transparent calc((100% / #{$grid-columns-desktop}) - 1px),
+      var(--studio-grid-line) calc((100% / #{$grid-columns-desktop}) - 1px),
+      var(--studio-grid-line) calc(100% / #{$grid-columns-desktop})
     ),
     repeating-linear-gradient(
       to bottom,
@@ -265,28 +265,65 @@
   z-index: 1;
 }
 
+@include between($bp-tablet, $bp-desktop) {
+  #studio-approach::before,
+  #studio-founders::before {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc((100% / #{$grid-columns-tablet}) - 1px),
+        var(--studio-grid-line) calc((100% / #{$grid-columns-tablet}) - 1px),
+        var(--studio-grid-line) calc(100% / #{$grid-columns-tablet})
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(#{$space-5} - 1px),
+        var(--studio-grid-line) calc(#{$space-5} - 1px),
+        var(--studio-grid-line) $space-5
+      );
+  }
+}
+
+@include tablet-down {
+  #studio-approach::before,
+  #studio-founders::before {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc((100% / #{$grid-columns-mobile}) - 1px),
+        var(--studio-grid-line) calc((100% / #{$grid-columns-mobile}) - 1px),
+        var(--studio-grid-line) calc(100% / #{$grid-columns-mobile})
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(#{$space-5} - 1px),
+        var(--studio-grid-line) calc(#{$space-5} - 1px),
+        var(--studio-grid-line) $space-5
+      );
+  }
+}
+
 /* ==================================
    STUDIO — APPROACH
 ================================== */
 
 #studio-approach {
   --section-space: clamp(#{$space-4}, 8vh, 7rem);
+  --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
   min-height: 100svh;
 }
 
-#studio-approach > .section__inner {
+#studio-approach > .section__inner,
+#studio-approach .gridReveal {
   width: 100%;
   max-width: none;
 }
 
-#studio-approach .gridReveal {
-  width: 100%;
-}
-
 #studio-approach .grid {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 0;
-  row-gap: clamp(#{$space-4}, 7vh, 6rem);
   align-items: start;
 }
 
@@ -294,31 +331,9 @@
   min-width: 0;
 }
 
-#studio-approach .grid__item:nth-child(1) {
-  grid-column: 1 / -1;
-  grid-row: 1;
+#studio-approach .grid__item:first-child {
   width: 100%;
   padding-inline: $space-2;
-}
-
-#studio-approach .grid__item:nth-child(2) {
-  grid-column: 1 / span 3;
-  grid-row: 2;
-}
-
-#studio-approach .grid__item:nth-child(3) {
-  grid-column: 4 / span 3;
-  grid-row: 2;
-}
-
-#studio-approach .grid__item:nth-child(4) {
-  grid-column: 7 / span 3;
-  grid-row: 2;
-}
-
-#studio-approach .grid__item:nth-child(5) {
-  grid-column: 10 / span 3;
-  grid-row: 2;
 }
 
 #studio-approach .card {
@@ -368,58 +383,24 @@
   color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
-@include tablet-down {
+@include between($bp-tablet, $bp-desktop) {
   #studio-approach {
     min-height: auto;
-  }
-
-  #studio-approach::before,
-  #studio-founders::before {
-    background-image:
-      repeating-linear-gradient(
-        to right,
-        transparent 0,
-        transparent calc((100% / 4) - 1px),
-        var(--studio-grid-line) calc((100% / 4) - 1px),
-        var(--studio-grid-line) calc(100% / 4)
-      ),
-      repeating-linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent calc(#{$space-5} - 1px),
-        var(--studio-grid-line) calc(#{$space-5} - 1px),
-        var(--studio-grid-line) $space-5
-      );
-  }
-
-  #studio-approach .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: $space-4;
-  }
-
-  #studio-approach .grid__item:nth-child(n) {
-    grid-column: auto;
-    grid-row: auto;
-    width: 100%;
-  }
-
-  #studio-approach .grid__item:first-child {
-    grid-column: 1 / -1;
   }
 
   #studio-approach .grid__item:not(:first-child) .card {
     border-right: 0;
   }
 
-  #studio-approach .grid__item:nth-child(odd):not(:first-child) .card {
+  #studio-approach .grid__item:nth-child(3) .card,
+  #studio-approach .grid__item:nth-child(5) .card {
     border-right: 1px solid var(--studio-grid-line);
   }
 }
 
-@include mobile-down {
-  #studio-approach .grid {
-    grid-template-columns: 1fr;
-    gap: $space-3;
+@include tablet-down {
+  #studio-approach {
+    min-height: auto;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
@@ -427,8 +408,7 @@
     max-width: 9ch;
   }
 
-  #studio-approach .grid__item:not(:first-child) .card,
-  #studio-approach .grid__item:nth-child(odd):not(:first-child) .card {
+  #studio-approach .grid__item:not(:first-child) .card {
     border-right: 0;
     border-left: 0;
     border-top: 1px solid var(--studio-grid-line);
@@ -473,9 +453,7 @@
 }
 
 #studio-founders .card {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 0;
+  @include site-grid(0);
   align-items: center;
   width: 100%;
   max-width: none;
@@ -485,7 +463,7 @@
 }
 
 #studio-founders .card__mediaWrap {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 4;
   min-width: 0;
   padding: $space-2;
   background: transparent;
@@ -510,7 +488,7 @@
 }
 
 #studio-founders .card__body.textBlock {
-  grid-column: 7 / span 5;
+  grid-column: 1 / span 4;
   align-self: center;
   grid-auto-rows: max-content;
   align-content: start;
@@ -546,40 +524,40 @@
   color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
-@include tablet-down {
-  #studio-founders {
-    min-height: auto;
-  }
-
-  #studio-founders .section__inner {
-    min-height: auto;
-  }
-
-  #studio-founders .card {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: $space-4;
-  }
-
+@include tablet-up {
   #studio-founders .card__mediaWrap {
-    grid-column: 1;
-    width: 100%;
+    grid-column: 1 / span 4;
   }
 
   #studio-founders .card__body.textBlock {
-    grid-column: 2;
-    padding: $space-2;
+    grid-column: 5 / span 4;
+  }
+}
+
+@include desktop-up {
+  #studio-founders .card__mediaWrap {
+    grid-column: 1 / span 5;
+  }
+
+  #studio-founders .card__body.textBlock {
+    grid-column: 7 / span 5;
+  }
+}
+
+@include tablet-down {
+  #studio-founders,
+  #studio-founders .section__inner {
+    min-height: auto;
   }
 }
 
 @include mobile-down {
   #studio-founders .card {
-    grid-template-columns: 1fr;
-    gap: $space-3;
+    row-gap: $space-3;
   }
 
   #studio-founders .card__mediaWrap,
   #studio-founders .card__body.textBlock {
-    grid-column: 1;
     border-inline: 0;
     padding-inline: 0;
   }
