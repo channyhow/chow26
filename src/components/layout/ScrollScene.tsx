@@ -43,12 +43,12 @@ export function ScrollScene({
   });
 
   const distance = (value: number) => value * sign * motionScale;
-  const contentY = useTransform(scrollYProgress, [0, 1], [distance(38), distance(-38)]);
-  const ambientY = useTransform(scrollYProgress, [0, 1], [distance(22), distance(-22)]);
-  const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-12), distance(12)]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [distance(48), distance(-48)]);
+  const ambientY = useTransform(scrollYProgress, [0, 1], [distance(34), distance(-34)]);
+  const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-18), distance(18)]);
   const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const recedeY = useTransform(scrollYProgress, [0, 0.2, 1], [0, 0, 28 * motionScale]);
-  const recedeOpacity = useTransform(scrollYProgress, [0, 0.2, 1], [1, 1, 0.62]);
+  const recedeY = useTransform(scrollYProgress, [0, 0.35, 1], [0, 0, 56 * motionScale]);
+  const recedeOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [1, 1, 0.45]);
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
