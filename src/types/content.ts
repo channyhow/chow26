@@ -154,6 +154,7 @@ export type SectionBlock = {
   source?: SourceRef;
   content?: SectionContent;
   frame?: boolean;
+  progressive?: boolean;
   itemAppearance?: CardAppearance;
   motion?: MotionLevel;
   motionPreset?: ScrollMotionPreset;
