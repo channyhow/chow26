@@ -20,31 +20,24 @@
 .horizontalScroll__progress {
   align-self: end;
   width: 100%;
-  padding: clamp(#{$space-2}, 4svh, #{$space-4}) clamp(#{$space-2}, 5vw, #{$space-5}) 0;
+  padding: calc(#{$header-height} + #{$space-2}) clamp(#{$space-2}, 5vw, #{$space-5}) 0;
 }
 
 .horizontalScroll__labels {
-  display: grid;
-  grid-template-columns: repeat(var(--horizontal-scroll-count), minmax(0, 1fr));
-  gap: $layout-gap;
+  min-height: 1.4em;
   padding-bottom: $flow-default;
   @include type-ui-compact-lower;
 }
 
 .horizontalScroll__labels span {
+  display: block;
   min-width: 0;
-  opacity: 0.42;
-  transition: opacity $duration-fast $ease-standard;
-}
-
-.horizontalScroll__labels span.is-active {
-  opacity: 1;
 }
 
 .horizontalScroll__rule {
   position: relative;
   height: 1px;
-  background: currentColor;
+  background: color-mix(in srgb, currentColor 22%, transparent);
 }
 
 .horizontalScroll__rule span {
@@ -53,8 +46,8 @@
   inset-inline-start: 0;
   display: block;
   width: calc(100% / var(--horizontal-scroll-count));
-  height: 3px;
-  background: currentColor;
+  height: 2px;
+  background: color-mix(in srgb, currentColor 72%, transparent);
 }
 
 .horizontalScroll__track {
