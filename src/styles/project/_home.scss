@@ -28,19 +28,20 @@
 }
 
 #projects-featured,
-#approach-default,
 #home-services,
 #final-cta {
   --section-space: clamp(#{$space-5}, 12vw, 11rem);
 }
 
-#approach-default,
+#approach-default {
+  --section-space: 0;
+}
+
 #home-services,
 #final-cta {
   min-height: min(82svh, 54rem);
 }
 
-#approach-default .section__inner,
 #home-services .section__inner,
 #final-cta .section__inner {
   display: grid;
@@ -50,7 +51,14 @@
   padding-inline: var(--project-gutter);
 }
 
-#approach-default .section__header,
+#approach-default .section__inner {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  padding-inline: 0;
+}
+
 #home-services .section__header,
 #final-cta .section__header {
   grid-area: auto;
@@ -167,10 +175,6 @@
     --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 72%, transparent);
   }
 
-  #approach-default .section__header {
-    transform: translateY(-6svh);
-  }
-
   #home-services .section__header {
     transform: translateY(7svh);
   }
@@ -178,19 +182,16 @@
 
 @include tablet-down {
   #projects-featured,
-  #approach-default,
   #home-services,
   #final-cta {
     --section-space: clamp(#{$space-4}, 14vw, #{$space-5});
   }
 
-  #approach-default,
   #home-services,
   #final-cta {
     min-height: 68svh;
   }
 
-  #approach-default .section__header,
   #home-services .section__header,
   #final-cta .section__header {
     grid-column: 1 / -1;
@@ -209,7 +210,6 @@
 }
 
 @include reduced-motion {
-  #approach-default .section__header,
   #home-services .section__header {
     transform: none;
   }
