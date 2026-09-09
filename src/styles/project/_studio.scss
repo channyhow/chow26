@@ -40,6 +40,13 @@
   background: transparent;
 }
 
+#studio-services .card{
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(17rem, 4fr);
+  grid-template-areas: "media body";
+}
+
+
 #studio-services .card__mediaWrap {
   grid-area: media;
   min-width: 0;

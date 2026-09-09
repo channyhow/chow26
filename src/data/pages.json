@@ -135,82 +135,106 @@
                     ]
                   },
                   "items": [
-                    {
-                      "id": "studio-service-create",
-                      "eyebrow": "01 · Vous partez de zéro ou presque.",
-                      "title": "Créer",
-                      "text": [
-                        "Construire une présence cohérente dès le départ, en pensant le positionnement visuel, l’identité, le site et l’expérience digitale comme les différentes expressions d’un même système.",
-                        "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
-                      ],
-                      "media": "ravine-business-card",
-                      "meta": [
-                        { "label": "Identité", "value": "Logo · Branding · Identité visuelle" },
-                        { "label": "Outils & intégrations", "value": "Formulaires · Calendly · Newsletter" },
-                        { "label": "Budget", "value": "À partir de 1 200 € HT" }
-                      ],
-                      "tags": ["Logo", "Branding", "Identité visuelle"],
-                      "links": [
-                        {
-                          "label": "Construire votre présence",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "studio-service-clarify",
-                      "eyebrow": "02 · Quelque chose existe déjà, mais manque de netteté.",
-                      "title": "Clarifier",
-                      "text": [
-                        "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser.",
-                        "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
-                      ],
-                      "media": "atmosphere-laptop",
-                      "meta": [
-                        { "label": "Diagnostic", "value": "Audit · UX/UI · Architecture de contenu" },
-                        { "label": "Optimisation", "value": "SEO · Analytics · Accessibilité" },
-                        { "label": "Budget", "value": "À partir de 800 € HT" }
-                      ],
-                      "tags": ["Audit", "Refonte", "UX/UI"],
-                      "links": [
-                        {
-                          "label": "Clarifier l’existant",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "studio-service-evolve",
-                      "eyebrow": "03 · Votre système fonctionne, mais il est devenu trop limité.",
-                      "title": "Faire évoluer",
-                      "text": [
-                        "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux contenus, usages et objectifs.",
-                        "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
-                      ],
-                      "media": "structure-mobile-multi",
-                      "meta": [
-                        { "label": "Conversion", "value": "Réservation · Cartographie · Paiement" },
-                        { "label": "Automatisation", "value": "Tally · Notion · Make" },
-                        { "label": "Budget", "value": "Sur devis" }
-                      ],
-                      "tags": ["Design system", "Refonte", "Frontend"],
-                      "links": [
-                        {
-                          "label": "Faire évoluer le projet",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    }
-                  ]
+  {
+    "id": "studio-service-identity",
+    "eyebrow": "Logo · Branding · Direction visuelle",
+    "title": "Identité visuelle",
+    "text": [
+      "Créer ou faire évoluer une identité claire et reconnaissable, pensée pour rester cohérente du logo aux différents supports de la marque."
+    ],
+    "media": "ravine-business-card",
+    "meta": [
+      {
+        "label": "Pour",
+        "value": "Lancement · Repositionnement · Nouvelle identité"
+      },
+      {
+        "label": "Peut inclure",
+        "value": "Logo · Typographie · Couleurs · Direction visuelle"
+      },
+      {
+        "label": "Budget",
+        "value": "Selon le périmètre"
+      }
+    ],
+    "tags": ["Logo", "Branding", "Identité visuelle"],
+    "links": [
+      {
+        "label": "Parler de votre identité",
+        "href": "/contact",
+        "intent": "contact",
+        "priority": "secondary",
+        "variant": "cta"
+      }
+    ]
+  },
+  {
+    "id": "studio-service-website",
+    "eyebrow": "UX/UI · Design web · Frontend",
+    "title": "Site web",
+    "text": [
+      "Concevoir ou refondre un site clair, singulier et responsive, de la structure des contenus jusqu’au design et au développement frontend."
+    ],
+    "media": "atmosphere-laptop",
+    "meta": [
+      {
+        "label": "Pour",
+        "value": "Création · Refonte · Nouvelle présence digitale"
+      },
+      {
+        "label": "Peut inclure",
+        "value": "UX/UI · Frontend · Responsive · SEO · Accessibilité"
+      },
+      {
+        "label": "Budget",
+        "value": "Selon le périmètre"
+      }
+    ],
+    "tags": ["Site web", "UX/UI", "Frontend"],
+    "links": [
+      {
+        "label": "Parler de votre site",
+        "href": "/contact",
+        "intent": "contact",
+        "priority": "secondary",
+        "variant": "cta"
+      }
+    ]
+  },
+  {
+    "id": "studio-service-integrations",
+    "eyebrow": "Outils · Parcours · Automatisation",
+    "title": "Fonctionnalités & intégrations",
+    "text": [
+      "Faire évoluer un site existant avec de nouveaux parcours, fonctionnalités et outils adaptés aux usages du projet."
+    ],
+    "media": "structure-mobile-multi",
+    "meta": [
+      {
+        "label": "Pour",
+        "value": "Site existant · Nouveau besoin · Évolution"
+      },
+      {
+        "label": "Peut inclure",
+        "value": "Réservation · Paiement · Formulaires · Automatisation"
+      },
+      {
+        "label": "Budget",
+        "value": "Sur devis"
+      }
+    ],
+    "tags": ["Intégrations", "Automatisation", "Frontend"],
+    "links": [
+      {
+        "label": "Parler de votre besoin",
+        "href": "/contact",
+        "intent": "contact",
+        "priority": "secondary",
+        "variant": "cta"
+      }
+    ]
+  }
+]
                 }
               }
             ]
