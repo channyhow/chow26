@@ -70,6 +70,21 @@ export type MetaItem = {
 
 export type MediaRef = string;
 
+export type GridTrackPlacement = {
+  start?: number;
+  span?: number;
+  row?: number;
+  rowSpan?: number;
+  align?: "start" | "center" | "end" | "stretch";
+  justify?: "start" | "center" | "end" | "stretch";
+};
+
+export type GridPlacement = {
+  mobile?: GridTrackPlacement;
+  tablet?: GridTrackPlacement;
+  desktop?: GridTrackPlacement;
+};
+
 export type ContentItem = {
   id?: string;
   eyebrow?: string | string[];
@@ -88,6 +103,7 @@ export type ContentItem = {
   order?: number;
   slug?: string;
   projectLayout?: ProjectLayout;
+  grid?: GridPlacement;
   summary?: string;
   description?: string[];
   facts?: MetaItem[];
