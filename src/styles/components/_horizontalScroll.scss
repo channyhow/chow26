@@ -18,6 +18,7 @@
 }
 
 .horizontalScroll__progress {
+  grid-row: 1;
   align-self: end;
   width: 100%;
   padding: clamp(#{$space-2}, 4svh, #{$space-4}) clamp(#{$space-2}, 5vw, #{$space-5}) 0;
@@ -58,6 +59,7 @@
 }
 
 .horizontalScroll__track {
+  grid-row: 2;
   display: flex;
   width: max-content;
   height: 100%;
