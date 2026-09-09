@@ -9,51 +9,56 @@
 #studio-services {
   --section-space: 0;
   --text-width: none;
-  scroll-margin-top: calc(#{$space-4} + #{$space-2});
+  scroll-margin-top: $header-height;
 }
 
 #studio-services > .section__inner {
   width: 100%;
   max-width: none;
-  padding: 0;
+  padding-inline: $page-gutter;
 }
 
 #studio-services > .section__inner > .section__header {
   display: none;
 }
 
-#studio-services .section__body {
+#studio-services .section__body,
+#studio-services .contentSwitcher {
   width: 100%;
+  min-width: 0;
 }
 
-#studio-services .horizontalScroll__item .card {
+#studio-services .contentSwitcher__panel .card {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(20rem, 5fr);
+  grid-template-columns: minmax(0, 5fr) minmax(18rem, 4fr);
   grid-template-areas: "media body";
   align-items: center;
-  gap: clamp(#{$space-3}, 6vw, #{$space-5});
-  width: 100%;
-  max-width: 86rem;
+  column-gap: clamp(#{$space-3}, 7vw, #{$space-5});
+  width: min(100%, #{$container-wide});
   margin-inline: auto;
   overflow: visible;
   background: transparent;
 }
 
-#studio-services .card__media {
+#studio-services .card__mediaWrap {
   grid-area: media;
-  width: min(100%, 44rem);
+  min-width: 0;
+}
+
+#studio-services .card__media {
+  width: min(100%, 34rem);
   min-width: 0;
   justify-self: start;
-  @include media-frame($ratio-landscape);
+  background: transparent;
+  @include media-frame($ratio-square);
 }
 
 #studio-services .card__body {
   grid-area: body;
   align-self: center;
-  width: min(100%, 32rem);
+  width: min(100%, 31rem);
   min-width: 0;
-  padding: 0;
-  transform: translateY($space-2);
+  padding: $space-2 0 0;
 }
 
 #studio-services .card__body .textBlock {
@@ -65,30 +70,24 @@
   min-width: 0;
 }
 
+#studio-services .card__body .textBlock__eyebrow {
+  @include type-eyebrow;
+}
+
 #studio-services .card__body .textBlock__title {
   @include type-heading-lg;
   max-width: 10ch;
 }
 
 #studio-services .card__body .textBlock__content {
+  @include type-body-sm;
   width: 100%;
-  max-width: 30rem;
+  max-width: 36ch;
+  color: color-mix(in srgb, currentColor 72%, transparent);
 }
 
-#studio-services .card__body .textBlock__meta {
-  display: grid;
-  gap: 0;
-  width: 100%;
+#studio-services .card__body .textBlock__content > * + * {
   margin-top: $flow-default;
-  border-top: 1px solid currentColor;
-}
-
-#studio-services .card__body .textBlock__meta > * {
-  display: block;
-  width: 100%;
-  padding-block: $flow-tight;
-  border-bottom: 1px solid currentColor;
-  line-height: 1.4;
 }
 
 #studio-services .card__body .textBlock__footer {
@@ -97,10 +96,33 @@
   padding-top: 0;
 }
 
+#studio-services .card__body .textBlock__meta {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin-top: $space-2;
+  border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+
+#studio-services .card__body .textBlock__meta > * {
+  @include type-caption;
+  display: block;
+  width: 100%;
+  padding-block: $flow-tight;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  color: color-mix(in srgb, currentColor 72%, transparent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 @include desktop-down {
-  #studio-services .horizontalScroll__item .card {
-    grid-template-columns: minmax(0, 1.1fr) minmax(19rem, 0.9fr);
-    gap: $layout-gap;
+  #studio-services .contentSwitcher__panel .card {
+    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+    column-gap: $layout-gap;
+  }
+
+  #studio-services .card__media {
+    width: min(100%, 30rem);
   }
 }
 
@@ -113,22 +135,27 @@
     padding-inline: $page-gutter;
   }
 
-  #studio-services .horizontalScroll__item .card {
+  #studio-services .contentSwitcher__panel .card {
     grid-template-columns: 1fr;
     grid-template-areas:
       "media"
       "body";
-    gap: $section-content-gap;
-    padding-block: $section-space;
+    row-gap: $space-3;
+    width: min(100%, #{$container-narrow});
   }
 
   #studio-services .card__media {
-    width: min(100%, 34rem);
+    width: min(100%, 26rem);
   }
 
   #studio-services .card__body {
-    width: min(100%, 34rem);
-    transform: none;
+    width: min(100%, 30rem);
+    padding-top: 0;
+    margin-left: clamp(0rem, 6vw, #{$space-3});
+  }
+
+  #studio-services .card__body .textBlock__title {
+    @include type-heading-md;
   }
 }
 
