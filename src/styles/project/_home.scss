@@ -2,8 +2,9 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
-/* Home continues the opening's visual language: sparse content, quiet type and
-   a small number of meaningful planes rather than a stack of component demos. */
+/* Home uses a small number of strong editorial planes. Project proof, service
+   context and conversion content share the same grid language without turning
+   every section into the same component composition. */
 
 [data-panel-id="home-projects-carousel-panel"][data-panel-color],
 [data-panel-id="home-projects-gallery-panel"][data-panel-color],
@@ -46,9 +47,7 @@
   min-height: min(82svh, 54rem);
 }
 
-#projects-featured-gallery .section__inner,
-#home-services .section__inner,
-#final-cta .section__inner {
+#projects-featured-gallery .section__inner {
   display: grid;
   grid-template-columns: repeat($section-columns, minmax(0, 1fr));
   align-items: center;
@@ -125,80 +124,51 @@
   @include interactive-text;
 }
 
-#home-services .section__header,
-#final-cta .section__header {
-  grid-area: auto;
-  grid-column: 3 / span 6;
+/* Mixed-content panels reuse the shared Split mechanics. Only their editorial
+   column relationships and media proportions are owned by Home. */
+#home-services .section__inner,
+#final-cta .section__inner {
+  display: block;
+  min-height: inherit;
+  padding-inline: var(--project-gutter);
+}
+
+#home-services .split,
+#final-cta .split {
+  align-items: center;
+  min-height: inherit;
+  --section-gap: clamp(#{$space-4}, 6vw, #{$space-6});
+}
+
+#home-services .textBlock,
+#final-cta .textBlock {
   width: 100%;
-  max-width: 34rem;
+  max-width: 30rem;
 }
 
-#home-services .section__header {
-  position: static;
-  grid-column: 6 / span 6;
+#home-services .media,
+#final-cta .media {
+  width: 100%;
+  border-radius: 0;
 }
 
-#final-cta .section__header {
-  grid-column: 7 / span 5;
-  align-self: end;
-  margin-bottom: clamp(#{$space-4}, 10svh, 8rem);
+#home-services {
+  --split-primary-column: 9 / -1;
+  --split-secondary-column: 1 / span 7;
 }
 
-// .home-preview .textBlock__header,
-// .home-preview .textBlock__content {
-//   gap: $flow-default;
-// }
+#home-services .media__frame {
+  aspect-ratio: $ratio-landscape;
+}
 
-// .home-preview .textBlock__title,
-// .home-preview .textBlock__content,
-// .home-preview .actions {
-//   @include type-body;
-// }
+#final-cta {
+  --split-primary-column: 2 / span 4;
+  --split-secondary-column: 7 / -1;
+}
 
-// .home-preview .textBlock__title {
-//   max-width: 30ch;
-//   font-family: var(--font-body);
-//   font-weight: $font-weight-medium;
-//   line-height: 1.35;
-//   letter-spacing: 0;
-// }
-
-// .home-preview .textBlock__content {
-//   max-width: 42ch;
-//   color: color-mix(in srgb, currentColor 58%, transparent);
-// }
-
-// .home-preview .textBlock__footer {
-//   padding-top: $flow-default;
-// }
-
-// .home-preview .actions {
-//   gap: $flow-default;
-// }
-
-// .home-preview .actions a {
-//   min-height: 0;
-//   padding: 0;
-//   border: 0;
-//   background: transparent;
-//   color: currentColor;
-//   font-family: var(--font-body);
-//   font-size: inherit;
-//   font-weight: $font-weight-medium;
-//   line-height: 1.35;
-//   text-decoration: none;
-// }
-
-// @include hover {
-//   .home-preview .actions a:hover {
-//     background: transparent;
-//     opacity: $opacity-muted;
-//   }
-// }
-
-// .home-preview .actions a:focus-visible {
-//   @include focus-ring;
-// }
+#final-cta .media__frame {
+  aspect-ratio: $ratio-portrait;
+}
 
 #approach-default .textBlock__title {
   color: currentColor;
@@ -207,10 +177,6 @@
 #approach-default .textBlock__content {
   color: color-mix(in srgb, currentColor 62%, transparent);
 }
-
-// #home-services .textBlock__title {
-//   color: var(--accent);
-// }
 
 #final-cta .textBlock__title {
   color: color-mix(in srgb, currentColor 58%, transparent);
@@ -240,10 +206,6 @@
   [data-panel-id="home-projects-carousel-panel"][data-panel-surface="glass"] {
     --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 72%, transparent);
   }
-
-  #home-services .section__header {
-    transform: translateY(7svh);
-  }
 }
 
 @include tablet-down {
@@ -257,7 +219,7 @@
   #projects-featured-gallery,
   #home-services,
   #final-cta {
-    min-height: 68svh;
+    min-height: auto;
   }
 
   #projects-featured-gallery .section__inner {
@@ -276,20 +238,41 @@
     width: min(100%, 24rem);
   }
 
-  #home-services .section__header,
-  #final-cta .section__header {
-    grid-column: 1 / -1;
-    max-width: 30rem;
+  #home-services .split,
+  #final-cta .split {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+    min-height: 0;
   }
 
-  #home-services .section__header {
-    justify-self: end;
-    width: min(100%, 28rem);
+  #home-services .split__primary,
+  #home-services .split__secondary,
+  #final-cta .split__primary,
+  #final-cta .split__secondary {
+    grid-column: 1;
+    grid-row: auto;
   }
 
-  #final-cta .section__header {
+  #home-services .split__secondary {
+    order: 1;
+  }
+
+  #home-services .split__primary {
+    order: 2;
     justify-self: end;
-    margin-bottom: $space-4;
+  }
+
+  #final-cta .split__primary {
+    order: 1;
+  }
+
+  #final-cta .split__secondary {
+    order: 2;
+  }
+
+  #home-services .textBlock,
+  #final-cta .textBlock {
+    max-width: 28rem;
   }
 }
 
@@ -309,10 +292,9 @@
   #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
     aspect-ratio: $ratio-landscape;
   }
-}
 
-@include reduced-motion {
-  #home-services .section__header {
-    transform: none;
+  #home-services .media__frame,
+  #final-cta .media__frame {
+    aspect-ratio: $ratio-landscape;
   }
 }
