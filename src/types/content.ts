@@ -9,7 +9,7 @@ export type SectionColor =
   | "accent";
 export type SectionSurface = "solid" | "glass" | "transparent";
 export type MotionLevel = "none" | "reveal" | "scene";
-export type ScrollMotionPreset = "parallax" | "ambient" | "draw";
+export type ScrollMotionPreset = "parallax" | "ambient" | "draw" | "recede";
 export type CardEffect = "none" | "glass" | "grain";
 export type TimelineOrientation = "vertical" | "horizontal";
 export type ProjectLayout = "a" | "b";
@@ -79,54 +79,56 @@ export type ContentItem = {
   links?: Action[];
   meta?: MetaItem[];
   tags?: string[];
-  category?: string;
-  group?: string;
-  featured?: boolean;
-  enabled?: boolean;
-  order?: number;
   href?: string;
+  enabled?: boolean;
+  featured?: boolean;
+  order?: number;
+  slug?: string;
+  projectLayout?: ProjectLayout;
+  summary?: string;
+  description?: string[];
+  facts?: MetaItem[];
+  gallery?: MediaRef[];
+  seo?: PageSeo;
 };
 
-export type ProjectRecord = ContentItem & {
-  id: string;
-  slug: string;
-  href: string;
-  title: string;
-  summary: string;
-  description: string[];
-  facts: MetaItem[];
-  gallery: MediaRef[];
-  projectLayout?: ProjectLayout;
-  seo: PageSeo;
+export type SectionHeader = {
+  eyebrow?: string | string[];
+  title?: string;
+  subtitle?: string | string[];
+  text?: string | string[];
+  links?: Action[];
+  media?: MediaRef | MediaRef[];
+  meta?: MetaItem[];
+};
+
+export type SectionContent = {
+  header?: SectionHeader;
+  items?: ContentItem[];
+  media?: MediaRef | MediaRef[];
+  form?: string | FormSchema;
+};
+
+export type SourceQuery = {
+  featured?: boolean;
+  enabled?: boolean;
+  group?: string;
+  limit?: number;
 };
 
 export type SourceRef = {
   collection: string;
-  query?: {
-    featured?: boolean;
-    category?: string;
-    group?: string;
-    enabled?: boolean;
-    limit?: number;
-  };
-};
-
-export type SectionContent = {
-  header?: ContentItem;
-  items?: ContentItem[];
-  media?: MediaRef | MediaRef[];
-  links?: Action[];
-  form?: string | FormSchema;
+  query?: SourceQuery;
 };
 
 export type SectionBlock = {
   id: string;
   type: "Section";
+  layout?: SectionLayout;
   variant?: StyleVariant;
   tone?: Tone;
   surface?: SectionSurface;
   color?: SectionColor;
-  layout?: SectionLayout;
   timelineOrientation?: TimelineOrientation;
   source?: SourceRef;
   content?: SectionContent;
