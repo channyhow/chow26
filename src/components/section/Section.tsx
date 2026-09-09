@@ -42,11 +42,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
-  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline;
+  const isHorizontalScroll = layout === "horizontal-scroll";
+  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion && !isHorizontalTimeline && !isHorizontalScroll;
   const scenePreset = block.motionPreset ?? "parallax";
   const sceneRange = block.motionRange ?? "through";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
-  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
+  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal && !isHorizontalScroll;
 
   const cards = items.map((item, index) => (
     <Card
@@ -78,6 +79,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       content: <Card item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} />,
     }];
   });
+  const horizontalLabels = items.flatMap((item) => item.title ? [item.title] : []);
 
   const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
@@ -87,108 +89,52 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = shouldTrackScroll ? (
       <Split
         primary={primary ? (
-          <ScrollScene
-            preset={scenePreset}
-            direction="forward"
-            range={sceneRange}
-            className="section__scrollLayer"
-            decorative={false}
-          >
+          <ScrollScene preset={scenePreset} direction="forward" range={sceneRange} className="section__scrollLayer" decorative={false}>
             {primary}
           </ScrollScene>
         ) : null}
         secondary={secondary ? (
-          <ScrollScene
-            preset={scenePreset}
-            direction="reverse"
-            range={sceneRange}
-            className="section__scrollLayer"
-            decorative={false}
-          >
+          <ScrollScene preset={scenePreset} direction="reverse" range={sceneRange} className="section__scrollLayer" decorative={false}>
             {secondary}
           </ScrollScene>
         ) : null}
       />
-    ) : (
-      <Split primary={primary} secondary={secondary} />
-    );
+    ) : <Split primary={primary} secondary={secondary} />;
   } else if (layout === "media-overlay") {
     body = (
       <div className="section__mediaOverlay">
         {media ? <Media media={media} className="section__media" sizes="100vw" /> : null}
-        {header ? (
-          <div className="section__overlayContent">
-            <TextBlock content={header} titleAs="h1" className="section__header" />
-          </div>
-        ) : null}
+        {header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}
       </div>
     );
   } else if (layout === "gallery") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null)}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null)}</>;
   } else if (layout === "carousel") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null)}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null)}</>;
   } else if (layout === "timeline") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null)}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null)}</>;
   } else if (layout === "horizontal-scroll") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(cards.length || mediaCards.length ? <HorizontalScroll>{cards.length ? cards : mediaCards}</HorizontalScroll> : null)}
+        {region(cards.length || mediaCards.length ? (
+          <HorizontalScroll labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined}>
+            {cards.length ? cards : mediaCards}
+          </HorizontalScroll>
+        ) : null)}
       </>
     );
   } else if (layout === "content-switcher") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}</>;
   } else if (layout === "media") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(media ? <Media media={media} className="section__media" /> : null)}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media ? <Media media={media} className="section__media" /> : null)}</>;
   } else {
-    const content = (
-      <>
-        {media ? <Media media={media} className="section__media" /> : null}
-        {form ? <Form schema={form} /> : null}
-        {cardsGrid}
-      </>
-    );
-
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(media || form || cardsGrid ? content : null)}
-      </>
-    );
+    const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsGrid}</>;
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsGrid ? content : null)}</>;
   }
 
   const sceneBody = shouldTrackScroll && layout !== "split" ? (
-    <ScrollScene
-      preset={scenePreset}
-      range={sceneRange}
-      className="section__scrollScene"
-      decorative={false}
-    >
+    <ScrollScene preset={scenePreset} range={sceneRange} className="section__scrollScene" decorative={false}>
       <div className="section__inner">{body}</div>
     </ScrollScene>
   ) : null;
