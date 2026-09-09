@@ -7,45 +7,53 @@
 ================================== */
 
 #studio-services {
-  --section-space: #{$section-space};
+  --section-space: 0;
   --text-width: none;
   scroll-margin-top: calc(#{$space-4} + #{$space-2});
 }
 
-#studio-services .section__inner {
-  display: grid;
-  gap: $section-content-gap;
+#studio-services > .section__inner {
+  width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
 #studio-services > .section__inner > .section__header {
   display: none;
 }
 
-#studio-services .contentSwitcher {
+#studio-services .section__body {
   width: 100%;
 }
 
-#studio-services .contentSwitcher__panel .card {
-  @include split-composition(3fr, 2fr, clamp(#{$space-3}, 5vw, #{$space-5}), stretch);
+#studio-services .horizontalScroll__item .card {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(20rem, 5fr);
   grid-template-areas: "media body";
+  align-items: center;
+  gap: clamp(#{$space-3}, 6vw, #{$space-5});
   width: 100%;
-  margin: 0;
+  max-width: 86rem;
+  margin-inline: auto;
   overflow: visible;
   background: transparent;
 }
 
 #studio-services .card__media {
   grid-area: media;
-  width: 100%;
+  width: min(100%, 44rem);
   min-width: 0;
+  justify-self: start;
   @include media-frame($ratio-landscape);
 }
 
 #studio-services .card__body {
   grid-area: body;
-  align-self: stretch;
+  align-self: center;
+  width: min(100%, 32rem);
   min-width: 0;
   padding: 0;
+  transform: translateY($space-2);
 }
 
 #studio-services .card__body .textBlock {
@@ -53,26 +61,25 @@
   flex-direction: column;
   gap: $flow-default;
   width: 100%;
-  height: 100%;
   max-width: none;
   min-width: 0;
 }
 
 #studio-services .card__body .textBlock__title {
-  @include type-heading-xl;
+  @include type-heading-lg;
   max-width: 10ch;
 }
 
 #studio-services .card__body .textBlock__content {
   width: 100%;
-  max-width: 34rem;
+  max-width: 30rem;
 }
 
 #studio-services .card__body .textBlock__meta {
   display: grid;
   gap: 0;
   width: 100%;
-  margin-top: auto;
+  margin-top: $flow-default;
   border-top: 1px solid currentColor;
 }
 
@@ -91,23 +98,37 @@
 }
 
 @include desktop-down {
-  #studio-services .contentSwitcher__panel .card {
-    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+  #studio-services .horizontalScroll__item .card {
+    grid-template-columns: minmax(0, 1.1fr) minmax(19rem, 0.9fr);
     gap: $layout-gap;
   }
 }
 
 @include tablet-down {
-  #studio-services .contentSwitcher__panel .card {
+  #studio-services {
+    --section-space: #{$section-space};
+  }
+
+  #studio-services > .section__inner {
+    padding-inline: $page-gutter;
+  }
+
+  #studio-services .horizontalScroll__item .card {
     grid-template-columns: 1fr;
     grid-template-areas:
       "media"
       "body";
     gap: $section-content-gap;
+    padding-block: $section-space;
   }
 
-  #studio-services .card__body .textBlock__meta {
-    margin-top: $flow-default;
+  #studio-services .card__media {
+    width: min(100%, 34rem);
+  }
+
+  #studio-services .card__body {
+    width: min(100%, 34rem);
+    transform: none;
   }
 }
 
@@ -193,12 +214,6 @@
   width: 100%;
   max-width: none;
 }
-
-// #studio-founders .card__body .textBlock__title {
-//   @include type-heading-md;
-//   font-weight: $font-weight-semibold;
-//   max-width: none;
-// }
 
 @include desktop-up {
   #studio-founders .section__inner {
