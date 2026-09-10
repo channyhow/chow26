@@ -368,9 +368,10 @@
     display: grid;
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: min(84vw, 24rem);
+    grid-auto-columns: calc(100% - #{$space-3});
     gap: $space-2;
-    width: calc(100% + #{$page-gutter});
+    width: 100%;
+    padding-right: $space-3;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
@@ -391,8 +392,21 @@
   }
 
   #studio-approach .grid__item:first-child {
+    position: relative;
     display: flex;
     align-items: center;
+  }
+
+  #studio-approach .grid__item:first-child::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 2;
+    font-size: $type-heading-md;
+    line-height: 1;
+    pointer-events: none;
+    animation: studio-approach-cue 1.6s $ease-soft infinite;
   }
 
   #studio-approach .grid__item:first-child .card {
@@ -401,7 +415,7 @@
 
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-xl;
-    max-width: 9ch;
+    max-width: 8ch;
   }
 
   #studio-approach .grid__item:not(:first-child) .card {
@@ -413,6 +427,23 @@
 
   #studio-approach .grid__item:not(:first-child) .textBlock__content {
     max-width: 28ch;
+  }
+}
+
+@keyframes studio-approach-cue {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.35rem);
+  }
+}
+
+@include reduced-motion {
+  #studio-approach .grid__item:first-child::after {
+    animation: none;
   }
 }
 
