@@ -27,9 +27,9 @@ export function Media({
   const reduceMotion = useReducedMotion();
   const position = getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
-  const mediaStyle = {
-    "--media-ratio": `${media.width} / ${media.height}`,
-  } as CSSProperties;
+  const mediaStyle = media.width && media.height
+    ? ({ "--media-ratio": `${media.width} / ${media.height}` } as CSSProperties)
+    : undefined;
 
   useEffect(() => {
     const video = videoRef.current;
