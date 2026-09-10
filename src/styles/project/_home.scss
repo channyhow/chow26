@@ -316,8 +316,29 @@
 }
 
 @include mobile-down {
+  /* Mobile opening becomes quieter: the positioning copy replaces the large
+     display title while the existing media is treated as a lower visual field. */
+  #home-opening .section__mediaOverlay {
+    min-height: 100svh;
+  }
+
+  #home-opening .section__media {
+    align-self: end;
+    height: 52svh;
+  }
+
+  #home-opening .section__media .media__frame,
+  #home-opening .section__media .media__asset {
+    height: 100%;
+  }
+
+  #home-opening .section__media .media__asset {
+    object-position: center 58%;
+  }
+
   #home-opening .section__overlayContent {
-    align-items: flex-end;
+    align-items: flex-start;
+    padding-top: calc(#{$header-height} + #{$space-5});
     padding-bottom: $space-3;
   }
 
@@ -325,19 +346,14 @@
     display: block;
   }
 
-  #home-opening .textBlock__title {
-    font-size: clamp(2.5rem, 12.5vw, 4.25rem);
-    line-height: 0.94;
-    letter-spacing: -0.045em;
+  #home-opening .textBlock__header {
+    display: none;
   }
 
   #home-opening .textBlock__content {
     width: min(100%, 30rem);
-    margin-top: $space-3;
-  }
-
-  #home-opening .section__media .media__asset {
-    object-position: center 58%;
+    max-width: 28rem;
+    margin-top: 0;
   }
 
   /* On touch screens the same project cards become a swipeable, snap-aligned
@@ -380,8 +396,9 @@
     width: 100%;
   }
 
-  #projects-featured-gallery .grid__item .card__mediaWrap,
-  #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
+  #projects-featured-gallery .grid__item:nth-child(1) .card__mediaWrap,
+  #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap,
+  #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
     aspect-ratio: $ratio-landscape;
   }
 
