@@ -229,6 +229,48 @@
   #projects-featured-gallery .section__body {
     grid-column: 3 / -1;
   }
+
+  #home-services,
+  #final-cta {
+    min-height: auto;
+  }
+
+  #home-services .split,
+  #final-cta .split {
+    align-items: start;
+    gap: $space-4;
+    min-height: 0;
+  }
+
+  #home-services .split__primary,
+  #home-services .split__secondary,
+  #final-cta .split__primary,
+  #final-cta .split__secondary {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  #home-services .split__secondary {
+    order: 1;
+  }
+
+  #home-services .split__primary {
+    order: 2;
+    justify-self: end;
+  }
+
+  #final-cta .split__primary {
+    order: 1;
+  }
+
+  #final-cta .split__secondary {
+    order: 2;
+    margin-top: $space-2;
+  }
+
+  #final-cta .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
 }
 
 @include tablet-down {
