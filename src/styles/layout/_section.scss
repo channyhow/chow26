@@ -124,6 +124,12 @@
     max-width: var(--section-title-width-mobile, #{$measure-heading-wide});
   }
 
+  .section[data-source="projects"]:not([data-featured="true"])
+    .section__header.textBlock
+    .textBlock__title {
+    max-width: none;
+  }
+
   .section__overlayContent {
     padding-block: clamp(#{$space-4}, 10vh, #{$space-5});
   }
