@@ -13,6 +13,7 @@ export type GridProps = {
   lead?: ReactNode;
   motionPreset?: string;
   placements?: Array<GridPlacement | undefined>;
+  motionEnabled?: boolean;
 };
 
 type GridRange = {
@@ -66,7 +67,15 @@ function placementStyle(placement?: GridPlacement): GridItemStyle | undefined {
   return style;
 }
 
-export function Grid({ children, className, progressive = false, lead, motionPreset, placements }: GridProps) {
+export function Grid({
+  children,
+  className,
+  progressive = false,
+  lead,
+  motionPreset,
+  placements,
+  motionEnabled = true,
+}: GridProps) {
   const reduceMotion = useReducedMotion();
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
@@ -74,6 +83,7 @@ export function Grid({ children, className, progressive = false, lead, motionPre
   const [visibleCount, setVisibleCount] = useState(() =>
     progressive ? initialRange.initial : childArray.length,
   );
+  const animateGrid = motionEnabled && !reduceMotion;
 
   useEffect(() => {
     if (!progressive) {
@@ -110,10 +120,10 @@ export function Grid({ children, className, progressive = false, lead, motionPre
       <motion.div
         id={progressive ? "project-grid" : undefined}
         className={clsx("grid", lead && "grid--withLead", usesEditorialPlacement && "grid--editorial", className)}
-        variants={fastStaggerContainer}
-        initial={reduceMotion ? false : "hidden"}
-        whileInView="visible"
-        viewport={motionConfig.viewport}
+        variants={animateGrid ? fastStaggerContainer : undefined}
+        initial={animateGrid ? "hidden" : false}
+        whileInView={animateGrid ? "visible" : undefined}
+        viewport={animateGrid ? motionConfig.viewport : undefined}
       >
         {lead ? <div className="grid__lead">{lead}</div> : null}
         <AnimatePresence initial={false}>
@@ -125,18 +135,20 @@ export function Grid({ children, className, progressive = false, lead, motionPre
                 className="grid__item"
                 key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
                 style={placementStyle(placements?.[index])}
-                variants={usesDrawMotion ? undefined : revealItem}
-                initial={reduceMotion ? false : usesDrawMotion
-                  ? { opacity: 0, x: drawOffset, y: motionConfig.distance.subtle }
-                  : { opacity: 0, y: motionConfig.distance.subtle }}
-                whileInView={usesDrawMotion ? { opacity: 1, x: 0, y: 0 } : undefined}
-                animate={usesDrawMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={usesDrawMotion ? motionConfig.viewport : undefined}
-                transition={{
+                variants={animateGrid && !usesDrawMotion ? revealItem : undefined}
+                initial={animateGrid
+                  ? usesDrawMotion
+                    ? { opacity: 0, x: drawOffset, y: motionConfig.distance.subtle }
+                    : { opacity: 0, y: motionConfig.distance.subtle }
+                  : false}
+                whileInView={animateGrid && usesDrawMotion ? { opacity: 1, x: 0, y: 0 } : undefined}
+                animate={animateGrid && !usesDrawMotion ? { opacity: 1, y: 0 } : undefined}
+                viewport={animateGrid && usesDrawMotion ? motionConfig.viewport : undefined}
+                transition={animateGrid ? {
                   duration: usesDrawMotion ? motionConfig.duration.slow : motionConfig.duration.default,
                   ease: motionConfig.easing.soft,
-                  delay: reduceMotion ? 0 : index * (usesDrawMotion ? 0.08 : 0),
-                }}
+                  delay: index * (usesDrawMotion ? 0.08 : 0),
+                } : undefined}
               >
                 {child}
               </motion.div>
