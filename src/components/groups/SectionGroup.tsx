@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useReducedMotion, useScroll, type MotionValue } from "motion/react";
+import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
@@ -56,6 +56,18 @@ function panelKey(block: PanelBlock, index: number) {
   return "ref" in block ? block.ref : block.id || `panel-${index + 1}`;
 }
 
+function getDocumentOffsetTop(element: HTMLElement) {
+  let top = 0;
+  let current: HTMLElement | null = element;
+
+  while (current) {
+    top += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+
+  return top;
+}
+
 function Panel({
   id,
   behavior,
@@ -78,9 +90,18 @@ function Panel({
   const ref = useRef<HTMLDivElement>(null);
   const needsStickyOffset = behavior === "stack" || behavior === "cover";
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
+  const { scrollY } = useScroll();
+
+  // Sticky elements stop moving in the viewport, so target-based useScroll progress
+  // can freeze while a panel is pinned. Derive progress from its document-flow
+  // position instead; offsetTop is unaffected by position: sticky.
+  const scrollYProgress = useTransform(scrollY, (latest) => {
+    const element = ref.current;
+    if (!element || typeof window === "undefined") return 0;
+
+    const start = getDocumentOffsetTop(element);
+    const distance = Math.max(element.offsetHeight, window.innerHeight, 1);
+    return Math.min(1, Math.max(0, (latest - start) / distance));
   });
 
   useEffect(() => {
