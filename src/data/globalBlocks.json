@@ -4,7 +4,9 @@
     "type": "Section",
     "layout": "media-overlay",
     "motion": "scene",
-    "motionPreset": "recede",
+    "motionPreset": "drift",
+    "motionRange": "exit",
+    "motionIntensity": "quiet",
     "content": {
       "header": {
         "title": "Sites, identités et directions visuelles, pensés avec clarté.",
@@ -33,8 +35,8 @@
     "id": "projects-featured-gallery",
     "type": "Section",
     "layout": "grid",
-"motion": "scene",
-"motionPreset": "recede",
+    "motion": "scene",
+    "motionPreset": "recede",
     "className": "homeProjectsGallery",
     "source": {
       "collection": "projects",
@@ -81,8 +83,8 @@
     "type": "Section",
     "layout": "split",
     "className": "home-preview home-preview--services",
-     "motion": "scene",
-  "motionPreset": "parallax",
+    "motion": "scene",
+    "motionPreset": "parallax",
     "content": {
       "header": {
         "title": "Créer, clarifier ou faire évoluer une présence.",
@@ -155,12 +157,12 @@
     "layout": "grid",
     "motion": "none",
     "content": {
-    
       "items": [
         {
-          "subtitle":  "Un même regard, du concept à l’interface.",
+          "subtitle": "Un même regard, du concept à l’interface.",
           "text": [
-            "Avant le web, **Channy How** a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France.","Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
+            "Avant le web, **Channy How** a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France.",
+            "Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
           ],
           "media": ["studio-founder-1"]
         }
@@ -322,7 +324,6 @@
     "content": {
       "header": {
         "title": "Confidentialité & données personnelles"
-     
       },
       "items": [
         {
