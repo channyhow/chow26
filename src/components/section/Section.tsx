@@ -91,6 +91,22 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     }];
   });
   const horizontalLabels = items.flatMap((item) => item.title ? [item.title] : []);
+  const horizontalItems = cards.length ? cards : mediaCards;
+  const horizontalMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+  const horizontalMotionItems = horizontalItems.map((item, index) => (
+    <ScrollScene
+      key={`horizontal-motion-${index}`}
+      preset="drift"
+      intensity={sceneIntensity}
+      direction={index % 2 === 0 ? "forward" : "reverse"}
+      range="through"
+      className="section__horizontalScrollLayer"
+      decorative={false}
+      enabled={horizontalMotionEnabled}
+    >
+      {item}
+    </ScrollScene>
+  ));
 
   const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
@@ -142,9 +158,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {region(cards.length || mediaCards.length ? (
+        {region(horizontalMotionItems.length ? (
           <HorizontalScroll labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined}>
-            {cards.length ? cards : mediaCards}
+            {horizontalMotionItems}
           </HorizontalScroll>
         ) : null)}
       </>
