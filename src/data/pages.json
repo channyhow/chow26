@@ -579,8 +579,7 @@
     "slug": "/cgv",
     "variant": "editorial",
     "seo": {
-      "title": "Conditions générales de vente | Chow Studio",
-      "description": "Conditions générales de vente de Chow Studio pour les prestations de design, identité visuelle, UX/UI et développement frontend destinées aux clients professionnels."
+      "title": "Conditions générales de vente | Chow Studio"
     },
     "blocks": [
       {
@@ -622,7 +621,7 @@
                     { "title": "12. Confidentialité et données", "text": ["Chaque partie s’engage à traiter avec discrétion les informations confidentielles reçues dans le cadre du projet. Les données personnelles éventuellement traitées dans la relation commerciale sont utilisées pour la gestion des échanges, du projet, de la facturation et des obligations administratives. La politique de confidentialité du site précise les traitements liés au site et aux prises de contact."] },
                     { "title": "13. Force majeure", "text": ["Aucune partie ne peut être tenue responsable d’un retard ou d’une inexécution résultant d’un événement de force majeure au sens du droit français. Les obligations affectées sont suspendues pendant la durée de l’empêchement et les parties se rapprochent pour déterminer les conséquences pratiques sur le projet."] },
                     { "title": "14. Droit applicable et différends", "text": ["Les présentes CGV et les contrats conclus avec Chow Studio sont soumis au droit français. En cas de difficulté, les parties cherchent d’abord une solution amiable. À défaut d’accord, le litige relève des juridictions compétentes selon les règles de droit commun applicables."] },
-                    { "title": "15. Version des CGV", "text": ["La version applicable est celle acceptée avec le devis ou le contrat. Les présentes CGV peuvent évoluer pour tenir compte de changements dans les services ou dans le cadre juridique. Mise à jour : septembre 2026."] }
+                    { "title": "15. Version des CGV", "text": ["La version applicable est celle acceptée avec le devis ou le contrat. Les présentes CGV peuvent évoluer pour tenir compte de changements dans les services ou dans le cadre juridique."] }
                   ]
                 }
               }

@@ -12,6 +12,8 @@
     clamp(#{$space-3}, 4vw, #{$space-4});
   // color: var(--secondary);
   // background: var(--primary);
+    opacity:$opacity-soft;
+
 }
 
 .siteFooter__inner,

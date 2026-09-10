@@ -34,13 +34,20 @@
 
   &__content {
     gap: $flow-default;
-  color: color-mix(in srgb, currentColor 62%, transparent);
+  // color: color-mix(in srgb, currentColor 62%, transparent);
 
-    p {
-      @include type-body;
-      margin: 0;
-    }
+ p {
+  @include type-body;
+  margin: 0;
+  opacity: $opacity-muted;
+
+  &:last-child:not(:only-child) {
+    opacity: $opacity-soft;
   }
+}
+  
+  }
+
 
   &__footer {
     gap: $flow-default;
