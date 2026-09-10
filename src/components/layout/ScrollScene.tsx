@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 export type ScrollScenePreset = "drift" | "parallax" | "ambient" | "draw" | "recede";
 export type ScrollSceneDirection = "forward" | "reverse";
@@ -16,6 +16,7 @@ export type ScrollSceneProps = {
   className?: string;
   decorative?: boolean;
   enabled?: boolean;
+  progress?: MotionValue<number>;
 };
 
 const intensityScale: Record<ScrollSceneIntensity, number> = {
@@ -33,6 +34,7 @@ export function ScrollScene({
   className,
   decorative = false,
   enabled = true,
+  progress,
 }: ScrollSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
@@ -50,12 +52,13 @@ export function ScrollScene({
     return () => media.removeEventListener("change", updateScale);
   }, []);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: localScrollYProgress } = useScroll({
     target: ref,
     offset: range === "exit"
       ? ["start start", "end start"]
       : ["start end", "end start"],
   });
+  const scrollYProgress = progress ?? localScrollYProgress;
 
   const distance = (value: number) => value * sign * scale;
   const driftY = useTransform(scrollYProgress, [0, 1], [distance(10), distance(-10)]);
@@ -101,6 +104,7 @@ export function ScrollScene({
       data-intensity={intensity}
       data-enabled={motionEnabled ? "true" : "false"}
       data-reduced-motion={reduceMotion ? "true" : "false"}
+      data-progress-source={progress ? "panel" : "self"}
     >
       {decorative ? (
         <div className="scrollScene__decor" aria-hidden="true">
