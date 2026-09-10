@@ -160,7 +160,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
         {region(horizontalMotionItems.length ? (
-          <HorizontalScroll labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined}>
+          <HorizontalScroll
+            labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined}
+            preserveOnSmallScreens
+          >
             {horizontalMotionItems}
           </HorizontalScroll>
         ) : null)}
