@@ -57,7 +57,7 @@
       "collection": "projects",
       "query": {
         "featured": true,
-        "limit": 4
+        "limit": 5
       }
     },
     "content": {
