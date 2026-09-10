@@ -45,37 +45,18 @@
   display: flex;
   justify-self: end;
   gap: $space-1;
+}
 
-  button {
-    @include icon-control;
-
-    -webkit-tap-highlight-color: transparent;
-
-    &:disabled {
-      cursor: default;
-      opacity: 0.22;
-    }
-
-    &:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-
-    @include hover {
-      &:not(:disabled) {
-        color: var(--secondary);
-        background: var(--primary);
-        transform: translateY(-2px);
-      }
-    }
-  }
+.carousel__control {
+  @include navigation-control;
 }
 
 .carousel__arrow {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.65rem;
+  height: 1.65rem;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
@@ -93,7 +74,7 @@
     right: $space-3;
     z-index: $z-raised;
     font-size: 2.25rem;
-    font-weight: 500;
+    font-weight: $font-weight-semibold;
     line-height: 1;
     pointer-events: none;
     transform: translateY(-50%);
@@ -141,7 +122,7 @@
 }
 
 @include reduced-motion {
-  .carousel__controls button {
+  .carousel__control {
     transition: none;
 
     &:hover,
