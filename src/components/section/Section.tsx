@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, type MotionValue } from "motion/react";
 
 import { Card } from "@/components/content/Card";
 import { Carousel } from "@/components/content/Carousel";
@@ -26,12 +26,13 @@ export type SectionProps = {
   block: SectionBlock;
   suppressSceneMotion?: boolean;
   visualContext?: "own" | "inherit";
+  scrollProgress?: MotionValue<number>;
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
 
-export function Section({ block, suppressSceneMotion = false, visualContext = "own" }: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
   const reduceMotion = useReducedMotion();
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const layout = block.layout ?? "text";
@@ -143,6 +144,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
             range={sceneRange}
             className="section__scrollLayer"
             decorative={false}
+            progress={scrollProgress}
           >
             {primary}
           </ScrollScene>
@@ -155,6 +157,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
             range={sceneRange}
             className="section__scrollLayer"
             decorative={false}
+            progress={scrollProgress}
           >
             {secondary}
           </ScrollScene>
@@ -204,6 +207,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       range={sceneRange}
       className="section__scrollScene"
       decorative={false}
+      progress={scrollProgress}
     >
       <div className="section__inner">{body}</div>
     </ScrollScene>
