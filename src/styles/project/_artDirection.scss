@@ -278,17 +278,40 @@ body:has(#home-opening) .header {
   @include meta-chips;
 }
 
-#cgv-default,#legal-notice-default,#privacy-default {
-.section__header{
-  max-width: none;
-.textBlock__content {
-max-width: none; }
-  .textBlock__title {
-    max-width: none;
-    font-size: 5rem;
-    text-transform: uppercase;
-  }}
+/* ==================================
+   LEGAL — CGV / MENTIONS / CONFIDENTIALITÉ
+================================== */
+
+#cgv-default,
+#legal-notice-default,
+#privacy-default {
+  --section-space: clamp(#{$space-4}, 7vw, #{$space-5});
+  --section-gap: clamp(#{$space-3}, 4vw, #{$space-4});
 }
+
+#cgv-default .section__header,
+#legal-notice-default .section__header,
+#privacy-default .section__header {
+  max-width: none;
+}
+
+#cgv-default .section__header .textBlock__content,
+#legal-notice-default .section__header .textBlock__content,
+#privacy-default .section__header .textBlock__content,
+#cgv-default .section__header .textBlock__title,
+#legal-notice-default .section__header .textBlock__title,
+#privacy-default .section__header .textBlock__title {
+  max-width: none;
+}
+
+#cgv-default .section__header .textBlock__title,
+#legal-notice-default .section__header .textBlock__title,
+#privacy-default .section__header .textBlock__title {
+  font-size: 5rem;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
 /* ==================================
    RESPONSIVE PAGE COMPOSITION
 ================================== */
@@ -461,6 +484,20 @@ max-width: none; }
   #home-services .card__body {
     width: 100%;
   }
+
+  #cgv-default,
+  #legal-notice-default,
+  #privacy-default {
+    --section-space: $space-3;
+    --section-gap: $space-3;
+  }
+
+  #cgv-default .section__header .textBlock__title,
+  #legal-notice-default .section__header .textBlock__title,
+  #privacy-default .section__header .textBlock__title {
+    font-size: clamp(2.25rem, 8vw, 3.75rem);
+    line-height: 0.98;
+  }
 }
 
 @media (max-width: $bp-home-compact) {
@@ -504,5 +541,19 @@ max-width: none; }
     border-right: 0;
     border-bottom: 1px solid currentColor;
     text-align: left;
+  }
+
+  #cgv-default,
+  #legal-notice-default,
+  #privacy-default {
+    --section-space: $space-2;
+    --section-gap: $space-3;
+  }
+
+  #cgv-default .section__header .textBlock__title,
+  #legal-notice-default .section__header .textBlock__title,
+  #privacy-default .section__header .textBlock__title {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 1;
   }
 }
