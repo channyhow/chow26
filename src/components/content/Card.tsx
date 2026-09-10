@@ -23,7 +23,7 @@ export function Card({
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
-  const mediaOrientation = getMediaOrientation(media);
+  const mediaOrientation = getMediaOrientation(media ?? undefined);
   const visibleItem = isProject ? { title: item.title } : item;
   const cardClassName = clsx(
     "card",
