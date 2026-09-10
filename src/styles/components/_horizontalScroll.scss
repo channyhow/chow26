@@ -76,33 +76,37 @@
 }
 
 @include tablet-down {
-  .horizontalScroll {
+  .horizontalScroll:not([data-preserve-small="true"]) {
     height: auto;
   }
 
-  .horizontalScroll__viewport {
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__viewport {
     position: static;
     display: block;
     height: auto;
     overflow: visible;
   }
 
-  .horizontalScroll__progress {
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__progress {
     display: none;
   }
 
-  .horizontalScroll__track {
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__track {
     display: grid;
     width: 100%;
     height: auto;
     transform: none !important;
   }
 
-  .horizontalScroll__item {
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__item {
     width: 100%;
     height: auto;
     min-height: 80svh;
     padding-inline: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .horizontalScroll[data-preserve-small="true"] .horizontalScroll__item {
+    padding-inline: $page-gutter;
   }
 }
 
