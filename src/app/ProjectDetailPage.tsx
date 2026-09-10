@@ -6,8 +6,8 @@ import collections from "@/data/collections.json";
 import pages from "@/data/pages.json";
 import projectDetailData from "@/data/projectDetail.json";
 import type {
-  BlockRef,
   MetaItem,
+  PageBlock,
   PageData,
   ProjectRecord,
   SectionBlock,
@@ -38,7 +38,7 @@ type ProjectDetailConfig = {
   };
   cta: SectionTemplate;
   related: SectionTemplate;
-  footer: BlockRef;
+  footer: PageBlock;
 };
 
 const projectDetail = projectDetailData as ProjectDetailConfig;
