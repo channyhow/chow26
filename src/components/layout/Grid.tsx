@@ -80,16 +80,11 @@ export function Grid({
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
   const [range, setRange] = useState<GridRange>(initialRange);
-  const [visibleCount, setVisibleCount] = useState(() =>
-    progressive ? initialRange.initial : childArray.length,
-  );
+  const [visibleCount, setVisibleCount] = useState(() => initialRange.initial);
   const animateGrid = motionEnabled && !reduceMotion;
 
   useEffect(() => {
-    if (!progressive) {
-      setVisibleCount(childArray.length);
-      return;
-    }
+    if (!progressive) return;
 
     const desktop = window.matchMedia(responsiveQueries.desktopUp);
     const tablet = window.matchMedia(responsiveQueries.tabletUp);
@@ -100,7 +95,6 @@ export function Grid({
       setVisibleCount((current) => Math.max(next.initial, current));
     };
 
-    syncRange();
     desktop.addEventListener("change", syncRange);
     tablet.addEventListener("change", syncRange);
 
@@ -108,10 +102,11 @@ export function Grid({
       desktop.removeEventListener("change", syncRange);
       tablet.removeEventListener("change", syncRange);
     };
-  }, [childArray.length, progressive]);
+  }, [progressive]);
 
-  const visibleChildren = progressive ? childArray.slice(0, visibleCount) : childArray;
-  const hasMore = progressive && visibleCount < childArray.length;
+  const effectiveVisibleCount = progressive ? visibleCount : childArray.length;
+  const visibleChildren = progressive ? childArray.slice(0, effectiveVisibleCount) : childArray;
+  const hasMore = progressive && effectiveVisibleCount < childArray.length;
   const usesDrawMotion = motionPreset === "draw";
   const usesEditorialPlacement = Boolean(placements?.some(Boolean));
 
@@ -162,7 +157,7 @@ export function Grid({
           className="gridReveal__more"
           type="button"
           aria-controls="project-grid"
-          aria-expanded={visibleCount >= childArray.length}
+          aria-expanded={effectiveVisibleCount >= childArray.length}
           onClick={() => setVisibleCount((current) => Math.min(current + range.step, childArray.length))}
         >
           <span>Voir plus</span>
