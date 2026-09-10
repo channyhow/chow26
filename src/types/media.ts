@@ -16,8 +16,8 @@ type MediaBase = {
   id: string;
   type: MediaKind;
   alt?: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   fit?: MediaFit;
   focalPoint?: FocalPoint;
   caption?: string;
@@ -27,13 +27,18 @@ type MediaBase = {
   sourceUrl?: string;
 };
 
-export type ImageMediaItem = MediaBase & {
+type IntrinsicDimensions = {
+  width: number;
+  height: number;
+};
+
+export type ImageMediaItem = MediaBase & IntrinsicDimensions & {
   type: "image";
   src: string;
   sources?: MediaSource[];
 };
 
-export type VideoMediaItem = MediaBase & {
+export type VideoMediaItem = MediaBase & IntrinsicDimensions & {
   type: "video";
   src: string;
   poster?: string;
