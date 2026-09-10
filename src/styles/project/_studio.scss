@@ -206,6 +206,10 @@
     padding-top: 0;
   }
 
+  #studio-services .card__body .textBlock__title {
+    display: none;
+  }
+
   #studio-services .card__body .textBlock__meta > * {
     grid-template-columns: 1fr;
     gap: $flow-tight;
