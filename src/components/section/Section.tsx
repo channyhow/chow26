@@ -129,54 +129,61 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     </ScrollScene>
   ));
 
+  const motionLayer = (
+    content: ReactNode,
+    direction: "forward" | "reverse" = "forward",
+    className = "section__scrollLayer",
+  ) => content ? (
+    shouldTrackScroll ? (
+      <ScrollScene
+        preset={scenePreset}
+        intensity={sceneIntensity}
+        direction={direction}
+        range={sceneRange}
+        className={className}
+        decorative={false}
+        progress={scrollProgress}
+      >
+        {content}
+      </ScrollScene>
+    ) : content
+  ) : null;
+
   const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
 
   if (layout === "split") {
     const primary = header ? <TextBlock content={header} /> : null;
-    body = shouldTrackScroll ? (
-      <Split
-        primary={primary ? (
-          <ScrollScene
-            preset={scenePreset}
-            intensity={sceneIntensity}
-            direction="forward"
-            range={sceneRange}
-            className="section__scrollLayer"
-            decorative={false}
-            progress={scrollProgress}
-          >
-            {primary}
-          </ScrollScene>
-        ) : null}
-        secondary={secondary ? (
-          <ScrollScene
-            preset={scenePreset}
-            intensity={sceneIntensity}
-            direction="reverse"
-            range={sceneRange}
-            className="section__scrollLayer"
-            decorative={false}
-            progress={scrollProgress}
-          >
-            {secondary}
-          </ScrollScene>
-        ) : null}
-      />
-    ) : <Split primary={primary} secondary={secondary} />;
-  } else if (layout === "media-overlay") {
     body = (
-      <div className="section__mediaOverlay">
-        {media ? <Media media={media} className="section__media" sizes="100vw" /> : null}
-        {header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}
-      </div>
+      <Split
+        primary={motionLayer(primary, "forward")}
+        secondary={motionLayer(secondary, "reverse")}
+      />
     );
+  } else if (layout === "media-overlay") {
+    const mediaLayer = media
+      ? motionLayer(<Media media={media} className="section__media" sizes="100vw" />, "reverse", "section__scrollLayer section__scrollLayer--media")
+      : null;
+    const copyLayer = header
+      ? motionLayer(
+          <div className="section__overlayContent">
+            <TextBlock content={header} titleAs="h1" className="section__header" />
+          </div>,
+          "forward",
+          "section__scrollLayer section__scrollLayer--copy",
+        )
+      : null;
+
+    body = <div className="section__mediaOverlay">{mediaLayer}{copyLayer}</div>;
   } else if (layout === "gallery") {
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null)}</>;
+    const gallery = mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(gallery, "reverse"))}</>;
   } else if (layout === "carousel") {
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null)}</>;
+    const carousel = cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(carousel, "reverse"))}</>;
   } else if (layout === "timeline") {
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null)}</>;
+    const timeline = items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(timeline, "reverse"))}</>;
   } else if (layout === "horizontal-scroll") {
     body = (
       <>
@@ -194,24 +201,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   } else if (layout === "content-switcher") {
     body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}</>;
   } else if (layout === "media") {
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media ? <Media media={media} className="section__media" /> : null)}</>;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
-    body = <>{header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsCollection ? content : null)}</>;
+    body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
-
-  const sceneBody = shouldTrackScroll && layout !== "split" ? (
-    <ScrollScene
-      preset={scenePreset}
-      intensity={sceneIntensity}
-      range={sceneRange}
-      className="section__scrollScene"
-      decorative={false}
-      progress={scrollProgress}
-    >
-      <div className="section__inner">{body}</div>
-    </ScrollScene>
-  ) : null;
 
   return (
     <motion.section
@@ -231,7 +225,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       data-motion-intensity={sceneIntensity}
     >
       {shouldTrackScroll ? (
-        layout === "split" ? <div className="section__inner">{body}</div> : sceneBody
+        <div className="section__inner">{body}</div>
       ) : (
         <motion.div
           className="section__inner"
