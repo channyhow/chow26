@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion } from "motion/react";
 
@@ -29,9 +29,11 @@ export type SectionProps = {
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
+const mobileCarouselQuery = "(max-width: 29.999rem)";
 
 export function Section({ block, suppressSceneMotion = false, visualContext = "own" }: SectionProps) {
   const reduceMotion = useReducedMotion();
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
@@ -51,9 +53,22 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
-  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header
+  const useProjectCarouselOnMobile = isMobileViewport
+    && layout === "grid"
+    && block.source?.collection === "projects"
+    && block.source.query?.featured === true;
+  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header && !useProjectCarouselOnMobile
     ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(mobileCarouselQuery);
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   const cards = items.map((item, index) => (
     <Card
@@ -63,23 +78,27 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       effect={block.itemAppearance?.effect}
     />
   ));
-  const cardsGrid = cards.length ? (
-    <Grid
-      progressive={Boolean(block.progressive)}
-      lead={projectGridLead}
-      motionPreset={block.motionPreset}
-      placements={items.map((item) => item.grid)}
-      motionEnabled={motionEnabled && motionLevel !== "none"}
-    >
-      {cards}
-    </Grid>
+  const cardsCollection = cards.length ? (
+    useProjectCarouselOnMobile ? (
+      <Carousel>{cards}</Carousel>
+    ) : (
+      <Grid
+        progressive={Boolean(block.progressive)}
+        lead={projectGridLead}
+        motionPreset={block.motionPreset}
+        placements={items.map((item) => item.grid)}
+        motionEnabled={motionEnabled && motionLevel !== "none"}
+      >
+        {cards}
+      </Grid>
+    )
   ) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media
     ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" />
     : form
       ? <Form schema={form} />
-      : cardsGrid;
+      : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
     const id = item.id ?? `item-${index + 1}`;
     const label = item.title ?? (typeof item.eyebrow === "string" ? item.eyebrow : item.eyebrow?.[0]);
@@ -174,8 +193,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   } else if (layout === "media") {
     body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(media ? <Media media={media} className="section__media" /> : null)}</>;
   } else {
-    const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsGrid}</>;
-    body = <>{header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsGrid ? content : null)}</>;
+    const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
+    body = <>{header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null}{region(media || form || cardsCollection ? content : null)}</>;
   }
 
   const sceneBody = shouldTrackScroll && layout !== "split" ? (
@@ -200,6 +219,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       data-visual-context={visualContext}
       data-surface={ownsVisualPlane ? block.surface : undefined}
       data-color={ownsVisualPlane ? block.color : undefined}
+      data-source={block.source?.collection}
+      data-featured={block.source?.query?.featured === true ? "true" : undefined}
       data-motion={motionLevel}
       data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)}
       data-motion-range={block.motionRange}
