@@ -90,11 +90,13 @@
     content: "→";
     position: absolute;
     top: 50%;
-    right: $space-1;
+    right: $space-3;
     z-index: $z-raised;
-    font-size: $type-heading-md;
+    font-size: 2.25rem;
+    font-weight: 500;
     line-height: 1;
     pointer-events: none;
+    transform: translateY(-50%);
     animation: carousel-next-cue 1.6s $ease-soft infinite;
   }
 
@@ -130,11 +132,11 @@
 @keyframes carousel-next-cue {
   0%,
   100% {
-    transform: translateX(0);
+    transform: translate(-0.15rem, -50%);
   }
 
   50% {
-    transform: translateX(0.35rem);
+    transform: translate(0.25rem, -50%);
   }
 }
 
@@ -150,6 +152,7 @@
 
   .carousel[data-can-next="true"]::after {
     animation: none;
+    transform: translateY(-50%);
   }
 }
 
