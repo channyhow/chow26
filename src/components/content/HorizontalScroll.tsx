@@ -15,9 +15,15 @@ export type HorizontalScrollProps = {
   children: ReactNode;
   className?: string;
   labels?: string[];
+  preserveOnSmallScreens?: boolean;
 };
 
-export function HorizontalScroll({ children, className, labels }: HorizontalScrollProps) {
+export function HorizontalScroll({
+  children,
+  className,
+  labels,
+  preserveOnSmallScreens = false,
+}: HorizontalScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const count = Children.count(children);
@@ -40,7 +46,12 @@ export function HorizontalScroll({ children, className, labels }: HorizontalScro
   const hasLabels = labels?.length === count;
 
   return (
-    <div ref={ref} className={clsx("horizontalScroll", className)} style={style}>
+    <div
+      ref={ref}
+      className={clsx("horizontalScroll", className)}
+      style={style}
+      data-preserve-small={preserveOnSmallScreens || undefined}
+    >
       <div className="horizontalScroll__viewport">
         {hasLabels ? (
           <div className="horizontalScroll__progress" aria-hidden="true">
