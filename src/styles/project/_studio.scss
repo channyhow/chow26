@@ -518,7 +518,7 @@
 }
 
 #studio-founders .card {
-  @include site-grid(0);
+  @include site-grid;
   align-items: center;
   width: 100%;
   max-width: none;
