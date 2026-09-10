@@ -15,7 +15,7 @@
         "panels": [
           {
             "id": "home-opening-panel",
-            "behavior": "fixed",
+            "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -216,8 +216,8 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "special",
+            "surface": "glass",
+            "color": "secondary",
             "blocks": [
               {
                 "id": "studio-approach",
