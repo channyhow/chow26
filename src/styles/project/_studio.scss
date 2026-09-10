@@ -224,6 +224,11 @@
     padding-block: 0;
   }
 
+  #studio-services .card__media {
+    aspect-ratio: $ratio-wide;
+    @include media-frame($ratio-wide);
+  }
+
   #studio-services .card__body .textBlock {
     gap: $flow-tight;
   }
