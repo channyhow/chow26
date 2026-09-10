@@ -208,6 +208,32 @@
   }
 }
 
+@include mobile-down {
+  #studio-services .horizontalScroll__item {
+    align-items: start;
+    padding-top: calc(#{$header-height} + #{$space-3});
+    padding-bottom: $space-3;
+  }
+
+  #studio-services .card {
+    row-gap: $space-2;
+    padding-block: 0;
+  }
+
+  #studio-services .card__body .textBlock {
+    gap: $flow-tight;
+  }
+
+  #studio-services .card__body .textBlock__title,
+  #studio-services .card__body .textBlock__content {
+    display: none;
+  }
+
+  #studio-services .card__body .textBlock__meta {
+    margin-top: $space-2;
+  }
+}
+
 /* ==================================
    STUDIO — SHARED EDITORIAL GRID
 ================================== */
