@@ -396,10 +396,8 @@
     width: 100%;
   }
 
-  #projects-featured-gallery .grid__item:nth-child(1) .card__mediaWrap,
-  #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap,
-  #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
-    aspect-ratio: $ratio-landscape;
+  #projects-featured-gallery .grid__item .card__mediaWrap {
+    aspect-ratio: $ratio-wide;
   }
 
   #home-services .media__frame,
