@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useReducedMotion } from "motion/react";
+import { useReducedMotion, useScroll, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
@@ -14,7 +14,12 @@ import type {
   SectionGroup as SectionGroupData,
 } from "@/types/content";
 
-function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel = false) {
+function renderBlocks(
+  blocks: PanelBlock[],
+  suppressSceneMotion = false,
+  inPanel = false,
+  scrollProgress?: MotionValue<number>,
+) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
       const block = resolveBlock(entry.ref);
@@ -30,6 +35,7 @@ function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel
           block={block}
           suppressSceneMotion={suppressSceneMotion}
           visualContext={inPanel ? "inherit" : "own"}
+          scrollProgress={scrollProgress}
         />
       );
     }
@@ -40,6 +46,7 @@ function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel
         block={entry}
         suppressSceneMotion={suppressSceneMotion}
         visualContext={inPanel ? "inherit" : "own"}
+        scrollProgress={scrollProgress}
       />
     );
   });
@@ -71,6 +78,10 @@ function Panel({
   const ref = useRef<HTMLDivElement>(null);
   const needsStickyOffset = behavior === "stack" || behavior === "cover";
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
   useEffect(() => {
     if (!needsStickyOffset) return;
@@ -115,7 +126,7 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, false, true)}
+      {renderBlocks(blocks, false, true, scrollYProgress)}
     </div>
   );
 }
