@@ -178,6 +178,10 @@
     --studio-service-media: 28rem;
   }
 
+  #studio-services .horizontalScroll__progress {
+    display: none;
+  }
+
   #studio-services .horizontalScroll__item {
     justify-items: stretch;
     padding-inline: $page-gutter;
@@ -230,6 +234,7 @@
   }
 
   #studio-services .card__body .textBlock__meta {
+    display: grid;
     margin-top: $space-2;
   }
 }
