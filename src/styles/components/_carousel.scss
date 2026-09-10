@@ -138,5 +138,30 @@
 }
 
 @include tablet-up {
-  .carousel__track { grid-auto-columns: minmax(22rem, 38%); }
+  .carousel__track {
+    grid-auto-columns: minmax(22rem, 38%);
+  }
+
+  .carousel__controls {
+    position: absolute;
+    top: 50%;
+    right: $space-2;
+    z-index: $z-raised;
+    gap: $flow-tight;
+    transform: translateY(-50%);
+  }
+
+  .carousel__control {
+    --radius-control: #{$radius-none};
+    width: clamp(3.5rem, 4.5vw, 4rem);
+    border-width: 2px;
+    background: var(--secondary);
+    font-weight: $font-weight-strong;
+  }
+
+  .carousel__arrow {
+    width: 1.85rem;
+    height: 1.85rem;
+    stroke-width: 2.25;
+  }
 }
