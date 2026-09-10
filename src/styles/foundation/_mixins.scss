@@ -87,6 +87,38 @@
   padding: 0;
 }
 
+// Shared previous / next navigation language for carousels and similar
+// directional interfaces. Keep these controls graphic and legible rather than
+// treating them like tiny utility icons.
+@mixin navigation-control {
+  @include interactive-control;
+  display: grid;
+  place-items: center;
+  width: clamp(3.25rem, 4vw, 3.5rem);
+  aspect-ratio: $ratio-square;
+  padding: 0;
+  border-width: 1.5px;
+  font-weight: $font-weight-semibold;
+  -webkit-tap-highlight-color: transparent;
+
+  &:disabled {
+    cursor: default;
+    opacity: $opacity-disabled;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  @include hover {
+    &:not(:disabled) {
+      color: var(--secondary);
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+  }
+}
+
 @mixin field-control {
   width: 100%;
   min-width: 0;
