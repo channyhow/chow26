@@ -213,13 +213,38 @@
 }
 
 @include between($bp-tablet, $bp-desktop) {
+  /* Tablet keeps the same asymmetric editorial relationship as desktop rather
+     than expanding every opening element to full width. */
+  #home-opening .section__media {
+    align-self: end;
+    justify-self: end;
+    width: 58%;
+    height: 44svh;
+  }
+
+  #home-opening .section__media .media__frame,
+  #home-opening .section__media .media__asset {
+    height: 100%;
+  }
+
+  #home-opening .section__header.textBlock {
+    align-items: end;
+  }
+
   #home-opening .textBlock__header,
   #home-opening .textBlock__title {
-    grid-column: 1 / -1;
+    grid-column: 1 / span 5;
+  }
+
+  #home-opening .textBlock__title {
+    font-size: clamp(3.25rem, 7vw, 5.25rem);
   }
 
   #home-opening .textBlock__content {
-    grid-column: 5 / -1;
+    grid-column: 6 / -1;
+    max-width: 24rem;
+    margin-top: 0;
+    align-self: start;
   }
 
   #projects-featured-gallery .section__header {
