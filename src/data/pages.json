@@ -493,12 +493,27 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "secondary",
+            "color": "special",
             "blocks": [{ "ref": "contact-default" }]
           }
         ]
       },
-      { "ref": "site-footer" }
+     {
+  "id": "contact-footer-panel",
+  "type": "Group",
+  "layout": "scroll-panel",
+  "panels": [
+    {
+      "id": "contact-footer",
+      "behavior": "moving",
+      "size": "full",
+      "align": "center",
+      "surface": "glass",
+      "color": "primary",
+      "blocks": [{ "ref": "site-footer" }]
+    }
+  ]
+}
     ]
   },
   {

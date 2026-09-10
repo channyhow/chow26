@@ -2,6 +2,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
+
+
 .projectDetail {
   --project-measure: 36rem;
   --project-media-measure: 34rem;
@@ -40,8 +42,9 @@
 .projectHero .textBlock__title {
   @include type-display-lg;
   max-width: 10ch;
-  letter-spacing: -0.045em;
-  line-height: 0.94;
+  // letter-spacing: -0.045em;
+  // line-height: 0.94;
+  text-transform: uppercase;
 }
 
 .projectHero .textBlock__subtitle {

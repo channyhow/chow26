@@ -157,6 +157,12 @@ body:has(#home-opening) .header {
   padding-inline: 0;
 }
 
+@include mobile-down {
+  #project-gallery .textBlock__header .textBlock__title {
+    max-width: none;
+  }
+}
+
 /* ==================================
    APPROACH
    Horizontal mechanics belong to the shared HorizontalScroll/Timeline system.
@@ -491,12 +497,12 @@ body:has(#home-opening) .header {
     width: 100%;
   }
 
-  #cgv-default,
-  #legal-notice-default,
-  #privacy-default {
-    --section-space: $space-4;
-    --section-gap: $space-3;
-  }
+  // #cgv-default,
+  // #legal-notice-default,
+  // #privacy-default {
+  //   --section-space: $space-4;
+  //   --section-gap: $space-3;
+  // }
 
   #cgv-default .section__header .textBlock__title,
   #legal-notice-default .section__header .textBlock__title,
@@ -549,12 +555,12 @@ body:has(#home-opening) .header {
     text-align: left;
   }
 
-  #cgv-default,
-  #legal-notice-default,
-  #privacy-default {
-    --section-space: $space-4;
-    --section-gap: $space-2;
-  }
+  // #cgv-default,
+  // #legal-notice-default,
+  // #privacy-default {
+  //   --section-space: $space-4;
+  //   --section-gap: $space-2;
+  // }
 
   #cgv-default .section__header .textBlock__title,
   #legal-notice-default .section__header .textBlock__title,

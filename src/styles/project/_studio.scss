@@ -173,6 +173,35 @@
   }
 }
 
+@include tablet-up {
+  @include desktop-down {
+    #studio-services .card {
+      @include site-grid;
+      width: 100%;
+      align-items: start;
+      gap: 0;
+    }
+
+    #studio-services .card__mediaWrap {
+      grid-column: 1 / span 4;
+    }
+
+    #studio-services .card__media {
+      @include media-frame($ratio-portrait);
+    }
+
+    #studio-services .card__body {
+      grid-column: 5 / span 4;
+      max-width: none;
+      padding: 0 0 0 $space-3;
+      .textBlock__title {
+        display: none;
+      }
+    }
+
+  }
+}
+
 @include tablet-down {
   #studio-services {
     --studio-service-media: 28rem;
