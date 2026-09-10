@@ -164,7 +164,9 @@
             "Avant le web, **Channy How** a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France.",
             "Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
           ],
-          "media": ["studio-founder-1"]
+          "media": [
+            "studio-founder-1"
+          ]
         }
       ]
     }
@@ -173,7 +175,9 @@
     "id": "approach-method",
     "type": "Section",
     "layout": "grid",
-    "source": { "collection": "approach" },
+    "source": {
+      "collection": "approach"
+    },
     "content": {
       "header": {
         "title": "Clarifier, structurer, concevoir, livrer.",
@@ -189,7 +193,10 @@
     "layout": "carousel",
     "source": {
       "collection": "journal",
-      "query": { "featured": true, "limit": 3 }
+      "query": {
+        "featured": true,
+        "limit": 3
+      }
     },
     "content": {
       "header": {
@@ -199,7 +206,10 @@
         ]
       }
     },
-    "itemAppearance": { "frame": true, "effect": "none" }
+    "itemAppearance": {
+      "frame": true,
+      "effect": "none"
+    }
   },
   "contact-default": {
     "id": "contact-default",
@@ -265,7 +275,10 @@
     "layout": "list",
     "source": {
       "collection": "links",
-      "query": { "group": "primary", "enabled": true }
+      "query": {
+        "group": "primary",
+        "enabled": true
+      }
     }
   },
   "legal-notice-default": {
@@ -287,7 +300,9 @@
         },
         {
           "title": "Direction de la publication",
-          "text": ["Directrice de la publication : Channy How-Choong."]
+          "text": [
+            "Directrice de la publication : Channy How-Choong."
+          ]
         },
         {
           "title": "Design & développement",
@@ -312,6 +327,59 @@
           "title": "Données personnelles",
           "text": [
             "Les informations relatives au traitement des données personnelles, aux formulaires et aux droits des personnes sont détaillées dans la page Confidentialité & données personnelles."
+          ]
+        }
+      ]
+    }
+  },
+  "terms-of-sale-default": {
+    "id": "terms-of-sale-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "title": "Conditions de vente",
+        "text": [
+          "Ces conditions encadrent les prestations réalisées par Chow Studio. Le devis ou la proposition commerciale précise le périmètre propre à chaque projet et complète ces conditions."
+        ]
+      },
+      "items": [
+        {
+          "title": "Devis & périmètre",
+          "text": [
+            "Le devis ou la proposition commerciale définit les livrables, le périmètre, le prix, le calendrier indicatif et, le cas échéant, le nombre de cycles de révisions inclus. Toute prestation qui dépasse ce périmètre peut faire l’objet d’un devis ou d’une facturation complémentaire."
+          ]
+        },
+        {
+          "title": "Révisions & modifications",
+          "text": [
+            "Les prestations peuvent inclure un nombre limité de révisions, défini dans le devis ou la proposition commerciale. Une révision correspond à un ajustement apporté dans le cadre du périmètre, du contenu et de la direction préalablement validés.",
+            "Une demande qui modifie le brief, le périmètre, la direction créative, les fonctionnalités ou un élément déjà validé ne constitue pas une révision. Elle est considérée comme une modification ou une prestation complémentaire et peut faire l’objet d’un devis ou d’une facturation supplémentaire."
+          ]
+        },
+        {
+          "title": "Paiement",
+          "text": [
+            "Les montants, échéances, acomptes éventuels et modalités de paiement sont indiqués dans le devis et les factures correspondantes. Le démarrage ou la poursuite d’une prestation peut être conditionné au règlement des sommes prévues."
+          ]
+        },
+        {
+          "title": "Délais & collaboration",
+          "text": [
+            "Le calendrier dépend notamment de la transmission des contenus, validations et retours nécessaires au projet. Un retard dans ces éléments peut entraîner un décalage du planning sans modifier automatiquement le périmètre convenu."
+          ]
+        },
+        {
+          "title": "Livraison & fichiers sources",
+          "text": [
+            "La livraison porte sur les éléments et formats prévus au devis. Les fichiers de travail, fichiers sources ou éléments éditables ne sont inclus que lorsqu’ils sont expressément prévus dans la prestation."
+          ]
+        },
+        {
+          "title": "Propriété intellectuelle des prestations",
+          "text": [
+            "Les créations réalisées par Chow Studio restent soumises aux droits de propriété intellectuelle de leur autrice. Les droits d’exploitation éventuellement cédés ou concédés au client sont ceux expressément prévus dans le devis, le contrat ou tout accord écrit applicable.",
+            "La livraison ou le paiement d’une création n’emporte pas, à lui seul, cession générale des droits de reproduction, d’adaptation ou de modification. Les déclinaisons, adaptations ou animations d’une identité visuelle doivent rester dans le cadre des droits effectivement accordés et respecter le droit moral de l’autrice."
           ]
         }
       ]
@@ -385,9 +453,21 @@
           "Design web  | Identité visuelle  | Direction digitale  | Paris  | La Réunion"
         ],
         "links": [
-          { "label": "Accueil", "href": "/", "intent": "navigate" },
-          { "label": "Projets", "href": "/projets", "intent": "navigate" },
-          { "label": "Studio", "href": "/studio", "intent": "navigate" },
+          {
+            "label": "Accueil",
+            "href": "/",
+            "intent": "navigate"
+          },
+          {
+            "label": "Projets",
+            "href": "/projets",
+            "intent": "navigate"
+          },
+          {
+            "label": "Studio",
+            "href": "/studio",
+            "intent": "navigate"
+          },
           {
             "label": "Contact",
             "href": "/contact",
@@ -404,7 +484,11 @@
             "href": "https://www.linkedin.com/in/channyhow",
             "intent": "navigate"
           },
-          { "label": "CGV", "href": "/cgv", "intent": "navigate" },
+          {
+            "label": "CGV",
+            "href": "/cgv",
+            "intent": "navigate"
+          },
           {
             "label": "Confidentialité",
             "href": "/confidentialite",
@@ -421,7 +505,9 @@
             "label": "Design et développement",
             "value": "Channy How"
           },
-          { "label": "© 2026 Chow Studio | Tous droits réservés" }
+          {
+            "label": "© 2026 Chow Studio | Tous droits réservés"
+          }
         ]
       }
     }
@@ -441,7 +527,11 @@
           "Revenez à l’accueil ou poursuivez avec les projets du studio."
         ],
         "links": [
-          { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
+          {
+            "label": "Retour à l’accueil",
+            "href": "/",
+            "intent": "navigate"
+          },
           {
             "label": "Voir les projets",
             "href": "/projets",
