@@ -401,10 +401,9 @@
     display: grid;
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: calc(100% - #{$space-3});
+    grid-auto-columns: 100%;
     gap: $space-2;
     width: 100%;
-    padding-right: $space-3;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
@@ -417,6 +416,8 @@
   }
 
   #studio-approach .grid--editorial > .grid__item {
+    display: flex;
+    align-items: center;
     grid-column: auto;
     grid-row: auto;
     width: 100%;
@@ -424,10 +425,15 @@
     scroll-snap-align: start;
   }
 
+  #studio-approach .grid__item .card,
+  #studio-approach .grid__item .card__body,
+  #studio-approach .grid__item .textBlock {
+    width: 100%;
+    max-width: none;
+  }
+
   #studio-approach .grid__item:first-child {
     position: relative;
-    display: flex;
-    align-items: center;
   }
 
   #studio-approach .grid__item:first-child::after {
@@ -440,10 +446,6 @@
     line-height: 1;
     pointer-events: none;
     animation: studio-approach-cue 1.6s $ease-soft infinite;
-  }
-
-  #studio-approach .grid__item:first-child .card {
-    width: 100%;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
