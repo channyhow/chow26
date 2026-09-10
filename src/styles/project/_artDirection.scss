@@ -312,6 +312,12 @@ body:has(#home-opening) .header {
   text-transform: uppercase;
 }
 
+#cgv-default .card__body,
+#legal-notice-default .card__body,
+#privacy-default .card__body {
+  padding-inline: 0;
+}
+
 /* ==================================
    RESPONSIVE PAGE COMPOSITION
 ================================== */
@@ -488,7 +494,7 @@ body:has(#home-opening) .header {
   #cgv-default,
   #legal-notice-default,
   #privacy-default {
-    --section-space: $space-3;
+    --section-space: $space-4;
     --section-gap: $space-3;
   }
 
@@ -546,8 +552,8 @@ body:has(#home-opening) .header {
   #cgv-default,
   #legal-notice-default,
   #privacy-default {
-    --section-space: $space-2;
-    --section-gap: $space-3;
+    --section-space: $space-4;
+    --section-gap: $space-2;
   }
 
   #cgv-default .section__header .textBlock__title,
