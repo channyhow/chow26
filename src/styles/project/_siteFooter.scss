@@ -12,7 +12,7 @@
     clamp(#{$space-3}, 4vw, #{$space-4});
   // color: var(--secondary);
   // background: var(--primary);
-    opacity:$opacity-soft;
+    // opacity:$opacity-soft;
 
 }
 
@@ -28,6 +28,8 @@
   display: grid;
   gap: $section-content-gap;
   align-items: start;
+      opacity:$opacity-muted;
+
 }
 
 .siteFooter__identity {
@@ -97,7 +99,9 @@
   gap: $flow-tight;
   width: 100%;
   padding-top: $flow-default;
-  border-top: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+      opacity:$opacity-soft;
+
+  // border-top: 1px solid color-mix(in srgb, currentColor 42%, transparent);
 }
 
 @include tablet-up {
