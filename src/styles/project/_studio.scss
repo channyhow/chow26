@@ -13,6 +13,7 @@
   --studio-service-copy: 28rem;
   --studio-service-gap: clamp(#{$space-3}, 5vw, #{$space-5});
   scroll-margin-top: calc(#{$header-height} + #{$space-2});
+  padding-inline: 0;
 }
 
 #studio-services > .section__inner {
@@ -60,6 +61,7 @@
 
 #studio-services .horizontalScroll__item {
   justify-items: center;
+  padding-inline: $page-gutter;
 }
 
 #studio-services .card {
@@ -173,16 +175,12 @@
 
 @include tablet-down {
   #studio-services {
-    --section-space: #{$section-space};
     --studio-service-media: 28rem;
-  }
-
-  #studio-services > .section__inner {
-    padding-inline: $page-gutter;
   }
 
   #studio-services .horizontalScroll__item {
     justify-items: stretch;
+    padding-inline: $page-gutter;
   }
 
   #studio-services .card {
@@ -258,7 +256,6 @@
 
 #studio-approach .grid__item:first-child {
   width: 100%;
-  padding-inline: $space-2;
 }
 
 #studio-approach .card {
@@ -305,19 +302,19 @@
 
 @include tablet-down {
   #studio-approach {
+    --section-space: $space-4;
+    --section-row-gap: $space-3;
     min-height: auto;
     justify-content: initial;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-lg;
-    max-width: 9ch;
+    max-width: 10ch;
   }
 
   #studio-approach .grid__item:not(:first-child) .card {
-    border-top: 1px solid var(--studio-grid-line);
-    padding-inline: 0;
-    padding-top: $space-2;
+    padding: 0;
   }
 }
 
@@ -367,9 +364,9 @@
 }
 
 #studio-founders .card__mediaWrap {
-  grid-column: 2 / span 2;
+  grid-column: 1 / span 4;
   min-width: 0;
-  padding: $space-2;
+  padding: 0;
   background: transparent;
 }
 
@@ -397,7 +394,7 @@
   gap: $flow-default;
   width: 100%;
   max-width: none;
-  padding: $space-2;
+  padding: $space-2 0;
 }
 
 #studio-founders .card__body .textBlock__title {
@@ -456,13 +453,7 @@
     row-gap: $space-3;
   }
 
-  #studio-founders .card__mediaWrap,
   #studio-founders .card__body.textBlock {
-    padding-inline: 0;
-  }
-
-  #studio-founders .card__body.textBlock {
-    border-top: 1px solid var(--studio-grid-line);
-    padding-top: $space-2;
+    padding-top: 0;
   }
 }
