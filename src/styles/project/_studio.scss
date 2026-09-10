@@ -214,18 +214,18 @@
    STUDIO — SHARED EDITORIAL GRID
 ================================== */
 
-@include desktop-up {
-  .sectionGroup__panel:has(#studio-approach),
-  .sectionGroup__panel:has(#studio-founders) {
-    position: relative;
-    top: auto;
-    min-height: auto;
-  }
+// @include desktop-up {
+//   .sectionGroup__panel:has(#studio-approach),
+//   .sectionGroup__panel:has(#studio-founders) {
+//     position: relative;
+//     top: auto;
+//     min-height: auto;
+//   }
 
-  .sectionGroup__panel:has(#studio-founders) {
-    background: var(--theme-special);
-  }
-}
+//   .sectionGroup__panel:has(#studio-founders) {
+//     background: var(--theme-special);
+//   }
+// }
 
 #studio-approach,
 #studio-founders {
@@ -233,31 +233,33 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+    justify-content: center;
+  
 }
 
-#studio-approach::before,
-#studio-founders::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc((100% / #{$grid-columns-desktop}) - 1px),
-      var(--studio-grid-line) calc((100% / #{$grid-columns-desktop}) - 1px),
-      var(--studio-grid-line) calc(100% / #{$grid-columns-desktop})
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent calc(clamp(5rem, 10vh, 8rem) - 1px),
-      var(--studio-grid-line) calc(clamp(5rem, 10vh, 8rem) - 1px),
-      var(--studio-grid-line) clamp(5rem, 10vh, 8rem)
-    );
-}
+// #studio-approach::before,
+// #studio-founders::before {
+//   content: "";
+//   position: absolute;
+//   inset: 0;
+//   z-index: 0;
+//   pointer-events: none;
+//   background-image:
+//     repeating-linear-gradient(
+//       to right,
+//       transparent 0,
+//       transparent calc((100% / #{$grid-columns-desktop}) - 1px),
+//       var(--studio-grid-line) calc((100% / #{$grid-columns-desktop}) - 1px),
+//       var(--studio-grid-line) calc(100% / #{$grid-columns-desktop})
+//     ),
+//     repeating-linear-gradient(
+//       to bottom,
+//       transparent 0,
+//       transparent calc(clamp(5rem, 10vh, 8rem) - 1px),
+//       var(--studio-grid-line) calc(clamp(5rem, 10vh, 8rem) - 1px),
+//       var(--studio-grid-line) clamp(5rem, 10vh, 8rem)
+//     );
+// }
 
 #studio-approach > .section__inner,
 #studio-founders > .section__inner {
@@ -345,12 +347,12 @@
 #studio-approach .grid__item:not(:first-child) .card {
   height: 100%;
   padding: $space-2;
-  border-left: 1px solid var(--studio-grid-line);
+  // border-left: 1px solid var(--studio-grid-line);
 }
 
-#studio-approach .grid__item:last-child .card {
-  border-right: 1px solid var(--studio-grid-line);
-}
+// #studio-approach .grid__item:last-child .card {
+//   border-right: 1px solid var(--studio-grid-line);
+// }
 
 #studio-approach .card__body {
   padding: 0;
@@ -463,12 +465,12 @@
 }
 
 #studio-founders .card__mediaWrap {
-  grid-column: 1 / span 4;
+  grid-column: 2 / span 2;
   min-width: 0;
   padding: $space-2;
   background: transparent;
-  border-left: 1px solid var(--studio-grid-line);
-  border-right: 1px solid var(--studio-grid-line);
+  // border-left: 1px solid var(--studio-grid-line);
+  // border-right: 1px solid var(--studio-grid-line);
 }
 
 #studio-founders .card__media {
@@ -496,8 +498,8 @@
   width: 100%;
   max-width: none;
   padding: $space-2;
-  border-left: 1px solid var(--studio-grid-line);
-  border-right: 1px solid var(--studio-grid-line);
+  // border-left: 1px solid var(--studio-grid-line);
+  // border-right: 1px solid var(--studio-grid-line);
 }
 
 #studio-founders .card__body .textBlock__title {
@@ -536,7 +538,7 @@
 
 @include desktop-up {
   #studio-founders .card__mediaWrap {
-    grid-column: 1 / span 5;
+  grid-column: 2 / span 3;
   }
 
   #studio-founders .card__body.textBlock {

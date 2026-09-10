@@ -35,11 +35,11 @@
     "className": "projectCta",
     "content": {
       "header": {
-        "title": "Quelque chose en tête ?",
-        "text": ["Une idée, un projet à faire évoluer ou une présence à construire."],
+        "title": "Un projet similaire en tête ?",
+        "text": ["Une identité à construire, un site à faire évoluer ou une idée à concrétiser."],
         "links": [
           {
-            "label": "Parler d’un projet",
+            "label": "Envoyer un message",
             "href": "/contact",
             "intent": "contact",
             "priority": "primary",
