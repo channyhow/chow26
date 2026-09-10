@@ -354,6 +354,68 @@
   }
 }
 
+@include mobile-down {
+  #studio-approach {
+    --section-space: $space-4;
+    overflow: hidden;
+  }
+
+  #studio-approach .gridReveal {
+    overflow: visible;
+  }
+
+  #studio-approach .grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(84vw, 24rem);
+    gap: $space-2;
+    width: calc(100% + #{$page-gutter});
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #studio-approach .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #studio-approach .grid--editorial > .grid__item {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    min-height: 52svh;
+    scroll-snap-align: start;
+  }
+
+  #studio-approach .grid__item:first-child {
+    display: flex;
+    align-items: center;
+  }
+
+  #studio-approach .grid__item:first-child .card {
+    width: 100%;
+  }
+
+  #studio-approach .grid__item:first-child .textBlock__title {
+    @include type-heading-xl;
+    max-width: 9ch;
+  }
+
+  #studio-approach .grid__item:not(:first-child) .card {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+
+  #studio-approach .grid__item:not(:first-child) .textBlock__content {
+    max-width: 28ch;
+  }
+}
+
 /* ==================================
    STUDIO — FOUNDER / ABOUT
 ================================== */
