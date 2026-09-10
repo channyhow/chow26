@@ -56,7 +56,7 @@ export function Timeline({
         data-mode={mode}
         data-orientation="horizontal"
       >
-        <HorizontalScroll>
+        <HorizontalScroll preserveOnSmallScreens>
           {items.map((item, index) => (
             <motion.article
               className="timeline__item"
