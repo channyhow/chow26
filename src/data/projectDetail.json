@@ -66,5 +66,20 @@
       }
     }
   },
-  "footer": { "ref": "site-footer" }
+  "footer": {
+    "id": "project-footer-group",
+    "type": "Group",
+    "layout": "scroll-panel",
+    "panels": [
+      {
+        "id": "project-footer-panel",
+        "behavior": "moving",
+        "size": "full",
+        "align": "center",
+        "surface": "solid",
+        "color": "primary",
+        "blocks": [{ "ref": "site-footer" }]
+      }
+    ]
+  }
 }
