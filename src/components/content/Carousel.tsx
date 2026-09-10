@@ -82,7 +82,11 @@ export function Carousel({
   if (!count) return null;
 
   return (
-    <section className="carousel" aria-label={carouselLabel}>
+    <section
+      className="carousel"
+      aria-label={carouselLabel}
+      data-can-next={canNext || undefined}
+    >
       <motion.div
         ref={trackRef}
         className="carousel__track"
