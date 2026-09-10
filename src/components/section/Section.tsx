@@ -69,6 +69,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       lead={projectGridLead}
       motionPreset={block.motionPreset}
       placements={items.map((item) => item.grid)}
+      motionEnabled={motionEnabled && motionLevel !== "none"}
     >
       {cards}
     </Grid>
