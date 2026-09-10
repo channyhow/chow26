@@ -3,6 +3,7 @@
 
 .carousel {
   --carousel-media-ratio: #{$ratio-landscape};
+  position: relative;
   display: grid;
   gap: $space-2;
 }
@@ -78,6 +79,40 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
+}
+
+@include mobile-down {
+  .section[data-source="projects"][data-featured="true"] .carousel {
+    --carousel-media-ratio: #{$ratio-wide};
+  }
+
+  .section[data-source="projects"][data-featured="true"] .carousel__track {
+    grid-auto-columns: min(84vw, 24rem);
+  }
+
+  @media (pointer: coarse) {
+    .section[data-source="projects"][data-featured="true"] .carousel__controls {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .section[data-source="projects"][data-featured="true"] .carousel__controls:focus-within {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      clip-path: none;
+      white-space: normal;
+    }
+  }
 }
 
 @include reduced-motion {
