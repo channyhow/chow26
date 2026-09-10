@@ -61,7 +61,7 @@ export function ScrollScene({
   const scrollYProgress = progress ?? localScrollYProgress;
 
   const distance = (value: number) => value * sign * scale;
-  const driftY = useTransform(scrollYProgress, [0, 1], [distance(10), distance(-10)]);
+  const driftY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
   const contentY = useTransform(scrollYProgress, [0, 1], [distance(48), distance(-48)]);
   const ambientY = useTransform(scrollYProgress, [0, 1], [distance(34), distance(-34)]);
   const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-18), distance(18)]);
