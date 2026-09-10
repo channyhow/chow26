@@ -286,7 +286,7 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "special",
             "blocks": [{ "ref": "studio-founders" }]
           },
@@ -578,9 +578,10 @@
     "id": "cgv",
     "slug": "/cgv",
     "variant": "editorial",
-    "seo": {
-      "title": "Conditions générales de vente | Chow Studio"
-    },
+"seo": {
+  "title": "Conditions générales de vente | Chow Studio",
+  "description": "Consultez les conditions générales de vente de Chow Studio pour les prestations de design, identité visuelle, UX/UI et développement frontend destinées aux clients professionnels."
+},
     "blocks": [
       {
         "id": "cgv-story",

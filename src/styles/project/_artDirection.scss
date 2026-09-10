@@ -278,6 +278,17 @@ body:has(#home-opening) .header {
   @include meta-chips;
 }
 
+#cgv-default,#legal-notice-default,#privacy-default {
+.section__header{
+  max-width: none;
+.textBlock__content {
+max-width: none; }
+  .textBlock__title {
+    max-width: none;
+    font-size: 5rem;
+    text-transform: uppercase;
+  }}
+}
 /* ==================================
    RESPONSIVE PAGE COMPOSITION
 ================================== */
