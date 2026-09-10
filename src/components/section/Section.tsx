@@ -163,39 +163,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   } else if (layout === "media-overlay") {
     body = (
       <div className="section__mediaOverlay">
-        {media ? (
-          shouldTrackScroll ? (
-            <ScrollScene
-              preset={scenePreset}
-              intensity={sceneIntensity}
-              direction="reverse"
-              range={sceneRange}
-              className="section__media"
-              decorative={false}
-              progress={scrollProgress}
-            >
-              <Media media={media} sizes="100vw" />
-            </ScrollScene>
-          ) : <Media media={media} className="section__media" sizes="100vw" />
-        ) : null}
+        {media ? <Media media={media} className="section__media" sizes="100vw" /> : null}
         {header ? (
-          shouldTrackScroll ? (
-            <ScrollScene
-              preset={scenePreset}
-              intensity={sceneIntensity}
-              direction="forward"
-              range={sceneRange}
-              className="section__overlayContent"
-              decorative={false}
-              progress={scrollProgress}
-            >
-              <TextBlock content={header} titleAs="h1" className="section__header" />
-            </ScrollScene>
-          ) : (
-            <div className="section__overlayContent">
-              <TextBlock content={header} titleAs="h1" className="section__header" />
-            </div>
-          )
+          <div className="section__overlayContent">
+            <TextBlock content={header} titleAs="h1" className="section__header" />
+          </div>
         ) : null}
       </div>
     );
@@ -231,6 +203,19 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
+  const mediaOverlayScene = shouldTrackScroll && layout === "media-overlay" ? (
+    <ScrollScene
+      preset={scenePreset}
+      intensity={sceneIntensity}
+      range={sceneRange}
+      className="section__scrollScene"
+      decorative={false}
+      progress={scrollProgress}
+    >
+      <div className="section__inner">{body}</div>
+    </ScrollScene>
+  ) : null;
+
   return (
     <motion.section
       id={block.id}
@@ -248,7 +233,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       data-motion-range={block.motionRange}
       data-motion-intensity={sceneIntensity}
     >
-      {shouldTrackScroll ? (
+      {shouldTrackScroll && layout === "media-overlay" ? (
+        mediaOverlayScene
+      ) : shouldTrackScroll ? (
         <div className="section__inner">{body}</div>
       ) : (
         <motion.div
