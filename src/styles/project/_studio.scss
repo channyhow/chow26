@@ -239,6 +239,7 @@
   --section-space: clamp(#{$space-4}, 8vh, 7rem);
   --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
   min-height: 100svh;
+  justify-content: center;
 }
 
 #studio-approach > .section__inner,
@@ -305,6 +306,7 @@
 @include tablet-down {
   #studio-approach {
     min-height: auto;
+    justify-content: initial;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
