@@ -86,6 +86,18 @@
     --carousel-media-ratio: #{$ratio-wide};
   }
 
+  .section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: $space-1;
+    z-index: $z-raised;
+    font-size: $type-heading-md;
+    line-height: 1;
+    pointer-events: none;
+    animation: carousel-next-cue 1.6s $ease-soft infinite;
+  }
+
   .section[data-source="projects"][data-featured="true"] .carousel__track {
     grid-auto-columns: min(84vw, 24rem);
   }
@@ -115,6 +127,17 @@
   }
 }
 
+@keyframes carousel-next-cue {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.35rem);
+  }
+}
+
 @include reduced-motion {
   .carousel__controls button {
     transition: none;
@@ -123,6 +146,10 @@
     &:active {
       transform: none;
     }
+  }
+
+  .carousel[data-can-next="true"]::after {
+    animation: none;
   }
 }
 
