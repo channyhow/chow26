@@ -161,20 +161,44 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       />
     );
   } else if (layout === "media-overlay") {
-    const mediaLayer = media
-      ? motionLayer(<Media media={media} className="section__media" sizes="100vw" />, "reverse", "section__scrollLayer section__scrollLayer--media")
-      : null;
-    const copyLayer = header
-      ? motionLayer(
-          <div className="section__overlayContent">
-            <TextBlock content={header} titleAs="h1" className="section__header" />
-          </div>,
-          "forward",
-          "section__scrollLayer section__scrollLayer--copy",
-        )
-      : null;
-
-    body = <div className="section__mediaOverlay">{mediaLayer}{copyLayer}</div>;
+    body = (
+      <div className="section__mediaOverlay">
+        {media ? (
+          shouldTrackScroll ? (
+            <ScrollScene
+              preset={scenePreset}
+              intensity={sceneIntensity}
+              direction="reverse"
+              range={sceneRange}
+              className="section__media"
+              decorative={false}
+              progress={scrollProgress}
+            >
+              <Media media={media} sizes="100vw" />
+            </ScrollScene>
+          ) : <Media media={media} className="section__media" sizes="100vw" />
+        ) : null}
+        {header ? (
+          shouldTrackScroll ? (
+            <ScrollScene
+              preset={scenePreset}
+              intensity={sceneIntensity}
+              direction="forward"
+              range={sceneRange}
+              className="section__overlayContent"
+              decorative={false}
+              progress={scrollProgress}
+            >
+              <TextBlock content={header} titleAs="h1" className="section__header" />
+            </ScrollScene>
+          ) : (
+            <div className="section__overlayContent">
+              <TextBlock content={header} titleAs="h1" className="section__header" />
+            </div>
+          )
+        ) : null}
+      </div>
+    );
   } else if (layout === "gallery") {
     const gallery = mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null;
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(gallery, "reverse"))}</>;
