@@ -1,0 +1,623 @@
+@use "../foundation/typography" as *;
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+/* ==================================
+   STUDIO — SERVICES
+================================== */
+
+#studio-services {
+  --section-space: 0;
+  --text-width: none;
+  --studio-service-media: 30rem;
+  --studio-service-copy: 28rem;
+  --studio-service-gap: clamp(#{$space-3}, 5vw, #{$space-5});
+  scroll-margin-top: calc(#{$header-height} + #{$space-2});
+  padding-inline: 0;
+}
+
+#studio-services > .section__inner {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+}
+
+#studio-services > .section__inner > .section__header {
+  display: none;
+}
+
+#studio-services .section__body,
+#studio-services .contentSwitcher {
+  width: 100%;
+  min-width: 0;
+}
+
+#studio-services .horizontalScroll__progress {
+  padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
+}
+
+#studio-services .horizontalScroll__labels {
+  display: block;
+  min-height: 1.4em;
+}
+
+#studio-services .horizontalScroll__labels span {
+  display: none;
+  opacity: 1;
+}
+
+#studio-services .horizontalScroll__labels span.is-active {
+  display: block;
+}
+
+#studio-services .horizontalScroll__rule {
+  background: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+#studio-services .horizontalScroll__rule span {
+  height: 2px;
+  background: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+#studio-services .horizontalScroll__item {
+  justify-items: center;
+  padding-inline: $page-gutter;
+}
+
+#studio-services .card {
+  display: grid;
+  grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
+  grid-template-areas: "media body";
+  align-items: center;
+  gap: var(--studio-service-gap);
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: visible;
+  background: transparent;
+}
+
+#studio-services .card__mediaWrap {
+  grid-area: media;
+  width: 100%;
+  min-width: 0;
+  justify-self: start;
+}
+
+#studio-services .card__media {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: $ratio-square;
+  background: transparent;
+  @include media-frame($ratio-square);
+}
+
+#studio-services .card__body {
+  grid-area: body;
+  align-self: center;
+  width: 100%;
+  max-width: var(--studio-service-copy);
+  min-width: 0;
+  padding: $space-2 0 0;
+}
+
+#studio-services .card__body .textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $flow-default;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+#studio-services .card__body .textBlock__eyebrow {
+  @include type-eyebrow;
+}
+
+#studio-services .card__body .textBlock__title {
+  @include type-heading-md;
+  max-width: 10ch;
+}
+
+#studio-services .card__body .textBlock__content {
+  @include type-body-sm;
+  width: 100%;
+  max-width: 34ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+}
+
+#studio-services .card__body .textBlock__content > * + * {
+  margin-top: $flow-default;
+}
+
+#studio-services .card__body .textBlock__footer {
+  width: fit-content;
+  margin-top: $flow-tight;
+  padding-top: 0;
+}
+
+#studio-services .card__body .textBlock__meta {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin-top: $space-3;
+  border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+}
+
+#studio-services .card__body .textBlock__meta > * {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+  gap: $flow-default;
+  width: 100%;
+  padding-block: $flow-tight;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  color: color-mix(in srgb, currentColor 58%, transparent);
+}
+
+#studio-services .textBlock__metaLabel {
+  @include type-ui-compact;
+  font-size: $type-ui-compact;
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+#studio-services .textBlock__metaValue {
+  @include type-caption;
+  min-width: 0;
+  text-transform: uppercase;
+}
+
+@include desktop-down {
+  #studio-services {
+    --studio-service-media: 27rem;
+    --studio-service-gap: $layout-gap;
+  }
+}
+
+@include tablet-up {
+  @include desktop-down {
+    #studio-services .card {
+      @include site-grid;
+      width: 100%;
+      align-items: start;
+      gap: 0;
+    }
+
+    #studio-services .card__mediaWrap {
+      grid-column: 1 / span 4;
+    }
+
+    #studio-services .card__media {
+      @include media-frame($ratio-portrait);
+    }
+
+    #studio-services .card__body {
+      grid-column: 5 / span 4;
+      max-width: none;
+      padding: 0 0 0 $space-3;
+      .textBlock__title {
+        display: none;
+      }
+    }
+
+  }
+}
+
+@include tablet-down {
+  #studio-services {
+    --studio-service-media: 28rem;
+  }
+
+  #studio-services .horizontalScroll__progress {
+    display: none;
+  }
+
+  #studio-services .horizontalScroll__item {
+    justify-items: stretch;
+    padding-inline: $page-gutter;
+  }
+
+  #studio-services .card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "media"
+      "body";
+    row-gap: $section-content-gap;
+    width: min(100%, 34rem);
+    padding-block: $space-2;
+  }
+
+  #studio-services .card__mediaWrap {
+    width: min(100%, var(--studio-service-media));
+  }
+
+  #studio-services .card__body {
+    width: min(100%, 30rem);
+    padding-top: 0;
+  }
+
+  #studio-services .card__body .textBlock__title {
+    display: none;
+  }
+
+  #studio-services .card__body .textBlock__meta > * {
+    grid-template-columns: 1fr;
+    gap: $flow-tight;
+  }
+}
+
+@include mobile-down {
+  #studio-services .horizontalScroll__item {
+    align-items: start;
+    padding-top: calc(#{$header-height} + #{$space-3});
+    padding-bottom: $space-3;
+  }
+
+  #studio-services .card {
+    row-gap: $space-2;
+    padding-block: 0;
+  }
+
+  #studio-services .card__media {
+    aspect-ratio: $ratio-wide;
+    @include media-frame($ratio-wide);
+  }
+
+  #studio-services .card__body .textBlock {
+    gap: $flow-tight;
+  }
+
+  #studio-services .card__body .textBlock__title,
+  #studio-services .card__body .textBlock__content {
+    display: none;
+  }
+
+  #studio-services .card__body .textBlock__meta {
+    display: grid;
+    margin-top: $space-2;
+  }
+}
+
+/* ==================================
+   STUDIO — SHARED EDITORIAL GRID
+================================== */
+
+#studio-approach,
+#studio-founders {
+  --studio-grid-line: color-mix(in srgb, currentColor 16%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+#studio-approach {
+  isolation: isolate;
+}
+
+#studio-approach > .section__inner,
+#studio-founders > .section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================================
+   STUDIO — APPROACH
+================================== */
+
+#studio-approach {
+  --section-space: clamp(#{$space-4}, 8vh, 7rem);
+  --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
+  min-height: 100svh;
+  justify-content: center;
+}
+
+#studio-approach > .section__inner,
+#studio-approach .gridReveal {
+  width: 100%;
+  max-width: none;
+}
+
+#studio-approach .grid {
+  align-items: start;
+}
+
+#studio-approach .grid__item {
+  min-width: 0;
+}
+
+#studio-approach .grid__item:first-child {
+  width: 100%;
+}
+
+#studio-approach .card {
+  min-width: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+#studio-approach .grid__item:not(:first-child) .card {
+  height: 100%;
+  padding: $space-2;
+}
+
+#studio-approach .card__body {
+  padding: 0;
+}
+
+#studio-approach .card__body .textBlock {
+  gap: $flow-default;
+}
+
+#studio-approach .grid__item:first-child .textBlock {
+  align-items: flex-start;
+  text-align: left;
+}
+
+#studio-approach .grid__item:first-child .textBlock__title {
+  @include type-heading-xl;
+  max-width: 11ch;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+
+#studio-approach .grid__item:not(:first-child) .textBlock__title {
+  @include type-heading-sm;
+  max-width: none;
+}
+
+#studio-approach .grid__item:not(:first-child) .textBlock__content {
+  @include type-body-sm;
+  max-width: 26ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+}
+
+@include tablet-down {
+  #studio-approach {
+    --section-space: $space-4;
+    --section-row-gap: $space-3;
+    min-height: auto;
+    justify-content: initial;
+  }
+
+  #studio-approach .grid__item:first-child .textBlock__title {
+    @include type-heading-lg;
+    max-width: 10ch;
+  }
+
+  #studio-approach .grid__item:not(:first-child) .card {
+    padding: 0;
+  }
+}
+
+@include mobile-down {
+  #studio-approach {
+    --section-space: $space-4;
+    overflow: hidden;
+  }
+
+  #studio-approach .gridReveal {
+    overflow: visible;
+  }
+
+  #studio-approach .grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: $space-2;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #studio-approach .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #studio-approach .grid--editorial > .grid__item {
+    display: flex;
+    align-items: center;
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    min-height: 52svh;
+    scroll-snap-align: start;
+  }
+
+  #studio-approach .grid__item .card,
+  #studio-approach .grid__item .card__body,
+  #studio-approach .grid__item .textBlock {
+    width: 100%;
+    max-width: none;
+  }
+
+  #studio-approach .grid__item:first-child {
+    position: relative;
+  }
+
+  #studio-approach .grid__item:first-child::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 2;
+    font-size: $type-heading-md;
+    line-height: 1;
+    pointer-events: none;
+    animation: studio-approach-cue 1.6s $ease-soft infinite;
+  }
+
+  #studio-approach .grid__item:first-child .textBlock__title {
+    @include type-heading-xl;
+    max-width: 8ch;
+  }
+
+  #studio-approach .grid__item:not(:first-child) .card {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+  }
+
+  #studio-approach .grid__item:not(:first-child) .textBlock__content {
+    max-width: 28ch;
+  }
+}
+
+@keyframes studio-approach-cue {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.35rem);
+  }
+}
+
+@include reduced-motion {
+  #studio-approach .grid__item:first-child::after {
+    animation: none;
+  }
+}
+
+/* ==================================
+   STUDIO — FOUNDER / ABOUT
+================================== */
+
+#studio-founders {
+  --media-background: transparent;
+  --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
+  min-height: 100svh;
+}
+
+#studio-founders .section__inner {
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+}
+
+#studio-founders .section__header.textBlock {
+  width: 100%;
+  max-width: $container-narrow;
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: $flow-default;
+}
+
+#studio-founders .section__body,
+#studio-founders .gridReveal,
+#studio-founders .grid {
+  width: 100%;
+  min-width: 0;
+}
+
+#studio-founders .grid {
+  grid-template-columns: 1fr;
+}
+
+#studio-founders .card {
+  @include site-grid;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+#studio-founders .card__mediaWrap {
+  grid-column: 1 / span 4;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+}
+
+#studio-founders .card__media {
+  padding-top: 0;
+  background: transparent;
+  @include media-frame($ratio-square);
+}
+
+#studio-founders .card__media .media,
+#studio-founders .card__media .media__frame {
+  background: transparent;
+}
+
+#studio-founders .card__media .media__asset {
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+}
+
+#studio-founders .card__body.textBlock {
+  grid-column: 1 / span 4;
+  align-self: center;
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: $flow-default;
+  width: 100%;
+  max-width: none;
+  padding: $space-2 0;
+}
+
+#studio-founders .card__body .textBlock__title {
+  @include type-heading-lg;
+  max-width: 9ch;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+#studio-founders .card__body .textBlock__subtitle {
+  @include type-heading-sm;
+  max-width: 22ch;
+}
+
+#studio-founders .card__body .textBlock__header,
+#studio-founders .card__body .textBlock__content {
+  width: 100%;
+  max-width: none;
+}
+
+#studio-founders .card__body .textBlock__content {
+  @include type-body-sm;
+  max-width: 36ch;
+  color: color-mix(in srgb, currentColor 68%, transparent);
+}
+
+@include tablet-up {
+  #studio-founders .card__mediaWrap {
+    grid-column: 1 / span 4;
+  }
+
+  #studio-founders .card__body.textBlock {
+    grid-column: 5 / span 4;
+  }
+}
+
+@include desktop-up {
+  #studio-founders .card__mediaWrap {
+    grid-column: 2 / span 3;
+  }
+
+  #studio-founders .card__body.textBlock {
+    grid-column: 7 / span 5;
+  }
+}
+
+@include tablet-down {
+  #studio-founders,
+  #studio-founders .section__inner {
+    min-height: auto;
+  }
+}
+
+@include mobile-down {
+  #studio-founders .card {
+    row-gap: $space-3;
+  }
+
+  #studio-founders .card__body.textBlock {
+    padding-top: 0;
+  }
+}

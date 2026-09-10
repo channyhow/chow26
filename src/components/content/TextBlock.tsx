@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
 
 import { Actions } from "@/components/navigation/Actions";
 import { motionConfig, revealContainer, revealItem } from "@/motion/config";
@@ -18,6 +19,16 @@ const toArray = <T,>(value?: T | T[]): T[] => {
 };
 
 const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
+
+const renderInlineStrong = (value: string): ReactNode[] =>
+  value.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) => {
+    const highlighted = part.startsWith("**") && part.endsWith("**");
+    const text = highlighted ? part.slice(2, -2) : part;
+
+    return highlighted
+      ? <strong key={`${text}-${index}`}>{text}</strong>
+      : text;
+  });
 
 const motionRoots = {
   article: motion.article,
@@ -72,7 +83,7 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
 
           {subtitles.length ? (
             <motion.div className="textBlock__subtitle" variants={revealItem}>
-              {subtitles.map((subtitle) => <p key={subtitle}>{subtitle}</p>)}
+              {subtitles.map((subtitle) => <p key={subtitle}>{renderInlineStrong(subtitle)}</p>)}
             </motion.div>
           ) : null}
         </motion.header>
@@ -80,7 +91,7 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
 
       {hasContent ? (
         <motion.div className="textBlock__content" variants={revealItem}>
-          {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {paragraphs.map((paragraph) => <p key={paragraph}>{renderInlineStrong(paragraph)}</p>)}
         </motion.div>
       ) : null}
 
@@ -93,7 +104,12 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
       {hasMeta ? (
         <motion.div className="textBlock__meta" variants={revealItem}>
           {content.meta?.map((item) => {
-            const text = item.value ? `${item.label}: ${item.value}` : item.label;
+            const content = (
+              <>
+                <span className="textBlock__metaLabel">{item.label}</span>
+                {item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}
+              </>
+            );
 
             if (item.href) {
               const external = isExternalHref(item.href);
@@ -105,14 +121,14 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                 >
-                  {text}{external ? " ↗" : ""}
+                  {content}{external ? <span aria-hidden="true"> ↗</span> : null}
                 </a>
               );
             }
 
             return (
               <span key={`${item.label}-${item.value ?? ""}`}>
-                {text}
+                {content}
               </span>
             );
           })}

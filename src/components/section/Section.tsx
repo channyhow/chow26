@@ -1,6 +1,6 @@
-import { useRef, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, type MotionValue } from "motion/react";
 
 import { Card } from "@/components/content/Card";
 import { Carousel } from "@/components/content/Carousel";
@@ -12,35 +12,31 @@ import { TextBlock } from "@/components/content/TextBlock";
 import { Timeline } from "@/components/content/Timeline";
 import { Form } from "@/components/forms/Form";
 import { Grid } from "@/components/layout/Grid";
+import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { forms } from "@/data";
 import { resolveCollection } from "@/data/resolve";
 import { resolveMediaList } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type { SectionBlock, SectionColor } from "@/types/content";
+import type { MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
 export type SectionProps = {
   block: SectionBlock;
   suppressSceneMotion?: boolean;
-  inheritedColor?: SectionColor;
+  visualContext?: "own" | "inherit";
+  scrollProgress?: MotionValue<number>;
 };
 
 const formRegistry = forms as Record<string, FormSchema>;
+const mobileCarouselQuery = "(max-width: 29.999rem)";
 
-function SceneInner({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["1.5rem", "-1.5rem"]);
-
-  return <motion.div ref={ref} className="section__inner" style={{ y }}>{children}</motion.div>;
-}
-
-export function Section({ block, suppressSceneMotion = false, inheritedColor }: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
   const reduceMotion = useReducedMotion();
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const layout = block.layout ?? "text";
-  const effectiveColor = block.color ?? inheritedColor;
+  const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
   const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
   const formRef = block.content?.form;
@@ -48,9 +44,32 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
   const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
-  const shouldTrackScroll = motionEnabled && block.motion === "scene" && !suppressSceneMotion;
+  const motionLevel = block.motion ?? "micro";
+  const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
+  const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
+  const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
+  const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
+  const sceneRange = block.motionRange ?? "through";
+  const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
-  const shouldReveal = motionEnabled && block.motion !== "none" && !shouldTrackScroll && !gridOwnsReveal;
+  const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
+  const useProjectCarouselOnMobile = isMobileViewport
+    && layout === "grid"
+    && block.source?.collection === "projects"
+    && block.source.query?.featured === true;
+  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header && !useProjectCarouselOnMobile
+    ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
+    : null;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(mobileCarouselQuery);
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   const cards = items.map((item, index) => (
     <Card
@@ -60,13 +79,27 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       effect={block.itemAppearance?.effect}
     />
   ));
-  const cardsGrid = cards.length ? <Grid className="section__body">{cards}</Grid> : null;
+  const cardsCollection = cards.length ? (
+    useProjectCarouselOnMobile ? (
+      <Carousel>{cards}</Carousel>
+    ) : (
+      <Grid
+        progressive={Boolean(block.progressive)}
+        lead={projectGridLead}
+        motionPreset={block.motionPreset}
+        placements={items.map((item) => item.grid)}
+        motionEnabled={motionEnabled && motionLevel !== "none"}
+      >
+        {cards}
+      </Grid>
+    )
+  ) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media
     ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" />
     : form
       ? <Form schema={form} />
-      : cardsGrid;
+      : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
     const id = item.id ?? `item-${index + 1}`;
     const label = item.title ?? (typeof item.eyebrow === "string" ? item.eyebrow : item.eyebrow?.[0]);
@@ -78,11 +111,55 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       content: <Card item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} />,
     }];
   });
+  const horizontalLabels = items.flatMap((item) => item.title ? [item.title] : []);
+  const horizontalItems = cards.length ? cards : mediaCards;
+  const horizontalMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+  const horizontalMotionItems = horizontalItems.map((item, index) => (
+    <ScrollScene
+      key={`horizontal-motion-${index}`}
+      preset="drift"
+      intensity={sceneIntensity}
+      direction={index % 2 === 0 ? "forward" : "reverse"}
+      range="through"
+      className="section__horizontalScrollLayer"
+      decorative={false}
+      enabled={horizontalMotionEnabled}
+    >
+      {item}
+    </ScrollScene>
+  ));
 
+  const motionLayer = (
+    content: ReactNode,
+    direction: "forward" | "reverse" = "forward",
+    className = "section__scrollLayer",
+  ) => content ? (
+    shouldTrackScroll ? (
+      <ScrollScene
+        preset={scenePreset}
+        intensity={sceneIntensity}
+        direction={direction}
+        range={sceneRange}
+        className={className}
+        decorative={false}
+        progress={scrollProgress}
+      >
+        {content}
+      </ScrollScene>
+    ) : content
+  ) : null;
+
+  const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
 
   if (layout === "split") {
-    body = <Split primary={header ? <TextBlock content={header} /> : null} secondary={secondary} />;
+    const primary = header ? <TextBlock content={header} /> : null;
+    body = (
+      <Split
+        primary={motionLayer(primary, "forward")}
+        secondary={motionLayer(secondary, "reverse")}
+      />
+    );
   } else if (layout === "media-overlay") {
     body = (
       <div className="section__mediaOverlay">
@@ -95,57 +172,49 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       </div>
     );
   } else if (layout === "gallery") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null}
-      </>
-    );
+    const gallery = mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(gallery, "reverse"))}</>;
   } else if (layout === "carousel") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null}
-      </>
-    );
+    const carousel = cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(carousel, "reverse"))}</>;
   } else if (layout === "timeline") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null}
-      </>
-    );
+    const timeline = items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(timeline, "reverse"))}</>;
   } else if (layout === "horizontal-scroll") {
     body = (
       <>
         {header ? <TextBlock content={header} className="section__header" /> : null}
-        {cards.length || mediaCards.length ? <HorizontalScroll>{cards.length ? cards : mediaCards}</HorizontalScroll> : null}
+        {region(horizontalMotionItems.length ? (
+          <HorizontalScroll
+            labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined}
+            preserveOnSmallScreens
+          >
+            {horizontalMotionItems}
+          </HorizontalScroll>
+        ) : null)}
       </>
     );
   } else if (layout === "content-switcher") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}</>;
   } else if (layout === "media") {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {media ? <Media media={media} className="section__media" /> : null}
-      </>
-    );
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
-    body = (
-      <>
-        {header ? <TextBlock content={header} className="section__header" /> : null}
-        {media ? <Media media={media} className="section__media" /> : null}
-        {form ? <Form schema={form} /> : null}
-        {cardsGrid}
-      </>
-    );
+    const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
+    body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
+
+  const mediaOverlayScene = shouldTrackScroll && layout === "media-overlay" ? (
+    <ScrollScene
+      preset={scenePreset}
+      intensity={sceneIntensity}
+      range={sceneRange}
+      className="section__scrollScene"
+      decorative={false}
+      progress={scrollProgress}
+    >
+      <div className="section__inner">{body}</div>
+    </ScrollScene>
+  ) : null;
 
   return (
     <motion.section
@@ -154,12 +223,20 @@ export function Section({ block, suppressSceneMotion = false, inheritedColor }: 
       data-layout={layout}
       data-variant={block.variant}
       data-tone={block.tone}
-      data-surface={block.surface}
-      data-color={effectiveColor}
-      data-motion={block.motion ?? "reveal"}
+      data-visual-context={visualContext}
+      data-surface={ownsVisualPlane ? block.surface : undefined}
+      data-color={ownsVisualPlane ? block.color : undefined}
+      data-source={block.source?.collection}
+      data-featured={block.source?.query?.featured === true ? "true" : undefined}
+      data-motion={motionLevel}
+      data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)}
+      data-motion-range={block.motionRange}
+      data-motion-intensity={sceneIntensity}
     >
-      {shouldTrackScroll ? (
-        <SceneInner>{body}</SceneInner>
+      {shouldTrackScroll && layout === "media-overlay" ? (
+        mediaOverlayScene
+      ) : shouldTrackScroll ? (
+        <div className="section__inner">{body}</div>
       ) : (
         <motion.div
           className="section__inner"

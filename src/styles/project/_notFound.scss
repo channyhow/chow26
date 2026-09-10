@@ -1,3 +1,4 @@
+@use "../foundation/mixins" as *;
 @use "../foundation/tokens" as *;
 
 /* Chow 404: full viewport section, compact centered content. */
@@ -21,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(#{$space-2}, 2.5vw, #{$space-3});
+  gap: $section-content-gap;
   text-align: center;
 }
 
@@ -50,14 +51,14 @@
   justify-content: center;
 }
 
-@media (max-width: $bp-mobile) {
+@include mobile-down {
   #not-found-default .section__inner {
     max-width: 36rem;
   }
-  
+
   #not-found-default .textBlock__footer {
     justify-items: center;
-}
+  }
 
   #not-found-default .actions {
     width: min(100%, 22rem);

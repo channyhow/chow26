@@ -1,7 +1,7 @@
 import mediaData from "@/data/media.json";
 import type { MediaItem } from "@/types/media";
 
-const registry = mediaData as Record<string, MediaItem>;
+const registry = mediaData as unknown as Record<string, MediaItem>;
 
 export function resolveMedia(ref?: string): MediaItem | null {
   if (!ref) return null;

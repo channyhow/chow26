@@ -1,4 +1,5 @@
 @use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
 @use "../foundation/typography" as *;
 
 .timeline {
@@ -30,7 +31,7 @@
 .timeline__axis::after {
   content: "";
   position: absolute;
-  top: 2rem;
+  top: $space-3;
   bottom: -1px;
   width: 1px;
   background: color-mix(in srgb, currentColor 20%, transparent);
@@ -45,8 +46,8 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
+  width: $space-3;
+  height: $space-3;
   border-radius: var(--radius-control, #{$radius-full});
   background: var(--secondary);
   @include type-caption;
@@ -77,24 +78,22 @@
   max-width: 28ch;
 }
 
-/* Horizontal timeline: one readable editorial column per viewport. The item
-   remains compact on large screens, but expands close to the available width
-   on smaller screens instead of inheriting the narrow vertical timeline measure. */
+/* Horizontal timeline: one readable editorial column per viewport. */
 .timeline[data-orientation="horizontal"] .timeline__item {
   display: block;
   width: clamp(28rem, 42vw, 38rem);
-  max-width: calc(100vw - 4rem);
+  max-width: calc(100vw - #{$space-4});
   margin-inline: auto;
 }
 
-.timeline[data-orientation="horizontal"] .timeline__entry {
-  width: 100%;
-  padding: 0;
-}
-
+.timeline[data-orientation="horizontal"] .timeline__entry,
 .timeline[data-orientation="horizontal"] .timeline__content {
   width: 100%;
   max-width: none;
+}
+
+.timeline[data-orientation="horizontal"] .timeline__entry {
+  padding: 0;
 }
 
 .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
@@ -105,15 +104,15 @@
   max-width: 42ch;
 }
 
-@media (max-width: 64rem) {
+@include desktop-down {
   .timeline[data-orientation="horizontal"] .timeline__item {
     width: min(34rem, calc(100vw - 3rem));
   }
 }
 
-@media (max-width: 48rem) {
+@include tablet-down {
   .timeline[data-orientation="horizontal"] .timeline__item {
-    width: calc(100vw - 2rem);
+    width: calc(100vw - #{$space-3});
     max-width: none;
   }
 
@@ -126,7 +125,7 @@
   }
 }
 
-@media (max-width: 30rem) {
+@include mobile-down {
   .timeline[data-orientation="horizontal"] .timeline__item {
     width: calc(100vw - 1.5rem);
   }

@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useReducedMotion } from "motion/react";
+import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
-import { prepareSection } from "@/data/prepareSection";
 import { resolveBlock } from "@/data/resolve";
 import type {
   PanelAlign,
@@ -18,13 +17,13 @@ import type {
 function renderBlocks(
   blocks: PanelBlock[],
   suppressSceneMotion = false,
-  inheritedColor?: SectionColor,
+  inPanel = false,
+  scrollProgress?: MotionValue<number>,
 ) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
-      const resolved = resolveBlock(entry.ref);
-      if (!resolved) return null;
-      const block = prepareSection(resolved);
+      const block = resolveBlock(entry.ref);
+      if (!block) return null;
 
       if (entry.ref === "site-footer") {
         return <SiteFooter key={entry.ref} block={block} />;
@@ -35,19 +34,19 @@ function renderBlocks(
           key={entry.ref}
           block={block}
           suppressSceneMotion={suppressSceneMotion}
-          inheritedColor={inheritedColor}
+          visualContext={inPanel ? "inherit" : "own"}
+          scrollProgress={scrollProgress}
         />
       );
     }
 
-    const block = prepareSection(entry);
-
     return (
       <Section
         key={entry.id || `panel-section-${index + 1}`}
-        block={block}
+        block={entry}
         suppressSceneMotion={suppressSceneMotion}
-        inheritedColor={inheritedColor}
+        visualContext={inPanel ? "inherit" : "own"}
+        scrollProgress={scrollProgress}
       />
     );
   });
@@ -55,6 +54,18 @@ function renderBlocks(
 
 function panelKey(block: PanelBlock, index: number) {
   return "ref" in block ? block.ref : block.id || `panel-${index + 1}`;
+}
+
+function getDocumentOffsetTop(element: HTMLElement) {
+  let top = 0;
+  let current: HTMLElement | null = element;
+
+  while (current) {
+    top += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+
+  return top;
 }
 
 function Panel({
@@ -79,6 +90,19 @@ function Panel({
   const ref = useRef<HTMLDivElement>(null);
   const needsStickyOffset = behavior === "stack" || behavior === "cover";
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
+  const { scrollY } = useScroll();
+
+  // Sticky elements stop moving in the viewport, so target-based useScroll progress
+  // can freeze while a panel is pinned. Derive progress from its document-flow
+  // position instead; offsetTop is unaffected by position: sticky.
+  const scrollYProgress = useTransform(scrollY, (latest) => {
+    const element = ref.current;
+    if (!element || typeof window === "undefined") return 0;
+
+    const start = getDocumentOffsetTop(element);
+    const distance = Math.max(element.offsetHeight, window.innerHeight, 1);
+    return Math.min(1, Math.max(0, (latest - start) / distance));
+  });
 
   useEffect(() => {
     if (!needsStickyOffset) return;
@@ -123,7 +147,7 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, true, color)}
+      {renderBlocks(blocks, false, true, scrollYProgress)}
     </div>
   );
 }

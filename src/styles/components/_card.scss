@@ -8,14 +8,15 @@
   border-radius: var(--radius-surface, #{$radius-default});
   background: var(--surface, transparent);
 
-  &__media { border-radius: 0; }
-  &__body { max-width: none; padding: $space-2; }
+  &__mediaWrap { min-width: 0; }
+  &__media { border-radius: $radius-none; }
+  &__body { max-width: none; padding: $flow-default; }
 
   .media__asset {
     transition: transform $transition-reveal;
   }
 
-  .textBlock__title { @include type-heading-md; max-width: 22ch; }
+  .textBlock__title { max-width: 22ch;  }
   .textBlock__subtitle p { @include type-body; }
   .textBlock__meta { @include type-body-sm; }
 
@@ -26,6 +27,53 @@
   &:focus-within .media__asset {
     transform: scale(1.02);
   }
+}
+
+.projectCard {
+  .card__mediaWrap {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+    @include media-frame($ratio-wide);
+  }
+
+  .media,
+  .media__frame {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  .media {
+    overflow: hidden;
+  }
+
+  .media__frame {
+    display: grid;
+    place-items: center;
+    aspect-ratio: auto;
+  }
+
+  .card__body {
+    display: grid;
+    gap: $flow-default;
+    padding: $flow-default;
+  }
+
+  .textBlock,
+  .textBlock__header,
+  .textBlock__content,
+  .textBlock__footer {
+    gap: $flow-tight;
+  }
+
+  .textBlock__footer {
+    padding-top: 0;
+    margin-top: $flow-tight;
+  }
+
+  .textBlock__meta { display: none; }
 }
 
 [data-variant="organic"] .card {
@@ -50,7 +98,5 @@
 }
 
 .card[href]:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: $space-1;
+  @include focus-ring;
 }
-

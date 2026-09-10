@@ -5,6 +5,7 @@ import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
 import { resolveMedia } from "@/data/resolveMedia";
 import type { CardEffect, ContentItem } from "@/types/content";
+import { getMediaOrientation } from "@/utils/media";
 
 export type CardProps = {
   item: ContentItem;
@@ -21,17 +22,30 @@ export function Card({
 }: CardProps) {
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
+  const isProject = Boolean(item.href?.startsWith("/projets/"));
+  const mediaOrientation = getMediaOrientation(media ?? undefined);
+  const visibleItem = isProject ? { title: item.title } : item;
   const cardClassName = clsx(
     "card",
+    isProject && "projectCard",
     frame && "frame",
     effect === "glass" && "effectGlass",
     effect === "grain" && "effectGrain",
     className,
   );
+
   const content = (
     <>
-      {media ? <Media media={media} className="card__media" /> : null}
-      <TextBlock content={item} titleAs="h3" className="card__body" />
+      {media ? (
+        <div
+          className="card__mediaWrap"
+          data-media-type={media.type}
+          data-orientation={mediaOrientation}
+        >
+          <Media media={media} className="card__media" />
+        </div>
+      ) : null}
+      <TextBlock content={visibleItem} titleAs="h3" className="card__body" />
     </>
   );
 

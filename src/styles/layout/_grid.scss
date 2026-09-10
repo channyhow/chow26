@@ -1,24 +1,122 @@
-@use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+@use "../foundation/tokens" as *;
+
+.gridReveal {
+  display: grid;
+  gap: $section-content-gap;
+}
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--section-gap, #{$space-3});
+  gap: var(--section-gap, #{$layout-gap});
 
   > * {
     min-width: 0;
   }
 }
 
+.grid--editorial {
+  @include site-grid;
+  row-gap: var(--section-row-gap, var(--section-gap, #{$layout-gap}));
+}
+
+.grid--editorial > .grid__item {
+  grid-column: var(--grid-column-mobile, auto);
+  grid-row: var(--grid-row-mobile, auto);
+  align-self: var(--grid-align-mobile, auto);
+  justify-self: var(--grid-justify-mobile, auto);
+}
+
+.grid__lead {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.grid__lead .section__gridLead {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.grid__lead .textBlock__title {
+  @include type-heading-xl;
+  max-width: 7ch;
+  line-height: 0.95;
+}
+
+.gridReveal__more {
+  @include type-ui-compact;
+
+  justify-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: $control-min-height;
+  padding: $flow-default 0 $flow-tight;
+  border: 0;
+  border-top: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.gridReveal__moreIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.9em;
+  transition: transform $transition-hover;
+}
+
+.gridReveal__more:focus-visible {
+  @include focus-ring;
+}
+
+@include hover {
+  .gridReveal__more:hover .gridReveal__moreIcon {
+    transform: translateY(0.2rem);
+  }
+}
+
 @include tablet-up {
-  .grid {
+  .grid:not(.grid--editorial) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--editorial > .grid__item {
+    grid-column: var(--grid-column-tablet, var(--grid-column-mobile, auto));
+    grid-row: var(--grid-row-tablet, var(--grid-row-mobile, auto));
+    align-self: var(--grid-align-tablet, var(--grid-align-mobile, auto));
+    justify-self: var(--grid-justify-tablet, var(--grid-justify-mobile, auto));
   }
 }
 
 @include desktop-up {
-  .grid {
+  .grid:not(.grid--editorial) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--editorial > .grid__item {
+    grid-column: var(--grid-column-desktop, var(--grid-column-tablet, var(--grid-column-mobile, auto)));
+    grid-row: var(--grid-row-desktop, var(--grid-row-tablet, var(--grid-row-mobile, auto)));
+    align-self: var(--grid-align-desktop, var(--grid-align-tablet, var(--grid-align-mobile, auto)));
+    justify-self: var(--grid-justify-desktop, var(--grid-justify-tablet, var(--grid-justify-mobile, auto)));
+  }
+}
+
+@include reduced-motion {
+  .gridReveal__moreIcon {
+    transition: none;
+  }
+
+  .gridReveal__more:hover .gridReveal__moreIcon {
+    transform: none;
   }
 }

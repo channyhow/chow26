@@ -25,6 +25,15 @@
     "width": 1600,
     "height": 1067
   },
+    "atmosphere_mobile-vid": {
+    "id": "atmosphere_mobile-vid",
+    "type": "mux",
+  "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
+  "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.",    "width": 1080,
+    "height": 1920,
+    "fit": "cover",
+    "focalPoint": { "x": 50, "y": 64 }
+  },
   "atmosphere-tablet": {
     "id": "atmosphere-tablet",
     "type": "image",
@@ -40,6 +49,12 @@
     "alt": "Atmosphere | aperçu mobile du site.",
     "width": 1200,
     "height": 1600
+  },
+  "atmosphere_mobile-vid": {
+    "id": "atmosphere_mobile-vid",
+    "type": "mux",
+    "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
+    "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure."
   },
   "kuro-laptop": {
     "id": "kuro-laptop",
@@ -98,14 +113,56 @@
     "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
     "width": 1920,
     "height": 1080
+  },  "maloya-menu": {
+    "id": "maloya-menu",
+    "type": "video",
+    "src": "/assets/videos/maloya-menu.mp4",
+    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
+    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
+    "width": 1350,
+    "height": 1080
+  },  "maloya-mobile-vid": {
+    "id": "maloya-mobile-vid",
+    "type": "video",
+    "src": "/assets/videos/maloya-mobile.mp4",
+    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
+    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
+    "width": 1080,
+    "height": 1350
   },
   "mois-du-ker-textile": {
     "id": "mois-du-ker-textile",
     "type": "image",
-    "src": "/assets/photos/work/mois-du-ker/mois-du-ker__textile.jpg",
+    "src": "/assets/photos/work/mois-du-ker/mdk_tshirt.jpg",
     "alt": "Mois du Kèr | identité de campagne appliquée sur textile.",
-    "width": 1600,
-    "height": 1067
+    "width": 1200,
+    "height": 1200
+  },
+  "mdk-logo-evolution": {
+    "id": "mdk-logo-evolution",
+    "type": "mux",
+    "playbackId": "y00ycTIaXMmXNykktCQDLdfMG6eTFrp8YfmBoT8ImXqQ",
+    "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
+    "width": 1080,
+    "height": 1920,
+    "fit": "cover",
+    "focalPoint": { "x": 50, "y": 64 }
+  },
+  "mdk-color-palette": {
+    "id": "mdk-color-palette",
+    "type": "mux",
+    "playbackId": "X78LIgQ2XXw02fZquupTip4h9U67kpPiDe02LjR6TUKqE",
+    "alt": "Mois du Kèr | exploration animée de la palette de couleurs de l’identité.",
+    "width": 1080,
+    "height": 1350
+  },
+  "mdk-heartbeat": {
+    "id": "mdk-heartbeat",
+    "type": "mux",
+    "playbackId": "TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M",
+    "alt": "Mois du Kèr | cœur anatomique animé au rythme d’un battement.",
+    "width": 1080,
+    "height": 1350
   },
   "ravine-business-card": {
     "id": "ravine-business-card",

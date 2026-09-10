@@ -1,4 +1,5 @@
-export type MediaKind = "image" | "video";
+export type MediaKind = "image" | "video" | "mux";
+export type MediaFit = "cover" | "contain";
 
 export type FocalPoint = {
   x: number;
@@ -11,19 +12,41 @@ export type MediaSource = {
   type?: string;
 };
 
-export type MediaItem = {
+type MediaBase = {
   id: string;
   type: MediaKind;
-  src: string;
   alt?: string;
-  width: number;
-  height: number;
-  poster?: string;
+  width?: number;
+  height?: number;
+  fit?: MediaFit;
   focalPoint?: FocalPoint;
-  sources?: MediaSource[];
   caption?: string;
   credit?: string;
   copyright?: string;
   license?: string;
   sourceUrl?: string;
 };
+
+type IntrinsicDimensions = {
+  width: number;
+  height: number;
+};
+
+export type ImageMediaItem = MediaBase & IntrinsicDimensions & {
+  type: "image";
+  src: string;
+  sources?: MediaSource[];
+};
+
+export type VideoMediaItem = MediaBase & IntrinsicDimensions & {
+  type: "video";
+  src: string;
+  poster?: string;
+};
+
+export type MuxMediaItem = MediaBase & {
+  type: "mux";
+  playbackId: string;
+};
+
+export type MediaItem = ImageMediaItem | VideoMediaItem | MuxMediaItem;

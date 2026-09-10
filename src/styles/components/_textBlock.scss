@@ -3,7 +3,7 @@
 
 .textBlock {
   display: grid;
-  gap: $space-3;
+  gap: $flow-default;
   width: 100%;
   max-width: var(--text-width, #{$measure-text});
 
@@ -13,34 +13,47 @@
   &__subtitle,
   &__meta {
     display: grid;
-    gap: $space-1;
+    gap: $flow-tight;
   }
 
   &__eyebrow {
     @include type-eyebrow;
     margin: 0;
   }
+
   &__title {
-    @include type-heading;
-    // max-width: var(--title-width, 14ch);
+    @include type-body-bold;
     margin: 0;
     text-wrap: balance;
   }
+
   &__subtitle p {
     @include type-lead;
     margin: 0;
   }
+
   &__content {
-    gap: $space-2;
-    p {
-      @include type-body;
-      margin: 0;
-    }
+    gap: $flow-default;
+  // color: color-mix(in srgb, currentColor 62%, transparent);
+
+ p {
+  @include type-body;
+  margin: 0;
+  opacity: $opacity-muted;
+
+  &:last-child:not(:only-child) {
+    opacity: $opacity-soft;
   }
+}
+  
+  }
+
+
   &__footer {
-    gap: $space-2;
-    padding-top: $space-2;
+    gap: $flow-default;
+    padding-top: $flow-tight;
   }
+
   &__meta {
     @include type-meta;
   }

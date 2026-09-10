@@ -1,0 +1,85 @@
+{
+  "page": {
+    "variant": "editorial",
+    "notFoundPageId": "not-found"
+  },
+  "hero": {
+    "layout": "split",
+    "variant": "editorial",
+    "color": "secondary",
+    "motion": "scene",
+    "motionPreset": "parallax",
+    "className": "projectHero"
+  },
+  "story": {
+    "withMedia": {
+      "layout": "split",
+      "variant": "editorial",
+      "motion": "scene",
+      "motionPreset": "parallax",
+      "className": "projectStoryMedia",
+      "alternate": true
+    },
+    "withoutMedia": {
+      "layout": "text",
+      "variant": "editorial",
+      "motion": "scene",
+      "motionPreset": "parallax",
+      "className": "projectStoryText"
+    }
+  },
+  "cta": {
+    "layout": "text",
+    "variant": "editorial",
+    "motion": "reveal",
+    "className": "projectCta",
+    "content": {
+      "header": {
+        "title": "Un projet similaire en tête ?",
+        "text": ["Une identité à construire, un site à faire évoluer ou une idée à concrétiser."],
+        "links": [
+          {
+            "label": "Envoyer un message",
+            "href": "/contact",
+            "intent": "contact",
+            "priority": "primary",
+            "variant": "cta"
+          }
+        ]
+      }
+    }
+  },
+  "related": {
+    "layout": "carousel",
+    "variant": "editorial",
+    "className": "projectRelated",
+    "source": {
+      "collection": "projects",
+      "query": {
+        "featured": true,
+        "limit": 5
+      }
+    },
+    "content": {
+      "header": {
+        "title": "À découvrir aussi"
+      }
+    }
+  },
+  "footer": {
+    "id": "project-footer-group",
+    "type": "Group",
+    "layout": "scroll-panel",
+    "panels": [
+      {
+        "id": "project-footer-panel",
+        "behavior": "moving",
+        "size": "full",
+        "align": "center",
+        "surface": "solid",
+        "color": "primary",
+        "blocks": [{ "ref": "site-footer" }]
+      }
+    ]
+  }
+}

@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-block: var(--section-space, #{$space-4});
-  padding-inline: clamp(#{$space-2}, 5vw, #{$space-4});
+  padding-block: var(--section-space, #{$section-space});
+  padding-inline: $page-gutter;
 
   &__inner {
     flex: 1 1 auto;
@@ -15,7 +15,27 @@
   }
 
   &__header {
-    margin-bottom: var(--section-gap, #{$space-3});
+    width: 100%;
+    max-width: $container-narrow;
+    margin-bottom: var(--section-gap, #{$section-content-gap});
+  }
+
+  &__header.textBlock {
+    max-width: $container-narrow;
+  }
+
+  &__header.textBlock .textBlock__title {
+    max-width: var(--section-title-width, #{$measure-heading});
+  }
+
+  &__header.textBlock .textBlock__subtitle,
+  &__header.textBlock .textBlock__content {
+    max-width: var(--section-copy-width, #{$measure-header-copy});
+  }
+
+  &__body {
+    width: 100%;
+    min-width: 0;
   }
 
   &__mediaOverlay {
@@ -36,16 +56,16 @@
     width: 100%;
     height: 100%;
     margin: 0;
+    @include media-cover;
   }
 
-  &__mediaOverlay > .section__media .media__frame,
-  &__mediaOverlay > .section__media .media__asset {
+  &__mediaOverlay > .section__media > .scrollScene__content {
     width: 100%;
     height: 100%;
   }
 
-  &__mediaOverlay > .section__media .media__asset {
-    object-fit: cover;
+  &__mediaOverlay > .section__overlayContent > .scrollScene__content {
+    width: 100%;
   }
 
   &__overlayContent {
@@ -53,7 +73,7 @@
     z-index: $z-raised;
     display: flex;
     align-items: center;
-    padding-inline: clamp(#{$space-2}, 5vw, #{$space-4});
+    padding-inline: $page-gutter;
     padding-block: clamp(#{$space-4}, 12vh, 9rem);
   }
 }
@@ -80,8 +100,8 @@
 .section[data-surface="solid"] { background: var(--section-bg); }
 .section[data-surface="glass"] {
   background: var(--section-glass-bg);
-  backdrop-filter: blur(1.1rem);
-  -webkit-backdrop-filter: blur(1.1rem);
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
 }
 .section[data-surface="transparent"] { background: transparent; }
 .section[data-layout="media-overlay"] { padding: 0; }
@@ -89,29 +109,37 @@
 .section[data-layout="statement"] .section__inner,
 .section[data-layout="text"] .section__inner { display: grid; justify-items: start; }
 
-#contact-default {
-  --section-space: clamp(3rem, 6vw, 6rem);
-  min-height: 100svh;
-}
-
-#contact-default .split {
-  align-items: start;
-}
-
 @include desktop-up {
-  .section[data-layout="text"] .section__inner,
-  .section[data-layout="statement"] .section__inner {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+  .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
+    @include site-grid;
   }
 
-  .section[data-layout="text"] .textBlock,
-  .section[data-layout="statement"] .textBlock {
+  .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock {
     grid-column: 3 / span 8;
   }
 }
 
-@media (max-width: 47.999rem) {
+@include tablet-down {
+  .section__header,
+  .section__header.textBlock,
+  .section__body {
+    width: 100%;
+    max-width: none;
+  }
+
+  .section__header.textBlock .textBlock__title {
+    max-width: var(--section-title-width-mobile, #{$measure-heading-wide});
+  }
+
+  .section[data-source="projects"]:not([data-featured="true"])
+    .section__header.textBlock
+    .textBlock__title {
+    max-width: none;
+  }
+
   .section__overlayContent {
-    padding-block: clamp(#{$space-4}, 10vh, 6rem);
+    padding-block: clamp(#{$space-4}, 10vh, #{$space-5});
   }
 }

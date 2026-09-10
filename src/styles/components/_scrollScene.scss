@@ -3,9 +3,19 @@
 
 .scrollScene {
   position: relative;
-  isolation: isolate;
   overflow: clip;
   min-height: min(80svh, 48rem);
+}
+
+.section__scrollScene,
+.section__scrollLayer {
+  width: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.section__scrollLayer .scrollScene__content {
+  width: 100%;
 }
 
 .scrollScene__content {
@@ -24,7 +34,7 @@
   position: absolute;
   display: block;
   width: clamp(5rem, 16vw, 12rem);
-  aspect-ratio: 1;
+  aspect-ratio: $ratio-square;
   border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   border-radius: var(--radius-media, #{$radius-full});
 }
@@ -56,7 +66,7 @@
   background: color-mix(in srgb, currentColor 55%, transparent);
 }
 
-.scrollScene[data-preset="drift"] .scrollScene__shape:nth-child(2) {
+.scrollScene[data-preset="ambient"] .scrollScene__shape:nth-child(2) {
   @include shape-blob;
 }
 
@@ -69,9 +79,10 @@
 }
 
 [data-variant="editorial"] .scrollScene__shape {
-  border-radius: 0;
+  border-radius: $radius-none;
 }
 
+.scrollScene[data-reduced-motion="true"] .scrollScene__content,
 .scrollScene[data-reduced-motion="true"] .scrollScene__shape,
 .scrollScene[data-reduced-motion="true"] .scrollScene__line {
   transform: none !important;

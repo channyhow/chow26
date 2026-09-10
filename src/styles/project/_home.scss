@@ -1,0 +1,474 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+@use "../foundation/tokens" as *;
+
+/* Home uses a small number of strong editorial planes. Project proof, service
+   context and conversion content share the same grid language without turning
+   every section into the same component composition. Panel color and surface
+   remain data-owned; this file only controls Home composition and art direction. */
+
+/* The opening is the loudest typographic moment on the site. The existing
+   positioning copy stays data-owned; composition alone exposes the shared grid. */
+#home-opening {
+  --section-title-width: none;
+  --section-copy-width: 34rem;
+}
+
+#home-opening .section__overlayContent {
+  align-items: flex-end;
+  width: 100%;
+  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
+}
+
+#home-opening .section__header.textBlock {
+  @include site-grid;
+  align-items: end;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+#home-opening .textBlock__header,
+#home-opening .textBlock__title {
+  grid-column: 1 / span 10;
+}
+
+#home-opening .textBlock__title {
+  @include type-heading-xl;
+  max-width: none;
+  font-size: clamp(3.5rem, 6.4vw, 7.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+#home-opening .textBlock__content {
+  grid-column: 8 / -1;
+  width: 100%;
+  max-width: 34rem;
+  margin-top: clamp(#{$space-3}, 5vh, #{$space-5});
+  justify-self: end;
+}
+
+#projects-featured-carousel,
+#projects-featured-gallery,
+#home-services,
+#final-cta {
+  --section-space: clamp(#{$space-5}, 12vw, 11rem);
+}
+
+#approach-default {
+  --section-space: 0;
+  padding-inline: 0;
+}
+
+#projects-featured-gallery,
+#home-services,
+#final-cta {
+  min-height: min(82svh, 54rem);
+}
+
+#projects-featured-gallery .section__inner {
+  @include site-grid;
+  align-items: center;
+  min-height: inherit;
+}
+
+#approach-default .section__inner {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  padding-inline: 0;
+}
+
+#projects-featured-gallery .section__header {
+  grid-column: 1 / span 3;
+  align-self: start;
+  width: 100%;
+  max-width: 18rem;
+  margin: 0;
+}
+
+#projects-featured-gallery .section__body {
+  grid-column: 5 / -1;
+  min-width: 0;
+}
+
+#projects-featured-gallery .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(#{$space-3}, 4vw, #{$space-5});
+  align-items: start;
+}
+
+#projects-featured-gallery .grid__item:nth-child(2) {
+  margin-top: clamp(#{$space-4}, 8vw, 8rem);
+}
+
+#projects-featured-gallery .grid__item:nth-child(3) {
+  width: min(100%, 88%);
+}
+
+#projects-featured-gallery .projectCard {
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+}
+
+#projects-featured-gallery .projectCard .card__body {
+  padding: $flow-default 0 0;
+}
+
+#projects-featured-gallery .grid__item:nth-child(1) .card__mediaWrap {
+  aspect-ratio: $ratio-landscape;
+}
+
+#projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
+  aspect-ratio: $ratio-portrait;
+}
+
+#projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
+  aspect-ratio: $ratio-square;
+}
+
+#projects-featured-gallery .section__header .textBlock__title {
+  @include type-heading-md;
+}
+
+#projects-featured-gallery .section__header .textBlock__footer {
+  padding-top: $flow-default;
+}
+
+#projects-featured-gallery .section__header .actions a {
+  @include interactive-text;
+}
+
+/* Mixed-content panels reuse the shared Split mechanics. Only their editorial
+   column relationships and media proportions are owned by Home. */
+#home-services .section__inner,
+#final-cta .section__inner {
+  display: block;
+  min-height: inherit;
+}
+
+#home-services .split,
+#final-cta .split {
+  align-items: center;
+  min-height: inherit;
+  --section-gap: $space-4;
+}
+
+#home-services .textBlock,
+#final-cta .textBlock {
+  width: 100%;
+  max-width: 30rem;
+}
+
+#home-services .media,
+#final-cta .media {
+  width: 100%;
+  border-radius: 0;
+}
+
+#home-services {
+  --split-primary-column: 9 / -1;
+  --split-secondary-column: 1 / span 7;
+}
+
+#home-services .media__frame {
+  aspect-ratio: $ratio-landscape;
+}
+
+#final-cta {
+  --split-primary-column: 2 / span 4;
+  --split-secondary-column: 7 / -1;
+}
+
+#final-cta .media__frame {
+  aspect-ratio: $ratio-portrait;
+}
+
+#approach-default .textBlock__title {
+  color: currentColor;
+}
+
+#final-cta .actions a {
+  color: currentColor;
+}
+
+/* Featured work remains the visual proof. The carousel stays immersive while
+   the gallery selection below slows the rhythm down and invites browsing. */
+#projects-featured-carousel {
+  min-height: 100svh;
+}
+
+#projects-featured-carousel .section__inner {
+  min-height: inherit;
+  display: grid;
+  align-content: center;
+}
+
+#projects-featured-carousel .section__body {
+  margin-top: 0;
+}
+
+@include between($bp-tablet, $bp-desktop) {
+  /* Tablet keeps the same asymmetric editorial relationship as desktop rather
+     than expanding every opening element to full width. */
+  #home-opening .section__media {
+    align-self: end;
+    justify-self: end;
+    width: 58%;
+    height: 44svh;
+  }
+
+  #home-opening .section__media .media__frame,
+  #home-opening .section__media .media__asset {
+    height: 100%;
+  }
+
+  #home-opening .section__header.textBlock {
+    align-items: end;
+  }
+
+  #home-opening .textBlock__header,
+  #home-opening .textBlock__title {
+    grid-column: 1 / span 5;
+  }
+
+  #home-opening .textBlock__title {
+    font-size: clamp(3.25rem, 7vw, 5.25rem);
+  }
+
+  #home-opening .textBlock__content {
+    grid-column: 6 / -1;
+    max-width: 24rem;
+    margin-top: 0;
+    align-self: start;
+  }
+
+  #projects-featured-gallery .section__header {
+    grid-column: 1 / span 2;
+  }
+
+  #projects-featured-gallery .section__body {
+    grid-column: 3 / -1;
+  }
+
+  #home-services,
+  #final-cta {
+    min-height: auto;
+  }
+
+  #home-services .split,
+  #final-cta .split {
+    align-items: start;
+    gap: $space-4;
+    min-height: 0;
+  }
+
+  #home-services .split__primary,
+  #home-services .split__secondary,
+  #final-cta .split__primary,
+  #final-cta .split__secondary {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  #home-services .split__secondary {
+    order: 1;
+  }
+
+  #home-services .split__primary {
+    order: 2;
+    justify-self: end;
+  }
+
+  #final-cta .split__primary {
+    order: 1;
+  }
+
+  #final-cta .split__secondary {
+    order: 2;
+    margin-top: $space-2;
+  }
+
+  #final-cta .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+}
+
+@include tablet-down {
+  #home-opening .section__overlayContent {
+    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
+  }
+
+  #home-opening .textBlock__header,
+  #home-opening .textBlock__title {
+    grid-column: 1 / -1;
+  }
+
+  #home-opening .textBlock__title {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+  }
+
+  #home-opening .textBlock__content {
+    grid-column: 2 / -1;
+    max-width: 30rem;
+  }
+
+  #projects-featured-carousel,
+  #projects-featured-gallery,
+  #home-services,
+  #final-cta {
+    --section-space: clamp(#{$space-4}, 10vw, #{$space-5});
+  }
+
+  #projects-featured-gallery,
+  #home-services,
+  #final-cta {
+    min-height: auto;
+  }
+
+  #projects-featured-gallery .section__inner {
+    gap: $space-4 $grid-gap;
+  }
+
+  #projects-featured-gallery .section__header,
+  #projects-featured-gallery .section__body {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+  }
+
+  #projects-featured-gallery .section__header {
+    width: min(100%, 24rem);
+  }
+
+  #home-services .split,
+  #final-cta .split {
+    gap: $space-4;
+    min-height: 0;
+  }
+
+  #home-services .split__primary,
+  #home-services .split__secondary,
+  #final-cta .split__primary,
+  #final-cta .split__secondary {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  #home-services .split__secondary {
+    order: 1;
+  }
+
+  #home-services .split__primary {
+    order: 2;
+    justify-self: end;
+  }
+
+  #final-cta .split__primary {
+    order: 1;
+  }
+
+  #final-cta .split__secondary {
+    order: 2;
+  }
+
+  #home-services .textBlock,
+  #final-cta .textBlock {
+    max-width: 28rem;
+  }
+}
+
+@include mobile-down {
+  /* Mobile opening becomes quieter: the positioning copy replaces the large
+     display title while the existing media is treated as a lower visual field. */
+  #home-opening .section__mediaOverlay {
+    min-height: 100svh;
+  }
+
+  #home-opening .section__media {
+    align-self: end;
+    height: 52svh;
+  }
+
+  #home-opening .section__media .media__frame,
+  #home-opening .section__media .media__asset {
+    height: 100%;
+  }
+
+  #home-opening .section__media .media__asset {
+    object-position: center 58%;
+  }
+
+  #home-opening .section__overlayContent {
+    align-items: flex-start;
+    padding-top: calc(#{$header-height} + #{$space-5});
+    padding-bottom: $space-3;
+  }
+
+  #home-opening .section__header.textBlock {
+    display: block;
+  }
+
+  #home-opening .textBlock__header {
+    display: none;
+  }
+
+  #home-opening .textBlock__content {
+    width: min(100%, 30rem);
+    max-width: 28rem;
+    margin-top: 0;
+  }
+
+  /* On touch screens the same project cards become a swipeable, snap-aligned
+     carousel. No duplicate content or mobile-only component is introduced. */
+  #projects-featured-gallery .section__inner {
+    display: block;
+  }
+
+  #projects-featured-gallery .section__header {
+    margin-bottom: $space-3;
+  }
+
+  #projects-featured-gallery .grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 24rem);
+    gap: $space-2;
+    width: calc(100% + #{$page-gutter});
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #projects-featured-gallery .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  #projects-featured-gallery .grid__item {
+    scroll-snap-align: start;
+  }
+
+  #projects-featured-gallery .grid__item:nth-child(2) {
+    margin-top: 0;
+  }
+
+  #projects-featured-gallery .grid__item:nth-child(3) {
+    width: 100%;
+  }
+
+  #projects-featured-gallery .grid__item .card__mediaWrap {
+    aspect-ratio: $ratio-wide;
+  }
+
+  #home-services .media__frame,
+  #final-cta .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+}

@@ -15,20 +15,20 @@
         "panels": [
           {
             "id": "home-opening-panel",
-            "behavior": "fixed",
+            "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "solid",
             "blocks": [{ "ref": "home-opening" }]
           },
           {
-            "id": "home-projects-panel",
+            "id": "home-projects-gallery-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
-            "blocks": [{ "ref": "projects-featured" }]
+            "color": "secondary",
+            "blocks": [{ "ref": "projects-featured-gallery" }]
           },
           {
             "id": "home-approach-panel",
@@ -54,7 +54,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -90,7 +90,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -122,36 +122,35 @@
               {
                 "id": "studio-services",
                 "type": "Section",
-                "layout": "list",
+                "layout": "horizontal-scroll",
                 "surface": "solid",
                 "color": "secondary",
+                "motion": "scene",
+                "motionPreset": "ambient",
                 "content": {
                   "header": {
-                    "eyebrow": "Services",
-                    "title": "Trois points de départ, un même objectif : rendre votre présence plus juste.",
                     "text": [
                       "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
                     ]
                   },
                   "items": [
                     {
-                      "id": "studio-service-create",
-                      "eyebrow": "01 · Vous partez de zéro ou presque.",
-                      "title": "Créer",
+                      "id": "studio-service-identity",
+                      "eyebrow": "Logo · Branding · Direction visuelle",
+                      "title": "Identité visuelle",
                       "text": [
-                        "Construire une présence cohérente dès le départ, en pensant le positionnement visuel, l’identité, le site et l’expérience digitale comme les différentes expressions d’un même système.",
-                        "Le travail peut commencer par une direction visuelle légère ou aller jusqu’à une identité et un site complets. La structure, les contenus et les besoins de conversion sont définis avant de figer la forme."
+                        "Donnez à votre projet une identité claire et reconnaissable, du logo à un univers visuel plus complet."
                       ],
                       "media": "ravine-business-card",
                       "meta": [
-                        { "label": "Identité", "value": "Logo · Branding · Identité visuelle" },
-                        { "label": "Digital", "value": "Site web · UX/UI · Frontend" },
-                        { "label": "Budget", "value": "À partir de 1 200 € HT" }
+                        { "label": "Pour", "value": "Lancement · Repositionnement · Nouvelle identité" },
+                        { "label": "Peut inclure", "value": "Logo · Typographie · Couleurs · Direction visuelle" },
+                        { "label": "Budget", "value": "À partir de 800 € HT" }
                       ],
                       "tags": ["Logo", "Branding", "Identité visuelle"],
                       "links": [
                         {
-                          "label": "Construire votre présence",
+                          "label": "Parlez de votre identité",
                           "href": "/contact",
                           "intent": "contact",
                           "priority": "secondary",
@@ -160,23 +159,22 @@
                       ]
                     },
                     {
-                      "id": "studio-service-clarify",
-                      "eyebrow": "02 · Quelque chose existe déjà, mais manque de netteté.",
-                      "title": "Clarifier",
+                      "id": "studio-service-website",
+                      "eyebrow": "Design web · Développement · SEO",
+                      "title": "Site web",
                       "text": [
-                        "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser.",
-                        "L’intervention peut porter sur l’architecture du contenu, la navigation, l’interface, la direction visuelle ou l’ensemble du système. L’objectif est de conserver ce qui fonctionne et de corriger ce qui brouille la lecture ou ralentit l’action."
+                        "Présentez votre activité clairement, guidez vos visiteurs vers l’essentiel et facilitez la prise de contact grâce à un site sur mesure, rapide, accessible et responsive."
                       ],
                       "media": "atmosphere-laptop",
                       "meta": [
-                        { "label": "Diagnostic", "value": "Audit · UX/UI · Architecture de contenu" },
-                        { "label": "Refonte", "value": "Site web · Direction artistique · Frontend" },
-                        { "label": "Budget", "value": "À partir de 800 € HT" }
+                        { "label": "Pour", "value": "Création · Refonte · Nouvelle présence digitale" },
+                        { "label": "Peut inclure", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
+                        { "label": "Budget", "value": "À partir de 1 500 € HT" }
                       ],
-                      "tags": ["Audit", "Refonte", "UX/UI"],
+                      "tags": ["Site web", "UX/UI", "Frontend"],
                       "links": [
                         {
-                          "label": "Clarifier l’existant",
+                          "label": "Parlez de votre site",
                           "href": "/contact",
                           "intent": "contact",
                           "priority": "secondary",
@@ -185,23 +183,22 @@
                       ]
                     },
                     {
-                      "id": "studio-service-evolve",
-                      "eyebrow": "03 · Votre système fonctionne, mais il est devenu trop limité.",
-                      "title": "Faire évoluer",
+                      "id": "studio-service-integrations",
+                      "eyebrow": "Réservation · Paiement · Formulaires · Outils",
+                      "title": "Fonctionnalités & intégrations",
                       "text": [
-                        "Faire grandir une présence sans repartir inutilement de zéro : renforcer le langage visuel, étendre le site ou adapter le système à de nouveaux contenus, usages et objectifs.",
-                        "Cette approche convient aux projets qui ont déjà une base solide mais ont besoin de plus de souplesse, d’une meilleure cohérence ou d’un système capable d’accompagner la suite."
+                        "Faites évoluer votre site avec les fonctionnalités dont votre activité a besoin : réservation, paiement, formulaires, contenus dynamiques ou connexion à vos outils."
                       ],
                       "media": "structure-mobile-multi",
                       "meta": [
-                        { "label": "Système", "value": "Design system · Direction artistique · Refonte" },
-                        { "label": "Extension", "value": "Site web · Frontend · Nouveaux supports" },
-                        { "label": "Budget", "value": "Sur devis" }
+                        { "label": "Pour", "value": "Site existant · Nouveau service · Nouveau parcours" },
+                        { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Services externes" },
+                        { "label": "Budget", "value": "À partir de 800 € HT" }
                       ],
-                      "tags": ["Design system", "Refonte", "Frontend"],
+                      "tags": ["Intégrations", "Automatisation", "Frontend"],
                       "links": [
                         {
-                          "label": "Faire évoluer le projet",
+                          "label": "Faites évoluer votre site",
                           "href": "/contact",
                           "intent": "contact",
                           "priority": "secondary",
@@ -219,46 +216,65 @@
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "primary",
+            "surface": "glass",
+            "color": "secondary",
             "blocks": [
               {
                 "id": "studio-approach",
                 "type": "Section",
                 "layout": "list",
-                "surface": "solid",
-                "color": "primary",
+                "motion": "scene",
+                "motionPreset": "draw",
                 "content": {
-                  "header": {
-                    "title": "Comprendre d’abord. Construire ensuite.",
-                    "text": [
-                      "Le processus reste volontairement simple. Chaque étape réduit l’incertitude de la suivante, afin que les décisions visuelles et techniques répondent à quelque chose de concret."
-                    ]
-                  },
                   "items": [
                     {
+                      "id": "studio-approach-title",
+                      "title": "Comprendre d’abord. Construire ensuite.",
+                      "grid": {
+                        "mobile": { "start": 1, "span": 4, "row": 1 },
+                        "tablet": { "start": 1, "span": 8, "row": 1 },
+                        "desktop": { "start": 1, "span": 12, "row": 1 }
+                      }
+                    },
+                    {
                       "id": "studio-approach-understand",
-                      "eyebrow": "01 · Cadrage",
                       "title": "Comprendre",
-                      "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."]
+                      "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."],
+                      "grid": {
+                        "mobile": { "start": 1, "span": 4, "row": 2 },
+                        "tablet": { "start": 1, "span": 4, "row": 2 },
+                        "desktop": { "start": 1, "span": 3, "row": 2 }
+                      }
                     },
                     {
                       "id": "studio-approach-structure",
-                      "eyebrow": "02 · Architecture",
                       "title": "Structurer",
-                      "text": ["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."]
+                      "text": ["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."],
+                      "grid": {
+                        "mobile": { "start": 1, "span": 4, "row": 3 },
+                        "tablet": { "start": 5, "span": 4, "row": 2 },
+                        "desktop": { "start": 4, "span": 3, "row": 2 }
+                      }
                     },
                     {
                       "id": "studio-approach-design",
-                      "eyebrow": "03 · Direction",
                       "title": "Concevoir",
-                      "text": ["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."]
+                      "text": ["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."],
+                      "grid": {
+                        "mobile": { "start": 1, "span": 4, "row": 4 },
+                        "tablet": { "start": 1, "span": 4, "row": 3 },
+                        "desktop": { "start": 7, "span": 3, "row": 2 }
+                      }
                     },
                     {
                       "id": "studio-approach-build",
-                      "eyebrow": "04 · Réalisation",
                       "title": "Construire",
-                      "text": ["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."]
+                      "text": ["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."],
+                      "grid": {
+                        "mobile": { "start": 1, "span": 4, "row": 5 },
+                        "tablet": { "start": 5, "span": 4, "row": 3 },
+                        "desktop": { "start": 10, "span": 3, "row": 2 }
+                      }
                     }
                   ]
                 }
@@ -280,7 +296,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -320,12 +336,12 @@
             "blocks": [{ "ref": "approach-default" }]
           },
           {
-            "id": "approach-founders-panel",
+            "id": "studio-founders-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
-            "surface": "solid",
-            "color": "special",
+            "surface": "glass",
+            "color": "accent",
             "blocks": [{ "ref": "studio-founders" }]
           },
           {
@@ -477,20 +493,27 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "secondary",
-            "blocks": [{ "ref": "contact-default" }]
-          },
-          {
-            "id": "contact-final-panel",
-            "behavior": "stack",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [{ "ref": "contact-default" }]
           }
         ]
-      }
+      },
+     {
+  "id": "contact-footer-panel",
+  "type": "Group",
+  "layout": "scroll-panel",
+  "panels": [
+    {
+      "id": "contact-footer",
+      "behavior": "moving",
+      "size": "full",
+      "align": "center",
+      "surface": "glass",
+      "color": "primary",
+      "blocks": [{ "ref": "site-footer" }]
+    }
+  ]
+}
     ]
   },
   {
@@ -564,6 +587,73 @@
           },
           {
             "id": "legal-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cgv",
+    "slug": "/cgv",
+    "variant": "editorial",
+"seo": {
+  "title": "Conditions générales de vente | Chow Studio",
+  "description": "Consultez les conditions générales de vente de Chow Studio pour les prestations de design, identité visuelle, UX/UI et développement frontend destinées aux clients professionnels."
+},
+    "blocks": [
+      {
+        "id": "cgv-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "cgv-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "id": "cgv-default",
+                "type": "Section",
+                "layout": "list",
+                "content": {
+                  "header": {
+                    "title": "Conditions générales de vente",
+                    "text": [
+                      "Les présentes conditions encadrent les prestations réalisées par Chow Studio pour ses clients professionnels. Le devis, la proposition commerciale ou le contrat précise le périmètre propre à chaque projet et prévaut en cas de disposition particulière expressément convenue."
+                    ]
+                  },
+                  "items": [
+                    { "title": "1. Champ d’application", "text": ["Les présentes conditions générales de vente s’appliquent aux prestations de conseil, identité visuelle, direction visuelle, UX/UI design, conception de sites web, développement frontend et prestations associées réalisées par Chow Studio pour des clients agissant à des fins professionnelles.", "Toute commande implique l’acceptation des présentes CGV ainsi que des conditions particulières figurant au devis, à la proposition ou au contrat accepté par le client."] },
+                    { "title": "2. Devis, commande et démarrage", "text": ["Le contenu, les livrables, le calendrier indicatif et le prix sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.", "Toute demande qui modifie sensiblement le périmètre initial peut faire l’objet d’un ajustement de planning, d’un devis complémentaire ou d’une nouvelle estimation avant réalisation."] },
+                    { "title": "3. Prix", "text": ["Les prix sont indiqués en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutées selon la situation fiscale de Chow Studio au jour de la facturation.", "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des prix de départ. Le prix contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."] },
+                    { "title": "4. Facturation et règlement", "text": ["Les modalités de facturation et l’échéancier éventuel sont précisés au devis. À défaut de condition particulière, les factures sont payables dans un délai de trente jours à compter de leur date d’émission.", "Tout retard de paiement entraîne, de plein droit et sans rappel préalable, l’application de pénalités calculées au taux de refinancement de la Banque centrale européenne en vigueur majoré de dix points, ainsi qu’une indemnité forfaitaire de 40 € pour frais de recouvrement lorsqu’elle est applicable. Une indemnisation complémentaire peut être demandée sur justificatifs lorsque les frais de recouvrement effectivement engagés dépassent ce montant."] },
+                    { "title": "5. Délais et collaboration du client", "text": ["Les délais annoncés sont établis à partir des informations disponibles au moment du devis et supposent la transmission, dans des délais raisonnables, des contenus, accès, validations et retours nécessaires à l’avancement du projet.", "Un retard de réponse, de transmission ou de validation du client peut décaler les échéances sans engager la responsabilité de Chow Studio. Lorsque le projet reste interrompu du fait du client, un nouveau calendrier peut être proposé en fonction des disponibilités du studio."] },
+                    { "title": "6. Retours, corrections et hors périmètre", "text": ["Les phases de présentation, de retours et de corrections sont celles prévues au devis. Les demandes supplémentaires, changements de direction après validation, nouvelles fonctionnalités ou livrables non prévus au périmètre initial sont considérés comme hors périmètre et peuvent faire l’objet d’une facturation complémentaire."] },
+                    { "title": "7. Suspension ou annulation", "text": ["En cas d’annulation ou de suspension à l’initiative du client après le démarrage du projet, les prestations déjà réalisées, le temps engagé et les dépenses expressément engagées pour le projet restent dus. Les modalités particulières d’annulation prévues au devis ou au contrat s’appliquent lorsqu’elles existent.", "Chow Studio peut suspendre l’exécution d’une prestation en cas de non-paiement d’une échéance, de défaut persistant de collaboration ou de manquement grave du client à ses obligations, après l’avoir informé lorsque la situation le permet."] },
+                    { "title": "8. Propriété intellectuelle", "text": ["Sauf disposition contraire convenue par écrit, les droits d’exploitation sur les créations originales réalisées pour le client ne sont cédés qu’après paiement intégral des sommes dues et uniquement dans l’étendue prévue au devis ou au contrat. Les droits non expressément cédés restent réservés.", "Les éléments préexistants, outils, méthodes, composants génériques, bibliothèques, polices, logiciels, contenus ou licences appartenant à Chow Studio ou à des tiers restent soumis à leurs droits et licences propres. Le client garantit disposer des droits nécessaires sur les contenus, marques, textes, images et autres éléments qu’il fournit au studio.", "Sauf obligation de confidentialité ou opposition convenue par écrit avant publication, Chow Studio peut présenter le projet réalisé, une fois rendu public, dans son portfolio, ses études de cas et ses communications professionnelles."] },
+                    { "title": "9. Sites web, services tiers et maintenance", "text": ["Pour les prestations digitales, les livrables, accès, environnements et modalités de mise en ligne sont ceux prévus au devis. Les abonnements, noms de domaine, hébergements, services SaaS, API, outils tiers et licences nécessaires au projet restent soumis aux conditions de leurs fournisseurs respectifs et sont à la charge de la partie désignée au devis.", "La maintenance, les évolutions, mises à jour de contenu ou interventions postérieures à la livraison ne sont incluses que lorsqu’elles sont expressément prévues. Chow Studio ne peut garantir la disponibilité ou la pérennité d’un service fourni par un tiers."] },
+                    { "title": "10. Livraison et conformité", "text": ["Le client est invité à vérifier les livrables au fur et à mesure des validations et lors de la livraison finale. Toute anomalie relevant du périmètre convenu doit être signalée avec suffisamment de précision pour permettre son analyse et, lorsqu’elle est imputable à la prestation livrée, sa correction dans des conditions raisonnables.", "Une préférence nouvelle, une évolution de besoin ou une modification demandée après validation ne constitue pas une non-conformité."] },
+                    { "title": "11. Responsabilité", "text": ["Chow Studio exécute ses prestations avec le soin normalement attendu d’un professionnel et dans le cadre du périmètre convenu. Le client reste responsable de ses décisions commerciales, de ses contenus, de ses obligations légales propres, des validations qu’il donne et de l’usage final des livrables.", "Chow Studio ne peut être tenu responsable des dysfonctionnements, interruptions, changements de conditions ou pertes résultant directement d’un service tiers, d’un accès ou contenu fourni par le client, d’une modification effectuée par un tiers après livraison ou d’un événement échappant raisonnablement à son contrôle."] },
+                    { "title": "12. Confidentialité et données", "text": ["Chaque partie s’engage à traiter avec discrétion les informations confidentielles reçues dans le cadre du projet. Les données personnelles éventuellement traitées dans la relation commerciale sont utilisées pour la gestion des échanges, du projet, de la facturation et des obligations administratives. La politique de confidentialité du site précise les traitements liés au site et aux prises de contact."] },
+                    { "title": "13. Force majeure", "text": ["Aucune partie ne peut être tenue responsable d’un retard ou d’une inexécution résultant d’un événement de force majeure au sens du droit français. Les obligations affectées sont suspendues pendant la durée de l’empêchement et les parties se rapprochent pour déterminer les conséquences pratiques sur le projet."] },
+                    { "title": "14. Droit applicable et différends", "text": ["Les présentes CGV et les contrats conclus avec Chow Studio sont soumis au droit français. En cas de difficulté, les parties cherchent d’abord une solution amiable. À défaut d’accord, le litige relève des juridictions compétentes selon les règles de droit commun applicables."] },
+                    { "title": "15. Version des CGV", "text": ["La version applicable est celle acceptée avec le devis ou le contrat. Les présentes CGV peuvent évoluer pour tenir compte de changements dans les services ou dans le cadre juridique."] }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "cgv-final-panel",
             "behavior": "stack",
             "size": "full",
             "align": "center",

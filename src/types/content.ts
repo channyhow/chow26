@@ -8,9 +8,13 @@ export type SectionColor =
   | "special"
   | "accent";
 export type SectionSurface = "solid" | "glass" | "transparent";
-export type MotionLevel = "none" | "reveal" | "scene";
+export type MotionLevel = "none" | "micro" | "reveal" | "scene";
+export type ScrollMotionPreset = "drift" | "parallax" | "ambient" | "draw" | "recede";
+export type ScrollMotionRange = "through" | "exit";
+export type MotionIntensity = "quiet" | "default" | "expressive";
 export type CardEffect = "none" | "glass" | "grain";
 export type TimelineOrientation = "vertical" | "horizontal";
+export type ProjectLayout = "a" | "b";
 
 export type CardAppearance = {
   frame?: boolean;
@@ -67,6 +71,21 @@ export type MetaItem = {
 
 export type MediaRef = string;
 
+export type GridTrackPlacement = {
+  start?: number;
+  span?: number;
+  row?: number;
+  rowSpan?: number;
+  align?: "start" | "center" | "end" | "stretch";
+  justify?: "start" | "center" | "end" | "stretch";
+};
+
+export type GridPlacement = {
+  mobile?: GridTrackPlacement;
+  tablet?: GridTrackPlacement;
+  desktop?: GridTrackPlacement;
+};
+
 export type ContentItem = {
   id?: string;
   eyebrow?: string | string[];
@@ -79,57 +98,86 @@ export type ContentItem = {
   tags?: string[];
   category?: string;
   group?: string;
-  featured?: boolean;
-  enabled?: boolean;
-  order?: number;
   href?: string;
+  enabled?: boolean;
+  featured?: boolean;
+  order?: number;
+  slug?: string;
+  projectLayout?: ProjectLayout;
+  grid?: GridPlacement;
+  summary?: string;
+  description?: string[];
+  facts?: MetaItem[];
+  gallery?: MediaRef[];
+  seo?: PageSeo;
 };
 
 export type ProjectRecord = ContentItem & {
   id: string;
-  slug: string;
-  href: string;
   title: string;
+  text: string[];
+  media: MediaRef;
+  href: string;
+  slug: string;
   summary: string;
   description: string[];
   facts: MetaItem[];
-  gallery: MediaRef[];
+  gallery?: MediaRef[];
+  links?: Action[];
   seo: PageSeo;
+  projectLayout?: ProjectLayout;
+};
+
+export type SectionHeader = {
+  eyebrow?: string | string[];
+  title?: string;
+  subtitle?: string | string[];
+  text?: string | string[];
+  links?: Action[];
+  media?: MediaRef | MediaRef[];
+  meta?: MetaItem[];
+};
+
+export type SectionContent = {
+  header?: SectionHeader;
+  items?: ContentItem[];
+  media?: MediaRef | MediaRef[];
+  form?: string | FormSchema;
+};
+
+export type SourceQuery = {
+  featured?: boolean;
+  enabled?: boolean;
+  category?: string;
+  group?: string;
+  limit?: number;
+  excludeIds?: string[];
+  prioritizeIds?: string[];
 };
 
 export type SourceRef = {
   collection: string;
-  query?: {
-    featured?: boolean;
-    category?: string;
-    group?: string;
-    enabled?: boolean;
-    limit?: number;
-  };
-};
-
-export type SectionContent = {
-  header?: ContentItem;
-  items?: ContentItem[];
-  media?: MediaRef | MediaRef[];
-  links?: Action[];
-  form?: string | FormSchema;
+  query?: SourceQuery;
 };
 
 export type SectionBlock = {
   id: string;
   type: "Section";
+  layout?: SectionLayout;
   variant?: StyleVariant;
   tone?: Tone;
   surface?: SectionSurface;
   color?: SectionColor;
-  layout?: SectionLayout;
   timelineOrientation?: TimelineOrientation;
   source?: SourceRef;
   content?: SectionContent;
   frame?: boolean;
+  progressive?: boolean;
   itemAppearance?: CardAppearance;
   motion?: MotionLevel;
+  motionPreset?: ScrollMotionPreset;
+  motionRange?: ScrollMotionRange;
+  motionIntensity?: MotionIntensity;
   className?: string;
 };
 

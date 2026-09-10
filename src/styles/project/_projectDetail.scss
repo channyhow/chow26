@@ -1,0 +1,193 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+
+
+
+.projectDetail {
+  --project-measure: 36rem;
+  --project-media-measure: 34rem;
+}
+
+.projectHero {
+  --section-space: 0;
+  --split-primary-column: 1 / span 5;
+  --split-secondary-column: 7 / span 6;
+}
+
+.projectHero.projectDetail--b {
+  --split-primary-column: 8 / span 5;
+  --split-secondary-column: 1 / span 6;
+}
+
+.projectHero .section__inner {
+  width: 100%;
+  max-width: none;
+  padding-block: $space-5;
+}
+
+.projectHero .split,
+.projectStoryMedia .split {
+  align-items: center;
+  gap: $space-3;
+}
+
+.projectHero .textBlock,
+.projectStoryMedia .textBlock,
+.projectStoryText .textBlock {
+  width: 100%;
+  max-width: var(--project-measure);
+}
+
+.projectHero .textBlock__title {
+  @include type-display-lg;
+  max-width: 10ch;
+  // letter-spacing: -0.045em;
+  // line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.projectHero .textBlock__subtitle {
+  max-width: var(--project-media-measure);
+  margin-top: $space-2;
+  font-size: $type-lead;
+  line-height: 1.45;
+}
+
+.projectHero .textBlock__meta {
+  @include type-ui-compact;
+  @include meta-chips($space-1 $space-3);
+
+  width: 100%;
+  max-width: var(--project-measure);
+  align-items: center;
+  margin-top: $space-1;
+  padding-top: $space-2;
+}
+
+.projectHero .textBlock__meta > * {
+  min-width: 0;
+}
+
+.projectHero .split__secondary,
+.projectStoryMedia .split__secondary {
+  display: grid;
+  place-items: center;
+}
+
+.projectHero .media,
+.projectStoryMedia .media {
+  width: min(100%, var(--project-media-measure));
+  margin: 0 auto;
+  border-radius: $radius-none;
+}
+
+.projectHero .media[data-media-type="mux"] .media__frame,
+.projectStoryMedia .media[data-media-type="mux"] .media__frame {
+  aspect-ratio: $ratio-portrait;
+}
+
+.projectHero .media[data-media-type="mux"] .media__asset,
+.projectStoryMedia .media[data-media-type="mux"] .media__asset {
+  --media-object-fit: cover;
+  object-fit: cover;
+}
+
+.projectStoryMedia,
+.projectStoryText,
+.projectCta {
+  --section-space: $space-5;
+}
+
+.projectStoryMedia--forward {
+  --split-primary-column: 2 / span 4;
+  --split-secondary-column: 7 / span 5;
+}
+
+.projectStoryMedia--reverse {
+  --split-primary-column: 8 / span 4;
+  --split-secondary-column: 2 / span 5;
+}
+
+.projectStoryMedia .section__inner,
+.projectStoryText .section__inner {
+  padding-block: $space-5;
+}
+
+.projectStoryMedia .textBlock__content,
+.projectStoryText .textBlock__content {
+  gap: $space-3;
+}
+
+.projectStoryMedia .textBlock__content p,
+.projectStoryText .textBlock__content p {
+  font-size: $type-lead;
+  line-height: 1.58;
+}
+
+.projectStoryMedia strong,
+.projectStoryText strong {
+  font-weight: $font-weight-strong;
+  color: color-mix(in srgb, currentColor 84%, var(--accent) 16%);
+}
+
+.projectStoryMedia .media[data-media-type="image"][data-orientation="square"] .media__frame {
+  aspect-ratio: $ratio-square;
+}
+
+.projectStoryMedia .media[data-media-type="image"] {
+  @include media-cover;
+}
+
+.projectCta .textBlock {
+  width: min(100%, 48rem);
+  max-width: none;
+}
+
+.projectCta .textBlock__title {
+  @include type-heading-md;
+  max-width: 22ch;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+@include desktop-down {
+  .projectHero,
+  .projectHero.projectDetail--b,
+  .projectStoryMedia--forward,
+  .projectStoryMedia--reverse {
+    --split-primary-column: 1 / -1;
+    --split-secondary-column: 1 / -1;
+  }
+
+  .projectHero .section__inner,
+  .projectStoryMedia .section__inner,
+  .projectStoryText .section__inner {
+    padding-block: $space-4;
+  }
+
+  .projectHero .split,
+  .projectStoryMedia .split {
+    gap: $space-4;
+  }
+
+  .projectHero .media,
+  .projectStoryMedia .media {
+    --project-media-measure: 32rem;
+  }
+}
+
+@include tablet-down {
+  .projectHero .textBlock__title {
+    font-size: clamp(3.4rem, 16vw, #{$space-5});
+  }
+
+  .projectHero .textBlock__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .projectHero .textBlock__meta > * {
+    white-space: normal;
+  }
+}

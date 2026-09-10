@@ -3,6 +3,7 @@
 
 .carousel {
   --carousel-media-ratio: #{$ratio-landscape};
+  position: relative;
   display: grid;
   gap: $space-2;
 }
@@ -37,63 +38,91 @@
 }
 
 .carousel__item .media__asset {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  @include media-fill;
 }
 
 .carousel__controls {
   display: flex;
   justify-self: end;
   gap: $space-1;
+}
 
-  button {
-    @include icon-control;
-
-    border-radius: $radius-full;
-    -webkit-tap-highlight-color: transparent;
-
-    &:disabled {
-      cursor: default;
-      opacity: 0.22;
-    }
-
-    &:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-
-    @include hover {
-      &:not(:disabled) {
-        color: var(--secondary);
-        background: var(--primary);
-        transform: translateY(-2px);
-      }
-    }
-  }
+.carousel__control {
+  @include navigation-control;
 }
 
 .carousel__arrow {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.65rem;
+  height: 1.65rem;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
 }
 
-[data-variant="organic"] {
-  .carousel__controls button {
-    border-radius: var(
-      --radius-control,
-      #{$radius-full}
-    );
+@include mobile-down {
+  .section[data-source="projects"][data-featured="true"] .carousel {
+    --carousel-media-ratio: #{$ratio-wide};
+  }
+
+  .section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
+    content: "→";
+    position: absolute;
+    top: 50%;
+    right: $space-3;
+    z-index: $z-raised;
+    font-size: 2.25rem;
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+    pointer-events: none;
+    transform: translateY(-50%);
+    animation: carousel-next-cue 1.6s $ease-soft infinite;
+  }
+
+  .section[data-source="projects"][data-featured="true"] .carousel__track {
+    grid-auto-columns: min(84vw, 24rem);
+  }
+
+  @media (pointer: coarse) {
+    .section[data-source="projects"][data-featured="true"] .carousel__controls {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .section[data-source="projects"][data-featured="true"] .carousel__controls:focus-within {
+      position: static;
+      width: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      clip-path: none;
+      white-space: normal;
+    }
+  }
+}
+
+@keyframes carousel-next-cue {
+  0%,
+  100% {
+    transform: translate(-0.15rem, -50%);
+  }
+
+  50% {
+    transform: translate(0.25rem, -50%);
   }
 }
 
 @include reduced-motion {
-  .carousel__controls button {
+  .carousel__control {
     transition: none;
 
     &:hover,
@@ -101,8 +130,38 @@
       transform: none;
     }
   }
+
+  .carousel[data-can-next="true"]::after {
+    animation: none;
+    transform: translateY(-50%);
+  }
 }
 
 @include tablet-up {
-  .carousel__track { grid-auto-columns: minmax(22rem, 38%); }
+  .carousel__track {
+    grid-auto-columns: minmax(22rem, 38%);
+  }
+
+  .carousel__controls {
+    position: absolute;
+    top: 50%;
+    right: $space-2;
+    z-index: $z-raised;
+    gap: $flow-tight;
+    transform: translateY(-50%);
+  }
+
+  .carousel__control {
+    --radius-control: #{$radius-none};
+    width: clamp(3.5rem, 4.5vw, 4rem);
+    border-width: 2px;
+    background: var(--secondary);
+    font-weight: $font-weight-strong;
+  }
+
+  .carousel__arrow {
+    width: 1.85rem;
+    height: 1.85rem;
+    stroke-width: 2.25;
+  }
 }

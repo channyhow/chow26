@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 4rem;
+  min-height: $header-height;
   padding-inline: clamp($space-2, 4vw, $space-4);
   color: var(--header-color, var(--primary));
   pointer-events: none;
@@ -64,17 +64,14 @@
   pointer-events: auto;
 }
 
-// .header__logo {
-//   @include brand-link;
-// }
-
 .header__nav {
   display: none;
   align-items: center;
   gap: clamp($space-2, 2.4vw, $space-3);
 }
 
-.header__logo,.header__nav a {
+.header__logo,
+.header__nav a {
   @include type-ui-compact;
   @include interactive-text;
 

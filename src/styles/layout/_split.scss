@@ -2,18 +2,24 @@
 @use "../foundation/mixins" as *;
 
 .split {
-  display: grid;
-  gap: var(--section-gap, #{$space-3});
+  @include site-grid(var(--section-gap, #{$flow-loose}));
+  row-gap: var(--section-gap, #{$flow-loose});
 
   &__primary,
   &__secondary {
+    grid-column: 1 / -1;
+    width: 100%;
     min-width: 0;
+    max-width: none;
   }
 }
 
 @include desktop-up {
-  .split {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    align-items: start;
+  .split__primary {
+    grid-column: var(--split-primary-column, 1 / span 5);
+  }
+
+  .split__secondary {
+    grid-column: var(--split-secondary-column, 7 / span 6);
   }
 }
