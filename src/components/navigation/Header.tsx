@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { Link, useLocation } from "react-router-dom";
 import { BurgerButton } from "@/components/navigation/BurgerButton";
 import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
+import { motionConfig } from "@/motion/config";
 
 type HeaderNavigationMode = "drawer" | "inline";
 type NavigationUiConfig = { navigation?: { desktop?: HeaderNavigationMode } };
@@ -15,6 +17,7 @@ type HeaderNavItem = {
 };
 
 type HeaderSurface = "primary" | "secondary" | "accent" | "special";
+type HeaderNavPlacement = "center" | "end";
 
 const normalizePath = (path: string) =>
   path === "/" ? path : path.replace(/\/+$/, "");
@@ -30,17 +33,19 @@ const getSurface = (element?: HTMLElement | null) =>
 
 export function Header() {
   const { pathname } = useLocation();
+  const reduceMotion = useReducedMotion();
   const currentPath = normalizePath(pathname);
   const items = navigationData.primary as HeaderNavItem[];
   const home = items.find((item) => item.id === "home");
   const primaryItems = items.filter((item) => item.enabled && item.id !== "home");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
+  const [navPlacement, setNavPlacement] = useState<HeaderNavPlacement>(currentPath === "/" ? "center" : "end");
 
   useEffect(() => {
     let frame = 0;
 
-    const resolveSurface = () => {
+    const resolveHeaderState = () => {
       frame = 0;
 
       const sampleX = Math.round(window.innerWidth / 2);
@@ -55,16 +60,38 @@ export function Header() {
 
         if (isHeaderSurface(color)) {
           setSurface((current) => (current === color ? current : color));
-          return;
+          break;
         }
       }
 
-      setSurface((current) => (current === "secondary" ? current : "secondary"));
+      if (!layers.some((layer) => {
+        const element = (layer as HTMLElement).closest<HTMLElement>(
+          ".sectionGroup__panel[data-panel-color], .section[data-color]",
+        );
+        return isHeaderSurface(getSurface(element));
+      })) {
+        setSurface((current) => (current === "secondary" ? current : "secondary"));
+      }
+
+      if (currentPath !== "/") {
+        setNavPlacement((current) => (current === "end" ? current : "end"));
+        return;
+      }
+
+      const openingPanel = document.querySelector<HTMLElement>(
+        '.sectionGroup[data-layout="scroll-panel"] > .sectionGroup__panel:first-child',
+      );
+      const openingActive = openingPanel
+        ? openingPanel.getBoundingClientRect().bottom > 64
+        : window.scrollY < window.innerHeight;
+      const nextPlacement: HeaderNavPlacement = openingActive ? "center" : "end";
+
+      setNavPlacement((current) => (current === nextPlacement ? current : nextPlacement));
     };
 
     const scheduleResolve = () => {
       if (frame) return;
-      frame = window.requestAnimationFrame(resolveSurface);
+      frame = window.requestAnimationFrame(resolveHeaderState);
     };
 
     scheduleResolve();
@@ -76,7 +103,7 @@ export function Header() {
       window.removeEventListener("resize", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [pathname]);
+  }, [currentPath]);
 
   return (
     <header
@@ -93,7 +120,18 @@ export function Header() {
         {siteData.site.name}
       </Link>
 
-      <nav className="header__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
+      <motion.nav
+        className="header__nav"
+        aria-label={siteData.ui.copy.navigation.mainLabel}
+        data-placement={navPlacement}
+        layout="position"
+        transition={{
+          layout: {
+            duration: reduceMotion ? motionConfig.reduced.duration : 0.55,
+            ease: motionConfig.easing.soft,
+          },
+        }}
+      >
         {primaryItems.map((item) => (
           <Link
             key={item.id}
@@ -105,7 +143,7 @@ export function Header() {
             {item.variant === "cta" ? <span aria-hidden="true">→</span> : null}
           </Link>
         ))}
-      </nav>
+      </motion.nav>
 
       <BurgerButton />
     </header>
