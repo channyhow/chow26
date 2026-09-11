@@ -19,6 +19,7 @@ function renderBlocks(
   suppressSceneMotion = false,
   inPanel = false,
   scrollProgress?: MotionValue<number>,
+  panelBehavior?: PanelBehavior,
 ) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
@@ -26,7 +27,14 @@ function renderBlocks(
       if (!block) return null;
 
       if (entry.ref === "site-footer") {
-        return <SiteFooter key={entry.ref} block={block} />;
+        return (
+          <SiteFooter
+            key={entry.ref}
+            block={block}
+            scrollProgress={scrollProgress}
+            panelBehavior={panelBehavior}
+          />
+        );
       }
 
       return (
@@ -148,7 +156,7 @@ function Panel({
       style={style}
     >
       <div className="sectionGroup__surface">
-        {renderBlocks(blocks, false, true, scrollYProgress)}
+        {renderBlocks(blocks, false, true, scrollYProgress, behavior)}
       </div>
     </div>
   );
