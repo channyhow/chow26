@@ -46,10 +46,10 @@
   z-index: $z-header;
   min-height: $header-height;
   padding-inline: var(--header-gutter);
-  background: color-mix(in srgb, var(--secondary) 38%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, currentColor 8%, transparent);
-  backdrop-filter: blur(1rem) saturate(0.92);
-  -webkit-backdrop-filter: blur(1rem) saturate(0.92);
+  background: transparent;
+  // border-bottom: 1px solid color-mix(in srgb, currentColor 8%, transparent);
+  backdrop-filter: blur(0.4rem) saturate(0.92);
+  -webkit-backdrop-filter: blur(0.4rem) saturate(0.92);
   box-shadow: none;
   color: var(--header-color, var(--primary));
   pointer-events: none;
