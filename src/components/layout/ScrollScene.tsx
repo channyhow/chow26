@@ -59,7 +59,7 @@ export function ScrollScene({
   const sign = direction === "reverse" ? -1 : 1;
   const isAttentionExit = range === "exit" && preset === "drift";
   const reducedScale = reduceMotion ? motionConfig.reduced.sceneScale : 1;
-  const attentionScale = isAttentionExit ? 2.1 : 1;
+  const attentionScale = isAttentionExit ? 2.35 : 1;
   const scale = responsiveScale * intensityScale[intensity] * reducedScale * attentionScale;
 
   useEffect(() => {
@@ -94,28 +94,28 @@ export function ScrollScene({
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   // The attention exit is intentionally layered: imagery responds immediately,
-  // while the copy holds its ground long enough for the media to cross behind it.
+  // while the copy holds its ground long enough for the media to visibly cross behind it.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.72, 1],
-    [0, -140 * scale, -180 * scale],
+    [0, 0.68, 1],
+    [0, -190 * scale, -250 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
     scrollYProgress,
-    [0, 0.72, 1],
-    [1, reduceMotion ? 1.004 : 1.025, reduceMotion ? 1.006 : 1.04],
+    [0, 0.68, 1],
+    [1, reduceMotion ? 1.005 : 1.045, reduceMotion ? 1.008 : 1.07],
   );
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.3, 1],
-    [0, 0, -72 * scale],
+    [0, 0.42, 1],
+    [0, 0, -96 * scale],
   );
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
   const layeredCopyOpacity = useTransform(
     scrollYProgress,
-    [0, 0.36, 1],
-    [1, 1, reduceMotion ? 0.92 : 0.72],
+    [0, 0.48, 1],
+    [1, 1, reduceMotion ? 0.9 : 0.58],
   );
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
