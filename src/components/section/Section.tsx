@@ -57,9 +57,25 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isFeaturedProjectGrid = layout === "grid"
     && block.source?.collection === "projects"
     && block.source.query?.featured === true;
+  const isProjectArchiveGrid = layout === "grid"
+    && block.source?.collection === "projects"
+    && block.source.query?.featured !== true;
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
-  const projectGridLead = isFeaturedProjectGrid && header && !useProjectCarouselOnMobile
-    ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
+  const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
+    ? isProjectArchiveGrid
+      ? (
+        <div className="projectArchiveLead">
+          <TextBlock
+            content={{ title: header.title }}
+            className="section__gridLead projectArchiveLead__title"
+          />
+          <TextBlock
+            content={{ text: header.text }}
+            className="section__gridLead projectArchiveLead__description"
+          />
+        </div>
+      )
+      : <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
 
   useEffect(() => {
@@ -84,6 +100,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       <Carousel>{cards}</Carousel>
     ) : (
       <Grid
+        className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined}
         progressive={Boolean(block.progressive)}
         lead={projectGridLead}
         motionPreset={block.motionPreset}
