@@ -43,7 +43,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
-  const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
+  const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
@@ -216,6 +216,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     </ScrollScene>
   ) : null;
 
+  const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
+  const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
+
   return (
     <motion.section
       id={block.id}
@@ -240,10 +243,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       ) : (
         <motion.div
           className="section__inner"
-          initial={shouldReveal ? { opacity: 0.92, y: motionConfig.distance.subtle } : false}
+          initial={shouldReveal ? { opacity: reduceMotion ? 0.96 : 0.92, y: revealDistance } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={motionConfig.viewport}
-          transition={{ duration: motionConfig.duration.slow, ease: motionConfig.easing.soft }}
+          transition={{ duration: revealDuration, ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft }}
         >
           {body}
         </motion.div>
