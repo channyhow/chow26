@@ -1,23 +1,26 @@
 @use "../foundation/mixins" as *;
 @use "../foundation/tokens" as *;
 
-/* Chow 404: full viewport section, compact centered content. */
+/* Chow 404: full viewport, centered and deliberately simple. */
 #not-found-default {
   --section-space: clamp(#{$space-3}, 7svh, #{$space-5});
   min-height: 100svh;
   display: grid;
   align-items: center;
+  background: var(--theme-special);
+  color: var(--theme-primary);
 }
 
 #not-found-default .section__inner {
-  width: 100%;
-  max-width: 48rem;
+  width: min(100%, 76rem);
+  max-width: none;
+  margin-inline: auto;
   display: grid;
   place-items: center;
 }
 
 #not-found-default .textBlock {
-  width: min(100%, 42rem);
+  width: min(100%, 68rem);
   max-width: none;
   display: flex;
   flex-direction: column;
@@ -32,13 +35,13 @@
 }
 
 #not-found-default .textBlock__title {
-  max-width: 10ch;
+  max-width: 18ch;
   margin-inline: auto;
   text-wrap: balance;
 }
 
 #not-found-default .textBlock__content {
-  width: min(100%, 36rem);
+  width: min(100%, 48rem);
   margin-inline: auto;
 }
 
@@ -51,9 +54,37 @@
   justify-content: center;
 }
 
+/* The 404 uses the normal text action plus the existing arrow CTA rather than
+   introducing another button treatment. */
+#not-found-default .actions__link--primary {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+#not-found-default .actions__link--primary:hover,
+#not-found-default .actions__link--primary:focus-visible {
+  border: 0;
+  background: transparent;
+  color: var(--theme-primary);
+  box-shadow: none;
+  transform: none;
+}
+
 @include mobile-down {
   #not-found-default .section__inner {
-    max-width: 36rem;
+    width: 100%;
+  }
+
+  #not-found-default .textBlock {
+    width: min(100%, 38rem);
+  }
+
+  #not-found-default .textBlock__title {
+    max-width: 14ch;
   }
 
   #not-found-default .textBlock__footer {
@@ -61,11 +92,12 @@
   }
 
   #not-found-default .actions {
-    width: min(100%, 22rem);
-    flex-direction: column;
+    width: auto;
+    flex-direction: row;
+    justify-content: center;
   }
 
   #not-found-default .actions__link {
-    width: 100%;
+    width: auto;
   }
 }
