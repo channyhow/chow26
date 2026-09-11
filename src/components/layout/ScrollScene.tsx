@@ -74,11 +74,7 @@ export function ScrollScene({
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
-  const rotate = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [distance(-9), distance(11)],
-  );
+  const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
@@ -89,11 +85,13 @@ export function ScrollScene({
       ? { y: driftY }
       : effectivePreset === "parallax"
         ? { y: contentY }
-        : effectivePreset === "draw"
-          ? { y: drawY }
-          : effectivePreset === "recede"
-            ? { y: recedeY, opacity: recedeOpacity }
-            : undefined
+        : effectivePreset === "ambient"
+          ? { x: ambientX, y: ambientY }
+          : effectivePreset === "draw"
+            ? { y: drawY }
+            : effectivePreset === "recede"
+              ? { y: recedeY, opacity: recedeOpacity }
+              : undefined
     : undefined;
 
   return (
@@ -112,25 +110,13 @@ export function ScrollScene({
         <div className="scrollScene__decor" aria-hidden="true">
           {showMovingShapes ? (
             <>
-              <motion.span
-                className="scrollScene__shape scrollScene__shape--slow"
-                style={motionEnabled ? { y: slowY } : undefined}
-              />
-              <motion.span
-                className="scrollScene__shape scrollScene__shape--medium"
-                style={motionEnabled ? { y: mediumY, rotate } : undefined}
-              />
-              <motion.span
-                className="scrollScene__shape scrollScene__shape--fast"
-                style={motionEnabled ? { y: fastY } : undefined}
-              />
+              <motion.span className="scrollScene__shape scrollScene__shape--slow" style={motionEnabled ? { y: slowY } : undefined} />
+              <motion.span className="scrollScene__shape scrollScene__shape--medium" style={motionEnabled ? { y: mediumY, rotate } : undefined} />
+              <motion.span className="scrollScene__shape scrollScene__shape--fast" style={motionEnabled ? { y: fastY } : undefined} />
             </>
           ) : null}
           {showLine ? (
-            <motion.span
-              className="scrollScene__line"
-              style={motionEnabled ? { scaleY: lineScale } : { scaleY: 1 }}
-            />
+            <motion.span className="scrollScene__line" style={motionEnabled ? { scaleY: lineScale } : { scaleY: 1 }} />
           ) : null}
         </div>
       ) : null}
