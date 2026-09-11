@@ -20,7 +20,6 @@
   margin-inline-end: var(--panel-inline-end);
   position: relative;
   z-index: calc(var(--panel-index, 0) + 1);
-  isolation: isolate;
   color: var(--panel-fg);
 }
 
@@ -89,29 +88,8 @@
 .sectionGroup__panel[data-panel-surface="solid"] { background: var(--panel-bg); }
 .sectionGroup__panel[data-panel-surface="glass"] {
   background: var(--panel-glass-bg);
-  backdrop-filter: blur(var(--panel-glass-blur));
-  -webkit-backdrop-filter: blur(var(--panel-glass-blur));
-}
-
-@supports (animation-timeline: view()) {
-  .sectionGroup__panel[data-panel-surface="glass"] {
-    animation: panel-glass-in linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 70%;
-  }
-}
-
-@keyframes panel-glass-in {
-  from {
-    background: color-mix(in srgb, var(--panel-bg) 12%, transparent);
-    backdrop-filter: blur(0);
-    -webkit-backdrop-filter: blur(0);
-  }
-  to {
-    background: var(--panel-glass-bg);
-    backdrop-filter: blur(var(--panel-glass-blur));
-    -webkit-backdrop-filter: blur(var(--panel-glass-blur));
-  }
+  backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
+  -webkit-backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
 }
 
 @include desktop-up {
@@ -145,9 +123,5 @@
     position: relative !important;
     top: auto !important;
     min-height: 0 !important;
-  }
-
-  .sectionGroup__panel[data-panel-surface="glass"] {
-    animation: none;
   }
 }
