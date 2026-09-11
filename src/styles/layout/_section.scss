@@ -99,9 +99,20 @@
 .section[data-color="special"] { --section-bg: var(--theme-special); --section-fg: var(--theme-primary); }
 .section[data-surface="solid"] { background: var(--section-bg); }
 .section[data-surface="glass"] {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+.section[data-surface="glass"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: var(--section-glass-bg);
-  backdrop-filter: blur($glass-blur);
-  -webkit-backdrop-filter: blur($glass-blur);
+  backdrop-filter: blur($glass-blur) saturate(0.95);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(0.95);
 }
 .section[data-surface="transparent"] { background: transparent; }
 .section[data-layout="media-overlay"] { padding: 0; }
