@@ -165,7 +165,7 @@ export function Grid({
   motionEnabled = true,
   scrollLinked = true,
 }: GridProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
   const scrollRef = useRef<HTMLDivElement>(null);
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
