@@ -85,11 +85,16 @@ export function Header() {
         '.sectionGroup[data-layout="scroll-panel"] > .sectionGroup__panel:first-child',
       );
       const openingRect = openingPanel?.getBoundingClientRect();
+      const compactHeader = window.matchMedia("(max-width: 63.999rem)").matches;
       const openingHeight = Math.max(openingRect?.height ?? window.innerHeight, 1);
       const progress = openingRect
         ? Math.min(1, Math.max(0, -openingRect.top / openingHeight))
         : Math.min(1, window.scrollY / Math.max(window.innerHeight, 1));
-      const introActive = progress < 0.8;
+      const introActive = compactHeader
+        ? progress < 0.8
+        : openingRect
+          ? openingRect.bottom > 64
+          : window.scrollY < window.innerHeight;
       const nextPlacement: HeaderNavPlacement = introActive ? "center" : "end";
       const nextOpeningState: OpeningState = introActive ? "intro" : "settled";
 
