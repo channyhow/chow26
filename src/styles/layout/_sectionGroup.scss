@@ -4,7 +4,6 @@
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
 .sectionGroup[data-layout="scroll-panel"] {
-  --panel-glass-blur: #{$glass-blur};
   display: flow-root;
 }
 
@@ -101,8 +100,8 @@
 
 .sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface {
   background: var(--panel-glass-bg);
-  backdrop-filter: blur(var(--panel-glass-blur)) saturate(1.05);
-  -webkit-backdrop-filter: blur(var(--panel-glass-blur)) saturate(1.05);
+  backdrop-filter: blur($glass-blur) saturate(1.05);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
 @include desktop-up {
