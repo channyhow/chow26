@@ -40,6 +40,7 @@ type GridItemStyle = CSSProperties & Record<`--grid-${string}`, string | number 
 type GridMotionItemProps = {
   child: ReactNode;
   index: number;
+  total: number;
   placement?: GridPlacement;
   animateGrid: boolean;
   usesDrawMotion: boolean;
@@ -96,6 +97,7 @@ function placementStyle(placement?: GridPlacement): GridItemStyle | undefined {
 function GridMotionItem({
   child,
   index,
+  total,
   placement,
   animateGrid,
   usesDrawMotion,
@@ -106,18 +108,19 @@ function GridMotionItem({
 }: GridMotionItemProps) {
   const baseOffset = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
-  const entryStart = Math.min(0.08 + index * 0.075, 0.42);
-  const entryEnd = Math.min(entryStart + 0.3, 0.78);
-  const exitStart = Math.max(entryEnd + 0.08, 0.72);
+  const staggerProgress = total > 1 ? index / (total - 1) : 0;
+  const entryStart = 0.04 + staggerProgress * 0.38;
+  const entryEnd = Math.min(entryStart + 0.28, 0.72);
+  const exitStart = Math.max(entryEnd + 0.08, 0.78);
   const linkedY = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 8 : 52, 0, 0, reduceMotion ? -3 : -18],
+    [reduceMotion ? 6 : 48, 0, 0, reduceMotion ? -2 : -14],
   );
   const linkedOpacity = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.92 : 0.2, 1, 1, reduceMotion ? 0.96 : 0.82],
+    [reduceMotion ? 0.94 : 0.16, 1, 1, reduceMotion ? 0.98 : 0.86],
   );
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
@@ -160,7 +163,7 @@ export function Grid({
   motionPreset,
   placements,
   motionEnabled = true,
-  scrollLinked = false,
+  scrollLinked = true,
 }: GridProps) {
   const reduceMotion = useReducedMotion();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -171,7 +174,7 @@ export function Grid({
   const animateGrid = motionEnabled;
   const { scrollYProgress } = useScroll({
     target: scrollRef,
-    offset: ["start 92%", "end 18%"],
+    offset: ["start 94%", "end 14%"],
   });
 
   useEffect(() => {
@@ -221,6 +224,7 @@ export function Grid({
               key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
               child={child}
               index={index}
+              total={visibleChildren.length}
               placement={placements?.[index]}
               animateGrid={animateGrid}
               usesDrawMotion={usesDrawMotion}
