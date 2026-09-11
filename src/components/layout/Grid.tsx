@@ -1,8 +1,21 @@
-import { Children, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { Children, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "motion/react";
 
-import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
+import {
+  fastStaggerContainer,
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealItem,
+} from "@/motion/config";
 import type { GridPlacement, GridTrackPlacement } from "@/types/content";
 import { responsiveQueries } from "@/utils/responsive";
 
@@ -14,6 +27,7 @@ export type GridProps = {
   motionPreset?: string;
   placements?: Array<GridPlacement | undefined>;
   motionEnabled?: boolean;
+  scrollLinked?: boolean;
 };
 
 type GridRange = {
@@ -22,6 +36,19 @@ type GridRange = {
 };
 
 type GridItemStyle = CSSProperties & Record<`--grid-${string}`, string | number | undefined>;
+
+type GridMotionItemProps = {
+  child: ReactNode;
+  index: number;
+  total: number;
+  placement?: GridPlacement;
+  animateGrid: boolean;
+  usesDrawMotion: boolean;
+  scrollLinked: boolean;
+  progress: MotionValue<number>;
+  reduceMotion: boolean;
+  itemVariants: typeof revealItem;
+};
 
 const gridRanges = {
   mobile: { initial: 4, step: 1 },
@@ -67,6 +94,67 @@ function placementStyle(placement?: GridPlacement): GridItemStyle | undefined {
   return style;
 }
 
+function GridMotionItem({
+  child,
+  index,
+  total,
+  placement,
+  animateGrid,
+  usesDrawMotion,
+  scrollLinked,
+  progress,
+  reduceMotion,
+  itemVariants,
+}: GridMotionItemProps) {
+  const baseOffset = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
+  const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
+  const staggerProgress = total > 1 ? index / (total - 1) : 0;
+  const entryStart = 0.04 + staggerProgress * 0.38;
+  const entryEnd = Math.min(entryStart + 0.28, 0.72);
+  const exitStart = Math.max(entryEnd + 0.08, 0.78);
+  const linkedY = useTransform(
+    progress,
+    [entryStart, entryEnd, exitStart, 1],
+    [reduceMotion ? 6 : 48, 0, 0, reduceMotion ? -2 : -14],
+  );
+  const linkedOpacity = useTransform(
+    progress,
+    [entryStart, entryEnd, exitStart, 1],
+    [reduceMotion ? 0.94 : 0.16, 1, 1, reduceMotion ? 0.98 : 0.86],
+  );
+  const linkedStyle = scrollLinked
+    ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
+    : placementStyle(placement);
+
+  return (
+    <motion.div
+      className="grid__item"
+      key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
+      style={linkedStyle}
+      variants={animateGrid && !usesDrawMotion && !scrollLinked ? itemVariants : undefined}
+      initial={animateGrid && !scrollLinked
+        ? usesDrawMotion
+          ? { opacity: reduceMotion ? 0.96 : 0, x: drawOffset, y: baseOffset }
+          : { opacity: reduceMotion ? 0.96 : 0, y: baseOffset }
+        : false}
+      whileInView={animateGrid && usesDrawMotion && !scrollLinked ? { opacity: 1, x: 0, y: 0 } : undefined}
+      animate={animateGrid && !usesDrawMotion && !scrollLinked ? { opacity: 1, y: 0 } : undefined}
+      viewport={animateGrid && usesDrawMotion && !scrollLinked ? motionConfig.viewport : undefined}
+      transition={animateGrid && !scrollLinked ? {
+        duration: reduceMotion
+          ? motionConfig.reduced.duration
+          : usesDrawMotion
+            ? motionConfig.duration.slow
+            : motionConfig.duration.default,
+        ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft,
+        delay: index * (reduceMotion ? motionConfig.reduced.stagger : usesDrawMotion ? 0.08 : 0),
+      } : undefined}
+    >
+      {child}
+    </motion.div>
+  );
+}
+
 export function Grid({
   children,
   className,
@@ -75,13 +163,19 @@ export function Grid({
   motionPreset,
   placements,
   motionEnabled = true,
+  scrollLinked = true,
 }: GridProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
+  const scrollRef = useRef<HTMLDivElement>(null);
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const initialRange = useMemo(() => getGridRange(), []);
   const [range, setRange] = useState<GridRange>(initialRange);
   const [visibleCount, setVisibleCount] = useState(() => initialRange.initial);
-  const animateGrid = motionEnabled && !reduceMotion;
+  const animateGrid = motionEnabled;
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start 94%", "end 14%"],
+  });
 
   useEffect(() => {
     if (!progressive) return;
@@ -109,46 +203,37 @@ export function Grid({
   const hasMore = progressive && effectiveVisibleCount < childArray.length;
   const usesDrawMotion = motionPreset === "draw";
   const usesEditorialPlacement = Boolean(placements?.some(Boolean));
+  const usesScrollLinkedMotion = animateGrid && scrollLinked;
+  const containerVariants = reduceMotion ? reducedStaggerContainer : fastStaggerContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   return (
-    <div className="gridReveal">
+    <div className="gridReveal" ref={scrollRef} data-scroll-linked={usesScrollLinkedMotion ? "true" : undefined}>
       <motion.div
         id={progressive ? "project-grid" : undefined}
         className={clsx("grid", lead && "grid--withLead", usesEditorialPlacement && "grid--editorial", className)}
-        variants={animateGrid ? fastStaggerContainer : undefined}
-        initial={animateGrid ? "hidden" : false}
-        whileInView={animateGrid ? "visible" : undefined}
-        viewport={animateGrid ? motionConfig.viewport : undefined}
+        variants={animateGrid && !usesScrollLinkedMotion ? containerVariants : undefined}
+        initial={animateGrid && !usesScrollLinkedMotion ? "hidden" : false}
+        whileInView={animateGrid && !usesScrollLinkedMotion ? "visible" : undefined}
+        viewport={animateGrid && !usesScrollLinkedMotion ? motionConfig.viewport : undefined}
       >
         {lead ? <div className="grid__lead">{lead}</div> : null}
         <AnimatePresence initial={false}>
-          {visibleChildren.map((child, index) => {
-            const drawOffset = index % 2 === 0 ? -motionConfig.distance.subtle : motionConfig.distance.subtle;
-
-            return (
-              <motion.div
-                className="grid__item"
-                key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
-                style={placementStyle(placements?.[index])}
-                variants={animateGrid && !usesDrawMotion ? revealItem : undefined}
-                initial={animateGrid
-                  ? usesDrawMotion
-                    ? { opacity: 0, x: drawOffset, y: motionConfig.distance.subtle }
-                    : { opacity: 0, y: motionConfig.distance.subtle }
-                  : false}
-                whileInView={animateGrid && usesDrawMotion ? { opacity: 1, x: 0, y: 0 } : undefined}
-                animate={animateGrid && !usesDrawMotion ? { opacity: 1, y: 0 } : undefined}
-                viewport={animateGrid && usesDrawMotion ? motionConfig.viewport : undefined}
-                transition={animateGrid ? {
-                  duration: usesDrawMotion ? motionConfig.duration.slow : motionConfig.duration.default,
-                  ease: motionConfig.easing.soft,
-                  delay: index * (usesDrawMotion ? 0.08 : 0),
-                } : undefined}
-              >
-                {child}
-              </motion.div>
-            );
-          })}
+          {visibleChildren.map((child, index) => (
+            <GridMotionItem
+              key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
+              child={child}
+              index={index}
+              total={visibleChildren.length}
+              placement={placements?.[index]}
+              animateGrid={animateGrid}
+              usesDrawMotion={usesDrawMotion}
+              scrollLinked={usesScrollLinkedMotion}
+              progress={scrollYProgress}
+              reduceMotion={reduceMotion}
+              itemVariants={itemVariants}
+            />
+          ))}
         </AnimatePresence>
       </motion.div>
 

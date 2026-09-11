@@ -57,7 +57,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
       style={themeStyle}
     >
       <SmoothScroll />
-      <a className="skipLink" href="#main-content">Aller au contenu principal</a>
       <ScrollProgress mode={scrollProgress} />
       <Header />
       <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>

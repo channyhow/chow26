@@ -43,7 +43,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
-  const motionEnabled = siteData.ui.experience.sectionReveal && !reduceMotion;
+  const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
@@ -54,12 +54,28 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
-  const useProjectCarouselOnMobile = isMobileViewport
-    && layout === "grid"
+  const isFeaturedProjectGrid = layout === "grid"
     && block.source?.collection === "projects"
     && block.source.query?.featured === true;
-  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header && !useProjectCarouselOnMobile
-    ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
+  const isProjectArchiveGrid = layout === "grid"
+    && block.source?.collection === "projects"
+    && block.source.query?.featured !== true;
+  const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
+  const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
+    ? isProjectArchiveGrid
+      ? (
+        <div className="projectArchiveLead">
+          <TextBlock
+            content={{ title: header.title }}
+            className="section__gridLead projectArchiveLead__title"
+          />
+          <TextBlock
+            content={{ text: header.text }}
+            className="section__gridLead projectArchiveLead__description"
+          />
+        </div>
+      )
+      : <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
 
   useEffect(() => {
@@ -84,11 +100,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       <Carousel>{cards}</Carousel>
     ) : (
       <Grid
+        className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined}
         progressive={Boolean(block.progressive)}
         lead={projectGridLead}
         motionPreset={block.motionPreset}
         placements={items.map((item) => item.grid)}
         motionEnabled={motionEnabled && motionLevel !== "none"}
+        scrollLinked={motionEnabled && motionLevel !== "none"}
       >
         {cards}
       </Grid>
@@ -216,6 +234,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     </ScrollScene>
   ) : null;
 
+  const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
+  const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
+
   return (
     <motion.section
       id={block.id}
@@ -240,10 +261,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       ) : (
         <motion.div
           className="section__inner"
-          initial={shouldReveal ? { opacity: 0.92, y: motionConfig.distance.subtle } : false}
+          initial={shouldReveal ? { opacity: reduceMotion ? 0.96 : 0.92, y: revealDistance } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={motionConfig.viewport}
-          transition={{ duration: motionConfig.duration.slow, ease: motionConfig.easing.soft }}
+          transition={{ duration: revealDuration, ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft }}
         >
           {body}
         </motion.div>

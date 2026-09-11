@@ -31,10 +31,7 @@
   opacity: 0;
 }
 
-.drawer[open] .drawer__dismiss {
-  animation: drawer-backdrop-in $transition-interface both;
-}
-
+.drawer[open] .drawer__dismiss { animation: drawer-backdrop-in $transition-interface both; }
 .drawer__dismiss:focus-visible { outline: 0; }
 
 .drawer__panel {
@@ -56,9 +53,7 @@
   --secondary: var(--drawer-surface);
 }
 
-.drawer[open] .drawer__panel {
-  animation: drawer-panel-in $transition-interface both;
-}
+.drawer[open] .drawer__panel { animation: drawer-panel-in $transition-interface both; }
 
 .drawer__body {
   display: grid;
@@ -75,7 +70,6 @@
 .drawer__nav a {
   @include type-heading-lg;
   @include interactive-text;
-
   width: fit-content;
   line-height: 1;
 }
@@ -87,9 +81,59 @@
 }
 
 .site[data-drawer="menu"] {
-  --drawer-surface: var(--theme-accent);
-  --drawer-color: var(--theme-primary);
+  --drawer-surface: var(--theme-primary);
+  --drawer-color: var(--theme-secondary);
 }
+
+.drawer[data-view="menu"] .drawer__dismiss {
+  display: none;
+}
+
+.drawer[data-view="menu"] .drawer__panel {
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  padding: $header-height var(--header-gutter, #{$space-2}) $space-2;
+  background: var(--theme-primary);
+  color: var(--theme-secondary);
+  box-shadow: none;
+  transform: none;
+}
+
+.drawer[data-view="menu"] .drawer__body {
+  place-items: center;
+  min-height: calc(100dvh - #{$header-height});
+  padding: 0;
+}
+
+.drawer[data-view="menu"] .drawer__nav {
+  place-items: center;
+  align-content: center;
+  width: 100%;
+  gap: clamp(#{$space-2}, 3vh, #{$space-3});
+  text-align: center;
+}
+
+.drawer[data-view="menu"] .drawer__nav a {
+  @include type-nav;
+
+  width: auto;
+  color: inherit;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+}
+
+.drawer[data-view="menu"][open] .drawer__nav a {
+  animation: drawer-nav-item-in $duration-default $ease-soft both;
+}
+
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(1) { animation-delay: 80ms; }
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(2) { animation-delay: 140ms; }
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(3) { animation-delay: 200ms; }
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(4) { animation-delay: 260ms; }
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(5) { animation-delay: 320ms; }
+.drawer[data-view="menu"][open] .drawer__nav a:nth-child(6) { animation-delay: 380ms; }
 
 .site[data-drawer="contact"],
 .site[data-drawer="reservation"] {
@@ -109,6 +153,13 @@
   to { opacity: 1; }
 }
 
+@keyframes drawer-nav-item-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @include tablet-down {
   .drawer__panel {
     width: 100%;
@@ -117,26 +168,41 @@
   }
 
   .drawer__dismiss { display: none; }
+  .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
 
-  .drawer[open] .drawer__panel {
-    animation-name: drawer-panel-fade-in;
+  .drawer[data-view="menu"] .drawer__panel {
+    padding: $header-height var(--header-gutter, #{$space-2}) $space-2;
   }
 }
 
-@keyframes drawer-panel-fade-in {
-  to { opacity: 1; }
-}
+@keyframes drawer-panel-fade-in { to { opacity: 1; } }
 
 @include reduced-motion {
-  .drawer[open] .drawer__dismiss,
-  .drawer[open] .drawer__panel {
-    animation: none;
+  .drawer__panel { transform: translate3d(0.25rem, 0, 0); }
+
+  .drawer[open] .drawer__dismiss {
+    animation: drawer-backdrop-in $duration-fast $ease-standard both;
   }
 
-  .drawer[open] .drawer__dismiss { opacity: 1; }
-
   .drawer[open] .drawer__panel {
-    opacity: 1;
+    animation: drawer-panel-in $duration-fast $ease-standard both;
+  }
+
+  .drawer[data-view="menu"] .drawer__panel {
     transform: none;
+  }
+
+  .drawer[data-view="menu"][open] .drawer__nav a {
+    animation-duration: $duration-fast;
+    transform: translate3d(0, 0.2rem, 0);
+  }
+
+  .drawer[data-view="menu"][open] .drawer__nav a:nth-child(n) {
+    animation-delay: 0ms;
+  }
+
+  @include tablet-down {
+    .drawer__panel { transform: none; }
+    .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
   }
 }

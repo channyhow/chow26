@@ -82,8 +82,29 @@
   border-radius: $radius-none;
 }
 
-.scrollScene[data-reduced-motion="true"] .scrollScene__content,
-.scrollScene[data-reduced-motion="true"] .scrollScene__shape,
-.scrollScene[data-reduced-motion="true"] .scrollScene__line {
-  transform: none !important;
+/* A drift scene with an exit range is the strong opening choreography: media
+   leads the scroll while copy holds briefly, creating a deliberate overlap
+   before both layers leave the first panel. The same sequence survives reduced
+   motion because its amplitude is already scaled in ScrollScene. */
+.scrollScene[data-attention-exit="true"] .section__media {
+  transform: translate3d(0, var(--scene-media-y, 0px), 0)
+    scale(var(--scene-media-scale, 1));
+  transform-origin: center;
+  will-change: transform;
+}
+
+.scrollScene[data-attention-exit="true"] .section__overlayContent {
+  opacity: var(--scene-copy-opacity, 1);
+  transform: translate3d(0, var(--scene-copy-y, 0px), 0);
+  will-change: transform, opacity;
+}
+
+@include reduced-motion {
+  .scrollScene__shape {
+    transform: none !important;
+  }
+
+  .scrollScene[data-preset="ambient"] .scrollScene__line {
+    transform: none !important;
+  }
 }

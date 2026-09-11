@@ -47,6 +47,37 @@
   line-height: 0.95;
 }
 
+.projectArchiveGrid > .grid__lead,
+.projectArchiveLead {
+  display: contents;
+}
+
+.projectArchiveLead__title,
+.projectArchiveLead__description {
+  min-width: 0;
+  align-self: start;
+}
+
+.projectArchiveLead__title {
+  grid-column: 1;
+}
+
+.projectArchiveLead__title .textBlock,
+.projectArchiveLead__title .textBlock__title {
+  width: 100%;
+  max-width: none;
+}
+
+.projectArchiveLead__description {
+  grid-column: 1;
+  max-width: 34ch;
+}
+
+.projectArchiveLead__description .textBlock,
+.projectArchiveLead__description .textBlock__text {
+  max-width: 34ch;
+}
+
 .gridReveal__more {
   @include type-ui-compact;
 
@@ -96,6 +127,16 @@
     align-self: var(--grid-align-tablet, var(--grid-align-mobile, auto));
     justify-self: var(--grid-justify-tablet, var(--grid-justify-mobile, auto));
   }
+
+  .projectArchiveLead__title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .projectArchiveLead__description {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 @include desktop-up {
@@ -108,6 +149,16 @@
     grid-row: var(--grid-row-desktop, var(--grid-row-tablet, var(--grid-row-mobile, auto)));
     align-self: var(--grid-align-desktop, var(--grid-align-tablet, var(--grid-align-mobile, auto)));
     justify-self: var(--grid-justify-desktop, var(--grid-justify-tablet, var(--grid-justify-mobile, auto)));
+  }
+
+  .projectArchiveLead__title {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  .projectArchiveLead__description {
+    grid-column: 3;
+    grid-row: 1;
   }
 }
 

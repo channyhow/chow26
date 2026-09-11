@@ -56,11 +56,12 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
     target: rootRef,
     offset: ["start start", "end end"],
   });
-  const progress = useSpring(scrollYProgress, {
+  const springProgress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 26,
     mass: 0.3,
   });
+  const progress = reduceMotion ? scrollYProgress : springProgress;
   const indicatorX = useTransform(
     progress,
     [0, 1],
@@ -68,7 +69,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
   );
 
   useMotionValueEvent(progress, "change", (value) => {
-    if (!isDetailed || reduceMotion || !items.length) return;
+    if (!isDetailed || !items.length) return;
 
     const nextIndex = Math.min(
       items.length - 1,
@@ -87,7 +88,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
 
     setActiveId(item.id);
 
-    if (!isDetailed || reduceMotion || !rootRef.current || items.length <= 1) return;
+    if (!isDetailed || !rootRef.current || items.length <= 1) return;
 
     const root = rootRef.current;
     const start = root.getBoundingClientRect().top + window.scrollY;
@@ -95,7 +96,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
 
     window.scrollTo({
       top: start + (range * index) / (items.length - 1),
-      behavior: "smooth",
+      behavior: reduceMotion ? "auto" : "smooth",
     });
   };
 
@@ -166,7 +167,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
       })}
       {isDetailed ? (
         <div className="contentSwitcher__rule" aria-hidden="true">
-          <motion.span style={!reduceMotion ? { x: indicatorX } : undefined} />
+          <motion.span style={{ x: indicatorX }} />
         </div>
       ) : null}
     </div>
@@ -181,12 +182,12 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
           role="tabpanel"
           aria-labelledby={`content-switcher-tab-${active.id}`}
           key={active.id}
-          initial={reduceMotion ? false : { opacity: 0, y: isDetailed ? 8 : 0 }}
+          initial={{ opacity: reduceMotion ? 0.97 : 0, y: isDetailed ? (reduceMotion ? 2 : 8) : 0 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? undefined : { opacity: 0, y: isDetailed ? -8 : 0 }}
+          exit={{ opacity: reduceMotion ? 0.97 : 0, y: isDetailed ? (reduceMotion ? -2 : -8) : 0 }}
           transition={{
-            duration: motionConfig.duration.default,
-            ease: motionConfig.easing.standard,
+            duration: reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.default,
+            ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.standard,
           }}
         >
           {active.content}
@@ -204,6 +205,7 @@ export function ContentSwitcher({ items, variant = "default" }: ContentSwitcherP
       ref={rootRef}
       className={clsx("contentSwitcher", `contentSwitcher--${resolvedVariant}`)}
       data-variant={resolvedVariant}
+      data-reduced-motion={reduceMotion ? "true" : "false"}
       layout={!reduceMotion && !isDetailed}
       style={style}
     >
