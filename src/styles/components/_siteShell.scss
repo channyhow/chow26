@@ -59,17 +59,17 @@
 }
 
 .header[data-over-color="primary"] {
-  background: color-mix(in srgb, var(--theme-primary) 42%, transparent);
+  // background: color-mix(in srgb, var(--theme-primary) 42%, transparent);
   color: var(--secondary);
 }
 
 .header[data-over-color="secondary"] {
-  background: color-mix(in srgb, var(--theme-secondary) 38%, transparent);
+  // background: color-mix(in srgb, var(--theme-secondary) 38%, transparent);
   color: var(--primary);
 }
 
 .header[data-over-color="accent"] {
-  background: color-mix(in srgb, var(--theme-accent) 34%, transparent);
+  // background: color-mix(in srgb, var(--theme-accent) 34%, transparent);
   color: var(--primary);
 }
 
