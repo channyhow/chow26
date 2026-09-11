@@ -55,18 +55,25 @@
 .projectArchiveLead__title,
 .projectArchiveLead__description {
   min-width: 0;
+  align-self: start;
 }
 
 .projectArchiveLead__title {
   grid-column: 1;
 }
 
+.projectArchiveLead__title .textBlock,
+.projectArchiveLead__title .textBlock__title {
+  width: 100%;
+  max-width: none;
+}
+
 .projectArchiveLead__description {
   grid-column: 1;
   max-width: 34ch;
-  align-self: end;
 }
 
+.projectArchiveLead__description .textBlock,
 .projectArchiveLead__description .textBlock__text {
   max-width: 34ch;
 }
@@ -122,13 +129,13 @@
   }
 
   .projectArchiveLead__title {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 1;
   }
 
   .projectArchiveLead__description {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
   }
 }
 
@@ -145,7 +152,7 @@
   }
 
   .projectArchiveLead__title {
-    grid-column: 1;
+    grid-column: 1 / span 2;
     grid-row: 1;
   }
 
