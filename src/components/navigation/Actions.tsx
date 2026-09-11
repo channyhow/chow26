@@ -94,7 +94,7 @@ export function Actions({
 
         if (!external && isInternalHref(href)) {
           return (
-            <Link key={key} to={href} {...sharedProps}>
+            <Link key={key} to={href} viewTransition {...sharedProps}>
               {content}
             </Link>
           );
