@@ -100,7 +100,6 @@
 .section[data-surface="solid"] { background: var(--section-bg); }
 .section[data-surface="glass"] {
   position: relative;
-  isolation: isolate;
   background: transparent;
 }
 
@@ -108,11 +107,16 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background: var(--section-glass-bg);
   backdrop-filter: blur($glass-blur) saturate(0.95);
   -webkit-backdrop-filter: blur($glass-blur) saturate(0.95);
+}
+
+.section[data-surface="glass"] > * {
+  position: relative;
+  z-index: 1;
 }
 .section[data-surface="transparent"] { background: transparent; }
 .section[data-layout="media-overlay"] { padding: 0; }
