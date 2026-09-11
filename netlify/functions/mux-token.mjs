@@ -3,6 +3,7 @@ import { createPrivateKey, sign } from "node:crypto";
 import mediaData from "../../src/data/media.json";
 
 const TOKEN_TTL_SECONDS = 15 * 60;
+const playbackPolicyCache = new Map();
 
 function base64Url(input) {
   return Buffer.from(input)
@@ -33,6 +34,25 @@ function createJwt({ playbackId, audience, keyId, privateKeyBase64 }) {
   return `${unsigned}.${base64Url(signature)}`;
 }
 
+async function getPlaybackPolicy(playbackId) {
+  const cached = playbackPolicyCache.get(playbackId);
+  if (cached) return cached;
+
+  try {
+    const response = await fetch(`https://stream.mux.com/${playbackId}.m3u8`, {
+      method: "GET",
+      redirect: "follow",
+    });
+    const policy = response.ok ? "public" : "signed";
+    playbackPolicyCache.set(playbackId, policy);
+    return policy;
+  } catch {
+    // If the public probe cannot complete, preserve the secure path rather than
+    // accidentally treating a signed playback ID as public.
+    return "signed";
+  }
+}
+
 export default async (request) => {
   if (request.method !== "GET") {
     return new Response("Method not allowed", {
@@ -47,6 +67,24 @@ export default async (request) => {
 
   if (!media || media.type !== "mux" || !media.playbackId) {
     return Response.json({ error: "Unknown media" }, { status: 404 });
+  }
+
+  const playbackPolicy = await getPlaybackPolicy(media.playbackId);
+
+  if (playbackPolicy === "public") {
+    return Response.json(
+      {
+        playbackId: media.playbackId,
+        playbackPolicy,
+      },
+      {
+        headers: {
+          "Cache-Control": "public, max-age=300, stale-while-revalidate=600",
+          "Content-Type": "application/json; charset=utf-8",
+          "X-Content-Type-Options": "nosniff",
+        },
+      },
+    );
   }
 
   const keyId = process.env.MUX_SIGNING_KEY_ID;
@@ -74,6 +112,7 @@ export default async (request) => {
     return Response.json(
       {
         playbackId: media.playbackId,
+        playbackPolicy,
         playbackToken,
         thumbnailToken,
       },
