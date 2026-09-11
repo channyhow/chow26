@@ -3,7 +3,6 @@ import clsx from "clsx";
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -25,7 +24,6 @@ export function HorizontalScroll({
   preserveOnSmallScreens = false,
 }: HorizontalScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const count = Children.count(children);
   const [activeIndex, setActiveIndex] = useState(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
@@ -67,12 +65,12 @@ export function HorizontalScroll({
               ))}
             </div>
             <div className="horizontalScroll__rule">
-              <motion.span style={!reduceMotion ? { x: indicatorX } : undefined} />
+              <motion.span style={{ x: indicatorX }} />
             </div>
           </div>
         ) : null}
 
-        <motion.div className="horizontalScroll__track" style={!reduceMotion ? { x } : undefined}>
+        <motion.div className="horizontalScroll__track" style={{ x }}>
           {Children.map(children, (child) => (
             <div className="horizontalScroll__item">{child}</div>
           ))}
