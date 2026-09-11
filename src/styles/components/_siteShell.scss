@@ -124,8 +124,29 @@
 }
 
 @include desktop-up {
+  .header[data-navigation="inline"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-content: initial;
+  }
+
+  .header[data-navigation="inline"] .header__logo {
+    grid-column: 1;
+    justify-self: start;
+  }
+
   .header[data-navigation="inline"] .header__nav {
     display: flex;
+  }
+
+  .header[data-navigation="inline"] .header__nav[data-placement="center"] {
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  .header[data-navigation="inline"] .header__nav[data-placement="end"] {
+    grid-column: 3;
+    justify-self: end;
   }
 
   .header[data-navigation="inline"] .burgerButton {
@@ -135,10 +156,13 @@
 
 @include reduced-motion {
   .skipLink,
-  .header,
   .header__nav a::after,
   .header__nav a[data-nav-variant="cta"] span:last-child {
     transition: none;
+  }
+
+  .header {
+    transition-duration: $duration-fast;
   }
 
   .header__nav a[data-nav-variant="cta"]:hover span:last-child {
