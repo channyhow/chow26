@@ -159,9 +159,15 @@
   pointer-events: auto;
 }
 
+.site[data-drawer="menu"] .header,
 .site[data-drawer="contact"] .header,
 .site[data-drawer="reservation"] .header {
-  color: var(--secondary);
+  color: var(--theme-secondary);
+}
+
+.site[data-drawer="menu"] .header {
+  background: color-mix(in srgb, var(--theme-primary) 82%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--theme-secondary) 10%, transparent);
 }
 
 @include desktop-up {
