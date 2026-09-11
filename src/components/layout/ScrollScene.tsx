@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionStyle,
+  type MotionValue,
+} from "motion/react";
 
 import { motionConfig } from "@/motion/config";
 
@@ -19,6 +26,13 @@ export type ScrollSceneProps = {
   decorative?: boolean;
   enabled?: boolean;
   progress?: MotionValue<number>;
+};
+
+type LayeredSceneStyle = MotionStyle & {
+  "--scene-media-y"?: MotionValue<string>;
+  "--scene-media-scale"?: MotionValue<number>;
+  "--scene-copy-y"?: MotionValue<string>;
+  "--scene-copy-opacity"?: MotionValue<number>;
 };
 
 const intensityScale: Record<ScrollSceneIntensity, number> = {
@@ -79,15 +93,46 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
+  // The attention exit is intentionally layered: imagery responds immediately,
+  // while the copy holds its ground long enough for the media to cross behind it.
+  const layeredMediaYNumeric = useTransform(
+    scrollYProgress,
+    [0, 0.72, 1],
+    [0, -140 * scale, -180 * scale],
+  );
+  const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
+  const layeredMediaScale = useTransform(
+    scrollYProgress,
+    [0, 0.72, 1],
+    [1, reduceMotion ? 1.004 : 1.025, reduceMotion ? 1.006 : 1.04],
+  );
+  const layeredCopyYNumeric = useTransform(
+    scrollYProgress,
+    [0, 0.3, 1],
+    [0, 0, -72 * scale],
+  );
+  const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
+  const layeredCopyOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.36, 1],
+    [1, 1, reduceMotion ? 0.92 : 0.72],
+  );
+
   const showMovingShapes = preset === "ambient" && !reduceMotion;
   const showLine = preset === "draw" || preset === "ambient";
-  const effectivePreset = isAttentionExit
-    ? "recede"
-    : reduceMotion && preset === "ambient"
-      ? "drift"
-      : preset;
-  const contentStyle = motionEnabled
-    ? effectivePreset === "drift"
+  const effectivePreset = reduceMotion && preset === "ambient" ? "drift" : preset;
+
+  let contentStyle: LayeredSceneStyle | undefined;
+
+  if (motionEnabled && isAttentionExit) {
+    contentStyle = {
+      "--scene-media-y": layeredMediaY,
+      "--scene-media-scale": layeredMediaScale,
+      "--scene-copy-y": layeredCopyY,
+      "--scene-copy-opacity": layeredCopyOpacity,
+    };
+  } else if (motionEnabled) {
+    contentStyle = effectivePreset === "drift"
       ? { y: driftY }
       : effectivePreset === "parallax"
         ? { y: contentY }
@@ -97,8 +142,8 @@ export function ScrollScene({
             ? { y: drawY }
             : effectivePreset === "recede"
               ? { y: recedeY, opacity: recedeOpacity }
-              : undefined
-    : undefined;
+              : undefined;
+  }
 
   return (
     <div
