@@ -98,11 +98,13 @@
 .gridReveal__moreIcon {
   display: inline-grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid currentColor;
+  width: clamp(3.25rem, 4vw, 3.5rem);
+  aspect-ratio: $ratio-square;
+  border: 1.5px solid currentColor;
   border-radius: 50%;
-  font-size: 0.9em;
+  font-size: 1.1rem;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
   transition: transform $transition-hover;
 }
 
