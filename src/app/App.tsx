@@ -74,14 +74,13 @@ export function App() {
   return (
     <SiteShell>
       <ScrollToTop />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync" initial={false}>
         <motion.div
           className="routeTransition"
           key={location.pathname}
-          initial={reduceMotion ? false : { opacity: 0.96, y: motionConfig.distance.route }}
+          initial={reduceMotion ? false : { opacity: 0.985 }}
           animate={{
             opacity: 1,
-            y: 0,
             transition: {
               duration: motionConfig.duration.default,
               ease: motionConfig.easing.soft,
@@ -91,7 +90,7 @@ export function App() {
             reduceMotion
               ? undefined
               : {
-                  opacity: 0,
+                  opacity: 0.985,
                   transition: {
                     duration: motionConfig.duration.fast,
                     ease: motionConfig.easing.standard,
