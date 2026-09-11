@@ -31,10 +31,7 @@
   opacity: 0;
 }
 
-.drawer[open] .drawer__dismiss {
-  animation: drawer-backdrop-in $transition-interface both;
-}
-
+.drawer[open] .drawer__dismiss { animation: drawer-backdrop-in $transition-interface both; }
 .drawer__dismiss:focus-visible { outline: 0; }
 
 .drawer__panel {
@@ -56,9 +53,7 @@
   --secondary: var(--drawer-surface);
 }
 
-.drawer[open] .drawer__panel {
-  animation: drawer-panel-in $transition-interface both;
-}
+.drawer[open] .drawer__panel { animation: drawer-panel-in $transition-interface both; }
 
 .drawer__body {
   display: grid;
@@ -75,7 +70,6 @@
 .drawer__nav a {
   @include type-heading-lg;
   @include interactive-text;
-
   width: fit-content;
   line-height: 1;
 }
@@ -117,26 +111,24 @@
   }
 
   .drawer__dismiss { display: none; }
-
-  .drawer[open] .drawer__panel {
-    animation-name: drawer-panel-fade-in;
-  }
+  .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
 }
 
-@keyframes drawer-panel-fade-in {
-  to { opacity: 1; }
-}
+@keyframes drawer-panel-fade-in { to { opacity: 1; } }
 
 @include reduced-motion {
-  .drawer[open] .drawer__dismiss,
-  .drawer[open] .drawer__panel {
-    animation: none;
+  .drawer__panel { transform: translate3d(0.25rem, 0, 0); }
+
+  .drawer[open] .drawer__dismiss {
+    animation: drawer-backdrop-in $duration-fast $ease-standard both;
   }
 
-  .drawer[open] .drawer__dismiss { opacity: 1; }
-
   .drawer[open] .drawer__panel {
-    opacity: 1;
-    transform: none;
+    animation: drawer-panel-in $duration-fast $ease-standard both;
+  }
+
+  @include tablet-down {
+    .drawer__panel { transform: none; }
+    .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
   }
 }
