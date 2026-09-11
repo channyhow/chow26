@@ -3,7 +3,6 @@ import { createPrivateKey, sign } from "node:crypto";
 import mediaData from "../../src/data/media.json";
 
 const TOKEN_TTL_SECONDS = 15 * 60;
-const playbackPolicyCache = new Map();
 
 function base64Url(input) {
   return Buffer.from(input)
@@ -16,14 +15,14 @@ function base64Url(input) {
 function createJwt({ playbackId, audience, keyId, privateKeyBase64 }) {
   const now = Math.floor(Date.now() / 1000);
   const header = base64Url(
-    JSON.stringify({ alg: "RS256", typ: "JWT", kid: keyId }),
+    JSON.stringify({ alg: "RS256", typ: "JWT" }),
   );
   const payload = base64Url(
     JSON.stringify({
       sub: playbackId,
       aud: audience,
-      iat: now,
       exp: now + TOKEN_TTL_SECONDS,
+      kid: keyId,
     }),
   );
   const unsigned = `${header}.${payload}`;
@@ -32,25 +31,6 @@ function createJwt({ playbackId, audience, keyId, privateKeyBase64 }) {
   const signature = sign("RSA-SHA256", Buffer.from(unsigned), privateKey);
 
   return `${unsigned}.${base64Url(signature)}`;
-}
-
-async function getPlaybackPolicy(playbackId) {
-  const cached = playbackPolicyCache.get(playbackId);
-  if (cached) return cached;
-
-  try {
-    const response = await fetch(`https://stream.mux.com/${playbackId}.m3u8`, {
-      method: "GET",
-      redirect: "follow",
-    });
-    const policy = response.ok ? "public" : "signed";
-    playbackPolicyCache.set(playbackId, policy);
-    return policy;
-  } catch {
-    // If the public probe cannot complete, preserve the secure path rather than
-    // accidentally treating a signed playback ID as public.
-    return "signed";
-  }
 }
 
 export default async (request) => {
@@ -69,26 +49,8 @@ export default async (request) => {
     return Response.json({ error: "Unknown media" }, { status: 404 });
   }
 
-  const playbackPolicy = await getPlaybackPolicy(media.playbackId);
-
-  if (playbackPolicy === "public") {
-    return Response.json(
-      {
-        playbackId: media.playbackId,
-        playbackPolicy,
-      },
-      {
-        headers: {
-          "Cache-Control": "public, max-age=300, stale-while-revalidate=600",
-          "Content-Type": "application/json; charset=utf-8",
-          "X-Content-Type-Options": "nosniff",
-        },
-      },
-    );
-  }
-
-  const keyId = process.env.MUX_SIGNING_KEY_ID;
-  const privateKeyBase64 = process.env.MUX_SIGNING_PRIVATE_KEY;
+  const keyId = Netlify.env.get("MUX_SIGNING_KEY_ID");
+  const privateKeyBase64 = Netlify.env.get("MUX_SIGNING_PRIVATE_KEY");
 
   if (!keyId || !privateKeyBase64) {
     console.error("Mux signing environment is incomplete");
@@ -112,7 +74,7 @@ export default async (request) => {
     return Response.json(
       {
         playbackId: media.playbackId,
-        playbackPolicy,
+        playbackPolicy: "signed",
         playbackToken,
         thumbnailToken,
       },
