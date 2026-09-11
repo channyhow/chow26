@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BurgerButton } from "@/components/navigation/BurgerButton";
 import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
-import { motionConfig } from "@/motion/config";
 
 type HeaderNavigationMode = "drawer" | "inline";
 type NavigationUiConfig = { navigation?: { desktop?: HeaderNavigationMode } };
@@ -17,8 +15,6 @@ type HeaderNavItem = {
 };
 
 type HeaderSurface = "primary" | "secondary" | "accent" | "special";
-type HeaderNavPlacement = "center" | "end";
-type OpeningState = "intro" | "settled";
 
 const normalizePath = (path: string) =>
   path === "/" ? path : path.replace(/\/+$/, "");
@@ -44,17 +40,22 @@ const getDocumentOffsetTop = (element: HTMLElement) => {
   return top;
 };
 
+const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
+const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
+const smoothstep = (value: number) => value * value * (3 - 2 * value);
+
 export function Header() {
   const { pathname } = useLocation();
-  const reduceMotion = useReducedMotion();
   const currentPath = normalizePath(pathname);
   const items = navigationData.primary as HeaderNavItem[];
   const home = items.find((item) => item.id === "home");
   const primaryItems = items.filter((item) => item.enabled && item.id !== "home");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
-  const [navPlacement, setNavPlacement] = useState<HeaderNavPlacement>(currentPath === "/" ? "center" : "end");
-  const [openingState, setOpeningState] = useState<OpeningState>(currentPath === "/" ? "intro" : "settled");
+  const headerRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const menuSlotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -62,9 +63,16 @@ export function Header() {
     const resolveHeaderState = () => {
       frame = 0;
 
+      const header = headerRef.current;
+      const logo = logoRef.current;
+      const nav = navRef.current;
+      const menuSlot = menuSlotRef.current;
+      if (!header || !logo) return;
+
       const sampleX = Math.round(window.innerWidth / 2);
       const sampleY = 32;
       const layers = document.elementsFromPoint(sampleX, sampleY);
+      let nextSurface: HeaderSurface = "secondary";
 
       for (const layer of layers) {
         const element = (layer as HTMLElement).closest<HTMLElement>(
@@ -73,41 +81,50 @@ export function Header() {
         const color = getSurface(element);
 
         if (isHeaderSurface(color)) {
-          setSurface((current) => (current === color ? current : color));
+          nextSurface = color;
           break;
         }
       }
 
-      if (!layers.some((layer) => {
-        const element = (layer as HTMLElement).closest<HTMLElement>(
-          ".sectionGroup__panel[data-panel-color], .section[data-color]",
-        );
-        return isHeaderSurface(getSurface(element));
-      })) {
-        setSurface((current) => (current === "secondary" ? current : "secondary"));
-      }
+      setSurface((current) => (current === nextSurface ? current : nextSurface));
 
-      if (currentPath !== "/") {
-        setNavPlacement((current) => (current === "end" ? current : "end"));
-        setOpeningState((current) => (current === "settled" ? current : "settled"));
-        return;
-      }
-
-      const openingPanel = document.querySelector<HTMLElement>(
-        '.sectionGroup[data-layout="scroll-panel"] > .sectionGroup__panel:first-child',
+      const opening = document.querySelector<HTMLElement>(
+        ".site__canvas .sectionGroup__panel, .site__canvas .section",
       );
-      const openingHeight = Math.max(openingPanel?.offsetHeight ?? window.innerHeight, 1);
-      const openingTop = openingPanel ? getDocumentOffsetTop(openingPanel) : 0;
-      const progress = Math.min(
-        1,
-        Math.max(0, (window.scrollY - openingTop) / openingHeight),
-      );
-      const introActive = progress < 0.8;
-      const nextPlacement: HeaderNavPlacement = introActive ? "center" : "end";
-      const nextOpeningState: OpeningState = introActive ? "intro" : "settled";
+      const openingTop = opening ? getDocumentOffsetTop(opening) : 0;
+      const openingHeight = Math.max(opening?.offsetHeight ?? window.innerHeight, 1);
+      const rawProgress = clamp01((window.scrollY - openingTop) / (openingHeight * 0.8));
+      const progress = smoothstep(rawProgress);
+      const desktop = window.matchMedia("(min-width: 64rem)").matches;
+      const viewportWidth = window.innerWidth;
+      const gutter = Number.parseFloat(window.getComputedStyle(header).paddingLeft) || 0;
+      const logoWidth = logo.getBoundingClientRect().width;
 
-      setNavPlacement((current) => (current === nextPlacement ? current : nextPlacement));
-      setOpeningState((current) => (current === nextOpeningState ? current : nextOpeningState));
+      if (desktop && nav) {
+        const navWidth = nav.getBoundingClientRect().width;
+        const groupGap = 24;
+        const groupWidth = logoWidth + groupGap + navWidth;
+        const logoStart = -(groupWidth / 2) + (logoWidth / 2);
+        const navStart = (groupWidth / 2) - (navWidth / 2);
+        const logoEnd = -(viewportWidth / 2) + gutter + (logoWidth / 2);
+        const navEnd = (viewportWidth / 2) - gutter - (navWidth / 2);
+
+        header.style.setProperty("--header-logo-x", `${lerp(logoStart, logoEnd, progress)}px`);
+        header.style.setProperty("--header-nav-x", `${lerp(navStart, navEnd, progress)}px`);
+        header.style.setProperty("--header-menu-x", "0px");
+        header.style.setProperty("--header-menu-opacity", "0");
+      } else if (menuSlot) {
+        const menuWidth = menuSlot.getBoundingClientRect().width;
+        const logoEnd = -(viewportWidth / 2) + gutter + (logoWidth / 2);
+        const menuEnd = (viewportWidth / 2) - gutter - (menuWidth / 2);
+        const menuOpacity = clamp01((rawProgress - 0.08) / 0.32);
+
+        header.style.setProperty("--header-logo-x", `${lerp(0, logoEnd, progress)}px`);
+        header.style.setProperty("--header-nav-x", "0px");
+        header.style.setProperty("--header-menu-x", `${lerp(0, menuEnd, progress)}px`);
+        header.style.setProperty("--header-menu-opacity", String(menuOpacity));
+        menuSlot.inert = menuOpacity < 0.6;
+      }
     };
 
     const scheduleResolve = () => {
@@ -128,12 +145,13 @@ export function Header() {
 
   return (
     <header
+      ref={headerRef}
       className="header"
       data-navigation={navigationMode}
       data-over-color={surface}
-      data-opening-state={openingState}
     >
       <Link
+        ref={logoRef}
         className="header__logo"
         to={home?.href ?? "/"}
         aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`}
@@ -142,17 +160,10 @@ export function Header() {
         {siteData.site.name}
       </Link>
 
-      <motion.nav
+      <nav
+        ref={navRef}
         className="header__nav"
         aria-label={siteData.ui.copy.navigation.mainLabel}
-        data-placement={navPlacement}
-        layout="position"
-        transition={{
-          layout: {
-            duration: reduceMotion ? motionConfig.reduced.duration : 0.55,
-            ease: motionConfig.easing.soft,
-          },
-        }}
       >
         {primaryItems.map((item) => (
           <Link
@@ -165,9 +176,11 @@ export function Header() {
             {item.variant === "cta" ? <span aria-hidden="true">→</span> : null}
           </Link>
         ))}
-      </motion.nav>
+      </nav>
 
-      <BurgerButton />
+      <div ref={menuSlotRef} className="header__menuSlot">
+        <BurgerButton />
+      </div>
     </header>
   );
 }
