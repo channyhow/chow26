@@ -32,6 +32,18 @@ const isHeaderSurface = (value?: string): value is HeaderSurface =>
 const getSurface = (element?: HTMLElement | null) =>
   element?.dataset.panelColor ?? element?.dataset.color;
 
+const getDocumentOffsetTop = (element: HTMLElement) => {
+  let top = 0;
+  let current: HTMLElement | null = element;
+
+  while (current) {
+    top += current.offsetTop;
+    current = current.offsetParent as HTMLElement | null;
+  }
+
+  return top;
+};
+
 export function Header() {
   const { pathname } = useLocation();
   const reduceMotion = useReducedMotion();
@@ -84,11 +96,12 @@ export function Header() {
       const openingPanel = document.querySelector<HTMLElement>(
         '.sectionGroup[data-layout="scroll-panel"] > .sectionGroup__panel:first-child',
       );
-      const openingRect = openingPanel?.getBoundingClientRect();
-      const openingHeight = Math.max(openingRect?.height ?? window.innerHeight, 1);
-      const progress = openingRect
-        ? Math.min(1, Math.max(0, -openingRect.top / openingHeight))
-        : Math.min(1, window.scrollY / Math.max(window.innerHeight, 1));
+      const openingHeight = Math.max(openingPanel?.offsetHeight ?? window.innerHeight, 1);
+      const openingTop = openingPanel ? getDocumentOffsetTop(openingPanel) : 0;
+      const progress = Math.min(
+        1,
+        Math.max(0, (window.scrollY - openingTop) / openingHeight),
+      );
       const introActive = progress < 0.8;
       const nextPlacement: HeaderNavPlacement = introActive ? "center" : "end";
       const nextOpeningState: OpeningState = introActive ? "intro" : "settled";
