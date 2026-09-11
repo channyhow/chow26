@@ -178,6 +178,10 @@
 }
 
 @include tablet-down {
+  .projectHero .section__inner {
+    padding-top: calc(#{$space-4} + #{$header-height});
+  }
+
   .projectHero .textBlock__title {
     font-size: clamp(3.4rem, 16vw, #{$space-5});
   }
