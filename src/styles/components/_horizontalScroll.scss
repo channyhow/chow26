@@ -109,33 +109,3 @@
     padding-inline: $page-gutter;
   }
 }
-
-@include reduced-motion {
-  .horizontalScroll {
-    height: auto;
-  }
-
-  .horizontalScroll__viewport {
-    position: static;
-    display: block;
-    height: auto;
-    overflow: visible;
-  }
-
-  .horizontalScroll__progress {
-    display: none;
-  }
-
-  .horizontalScroll__track {
-    display: grid;
-    width: 100%;
-    height: auto;
-    transform: none !important;
-  }
-
-  .horizontalScroll__item {
-    width: 100%;
-    height: auto;
-    min-height: 70svh;
-  }
-}
