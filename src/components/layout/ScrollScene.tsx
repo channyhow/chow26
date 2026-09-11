@@ -43,8 +43,10 @@ export function ScrollScene({
   const [responsiveScale, setResponsiveScale] = useState(1);
   const motionEnabled = enabled;
   const sign = direction === "reverse" ? -1 : 1;
+  const isAttentionExit = range === "exit" && preset === "drift";
   const reducedScale = reduceMotion ? motionConfig.reduced.sceneScale : 1;
-  const scale = responsiveScale * intensityScale[intensity] * reducedScale;
+  const attentionScale = isAttentionExit ? 2.1 : 1;
+  const scale = responsiveScale * intensityScale[intensity] * reducedScale * attentionScale;
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 47.999rem)");
@@ -69,8 +71,8 @@ export function ScrollScene({
   const ambientY = useTransform(scrollYProgress, [0, 1], [distance(34), distance(-34)]);
   const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-18), distance(18)]);
   const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const recedeY = useTransform(scrollYProgress, [0, 0.35, 1], [0, 0, (reduceMotion ? 20 : 56) * scale]);
-  const recedeOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [1, 1, reduceMotion ? 0.88 : 0.45]);
+  const recedeY = useTransform(scrollYProgress, [0, 0.3, 1], [0, 0, (reduceMotion ? 22 : 64) * scale]);
+  const recedeOpacity = useTransform(scrollYProgress, [0, 0.32, 1], [1, 1, reduceMotion ? 0.9 : 0.36]);
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
@@ -79,7 +81,11 @@ export function ScrollScene({
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
   const showLine = preset === "draw" || preset === "ambient";
-  const effectivePreset = reduceMotion && preset === "ambient" ? "drift" : preset;
+  const effectivePreset = isAttentionExit
+    ? "recede"
+    : reduceMotion && preset === "ambient"
+      ? "drift"
+      : preset;
   const contentStyle = motionEnabled
     ? effectivePreset === "drift"
       ? { y: driftY }
@@ -104,6 +110,7 @@ export function ScrollScene({
       data-intensity={intensity}
       data-enabled={motionEnabled ? "true" : "false"}
       data-reduced-motion={reduceMotion ? "true" : "false"}
+      data-attention-exit={isAttentionExit ? "true" : undefined}
       data-progress-source={progress ? "panel" : "self"}
     >
       {decorative ? (
