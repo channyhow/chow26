@@ -19,7 +19,6 @@
   margin-inline-start: var(--panel-inline-start);
   margin-inline-end: var(--panel-inline-end);
   position: relative;
-  z-index: calc(var(--panel-index, 0) + 1);
   color: var(--panel-fg);
   background: transparent;
 }
@@ -116,8 +115,9 @@
     position: relative;
   }
 
-  /* Stack and cover own positioning only. Their inner surface owns color and
-     backdrop treatment so sticky compositing cannot suppress the glass layer. */
+  /* Later sticky siblings naturally paint over earlier siblings in DOM order.
+     Avoid a z-index stacking context here so glass descendants can sample the
+     actual panels behind them instead of an isolated transparent ancestor. */
   .sectionGroup__panel[data-panel-behavior="stack"],
   .sectionGroup__panel[data-panel-behavior="cover"] {
     position: sticky;
