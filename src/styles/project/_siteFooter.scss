@@ -10,10 +10,6 @@
     $section-space
     var(--footer-gutter)
     clamp(#{$space-3}, 4vw, #{$space-4});
-  // color: var(--secondary);
-  // background: var(--primary);
-    // opacity:$opacity-soft;
-
 }
 
 .siteFooter__inner,
@@ -28,8 +24,7 @@
   display: grid;
   gap: $section-content-gap;
   align-items: start;
-      opacity:$opacity-muted;
-
+  opacity: $opacity-muted;
 }
 
 .siteFooter__identity {
@@ -99,9 +94,7 @@
   gap: $flow-tight;
   width: 100%;
   padding-top: $flow-default;
-      opacity:$opacity-soft;
-
-  // border-top: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+  opacity: $opacity-soft;
 }
 
 @include tablet-up {
@@ -129,6 +122,12 @@
   .siteFooter {
     padding-top: clamp(3rem, 12vw, 4.5rem);
     padding-bottom: clamp(6.5rem, 24vw, 8rem);
+  }
+
+  .siteFooter[data-panel-motion="true"] .siteFooter__inner {
+    opacity: var(--footer-motion-opacity, 1);
+    transform: translate3d(0, var(--footer-motion-y, 0), 0);
+    will-change: transform, opacity;
   }
 
   .siteFooter__links {
