@@ -21,9 +21,16 @@
   position: relative;
   z-index: calc(var(--panel-index, 0) + 1);
   color: var(--panel-fg);
+  background: transparent;
 }
 
-.sectionGroup__panel > .section {
+.sectionGroup__surface {
+  position: relative;
+  min-height: inherit;
+  color: inherit;
+}
+
+.sectionGroup__surface > .section {
   color: inherit;
 }
 
@@ -84,9 +91,15 @@
   --panel-fg: inherit;
 }
 
-.sectionGroup__panel[data-panel-surface="transparent"] { background: transparent; }
-.sectionGroup__panel[data-panel-surface="solid"] { background: var(--panel-bg); }
-.sectionGroup__panel[data-panel-surface="glass"] {
+.sectionGroup__panel[data-panel-surface="transparent"] > .sectionGroup__surface {
+  background: transparent;
+}
+
+.sectionGroup__panel[data-panel-surface="solid"] > .sectionGroup__surface {
+  background: var(--panel-bg);
+}
+
+.sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface {
   background: var(--panel-glass-bg);
   backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
   -webkit-backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
@@ -103,9 +116,8 @@
     position: relative;
   }
 
-  /* Stack and cover both pin after their own overflow has passed. Cover differs
-     through z-index: each successive panel receives a higher panel index and
-     therefore rises over the previous plane. Width and alignment remain JSON-driven. */
+  /* Stack and cover own positioning only. Their inner surface owns color and
+     backdrop treatment so sticky compositing cannot suppress the glass layer. */
   .sectionGroup__panel[data-panel-behavior="stack"],
   .sectionGroup__panel[data-panel-behavior="cover"] {
     position: sticky;
