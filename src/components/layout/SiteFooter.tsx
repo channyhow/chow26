@@ -1,8 +1,18 @@
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionStyle,
+} from "motion/react";
+
 import { Actions } from "@/components/navigation/Actions";
-import type { SectionBlock } from "@/types/content";
+import type { PanelBehavior, SectionBlock } from "@/types/content";
 
 export type SiteFooterProps = {
   block: SectionBlock;
+  panelBehavior?: PanelBehavior;
 };
 
 const toArray = <T,>(value?: T | T[]): T[] => {
@@ -10,7 +20,31 @@ const toArray = <T,>(value?: T | T[]): T[] => {
   return Array.isArray(value) ? value : [value];
 };
 
-export function SiteFooter({ block }: SiteFooterProps) {
+export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = Boolean(useReducedMotion());
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 94%", "end 24%"],
+  });
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.42, 1],
+    reduceMotion ? ["0.5rem", "0rem", "-0.15rem"] : ["2rem", "0rem", "-0.65rem"],
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 1],
+    reduceMotion ? [0.94, 1, 1] : [0.7, 1, 1],
+  );
+  const hasPanelMotion = panelBehavior === "cover" || panelBehavior === "stack";
+  const motionStyle = hasPanelMotion
+    ? ({
+        "--footer-motion-y": y,
+        "--footer-motion-opacity": opacity,
+      } as unknown as MotionStyle)
+    : undefined;
+
   const header = block.content?.header;
   const eyebrows = toArray(header?.eyebrow).filter(Boolean);
   const links = header?.links ?? [];
@@ -21,13 +55,15 @@ export function SiteFooter({ block }: SiteFooterProps) {
 
   return (
     <footer
+      ref={ref}
       id={block.id}
       className="siteFooter"
       data-surface={block.surface}
       data-color={block.color}
+      data-panel-motion={hasPanelMotion ? "true" : undefined}
       aria-label="Pied de page"
     >
-      <div className="siteFooter__inner">
+      <motion.div className="siteFooter__inner" style={motionStyle}>
         <div className="siteFooter__main">
           <div className="siteFooter__identity">
             {eyebrows[0] ? (
@@ -75,7 +111,7 @@ export function SiteFooter({ block }: SiteFooterProps) {
             ))}
           </div>
         ) : null}
-      </div>
+      </motion.div>
     </footer>
   );
 }
