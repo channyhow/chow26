@@ -109,6 +109,12 @@
 .section[data-layout="statement"] .section__inner,
 .section[data-layout="text"] .section__inner { display: grid; justify-items: start; }
 
+/* Fixed glass header: archive content should begin below it, while immersive
+   opening/media sections remain free to sit underneath the header. */
+.section[data-source="projects"]:not([data-featured="true"]) {
+  padding-top: calc(var(--section-space, #{$section-space}) + #{$header-height});
+}
+
 @include desktop-up {
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
   .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
