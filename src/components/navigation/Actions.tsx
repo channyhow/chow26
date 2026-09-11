@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 import { getLink } from "@/data/linkRegistry";
 import type { Action } from "@/types/content";
@@ -32,6 +33,10 @@ function resolveVariant(action: Action, index: number, actionCount: number) {
 
 function isExternalHref(href: string) {
   return /^https?:\/\//i.test(href);
+}
+
+function isInternalHref(href: string) {
+  return href.startsWith("/") && !href.startsWith("//");
 }
 
 export function Actions({
@@ -80,14 +85,26 @@ export function Actions({
         if (!href) return null;
 
         const external = isExternalHref(href);
+        const key = `${action.label}-${action.linkKey ?? href}`;
+        const sharedProps = {
+          className: classNames,
+          "data-intent": intent,
+          "data-priority": action.priority ?? "secondary",
+        };
+
+        if (!external && isInternalHref(href)) {
+          return (
+            <Link key={key} to={href} {...sharedProps}>
+              {content}
+            </Link>
+          );
+        }
 
         return (
           <a
-            key={`${action.label}-${action.linkKey ?? href}`}
-            className={classNames}
+            key={key}
             href={href}
-            data-intent={intent}
-            data-priority={action.priority ?? "secondary"}
+            {...sharedProps}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
           >
