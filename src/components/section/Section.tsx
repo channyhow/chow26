@@ -54,11 +54,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
-  const useProjectCarouselOnMobile = isMobileViewport
-    && layout === "grid"
+  const isFeaturedProjectGrid = layout === "grid"
     && block.source?.collection === "projects"
     && block.source.query?.featured === true;
-  const projectGridLead = layout === "grid" && block.source?.collection === "projects" && header && !useProjectCarouselOnMobile
+  const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
+  const projectGridLead = isFeaturedProjectGrid && header && !useProjectCarouselOnMobile
     ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
 
@@ -89,6 +89,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         motionPreset={block.motionPreset}
         placements={items.map((item) => item.grid)}
         motionEnabled={motionEnabled && motionLevel !== "none"}
+        scrollLinked={isFeaturedProjectGrid}
       >
         {cards}
       </Grid>
