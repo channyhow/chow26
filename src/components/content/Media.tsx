@@ -1,6 +1,5 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import clsx from "clsx";
-import { useReducedMotion } from "motion/react";
 
 import { MuxMedia } from "@/components/content/MuxMedia";
 import type { MediaFit, MediaItem } from "@/types/media";
@@ -24,7 +23,6 @@ export function Media({
   fit,
 }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const reduceMotion = useReducedMotion();
   const position = getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
   const mediaStyle = media.width && media.height
@@ -34,7 +32,7 @@ export function Media({
   useEffect(() => {
     const video = videoRef.current;
 
-    if (!video || media.type !== "video" || !autoPlay || reduceMotion) {
+    if (!video || media.type !== "video" || !autoPlay) {
       video?.pause();
       return;
     }
@@ -62,7 +60,7 @@ export function Media({
       observer.disconnect();
       video.pause();
     };
-  }, [autoPlay, media.type, priority, reduceMotion]);
+  }, [autoPlay, media.type, priority]);
 
   let asset: ReactNode;
 
