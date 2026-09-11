@@ -89,7 +89,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         motionPreset={block.motionPreset}
         placements={items.map((item) => item.grid)}
         motionEnabled={motionEnabled && motionLevel !== "none"}
-        scrollLinked={isFeaturedProjectGrid}
+        scrollLinked={motionEnabled && motionLevel !== "none"}
       >
         {cards}
       </Grid>
