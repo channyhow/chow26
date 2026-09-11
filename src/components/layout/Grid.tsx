@@ -2,7 +2,13 @@ import { Children, useEffect, useMemo, useState, type CSSProperties, type ReactN
 import clsx from "clsx";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
-import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
+import {
+  fastStaggerContainer,
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealItem,
+} from "@/motion/config";
 import type { GridPlacement, GridTrackPlacement } from "@/types/content";
 import { responsiveQueries } from "@/utils/responsive";
 
@@ -81,7 +87,7 @@ export function Grid({
   const initialRange = useMemo(() => getGridRange(), []);
   const [range, setRange] = useState<GridRange>(initialRange);
   const [visibleCount, setVisibleCount] = useState(() => initialRange.initial);
-  const animateGrid = motionEnabled && !reduceMotion;
+  const animateGrid = motionEnabled;
 
   useEffect(() => {
     if (!progressive) return;
@@ -109,13 +115,16 @@ export function Grid({
   const hasMore = progressive && effectiveVisibleCount < childArray.length;
   const usesDrawMotion = motionPreset === "draw";
   const usesEditorialPlacement = Boolean(placements?.some(Boolean));
+  const containerVariants = reduceMotion ? reducedStaggerContainer : fastStaggerContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
+  const reducedDistance = motionConfig.reduced.revealDistance;
 
   return (
     <div className="gridReveal">
       <motion.div
         id={progressive ? "project-grid" : undefined}
         className={clsx("grid", lead && "grid--withLead", usesEditorialPlacement && "grid--editorial", className)}
-        variants={animateGrid ? fastStaggerContainer : undefined}
+        variants={animateGrid ? containerVariants : undefined}
         initial={animateGrid ? "hidden" : false}
         whileInView={animateGrid ? "visible" : undefined}
         viewport={animateGrid ? motionConfig.viewport : undefined}
@@ -123,26 +132,31 @@ export function Grid({
         {lead ? <div className="grid__lead">{lead}</div> : null}
         <AnimatePresence initial={false}>
           {visibleChildren.map((child, index) => {
-            const drawOffset = index % 2 === 0 ? -motionConfig.distance.subtle : motionConfig.distance.subtle;
+            const baseOffset = reduceMotion ? reducedDistance : motionConfig.distance.subtle;
+            const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
 
             return (
               <motion.div
                 className="grid__item"
                 key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
                 style={placementStyle(placements?.[index])}
-                variants={animateGrid && !usesDrawMotion ? revealItem : undefined}
+                variants={animateGrid && !usesDrawMotion ? itemVariants : undefined}
                 initial={animateGrid
                   ? usesDrawMotion
-                    ? { opacity: 0, x: drawOffset, y: motionConfig.distance.subtle }
-                    : { opacity: 0, y: motionConfig.distance.subtle }
+                    ? { opacity: reduceMotion ? 0.96 : 0, x: drawOffset, y: baseOffset }
+                    : { opacity: reduceMotion ? 0.96 : 0, y: baseOffset }
                   : false}
                 whileInView={animateGrid && usesDrawMotion ? { opacity: 1, x: 0, y: 0 } : undefined}
                 animate={animateGrid && !usesDrawMotion ? { opacity: 1, y: 0 } : undefined}
                 viewport={animateGrid && usesDrawMotion ? motionConfig.viewport : undefined}
                 transition={animateGrid ? {
-                  duration: usesDrawMotion ? motionConfig.duration.slow : motionConfig.duration.default,
-                  ease: motionConfig.easing.soft,
-                  delay: index * (usesDrawMotion ? 0.08 : 0),
+                  duration: reduceMotion
+                    ? motionConfig.reduced.duration
+                    : usesDrawMotion
+                      ? motionConfig.duration.slow
+                      : motionConfig.duration.default,
+                  ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft,
+                  delay: index * (reduceMotion ? motionConfig.reduced.stagger : usesDrawMotion ? 0.08 : 0),
                 } : undefined}
               >
                 {child}
