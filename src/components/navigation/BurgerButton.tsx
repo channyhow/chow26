@@ -26,9 +26,8 @@ export function BurgerButton() {
       aria-expanded={isOpen}
       aria-controls="site-drawer"
     >
-      <span className="burgerButton__lines" aria-hidden="true">
-        <span className="burgerButton__line" />
-        <span className="burgerButton__line" />
+      <span className="burgerButton__label">
+        {isOpen ? navigationCopy.closeLabel : navigationCopy.drawerLabels.menu}
       </span>
     </button>
   );
