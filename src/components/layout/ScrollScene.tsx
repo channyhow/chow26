@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
+import { motionConfig } from "@/motion/config";
+
 export type ScrollScenePreset = "drift" | "parallax" | "ambient" | "draw" | "recede";
 export type ScrollSceneDirection = "forward" | "reverse";
 export type ScrollSceneRange = "through" | "exit";
@@ -39,9 +41,10 @@ export function ScrollScene({
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
   const [responsiveScale, setResponsiveScale] = useState(1);
-  const motionEnabled = enabled && !reduceMotion;
+  const motionEnabled = enabled;
   const sign = direction === "reverse" ? -1 : 1;
-  const scale = responsiveScale * intensityScale[intensity];
+  const reducedScale = reduceMotion ? motionConfig.reduced.sceneScale : 1;
+  const scale = responsiveScale * intensityScale[intensity] * reducedScale;
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 47.999rem)");
@@ -62,12 +65,12 @@ export function ScrollScene({
 
   const distance = (value: number) => value * sign * scale;
   const driftY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [distance(48), distance(-48)]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [distance(reduceMotion ? 18 : 48), distance(reduceMotion ? -18 : -48)]);
   const ambientY = useTransform(scrollYProgress, [0, 1], [distance(34), distance(-34)]);
   const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-18), distance(18)]);
   const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const recedeY = useTransform(scrollYProgress, [0, 0.35, 1], [0, 0, 56 * scale]);
-  const recedeOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [1, 1, 0.45]);
+  const recedeY = useTransform(scrollYProgress, [0, 0.35, 1], [0, 0, (reduceMotion ? 20 : 56) * scale]);
+  const recedeOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [1, 1, reduceMotion ? 0.88 : 0.45]);
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
@@ -78,20 +81,19 @@ export function ScrollScene({
   );
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  const showMovingShapes = preset === "ambient";
+  const showMovingShapes = preset === "ambient" && !reduceMotion;
   const showLine = preset === "draw" || preset === "ambient";
+  const effectivePreset = reduceMotion && preset === "ambient" ? "drift" : preset;
   const contentStyle = motionEnabled
-    ? preset === "drift"
+    ? effectivePreset === "drift"
       ? { y: driftY }
-      : preset === "parallax"
+      : effectivePreset === "parallax"
         ? { y: contentY }
-        : preset === "ambient"
-          ? { x: ambientX, y: ambientY }
-          : preset === "draw"
-            ? { y: drawY }
-            : preset === "recede"
-              ? { y: recedeY, opacity: recedeOpacity }
-              : undefined
+        : effectivePreset === "draw"
+          ? { y: drawY }
+          : effectivePreset === "recede"
+            ? { y: recedeY, opacity: recedeOpacity }
+            : undefined
     : undefined;
 
   return (
