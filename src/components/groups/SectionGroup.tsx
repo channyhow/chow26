@@ -31,7 +31,6 @@ function renderBlocks(
           <SiteFooter
             key={entry.ref}
             block={block}
-            scrollProgress={scrollProgress}
             panelBehavior={panelBehavior}
           />
         );
