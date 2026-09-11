@@ -2,8 +2,9 @@ import { createElement, useEffect, useMemo, useRef, useState } from "react";
 
 type MuxTokenResponse = {
   playbackId: string;
-  playbackToken: string;
-  thumbnailToken: string;
+  playbackPolicy: "public" | "signed";
+  playbackToken?: string;
+  thumbnailToken?: string;
 };
 
 type MuxPlayerElement = HTMLElement & {
@@ -182,12 +183,18 @@ export function MuxMedia({
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
-    return `https://image.mux.com/${tokens.playbackId}/thumbnail.webp?token=${tokens.thumbnailToken}`;
+    const base = `https://image.mux.com/${tokens.playbackId}/thumbnail.webp`;
+    return tokens.playbackPolicy === "signed" && tokens.thumbnailToken
+      ? `${base}?token=${encodeURIComponent(tokens.thumbnailToken)}`
+      : base;
   }, [tokens]);
 
   const playbackSrc = useMemo(() => {
     if (!tokens) return undefined;
-    return `https://stream.mux.com/${tokens.playbackId}.m3u8?token=${encodeURIComponent(tokens.playbackToken)}`;
+    const base = `https://stream.mux.com/${tokens.playbackId}.m3u8`;
+    return tokens.playbackPolicy === "signed" && tokens.playbackToken
+      ? `${base}?token=${encodeURIComponent(tokens.playbackToken)}`
+      : base;
   }, [tokens]);
 
   const player =
@@ -197,8 +204,12 @@ export function MuxMedia({
             playerRef.current = node;
           },
           "playback-id": tokens.playbackId,
-          "playback-token": tokens.playbackToken,
-          "thumbnail-token": tokens.thumbnailToken,
+          ...(tokens.playbackPolicy === "signed" && tokens.playbackToken
+            ? { "playback-token": tokens.playbackToken }
+            : {}),
+          ...(tokens.playbackPolicy === "signed" && tokens.thumbnailToken
+            ? { "thumbnail-token": tokens.thumbnailToken }
+            : {}),
           "metadata-video-title": alt,
           muted: true,
           loop: true,
