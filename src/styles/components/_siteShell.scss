@@ -35,6 +35,8 @@
 }
 
 .header {
+  --header-gutter: clamp(#{$space-2}, 4vw, #{$space-4});
+
   position: fixed;
   inset: 0 0 auto;
   z-index: $z-header;
@@ -42,7 +44,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: $header-height;
-  padding-inline: clamp($space-2, 4vw, $space-4);
+  padding-inline: var(--header-gutter);
   color: var(--header-color, var(--primary));
   pointer-events: none;
   transition: color $transition-interface;
@@ -154,6 +156,45 @@
   }
 }
 
+@include tablet-down {
+  .header__logo,
+  .header .burgerButton {
+    position: absolute;
+    top: 50%;
+    transition:
+      transform $transition-reveal,
+      opacity $transition-interface,
+      color $transition-interface;
+    will-change: transform, opacity;
+  }
+
+  .header__logo {
+    left: var(--header-gutter);
+    transform: translateY(-50%);
+  }
+
+  .header .burgerButton {
+    right: var(--header-gutter);
+    transform: translateY(-50%);
+  }
+
+  .header[data-opening-state="intro"] .header__logo {
+    transform: translate3d(calc(50vw - var(--header-gutter) - 50%), -50%, 0);
+  }
+
+  .header[data-opening-state="intro"] .burgerButton {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(calc(-50vw + var(--header-gutter) + 50%), -50%, 0);
+  }
+
+  .header[data-opening-state="settled"] .header__logo,
+  .header[data-opening-state="settled"] .burgerButton {
+    opacity: 1;
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
 @include reduced-motion {
   .skipLink,
   .header__nav a::after,
@@ -161,7 +202,9 @@
     transition: none;
   }
 
-  .header {
+  .header,
+  .header__logo,
+  .header .burgerButton {
     transition-duration: $duration-fast;
   }
 
