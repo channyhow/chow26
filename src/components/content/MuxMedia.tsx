@@ -1,5 +1,4 @@
 import { createElement, useEffect, useMemo, useRef, useState } from "react";
-import { useReducedMotion } from "motion/react";
 
 type MuxTokenResponse = {
   playbackId: string;
@@ -65,7 +64,6 @@ export function MuxMedia({
   fit = "cover",
   position = "50% 50%",
 }: MuxMediaProps) {
-  const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<MuxPlayerElement | null>(null);
   const [tokens, setTokens] = useState<MuxTokenResponse | null>(null);
@@ -124,7 +122,7 @@ export function MuxMedia({
   }, [isNearViewport, mediaKey, tokens]);
 
   useEffect(() => {
-    if (!tokens || reduceMotion) return;
+    if (!tokens) return;
 
     let active = true;
     void ensureMuxPlayer()
@@ -136,11 +134,11 @@ export function MuxMedia({
     return () => {
       active = false;
     };
-  }, [reduceMotion, tokens]);
+  }, [tokens]);
 
   useEffect(() => {
     const player = playerRef.current;
-    if (!player || !playerReady || reduceMotion || !autoPlay) {
+    if (!player || !playerReady || !autoPlay) {
       player?.pause?.();
       return;
     }
@@ -150,7 +148,7 @@ export function MuxMedia({
     } else {
       player.pause?.();
     }
-  }, [autoPlay, isVisible, playerReady, reduceMotion]);
+  }, [autoPlay, isVisible, playerReady]);
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
@@ -158,7 +156,7 @@ export function MuxMedia({
   }, [tokens]);
 
   const player =
-    tokens && !reduceMotion && playerReady
+    tokens && playerReady
       ? createElement("mux-player", {
           ref: (node: MuxPlayerElement | null) => {
             playerRef.current = node;
@@ -211,7 +209,7 @@ export function MuxMedia({
           }}
         />
       ) : null}
-      {!reduceMotion ? player : null}
+      {player}
     </div>
   );
 }
