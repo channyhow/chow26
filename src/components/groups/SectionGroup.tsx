@@ -147,7 +147,9 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      {renderBlocks(blocks, false, true, scrollYProgress)}
+      <div className="sectionGroup__surface">
+        {renderBlocks(blocks, false, true, scrollYProgress)}
+      </div>
     </div>
   );
 }
