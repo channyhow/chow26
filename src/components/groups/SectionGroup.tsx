@@ -14,6 +14,8 @@ import type {
   SectionGroup as SectionGroupData,
 } from "@/types/content";
 
+const glassBackdrop = "blur(1.1rem) saturate(1.05)";
+
 function renderBlocks(
   blocks: PanelBlock[],
   suppressSceneMotion = false,
@@ -142,6 +144,13 @@ function Panel({
       : {}),
   } as CSSProperties;
 
+  const surfaceStyle = surface === "glass"
+    ? ({
+        backdropFilter: glassBackdrop,
+        WebkitBackdropFilter: glassBackdrop,
+      } as CSSProperties)
+    : undefined;
+
   return (
     <div
       ref={ref}
@@ -154,7 +163,7 @@ function Panel({
       data-panel-color={color}
       style={style}
     >
-      <div className="sectionGroup__surface">
+      <div className="sectionGroup__surface" style={surfaceStyle}>
         {renderBlocks(blocks, false, true, scrollYProgress, behavior)}
       </div>
     </div>
