@@ -28,18 +28,6 @@ const isHeaderSurface = (value?: string): value is HeaderSurface =>
 const getSurface = (element?: HTMLElement | null) =>
   element?.dataset.panelColor ?? element?.dataset.color;
 
-const getDocumentOffsetTop = (element: HTMLElement) => {
-  let top = 0;
-  let current: HTMLElement | null = element;
-
-  while (current) {
-    top += current.offsetTop;
-    current = current.offsetParent as HTMLElement | null;
-  }
-
-  return top;
-};
-
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
 const smoothstep = (value: number) => value * value * (3 - 2 * value);
@@ -88,12 +76,11 @@ export function Header() {
 
       setSurface((current) => (current === nextSurface ? current : nextSurface));
 
-      const opening = document.querySelector<HTMLElement>(
-        ".site__canvas .sectionGroup__panel, .site__canvas .section",
-      );
-      const openingTop = opening ? getDocumentOffsetTop(opening) : 0;
-      const openingHeight = Math.max(opening?.offsetHeight ?? window.innerHeight, 1);
-      const rawProgress = clamp01((window.scrollY - openingTop) / (openingHeight * 0.8));
+      // Header choreography is intentionally tied to page scroll rather than
+      // section geometry. Sticky/stacked panels can pin their rect/offset values,
+      // while window.scrollY remains the canonical progress source on every page.
+      const splitDistance = Math.max(window.innerHeight * 0.8, 1);
+      const rawProgress = clamp01(window.scrollY / splitDistance);
       const progress = smoothstep(rawProgress);
       const desktop = window.matchMedia("(min-width: 64rem)").matches;
       const viewportWidth = window.innerWidth;
