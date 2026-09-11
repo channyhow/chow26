@@ -56,15 +56,6 @@ function ensureMuxPlayer() {
   return muxPlayerPromise;
 }
 
-function supportsNativeHls() {
-  if (typeof document === "undefined") return false;
-  const probe = document.createElement("video");
-  return Boolean(
-    probe.canPlayType("application/vnd.apple.mpegurl")
-      || probe.canPlayType("application/x-mpegURL"),
-  );
-}
-
 export function MuxMedia({
   mediaKey,
   alt,
@@ -76,16 +67,10 @@ export function MuxMedia({
 }: MuxMediaProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<MuxPlayerElement | null>(null);
-  const nativeVideoRef = useRef<HTMLVideoElement | null>(null);
   const [tokens, setTokens] = useState<MuxTokenResponse | null>(null);
   const [isNearViewport, setIsNearViewport] = useState(priority);
   const [isVisible, setIsVisible] = useState(priority);
   const [playerReady, setPlayerReady] = useState(false);
-  const [useNativeHls, setUseNativeHls] = useState(false);
-
-  useEffect(() => {
-    setUseNativeHls(supportsNativeHls());
-  }, []);
 
   useEffect(() => {
     const anchor = containerRef.current;
@@ -138,7 +123,7 @@ export function MuxMedia({
   }, [isNearViewport, mediaKey, tokens]);
 
   useEffect(() => {
-    if (!tokens || useNativeHls) return;
+    if (!tokens) return;
 
     let active = true;
     void ensureMuxPlayer()
@@ -150,24 +135,9 @@ export function MuxMedia({
     return () => {
       active = false;
     };
-  }, [tokens, useNativeHls]);
+  }, [tokens]);
 
   useEffect(() => {
-    if (useNativeHls) {
-      const video = nativeVideoRef.current;
-      if (!video || !autoPlay) {
-        video?.pause();
-        return;
-      }
-
-      if (isVisible) {
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-      }
-      return;
-    }
-
     const player = playerRef.current;
     if (!player || !playerReady || !autoPlay) {
       player?.pause?.();
@@ -179,7 +149,7 @@ export function MuxMedia({
     } else {
       player.pause?.();
     }
-  }, [autoPlay, isVisible, playerReady, useNativeHls]);
+  }, [autoPlay, isVisible, playerReady]);
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
@@ -189,16 +159,8 @@ export function MuxMedia({
       : base;
   }, [tokens]);
 
-  const playbackSrc = useMemo(() => {
-    if (!tokens) return undefined;
-    const base = `https://stream.mux.com/${tokens.playbackId}.m3u8`;
-    return tokens.playbackPolicy === "signed" && tokens.playbackToken
-      ? `${base}?token=${encodeURIComponent(tokens.playbackToken)}`
-      : base;
-  }, [tokens]);
-
   const player =
-    tokens && !useNativeHls && playerReady
+    tokens && playerReady
       ? createElement("mux-player", {
           ref: (node: MuxPlayerElement | null) => {
             playerRef.current = node;
@@ -255,30 +217,7 @@ export function MuxMedia({
           }}
         />
       ) : null}
-
-      {tokens && useNativeHls && playbackSrc ? (
-        <video
-          ref={nativeVideoRef}
-          src={playbackSrc}
-          muted
-          playsInline
-          loop
-          autoPlay={autoPlay && isVisible}
-          preload={priority || isNearViewport ? "metadata" : "none"}
-          aria-hidden="true"
-          tabIndex={-1}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: fit,
-            objectPosition: position,
-            display: "block",
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-          }}
-        />
-      ) : player}
+      {player}
     </div>
   );
 }
