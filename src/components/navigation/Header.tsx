@@ -76,9 +76,6 @@ export function Header() {
 
       setSurface((current) => (current === nextSurface ? current : nextSurface));
 
-      // Header choreography is intentionally tied to page scroll rather than
-      // section geometry. Sticky/stacked panels can pin their rect/offset values,
-      // while window.scrollY remains the canonical progress source on every page.
       const splitDistance = Math.max(window.innerHeight * 0.8, 1);
       const rawProgress = clamp01(window.scrollY / splitDistance);
       const progress = smoothstep(rawProgress);
@@ -141,6 +138,7 @@ export function Header() {
         ref={logoRef}
         className="header__logo"
         to={home?.href ?? "/"}
+        viewTransition
         aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`}
         aria-current={currentPath === "/" ? "page" : undefined}
       >
@@ -156,6 +154,7 @@ export function Header() {
           <Link
             key={item.id}
             to={item.href}
+            viewTransition
             data-nav-variant={item.variant}
             aria-current={currentPath === normalizePath(item.href) ? "page" : undefined}
           >
