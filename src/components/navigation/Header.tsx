@@ -18,6 +18,7 @@ type HeaderNavItem = {
 
 type HeaderSurface = "primary" | "secondary" | "accent" | "special";
 type HeaderNavPlacement = "center" | "end";
+type OpeningState = "intro" | "settled";
 
 const normalizePath = (path: string) =>
   path === "/" ? path : path.replace(/\/+$/, "");
@@ -41,6 +42,7 @@ export function Header() {
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
   const [navPlacement, setNavPlacement] = useState<HeaderNavPlacement>(currentPath === "/" ? "center" : "end");
+  const [openingState, setOpeningState] = useState<OpeningState>(currentPath === "/" ? "intro" : "settled");
 
   useEffect(() => {
     let frame = 0;
@@ -75,18 +77,24 @@ export function Header() {
 
       if (currentPath !== "/") {
         setNavPlacement((current) => (current === "end" ? current : "end"));
+        setOpeningState((current) => (current === "settled" ? current : "settled"));
         return;
       }
 
       const openingPanel = document.querySelector<HTMLElement>(
         '.sectionGroup[data-layout="scroll-panel"] > .sectionGroup__panel:first-child',
       );
-      const openingActive = openingPanel
-        ? openingPanel.getBoundingClientRect().bottom > 64
-        : window.scrollY < window.innerHeight;
-      const nextPlacement: HeaderNavPlacement = openingActive ? "center" : "end";
+      const openingRect = openingPanel?.getBoundingClientRect();
+      const openingHeight = Math.max(openingRect?.height ?? window.innerHeight, 1);
+      const progress = openingRect
+        ? Math.min(1, Math.max(0, -openingRect.top / openingHeight))
+        : Math.min(1, window.scrollY / Math.max(window.innerHeight, 1));
+      const introActive = progress < 0.8;
+      const nextPlacement: HeaderNavPlacement = introActive ? "center" : "end";
+      const nextOpeningState: OpeningState = introActive ? "intro" : "settled";
 
       setNavPlacement((current) => (current === nextPlacement ? current : nextPlacement));
+      setOpeningState((current) => (current === nextOpeningState ? current : nextOpeningState));
     };
 
     const scheduleResolve = () => {
@@ -110,6 +118,7 @@ export function Header() {
       className="header"
       data-navigation={navigationMode}
       data-over-color={surface}
+      data-opening-state={openingState}
     >
       <Link
         className="header__logo"
