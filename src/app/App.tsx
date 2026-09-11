@@ -1,5 +1,4 @@
 import { lazy, Suspense, useLayoutEffect } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { SiteShell } from "@/app/SiteShell";
@@ -7,7 +6,6 @@ import { PageRenderer } from "@/components/page/PageRenderer";
 import { RouteLoader } from "@/components/page/RouteLoader";
 import { Seo } from "@/components/page/Seo";
 import pages from "@/data/pages.json";
-import { motionConfig } from "@/motion/config";
 import type { PageData } from "@/types/content";
 
 const BrandingPage = lazy(() =>
@@ -69,68 +67,43 @@ function RoutedPage() {
 
 export function App() {
   const location = useLocation();
-  const reduceMotion = useReducedMotion();
 
   return (
     <SiteShell>
       <ScrollToTop />
-      <AnimatePresence mode="sync" initial={false}>
-        <motion.div
-          className="routeTransition"
-          key={location.pathname}
-          initial={reduceMotion ? false : { opacity: 0.985 }}
-          animate={{
-            opacity: 1,
-            transition: {
-              duration: motionConfig.duration.default,
-              ease: motionConfig.easing.soft,
-            },
-          }}
-          exit={
-            reduceMotion
-              ? undefined
-              : {
-                  opacity: 0.985,
-                  transition: {
-                    duration: motionConfig.duration.fast,
-                    ease: motionConfig.easing.standard,
-                  },
-                }
-          }
-        >
-          <RouteLoader disabled={Boolean(reduceMotion)} />
-          <Routes location={location}>
-            <Route
-              path="/system"
-              element={(
-                <Suspense fallback={null}>
-                  <Seo seo={{ title: "System", robots: internalRobots }} slug="/system" />
-                  <SystemPage />
-                  <SystemReference />
-                </Suspense>
-              )}
-            />
-            <Route
-              path="/branding"
-              element={(
-                <Suspense fallback={null}>
-                  <Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" />
-                  <BrandingPage />
-                </Suspense>
-              )}
-            />
-            <Route
-              path="/projets/:slug"
-              element={(
-                <Suspense fallback={null}>
-                  <ProjectDetailPage />
-                </Suspense>
-              )}
-            />
-            <Route path="*" element={<RoutedPage />} />
-          </Routes>
-        </motion.div>
-      </AnimatePresence>
+      <div className="routeTransition" key={location.pathname}>
+        <RouteLoader disabled />
+        <Routes location={location}>
+          <Route
+            path="/system"
+            element={(
+              <Suspense fallback={null}>
+                <Seo seo={{ title: "System", robots: internalRobots }} slug="/system" />
+                <SystemPage />
+                <SystemReference />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/branding"
+            element={(
+              <Suspense fallback={null}>
+                <Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" />
+                <BrandingPage />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/projets/:slug"
+            element={(
+              <Suspense fallback={null}>
+                <ProjectDetailPage />
+              </Suspense>
+            )}
+          />
+          <Route path="*" element={<RoutedPage />} />
+        </Routes>
+      </div>
     </SiteShell>
   );
 }
