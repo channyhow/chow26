@@ -11,21 +11,32 @@
   color: var(--theme-primary);
 }
 
-#not-found-default .section__inner {
-  width: min(100%, 76rem);
+/* The generic statement/scroll-scene layout narrows the content on desktop.
+   The 404 is a single editorial message, so let it own the full inner measure. */
+#not-found-default .section__inner,
+#not-found-default .section__scrollScene,
+#not-found-default .section__scrollLayer,
+#not-found-default .scrollScene__content {
+  width: min(100%, 72rem);
   max-width: none;
   margin-inline: auto;
-  display: grid;
-  place-items: center;
+}
+
+#not-found-default .section__scrollScene,
+#not-found-default .section__scrollLayer,
+#not-found-default .scrollScene__content {
+  grid-column: 1 / -1;
+  justify-self: stretch;
 }
 
 #not-found-default .textBlock {
-  width: min(100%, 68rem);
+  width: min(100%, 56rem);
   max-width: none;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $section-content-gap;
+  gap: clamp(#{$space-3}, 4vw, #{$space-4});
   text-align: center;
 }
 
@@ -35,14 +46,15 @@
 }
 
 #not-found-default .textBlock__title {
-  max-width: 18ch;
+  max-width: 16ch;
   margin-inline: auto;
   text-wrap: balance;
 }
 
 #not-found-default .textBlock__content {
-  width: min(100%, 48rem);
+  width: min(100%, 34rem);
   margin-inline: auto;
+  text-wrap: balance;
 }
 
 #not-found-default .textBlock__footer {
@@ -52,6 +64,7 @@
 
 #not-found-default .actions {
   justify-content: center;
+  gap: $space-3;
 }
 
 /* The 404 uses the normal text action plus the existing arrow CTA rather than
@@ -74,13 +87,28 @@
   transform: none;
 }
 
+@include tablet-up {
+  #not-found-default .textBlock__header {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  #not-found-default .actions {
+    flex-direction: row;
+  }
+}
+
 @include mobile-down {
-  #not-found-default .section__inner {
+  #not-found-default .section__inner,
+  #not-found-default .section__scrollScene,
+  #not-found-default .section__scrollLayer,
+  #not-found-default .scrollScene__content {
     width: 100%;
   }
 
   #not-found-default .textBlock {
-    width: min(100%, 38rem);
+    width: min(100%, 34rem);
+    gap: $section-content-gap;
   }
 
   #not-found-default .textBlock__title {
