@@ -46,18 +46,35 @@
   z-index: $z-header;
   min-height: $header-height;
   padding-inline: var(--header-gutter);
+  background: color-mix(in srgb, var(--secondary) 38%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 8%, transparent);
+  backdrop-filter: blur(1rem) saturate(0.92);
+  -webkit-backdrop-filter: blur(1rem) saturate(0.92);
+  box-shadow: none;
   color: var(--header-color, var(--primary));
   pointer-events: none;
-  transition: color $transition-interface;
+  transition:
+    color $transition-interface,
+    background-color $transition-interface;
 }
 
 .header[data-over-color="primary"] {
+  background: color-mix(in srgb, var(--theme-primary) 42%, transparent);
   color: var(--secondary);
 }
 
-.header[data-over-color="secondary"],
-.header[data-over-color="accent"],
+.header[data-over-color="secondary"] {
+  background: color-mix(in srgb, var(--theme-secondary) 38%, transparent);
+  color: var(--primary);
+}
+
+.header[data-over-color="accent"] {
+  background: color-mix(in srgb, var(--theme-accent) 34%, transparent);
+  color: var(--primary);
+}
+
 .header[data-over-color="special"] {
+  background: color-mix(in srgb, var(--theme-special) 34%, transparent);
   color: var(--primary);
 }
 
