@@ -14,7 +14,7 @@
   --panel-inline-end: auto;
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
-  --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 76%, transparent);
+  --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 70%, transparent);
   width: var(--panel-width);
   margin-inline-start: var(--panel-inline-start);
   margin-inline-end: var(--panel-inline-end);
@@ -27,6 +27,12 @@
   position: relative;
   min-height: inherit;
   color: inherit;
+  background: transparent;
+}
+
+.sectionGroup__surface > * {
+  position: relative;
+  z-index: 1;
 }
 
 .sectionGroup__surface > .section {
@@ -98,7 +104,12 @@
   background: var(--panel-bg);
 }
 
-.sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface {
+.sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background: var(--panel-glass-bg);
   backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
   -webkit-backdrop-filter: blur(var(--panel-glass-blur)) saturate(0.95);
@@ -115,9 +126,6 @@
     position: relative;
   }
 
-  /* Later sticky siblings naturally paint over earlier siblings in DOM order.
-     Avoid a z-index stacking context here so glass descendants can sample the
-     actual panels behind them instead of an isolated transparent ancestor. */
   .sectionGroup__panel[data-panel-behavior="stack"],
   .sectionGroup__panel[data-panel-behavior="cover"] {
     position: sticky;
