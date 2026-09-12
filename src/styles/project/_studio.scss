@@ -512,7 +512,7 @@
 
 #studio-founders .card__media {
   padding-top: 0;
-  background: var(--section-bg);
+  background: var(--panel-bg);
   isolation: isolate;
   @include media-frame($ratio-square);
 }
