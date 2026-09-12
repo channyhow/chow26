@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import siteData from "@/data/site.json";
 
@@ -36,6 +36,8 @@ export function FloatingAction() {
 
   if (!config.enabled) return null;
 
+  const [singleItem] = config.items;
+
   return (
     <aside
       ref={actionRef}
@@ -43,19 +45,36 @@ export function FloatingAction() {
       aria-label={config.ariaLabel}
       data-hidden="false"
     >
-      <details className="floatingAction__details">
-        <summary className="floatingAction__trigger">
+      {config.items.length === 1 && singleItem ? (
+        <Link
+          className="floatingAction__trigger"
+          to={singleItem.href}
+          viewTransition
+          aria-label={singleItem.label}
+        >
           <span className="floatingAction__label">{config.label}</span>
           <span className="floatingAction__mark" aria-hidden="true">↗</span>
-        </summary>
-        <nav className="floatingAction__menu" aria-label={config.ariaLabel}>
-          {config.items.map((item) => (
-            <a key={`${item.label}-${item.href}`} className="floatingAction__link" href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </details>
+        </Link>
+      ) : (
+        <details className="floatingAction__details">
+          <summary className="floatingAction__trigger">
+            <span className="floatingAction__label">{config.label}</span>
+            <span className="floatingAction__mark" aria-hidden="true">↗</span>
+          </summary>
+          <nav className="floatingAction__menu" aria-label={config.ariaLabel}>
+            {config.items.map((item) => (
+              <Link
+                key={`${item.label}-${item.href}`}
+                className="floatingAction__link"
+                to={item.href}
+                viewTransition
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </details>
+      )}
     </aside>
   );
 }
