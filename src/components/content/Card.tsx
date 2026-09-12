@@ -14,6 +14,12 @@ export type CardProps = {
   className?: string;
 };
 
+function getProjectMission(item: ContentItem) {
+  if (!Array.isArray(item.text)) return undefined;
+
+  return item.text.find((line) => line.trim().toLocaleLowerCase("fr").startsWith("mission :"));
+}
+
 export function Card({
   item,
   frame = false,
@@ -24,7 +30,13 @@ export function Card({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const mediaOrientation = getMediaOrientation(media ?? undefined);
-  const visibleItem = isProject ? { title: item.title } : item;
+  const projectMission = isProject ? getProjectMission(item) : undefined;
+  const visibleItem = isProject
+    ? {
+        title: item.title,
+        ...(projectMission ? { text: projectMission } : {}),
+      }
+    : item;
   const cardClassName = clsx(
     "card",
     isProject && "projectCard",
