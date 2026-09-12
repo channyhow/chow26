@@ -149,8 +149,7 @@
       "ariaLabel": "Parler d’un projet",
       "hideWhileVisible": "#home-opening",
       "items": [
-        { "label": "Parler d’un projet", "href": "/contact" },
-        { "label": "Quel accompagnement ?", "href": "/studio" }
+        { "label": "Parler d’un projet", "href": "/contact" }
       ]
     }
   },
