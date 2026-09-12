@@ -91,6 +91,22 @@ textarea {
   overflow-x: clip;
 }
 
+/* Section panels own their painted surface; sections themselves stay transparent. */
+#studio-founders .card__media {
+  background: var(--panel-bg);
+  isolation: isolate;
+}
+
+#studio-founders .card__media .media,
+#studio-founders .card__media .media__frame {
+  background: transparent;
+}
+
+#studio-founders .card__media .media__asset {
+  filter: grayscale(1);
+  mix-blend-mode: multiply;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
