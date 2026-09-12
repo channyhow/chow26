@@ -321,7 +321,11 @@
   --section-space: clamp(#{$space-4}, 8vh, 7rem);
   --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
   min-height: 100svh;
-  justify-content: center;
+}
+
+#studio-approach > .section__inner {
+  display: grid;
+  align-content: center;
 }
 
 #studio-approach > .section__inner,
@@ -389,7 +393,10 @@
     --section-space: $space-4;
     --section-row-gap: $space-3;
     min-height: auto;
-    justify-content: initial;
+  }
+
+  #studio-approach > .section__inner {
+    display: block;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
