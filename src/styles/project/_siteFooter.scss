@@ -143,7 +143,7 @@
 
   .siteFooter__inner,
   #site-footer.section__inner {
-    gap: clamp(#{$space-3}, 8vw, #{$space-4});
+    gap: clamp(#{$space-2}, 5vw, #{$space-3});
   }
 
   .siteFooter__main {
