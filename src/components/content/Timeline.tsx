@@ -3,6 +3,13 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { HorizontalScroll } from "@/components/content/HorizontalScroll";
 import { TextBlock } from "@/components/content/TextBlock";
+import {
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealContainer,
+  revealItem,
+} from "@/motion/config";
 import type { ContentItem, TimelineOrientation } from "@/types/content";
 
 export type TimelineMode = "chronology" | "checklist";
@@ -40,34 +47,35 @@ export function Timeline({
   orientation = "vertical",
   className,
 }: TimelineProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
   if (!items.length) return null;
 
-  const reveal = {
-    initial: !reduceMotion ? { opacity: 0.45, y: 12 } : false,
-    whileInView: !reduceMotion ? { opacity: 1, y: 0 } : undefined,
-    viewport: { once: true, amount: 0.45 },
-  } as const;
+  const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   if (orientation === "horizontal") {
     return (
-      <div
+      <motion.div
         className={clsx("timeline", className)}
         data-mode={mode}
         data-orientation="horizontal"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={motionConfig.viewport}
       >
         <HorizontalScroll>
           {items.map((item, index) => (
             <motion.article
               className="timeline__item"
               key={item.id ?? `${item.title ?? "timeline"}-${index}`}
-              {...reveal}
+              variants={itemVariants}
             >
               <EntryContent item={item} />
             </motion.article>
           ))}
         </HorizontalScroll>
-      </div>
+      </motion.div>
     );
   }
 
@@ -77,17 +85,23 @@ export function Timeline({
       data-mode={mode}
       data-orientation="vertical"
     >
-      <ol className="timeline__list">
+      <motion.ol
+        className="timeline__list"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={motionConfig.viewport}
+      >
         {items.map((item, index) => (
           <motion.li
             className="timeline__item"
             key={item.id ?? `${item.title ?? "timeline"}-${index}`}
-            {...reveal}
+            variants={itemVariants}
           >
             <EntryContent item={item} />
           </motion.li>
         ))}
-      </ol>
+      </motion.ol>
     </div>
   );
 }
