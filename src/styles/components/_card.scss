@@ -69,7 +69,11 @@
   }
 
   .textBlock__content {
-    opacity: $opacity-muted;
+    opacity: $opacity-quiet;
+  }
+
+  .textBlock__content p::first-letter {
+    text-transform: uppercase;
   }
 
   .textBlock__footer {
