@@ -123,7 +123,7 @@ function GridMotionItem({
   const linkedOpacity = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.96 : 0.72, 1, 1, reduceMotion ? 1 : 0.94],
+    [reduceMotion ? 0.65 : 0, 1, 1, reduceMotion ? 1 : 0.94],
   );
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
@@ -135,22 +135,19 @@ function GridMotionItem({
       key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
       style={linkedStyle}
       variants={animateGrid && !usesDrawMotion && !scrollLinked ? itemVariants : undefined}
-      initial={animateGrid && !scrollLinked
-        ? usesDrawMotion
-          ? { opacity: reduceMotion ? 0.96 : 0, x: drawOffset, y: baseOffset }
-          : { opacity: reduceMotion ? 0.96 : 0, y: baseOffset }
-        : false}
+      initial={animateGrid && usesDrawMotion && !scrollLinked
+        ? {
+            opacity: reduceMotion ? 0.65 : 0,
+            x: drawOffset,
+            y: baseOffset,
+          }
+        : undefined}
       whileInView={animateGrid && usesDrawMotion && !scrollLinked ? { opacity: 1, x: 0, y: 0 } : undefined}
-      animate={animateGrid && !usesDrawMotion && !scrollLinked ? { opacity: 1, y: 0 } : undefined}
       viewport={animateGrid && usesDrawMotion && !scrollLinked ? motionConfig.viewport : undefined}
-      transition={animateGrid && !scrollLinked ? {
-        duration: reduceMotion
-          ? motionConfig.reduced.duration
-          : usesDrawMotion
-            ? motionConfig.duration.slow
-            : motionConfig.duration.default,
+      transition={animateGrid && usesDrawMotion && !scrollLinked ? {
+        duration: reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow,
         ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft,
-        delay: index * (reduceMotion ? motionConfig.reduced.stagger : usesDrawMotion ? 0.08 : 0),
+        delay: index * (reduceMotion ? motionConfig.reduced.stagger : motionConfig.delay.staggerFast),
       } : undefined}
     >
       {child}
@@ -166,7 +163,7 @@ export function Grid({
   motionPreset,
   placements,
   motionEnabled = true,
-  scrollLinked = true,
+  scrollLinked = false,
 }: GridProps) {
   const reduceMotion = Boolean(useReducedMotion());
   const scrollRef = useRef<HTMLDivElement>(null);
