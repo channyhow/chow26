@@ -405,39 +405,27 @@
 @include mobile-down {
   #studio-approach {
     --section-space: $space-4;
-    overflow: hidden;
+    --section-row-gap: $space-3;
+    overflow: visible;
   }
 
-  #studio-approach .gridReveal {
+  #studio-approach .gridReveal,
+  #studio-approach .grid {
     overflow: visible;
   }
 
   #studio-approach .grid {
     display: grid;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    gap: $space-2;
-    width: 100%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: inline mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #studio-approach .grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: 1fr;
+    gap: $space-3;
   }
 
   #studio-approach .grid--editorial > .grid__item {
-    display: flex;
-    align-items: center;
+    display: block;
     grid-column: auto;
     grid-row: auto;
     width: 100%;
-    min-height: 52svh;
-    scroll-snap-align: start;
+    min-height: 0;
   }
 
   #studio-approach .grid__item .card,
@@ -447,53 +435,19 @@
     max-width: none;
   }
 
-  #studio-approach .grid__item:first-child {
-    position: relative;
-  }
-
-  #studio-approach .grid__item:first-child::after {
-    content: "→";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    z-index: 2;
-    font-size: $type-heading-md;
-    line-height: 1;
-    pointer-events: none;
-    animation: studio-approach-cue 1.6s $ease-soft infinite;
-  }
-
   #studio-approach .grid__item:first-child .textBlock__title {
-    @include type-heading-xl;
-    max-width: 8ch;
+    @include type-heading-lg;
+    max-width: 9ch;
   }
 
   #studio-approach .grid__item:not(:first-child) .card {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0;
+    height: auto;
+    padding: 0 0 $space-2;
+    border-bottom: 1px solid var(--studio-grid-line);
   }
 
   #studio-approach .grid__item:not(:first-child) .textBlock__content {
-    max-width: 28ch;
-  }
-}
-
-@keyframes studio-approach-cue {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(0.35rem);
-  }
-}
-
-@include reduced-motion {
-  #studio-approach .grid__item:first-child::after {
-    animation: none;
+    max-width: 30ch;
   }
 }
 
