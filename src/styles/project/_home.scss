@@ -128,7 +128,7 @@
 }
 
 #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
-  aspect-ratio: $ratio-square;
+  aspect-ratio: $ratio-landscape;
 }
 
 #projects-featured-gallery .section__header .textBlock__title {
@@ -469,7 +469,7 @@
   }
 
   #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
-    aspect-ratio: $ratio-square;
+    aspect-ratio: $ratio-landscape;
   }
 
   #projects-featured-gallery .projectCard .card__body {
