@@ -120,6 +120,7 @@
       "forms": {
         "selectPlaceholder": "Sélectionner",
         "defaultSubmitLabel": "Envoyer",
+        "responseNote": "Je réponds généralement sous 1 à 2 jours ouvrés. Le premier échange sert simplement à voir si le projet et le périmètre correspondent.",
         "requiredError": "Ce champ est requis.",
         "emailError": "Saisissez une adresse e-mail valide.",
         "numberError": "Saisissez une valeur valide.",
