@@ -50,14 +50,14 @@
     }
   },
   "related": {
-    "layout": "carousel",
+    "layout": "grid",
     "variant": "editorial",
     "className": "projectRelated",
     "source": {
       "collection": "projects",
       "query": {
         "featured": true,
-        "limit": 5
+        "limit": 3
       }
     },
     "content": {
