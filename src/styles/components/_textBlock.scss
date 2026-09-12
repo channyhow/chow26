@@ -45,11 +45,14 @@
     p {
       @include type-body;
       margin: 0;
-      opacity: $opacity-muted;
+    }
 
-      &:last-child:not(:only-child) {
-        opacity: $opacity-soft;
-      }
+    .textBlock__copy {
+      opacity: $opacity-muted;
+    }
+
+    p:last-child:not(:only-child) .textBlock__copy {
+      opacity: $opacity-soft;
     }
   }
 
