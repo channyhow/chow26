@@ -116,17 +116,25 @@
   }
 
   .timeline[data-orientation="horizontal"] .horizontalScroll__item {
-    min-height: auto;
-    padding-block: $space-3;
-  }
-
-  .timeline[data-orientation="horizontal"] .horizontalScroll__item + .horizontalScroll__item {
-    border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: clamp(16rem, 42svh, 24rem);
+    padding-block: $space-4;
   }
 
   .timeline[data-orientation="horizontal"] .horizontalScroll__item:first-child {
-    padding-top: $space-4;
-    padding-bottom: $space-4;
+    min-height: clamp(22rem, 52svh, 30rem);
+    padding-block: $space-5;
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:not(:last-child)::after {
+    content: "↓";
+    position: absolute;
+    right: $space-3;
+    bottom: $space-2;
+    @include type-ui;
+    opacity: $opacity-quiet;
   }
 
   .timeline[data-orientation="horizontal"] .timeline__item {
@@ -146,12 +154,18 @@
 
 @include mobile-down {
   .timeline[data-orientation="horizontal"] .horizontalScroll__item {
-    padding-block: $space-2;
+    min-height: clamp(14rem, 36svh, 20rem);
+    padding-block: $space-3;
   }
 
   .timeline[data-orientation="horizontal"] .horizontalScroll__item:first-child {
-    padding-top: $space-3;
-    padding-bottom: $space-3;
+    min-height: clamp(20rem, 48svh, 27rem);
+    padding-block: $space-4;
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:not(:last-child)::after {
+    right: $space-2;
+    bottom: $space-1;
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
