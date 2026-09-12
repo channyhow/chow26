@@ -145,7 +145,7 @@
     },
     "floatingAction": {
       "enabled": true,
-      "label": "Parler d’un projet",
+      "label": "Komen i lé ?",
       "ariaLabel": "Parler d’un projet",
       "hideWhileVisible": "#home-opening",
       "items": [
