@@ -33,7 +33,7 @@ const renderInlineStrong = (value: string): ReactNode[] =>
 
     return highlighted
       ? <strong key={`${text}-${index}`}>{text}</strong>
-      : text;
+      : <span className="textBlock__copy" key={`${text}-${index}`}>{text}</span>;
   });
 
 const motionRoots = {
