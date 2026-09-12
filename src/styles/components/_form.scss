@@ -79,6 +79,13 @@
   }
 }
 
+.form__responseNote {
+  @include type-caption;
+  max-width: 46ch;
+  margin: 0;
+  opacity: $opacity-muted;
+}
+
 .form__footer {
   padding-top: $space-1;
 }
