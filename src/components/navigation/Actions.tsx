@@ -9,6 +9,8 @@ export type ActionsProps = {
   className?: string;
 };
 
+const CONTACT_ACTION_LABEL = "Parler d’un projet";
+
 function isProjectStartAction(label: string) {
   return label
     .normalize("NFD")
@@ -49,6 +51,7 @@ export function Actions({
     <div className={clsx("actions", className)}>
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
+        const label = intent === "contact" ? CONTACT_ACTION_LABEL : action.label;
         const variant = resolveVariant(action, index, links.length);
         const hasArrow = variant === "arrow" || variant === "cta";
 
@@ -59,7 +62,7 @@ export function Actions({
 
         const content = (
           <>
-            <span className="actions__label">{action.label}</span>
+            <span className="actions__label">{label}</span>
             {hasArrow ? (
               <span className="actions__arrow" aria-hidden="true">→</span>
             ) : null}
