@@ -1,4 +1,4 @@
-const CACHE_VERSION = "chow-studio-v2";
+const CACHE_VERSION = "chow-studio-v3";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = "/offline.html";
