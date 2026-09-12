@@ -266,7 +266,12 @@
     gap: $flow-tight;
   }
 
-  #studio-services .card__body .textBlock__title,
+  #studio-services .card__body .textBlock__title {
+    display: block;
+    @include type-heading-sm;
+    max-width: none;
+  }
+
   #studio-services .card__body .textBlock__content {
     display: none;
   }
@@ -274,6 +279,16 @@
   #studio-services .card__body .textBlock__meta {
     display: grid;
     margin-top: $space-2;
+  }
+
+  #studio-services .card__body .textBlock__meta > * {
+    grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: $flow-default;
+  }
+
+  #studio-services .card__body .textBlock__meta > *:last-child {
+    color: currentColor;
   }
 }
 
