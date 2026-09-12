@@ -156,11 +156,6 @@ function createProjectPage(project: ProjectRecord): PageData {
         })(),
       ];
 
-  const cta = sectionFromTemplate(
-    `project-${project.id}-cta`,
-    projectDetail.cta,
-  );
-
   const related = sectionFromTemplate(
     `project-${project.id}-related`,
     {
@@ -177,6 +172,11 @@ function createProjectPage(project: ProjectRecord): PageData {
     },
   );
 
+  const cta = sectionFromTemplate(
+    `project-${project.id}-cta`,
+    projectDetail.cta,
+  );
+
   return {
     id: `project-${project.id}`,
     slug: project.href,
@@ -185,8 +185,8 @@ function createProjectPage(project: ProjectRecord): PageData {
     blocks: [
       hero,
       ...storyBlocks,
-      cta,
       related,
+      cta,
       projectDetail.footer,
     ],
   };
