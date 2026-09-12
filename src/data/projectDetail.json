@@ -36,10 +36,10 @@
     "content": {
       "header": {
         "title": "Un projet similaire en tête ?",
-        "text": ["Une identité à construire, un site à faire évoluer ou une idée à concrétiser."],
+        "text": ["Site, identité ou refonte : quelques lignes suffisent pour voir si le projet peut avancer ensemble."],
         "links": [
           {
-            "label": "Envoyer un message",
+            "label": "Parler d’un projet",
             "href": "/contact",
             "intent": "contact",
             "priority": "primary",
