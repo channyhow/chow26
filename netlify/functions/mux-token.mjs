@@ -12,6 +12,14 @@ function base64Url(input) {
     .replace(/\//g, "_");
 }
 
+function readEnv(name) {
+  if (typeof Netlify !== "undefined") {
+    return Netlify.env.get(name);
+  }
+
+  return process.env[name];
+}
+
 function createJwt({ playbackId, audience, keyId, privateKeyBase64 }) {
   const now = Math.floor(Date.now() / 1000);
   const header = base64Url(
@@ -49,8 +57,8 @@ export default async (request) => {
     return Response.json({ error: "Unknown media" }, { status: 404 });
   }
 
-  const keyId = Netlify.env.get("MUX_SIGNING_KEY_ID");
-  const privateKeyBase64 = Netlify.env.get("MUX_SIGNING_PRIVATE_KEY");
+  const keyId = readEnv("MUX_SIGNING_KEY_ID");
+  const privateKeyBase64 = readEnv("MUX_SIGNING_PRIVATE_KEY");
 
   if (!keyId || !privateKeyBase64) {
     console.error("Mux signing environment is incomplete");
