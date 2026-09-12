@@ -17,7 +17,11 @@ export type CardProps = {
 function getProjectMission(item: ContentItem) {
   if (!Array.isArray(item.text)) return undefined;
 
-  return item.text.find((line) => line.trim().toLocaleLowerCase("fr").startsWith("mission :"));
+  const mission = item.text.find((line) =>
+    line.trim().toLocaleLowerCase("fr").startsWith("mission :"),
+  );
+
+  return mission?.replace(/^\s*mission\s*:\s*/i, "");
 }
 
 export function Card({
