@@ -63,8 +63,11 @@ $section-columns: $grid-columns-desktop;
 $section-header-column: 1 / span 7;
 $section-body-column: 4 / span 9;
 
+// Typography weights: use semantic tokens instead of raw numeric values.
+$font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
+$font-weight-bold: 700;
 $font-weight-strong: 680;
 
 $type-caption: 0.8125rem;
