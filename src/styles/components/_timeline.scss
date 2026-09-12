@@ -155,17 +155,19 @@
 @include mobile-down {
   .timeline[data-orientation="horizontal"] .horizontalScroll__item {
     min-height: clamp(14rem, 36svh, 20rem);
-    padding-block: $space-3;
+    padding-top: $space-3;
+    padding-bottom: max(#{$space-3}, var(--floating-action-safe-zone, #{$space-3}));
   }
 
   .timeline[data-orientation="horizontal"] .horizontalScroll__item:first-child {
     min-height: clamp(20rem, 48svh, 27rem);
-    padding-block: $space-4;
+    padding-top: $space-4;
+    padding-bottom: max(#{$space-4}, var(--floating-action-safe-zone, #{$space-4}));
   }
 
   .timeline[data-orientation="horizontal"] .horizontalScroll__item:not(:last-child)::after {
     right: $space-2;
-    bottom: $space-1;
+    bottom: max(#{$space-1}, calc(var(--floating-action-safe-zone, #{$space-3}) - #{$space-3}));
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {
