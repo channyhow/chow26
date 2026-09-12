@@ -115,12 +115,17 @@ function GridMotionItem({
   const linkedY = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 6 : 48, 0, 0, reduceMotion ? -2 : -14],
+    [
+      reduceMotion ? 0 : motionConfig.distance.subtle,
+      0,
+      0,
+      reduceMotion ? 0 : -motionConfig.distance.route,
+    ],
   );
   const linkedOpacity = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.94 : 0.16, 1, 1, reduceMotion ? 0.98 : 0.86],
+    [reduceMotion ? 0.96 : 0.72, 1, 1, reduceMotion ? 1 : 0.94],
   );
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
