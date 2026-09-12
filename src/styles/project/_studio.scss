@@ -512,7 +512,8 @@
 
 #studio-founders .card__media {
   padding-top: 0;
-  background: transparent;
+  background: var(--section-bg);
+  isolation: isolate;
   @include media-frame($ratio-square);
 }
 
@@ -558,16 +559,16 @@
 #studio-founders .card__body .textBlock__content {
   @include type-body-sm;
   max-width: 36ch;
-  color: color-mix(in srgb, currentColor 62%, transparent);
+  color: color-mix(in srgb, currentColor 68%, transparent);
 }
 
-#studio-founders .card__body .textBlock__content > :first-child {
-  @include type-lead;
-  max-width: 30ch;
+#studio-founders .card__body .textBlock__content p:first-child {
+  max-width: 36ch;
   color: currentColor;
+  @include type-lead;
 }
 
-#studio-founders .card__body .textBlock__content > * + * {
+#studio-founders .card__body .textBlock__content p + p {
   margin-top: $flow-default;
 }
 
@@ -582,6 +583,7 @@
 
   #studio-founders .card__body.textBlock {
     grid-column: 5 / span 4;
+    padding: 0 0 0 $space-3;
   }
 }
 
@@ -591,27 +593,52 @@
   }
 
   #studio-founders .card__body.textBlock {
-    grid-column: 7 / span 5;
-  }
-}
-
-@include tablet-down {
-  #studio-founders,
-  #studio-founders .section__inner {
-    min-height: auto;
+    grid-column: 5 / span 3;
+    padding-left: $space-3;
   }
 }
 
 @include mobile-down {
+  #studio-founders {
+    --section-space: $space-4;
+    min-height: auto;
+  }
+
+  #studio-founders .section__inner {
+    display: block;
+    min-height: 0;
+  }
+
   #studio-founders .card {
-    row-gap: $space-3;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $section-content-gap;
+  }
+
+  #studio-founders .card__mediaWrap,
+  #studio-founders .card__body.textBlock {
+    grid-column: 1;
+  }
+
+  #studio-founders .card__media {
+    @include media-frame($ratio-portrait);
   }
 
   #studio-founders .card__body.textBlock {
-    padding-top: 0;
+    padding: 0;
   }
 
-  #studio-founders .card__body .textBlock__content > :first-child {
+  #studio-founders .card__body .textBlock__title {
+    @include type-heading-md;
+    max-width: none;
+  }
+
+  #studio-founders .card__body .textBlock__subtitle {
+    @include type-body;
+    max-width: 24ch;
+  }
+
+  #studio-founders .card__body .textBlock__content p:first-child {
     @include type-body;
   }
 }
