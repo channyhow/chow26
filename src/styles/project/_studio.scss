@@ -198,7 +198,6 @@
         display: none;
       }
     }
-
   }
 }
 
@@ -512,14 +511,17 @@
 
 #studio-founders .card__media {
   padding-top: 0;
-  background: var(--panel-bg);
-  isolation: isolate;
+  background: transparent;
   @include media-frame($ratio-square);
 }
 
-#studio-founders .card__media .media,
-#studio-founders .card__media .media__frame {
+#studio-founders .card__media .media {
   background: transparent;
+}
+
+#studio-founders .card__media .media__frame {
+  background: var(--panel-bg);
+  isolation: isolate;
 }
 
 #studio-founders .card__media .media__asset {
