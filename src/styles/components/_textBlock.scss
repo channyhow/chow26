@@ -32,22 +32,26 @@
     margin: 0;
   }
 
+  &__subtitle strong,
+  &__content strong {
+    font: inherit;
+    font-weight: $font-weight-bold;
+    color: currentColor;
+  }
+
   &__content {
     gap: $flow-default;
-  // color: color-mix(in srgb, currentColor 62%, transparent);
 
- p {
-  @include type-body;
-  margin: 0;
-  opacity: $opacity-muted;
+    p {
+      @include type-body;
+      margin: 0;
+      opacity: $opacity-muted;
 
-  &:last-child:not(:only-child) {
-    opacity: $opacity-soft;
+      &:last-child:not(:only-child) {
+        opacity: $opacity-soft;
+      }
+    }
   }
-}
-  
-  }
-
 
   &__footer {
     gap: $flow-default;
