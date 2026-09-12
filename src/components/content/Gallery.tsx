@@ -1,7 +1,13 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import { Media } from "@/components/content/Media";
-import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
+import {
+  fastStaggerContainer,
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealItem,
+} from "@/motion/config";
 import type { MediaItem } from "@/types/media";
 
 export type GalleryLayout = "grid" | "masonry" | "editorial";
@@ -19,14 +25,16 @@ export function Gallery({
   items: MediaItem[];
   layout?: GalleryLayout;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
+  const containerVariants = reduceMotion ? reducedStaggerContainer : fastStaggerContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   return (
     <motion.div
       className="gallery"
       data-layout={layout}
-      variants={fastStaggerContainer}
-      initial={reduceMotion ? false : "hidden"}
+      variants={containerVariants}
+      initial="hidden"
       whileInView="visible"
       viewport={motionConfig.viewport}
     >
@@ -34,7 +42,7 @@ export function Gallery({
         <motion.div
           className="gallery__item"
           key={item.id}
-          variants={revealItem}
+          variants={itemVariants}
           data-media-type={item.type}
           data-orientation={getMediaOrientation(item)}
         >
