@@ -11,6 +11,10 @@ export function FloatingAction() {
   const { pathname } = useLocation();
   const config = siteData.ui.floatingAction as FloatingActionConfig;
   const actionRef = useRef<HTMLElement>(null);
+  const [singleItem] = config.items;
+  const isCurrentDestination = Boolean(
+    config.items.length === 1 && singleItem && pathname === singleItem.href,
+  );
 
   useEffect(() => {
     const action = actionRef.current;
@@ -34,9 +38,7 @@ export function FloatingAction() {
     return () => observer.disconnect();
   }, [config.hideWhileVisible, pathname]);
 
-  if (!config.enabled) return null;
-
-  const [singleItem] = config.items;
+  if (!config.enabled || isCurrentDestination) return null;
 
   return (
     <aside
