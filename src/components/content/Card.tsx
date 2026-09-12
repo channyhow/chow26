@@ -14,6 +14,16 @@ export type CardProps = {
   className?: string;
 };
 
+function getProjectMission(item: ContentItem) {
+  if (!Array.isArray(item.text)) return undefined;
+
+  const mission = item.text.find((line) =>
+    line.trim().toLocaleLowerCase("fr").startsWith("mission :"),
+  );
+
+  return mission?.replace(/^\s*mission\s*:\s*/i, "");
+}
+
 export function Card({
   item,
   frame = false,
@@ -23,8 +33,17 @@ export function Card({
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
-  const mediaOrientation = getMediaOrientation(media ?? undefined);
-  const visibleItem = isProject ? { title: item.title } : item;
+  const cardMedia = isProject && media?.type === "mux"
+    ? { ...media, focalPoint: { x: 50, y: 50 } }
+    : media;
+  const mediaOrientation = getMediaOrientation(cardMedia ?? undefined);
+  const projectMission = isProject ? getProjectMission(item) : undefined;
+  const visibleItem = isProject
+    ? {
+        title: item.title,
+        ...(projectMission ? { text: projectMission } : {}),
+      }
+    : item;
   const cardClassName = clsx(
     "card",
     isProject && "projectCard",
@@ -36,13 +55,13 @@ export function Card({
 
   const content = (
     <>
-      {media ? (
+      {cardMedia ? (
         <div
           className="card__mediaWrap"
-          data-media-type={media.type}
+          data-media-type={cardMedia.type}
           data-orientation={mediaOrientation}
         >
-          <Media media={media} className="card__media" />
+          <Media media={cardMedia} className="card__media" />
         </div>
       ) : null}
       <TextBlock content={visibleItem} titleAs="h3" className="card__body" />

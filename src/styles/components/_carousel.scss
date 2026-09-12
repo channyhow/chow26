@@ -49,6 +49,21 @@
 
 .carousel__control {
   @include navigation-control;
+  border-color: color-mix(in srgb, currentColor 18%, transparent);
+
+  &:focus-visible {
+    border-color: currentColor;
+
+    .carousel__arrow { opacity: 1; }
+  }
+
+  @include hover {
+    &:not(:disabled) {
+      border-color: currentColor;
+
+      .carousel__arrow { opacity: 1; }
+    }
+  }
 }
 
 .carousel__arrow {
@@ -59,7 +74,9 @@
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  opacity: $opacity-muted;
   pointer-events: none;
+  transition: opacity $transition-hover;
 }
 
 @include mobile-down {
@@ -122,9 +139,12 @@
 }
 
 @include reduced-motion {
-  .carousel__control {
+  .carousel__control,
+  .carousel__arrow {
     transition: none;
+  }
 
+  .carousel__control {
     &:hover,
     &:active {
       transform: none;
@@ -154,7 +174,6 @@
   .carousel__control {
     --radius-control: #{$radius-none};
     width: clamp(3.5rem, 4.5vw, 4rem);
-    border-width: 2px;
     background: var(--secondary);
     font-weight: $font-weight-strong;
   }

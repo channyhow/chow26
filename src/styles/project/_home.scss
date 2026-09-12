@@ -128,7 +128,7 @@
 }
 
 #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
-  aspect-ratio: $ratio-square;
+  aspect-ratio: $ratio-landscape;
 }
 
 #projects-featured-gallery .section__header .textBlock__title {
@@ -423,48 +423,57 @@
     margin-top: 0;
   }
 
-  /* On touch screens the same project cards become a swipeable, snap-aligned
-     carousel. No duplicate content or mobile-only component is introduced. */
+  /* Keep all three proof points visible on mobile instead of hiding the next
+     project behind a swipe gesture. A compact editorial grid preserves varied
+     crops while removing the desktop offset, so the section reads immediately
+     as a body of work rather than a carousel. */
   #projects-featured-gallery .section__inner {
     display: block;
   }
 
   #projects-featured-gallery .section__header {
+    width: 100%;
     margin-bottom: $space-3;
   }
 
   #projects-featured-gallery .grid {
     display: grid;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: min(82vw, 24rem);
-    gap: $space-2;
-    width: calc(100% + #{$page-gutter});
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: inline mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #projects-featured-gallery .grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: $space-3 $space-2;
+    width: 100%;
+    overflow: visible;
   }
 
   #projects-featured-gallery .grid__item {
-    scroll-snap-align: start;
-  }
-
-  #projects-featured-gallery .grid__item:nth-child(2) {
+    width: 100%;
+    min-width: 0;
     margin-top: 0;
   }
 
-  #projects-featured-gallery .grid__item:nth-child(3) {
-    width: 100%;
+  #projects-featured-gallery .grid__item:nth-child(1) {
+    grid-column: 1 / -1;
   }
 
-  #projects-featured-gallery .grid__item .card__mediaWrap {
-    aspect-ratio: $ratio-wide;
+  #projects-featured-gallery .grid__item:nth-child(2),
+  #projects-featured-gallery .grid__item:nth-child(3) {
+    grid-column: auto;
+  }
+
+  #projects-featured-gallery .grid__item:nth-child(1) .card__mediaWrap {
+    aspect-ratio: $ratio-landscape;
+  }
+
+  #projects-featured-gallery .grid__item:nth-child(2) .card__mediaWrap {
+    aspect-ratio: $ratio-portrait;
+  }
+
+  #projects-featured-gallery .grid__item:nth-child(3) .card__mediaWrap {
+    aspect-ratio: $ratio-landscape;
+  }
+
+  #projects-featured-gallery .projectCard .card__body {
+    padding-top: $space-1;
   }
 
   #home-services .media__frame,

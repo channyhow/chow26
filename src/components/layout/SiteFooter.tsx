@@ -8,6 +8,13 @@ import {
 } from "motion/react";
 
 import { Actions } from "@/components/navigation/Actions";
+import {
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealItem,
+  revealContainer,
+} from "@/motion/config";
 import type { PanelBehavior, SectionBlock } from "@/types/content";
 
 export type SiteFooterProps = {
@@ -44,6 +51,8 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
         "--footer-motion-opacity": opacity,
       } as unknown as MotionStyle)
     : undefined;
+  const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   const header = block.content?.header;
   const eyebrows = toArray(header?.eyebrow).filter(Boolean);
@@ -52,6 +61,8 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
 
   const primaryLinks = links.slice(0, 4);
   const secondaryLinks = links.slice(4);
+  const socialLinks = secondaryLinks.slice(0, 2);
+  const legalLinks = secondaryLinks.slice(2);
 
   return (
     <footer
@@ -63,53 +74,86 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
       data-panel-motion={hasPanelMotion ? "true" : undefined}
       aria-label="Pied de page"
     >
-      <motion.div className="siteFooter__inner" style={motionStyle}>
-        <div className="siteFooter__main">
-          <div className="siteFooter__identity">
+      <motion.div
+        className="siteFooter__inner"
+        style={motionStyle}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={motionConfig.viewport}
+      >
+        <motion.div className="siteFooter__main" variants={containerVariants}>
+          <motion.div className="siteFooter__identity" variants={containerVariants}>
             {eyebrows[0] ? (
-              <p className="siteFooter__name">{eyebrows[0]}</p>
+              <motion.p className="siteFooter__name" variants={itemVariants}>
+                {eyebrows[0]}
+              </motion.p>
             ) : null}
 
             {eyebrows.length > 1 ? (
-              <div className="siteFooter__baselines">
+              <motion.div className="siteFooter__baselines" variants={containerVariants}>
                 {eyebrows.slice(1).map((eyebrow) => (
-                  <p key={eyebrow} className="siteFooter__baseline">
+                  <motion.p
+                    key={eyebrow}
+                    className="siteFooter__baseline"
+                    variants={itemVariants}
+                  >
                     {eyebrow}
-                  </p>
+                  </motion.p>
                 ))}
-              </div>
+              </motion.div>
             ) : null}
-          </div>
+          </motion.div>
 
-          <div className="siteFooter__links">
+          <motion.div className="siteFooter__links" variants={containerVariants}>
             {primaryLinks.length ? (
-              <nav
+              <motion.nav
                 className="siteFooter__nav"
                 aria-label="Navigation du pied de page"
+                variants={containerVariants}
               >
-                <Actions links={primaryLinks} className="siteFooter__navGroup" />
-              </nav>
+                <div className="siteFooter__navGroup">
+                  {primaryLinks.map((link) => (
+                    <motion.div key={`${link.label}-${link.href ?? link.linkKey ?? ""}`} variants={itemVariants}>
+                      <Actions links={[link]} />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.nav>
             ) : null}
 
             {secondaryLinks.length ? (
-              <nav
+              <motion.nav
                 className="siteFooter__support"
                 aria-label="Réseaux et informations"
+                variants={containerVariants}
               >
-                <Actions links={secondaryLinks} className="siteFooter__navGroup" />
-              </nav>
+                {socialLinks.length ? (
+                  <motion.div className="siteFooter__social" variants={itemVariants}>
+                    <Actions links={socialLinks} className="siteFooter__navGroup" />
+                  </motion.div>
+                ) : null}
+                {legalLinks.length ? (
+                  <motion.div className="siteFooter__legal" variants={itemVariants}>
+                    <Actions links={legalLinks} className="siteFooter__navGroup" />
+                  </motion.div>
+                ) : null}
+              </motion.nav>
             ) : null}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {meta.length ? (
-          <div className="siteFooter__meta">
+          <motion.div className="siteFooter__meta" variants={containerVariants}>
             {meta.map((item) => (
-              <span key={`${item.label}-${item.value ?? ""}`}>
+              <motion.span
+                key={`${item.label}-${item.value ?? ""}`}
+                variants={itemVariants}
+              >
                 {item.value ? `${item.label}: ${item.value}` : item.label}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
         ) : null}
       </motion.div>
     </footer>

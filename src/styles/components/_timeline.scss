@@ -111,9 +111,36 @@
 }
 
 @include tablet-down {
+  .timeline[data-orientation="horizontal"] .horizontalScroll__track {
+    gap: 0;
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: clamp(16rem, 42svh, 24rem);
+    padding-block: $space-4;
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:first-child {
+    min-height: clamp(22rem, 52svh, 30rem);
+    padding-block: $space-5;
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:not(:last-child)::after {
+    content: "↓";
+    position: absolute;
+    right: $space-3;
+    bottom: $space-2;
+    @include type-ui;
+    opacity: $opacity-quiet;
+  }
+
   .timeline[data-orientation="horizontal"] .timeline__item {
-    width: calc(100vw - #{$space-3});
+    width: 100%;
     max-width: none;
+    margin-inline: 0;
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__title {
@@ -126,8 +153,21 @@
 }
 
 @include mobile-down {
-  .timeline[data-orientation="horizontal"] .timeline__item {
-    width: calc(100vw - 1.5rem);
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item {
+    min-height: clamp(14rem, 36svh, 20rem);
+    padding-top: $space-3;
+    padding-bottom: max(#{$space-3}, var(--floating-action-safe-zone, #{$space-3}));
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:first-child {
+    min-height: clamp(20rem, 48svh, 27rem);
+    padding-top: $space-4;
+    padding-bottom: max(#{$space-4}, var(--floating-action-safe-zone, #{$space-4}));
+  }
+
+  .timeline[data-orientation="horizontal"] .horizontalScroll__item:not(:last-child)::after {
+    right: $space-2;
+    bottom: max(#{$space-1}, calc(var(--floating-action-safe-zone, #{$space-3}) - #{$space-3}));
   }
 
   .timeline[data-orientation="horizontal"] .timeline__content .textBlock__content {

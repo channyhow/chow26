@@ -48,6 +48,13 @@
   }
 }
 
+@include mobile-down {
+  .page {
+    --floating-action-safe-zone: clamp(5.5rem, 20vw, 7rem);
+    scroll-padding-bottom: var(--floating-action-safe-zone);
+  }
+}
+
 @include reduced-motion {
   .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: 0;

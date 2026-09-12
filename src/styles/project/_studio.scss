@@ -266,7 +266,12 @@
     gap: $flow-tight;
   }
 
-  #studio-services .card__body .textBlock__title,
+  #studio-services .card__body .textBlock__title {
+    display: block;
+    @include type-heading-sm;
+    max-width: none;
+  }
+
   #studio-services .card__body .textBlock__content {
     display: none;
   }
@@ -274,6 +279,16 @@
   #studio-services .card__body .textBlock__meta {
     display: grid;
     margin-top: $space-2;
+  }
+
+  #studio-services .card__body .textBlock__meta > * {
+    grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: $flow-default;
+  }
+
+  #studio-services .card__body .textBlock__meta > *:last-child {
+    color: currentColor;
   }
 }
 
@@ -306,7 +321,11 @@
   --section-space: clamp(#{$space-4}, 8vh, 7rem);
   --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
   min-height: 100svh;
-  justify-content: center;
+}
+
+#studio-approach > .section__inner {
+  display: grid;
+  align-content: center;
 }
 
 #studio-approach > .section__inner,
@@ -374,7 +393,10 @@
     --section-space: $space-4;
     --section-row-gap: $space-3;
     min-height: auto;
-    justify-content: initial;
+  }
+
+  #studio-approach > .section__inner {
+    display: block;
   }
 
   #studio-approach .grid__item:first-child .textBlock__title {
@@ -390,39 +412,27 @@
 @include mobile-down {
   #studio-approach {
     --section-space: $space-4;
-    overflow: hidden;
+    --section-row-gap: $space-3;
+    overflow: visible;
   }
 
-  #studio-approach .gridReveal {
+  #studio-approach .gridReveal,
+  #studio-approach .grid {
     overflow: visible;
   }
 
   #studio-approach .grid {
     display: grid;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    gap: $space-2;
-    width: 100%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: inline mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #studio-approach .grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: 1fr;
+    gap: $space-3;
   }
 
   #studio-approach .grid--editorial > .grid__item {
-    display: flex;
-    align-items: center;
+    display: block;
     grid-column: auto;
     grid-row: auto;
     width: 100%;
-    min-height: 52svh;
-    scroll-snap-align: start;
+    min-height: 0;
   }
 
   #studio-approach .grid__item .card,
@@ -432,53 +442,19 @@
     max-width: none;
   }
 
-  #studio-approach .grid__item:first-child {
-    position: relative;
-  }
-
-  #studio-approach .grid__item:first-child::after {
-    content: "→";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    z-index: 2;
-    font-size: $type-heading-md;
-    line-height: 1;
-    pointer-events: none;
-    animation: studio-approach-cue 1.6s $ease-soft infinite;
-  }
-
   #studio-approach .grid__item:first-child .textBlock__title {
-    @include type-heading-xl;
-    max-width: 8ch;
+    @include type-heading-lg;
+    max-width: 9ch;
   }
 
   #studio-approach .grid__item:not(:first-child) .card {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0;
+    height: auto;
+    padding: 0 0 $space-2;
+    border-bottom: 1px solid var(--studio-grid-line);
   }
 
   #studio-approach .grid__item:not(:first-child) .textBlock__content {
-    max-width: 28ch;
-  }
-}
-
-@keyframes studio-approach-cue {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(0.35rem);
-  }
-}
-
-@include reduced-motion {
-  #studio-approach .grid__item:first-child::after {
-    animation: none;
+    max-width: 30ch;
   }
 }
 
@@ -582,7 +558,21 @@
 #studio-founders .card__body .textBlock__content {
   @include type-body-sm;
   max-width: 36ch;
-  color: color-mix(in srgb, currentColor 68%, transparent);
+  color: color-mix(in srgb, currentColor 62%, transparent);
+}
+
+#studio-founders .card__body .textBlock__content > :first-child {
+  @include type-lead;
+  max-width: 30ch;
+  color: currentColor;
+}
+
+#studio-founders .card__body .textBlock__content > * + * {
+  margin-top: $flow-default;
+}
+
+#studio-founders .card__body .textBlock__content strong {
+  font-weight: $font-weight-semibold;
 }
 
 @include tablet-up {
@@ -619,5 +609,9 @@
 
   #studio-founders .card__body.textBlock {
     padding-top: 0;
+  }
+
+  #studio-founders .card__body .textBlock__content > :first-child {
+    @include type-body;
   }
 }

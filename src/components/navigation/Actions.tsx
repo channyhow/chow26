@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { getLink } from "@/data/linkRegistry";
 import type { Action } from "@/types/content";
@@ -8,6 +8,8 @@ export type ActionsProps = {
   links?: Action[];
   className?: string;
 };
+
+const CONTACT_ACTION_LABEL = "Parler d’un projet";
 
 function isProjectStartAction(label: string) {
   return label
@@ -39,16 +41,23 @@ function isInternalHref(href: string) {
   return href.startsWith("/") && !href.startsWith("//");
 }
 
+function getInternalPathname(href: string) {
+  return href.split(/[?#]/, 1)[0] || "/";
+}
+
 export function Actions({
   links = [],
   className,
 }: ActionsProps) {
+  const { pathname } = useLocation();
+
   if (!links.length) return null;
 
   return (
     <div className={clsx("actions", className)}>
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
+        const label = intent === "contact" ? CONTACT_ACTION_LABEL : action.label;
         const variant = resolveVariant(action, index, links.length);
         const hasArrow = variant === "arrow" || variant === "cta";
 
@@ -59,7 +68,7 @@ export function Actions({
 
         const content = (
           <>
-            <span className="actions__label">{action.label}</span>
+            <span className="actions__label">{label}</span>
             {hasArrow ? (
               <span className="actions__arrow" aria-hidden="true">→</span>
             ) : null}
@@ -85,6 +94,8 @@ export function Actions({
         if (!href) return null;
 
         const external = isExternalHref(href);
+        const internal = !external && isInternalHref(href);
+        const isCurrentPage = internal && getInternalPathname(href) === pathname;
         const key = `${action.label}-${action.linkKey ?? href}`;
         const sharedProps = {
           className: classNames,
@@ -92,9 +103,15 @@ export function Actions({
           "data-priority": action.priority ?? "secondary",
         };
 
-        if (!external && isInternalHref(href)) {
+        if (internal) {
           return (
-            <Link key={key} to={href} viewTransition {...sharedProps}>
+            <Link
+              key={key}
+              to={href}
+              viewTransition
+              aria-current={isCurrentPage ? "page" : undefined}
+              {...sharedProps}
+            >
               {content}
             </Link>
           );

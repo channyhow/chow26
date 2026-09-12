@@ -40,7 +40,6 @@ type GridItemStyle = CSSProperties & Record<`--grid-${string}`, string | number 
 type GridMotionItemProps = {
   child: ReactNode;
   index: number;
-  total: number;
   placement?: GridPlacement;
   animateGrid: boolean;
   usesDrawMotion: boolean;
@@ -97,7 +96,6 @@ function placementStyle(placement?: GridPlacement): GridItemStyle | undefined {
 function GridMotionItem({
   child,
   index,
-  total,
   placement,
   animateGrid,
   usesDrawMotion,
@@ -108,19 +106,24 @@ function GridMotionItem({
 }: GridMotionItemProps) {
   const baseOffset = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
-  const staggerProgress = total > 1 ? index / (total - 1) : 0;
-  const entryStart = 0.04 + staggerProgress * 0.38;
-  const entryEnd = Math.min(entryStart + 0.28, 0.72);
+  const staggerOffset = Math.min(index * 0.065, 0.39);
+  const entryStart = 0.04 + staggerOffset;
+  const entryEnd = Math.min(entryStart + 0.16, 0.6);
   const exitStart = Math.max(entryEnd + 0.08, 0.78);
   const linkedY = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 6 : 48, 0, 0, reduceMotion ? -2 : -14],
+    [
+      reduceMotion ? 0 : motionConfig.distance.subtle,
+      0,
+      0,
+      reduceMotion ? 0 : -motionConfig.distance.route,
+    ],
   );
   const linkedOpacity = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.94 : 0.16, 1, 1, reduceMotion ? 0.98 : 0.86],
+    [reduceMotion ? 0.65 : 0, 1, 1, reduceMotion ? 1 : 0.94],
   );
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
@@ -132,22 +135,19 @@ function GridMotionItem({
       key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
       style={linkedStyle}
       variants={animateGrid && !usesDrawMotion && !scrollLinked ? itemVariants : undefined}
-      initial={animateGrid && !scrollLinked
-        ? usesDrawMotion
-          ? { opacity: reduceMotion ? 0.96 : 0, x: drawOffset, y: baseOffset }
-          : { opacity: reduceMotion ? 0.96 : 0, y: baseOffset }
-        : false}
+      initial={animateGrid && usesDrawMotion && !scrollLinked
+        ? {
+            opacity: reduceMotion ? 0.65 : 0,
+            x: drawOffset,
+            y: baseOffset,
+          }
+        : undefined}
       whileInView={animateGrid && usesDrawMotion && !scrollLinked ? { opacity: 1, x: 0, y: 0 } : undefined}
-      animate={animateGrid && !usesDrawMotion && !scrollLinked ? { opacity: 1, y: 0 } : undefined}
       viewport={animateGrid && usesDrawMotion && !scrollLinked ? motionConfig.viewport : undefined}
-      transition={animateGrid && !scrollLinked ? {
-        duration: reduceMotion
-          ? motionConfig.reduced.duration
-          : usesDrawMotion
-            ? motionConfig.duration.slow
-            : motionConfig.duration.default,
+      transition={animateGrid && usesDrawMotion && !scrollLinked ? {
+        duration: reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow,
         ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft,
-        delay: index * (reduceMotion ? motionConfig.reduced.stagger : usesDrawMotion ? 0.08 : 0),
+        delay: index * (reduceMotion ? motionConfig.reduced.stagger : motionConfig.delay.staggerFast),
       } : undefined}
     >
       {child}
@@ -163,7 +163,7 @@ export function Grid({
   motionPreset,
   placements,
   motionEnabled = true,
-  scrollLinked = true,
+  scrollLinked = false,
 }: GridProps) {
   const reduceMotion = Boolean(useReducedMotion());
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -224,7 +224,6 @@ export function Grid({
               key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
               child={child}
               index={index}
-              total={visibleChildren.length}
               placement={placements?.[index]}
               animateGrid={animateGrid}
               usesDrawMotion={usesDrawMotion}

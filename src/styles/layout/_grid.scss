@@ -80,6 +80,7 @@
 
 .gridReveal__more {
   @include type-ui-compact;
+  @include rule-top;
 
   justify-self: stretch;
   display: grid;
@@ -87,12 +88,21 @@
   align-items: center;
   min-height: $control-min-height;
   padding: $flow-default 0 $flow-tight;
-  border: 0;
-  border-top: 1px solid currentColor;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
   background: transparent;
   color: inherit;
   text-align: left;
   cursor: pointer;
+}
+
+.gridReveal__more > span:first-child,
+.gridReveal__moreIcon {
+  opacity: $opacity-muted;
+  transition:
+    opacity $transition-hover,
+    transform $transition-hover;
 }
 
 .gridReveal__moreIcon {
@@ -100,12 +110,11 @@
   place-items: center;
   width: clamp(3.25rem, 4vw, 3.5rem);
   aspect-ratio: $ratio-square;
-  border: 1.5px solid currentColor;
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
   border-radius: 50%;
   font-size: 1.1rem;
   font-weight: $font-weight-semibold;
   line-height: 1;
-  transition: transform $transition-hover;
 }
 
 .gridReveal__more:focus-visible {
@@ -113,6 +122,11 @@
 }
 
 @include hover {
+  .gridReveal__more:hover > span:first-child,
+  .gridReveal__more:hover .gridReveal__moreIcon {
+    opacity: 1;
+  }
+
   .gridReveal__more:hover .gridReveal__moreIcon {
     transform: translateY(0.2rem);
   }
@@ -165,6 +179,7 @@
 }
 
 @include reduced-motion {
+  .gridReveal__more > span:first-child,
   .gridReveal__moreIcon {
     transition: none;
   }

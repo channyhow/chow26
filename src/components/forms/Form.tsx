@@ -62,6 +62,7 @@ export function Form({ schema }: { schema: FormSchema }) {
           title={schema.title ?? "Formulaire"}
           fallbackHeight={schema.fallbackHeight}
         />
+        <p className="form__responseNote">{formCopy.responseNote}</p>
         {schema.links?.length ? (
           <footer className="form__footer">
             <Actions links={schema.links} className="form__actions" />
@@ -229,6 +230,8 @@ export function Form({ schema }: { schema: FormSchema }) {
           );
         })}
       </div>
+
+      <p className="form__responseNote">{formCopy.responseNote}</p>
 
       <footer className="form__footer">
         <Actions links={formActions} className="form__actions" />

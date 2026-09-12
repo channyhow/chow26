@@ -3,7 +3,13 @@ import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 import { Actions } from "@/components/navigation/Actions";
-import { motionConfig, revealContainer, revealItem } from "@/motion/config";
+import {
+  motionConfig,
+  reducedRevealItem,
+  reducedStaggerContainer,
+  revealContainer,
+  revealItem,
+} from "@/motion/config";
 import type { ContentItem } from "@/types/content";
 
 export type TextBlockProps = {
@@ -43,7 +49,7 @@ const motionTitles = {
 };
 
 export function TextBlock({ content, as = "div", titleAs = "h2", className }: TextBlockProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
   const Root = motionRoots[as];
   const Title = motionTitles[titleAs];
   const subtitles = toArray(content.subtitle).filter(Boolean);
@@ -53,58 +59,63 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
   const hasContent = paragraphs.length > 0;
   const hasFooter = Boolean(content.links?.length);
   const hasMeta = Boolean(content.meta?.length);
-  const initial = reduceMotion ? false : "hidden";
+  const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
+  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   if (!hasHeader && !hasContent && !hasFooter && !hasMeta) return null;
 
   return (
     <Root
       className={clsx("textBlock", className)}
-      variants={revealContainer}
-      initial={initial}
+      variants={containerVariants}
+      initial="hidden"
       whileInView="visible"
       viewport={motionConfig.viewport}
     >
       {hasHeader ? (
-        <motion.header className="textBlock__header" variants={revealContainer}>
+        <motion.header className="textBlock__header" variants={containerVariants}>
           {eyebrows.length ? (
-            <motion.div className="textBlock__eyebrows" variants={revealItem}>
+            <motion.div className="textBlock__eyebrows" variants={containerVariants}>
               {eyebrows.map((eyebrow) => (
-                <p key={eyebrow} className="textBlock__eyebrow">{eyebrow}</p>
+                <motion.p key={eyebrow} className="textBlock__eyebrow" variants={itemVariants}>
+                  {eyebrow}
+                </motion.p>
               ))}
             </motion.div>
           ) : null}
 
           {content.title ? (
-            <Title className="textBlock__title" variants={revealItem}>
+            <Title className="textBlock__title" variants={itemVariants}>
               {content.title}
             </Title>
           ) : null}
 
           {subtitles.length ? (
-            <motion.div className="textBlock__subtitle" variants={revealItem}>
-              {subtitles.map((subtitle) => <p key={subtitle}>{renderInlineStrong(subtitle)}</p>)}
+            <motion.div className="textBlock__subtitle" variants={containerVariants}>
+              {subtitles.map((subtitle) => (
+                <motion.p key={subtitle} variants={itemVariants}>
+                  {renderInlineStrong(subtitle)}
+                </motion.p>
+              ))}
             </motion.div>
           ) : null}
         </motion.header>
       ) : null}
 
       {hasContent ? (
-        <motion.div className="textBlock__content" variants={revealItem}>
-          {paragraphs.map((paragraph) => <p key={paragraph}>{renderInlineStrong(paragraph)}</p>)}
+        <motion.div className="textBlock__content" variants={containerVariants}>
+          {paragraphs.map((paragraph) => (
+            <motion.p key={paragraph} variants={itemVariants}>
+              {renderInlineStrong(paragraph)}
+            </motion.p>
+          ))}
         </motion.div>
       ) : null}
 
-      {hasFooter ? (
-        <motion.footer className="textBlock__footer" variants={revealItem}>
-          <Actions links={content.links} />
-        </motion.footer>
-      ) : null}
-
       {hasMeta ? (
-        <motion.div className="textBlock__meta" variants={revealItem}>
+        <motion.div className="textBlock__meta" variants={containerVariants}>
           {content.meta?.map((item) => {
-            const content = (
+            const metaContent = (
               <>
                 <span className="textBlock__metaLabel">{item.label}</span>
                 {item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}
@@ -115,24 +126,31 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
               const external = isExternalHref(item.href);
 
               return (
-                <a
+                <motion.a
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
+                  variants={itemVariants}
                 >
-                  {content}{external ? <span aria-hidden="true"> ↗</span> : null}
-                </a>
+                  {metaContent}{external ? <span aria-hidden="true"> ↗</span> : null}
+                </motion.a>
               );
             }
 
             return (
-              <span key={`${item.label}-${item.value ?? ""}`}>
-                {content}
-              </span>
+              <motion.span key={`${item.label}-${item.value ?? ""}`} variants={itemVariants}>
+                {metaContent}
+              </motion.span>
             );
           })}
         </motion.div>
+      ) : null}
+
+      {hasFooter ? (
+        <motion.footer className="textBlock__footer" variants={itemVariants}>
+          <Actions links={content.links} />
+        </motion.footer>
       ) : null}
     </Root>
   );
