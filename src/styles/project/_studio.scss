@@ -597,7 +597,21 @@
 #studio-founders .card__body .textBlock__content {
   @include type-body-sm;
   max-width: 36ch;
-  color: color-mix(in srgb, currentColor 68%, transparent);
+  color: color-mix(in srgb, currentColor 62%, transparent);
+}
+
+#studio-founders .card__body .textBlock__content > :first-child {
+  @include type-lead;
+  max-width: 30ch;
+  color: currentColor;
+}
+
+#studio-founders .card__body .textBlock__content > * + * {
+  margin-top: $flow-default;
+}
+
+#studio-founders .card__body .textBlock__content strong {
+  font-weight: $font-weight-semibold;
 }
 
 @include tablet-up {
@@ -634,5 +648,9 @@
 
   #studio-founders .card__body.textBlock {
     padding-top: 0;
+  }
+
+  #studio-founders .card__body .textBlock__content > :first-child {
+    @include type-body;
   }
 }
