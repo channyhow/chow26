@@ -95,12 +95,6 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
         </motion.div>
       ) : null}
 
-      {hasFooter ? (
-        <motion.footer className="textBlock__footer" variants={revealItem}>
-          <Actions links={content.links} />
-        </motion.footer>
-      ) : null}
-
       {hasMeta ? (
         <motion.div className="textBlock__meta" variants={revealItem}>
           {content.meta?.map((item) => {
@@ -133,6 +127,12 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className }: Te
             );
           })}
         </motion.div>
+      ) : null}
+
+      {hasFooter ? (
+        <motion.footer className="textBlock__footer" variants={revealItem}>
+          <Actions links={content.links} />
+        </motion.footer>
       ) : null}
     </Root>
   );
