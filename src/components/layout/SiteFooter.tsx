@@ -6,6 +6,7 @@ import {
   useTransform,
   type MotionStyle,
 } from "motion/react";
+import { Link } from "react-router-dom";
 
 import { Actions } from "@/components/navigation/Actions";
 import {
@@ -15,7 +16,7 @@ import {
   revealItem,
   revealContainer,
 } from "@/motion/config";
-import type { PanelBehavior, SectionBlock } from "@/types/content";
+import type { LinkItem, PanelBehavior, SectionBlock } from "@/types/content";
 
 export type SiteFooterProps = {
   block: SectionBlock;
@@ -26,6 +27,36 @@ const toArray = <T,>(value?: T | T[]): T[] => {
   if (!value) return [];
   return Array.isArray(value) ? value : [value];
 };
+
+function FooterLink({ link }: { link: LinkItem }) {
+  const href = link.href ?? "#";
+  const external = /^https?:\/\//.test(href);
+  const content = (
+    <>
+      {link.label}
+      {link.icon ? <span aria-hidden="true">{link.icon}</span> : null}
+    </>
+  );
+
+  if (external) {
+    return (
+      <a
+        className="actions__link"
+        href={href}
+        target={link.target ?? "_blank"}
+        rel="noopener noreferrer"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link className="actions__link" to={href} viewTransition>
+      {content}
+    </Link>
+  );
+}
 
 export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const ref = useRef<HTMLElement>(null);
@@ -61,6 +92,8 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
 
   const primaryLinks = links.slice(0, 4);
   const secondaryLinks = links.slice(4);
+  const socialLinks = secondaryLinks.slice(0, 2);
+  const legalLinks = secondaryLinks.slice(2);
 
   return (
     <footer
@@ -108,9 +141,15 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
               <motion.nav
                 className="siteFooter__nav"
                 aria-label="Navigation du pied de page"
-                variants={itemVariants}
+                variants={containerVariants}
               >
-                <Actions links={primaryLinks} className="siteFooter__navGroup" />
+                <div className="siteFooter__navGroup actions">
+                  {primaryLinks.map((link) => (
+                    <motion.div key={`${link.label}-${link.href}`} variants={itemVariants}>
+                      <FooterLink link={link} />
+                    </motion.div>
+                  ))}
+                </div>
               </motion.nav>
             ) : null}
 
@@ -118,9 +157,18 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
               <motion.nav
                 className="siteFooter__support"
                 aria-label="Réseaux et informations"
-                variants={itemVariants}
+                variants={containerVariants}
               >
-                <Actions links={secondaryLinks} className="siteFooter__navGroup" />
+                {socialLinks.length ? (
+                  <motion.div className="siteFooter__social" variants={itemVariants}>
+                    <Actions links={socialLinks} className="siteFooter__navGroup" />
+                  </motion.div>
+                ) : null}
+                {legalLinks.length ? (
+                  <motion.div className="siteFooter__legal" variants={itemVariants}>
+                    <Actions links={legalLinks} className="siteFooter__navGroup" />
+                  </motion.div>
+                ) : null}
               </motion.nav>
             ) : null}
           </motion.div>
