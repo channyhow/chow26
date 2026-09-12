@@ -72,6 +72,10 @@
     opacity: $opacity-quiet;
   }
 
+  .textBlock__content p {
+    opacity: 1;
+  }
+
   .textBlock__content p::first-letter {
     text-transform: uppercase;
   }
