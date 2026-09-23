@@ -2,18 +2,16 @@ import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = process.cwd();
-const readJson = async (path) =>
-  JSON.parse(await readFile(resolve(root, path), "utf8"));
+const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 
-const [siteData, pages, navigation, blocks, collections, media] =
-  await Promise.all([
-    readJson("src/data/site.json"),
-    readJson("src/data/pages.json"),
-    readJson("src/data/navigation.json"),
-    readJson("src/data/globalBlocks.json"),
-    readJson("src/data/collections.json"),
-    readJson("src/data/media.json"),
-  ]);
+const [siteData, pages, navigation, blocks, collections, media] = await Promise.all([
+  readJson("src/data/site.json"),
+  readJson("src/data/pages.json"),
+  readJson("src/data/navigation.json"),
+  readJson("src/data/globalBlocks.json"),
+  readJson("src/data/collections.json"),
+  readJson("src/data/media.json"),
+]);
 
 const errors = [];
 const site = siteData.site;
@@ -23,33 +21,15 @@ const indexedTitles = new Set();
 const indexedDescriptions = new Set();
 const seoImages = new Set();
 const publicSlugs = new Set(pages.map((page) => page.slug));
-for (const project of collections.projects ?? []) {
-  if (project.href) publicSlugs.add(project.href);
-}
-for (const article of collections.journal ?? []) {
-  if (article.href) publicSlugs.add(article.href);
-}
+for (const project of collections.projects ?? []) if (project.href) publicSlugs.add(project.href);
+for (const article of collections.journal ?? []) if (article.href) publicSlugs.add(article.href);
 const internalRoutes = new Set(["/system", "/branding"]);
-const forbiddenPlaceholderPatterns = [
-  /og-placeholder/i,
-  /lorem ipsum/i,
-  /\+33 1 42 00 00 00/,
-];
+const forbiddenPlaceholderPatterns = [/og-placeholder/i, /lorem ipsum/i, /\+33 1 42 00 00 00/];
 
 const requiredPublicFiles = [
-  "favicon.ico",
-  "favicon.svg",
-  "favicon-16x16.png",
-  "favicon-32x32.png",
-  "apple-touch-icon.png",
-  "android-chrome-192x192.png",
-  "android-chrome-512x512.png",
-  "site.webmanifest",
-  "service-worker.js",
-  "offline.html",
-  "robots.txt",
-  "sitemap.xml",
-  "llms.txt",
+  "favicon.ico", "favicon.svg", "favicon-16x16.png", "favicon-32x32.png",
+  "apple-touch-icon.png", "android-chrome-192x192.png", "android-chrome-512x512.png",
+  "site.webmanifest", "service-worker.js", "offline.html", "robots.txt", "sitemap.xml", "llms.txt",
 ];
 
 const caseStudyPattern = /(?:case[ -]study|étude de cas)/i;
@@ -65,35 +45,20 @@ const report = (condition, message) => {
   if (!condition) errors.push(message);
 };
 
-report(
-  !caseStudyPattern.test(JSON.stringify(publicIdentityData)),
-  'case-study wording must be confined to the legal page',
-);
+report(!caseStudyPattern.test(JSON.stringify(publicIdentityData)), "case-study wording must be confined to the legal page");
 
 const auditSeo = (seo, context) => {
   report(seo?.title?.trim(), `${context} needs an SEO title`);
   report(seo?.description?.trim(), `${context} needs an SEO description`);
-
-  if (seo?.canonical) {
-    report(
-      /^https:\/\//.test(seo.canonical),
-      `${context} canonical must be an absolute HTTPS URL`,
-    );
-  }
-
+  if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`);
   if (seo?.image) seoImages.add(seo.image);
 };
 
-const isExternalHref = (href = "") =>
-  /^(?:https?:|mailto:|tel:)/.test(href) || href.startsWith("#");
-
+const isExternalHref = (href = "") => /^(?:https?:|mailto:|tel:)/.test(href) || href.startsWith("#");
 const assertInternalHref = (href, context) => {
   if (!href || isExternalHref(href)) return;
   const pathname = href.split(/[?#]/, 1)[0] || "/";
-  report(
-    publicSlugs.has(pathname) || internalRoutes.has(pathname),
-    `${context} links to unknown route "${href}"`,
-  );
+  report(publicSlugs.has(pathname) || internalRoutes.has(pathname), `${context} links to unknown route "${href}"`);
 };
 
 const collectRefs = (entry, context) => {
@@ -101,21 +66,12 @@ const collectRefs = (entry, context) => {
     report(Boolean(blocks[entry.ref]), `${context} references missing block "${entry.ref}"`);
     return;
   }
-
-  if (entry?.type === "Section") {
-    if (entry.source?.collection) {
-      report(
-        Array.isArray(collections[entry.source.collection]),
-        `${context} references missing collection "${entry.source.collection}"`,
-      );
-    }
+  if (entry?.type === "Section" && entry.source?.collection) {
+    report(Array.isArray(collections[entry.source.collection]), `${context} references missing collection "${entry.source.collection}"`);
   }
-
   if (entry?.type === "Group") {
     for (const [index, panel] of (entry.panels ?? []).entries()) {
-      for (const block of panel.blocks ?? []) {
-        collectRefs(block, `${context} panel ${index + 1}`);
-      }
+      for (const block of panel.blocks ?? []) collectRefs(block, `${context} panel ${index + 1}`);
     }
     for (const block of entry.blocks ?? []) collectRefs(block, context);
   }
@@ -127,13 +83,8 @@ const walkActions = (value, context) => {
     return;
   }
   if (!value || typeof value !== "object") return;
-
-  if (typeof value.label === "string" && typeof value.href === "string") {
-    assertInternalHref(value.href, context);
-  }
-  Object.entries(value).forEach(([key, child]) =>
-    walkActions(child, `${context}.${key}`),
-  );
+  if (typeof value.label === "string" && typeof value.href === "string") assertInternalHref(value.href, context);
+  Object.entries(value).forEach(([key, child]) => walkActions(child, `${context}.${key}`));
 };
 
 report(site?.name?.trim(), "site.name is required");
@@ -150,28 +101,19 @@ for (const page of pages) {
   report(!slugs.has(page.slug), `duplicate page slug "${page.slug}"`);
   pageIds.add(page.id);
   slugs.add(page.slug);
-
   report(page.slug.startsWith("/"), `page "${page.id}" needs an absolute slug`);
   auditSeo(page.seo, `page "${page.id}"`);
 
   const isIndexed = page.seo?.robots?.index !== false;
   if (isIndexed) {
     report(!indexedTitles.has(page.seo.title), `duplicate indexed title "${page.seo.title}"`);
-    report(
-      !indexedDescriptions.has(page.seo.description),
-      `duplicate indexed description on page "${page.id}"`,
-    );
+    report(!indexedDescriptions.has(page.seo.description), `duplicate indexed description on page "${page.id}"`);
     indexedTitles.add(page.seo.title);
     indexedDescriptions.add(page.seo.description);
   }
 
-  forbiddenPlaceholderPatterns.forEach((pattern) => {
-    report(!pattern.test(JSON.stringify(page.seo)), `page "${page.id}" contains placeholder SEO`);
-  });
-
-  (page.blocks ?? []).forEach((entry, index) =>
-    collectRefs(entry, `page "${page.id}" block ${index + 1}`),
-  );
+  forbiddenPlaceholderPatterns.forEach((pattern) => report(!pattern.test(JSON.stringify(page.seo)), `page "${page.id}" contains placeholder SEO`));
+  (page.blocks ?? []).forEach((entry, index) => collectRefs(entry, `page "${page.id}" block ${index + 1}`));
 }
 
 report(pageIds.has("home") && slugs.has("/"), "a home page at / is required");
@@ -181,12 +123,7 @@ report(notFound?.seo?.robots?.index === false, "not-found page must be noindex")
 
 for (const [id, block] of Object.entries(blocks)) {
   report(block.id === id, `block key "${id}" does not match its id`);
-  if (block.source?.collection) {
-    report(
-      Array.isArray(collections[block.source.collection]),
-      `block "${id}" references missing collection "${block.source.collection}"`,
-    );
-  }
+  if (block.source?.collection) report(Array.isArray(collections[block.source.collection]), `block "${id}" references missing collection "${block.source.collection}"`);
 }
 
 walkActions(blocks, "globalBlocks");
@@ -203,6 +140,7 @@ const collectMediaRefs = (value) => {
 };
 collectMediaRefs(blocks);
 collectMediaRefs(collections);
+
 for (const project of collections.projects ?? []) {
   for (const ref of project.gallery ?? []) mediaRefs.add(ref);
   report(project.slug?.trim(), `project "${project.id}" needs a slug`);
@@ -215,14 +153,8 @@ for (const project of collections.projects ?? []) {
 
   const isIndexed = project.seo?.robots?.index !== false;
   if (isIndexed) {
-    report(
-      !indexedTitles.has(project.seo.title),
-      `duplicate indexed title "${project.seo.title}"`,
-    );
-    report(
-      !indexedDescriptions.has(project.seo.description),
-      `duplicate indexed description on project "${project.id}"`,
-    );
+    report(!indexedTitles.has(project.seo.title), `duplicate indexed title "${project.seo.title}"`);
+    report(!indexedDescriptions.has(project.seo.description), `duplicate indexed description on project "${project.id}"`);
     indexedTitles.add(project.seo.title);
     indexedDescriptions.add(project.seo.description);
   }
@@ -230,14 +162,8 @@ for (const project of collections.projects ?? []) {
 
 for (const article of collections.journal ?? []) {
   report(article.id?.trim(), "journal article needs an id");
-  report(
-    article.href === `/journal/${article.id}`,
-    `journal article "${article.id}" has an invalid detail href`,
-  );
-  report(
-    pages.some((page) => page.slug === article.href),
-    `journal article "${article.id}" links to a missing page`,
-  );
+  report(article.href === `/journal/${article.id}`, `journal article "${article.id}" has an invalid detail href`);
+  report(pages.some((page) => page.slug === article.href), `journal article "${article.id}" links to a missing page`);
 }
 
 for (const path of requiredPublicFiles) {
@@ -248,22 +174,44 @@ for (const path of requiredPublicFiles) {
   }
 }
 
-for (const image of seoImages) {
-  if (!image.startsWith("/")) continue;
+const imageMediaBySrc = new Map(
+  Object.values(media).filter((item) => item.type === "image" && item.src).map((item) => [item.src, item]),
+);
+
+for (const imageRef of seoImages) {
+  const item = media[imageRef] ?? imageMediaBySrc.get(imageRef);
+  if (item) {
+    report(item.type === "image", `SEO image "${imageRef}" must reference image media`);
+    report(item.alt?.trim(), `SEO image "${imageRef}" needs alternative text in media.json`);
+    continue;
+  }
+
+  report(imageRef.startsWith("/"), `SEO image "${imageRef}" must be a media id or root-relative public path`);
+  if (!imageRef.startsWith("/")) continue;
   try {
-    await access(resolve(root, "public", image.slice(1)));
+    await access(resolve(root, "public", imageRef.slice(1)));
   } catch {
-    errors.push(`SEO image points to missing file "${image}"`);
+    errors.push(`SEO image points to missing file "${imageRef}"`);
   }
 }
 
-for (const ref of mediaRefs) {
-  report(Boolean(media[ref]), `missing media record "${ref}"`);
+if (site.seo?.defaultImage?.startsWith("/")) {
+  try {
+    await access(resolve(root, "public", site.seo.defaultImage.slice(1)));
+  } catch {
+    errors.push(`default SEO image points to missing file "${site.seo.defaultImage}"`);
+  }
 }
+
+for (const ref of mediaRefs) report(Boolean(media[ref]), `missing media record "${ref}"`);
 
 for (const [id, item] of Object.entries(media)) {
   report(item.id === id, `media key "${id}" does not match its id`);
   report(item.alt?.trim(), `media "${id}" needs alternative text`);
+  if (item.focalPoint) {
+    report(item.focalPoint.x >= 0 && item.focalPoint.x <= 100, `media "${id}" focalPoint.x must be between 0 and 100`);
+    report(item.focalPoint.y >= 0 && item.focalPoint.y <= 100, `media "${id}" focalPoint.y must be between 0 and 100`);
+  }
   if (item.src?.startsWith("/")) {
     try {
       await access(resolve(root, "public", item.src.slice(1)));
@@ -278,7 +226,5 @@ if (errors.length) {
   errors.forEach((error) => console.error(`- ${error}`));
   process.exitCode = 1;
 } else {
-  console.log(
-    `Content audit passed: ${pages.length} pages, ${Object.keys(blocks).length} blocks, ${Object.keys(media).length} media records.`,
-  );
+  console.log(`Content audit passed: ${pages.length} pages, ${Object.keys(blocks).length} blocks, ${Object.keys(media).length} media records.`);
 }
