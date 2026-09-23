@@ -20,6 +20,11 @@ const slugs = new Set();
 const indexedTitles = new Set();
 const indexedDescriptions = new Set();
 const seoImages = new Set();
+const mediaIdBySrc = new Map(
+  Object.entries(media)
+    .filter(([, item]) => typeof item?.src === "string")
+    .map(([id, item]) => [item.src, id]),
+);
 const publicSlugs = new Set(pages.map((page) => page.slug));
 for (const project of collections.projects ?? []) if (project.href) publicSlugs.add(project.href);
 for (const article of collections.journal ?? []) if (article.href) publicSlugs.add(article.href);
@@ -53,8 +58,9 @@ const auditSeo = (seo, context, { imageRequired = false } = {}) => {
   if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`);
   if (imageRequired) report(seo?.image?.trim(), `${context} needs an SEO image media id`);
   if (seo?.image) {
-    report(!seo.image.startsWith("/"), `${context} SEO image must be a media id, not a file path`);
-    seoImages.add(seo.image);
+    const imageRef = seo.image.startsWith("/") ? mediaIdBySrc.get(seo.image) : seo.image;
+    report(Boolean(imageRef), `${context} SEO image path must resolve to a media record`);
+    if (imageRef) seoImages.add(imageRef);
   }
 };
 
