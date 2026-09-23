@@ -3,8 +3,8 @@
     "id": "home",
     "slug": "/",
     "seo": {
-      "title": "Chow Studio | Design web, identitÃ© visuelle & frontend",
-      "description": "Chow Studio conÃ§oit des sites web, identitÃ©s visuelles et expÃ©riences digitales sur mesure entre Paris et La RÃ©union.",
+      "title": "Chow Studio | Design web, identité visuelle & frontend",
+      "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
       "image": "atmosphere-laptop"
     },
     "blocks": [
@@ -19,7 +19,11 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "blocks": [{ "ref": "home-opening" }]
+            "blocks": [
+              {
+                "ref": "home-opening"
+              }
+            ]
           },
           {
             "id": "home-projects-gallery-panel",
@@ -28,7 +32,11 @@
             "align": "center",
             "surface": "glass",
             "color": "secondary",
-            "blocks": [{ "ref": "projects-featured-gallery" }]
+            "blocks": [
+              {
+                "ref": "projects-featured-gallery"
+              }
+            ]
           },
           {
             "id": "home-approach-panel",
@@ -37,7 +45,11 @@
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
           },
           {
             "id": "home-services-panel",
@@ -46,7 +58,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
           {
             "id": "home-final-panel",
@@ -55,7 +71,14 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -65,8 +88,8 @@
     "id": "projects",
     "slug": "/projets",
     "seo": {
-      "title": "Projets sÃ©lectionnÃ©s | Chow Studio",
-      "description": "DÃ©couvrez les projets de Chow Studio en design web, identitÃ© visuelle, UX/UI, direction artistique et dÃ©veloppement frontend.",
+      "title": "Projets sélectionnés | Chow Studio",
+      "description": "Découvrez les projets de Chow Studio en design web, identité visuelle, UX/UI, direction artistique et développement frontend.",
       "image": "sasha-laptop"
     },
     "blocks": [
@@ -82,7 +105,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "project-gallery" }]
+            "blocks": [
+              {
+                "ref": "project-gallery"
+              }
+            ]
           },
           {
             "id": "projects-final-panel",
@@ -91,7 +118,14 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -102,7 +136,7 @@
     "slug": "/studio",
     "seo": {
       "title": "Studio, services & approche | Chow Studio",
-      "description": "DÃ©couvrez Chow Studio, ses services, son approche du design et du dÃ©veloppement frontend, et la pratique de Channy How-Choong entre Paris et La RÃ©union.",
+      "description": "Découvrez Chow Studio, ses services, son approche du design et du développement frontend, et la pratique de Channy How-Choong entre Paris et La Réunion.",
       "image": "studio-founder-1"
     },
     "blocks": [
@@ -130,27 +164,40 @@
                 "content": {
                   "header": {
                     "text": [
-                      "Le pÃ©rimÃ¨tre dÃ©pend de ce qui existe dÃ©jÃ . Lâ€™enjeu nâ€™est pas dâ€™ajouter des livrables, mais de construire ce dont le projet a rÃ©ellement besoin pour devenir plus clair, plus cohÃ©rent et plus facile Ã  utiliser."
+                      "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
                     ]
                   },
                   "items": [
                     {
                       "id": "studio-service-identity",
-                      "eyebrow": "Logo Â· Branding Â· Direction visuelle",
-                      "title": "IdentitÃ© visuelle",
+                      "eyebrow": "Logo · Branding · Direction visuelle",
+                      "title": "Identité visuelle",
                       "text": [
-                        "Donnez Ã  votre projet une identitÃ© claire et reconnaissable, du logo Ã  un univers visuel plus complet."
+                        "Donnez à votre projet une identité claire et reconnaissable, du logo à un univers visuel plus complet."
                       ],
                       "media": "ravine-business-card",
                       "meta": [
-                        { "label": "Pour", "value": "Lancement Â· Repositionnement Â· Nouvelle identitÃ©" },
-                        { "label": "Peut inclure", "value": "Logo Â· Typographie Â· Couleurs Â· Direction visuelle" },
-                        { "label": "Budget", "value": "Ã€ partir de 800 â‚¬ HT" }
+                        {
+                          "label": "Pour",
+                          "value": "Lancement · Repositionnement · Nouvelle identité"
+                        },
+                        {
+                          "label": "Peut inclure",
+                          "value": "Logo · Typographie · Couleurs · Direction visuelle"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "À partir de 800 € HT"
+                        }
                       ],
-                      "tags": ["Logo", "Branding", "IdentitÃ© visuelle"],
+                      "tags": [
+                        "Logo",
+                        "Branding",
+                        "Identité visuelle"
+                      ],
                       "links": [
                         {
-                          "label": "Parlez de votre identitÃ©",
+                          "label": "Parlez de votre identité",
                           "href": "/contact",
                           "intent": "contact",
                           "priority": "secondary",
@@ -160,18 +207,31 @@
                     },
                     {
                       "id": "studio-service-website",
-                      "eyebrow": "Design web Â· DÃ©veloppement Â· SEO",
+                      "eyebrow": "Design web · Développement · SEO",
                       "title": "Site web",
                       "text": [
-                        "PrÃ©sentez votre activitÃ© clairement, guidez vos visiteurs vers lâ€™essentiel et facilitez la prise de contact grÃ¢ce Ã  un site sur mesure, rapide, accessible et responsive."
+                        "Présentez votre activité clairement, guidez vos visiteurs vers l’essentiel et facilitez la prise de contact grâce à un site sur mesure, rapide, accessible et responsive."
                       ],
                       "media": "atmosphere-laptop",
                       "meta": [
-                        { "label": "Pour", "value": "CrÃ©ation Â· Refonte Â· Nouvelle prÃ©sence digitale" },
-                        { "label": "Peut inclure", "value": "Structure Â· Design web Â· DÃ©veloppement Â· SEO Â· AccessibilitÃ©" },
-                        { "label": "Budget", "value": "Ã€ partir de 1 500 â‚¬ HT" }
+                        {
+                          "label": "Pour",
+                          "value": "Création · Refonte · Nouvelle présence digitale"
+                        },
+                        {
+                          "label": "Peut inclure",
+                          "value": "Structure · Design web · Développement · SEO · Accessibilité"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "À partir de 1 500 € HT"
+                        }
                       ],
-                      "tags": ["Site web", "UX/UI", "Frontend"],
+                      "tags": [
+                        "Site web",
+                        "UX/UI",
+                        "Frontend"
+                      ],
                       "links": [
                         {
                           "label": "Parlez de votre site",
@@ -184,21 +244,34 @@
                     },
                     {
                       "id": "studio-service-integrations",
-                      "eyebrow": "RÃ©servation Â· Paiement Â· Formulaires Â· Outils",
-                      "title": "FonctionnalitÃ©s & intÃ©grations",
+                      "eyebrow": "Réservation · Paiement · Formulaires · Outils",
+                      "title": "Fonctionnalités & intégrations",
                       "text": [
-                        "Faites Ã©voluer votre site avec les fonctionnalitÃ©s dont votre activitÃ© a besoin : rÃ©servation, paiement, formulaires, contenus dynamiques ou connexion Ã  vos outils."
+                        "Faites évoluer votre site avec les fonctionnalités dont votre activité a besoin : réservation, paiement, formulaires, contenus dynamiques ou connexion à vos outils."
                       ],
                       "media": "structure-mobile-multi",
                       "meta": [
-                        { "label": "Pour", "value": "Site existant Â· Nouveau service Â· Nouveau parcours" },
-                        { "label": "Peut inclure", "value": "RÃ©servation Â· Paiement Â· Formulaires Â· CMS Â· Services externes" },
-                        { "label": "Budget", "value": "Ã€ partir de 800 â‚¬ HT" }
+                        {
+                          "label": "Pour",
+                          "value": "Site existant · Nouveau service · Nouveau parcours"
+                        },
+                        {
+                          "label": "Peut inclure",
+                          "value": "Réservation · Paiement · Formulaires · CMS · Services externes"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "À partir de 800 € HT"
+                        }
                       ],
-                      "tags": ["IntÃ©grations", "Automatisation", "Frontend"],
+                      "tags": [
+                        "Intégrations",
+                        "Automatisation",
+                        "Frontend"
+                      ],
                       "links": [
                         {
-                          "label": "Faites Ã©voluer votre site",
+                          "label": "Faites évoluer votre site",
                           "href": "/contact",
                           "intent": "contact",
                           "priority": "secondary",
@@ -229,51 +302,119 @@
                   "items": [
                     {
                       "id": "studio-approach-title",
-                      "title": "Comprendre dâ€™abord. Construire ensuite.",
+                      "title": "Comprendre d’abord. Construire ensuite.",
                       "grid": {
-                        "mobile": { "start": 1, "span": 4, "row": 1 },
-                        "tablet": { "start": 1, "span": 8, "row": 1 },
-                        "desktop": { "start": 1, "span": 12, "row": 1 }
+                        "mobile": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 1
+                        },
+                        "tablet": {
+                          "start": 1,
+                          "span": 8,
+                          "row": 1
+                        },
+                        "desktop": {
+                          "start": 1,
+                          "span": 12,
+                          "row": 1
+                        }
                       }
                     },
                     {
                       "id": "studio-approach-understand",
                       "title": "Comprendre",
-                      "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de dÃ©cider de la forme."],
+                      "text": [
+                        "Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."
+                      ],
                       "grid": {
-                        "mobile": { "start": 1, "span": 4, "row": 2 },
-                        "tablet": { "start": 1, "span": 4, "row": 2 },
-                        "desktop": { "start": 1, "span": 3, "row": 2 }
+                        "mobile": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 2
+                        },
+                        "tablet": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 2
+                        },
+                        "desktop": {
+                          "start": 1,
+                          "span": 3,
+                          "row": 2
+                        }
                       }
                     },
                     {
                       "id": "studio-approach-structure",
                       "title": "Structurer",
-                      "text": ["Transformer les prioritÃ©s en hiÃ©rarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."],
+                      "text": [
+                        "Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."
+                      ],
                       "grid": {
-                        "mobile": { "start": 1, "span": 4, "row": 3 },
-                        "tablet": { "start": 5, "span": 4, "row": 2 },
-                        "desktop": { "start": 4, "span": 3, "row": 2 }
+                        "mobile": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 3
+                        },
+                        "tablet": {
+                          "start": 5,
+                          "span": 4,
+                          "row": 2
+                        },
+                        "desktop": {
+                          "start": 4,
+                          "span": 3,
+                          "row": 2
+                        }
                       }
                     },
                     {
                       "id": "studio-approach-design",
                       "title": "Concevoir",
-                      "text": ["RÃ©unir typographie, image, rythme, interface et identitÃ© dans une direction cohÃ©rente plutÃ´t que les traiter comme des couches sÃ©parÃ©es."],
+                      "text": [
+                        "Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."
+                      ],
                       "grid": {
-                        "mobile": { "start": 1, "span": 4, "row": 4 },
-                        "tablet": { "start": 1, "span": 4, "row": 3 },
-                        "desktop": { "start": 7, "span": 3, "row": 2 }
+                        "mobile": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 4
+                        },
+                        "tablet": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 3
+                        },
+                        "desktop": {
+                          "start": 7,
+                          "span": 3,
+                          "row": 2
+                        }
                       }
                     },
                     {
                       "id": "studio-approach-build",
                       "title": "Construire",
-                      "text": ["Traduire la direction en une expÃ©rience responsive, accessible et maintenable, puis ajuster jusquâ€™Ã  ce que forme et usage racontent la mÃªme chose."],
+                      "text": [
+                        "Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."
+                      ],
                       "grid": {
-                        "mobile": { "start": 1, "span": 4, "row": 5 },
-                        "tablet": { "start": 5, "span": 4, "row": 3 },
-                        "desktop": { "start": 10, "span": 3, "row": 2 }
+                        "mobile": {
+                          "start": 1,
+                          "span": 4,
+                          "row": 5
+                        },
+                        "tablet": {
+                          "start": 5,
+                          "span": 4,
+                          "row": 3
+                        },
+                        "desktop": {
+                          "start": 10,
+                          "span": 3,
+                          "row": 2
+                        }
                       }
                     }
                   ]
@@ -288,7 +429,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "studio-final-panel",
@@ -297,7 +442,14 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -309,7 +461,10 @@
     "seo": {
       "title": "Studio | Chow Studio",
       "description": "Services, approche et studio Chow Studio.",
-      "robots": { "index": false, "follow": true }
+      "robots": {
+        "index": false,
+        "follow": true
+      }
     },
     "blocks": [
       {
@@ -324,7 +479,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
           {
             "id": "approach-process-panel",
@@ -333,7 +492,11 @@
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
           },
           {
             "id": "studio-founders-panel",
@@ -342,7 +505,11 @@
             "align": "center",
             "surface": "glass",
             "color": "accent",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "approach-final-panel",
@@ -351,7 +518,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -362,8 +536,11 @@
     "slug": "/journal",
     "seo": {
       "title": "Journal | Chow Studio",
-      "description": "Archives Ã©ditoriales de Chow Studio.",
-      "robots": { "index": false, "follow": false }
+      "description": "Archives éditoriales de Chow Studio.",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -378,7 +555,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "journal-default" }]
+            "blocks": [
+              {
+                "ref": "journal-default"
+              }
+            ]
           },
           {
             "id": "journal-archive-final-panel",
@@ -387,7 +568,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -398,8 +586,11 @@
     "slug": "/journal/site-web-clair",
     "seo": {
       "title": "Rendre un site web plus clair avant de le redesign | Chow Studio",
-      "description": "Navigation, hiÃ©rarchie et contenu : les questions Ã  rÃ©soudre avant une refonte visuelle.",
-      "robots": { "index": false, "follow": false }
+      "description": "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -414,7 +605,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -424,9 +622,12 @@
     "id": "journal-identite-systeme",
     "slug": "/journal/identite-visuelle-systeme",
     "seo": {
-      "title": "Une identitÃ© visuelle doit fonctionner comme un systÃ¨me | Chow Studio",
-      "description": "Logo, typographie, couleur, image et rÃ¨gles dâ€™usage : une identitÃ© visuelle pensÃ©e comme systÃ¨me.",
-      "robots": { "index": false, "follow": false }
+      "title": "Une identité visuelle doit fonctionner comme un système | Chow Studio",
+      "description": "Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -441,7 +642,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -451,9 +659,12 @@
     "id": "journal-design-developpement",
     "slug": "/journal/design-et-developpement",
     "seo": {
-      "title": "Pourquoi rapprocher design et dÃ©veloppement frontend | Chow Studio",
-      "description": "Design, UX et dÃ©veloppement frontend pensÃ©s ensemble.",
-      "robots": { "index": false, "follow": false }
+      "title": "Pourquoi rapprocher design et développement frontend | Chow Studio",
+      "description": "Design, UX et développement frontend pensés ensemble.",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -468,7 +679,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -478,8 +696,8 @@
     "id": "contact",
     "slug": "/contact",
     "seo": {
-      "title": "Parler dâ€™un projet | Chow Studio",
-      "description": "Vous avez besoin dâ€™un site, dâ€™une identitÃ© visuelle ou dâ€™une refonte ? PrÃ©sentez votre projet Ã  Chow Studio et commenÃ§ons par clarifier le besoin."
+      "title": "Parler d’un projet | Chow Studio",
+      "description": "Vous avez besoin d’un site, d’une identité visuelle ou d’une refonte ? Présentez votre projet à Chow Studio et commençons par clarifier le besoin."
     },
     "blocks": [
       {
@@ -494,26 +712,34 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "contact-default" }]
+            "blocks": [
+              {
+                "ref": "contact-default"
+              }
+            ]
           }
         ]
       },
-     {
-  "id": "contact-footer-panel",
-  "type": "Group",
-  "layout": "scroll-panel",
-  "panels": [
-    {
-      "id": "contact-footer",
-      "behavior": "moving",
-      "size": "full",
-      "align": "center",
-      "surface": "glass",
-      "color": "primary",
-      "blocks": [{ "ref": "site-footer" }]
-    }
-  ]
-}
+      {
+        "id": "contact-footer-panel",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "contact-footer",
+            "behavior": "moving",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "site-footer"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
@@ -522,8 +748,11 @@
     "variant": "editorial",
     "seo": {
       "title": "Chow Studio | Projets, studio et contact",
-      "description": "AccÃ©dez aux projets, au studio et au contact de Chow Studio.",
-      "robots": { "index": false, "follow": true }
+      "description": "Accédez aux projets, au studio et au contact de Chow Studio.",
+      "robots": {
+        "index": false,
+        "follow": true
+      }
     },
     "blocks": [
       {
@@ -538,7 +767,14 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "links-profile" }, { "ref": "links-primary" }]
+            "blocks": [
+              {
+                "ref": "links-profile"
+              },
+              {
+                "ref": "links-primary"
+              }
+            ]
           },
           {
             "id": "links-final-panel",
@@ -547,7 +783,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -558,8 +801,8 @@
     "slug": "/mentions-legales",
     "variant": "editorial",
     "seo": {
-      "title": "Mentions lÃ©gales & conditions de vente | Chow Studio",
-      "description": "Mentions lÃ©gales, propriÃ©tÃ© intellectuelle et conditions de vente des prestations de Chow Studio."
+      "title": "Mentions légales & conditions de vente | Chow Studio",
+      "description": "Mentions légales, propriété intellectuelle et conditions de vente des prestations de Chow Studio."
     },
     "blocks": [
       {
@@ -574,7 +817,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "legal-notice-default" }]
+            "blocks": [
+              {
+                "ref": "legal-notice-default"
+              }
+            ]
           },
           {
             "id": "legal-final-panel",
@@ -583,7 +830,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -593,10 +847,10 @@
     "id": "cgv",
     "slug": "/cgv",
     "variant": "editorial",
-"seo": {
-  "title": "Conditions gÃ©nÃ©rales de vente | Chow Studio",
-  "description": "Consultez les conditions gÃ©nÃ©rales de vente de Chow Studio pour les prestations de design, identitÃ© visuelle, UX/UI et dÃ©veloppement frontend destinÃ©es aux clients professionnels."
-},
+    "seo": {
+      "title": "Conditions générales de vente | Chow Studio",
+      "description": "Consultez les conditions générales de vente de Chow Studio pour les prestations de design, identité visuelle, UX/UI et développement frontend destinées aux clients professionnels."
+    },
     "blocks": [
       {
         "id": "cgv-story",
@@ -617,27 +871,113 @@
                 "layout": "list",
                 "content": {
                   "header": {
-                    "title": "Conditions gÃ©nÃ©rales de vente",
+                    "title": "Conditions générales de vente",
                     "text": [
-                      "Les prÃ©sentes conditions encadrent les prestations rÃ©alisÃ©es par Chow Studio pour ses clients professionnels. Le devis, la proposition commerciale ou le contrat prÃ©cise le pÃ©rimÃ¨tre propre Ã  chaque projet et prÃ©vaut en cas de disposition particuliÃ¨re expressÃ©ment convenue."
+                      "Les présentes conditions encadrent les prestations réalisées par Chow Studio pour ses clients professionnels. Le devis, la proposition commerciale ou le contrat précise le périmètre propre à chaque projet et prévaut en cas de disposition particulière expressément convenue."
                     ]
                   },
                   "items": [
-                    { "title": "1. Champ dâ€™application", "text": ["Les prÃ©sentes conditions gÃ©nÃ©rales de vente sâ€™appliquent aux prestations de conseil, identitÃ© visuelle, direction visuelle, UX/UI design, conception de sites web, dÃ©veloppement frontend et prestations associÃ©es rÃ©alisÃ©es par Chow Studio pour des clients agissant Ã  des fins professionnelles.", "Toute commande implique lâ€™acceptation des prÃ©sentes CGV ainsi que des conditions particuliÃ¨res figurant au devis, Ã  la proposition ou au contrat acceptÃ© par le client."] },
-                    { "title": "2. Devis, commande et dÃ©marrage", "text": ["Le contenu, les livrables, le calendrier indicatif et le prix sont dÃ©finis dans le devis ou la proposition commerciale. La commande devient ferme Ã  compter de lâ€™acceptation Ã©crite du devis ou du contrat et, lorsquâ€™un acompte est prÃ©vu, de son rÃ¨glement.", "Toute demande qui modifie sensiblement le pÃ©rimÃ¨tre initial peut faire lâ€™objet dâ€™un ajustement de planning, dâ€™un devis complÃ©mentaire ou dâ€™une nouvelle estimation avant rÃ©alisation."] },
-                    { "title": "3. Prix", "text": ["Les prix sont indiquÃ©s en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutÃ©es selon la situation fiscale de Chow Studio au jour de la facturation.", "Les tarifs publics affichÃ©s sur le site sont indicatifs lorsquâ€™ils sont prÃ©sentÃ©s comme des prix de dÃ©part. Le prix contractuel est celui figurant sur le devis ou la proposition acceptÃ©e. Aucun escompte pour paiement anticipÃ© nâ€™est accordÃ© sauf mention expresse contraire."] },
-                    { "title": "4. Facturation et rÃ¨glement", "text": ["Les modalitÃ©s de facturation et lâ€™Ã©chÃ©ancier Ã©ventuel sont prÃ©cisÃ©s au devis. Ã€ dÃ©faut de condition particuliÃ¨re, les factures sont payables dans un dÃ©lai de trente jours Ã  compter de leur date dâ€™Ã©mission.", "Tout retard de paiement entraÃ®ne, de plein droit et sans rappel prÃ©alable, lâ€™application de pÃ©nalitÃ©s calculÃ©es au taux de refinancement de la Banque centrale europÃ©enne en vigueur majorÃ© de dix points, ainsi quâ€™une indemnitÃ© forfaitaire de 40 â‚¬ pour frais de recouvrement lorsquâ€™elle est applicable. Une indemnisation complÃ©mentaire peut Ãªtre demandÃ©e sur justificatifs lorsque les frais de recouvrement effectivement engagÃ©s dÃ©passent ce montant."] },
-                    { "title": "5. DÃ©lais et collaboration du client", "text": ["Les dÃ©lais annoncÃ©s sont Ã©tablis Ã  partir des informations disponibles au moment du devis et supposent la transmission, dans des dÃ©lais raisonnables, des contenus, accÃ¨s, validations et retours nÃ©cessaires Ã  lâ€™avancement du projet.", "Un retard de rÃ©ponse, de transmission ou de validation du client peut dÃ©caler les Ã©chÃ©ances sans engager la responsabilitÃ© de Chow Studio. Lorsque le projet reste interrompu du fait du client, un nouveau calendrier peut Ãªtre proposÃ© en fonction des disponibilitÃ©s du studio."] },
-                    { "title": "6. Retours, corrections et hors pÃ©rimÃ¨tre", "text": ["Les phases de prÃ©sentation, de retours et de corrections sont celles prÃ©vues au devis. Les demandes supplÃ©mentaires, changements de direction aprÃ¨s validation, nouvelles fonctionnalitÃ©s ou livrables non prÃ©vus au pÃ©rimÃ¨tre initial sont considÃ©rÃ©s comme hors pÃ©rimÃ¨tre et peuvent faire lâ€™objet dâ€™une facturation complÃ©mentaire."] },
-                    { "title": "7. Suspension ou annulation", "text": ["En cas dâ€™annulation ou de suspension Ã  lâ€™initiative du client aprÃ¨s le dÃ©marrage du projet, les prestations dÃ©jÃ  rÃ©alisÃ©es, le temps engagÃ© et les dÃ©penses expressÃ©ment engagÃ©es pour le projet restent dus. Les modalitÃ©s particuliÃ¨res dâ€™annulation prÃ©vues au devis ou au contrat sâ€™appliquent lorsquâ€™elles existent.", "Chow Studio peut suspendre lâ€™exÃ©cution dâ€™une prestation en cas de non-paiement dâ€™une Ã©chÃ©ance, de dÃ©faut persistant de collaboration ou de manquement grave du client Ã  ses obligations, aprÃ¨s lâ€™avoir informÃ© lorsque la situation le permet."] },
-                    { "title": "8. PropriÃ©tÃ© intellectuelle", "text": ["Sauf disposition contraire convenue par Ã©crit, les droits dâ€™exploitation sur les crÃ©ations originales rÃ©alisÃ©es pour le client ne sont cÃ©dÃ©s quâ€™aprÃ¨s paiement intÃ©gral des sommes dues et uniquement dans lâ€™Ã©tendue prÃ©vue au devis ou au contrat. Les droits non expressÃ©ment cÃ©dÃ©s restent rÃ©servÃ©s.", "Les Ã©lÃ©ments prÃ©existants, outils, mÃ©thodes, composants gÃ©nÃ©riques, bibliothÃ¨ques, polices, logiciels, contenus ou licences appartenant Ã  Chow Studio ou Ã  des tiers restent soumis Ã  leurs droits et licences propres. Le client garantit disposer des droits nÃ©cessaires sur les contenus, marques, textes, images et autres Ã©lÃ©ments quâ€™il fournit au studio.", "Sauf obligation de confidentialitÃ© ou opposition convenue par Ã©crit avant publication, Chow Studio peut prÃ©senter le projet rÃ©alisÃ©, une fois rendu public, dans son portfolio, ses Ã©tudes de cas et ses communications professionnelles."] },
-                    { "title": "9. Sites web, services tiers et maintenance", "text": ["Pour les prestations digitales, les livrables, accÃ¨s, environnements et modalitÃ©s de mise en ligne sont ceux prÃ©vus au devis. Les abonnements, noms de domaine, hÃ©bergements, services SaaS, API, outils tiers et licences nÃ©cessaires au projet restent soumis aux conditions de leurs fournisseurs respectifs et sont Ã  la charge de la partie dÃ©signÃ©e au devis.", "La maintenance, les Ã©volutions, mises Ã  jour de contenu ou interventions postÃ©rieures Ã  la livraison ne sont incluses que lorsquâ€™elles sont expressÃ©ment prÃ©vues. Chow Studio ne peut garantir la disponibilitÃ© ou la pÃ©rennitÃ© dâ€™un service fourni par un tiers."] },
-                    { "title": "10. Livraison et conformitÃ©", "text": ["Le client est invitÃ© Ã  vÃ©rifier les livrables au fur et Ã  mesure des validations et lors de la livraison finale. Toute anomalie relevant du pÃ©rimÃ¨tre convenu doit Ãªtre signalÃ©e avec suffisamment de prÃ©cision pour permettre son analyse et, lorsquâ€™elle est imputable Ã  la prestation livrÃ©e, sa correction dans des conditions raisonnables.", "Une prÃ©fÃ©rence nouvelle, une Ã©volution de besoin ou une modification demandÃ©e aprÃ¨s validation ne constitue pas une non-conformitÃ©."] },
-                    { "title": "11. ResponsabilitÃ©", "text": ["Chow Studio exÃ©cute ses prestations avec le soin normalement attendu dâ€™un professionnel et dans le cadre du pÃ©rimÃ¨tre convenu. Le client reste responsable de ses dÃ©cisions commerciales, de ses contenus, de ses obligations lÃ©gales propres, des validations quâ€™il donne et de lâ€™usage final des livrables.", "Chow Studio ne peut Ãªtre tenu responsable des dysfonctionnements, interruptions, changements de conditions ou pertes rÃ©sultant directement dâ€™un service tiers, dâ€™un accÃ¨s ou contenu fourni par le client, dâ€™une modification effectuÃ©e par un tiers aprÃ¨s livraison ou dâ€™un Ã©vÃ©nement Ã©chappant raisonnablement Ã  son contrÃ´le."] },
-                    { "title": "12. ConfidentialitÃ© et donnÃ©es", "text": ["Chaque partie sâ€™engage Ã  traiter avec discrÃ©tion les informations confidentielles reÃ§ues dans le cadre du projet. Les donnÃ©es personnelles Ã©ventuellement traitÃ©es dans la relation commerciale sont utilisÃ©es pour la gestion des Ã©changes, du projet, de la facturation et des obligations administratives. La politique de confidentialitÃ© du site prÃ©cise les traitements liÃ©s au site et aux prises de contact."] },
-                    { "title": "13. Force majeure", "text": ["Aucune partie ne peut Ãªtre tenue responsable dâ€™un retard ou dâ€™une inexÃ©cution rÃ©sultant dâ€™un Ã©vÃ©nement de force majeure au sens du droit franÃ§ais. Les obligations affectÃ©es sont suspendues pendant la durÃ©e de lâ€™empÃªchement et les parties se rapprochent pour dÃ©terminer les consÃ©quences pratiques sur le projet."] },
-                    { "title": "14. Droit applicable et diffÃ©rends", "text": ["Les prÃ©sentes CGV et les contrats conclus avec Chow Studio sont soumis au droit franÃ§ais. En cas de difficultÃ©, les parties cherchent dâ€™abord une solution amiable. Ã€ dÃ©faut dâ€™accord, le litige relÃ¨ve des juridictions compÃ©tentes selon les rÃ¨gles de droit commun applicables."] },
-                    { "title": "15. Version des CGV", "text": ["La version applicable est celle acceptÃ©e avec le devis ou le contrat. Les prÃ©sentes CGV peuvent Ã©voluer pour tenir compte de changements dans les services ou dans le cadre juridique."] }
+                    {
+                      "title": "1. Champ d’application",
+                      "text": [
+                        "Les présentes conditions générales de vente s’appliquent aux prestations de conseil, identité visuelle, direction visuelle, UX/UI design, conception de sites web, développement frontend et prestations associées réalisées par Chow Studio pour des clients agissant à des fins professionnelles.",
+                        "Toute commande implique l’acceptation des présentes CGV ainsi que des conditions particulières figurant au devis, à la proposition ou au contrat accepté par le client."
+                      ]
+                    },
+                    {
+                      "title": "2. Devis, commande et démarrage",
+                      "text": [
+                        "Le contenu, les livrables, le calendrier indicatif et le prix sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.",
+                        "Toute demande qui modifie sensiblement le périmètre initial peut faire l’objet d’un ajustement de planning, d’un devis complémentaire ou d’une nouvelle estimation avant réalisation."
+                      ]
+                    },
+                    {
+                      "title": "3. Prix",
+                      "text": [
+                        "Les prix sont indiqués en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutées selon la situation fiscale de Chow Studio au jour de la facturation.",
+                        "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des prix de départ. Le prix contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."
+                      ]
+                    },
+                    {
+                      "title": "4. Facturation et règlement",
+                      "text": [
+                        "Les modalités de facturation et l’échéancier éventuel sont précisés au devis. À défaut de condition particulière, les factures sont payables dans un délai de trente jours à compter de leur date d’émission.",
+                        "Tout retard de paiement entraîne, de plein droit et sans rappel préalable, l’application de pénalités calculées au taux de refinancement de la Banque centrale européenne en vigueur majoré de dix points, ainsi qu’une indemnité forfaitaire de 40 € pour frais de recouvrement lorsqu’elle est applicable. Une indemnisation complémentaire peut être demandée sur justificatifs lorsque les frais de recouvrement effectivement engagés dépassent ce montant."
+                      ]
+                    },
+                    {
+                      "title": "5. Délais et collaboration du client",
+                      "text": [
+                        "Les délais annoncés sont établis à partir des informations disponibles au moment du devis et supposent la transmission, dans des délais raisonnables, des contenus, accès, validations et retours nécessaires à l’avancement du projet.",
+                        "Un retard de réponse, de transmission ou de validation du client peut décaler les échéances sans engager la responsabilité de Chow Studio. Lorsque le projet reste interrompu du fait du client, un nouveau calendrier peut être proposé en fonction des disponibilités du studio."
+                      ]
+                    },
+                    {
+                      "title": "6. Retours, corrections et hors périmètre",
+                      "text": [
+                        "Les phases de présentation, de retours et de corrections sont celles prévues au devis. Les demandes supplémentaires, changements de direction après validation, nouvelles fonctionnalités ou livrables non prévus au périmètre initial sont considérés comme hors périmètre et peuvent faire l’objet d’une facturation complémentaire."
+                      ]
+                    },
+                    {
+                      "title": "7. Suspension ou annulation",
+                      "text": [
+                        "En cas d’annulation ou de suspension à l’initiative du client après le démarrage du projet, les prestations déjà réalisées, le temps engagé et les dépenses expressément engagées pour le projet restent dus. Les modalités particulières d’annulation prévues au devis ou au contrat s’appliquent lorsqu’elles existent.",
+                        "Chow Studio peut suspendre l’exécution d’une prestation en cas de non-paiement d’une échéance, de défaut persistant de collaboration ou de manquement grave du client à ses obligations, après l’avoir informé lorsque la situation le permet."
+                      ]
+                    },
+                    {
+                      "title": "8. Propriété intellectuelle",
+                      "text": [
+                        "Sauf disposition contraire convenue par écrit, les droits d’exploitation sur les créations originales réalisées pour le client ne sont cédés qu’après paiement intégral des sommes dues et uniquement dans l’étendue prévue au devis ou au contrat. Les droits non expressément cédés restent réservés.",
+                        "Les éléments préexistants, outils, méthodes, composants génériques, bibliothèques, polices, logiciels, contenus ou licences appartenant à Chow Studio ou à des tiers restent soumis à leurs droits et licences propres. Le client garantit disposer des droits nécessaires sur les contenus, marques, textes, images et autres éléments qu’il fournit au studio.",
+                        "Sauf obligation de confidentialité ou opposition convenue par écrit avant publication, Chow Studio peut présenter le projet réalisé, une fois rendu public, dans son portfolio, ses études de cas et ses communications professionnelles."
+                      ]
+                    },
+                    {
+                      "title": "9. Sites web, services tiers et maintenance",
+                      "text": [
+                        "Pour les prestations digitales, les livrables, accès, environnements et modalités de mise en ligne sont ceux prévus au devis. Les abonnements, noms de domaine, hébergements, services SaaS, API, outils tiers et licences nécessaires au projet restent soumis aux conditions de leurs fournisseurs respectifs et sont à la charge de la partie désignée au devis.",
+                        "La maintenance, les évolutions, mises à jour de contenu ou interventions postérieures à la livraison ne sont incluses que lorsqu’elles sont expressément prévues. Chow Studio ne peut garantir la disponibilité ou la pérennité d’un service fourni par un tiers."
+                      ]
+                    },
+                    {
+                      "title": "10. Livraison et conformité",
+                      "text": [
+                        "Le client est invité à vérifier les livrables au fur et à mesure des validations et lors de la livraison finale. Toute anomalie relevant du périmètre convenu doit être signalée avec suffisamment de précision pour permettre son analyse et, lorsqu’elle est imputable à la prestation livrée, sa correction dans des conditions raisonnables.",
+                        "Une préférence nouvelle, une évolution de besoin ou une modification demandée après validation ne constitue pas une non-conformité."
+                      ]
+                    },
+                    {
+                      "title": "11. Responsabilité",
+                      "text": [
+                        "Chow Studio exécute ses prestations avec le soin normalement attendu d’un professionnel et dans le cadre du périmètre convenu. Le client reste responsable de ses décisions commerciales, de ses contenus, de ses obligations légales propres, des validations qu’il donne et de l’usage final des livrables.",
+                        "Chow Studio ne peut être tenu responsable des dysfonctionnements, interruptions, changements de conditions ou pertes résultant directement d’un service tiers, d’un accès ou contenu fourni par le client, d’une modification effectuée par un tiers après livraison ou d’un événement échappant raisonnablement à son contrôle."
+                      ]
+                    },
+                    {
+                      "title": "12. Confidentialité et données",
+                      "text": [
+                        "Chaque partie s’engage à traiter avec discrétion les informations confidentielles reçues dans le cadre du projet. Les données personnelles éventuellement traitées dans la relation commerciale sont utilisées pour la gestion des échanges, du projet, de la facturation et des obligations administratives. La politique de confidentialité du site précise les traitements liés au site et aux prises de contact."
+                      ]
+                    },
+                    {
+                      "title": "13. Force majeure",
+                      "text": [
+                        "Aucune partie ne peut être tenue responsable d’un retard ou d’une inexécution résultant d’un événement de force majeure au sens du droit français. Les obligations affectées sont suspendues pendant la durée de l’empêchement et les parties se rapprochent pour déterminer les conséquences pratiques sur le projet."
+                      ]
+                    },
+                    {
+                      "title": "14. Droit applicable et différends",
+                      "text": [
+                        "Les présentes CGV et les contrats conclus avec Chow Studio sont soumis au droit français. En cas de difficulté, les parties cherchent d’abord une solution amiable. À défaut d’accord, le litige relève des juridictions compétentes selon les règles de droit commun applicables."
+                      ]
+                    },
+                    {
+                      "title": "15. Version des CGV",
+                      "text": [
+                        "La version applicable est celle acceptée avec le devis ou le contrat. Les présentes CGV peuvent évoluer pour tenir compte de changements dans les services ou dans le cadre juridique."
+                      ]
+                    }
                   ]
                 }
               }
@@ -650,7 +990,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -661,8 +1008,8 @@
     "slug": "/confidentialite",
     "variant": "editorial",
     "seo": {
-      "title": "ConfidentialitÃ© & donnÃ©es personnelles | Chow Studio",
-      "description": "Politique de confidentialitÃ© de Chow Studio : donnÃ©es collectÃ©es, finalitÃ©s, conservation, prestataires et droits RGPD."
+      "title": "Confidentialité & données personnelles | Chow Studio",
+      "description": "Politique de confidentialité de Chow Studio : données collectées, finalités, conservation, prestataires et droits RGPD."
     },
     "blocks": [
       {
@@ -677,7 +1024,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "privacy-default" }]
+            "blocks": [
+              {
+                "ref": "privacy-default"
+              }
+            ]
           },
           {
             "id": "privacy-final-panel",
@@ -686,7 +1037,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -699,7 +1057,10 @@
     "seo": {
       "title": "Page introuvable | Chow Studio",
       "description": "Cette page Chow Studio est introuvable.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -714,7 +1075,11 @@
             "align": "center",
             "surface": "solid",
             "color": "accent",
-            "blocks": [{ "ref": "not-found-default" }]
+            "blocks": [
+              {
+                "ref": "not-found-default"
+              }
+            ]
           },
           {
             "id": "not-found-final-panel",
@@ -723,11 +1088,17 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
     ]
   }
 ]
-
