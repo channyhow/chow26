@@ -46,7 +46,9 @@ export type PageBlock = SectionBlock | SectionGroup | BlockRef;
 export type PageSeo = {
   title: string;
   description?: string;
-  image?: string;
+  /** Media registry id. Legacy absolute/root-relative paths remain supported during migration. */
+  image?: MediaRef;
+  /** Legacy override; media.alt is preferred when image resolves through the media registry. */
   imageAlt?: string;
   canonical?: string;
   robots?: { index?: boolean; follow?: boolean };
