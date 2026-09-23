@@ -43,20 +43,11 @@ export type PanelLane = { id: string; behavior?: PanelBehavior; size?: PanelSize
 export type SectionGroup = { id: string; type: "Group"; layout?: GroupLayout; panel?: { mode?: PanelMode; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor }; panels?: PanelLane[]; motion?: { level: MotionLevel; preset?: "panel" | "media-reveal" | "sticky-story" | "horizontal-rail" }; blocks?: PanelBlock[] };
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;
 
-export type SeoMedia = {
-  src: string;
-  width?: number;
-  height?: number;
-  type?: string;
-  alt?: string;
-};
-
 export type PageSeo = {
   title: string;
   description?: string;
-  media?: SeoMedia;
-  /** @deprecated Use media.src. Kept temporarily for existing content. */
-  image?: MediaRef;
+  image?: string;
+  imageAlt?: string;
   canonical?: string;
   robots?: { index?: boolean; follow?: boolean };
 };
