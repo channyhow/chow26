@@ -23,6 +23,7 @@ const replaceMeta = (html, attribute, key, content) => {
   const tag = `<meta ${attribute}="${key}" content="${escapeAttribute(content)}" />`;
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace("</head>", `    ${tag}\n  </head>`);
 };
+const removeMeta = (html, attribute, key) => html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${attribute}="${key}")[^>]*>`, "gi"), "");
 const replaceCanonical = (html, canonical) => {
   const tag = `<link rel="canonical" href="${escapeAttribute(canonical)}" />`;
   return html.replace(/<link\b(?=[^>]*\brel="canonical")[^>]*>/i, tag);
@@ -53,12 +54,11 @@ for (const page of routes) {
   if (!page.slug || page.slug === "/") continue;
 
   const seo = page.seo ?? {};
-  const media = seo.media;
   const title = seo.title ?? defaults.defaultTitle;
   const description = seo.description ?? defaults.defaultDescription;
   const canonical = seo.canonical ?? `${baseUrl}${page.slug}`;
-  const image = new URL(media?.src ?? seo.image ?? defaults.defaultImage, `${baseUrl}/`).toString();
-  const imageAlt = media?.alt ?? defaults.imageAlt;
+  const image = new URL(seo.image ?? defaults.defaultImage, `${baseUrl}/`).toString();
+  const imageAlt = seo.imageAlt ?? defaults.imageAlt;
   const index = seo.robots?.index !== false;
   const follow = seo.robots?.follow !== false;
   const robots = index ? `${index ? "index" : "noindex"},${follow ? "follow" : "nofollow"},max-image-preview:large,max-snippet:-1,max-video-preview:-1` : `noindex,${follow ? "follow" : "nofollow"}`;
@@ -74,9 +74,9 @@ for (const page of routes) {
   html = replaceMeta(html, "property", "og:image", image);
   html = replaceMeta(html, "property", "og:image:secure_url", image);
   html = replaceMeta(html, "property", "og:image:alt", imageAlt);
-  if (media?.width) html = replaceMeta(html, "property", "og:image:width", media.width);
-  if (media?.height) html = replaceMeta(html, "property", "og:image:height", media.height);
-  if (media?.type) html = replaceMeta(html, "property", "og:image:type", media.type);
+  html = removeMeta(html, "property", "og:image:width");
+  html = removeMeta(html, "property", "og:image:height");
+  html = removeMeta(html, "property", "og:image:type");
   html = replaceMeta(html, "name", "twitter:title", title);
   html = replaceMeta(html, "name", "twitter:description", description);
   html = replaceMeta(html, "name", "twitter:image", image);
