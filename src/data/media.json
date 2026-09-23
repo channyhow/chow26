@@ -25,11 +25,12 @@
     "width": 1600,
     "height": 1067
   },
-    "atmosphere_mobile-vid": {
+  "atmosphere_mobile-vid": {
     "id": "atmosphere_mobile-vid",
     "type": "mux",
-  "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
-  "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.",    "width": 1080,
+    "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
+    "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.",
+    "width": 1080,
     "height": 1920,
     "fit": "cover",
     "focalPoint": { "x": 50, "y": 64 }
@@ -107,7 +108,8 @@
     "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
     "width": 1920,
     "height": 1080
-  },  "maloya-menu": {
+  },
+  "maloya-menu": {
     "id": "maloya-menu",
     "type": "video",
     "src": "/assets/videos/maloya-menu.mp4",
@@ -115,7 +117,8 @@
     "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
     "width": 1350,
     "height": 1080
-  },  "maloya-mobile-vid": {
+  },
+  "maloya-mobile-vid": {
     "id": "maloya-mobile-vid",
     "type": "video",
     "src": "/assets/videos/maloya-mobile.mp4",
@@ -155,6 +158,22 @@
     "type": "mux",
     "playbackId": "TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M",
     "alt": "Mois du Kèr | cœur anatomique animé au rythme d’un battement.",
+    "width": 1080,
+    "height": 1350
+  },
+  "mdk-heart-sea": {
+    "id": "mdk-heart-sea",
+    "type": "mux",
+    "playbackId": "xDDLKWiYfE1IvvsMeg01Q101WEd8MlqHziK7TUWaJl1LA",
+    "alt": "Mois du Kèr | animation d’un motif de cœurs en mouvement.",
+    "width": 1080,
+    "height": 1350
+  },
+  "mdk-rings": {
+    "id": "mdk-rings",
+    "type": "mux",
+    "playbackId": "FAhfWxfBylWVz1FMhMpzfR011KRs4f8xpWljCuu1txUg",
+    "alt": "Mois du Kèr | animation graphique de cercles concentriques issue de l’identité visuelle.",
     "width": 1080,
     "height": 1350
   },
