@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 
+import mediaData from "@/data/media.json";
 import siteData from "@/data/site.json";
 import type { PageSeo } from "@/types/content";
+import type { MediaItem } from "@/types/media";
+
+const SOCIAL_WIDTH = 1200;
+const SOCIAL_HEIGHT = 630;
+const media = mediaData as Record<string, MediaItem>;
 
 const ensureMeta = (selector: string, attribute: "name" | "property", key: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -25,14 +31,45 @@ const ensureCanonical = () => {
 
 const absoluteUrl = (value: string) => new URL(value, siteData.site.url).toString();
 
+const socialPosition = (item?: MediaItem) => {
+  const point = item?.focalPoint;
+  if (!point) return "center";
+  if (point.y <= 35) return "top";
+  if (point.y >= 65) return "bottom";
+  if (point.x <= 35) return "left";
+  if (point.x >= 65) return "right";
+  return "center";
+};
+
+const resolveSocialImage = (ref?: string) => {
+  const item = ref ? media[ref] : undefined;
+  if (!item || item.type !== "image") return null;
+
+  const params = new URLSearchParams({
+    url: item.src,
+    w: String(SOCIAL_WIDTH),
+    h: String(SOCIAL_HEIGHT),
+    fit: "cover",
+    position: socialPosition(item),
+    fm: "jpg",
+    q: "85",
+  });
+
+  return {
+    url: absoluteUrl(`/.netlify/images?${params.toString()}`),
+    alt: item.alt ?? siteData.site.seo.imageAlt,
+  };
+};
+
 export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
   useEffect(() => {
     const defaults = siteData.site.seo;
     const title = seo?.title ?? defaults.defaultTitle;
     const description = seo?.description ?? defaults.defaultDescription;
     const canonical = seo?.canonical ?? absoluteUrl(slug === "/" ? "/" : slug);
-    const image = absoluteUrl(seo?.image ?? defaults.defaultImage);
-    const imageAlt = seo?.imageAlt ?? defaults.imageAlt;
+    const socialImage = resolveSocialImage(seo?.image);
+    const image = socialImage?.url ?? absoluteUrl(seo?.image ?? defaults.defaultImage);
+    const imageAlt = socialImage?.alt ?? seo?.imageAlt ?? defaults.imageAlt;
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
 
     document.documentElement.lang = siteData.site.defaultLocale;
