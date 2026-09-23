@@ -84,6 +84,15 @@
     "width": 1920,
     "height": 1080
   },
+  "kuro-seo": {
+    "id": "kuro-seo",
+    "type": "image",
+    "src": "/assets/photos/work/kuro/kuro_seo.jpg",
+    "alt": "Kuro | aperçu du site du restaurant japonais pour le partage social.",
+    "width": 1350,
+    "height": 1080,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
   "maloya-mobile": {
     "id": "maloya-mobile",
     "type": "image",
@@ -146,14 +155,14 @@
     "focalPoint": { "x": 50, "y": 64 }
   },
   "mdk-seo": {
-  "id": "mdk-seo",
-  "type": "image",
-  "src": "/assets/photos/work/mois-du-ker/MDK_seo.jpg",
-  "alt": "Mois du Kèr | identité visuelle et animation du logo de la campagne de prévention cardiovasculaire.",
-  "width": 1080,
-  "height": 1920,
-  "focalPoint": { "x": 50, "y": 50 }
-},
+    "id": "mdk-seo",
+    "type": "image",
+    "src": "/assets/photos/work/mois-du-ker/MDK_seo.jpg",
+    "alt": "Mois du Kèr | identité visuelle de la campagne de prévention cardiovasculaire pour le partage social.",
+    "width": 1350,
+    "height": 1080,
+    "focalPoint": { "x": 50, "y": 50 }
+  },
   "mdk-color-palette": {
     "id": "mdk-color-palette",
     "type": "mux",
