@@ -32,10 +32,10 @@ export function Card({
 }: CardProps) {
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
-  const isProject = Boolean(item.href?.startsWith("/projets/"));
-  const cardMedia = isProject && media?.type === "mux"
+  const cardMedia = media
     ? { ...media, focalPoint: { x: 50, y: 50 } }
     : media;
+  const isProject = Boolean(item.href?.startsWith("/projets/"));
   const mediaOrientation = getMediaOrientation(cardMedia ?? undefined);
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject
