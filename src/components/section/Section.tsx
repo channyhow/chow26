@@ -47,12 +47,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
+  const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
   const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
-  const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
+  const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const isFeaturedProjectGrid = layout === "grid"
     && block.source?.collection === "projects"
@@ -105,8 +106,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         lead={projectGridLead}
         motionPreset={block.motionPreset}
         placements={items.map((item) => item.grid)}
-        motionEnabled={motionEnabled && motionLevel !== "none"}
-        scrollLinked={motionEnabled && motionLevel !== "none"}
+        motionEnabled={motionEnabled && motionLevel !== "none" && !isLongFormList}
+        scrollLinked={motionEnabled && motionLevel !== "none" && !isLongFormList}
       >
         {cards}
       </Grid>
