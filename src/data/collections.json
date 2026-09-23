@@ -2,197 +2,197 @@
   "projects": [
     {
       "id": "atmosphere",
-      "eyebrow": "Architecture intérieure",
+      "eyebrow": "Architecture intÃ©rieure",
       "title": "Atmosphere",
-      "text": ["Une direction digitale chaleureuse et éditoriale pour un studio d’architecture intérieure.", "Mission : direction visuelle et UI design."],
-      "media": "atmosphere-laptop", "tags": ["architecture intérieure", "web design", "direction visuelle"], "featured": true, "order": 1, "slug": "atmosphere", "href": "/projets/atmosphere", "projectLayout": "a",
+      "text": ["Une direction digitale chaleureuse et Ã©ditoriale pour un studio dâ€™architecture intÃ©rieure.", "Mission : direction visuelle et UI design."],
+      "media": "atmosphere-laptop", "tags": ["architecture intÃ©rieure", "web design", "direction visuelle"], "featured": true, "order": 1, "slug": "atmosphere", "href": "/projets/atmosphere", "projectLayout": "a",
       "links": [{ "label": "Voir le site", "href": "https://atmosphere-studio.netlify.app", "intent": "navigate" }],
-      "summary": "Une présence digitale éditoriale qui laisse les matières, la lumière et les volumes porter le récit.",
-      "description": ["Le projet part d’un enjeu simple : traduire la **sensibilité** d’un studio d’architecture intérieure sans transformer son site en catalogue d’effets.", "La **hiérarchie**, le **rythme éditorial** et la place donnée aux images construisent une expérience plus incarnée, tandis que l’interface reste suffisamment calme pour laisser les projets prendre le premier rôle.", "Cette étude de cas explore la manière dont **direction artistique et UI** peuvent renforcer la perception d’un studio sans ajouter de complexité inutile."],
-      "facts": [{ "label": "Type", "value": "Site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Éditorial, matières, projets" }],
+      "summary": "Une prÃ©sence digitale Ã©ditoriale qui laisse les matiÃ¨res, la lumiÃ¨re et les volumes porter le rÃ©cit.",
+      "description": ["Le projet part dâ€™un enjeu simple : traduire la **sensibilitÃ©** dâ€™un studio dâ€™architecture intÃ©rieure sans transformer son site en catalogue dâ€™effets.", "La **hiÃ©rarchie**, le **rythme Ã©ditorial** et la place donnÃ©e aux images construisent une expÃ©rience plus incarnÃ©e, tandis que lâ€™interface reste suffisamment calme pour laisser les projets prendre le premier rÃ´le.", "Cette Ã©tude de cas explore la maniÃ¨re dont **direction artistique et UI** peuvent renforcer la perception dâ€™un studio sans ajouter de complexitÃ© inutile."],
+      "facts": [{ "label": "Type", "value": "Site dâ€™architecture" }, { "label": "AnnÃ©e", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Ã‰ditorial, matiÃ¨res, projets" }],
       "gallery": ["atmosphere-tablet", "atmosphere-mobile-solo"],
       "seo": {
-        "title": "Atmosphere | Site d’architecture intérieure | Chow Studio",
-        "description": "Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.",
-        "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
+        "title": "Atmosphere | Site dâ€™architecture intÃ©rieure | Chow Studio",
+        "description": "Ã‰tude de cas web pour un studio dâ€™architecture intÃ©rieure : direction artistique Ã©ditoriale, hiÃ©rarchie des projets et expÃ©rience responsive par Chow Studio.",
+        "image": "atmosphere-laptop"
       }
     },{
       "id": "mois-du-ker",
-      "eyebrow": "Campagne de prévention cardiovasculaire · la Réunion",
-      "title": "Mois du Kèr",
+      "eyebrow": "Campagne de prÃ©vention cardiovasculaire Â· la RÃ©union",
+      "title": "Mois du KÃ¨r",
       "text": [
-        "Une identité directe où le Kèr relie attachement à la Réunion et prévention cardiovasculaire.",
-        "Mission : conception du logo & identité visuelle."
+        "Une identitÃ© directe oÃ¹ le KÃ¨r relie attachement Ã  la RÃ©union et prÃ©vention cardiovasculaire.",
+        "Mission : conception du logo & identitÃ© visuelle."
       ],
       "media": "mdk-rings",
-      "tags": ["logo", "identité visuelle", "prévention cardiovasculaire", "la Réunion"],
+      "tags": ["logo", "identitÃ© visuelle", "prÃ©vention cardiovasculaire", "la RÃ©union"],
       "featured": true, "order": 2, "slug": "mois-du-ker", "href": "/projets/mois-du-ker", "projectLayout": "b",
       "links": [{ "label": "Voir le dossier", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" }],
-      "summary": "Le Kèr, imaginé autour du lien à la Réunion, devient le point de départ de l’identité visuelle d’une campagne de prévention cardiovasculaire.",
+      "summary": "Le KÃ¨r, imaginÃ© autour du lien Ã  la RÃ©union, devient le point de dÃ©part de lâ€™identitÃ© visuelle dâ€™une campagne de prÃ©vention cardiovasculaire.",
       "description": [
-        "**Le Kèr** est d’abord né d’un manque, celui de la Réunion lorsqu’on en est loin. Home Is Where the Heart Is d’Elvis Presley accompagne cette idée d’un chez-soi que l’on continue de porter avec soi. Le cœur devient kèr, en créole réunionnais.",
-        "Lorsque le projet de **prévention cardiovasculaire** de Jérôme Corré se présente, le lien fonctionne naturellement. Le Kèr prend alors un autre sens, tout aussi évident. Il parle toujours de la Réunion, mais aussi du cœur dont il faut prendre soin. C’est autour de cette **double lecture** que se construit le logo et l’identité visuelle du Mois du Kèr.",
-        "**Le cœur anatomique** est illustratif, coloré et volontairement très présent. Il puise librement dans les **couleurs de la Réunion**, entre ciel, mer, soleil, lave, flamboyants et letchis, sans chercher à attribuer une signification précise à chacune.",
-        "Le cœur étant déjà très détaillé, la **typographie** reste simple, condensée et directe. Elle équilibre l’illustration et permet au nom d’exister aussi sans elle. **KÈR** garde une place particulière. Son écriture conserve la façon dont le mot sonne en créole réunionnais et lui donne suffisamment de présence pour pouvoir vivre seul dans une forme plus compacte de l’identité.",
-        "L’identité accompagne aujourd’hui le Mois du Kèr à la Réunion et continue d’évoluer. Le cœur peut prendre toute la place ou vivre seul, tandis que **KÈR** peut se détacher du nom complet. Les explorations présentées ici prolongent simplement cette identité sous de nouvelles formes."
+        "**Le KÃ¨r** est dâ€™abord nÃ© dâ€™un manque, celui de la RÃ©union lorsquâ€™on en est loin. Home Is Where the Heart Is dâ€™Elvis Presley accompagne cette idÃ©e dâ€™un chez-soi que lâ€™on continue de porter avec soi. Le cÅ“ur devient kÃ¨r, en crÃ©ole rÃ©unionnais.",
+        "Lorsque le projet de **prÃ©vention cardiovasculaire** de JÃ©rÃ´me CorrÃ© se prÃ©sente, le lien fonctionne naturellement. Le KÃ¨r prend alors un autre sens, tout aussi Ã©vident. Il parle toujours de la RÃ©union, mais aussi du cÅ“ur dont il faut prendre soin. Câ€™est autour de cette **double lecture** que se construit le logo et lâ€™identitÃ© visuelle du Mois du KÃ¨r.",
+        "**Le cÅ“ur anatomique** est illustratif, colorÃ© et volontairement trÃ¨s prÃ©sent. Il puise librement dans les **couleurs de la RÃ©union**, entre ciel, mer, soleil, lave, flamboyants et letchis, sans chercher Ã  attribuer une signification prÃ©cise Ã  chacune.",
+        "Le cÅ“ur Ã©tant dÃ©jÃ  trÃ¨s dÃ©taillÃ©, la **typographie** reste simple, condensÃ©e et directe. Elle Ã©quilibre lâ€™illustration et permet au nom dâ€™exister aussi sans elle. **KÃˆR** garde une place particuliÃ¨re. Son Ã©criture conserve la faÃ§on dont le mot sonne en crÃ©ole rÃ©unionnais et lui donne suffisamment de prÃ©sence pour pouvoir vivre seul dans une forme plus compacte de lâ€™identitÃ©.",
+        "Lâ€™identitÃ© accompagne aujourdâ€™hui le Mois du KÃ¨r Ã  la RÃ©union et continue dâ€™Ã©voluer. Le cÅ“ur peut prendre toute la place ou vivre seul, tandis que **KÃˆR** peut se dÃ©tacher du nom complet. Les explorations prÃ©sentÃ©es ici prolongent simplement cette identitÃ© sous de nouvelles formes."
       ],
       "facts": [
-        { "label": "Type", "value": "Identité de campagne" },
-        { "label": "Lieu", "value": "la Réunion" },
-        { "label": "Conception", "value": "Channy How · Chow Studio" },
-        { "label": "Mission", "value": "Logo & identité visuelle" }
+        { "label": "Type", "value": "IdentitÃ© de campagne" },
+        { "label": "Lieu", "value": "la RÃ©union" },
+        { "label": "Conception", "value": "Channy How Â· Chow Studio" },
+        { "label": "Mission", "value": "Logo & identitÃ© visuelle" }
       ],
       "gallery": ["mdk-color-palette", "mois-du-ker-textile", "mdk-heart-sea","mdk-logo-evolution"],
       "seo": {
-        "title": "Mois du Kèr | Logo & identité visuelle | Chow Studio",
-        "description": "Le Kèr, imaginé autour du lien à La Réunion, devient le point de départ de l’identité visuelle d’une campagne de prévention cardiovasculaire.",
-     "image": "/assets/photos/work/mois-du-ker/MDK_seo.jpg",
-  "imageAlt": "Mois du Kèr | identité visuelle de la campagne de prévention cardiovasculaire."
+        "title": "Mois du KÃ¨r | Logo & identitÃ© visuelle | Chow Studio",
+        "description": "Le KÃ¨r, imaginÃ© autour du lien Ã  La RÃ©union, devient le point de dÃ©part de lâ€™identitÃ© visuelle dâ€™une campagne de prÃ©vention cardiovasculaire.",
+     "image": "mdk-seo",
+  "imageAlt": "Mois du KÃ¨r | identitÃ© visuelle de la campagne de prÃ©vention cardiovasculaire."
  }
     },
     {
-      "id": "kuro", "eyebrow": "Restaurant japonais · 2026", "title": "Kuro",
-      "text": ["Une présence digitale sombre et précise, pensée autour du lieu et d’une réservation sans détour.", "Mission : UI design et intégration frontend."],
+      "id": "kuro", "eyebrow": "Restaurant japonais Â· 2026", "title": "Kuro",
+      "text": ["Une prÃ©sence digitale sombre et prÃ©cise, pensÃ©e autour du lieu et dâ€™une rÃ©servation sans dÃ©tour.", "Mission : UI design et intÃ©gration frontend."],
       "media": "kuro-video", "tags": ["restaurant", "web design", "responsive", "conversion"], "featured": true, "order": 3, "slug": "kuro", "href": "/projets/kuro", "projectLayout": "b",
       "links": [{ "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" }],
-      "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la réservation immédiatement accessible.",
-      "description": ["Kuro est une présence web imaginée pour un **restaurant japonais** de comptoir à Paris. L’enjeu est de transmettre une atmosphère forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter l’essentiel et **réserver**.", "La **direction visuelle** sombre et éditoriale soutient l’expérience tandis que la carte, les informations pratiques et les points de réservation restent clairement hiérarchisés.", "Le projet associe direction d’interface et intégration frontend afin que l’intention visuelle reste cohérente jusque dans l’expérience **responsive**."],
-      "facts": [{ "label": "Type", "value": "Site de restaurant" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, intégration frontend" }, { "label": "Focus", "value": "Réservation, atmosphère, responsive" }],
+      "summary": "Un site de restaurant qui fait ressentir le lieu tout en gardant la rÃ©servation immÃ©diatement accessible.",
+      "description": ["Kuro est une prÃ©sence web imaginÃ©e pour un **restaurant japonais** de comptoir Ã  Paris. Lâ€™enjeu est de transmettre une atmosphÃ¨re forte sans ralentir ce que le visiteur vient principalement faire : comprendre le lieu, consulter lâ€™essentiel et **rÃ©server**.", "La **direction visuelle** sombre et Ã©ditoriale soutient lâ€™expÃ©rience tandis que la carte, les informations pratiques et les points de rÃ©servation restent clairement hiÃ©rarchisÃ©s.", "Le projet associe direction dâ€™interface et intÃ©gration frontend afin que lâ€™intention visuelle reste cohÃ©rente jusque dans lâ€™expÃ©rience **responsive**."],
+      "facts": [{ "label": "Type", "value": "Site de restaurant" }, { "label": "AnnÃ©e", "value": "2026" }, { "label": "Mission", "value": "UI design, intÃ©gration frontend" }, { "label": "Focus", "value": "RÃ©servation, atmosphÃ¨re, responsive" }],
       "gallery": ["kuro-laptop", "kuro-mobile"],
       "seo": {
         "title": "Kuro | Web design pour restaurant | Chow Studio",
-        "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
-     "image": "/assets/photos/work/kuro/kuro_seo.jpg",
-  "imageAlt": "Kuro | web design et expérience de réservation pour un restaurant japonais."
+        "description": "Ã‰tude de cas dâ€™un site de restaurant japonais Ã  Paris : direction visuelle, UX de rÃ©servation et intÃ©gration frontend par Chow Studio.",
+     "image": "kuro-seo",
+  "imageAlt": "Kuro | web design et expÃ©rience de rÃ©servation pour un restaurant japonais."
 
       }
     },
     {
-      "id": "sashayogaflow", "eyebrow": "Yoga & bien-être · 2025", "title": "Sasha Yoga Flow",
-      "text": ["Une expérience mobile-first qui rassemble cours, planning, informations et réservation dans un même mouvement.", "Mission : direction visuelle et UI design."],
+      "id": "sashayogaflow", "eyebrow": "Yoga & bien-Ãªtre Â· 2025", "title": "Sasha Yoga Flow",
+      "text": ["Une expÃ©rience mobile-first qui rassemble cours, planning, informations et rÃ©servation dans un mÃªme mouvement.", "Mission : direction visuelle et UI design."],
       "media": "sasha-laptop", "tags": ["yoga", "wellness", "web design", "mobile-first"], "featured": true, "order": 4, "slug": "sashayogaflow", "href": "/projets/sashayogaflow", "projectLayout": "b",
       "links": [{ "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" }],
-      "summary": "Une présence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orienté vers la réservation.",
-      "description": ["Le projet rassemble dans un même espace les **cours**, le **planning**, les informations pratiques et les accès à la **réservation**.", "La priorité **mobile-first** répond à un usage concret : consulter rapidement une séance, comprendre l’offre et passer à l’action depuis son téléphone.", "La direction visuelle apporte une **identité plus personnelle** à l’expérience sans compromettre la lisibilité ni la simplicité du parcours."],
-      "facts": [{ "label": "Type", "value": "Branding & web design" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Mobile-first, réservation" }],
+      "summary": "Une prÃ©sence digitale plus claire pour transformer une pratique de yoga en parcours simple, sensible et orientÃ© vers la rÃ©servation.",
+      "description": ["Le projet rassemble dans un mÃªme espace les **cours**, le **planning**, les informations pratiques et les accÃ¨s Ã  la **rÃ©servation**.", "La prioritÃ© **mobile-first** rÃ©pond Ã  un usage concret : consulter rapidement une sÃ©ance, comprendre lâ€™offre et passer Ã  lâ€™action depuis son tÃ©lÃ©phone.", "La direction visuelle apporte une **identitÃ© plus personnelle** Ã  lâ€™expÃ©rience sans compromettre la lisibilitÃ© ni la simplicitÃ© du parcours."],
+      "facts": [{ "label": "Type", "value": "Branding & web design" }, { "label": "AnnÃ©e", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Mobile-first, rÃ©servation" }],
       "gallery": ["sasha-laptop", "sasha-mobile"],
       "seo": {
-        "title": "Sasha Yoga Flow | Site yoga & réservation | Chow Studio",
-        "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
-        "image": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg"
+        "title": "Sasha Yoga Flow | Site yoga & rÃ©servation | Chow Studio",
+        "description": "Ã‰tude de cas web pour Sasha Yoga Flow : expÃ©rience mobile-first, prÃ©sentation des cours et parcours vers la rÃ©servation conÃ§us par Chow Studio.",
+        "image": "sasha-laptop"
       }
     },
     {
-      "id": "maloya", "eyebrow": "Musique · 2026 · Concept", "title": "Maloya",
-      "text": ["Une plateforme immersive où vidéos, concerts et univers visuel trouvent la même scène.", "Mission : UI design et direction visuelle."],
-      "media": "maloya-video", "tags": ["musique", "responsive", "vidéo", "UI design"], "featured": true, "order": 5, "slug": "maloya", "href": "/projets/maloya", "projectLayout": "a",
+      "id": "maloya", "eyebrow": "Musique Â· 2026 Â· Concept", "title": "Maloya",
+      "text": ["Une plateforme immersive oÃ¹ vidÃ©os, concerts et univers visuel trouvent la mÃªme scÃ¨ne.", "Mission : UI design et direction visuelle."],
+      "media": "maloya-video", "tags": ["musique", "responsive", "vidÃ©o", "UI design"], "featured": true, "order": 5, "slug": "maloya", "href": "/projets/maloya", "projectLayout": "a",
       "links": [{ "label": "Voir le site", "href": "https://maloya-concept.netlify.app", "intent": "navigate" }],
-      "summary": "Un concept de plateforme musicale qui rassemble contenus, tournée et univers visuel dans une expérience pensée pour le mobile.",
-      "description": ["Maloya est un concept digital imaginé pour un groupe de musique souhaitant réunir son univers dans une **plateforme musicale** unique plutôt que de disperser vidéos, réseaux sociaux, dates et contact.", "La **vidéo** joue un rôle central dans la direction visuelle tandis que la structure garde les informations de **tournée** et les points de contact facilement accessibles.", "Le projet explore l’équilibre entre immersion artistique et efficacité d’une **expérience responsive**."],
-      "facts": [{ "label": "Type", "value": "Concept website" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "UI design, direction visuelle" }, { "label": "Focus", "value": "Vidéo, expérience mobile" }],
+      "summary": "Un concept de plateforme musicale qui rassemble contenus, tournÃ©e et univers visuel dans une expÃ©rience pensÃ©e pour le mobile.",
+      "description": ["Maloya est un concept digital imaginÃ© pour un groupe de musique souhaitant rÃ©unir son univers dans une **plateforme musicale** unique plutÃ´t que de disperser vidÃ©os, rÃ©seaux sociaux, dates et contact.", "La **vidÃ©o** joue un rÃ´le central dans la direction visuelle tandis que la structure garde les informations de **tournÃ©e** et les points de contact facilement accessibles.", "Le projet explore lâ€™Ã©quilibre entre immersion artistique et efficacitÃ© dâ€™une **expÃ©rience responsive**."],
+      "facts": [{ "label": "Type", "value": "Concept website" }, { "label": "AnnÃ©e", "value": "2026" }, { "label": "Mission", "value": "UI design, direction visuelle" }, { "label": "Focus", "value": "VidÃ©o, expÃ©rience mobile" }],
       "gallery": ["maloya-tablet", "maloya-mobile"],
       "seo": {
         "title": "Maloya | Concept de site pour groupe de musique | Chow Studio",
-        "description": "Concept de plateforme musicale immersive : vidéo, dates, contenus et expérience mobile réunis dans une direction digitale par Chow Studio.",
-        "image": "/assets/photos/work/maloya/tablet_mockup.jpg"
+        "description": "Concept de plateforme musicale immersive : vidÃ©o, dates, contenus et expÃ©rience mobile rÃ©unis dans une direction digitale par Chow Studio.",
+        "image": "maloya-tablet"
       }
     },
     {
-      "id": "ravine-branding", "eyebrow": "Identité visuelle · 2023", "title": "Ravine",
-      "text": ["Un système graphique sensible, décliné du papier à l’écran sans perdre son accent.", "Mission : direction artistique."],
-      "media": "ravine-business-card", "tags": ["identité visuelle", "branding", "print"], "featured": false, "order": 6, "slug": "ravine-branding", "href": "/projets/ravine-branding", "projectLayout": "b",
-      "summary": "Un univers cohérent construit autour d’un nom, d’un logo, d’une palette et d’une direction typographique capables de vivre sur plusieurs supports.",
-      "description": ["Ravine développe une identité conçue comme un **système** plutôt que comme un logo isolé.", "La direction artistique organise les relations entre signe, **typographie, couleur et image** afin que l’identité conserve son caractère du **print au digital**.", "Les déclinaisons montrent comment quelques règles suffisamment solides peuvent produire de la variété sans perdre la reconnaissance."],
-      "facts": [{ "label": "Type", "value": "Identité visuelle" }, { "label": "Année", "value": "2023" }, { "label": "Mission", "value": "Direction artistique" }, { "label": "Focus", "value": "Print, système graphique" }],
+      "id": "ravine-branding", "eyebrow": "IdentitÃ© visuelle Â· 2023", "title": "Ravine",
+      "text": ["Un systÃ¨me graphique sensible, dÃ©clinÃ© du papier Ã  lâ€™Ã©cran sans perdre son accent.", "Mission : direction artistique."],
+      "media": "ravine-business-card", "tags": ["identitÃ© visuelle", "branding", "print"], "featured": false, "order": 6, "slug": "ravine-branding", "href": "/projets/ravine-branding", "projectLayout": "b",
+      "summary": "Un univers cohÃ©rent construit autour dâ€™un nom, dâ€™un logo, dâ€™une palette et dâ€™une direction typographique capables de vivre sur plusieurs supports.",
+      "description": ["Ravine dÃ©veloppe une identitÃ© conÃ§ue comme un **systÃ¨me** plutÃ´t que comme un logo isolÃ©.", "La direction artistique organise les relations entre signe, **typographie, couleur et image** afin que lâ€™identitÃ© conserve son caractÃ¨re du **print au digital**.", "Les dÃ©clinaisons montrent comment quelques rÃ¨gles suffisamment solides peuvent produire de la variÃ©tÃ© sans perdre la reconnaissance."],
+      "facts": [{ "label": "Type", "value": "IdentitÃ© visuelle" }, { "label": "AnnÃ©e", "value": "2023" }, { "label": "Mission", "value": "Direction artistique" }, { "label": "Focus", "value": "Print, systÃ¨me graphique" }],
       "gallery": ["ravine-flyer", "ravine-textile", "ravine-homepage"],
       "seo": {
-        "title": "Ravine | Identité visuelle | Chow Studio",
-        "description": "Étude de cas d’identité visuelle : logo, typographie, palette et déclinaisons print et digitales conçues comme un système cohérent.",
-        "image": "/assets/photos/work/ravine/ravine_business card.jpg"
+        "title": "Ravine | IdentitÃ© visuelle | Chow Studio",
+        "description": "Ã‰tude de cas dâ€™identitÃ© visuelle : logo, typographie, palette et dÃ©clinaisons print et digitales conÃ§ues comme un systÃ¨me cohÃ©rent.",
+        "image": "ravine-business-card"
       }
     },
     {
-      "id": "ravine-web", "eyebrow": "Éditorial digital · La Réunion · 2024", "title": "Ravine | Web",
-      "text": ["Une exploration web inspirée par les paysages et les récits de La Réunion, entre structure et immersion.", "Mission : direction visuelle et frontend."],
-      "media": "ravine-laptop", "tags": ["web design", "éditorial", "La Réunion", "frontend"], "featured": false, "order": 7, "slug": "ravine-web", "href": "/projets/ravine-web", "projectLayout": "a",
-      "summary": "Une exploration éditoriale où structure de contenu, direction artistique et frontend construisent une lecture contemporaine de La Réunion.",
-      "description": ["Ravine transpose l’univers du projet dans une expérience digitale construite autour des **paysages**, des **récits** et des contrastes de La Réunion.", "Le travail porte autant sur l’ordre du contenu que sur sa mise en scène : l’**immersion** ne remplace jamais la lecture.", "La réalisation **frontend** prolonge cette direction en maintenant le rythme et la hiérarchie sur les différents formats d’écran."],
-      "facts": [{ "label": "Type", "value": "Site web éditorial" }, { "label": "Année", "value": "2024" }, { "label": "Mission", "value": "Direction visuelle, frontend" }, { "label": "Focus", "value": "Storytelling, immersion" }],
+      "id": "ravine-web", "eyebrow": "Ã‰ditorial digital Â· La RÃ©union Â· 2024", "title": "Ravine | Web",
+      "text": ["Une exploration web inspirÃ©e par les paysages et les rÃ©cits de La RÃ©union, entre structure et immersion.", "Mission : direction visuelle et frontend."],
+      "media": "ravine-laptop", "tags": ["web design", "Ã©ditorial", "La RÃ©union", "frontend"], "featured": false, "order": 7, "slug": "ravine-web", "href": "/projets/ravine-web", "projectLayout": "a",
+      "summary": "Une exploration Ã©ditoriale oÃ¹ structure de contenu, direction artistique et frontend construisent une lecture contemporaine de La RÃ©union.",
+      "description": ["Ravine transpose lâ€™univers du projet dans une expÃ©rience digitale construite autour des **paysages**, des **rÃ©cits** et des contrastes de La RÃ©union.", "Le travail porte autant sur lâ€™ordre du contenu que sur sa mise en scÃ¨ne : lâ€™**immersion** ne remplace jamais la lecture.", "La rÃ©alisation **frontend** prolonge cette direction en maintenant le rythme et la hiÃ©rarchie sur les diffÃ©rents formats dâ€™Ã©cran."],
+      "facts": [{ "label": "Type", "value": "Site web Ã©ditorial" }, { "label": "AnnÃ©e", "value": "2024" }, { "label": "Mission", "value": "Direction visuelle, frontend" }, { "label": "Focus", "value": "Storytelling, immersion" }],
       "gallery": ["ravine-desktop"],
       "seo": {
-        "title": "Ravine | Web design éditorial | Chow Studio",
-        "description": "Exploration web éditoriale autour de La Réunion : storytelling, direction artistique et développement frontend par Chow Studio.",
-        "image": "/assets/photos/work/ravine/ravine_laptop.jpg"
+        "title": "Ravine | Web design Ã©ditorial | Chow Studio",
+        "description": "Exploration web Ã©ditoriale autour de La RÃ©union : storytelling, direction artistique et dÃ©veloppement frontend par Chow Studio.",
+        "image": "ravine-laptop"
       }
     },
     {
-      "id": "randorunoi", "eyebrow": "Trail & territoire · La Réunion · 2025", "title": "RandoRunOi",
-      "text": ["Une série d’affiches ancrée dans les reliefs réunionnais.", "Mission : direction visuelle et print."],
-      "media": "randorun-poster", "tags": ["affiche", "print", "sport", "La Réunion"], "featured": false, "order": 8, "slug": "randorunoi", "href": "/projets/randorunoi", "projectLayout": "b",
+      "id": "randorunoi", "eyebrow": "Trail & territoire Â· La RÃ©union Â· 2025", "title": "RandoRunOi",
+      "text": ["Une sÃ©rie dâ€™affiches ancrÃ©e dans les reliefs rÃ©unionnais.", "Mission : direction visuelle et print."],
+      "media": "randorun-poster", "tags": ["affiche", "print", "sport", "La RÃ©union"], "featured": false, "order": 8, "slug": "randorunoi", "href": "/projets/randorunoi", "projectLayout": "b",
       "links": [{ "label": "Voir le site", "href": "https://www.randorunoi.com/", "intent": "navigate" }],
-      "summary": "Cinq affiches qui donnent une continuité visuelle aux événements tout en laissant chaque paysage réunionnais identifier sa course.",
-      "description": ["RandoRunOi est une association de trail basée à La Réunion pour laquelle une série de **cinq affiches** a été imaginée.", "Les photographies de **paysages** ancrent chaque événement dans son territoire. Le **système graphique** crée suffisamment de continuité pour identifier la série sans uniformiser les courses.", "Le projet montre comment une direction visuelle simple peut renforcer simultanément reconnaissance, information et **caractère local**."],
-      "facts": [{ "label": "Type", "value": "Série d’affiches" }, { "label": "Lieu", "value": "La Réunion" }, { "label": "Année", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, print" }],
+      "summary": "Cinq affiches qui donnent une continuitÃ© visuelle aux Ã©vÃ©nements tout en laissant chaque paysage rÃ©unionnais identifier sa course.",
+      "description": ["RandoRunOi est une association de trail basÃ©e Ã  La RÃ©union pour laquelle une sÃ©rie de **cinq affiches** a Ã©tÃ© imaginÃ©e.", "Les photographies de **paysages** ancrent chaque Ã©vÃ©nement dans son territoire. Le **systÃ¨me graphique** crÃ©e suffisamment de continuitÃ© pour identifier la sÃ©rie sans uniformiser les courses.", "Le projet montre comment une direction visuelle simple peut renforcer simultanÃ©ment reconnaissance, information et **caractÃ¨re local**."],
+      "facts": [{ "label": "Type", "value": "SÃ©rie dâ€™affiches" }, { "label": "Lieu", "value": "La RÃ©union" }, { "label": "AnnÃ©e", "value": "2025" }, { "label": "Mission", "value": "Direction visuelle, print" }],
       "gallery": ["randorun-cilaos", "randorun-cimasa", "randorun-mafate", "randorun-raid974", "randorun-masters"],
-      "seo": {"title": "RandoRunOi | Direction visuelle trail | Chow Studio", "description": "Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.", "image": "/assets/photos/work/randorun/randorun__poster.jpg"}
+      "seo": {"title": "RandoRunOi | Direction visuelle trail | Chow Studio", "description": "SÃ©rie de cinq affiches pour des Ã©vÃ©nements de trail Ã  La RÃ©union : direction visuelle, territoire et cohÃ©rence de campagne par Chow Studio.", "image": "randorun-poster"}
     },
     {
-      "id": "structure", "eyebrow": "Architecture · 2026 · Concept", "title": "Structure", "text": ["Une exploration rationnelle : grille nette, hiérarchie franche, navigation directe."],
+      "id": "structure", "eyebrow": "Architecture Â· 2026 Â· Concept", "title": "Structure", "text": ["Une exploration rationnelle : grille nette, hiÃ©rarchie franche, navigation directe."],
       "media": "structure-mobile", "tags": ["architecture", "web design", "UI design"], "featured": false, "order": 9, "slug": "structure", "href": "/projets/structure", "projectLayout": "a",
-      "summary": "Un concept de site d’architecture où la grille et la hiérarchie rendent l’information immédiatement lisible.",
-      "description": ["Structure explore une approche systémique du site de studio d’architecture.", "La **grille**, la **hiérarchie** et une **navigation directe** donnent la priorité aux projets et aux informations essentielles plutôt qu’aux effets d’interface.", "Le concept sert de laboratoire pour une présence digitale rationnelle, **modulaire** et facile à parcourir."],
-      "facts": [{ "label": "Type", "value": "Concept de site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Grille, hiérarchie" }],
+      "summary": "Un concept de site dâ€™architecture oÃ¹ la grille et la hiÃ©rarchie rendent lâ€™information immÃ©diatement lisible.",
+      "description": ["Structure explore une approche systÃ©mique du site de studio dâ€™architecture.", "La **grille**, la **hiÃ©rarchie** et une **navigation directe** donnent la prioritÃ© aux projets et aux informations essentielles plutÃ´t quâ€™aux effets dâ€™interface.", "Le concept sert de laboratoire pour une prÃ©sence digitale rationnelle, **modulaire** et facile Ã  parcourir."],
+      "facts": [{ "label": "Type", "value": "Concept de site dâ€™architecture" }, { "label": "AnnÃ©e", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Grille, hiÃ©rarchie" }],
       "gallery": ["structure-laptop", "structure-mobile-multi"],
       "seo": {
-        "title": "Structure | Concept de site d’architecture | Chow Studio",
-        "description": "Concept web pour studio d’architecture : grille, hiérarchie et navigation directe explorées par Chow Studio.",
-        "image": "/assets/photos/work/structure/structure__laptop.jpg"
+        "title": "Structure | Concept de site dâ€™architecture | Chow Studio",
+        "description": "Concept web pour studio dâ€™architecture : grille, hiÃ©rarchie et navigation directe explorÃ©es par Chow Studio.",
+        "image": "structure-laptop"
       }
     },
     {
-      "id": "contraste", "eyebrow": "Architecture · 2026 · Concept", "title": "Contraste", "text": ["Une interface sobre et mesurée, construite autour des espaces blancs et du rythme des projets."],
+      "id": "contraste", "eyebrow": "Architecture Â· 2026 Â· Concept", "title": "Contraste", "text": ["Une interface sobre et mesurÃ©e, construite autour des espaces blancs et du rythme des projets."],
       "media": "contraste-laptop", "tags": ["architecture", "web design", "minimal"], "featured": false, "order": 10, "slug": "contraste", "href": "/projets/contraste", "projectLayout": "b",
-      "summary": "Une exploration web qui utilise espace, contraste et hiérarchie pour mettre les réalisations d’un cabinet d’architecture au premier plan.",
-      "description": ["Contraste est un concept web pensé pour un cabinet d’architecture contemporain à l’expression sobre.", "L’interface travaille surtout la hiérarchie visuelle, les **espaces blancs** et le **rythme** entre projets afin de créer une lecture élégante sans ajouter d’ornement inutile.", "Le résultat explore une autre manière de donner du caractère à une présence digitale : par la **composition** plutôt que par l’accumulation."],
-      "facts": [{ "label": "Type", "value": "Concept de site d’architecture" }, { "label": "Année", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Contraste, minimalisme" }],
+      "summary": "Une exploration web qui utilise espace, contraste et hiÃ©rarchie pour mettre les rÃ©alisations dâ€™un cabinet dâ€™architecture au premier plan.",
+      "description": ["Contraste est un concept web pensÃ© pour un cabinet dâ€™architecture contemporain Ã  lâ€™expression sobre.", "Lâ€™interface travaille surtout la hiÃ©rarchie visuelle, les **espaces blancs** et le **rythme** entre projets afin de crÃ©er une lecture Ã©lÃ©gante sans ajouter dâ€™ornement inutile.", "Le rÃ©sultat explore une autre maniÃ¨re de donner du caractÃ¨re Ã  une prÃ©sence digitale : par la **composition** plutÃ´t que par lâ€™accumulation."],
+      "facts": [{ "label": "Type", "value": "Concept de site dâ€™architecture" }, { "label": "AnnÃ©e", "value": "2026" }, { "label": "Mission", "value": "Direction visuelle, UI design" }, { "label": "Focus", "value": "Contraste, minimalisme" }],
       "gallery": ["contraste-laptop", "contraste-mobile"],
       "seo": {
         "title": "Contraste | Concept web architecture | Chow Studio",
-        "description": "Concept de site pour cabinet d’architecture : espaces blancs, hiérarchie des projets et direction visuelle sobre par Chow Studio.",
-        "image": "/assets/photos/work/contraste/contraste__laptop.jpg"
+        "description": "Concept de site pour cabinet dâ€™architecture : espaces blancs, hiÃ©rarchie des projets et direction visuelle sobre par Chow Studio.",
+        "image": "contraste-laptop"
       }
     }
   ],
   "services": [
     {
       "id": "site-vitrine",
-      "eyebrow": "01 · Créer",
+      "eyebrow": "01 Â· CrÃ©er",
       "title": "Site web sur mesure",
       "text": [
-        "Pour présenter clairement une activité, structurer les contenus et construire une expérience responsive qui mène naturellement vers le bon point de contact.",
-        "À partir de 800 € · généralement 2 à 4 semaines."
+        "Pour prÃ©senter clairement une activitÃ©, structurer les contenus et construire une expÃ©rience responsive qui mÃ¨ne naturellement vers le bon point de contact.",
+        "Ã€ partir de 800 â‚¬ Â· gÃ©nÃ©ralement 2 Ã  4 semaines."
       ],
       "featured": true,
       "order": 1
     },
     {
       "id": "branding",
-      "eyebrow": "02 · Construire",
-      "title": "Identité visuelle",
+      "eyebrow": "02 Â· Construire",
+      "title": "IdentitÃ© visuelle",
       "text": [
-        "Pour poser une direction reconnaissable et cohérente : logo, palette, typographies et principes suffisamment solides pour fonctionner du web aux supports de communication.",
-        "À partir de 500 € · généralement 2 à 4 semaines."
+        "Pour poser une direction reconnaissable et cohÃ©rente : logo, palette, typographies et principes suffisamment solides pour fonctionner du web aux supports de communication.",
+        "Ã€ partir de 500 â‚¬ Â· gÃ©nÃ©ralement 2 Ã  4 semaines."
       ],
       "featured": true,
       "order": 2
     },
     {
       "id": "refonte",
-      "eyebrow": "03 · Faire évoluer",
+      "eyebrow": "03 Â· Faire Ã©voluer",
       "title": "Refonte & clarification",
       "text": [
-        "Pour garder ce qui fonctionne, remettre de l’ordre dans les contenus et reconstruire une présence plus lisible, crédible et simple à faire évoluer.",
-        "À partir de 900 € · généralement 2 à 6 semaines."
+        "Pour garder ce qui fonctionne, remettre de lâ€™ordre dans les contenus et reconstruire une prÃ©sence plus lisible, crÃ©dible et simple Ã  faire Ã©voluer.",
+        "Ã€ partir de 900 â‚¬ Â· gÃ©nÃ©ralement 2 Ã  6 semaines."
       ],
       "featured": true,
       "order": 3
@@ -203,7 +203,7 @@
       "id": "clarify",
       "title": "Clarifier",
       "text": [
-        "Comprendre le contexte, le public, les objectifs, les contraintes et ce qui doit réellement changer avant de dessiner une réponse."
+        "Comprendre le contexte, le public, les objectifs, les contraintes et ce qui doit rÃ©ellement changer avant de dessiner une rÃ©ponse."
       ],
       "order": 1
     },
@@ -211,15 +211,15 @@
       "id": "structure",
       "title": "Structurer",
       "text": [
-        "Donner au contenu son ordre et définir les parcours avant de travailler la forme. La hiérarchie devient une décision de projet, pas une correction de dernière minute."
+        "Donner au contenu son ordre et dÃ©finir les parcours avant de travailler la forme. La hiÃ©rarchie devient une dÃ©cision de projet, pas une correction de derniÃ¨re minute."
       ],
       "order": 2
     },
     {
       "id": "design-build",
-      "title": "Concevoir & réaliser",
+      "title": "Concevoir & rÃ©aliser",
       "text": [
-        "Construire la direction visuelle et l’expérience en gardant responsive, accessibilité et faisabilité dans la même conversation."
+        "Construire la direction visuelle et lâ€™expÃ©rience en gardant responsive, accessibilitÃ© et faisabilitÃ© dans la mÃªme conversation."
       ],
       "order": 3
     },
@@ -227,7 +227,7 @@
       "id": "deliver",
       "title": "Livrer & transmettre",
       "text": [
-        "Mettre en ligne un projet propre, documenté et suffisamment solide pour évoluer sans dépendre d’une reconstruction à chaque changement."
+        "Mettre en ligne un projet propre, documentÃ© et suffisamment solide pour Ã©voluer sans dÃ©pendre dâ€™une reconstruction Ã  chaque changement."
       ],
       "order": 4
     }
@@ -236,9 +236,9 @@
     {
       "id": "site-web-clair",
       "eyebrow": "UX & contenu",
-      "title": "Avant de redesign un site, clarifier ce qu’il doit faire",
+      "title": "Avant de redesign un site, clarifier ce quâ€™il doit faire",
       "text": [
-        "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle pour construire un site plus clair et plus utile."
+        "Navigation, hiÃ©rarchie et contenu : les questions Ã  rÃ©soudre avant une refonte visuelle pour construire un site plus clair et plus utile."
       ],
       "featured": true,
       "order": 1,
@@ -246,10 +246,10 @@
     },
     {
       "id": "identite-visuelle-systeme",
-      "eyebrow": "Identité visuelle",
-      "title": "Une identité utile ne s’arrête pas au logo",
+      "eyebrow": "IdentitÃ© visuelle",
+      "title": "Une identitÃ© utile ne sâ€™arrÃªte pas au logo",
       "text": [
-        "Logo, typographie, couleur, image et règles d’usage : pourquoi une identité visuelle utile doit fonctionner comme un système."
+        "Logo, typographie, couleur, image et rÃ¨gles dâ€™usage : pourquoi une identitÃ© visuelle utile doit fonctionner comme un systÃ¨me."
       ],
       "featured": true,
       "order": 2,
@@ -258,9 +258,9 @@
     {
       "id": "design-et-developpement",
       "eyebrow": "Design & frontend",
-      "title": "Quand le design connaît déjà la manière dont il sera construit",
+      "title": "Quand le design connaÃ®t dÃ©jÃ  la maniÃ¨re dont il sera construit",
       "text": [
-        "Ce que change une approche où design, UX et développement frontend sont pensés ensemble dès le début d’un projet web."
+        "Ce que change une approche oÃ¹ design, UX et dÃ©veloppement frontend sont pensÃ©s ensemble dÃ¨s le dÃ©but dâ€™un projet web."
       ],
       "featured": true,
       "order": 3,
@@ -273,7 +273,7 @@
       "title": "Voir le travail",
       "links": [
         {
-          "label": "Découvrir les projets",
+          "label": "DÃ©couvrir les projets",
           "href": "/projets",
           "intent": "navigate"
         }
@@ -301,7 +301,7 @@
       "title": "Vous avez un projet ?",
       "links": [
         {
-          "label": "Parler d’un projet",
+          "label": "Parler dâ€™un projet",
           "href": "/contact",
           "intent": "contact"
         }
@@ -317,12 +317,12 @@
   "locations": [
     {
       "id": "studio-paris",
-      "eyebrow": "Studio indépendant",
-      "title": "Paris · La Réunion",
+      "eyebrow": "Studio indÃ©pendant",
+      "title": "Paris Â· La RÃ©union",
       "text": [
-        "Chow Studio travaille entre Paris et La Réunion et accompagne également des projets à distance."
+        "Chow Studio travaille entre Paris et La RÃ©union et accompagne Ã©galement des projets Ã  distance."
       ],
-      "tags": ["Paris", "Île-de-France", "La Réunion", "à distance"],
+      "tags": ["Paris", "ÃŽle-de-France", "La RÃ©union", "Ã  distance"],
       "enabled": true,
       "order": 1
     }
@@ -330,3 +330,4 @@
   "tips": [],
   "quotes": []
 }
+
