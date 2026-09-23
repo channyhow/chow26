@@ -8,6 +8,7 @@ import type { MediaItem } from "@/types/media";
 const SOCIAL_WIDTH = 1200;
 const SOCIAL_HEIGHT = 630;
 const media = mediaData as Record<string, MediaItem>;
+const imageMedia = Object.values(media).filter((item) => item.type === "image");
 
 const ensureMeta = (selector: string, attribute: "name" | "property", key: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -41,8 +42,15 @@ const socialPosition = (item?: MediaItem) => {
   return "center";
 };
 
+const resolveMediaImage = (ref?: string) => {
+  if (!ref) return undefined;
+  const direct = media[ref];
+  if (direct?.type === "image") return direct;
+  return imageMedia.find((item) => item.type === "image" && item.src === ref);
+};
+
 const resolveSocialImage = (ref?: string) => {
-  const item = ref ? media[ref] : undefined;
+  const item = resolveMediaImage(ref);
   if (!item || item.type !== "image") return null;
 
   const params = new URLSearchParams({
