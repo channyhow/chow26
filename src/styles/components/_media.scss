@@ -19,11 +19,8 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.media[data-media-type="mux"] .media__asset {
-  --media-object-fit: cover;
+  object-fit: var(--media-object-fit, cover);
+  object-position: var(--media-object-position, center);
 }
 
 .media__caption {
