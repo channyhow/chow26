@@ -30,6 +30,31 @@ export type MediaRef = string;
 export type GridTrackPlacement = { start?: number; span?: number; row?: number; rowSpan?: number; align?: "start" | "center" | "end" | "stretch"; justify?: "start" | "center" | "end" | "stretch" };
 export type GridPlacement = { mobile?: GridTrackPlacement; tablet?: GridTrackPlacement; desktop?: GridTrackPlacement };
 
+export type Seo = {
+  title: string;
+  description?: string;
+  /** Media registry id. */
+  image?: MediaRef;
+  /** Optional contextual override; media.alt remains the source default. */
+  imageAlt?: string;
+  canonical?: string;
+  robots?: { index?: boolean; follow?: boolean };
+};
+
+export type SiteSeo = Seo & {
+  siteType: "website";
+  organizationType: "ProfessionalService";
+  twitterCard: "summary_large_image";
+  themeColor: string;
+  areaServed?: { kind: "city" | "region" | "country"; name: string }[];
+  knowsAbout?: string[];
+  offerCatalogName?: string;
+  services?: { name: string; description: string }[];
+  projectLocations?: string[];
+};
+
+export type PageSeo = Seo;
+
 export type ContentItem = { id?: string; eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | string[]; media?: MediaRef | MediaRef[]; links?: Action[]; meta?: MetaItem[]; tags?: string[]; category?: string; group?: string; href?: string; enabled?: boolean; featured?: boolean; order?: number; slug?: string; projectLayout?: ProjectLayout; grid?: GridPlacement; summary?: string; description?: string[]; facts?: MetaItem[]; gallery?: MediaRef[]; seo?: PageSeo };
 export type ProjectRecord = ContentItem & { id: string; title: string; text: string[]; media: MediaRef; href: string; slug: string; summary: string; description: string[]; facts: MetaItem[]; gallery?: MediaRef[]; links?: Action[]; seo: PageSeo; projectLayout?: ProjectLayout };
 export type SectionHeader = { eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | string[]; links?: Action[]; media?: MediaRef | MediaRef[]; meta?: MetaItem[] };
@@ -42,16 +67,5 @@ export type PanelBlock = BlockRef | SectionBlock;
 export type PanelLane = { id: string; behavior?: PanelBehavior; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor; blocks: PanelBlock[] };
 export type SectionGroup = { id: string; type: "Group"; layout?: GroupLayout; panel?: { mode?: PanelMode; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor }; panels?: PanelLane[]; motion?: { level: MotionLevel; preset?: "panel" | "media-reveal" | "sticky-story" | "horizontal-rail" }; blocks?: PanelBlock[] };
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;
-
-export type PageSeo = {
-  title: string;
-  description?: string;
-  /** Media registry id. Legacy absolute/root-relative paths remain supported during migration. */
-  image?: MediaRef;
-  /** Legacy override; media.alt is preferred when image resolves through the media registry. */
-  imageAlt?: string;
-  canonical?: string;
-  robots?: { index?: boolean; follow?: boolean };
-};
 
 export type PageData = { id: string; slug: string; variant?: StyleVariant; seo?: PageSeo; blocks: PageBlock[] };
