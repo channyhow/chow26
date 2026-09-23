@@ -12,6 +12,7 @@ export type MediaProps = {
   sizes?: string;
   autoPlay?: boolean;
   fit?: MediaFit;
+  position?: string;
 };
 
 export function Media({
@@ -21,9 +22,10 @@ export function Media({
   sizes = "100vw",
   autoPlay = true,
   fit,
+  position,
 }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const position = getMediaObjectPosition(media);
+  const resolvedPosition = position ?? getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
   const mediaStyle = media.width && media.height
     ? ({ "--media-ratio": `${media.width} / ${media.height}` } as CSSProperties)
@@ -73,7 +75,7 @@ export function Media({
         priority={priority}
         autoPlay={autoPlay}
         fit={resolvedFit}
-        position={position}
+        position={resolvedPosition}
       />
     );
   } else if (media.type === "video") {
@@ -89,7 +91,7 @@ export function Media({
         playsInline
         loop
         preload={priority ? "metadata" : "none"}
-        style={{ objectFit: resolvedFit, objectPosition: position }}
+        style={{ objectFit: resolvedFit, objectPosition: resolvedPosition }}
       />
     );
   } else {
@@ -111,7 +113,7 @@ export function Media({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        style={{ objectFit: resolvedFit, objectPosition: position }}
+        style={{ objectFit: resolvedFit, objectPosition: resolvedPosition }}
       />
     );
   }
