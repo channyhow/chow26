@@ -33,10 +33,7 @@ export function Card({
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
-  const cardMedia = isProject && media?.type === "mux"
-    ? { ...media, focalPoint: { x: 50, y: 50 } }
-    : media;
-  const mediaOrientation = getMediaOrientation(cardMedia ?? undefined);
+  const mediaOrientation = getMediaOrientation(media ?? undefined);
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject
     ? {
@@ -55,13 +52,13 @@ export function Card({
 
   const content = (
     <>
-      {cardMedia ? (
+      {media ? (
         <div
           className="card__mediaWrap"
-          data-media-type={cardMedia.type}
+          data-media-type={media.type}
           data-orientation={mediaOrientation}
         >
-          <Media media={cardMedia} className="card__media" />
+          <Media media={media} className="card__media" />
         </div>
       ) : null}
       <TextBlock content={visibleItem} titleAs="h3" className="card__body" />
