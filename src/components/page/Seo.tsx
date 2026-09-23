@@ -67,7 +67,8 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     const imageRef = seo?.image ?? defaults.image;
     const socialImage = resolveSocialImage(imageRef);
     const defaultMedia = media[defaults.image];
-    const image = socialImage?.url ?? absoluteUrl(defaultMedia?.src ?? "/");
+    const defaultImageSrc = defaultMedia?.type === "image" ? defaultMedia.src : undefined;
+    const image = socialImage?.url ?? absoluteUrl(defaultImageSrc ?? "/");
     const imageAlt = seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt;
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
 
