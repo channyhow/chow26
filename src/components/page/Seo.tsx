@@ -31,7 +31,9 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     const title = seo?.title ?? defaults.defaultTitle;
     const description = seo?.description ?? defaults.defaultDescription;
     const canonical = seo?.canonical ?? absoluteUrl(slug === "/" ? "/" : slug);
-    const image = absoluteUrl(seo?.image ?? defaults.defaultImage);
+    const media = seo?.media;
+    const image = absoluteUrl(media?.src ?? seo?.image ?? defaults.defaultImage);
+    const imageAlt = media?.alt ?? defaults.imageAlt;
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
 
     document.documentElement.lang = siteData.site.defaultLocale;
@@ -43,10 +45,17 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     ensureMeta('meta[property="og:description"]', "property", "og:description").content = description;
     ensureMeta('meta[property="og:url"]', "property", "og:url").content = canonical;
     ensureMeta('meta[property="og:image"]', "property", "og:image").content = image;
-    ensureMeta('meta[property="og:image:alt"]', "property", "og:image:alt").content = defaults.imageAlt;
+    ensureMeta('meta[property="og:image:secure_url"]', "property", "og:image:secure_url").content = image;
+    ensureMeta('meta[property="og:image:alt"]', "property", "og:image:alt").content = imageAlt;
+
+    if (media?.width) ensureMeta('meta[property="og:image:width"]', "property", "og:image:width").content = String(media.width);
+    if (media?.height) ensureMeta('meta[property="og:image:height"]', "property", "og:image:height").content = String(media.height);
+    if (media?.type) ensureMeta('meta[property="og:image:type"]', "property", "og:image:type").content = media.type;
+
     ensureMeta('meta[name="twitter:title"]', "name", "twitter:title").content = title;
     ensureMeta('meta[name="twitter:description"]', "name", "twitter:description").content = description;
     ensureMeta('meta[name="twitter:image"]', "name", "twitter:image").content = image;
+    ensureMeta('meta[name="twitter:image:alt"]', "name", "twitter:image:alt").content = imageAlt;
     ensureCanonical().href = canonical;
   }, [seo, slug]);
 
