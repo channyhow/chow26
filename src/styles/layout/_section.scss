@@ -143,6 +143,12 @@
 }
 
 @include tablet-down {
+  /* Responsive content sections always keep a readable vertical inset.
+     Immersive overlays and horizontal-scroll scenes own their own spacing. */
+  .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+    padding-block: max(var(--section-space, #{$section-space}), #{$space-3});
+  }
+
   .section__header,
   .section__header.textBlock,
   .section__body {
