@@ -104,33 +104,27 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
+// Panel behavior is shared across viewports. Content remains naturally sized;
+// only panels that explicitly opt into fixed/stack/cover receive viewport height.
+.sectionGroup__panel[data-panel-behavior="fixed"] {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+}
+
+.sectionGroup__panel[data-panel-behavior="moving"] {
+  position: relative;
+}
+
+.sectionGroup__panel[data-panel-behavior="stack"],
+.sectionGroup__panel[data-panel-behavior="cover"] {
+  position: sticky;
+  top: var(--panel-stack-top, 0);
+  min-height: 100svh;
+}
+
 @include desktop-up {
-  .sectionGroup__panel[data-panel-behavior="fixed"] {
-    position: sticky;
-    top: 0;
-    min-height: 100svh;
-  }
-
-  .sectionGroup__panel[data-panel-behavior="moving"] {
-    position: relative;
-  }
-
-  .sectionGroup__panel[data-panel-behavior="stack"],
-  .sectionGroup__panel[data-panel-behavior="cover"] {
-    position: sticky;
-    top: var(--panel-stack-top, 0);
-    min-height: 100svh;
-  }
-
   .sectionGroup[data-layout="overlap"] > .section + .section {
     margin-top: calc($space-4 * -1);
   }
 }
-
-// @include reduced-motion {
-//   .sectionGroup__panel {
-//     position: relative !important;
-//     top: auto !important;
-//     min-height: 0 !important;
-//   }
-// }
