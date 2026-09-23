@@ -8,7 +8,6 @@ import type { MediaItem } from "@/types/media";
 const SOCIAL_WIDTH = 1200;
 const SOCIAL_HEIGHT = 630;
 const media = mediaData as Record<string, MediaItem>;
-const imageMedia = Object.values(media).filter((item) => item.type === "image");
 
 const ensureMeta = (selector: string, attribute: "name" | "property", key: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -32,8 +31,8 @@ const ensureCanonical = () => {
 
 const absoluteUrl = (value: string) => new URL(value, siteData.site.url).toString();
 
-const socialPosition = (item?: MediaItem) => {
-  const point = item?.focalPoint;
+const socialPosition = (item: MediaItem) => {
+  const point = item.focalPoint;
   if (!point) return "center";
   if (point.y <= 35) return "top";
   if (point.y >= 65) return "bottom";
@@ -42,16 +41,9 @@ const socialPosition = (item?: MediaItem) => {
   return "center";
 };
 
-const resolveMediaImage = (ref?: string) => {
-  if (!ref) return undefined;
-  const direct = media[ref];
-  if (direct?.type === "image") return direct;
-  return imageMedia.find((item) => item.type === "image" && item.src === ref);
-};
-
-const resolveSocialImage = (ref?: string) => {
-  const item = resolveMediaImage(ref);
-  if (!item || item.type !== "image") return null;
+const resolveSocialImage = (ref: string) => {
+  const item = media[ref];
+  if (!item || item.type !== "image" || !item.src) return null;
 
   const params = new URLSearchParams({
     url: item.src,
@@ -63,21 +55,20 @@ const resolveSocialImage = (ref?: string) => {
     q: "85",
   });
 
-  return {
-    url: absoluteUrl(`/.netlify/images?${params.toString()}`),
-    alt: item.alt ?? siteData.site.seo.imageAlt,
-  };
+  return { url: absoluteUrl(`/.netlify/images?${params.toString()}`), alt: item.alt };
 };
 
 export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
   useEffect(() => {
     const defaults = siteData.site.seo;
-    const title = seo?.title ?? defaults.defaultTitle;
-    const description = seo?.description ?? defaults.defaultDescription;
+    const title = seo?.title ?? defaults.title;
+    const description = seo?.description ?? defaults.description;
     const canonical = seo?.canonical ?? absoluteUrl(slug === "/" ? "/" : slug);
-    const socialImage = resolveSocialImage(seo?.image);
-    const image = socialImage?.url ?? absoluteUrl(seo?.image ?? defaults.defaultImage);
-    const imageAlt = socialImage?.alt ?? seo?.imageAlt ?? defaults.imageAlt;
+    const imageRef = seo?.image ?? defaults.image;
+    const socialImage = resolveSocialImage(imageRef);
+    const defaultMedia = media[defaults.image];
+    const image = socialImage?.url ?? absoluteUrl(defaultMedia?.src ?? "/");
+    const imageAlt = seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt;
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
 
     document.documentElement.lang = siteData.site.defaultLocale;
