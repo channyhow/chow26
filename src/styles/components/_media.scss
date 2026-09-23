@@ -20,10 +20,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+// Portrait assets keep their full composition when placed inside a card frame.
+// The frame owns the aspect ratio; the asset stays centered regardless of source type.
+.card__media .media[data-orientation="portrait"] .media__asset {
+  object-fit: contain;
+  object-position: center;
 }
 
 .media[data-media-type="mux"] .media__asset {
-  --media-object-fit: cover;
+  --media-object-fit: inherit;
+}
+
+.media[data-media-type="mux"][data-orientation="portrait"] .media__asset {
+  --media-object-fit: contain;
 }
 
 .media__caption {
