@@ -59,9 +59,9 @@
   p { margin: 0; }
 }
 
-@include reduced-motion {
-  .accordion__content,
-  .accordion__summary::after {
-    transition: none;
-  }
-}
+// @include reduced-motion {
+//   .accordion__content,
+//   .accordion__summary::after {
+//     transition: none;
+//   }
+// }

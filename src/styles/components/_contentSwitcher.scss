@@ -158,13 +158,13 @@
   }
 }
 
-@include reduced-motion {
-  .contentSwitcher--detailed {
-    height: auto;
-  }
+// @include reduced-motion {
+//   .contentSwitcher--detailed {
+//     height: auto;
+//   }
 
-  .contentSwitcher--detailed .contentSwitcher__sticky {
-    position: static;
-    height: auto;
-  }
-}
+//   .contentSwitcher--detailed .contentSwitcher__sticky {
+//     position: static;
+//     height: auto;
+//   }
+// }

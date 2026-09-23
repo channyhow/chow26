@@ -55,16 +55,16 @@
   }
 }
 
-@include reduced-motion {
-  .page[data-footer-reveal="true"] > .page__content {
-    margin-bottom: 0;
-    box-shadow: none;
-  }
+// @include reduced-motion {
+//   .page[data-footer-reveal="true"] > .page__content {
+//     margin-bottom: 0;
+//     box-shadow: none;
+//   }
 
-  .page[data-footer-reveal="true"] > .page__footer {
-    position: relative;
-    height: auto;
-    overflow: visible;
-    overscroll-behavior: auto;
-  }
-}
+//   .page[data-footer-reveal="true"] > .page__footer {
+//     position: relative;
+//     height: auto;
+//     overflow: visible;
+//     overscroll-behavior: auto;
+//   }
+// }

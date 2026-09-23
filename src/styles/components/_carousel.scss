@@ -138,24 +138,24 @@
   }
 }
 
-@include reduced-motion {
-  .carousel__control,
-  .carousel__arrow {
-    transition: none;
-  }
+// @include reduced-motion {
+//   .carousel__control,
+//   .carousel__arrow {
+//     transition: none;
+//   }
 
-  .carousel__control {
-    &:hover,
-    &:active {
-      transform: none;
-    }
-  }
+//   .carousel__control {
+//     &:hover,
+//     &:active {
+//       transform: none;
+//     }
+//   }
 
-  .carousel[data-can-next="true"]::after {
-    animation: none;
-    transform: translateY(-50%);
-  }
-}
+//   .carousel[data-can-next="true"]::after {
+//     animation: none;
+//     transform: translateY(-50%);
+//   }
+// }
 
 @include tablet-up {
   .carousel__track {

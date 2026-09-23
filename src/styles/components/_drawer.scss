@@ -177,32 +177,32 @@
 
 @keyframes drawer-panel-fade-in { to { opacity: 1; } }
 
-@include reduced-motion {
-  .drawer__panel { transform: translate3d(0.25rem, 0, 0); }
+// @include reduced-motion {
+//   .drawer__panel { transform: translate3d(0.25rem, 0, 0); }
 
-  .drawer[open] .drawer__dismiss {
-    animation: drawer-backdrop-in $duration-fast $ease-standard both;
-  }
+//   .drawer[open] .drawer__dismiss {
+//     animation: drawer-backdrop-in $duration-fast $ease-standard both;
+//   }
 
-  .drawer[open] .drawer__panel {
-    animation: drawer-panel-in $duration-fast $ease-standard both;
-  }
+//   .drawer[open] .drawer__panel {
+//     animation: drawer-panel-in $duration-fast $ease-standard both;
+//   }
 
-  .drawer[data-view="menu"] .drawer__panel {
-    transform: none;
-  }
+//   .drawer[data-view="menu"] .drawer__panel {
+//     transform: none;
+//   }
 
-  .drawer[data-view="menu"][open] .drawer__nav a {
-    animation-duration: $duration-fast;
-    transform: translate3d(0, 0.2rem, 0);
-  }
+//   .drawer[data-view="menu"][open] .drawer__nav a {
+//     animation-duration: $duration-fast;
+//     transform: translate3d(0, 0.2rem, 0);
+//   }
 
-  .drawer[data-view="menu"][open] .drawer__nav a:nth-child(n) {
-    animation-delay: 0ms;
-  }
+//   .drawer[data-view="menu"][open] .drawer__nav a:nth-child(n) {
+//     animation-delay: 0ms;
+//   }
 
-  @include tablet-down {
-    .drawer__panel { transform: none; }
-    .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
-  }
-}
+//   @include tablet-down {
+//     .drawer__panel { transform: none; }
+//     .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
+//   }
+// }

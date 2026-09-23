@@ -56,12 +56,12 @@
   transform: scaleX(1);
 }
 
-@include reduced-motion {
-  .burgerButton {
-    transition-duration: $duration-fast;
-  }
+// @include reduced-motion {
+//   .burgerButton {
+//     transition-duration: $duration-fast;
+//   }
 
-  .burgerButton__label::after {
-    transition: none;
-  }
-}
+//   .burgerButton__label::after {
+//     transition: none;
+//   }
+// }

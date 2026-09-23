@@ -92,16 +92,16 @@
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
 }
 
-@include reduced-motion {
-  .card .media__asset {
-    transition: none;
-  }
+// @include reduced-motion {
+//   .card .media__asset {
+//     transition: none;
+//   }
 
-  .card:hover .media__asset,
-  .card:focus-within .media__asset {
-    transform: none;
-  }
-}
+//   .card:hover .media__asset,
+//   .card:focus-within .media__asset {
+//     transform: none;
+//   }
+// }
 
 .card[href] {
   color: inherit;

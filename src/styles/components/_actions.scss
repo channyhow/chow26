@@ -107,17 +107,17 @@
   transition: transform $transition-hover;
 }
 
-@include reduced-motion {
-  .actions__link,
-  .actions__label,
-  .actions__arrow {
-    transition: none;
-  }
+// @include reduced-motion {
+//   .actions__link,
+//   .actions__label,
+//   .actions__arrow {
+//     transition: none;
+//   }
 
-  .actions__link:active,
-  .actions__link--primary:hover,
-  .actions__link--arrow:hover .actions__arrow,
-  .actions__link--cta:hover .actions__arrow {
-    transform: none;
-  }
-}
+//   .actions__link:active,
+//   .actions__link--primary:hover,
+//   .actions__link--arrow:hover .actions__arrow,
+//   .actions__link--cta:hover .actions__arrow {
+//     transform: none;
+//   }
+// }

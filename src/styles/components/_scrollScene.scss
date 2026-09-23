@@ -99,12 +99,12 @@
   will-change: transform, opacity;
 }
 
-@include reduced-motion {
-  .scrollScene__shape {
-    transform: none !important;
-  }
+// @include reduced-motion {
+//   .scrollScene__shape {
+//     transform: none !important;
+//   }
 
-  .scrollScene[data-preset="ambient"] .scrollScene__line {
-    transform: none !important;
-  }
-}
+//   .scrollScene[data-preset="ambient"] .scrollScene__line {
+//     transform: none !important;
+//   }
+// }

@@ -178,13 +178,13 @@
   }
 }
 
-@include reduced-motion {
-  .gridReveal__more > span:first-child,
-  .gridReveal__moreIcon {
-    transition: none;
-  }
+// @include reduced-motion {
+//   .gridReveal__more > span:first-child,
+//   .gridReveal__moreIcon {
+//     transition: none;
+//   }
 
-  .gridReveal__more:hover .gridReveal__moreIcon {
-    transform: none;
-  }
-}
+//   .gridReveal__more:hover .gridReveal__moreIcon {
+//     transform: none;
+//   }
+// }

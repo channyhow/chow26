@@ -186,18 +186,18 @@
   }
 }
 
-@include reduced-motion {
-  .skipLink,
-  .header__nav a::after,
-  .header__nav a[data-nav-variant="cta"] span:last-child {
-    transition: none;
-  }
+// @include reduced-motion {
+//   .skipLink,
+//   .header__nav a::after,
+//   .header__nav a[data-nav-variant="cta"] span:last-child {
+//     transition: none;
+//   }
 
-  .header {
-    transition-duration: $duration-fast;
-  }
+//   .header {
+//     transition-duration: $duration-fast;
+//   }
 
-  .header__nav a[data-nav-variant="cta"]:hover span:last-child {
-    transform: none;
-  }
-}
+//   .header__nav a[data-nav-variant="cta"]:hover span:last-child {
+//     transform: none;
+//   }
+// }
