@@ -13,6 +13,7 @@ const [siteData, pages, collections, media] = await Promise.all([
 
 const SOCIAL_WIDTH = 1200;
 const SOCIAL_HEIGHT = 630;
+const imageMedia = Object.values(media).filter((item) => item.type === "image");
 const site = siteData.site;
 const defaults = site.seo;
 const baseUrl = site.url.replace(/\/$/, "");
@@ -42,9 +43,16 @@ const socialPosition = (item) => {
   return "center";
 };
 
+const resolveMediaImage = (ref) => {
+  if (!ref) return undefined;
+  const direct = media[ref];
+  if (direct?.type === "image") return direct;
+  return imageMedia.find((item) => item.src === ref);
+};
+
 const resolveSocialImage = (ref) => {
-  const item = ref ? media[ref] : undefined;
-  if (!item || item.type !== "image") return null;
+  const item = resolveMediaImage(ref);
+  if (!item) return null;
 
   const params = new URLSearchParams({
     url: item.src,
