@@ -58,7 +58,11 @@ export function Card({
           data-media-type={media.type}
           data-orientation={mediaOrientation}
         >
-          <Media media={media} className="card__media" />
+          <Media
+            media={media}
+            className="card__media"
+            position="50% 50%"
+          />
         </div>
       ) : null}
       <TextBlock content={visibleItem} titleAs="h3" className="card__body" />
