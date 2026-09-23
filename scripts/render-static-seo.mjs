@@ -4,12 +4,15 @@ import { dirname, resolve } from "node:path";
 const root = process.cwd();
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 
-const [siteData, pages, collections] = await Promise.all([
+const [siteData, pages, collections, media] = await Promise.all([
   readJson("src/data/site.json"),
   readJson("src/data/pages.json"),
   readJson("src/data/collections.json"),
+  readJson("src/data/media.json"),
 ]);
 
+const SOCIAL_WIDTH = 1200;
+const SOCIAL_HEIGHT = 630;
 const site = siteData.site;
 const defaults = site.seo;
 const baseUrl = site.url.replace(/\/$/, "");
@@ -27,6 +30,36 @@ const removeMeta = (html, attribute, key) => html.replace(new RegExp(`\\s*<meta\
 const replaceCanonical = (html, canonical) => {
   const tag = `<link rel="canonical" href="${escapeAttribute(canonical)}" />`;
   return html.replace(/<link\b(?=[^>]*\brel="canonical")[^>]*>/i, tag);
+};
+
+const socialPosition = (item) => {
+  const point = item?.focalPoint;
+  if (!point) return "center";
+  if (point.y <= 35) return "top";
+  if (point.y >= 65) return "bottom";
+  if (point.x <= 35) return "left";
+  if (point.x >= 65) return "right";
+  return "center";
+};
+
+const resolveSocialImage = (ref) => {
+  const item = ref ? media[ref] : undefined;
+  if (!item || item.type !== "image") return null;
+
+  const params = new URLSearchParams({
+    url: item.src,
+    w: String(SOCIAL_WIDTH),
+    h: String(SOCIAL_HEIGHT),
+    fit: "cover",
+    position: socialPosition(item),
+    fm: "jpg",
+    q: "85",
+  });
+
+  return {
+    url: `${baseUrl}/.netlify/images?${params.toString()}`,
+    alt: item.alt ?? defaults.imageAlt,
+  };
 };
 
 const pageStructuredData = ({ page, canonical, title, description, image }) => {
@@ -57,8 +90,9 @@ for (const page of routes) {
   const title = seo.title ?? defaults.defaultTitle;
   const description = seo.description ?? defaults.defaultDescription;
   const canonical = seo.canonical ?? `${baseUrl}${page.slug}`;
-  const image = new URL(seo.image ?? defaults.defaultImage, `${baseUrl}/`).toString();
-  const imageAlt = seo.imageAlt ?? defaults.imageAlt;
+  const socialImage = resolveSocialImage(seo.image);
+  const image = socialImage?.url ?? new URL(seo.image ?? defaults.defaultImage, `${baseUrl}/`).toString();
+  const imageAlt = socialImage?.alt ?? seo.imageAlt ?? defaults.imageAlt;
   const index = seo.robots?.index !== false;
   const follow = seo.robots?.follow !== false;
   const robots = index ? `${index ? "index" : "noindex"},${follow ? "follow" : "nofollow"},max-image-preview:large,max-snippet:-1,max-video-preview:-1` : `noindex,${follow ? "follow" : "nofollow"}`;
