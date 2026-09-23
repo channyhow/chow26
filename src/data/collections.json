@@ -46,7 +46,13 @@
       "seo": {
         "title": "Mois du Kèr | Logo & identité visuelle | Chow Studio",
         "description": "Le Kèr, imaginé autour du lien à La Réunion, devient le point de départ de l’identité visuelle d’une campagne de prévention cardiovasculaire.",
-        "media": "mdk-seo"
+        "media": {
+          "src": "/assets/photos/work/mois-du-ker/MDK_seo.jpg",
+          "width": 1350,
+          "height": 1080,
+          "type": "image/jpeg",
+          "alt": "Mois du Kèr — identité visuelle de la campagne de prévention cardiovasculaire."
+        }
       }
     },
     {
@@ -61,7 +67,13 @@
       "seo": {
         "title": "Kuro | Web design pour restaurant | Chow Studio",
         "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
-        "media": "kuro-seo"
+        "media": {
+          "src": "/assets/photos/work/kuro/kuro_seo.jpg",
+          "width": 1350,
+          "height": 1080,
+          "type": "image/jpeg",
+          "alt": "Kuro — web design et expérience de réservation pour un restaurant japonais."
+        }
       }
     },
     {
