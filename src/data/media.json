@@ -2,7 +2,7 @@
   "home-cover": {
     "id": "home-cover",
     "type": "image",
-    "src": "/assets/photos/homepage31200.webp",
+    "src": "/assets/photos/work/kuro/mobile_on_grey_block.jpg",
     "alt": "Sélection de projets de Chow Studio.",
     "width": 1600,
     "height": 1067,
@@ -49,12 +49,6 @@
     "alt": "Atmosphere | aperçu mobile du site.",
     "width": 1200,
     "height": 1600
-  },
-  "atmosphere_mobile-vid": {
-    "id": "atmosphere_mobile-vid",
-    "type": "mux",
-    "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
-    "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure."
   },
   "kuro-laptop": {
     "id": "kuro-laptop",
