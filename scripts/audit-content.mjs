@@ -35,8 +35,8 @@ const requiredPublicFiles = [
 const caseStudyPattern = /(?:case[ -]study|étude de cas)/i;
 const nonLegalPages = pages.filter((page) => page.id !== "legal");
 const publicIdentityData = {
-  defaultDescription: site.seo?.defaultDescription,
-  defaultImageAlt: site.seo?.imageAlt,
+  description: site.seo?.description,
+  imageAlt: site.seo?.imageAlt,
   pwaDescription: site.pwa?.description,
   pages: nonLegalPages.map((page) => ({ id: page.id, seo: page.seo })),
 };
@@ -47,11 +47,15 @@ const report = (condition, message) => {
 
 report(!caseStudyPattern.test(JSON.stringify(publicIdentityData)), "case-study wording must be confined to the legal page");
 
-const auditSeo = (seo, context) => {
+const auditSeo = (seo, context, { imageRequired = false } = {}) => {
   report(seo?.title?.trim(), `${context} needs an SEO title`);
   report(seo?.description?.trim(), `${context} needs an SEO description`);
   if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`);
-  if (seo?.image) seoImages.add(seo.image);
+  if (imageRequired) report(seo?.image?.trim(), `${context} needs an SEO image media id`);
+  if (seo?.image) {
+    report(!seo.image.startsWith("/"), `${context} SEO image must be a media id, not a file path`);
+    seoImages.add(seo.image);
+  }
 };
 
 const isExternalHref = (href = "") => /^(?:https?:|mailto:|tel:)/.test(href) || href.startsWith("#");
@@ -94,7 +98,7 @@ report(site?.contact?.address?.city, "site contact city is required");
 report(site?.contact?.address?.country, "site contact country is required");
 report(site?.credits?.name, "site creator name is required");
 report(site?.credits?.studio, "site creator studio is required");
-report(site?.seo?.defaultImage, "a default social image is required");
+auditSeo(site?.seo, "site SEO", { imageRequired: true });
 
 for (const page of pages) {
   report(!pageIds.has(page.id), `duplicate page id "${page.id}"`);
@@ -174,33 +178,12 @@ for (const path of requiredPublicFiles) {
   }
 }
 
-const imageMediaBySrc = new Map(
-  Object.values(media).filter((item) => item.type === "image" && item.src).map((item) => [item.src, item]),
-);
-
 for (const imageRef of seoImages) {
-  const item = media[imageRef] ?? imageMediaBySrc.get(imageRef);
-  if (item) {
-    report(item.type === "image", `SEO image "${imageRef}" must reference image media`);
-    report(item.alt?.trim(), `SEO image "${imageRef}" needs alternative text in media.json`);
-    continue;
-  }
-
-  report(imageRef.startsWith("/"), `SEO image "${imageRef}" must be a media id or root-relative public path`);
-  if (!imageRef.startsWith("/")) continue;
-  try {
-    await access(resolve(root, "public", imageRef.slice(1)));
-  } catch {
-    errors.push(`SEO image points to missing file "${imageRef}"`);
-  }
-}
-
-if (site.seo?.defaultImage?.startsWith("/")) {
-  try {
-    await access(resolve(root, "public", site.seo.defaultImage.slice(1)));
-  } catch {
-    errors.push(`default SEO image points to missing file "${site.seo.defaultImage}"`);
-  }
+  const item = media[imageRef];
+  report(Boolean(item), `SEO image references missing media record "${imageRef}"`);
+  if (!item) continue;
+  report(item.type === "image", `SEO image "${imageRef}" must reference image media`);
+  report(item.alt?.trim(), `SEO image "${imageRef}" needs alternative text in media.json`);
 }
 
 for (const ref of mediaRefs) report(Boolean(media[ref]), `missing media record "${ref}"`);
