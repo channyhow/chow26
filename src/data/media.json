@@ -1,359 +1,45 @@
 {
-  "home-cover": {
-    "id": "home-cover",
-    "type": "image",
-    "src": "/assets/photos/work/kuro/mobile_on_grey_block.jpg",
-    "alt": "Sélection de projets de Chow Studio.",
-    "width": 1600,
-    "height": 1067,
-    "focalPoint": { "x": 50, "y": 50 }
-  },
-  "studio-founder-1": {
-    "id": "studio-founder-1",
-    "type": "image",
-    "src": "/assets/photos/portrait shot.jpg",
-    "alt": "Portrait de Channy How-Choong, designer et développeuse frontend, fondatrice de Chow Studio.",
-    "width": 1200,
-    "height": 1600,
-    "focalPoint": { "x": 50, "y": 40 }
-  },
-  "atmosphere-laptop": {
-    "id": "atmosphere-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg",
-    "alt": "Atmosphere | aperçu desktop du site d’architecture intérieure.",
-    "width": 1600,
-    "height": 1067
-  },
-  "atmosphere_mobile-vid": {
-    "id": "atmosphere_mobile-vid",
-    "type": "mux",
-    "playbackId": "t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s",
-    "alt": "Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.",
-    "width": 1080,
-    "height": 1920,
-    "fit": "cover",
-    "focalPoint": { "x": 50, "y": 64 }
-  },
-  "atmosphere-tablet": {
-    "id": "atmosphere-tablet",
-    "type": "image",
-    "src": "/assets/photos/work/atmosphere/atmosphere__tablet.jpg",
-    "alt": "Atmosphere | aperçu tablette du site.",
-    "width": 1600,
-    "height": 1067
-  },
-  "atmosphere-mobile-solo": {
-    "id": "atmosphere-mobile-solo",
-    "type": "image",
-    "src": "/assets/photos/work/atmosphere/atmosphere__mobile-solo.jpg",
-    "alt": "Atmosphere | aperçu mobile du site.",
-    "width": 1200,
-    "height": 1600
-  },
-  "kuro-laptop": {
-    "id": "kuro-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/kuro/kuro__laptop.jpg",
-    "alt": "Kuro | aperçu desktop du site du restaurant japonais.",
-    "width": 1600,
-    "height": 1067
-  },
-  "kuro-mobile": {
-    "id": "kuro-mobile",
-    "type": "image",
-    "src": "/assets/photos/work/kuro/kuro__mobile.jpg",
-    "alt": "Kuro | aperçu mobile du parcours restaurant et réservation.",
-    "width": 1200,
-    "height": 1600
-  },
-  "kuro-grey": {
-    "id": "kuro-grey",
-    "type": "image",
-    "src": "/assets/photos/work/kuro/mobile_on_grey_block.jpg",
-    "alt": "Kuro | interface mobile présentée sur fond gris.",
-    "width": 1600,
-    "height": 1067
-  },
-  "kuro-video": {
-    "id": "kuro-video",
-    "type": "video",
-    "src": "/assets/videos/kuro-compressed.mp4",
-    "poster": "/assets/photos/work/kuro/kuro__laptop.jpg",
-    "alt": "Kuro | aperçu animé du site restaurant.",
-    "width": 1920,
-    "height": 1080
-  },
-  "kuro-seo": {
-    "id": "kuro-seo",
-    "type": "image",
-    "src": "/assets/photos/work/kuro/kuro_seo.jpg",
-    "alt": "Kuro | aperçu du site du restaurant japonais pour le partage social.",
-    "width": 1350,
-    "height": 1080,
-    "focalPoint": { "x": 50, "y": 50 }
-  },
-  "maloya-mobile": {
-    "id": "maloya-mobile",
-    "type": "image",
-    "src": "/assets/photos/work/maloya/mobile_mockup_multi.jpg",
-    "alt": "Maloya | aperçu mobile de la plateforme musicale.",
-    "width": 1600,
-    "height": 1067
-  },
-  "maloya-tablet": {
-    "id": "maloya-tablet",
-    "type": "image",
-    "src": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya | aperçu tablette de la plateforme musicale.",
-    "width": 1600,
-    "height": 1067
-  },
-  "maloya-video": {
-    "id": "maloya-video",
-    "type": "video",
-    "src": "/assets/videos/maloya-compressed.mp4",
-    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
-    "width": 1920,
-    "height": 1080
-  },
-  "maloya-menu": {
-    "id": "maloya-menu",
-    "type": "video",
-    "src": "/assets/videos/maloya-menu.mp4",
-    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
-    "width": 1350,
-    "height": 1080
-  },
-  "maloya-mobile-vid": {
-    "id": "maloya-mobile-vid",
-    "type": "video",
-    "src": "/assets/videos/maloya-mobile.mp4",
-    "poster": "/assets/photos/work/maloya/tablet_mockup.jpg",
-    "alt": "Maloya | aperçu animé de l’expérience digitale musicale.",
-    "width": 1080,
-    "height": 1350
-  },
-  "mois-du-ker-textile": {
-    "id": "mois-du-ker-textile",
-    "type": "image",
-    "src": "/assets/photos/work/mois-du-ker/mdk_tshirt.jpg",
-    "alt": "Mois du Kèr | identité de campagne appliquée sur textile.",
-    "width": 1200,
-    "height": 1200
-  },
-  "mdk-logo-evolution": {
-    "id": "mdk-logo-evolution",
-    "type": "mux",
-    "playbackId": "y00ycTIaXMmXNykktCQDLdfMG6eTFrp8YfmBoT8ImXqQ",
-    "alt": "Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.",
-    "width": 1080,
-    "height": 1920,
-    "fit": "cover",
-    "focalPoint": { "x": 50, "y": 64 }
-  },
-  "mdk-seo": {
-    "id": "mdk-seo",
-    "type": "image",
-    "src": "/assets/photos/work/mois-du-ker/MDK_seo.jpg",
-    "alt": "Mois du Kèr | identité visuelle de la campagne de prévention cardiovasculaire pour le partage social.",
-    "width": 1350,
-    "height": 1080,
-    "focalPoint": { "x": 50, "y": 50 }
-  },
-  "mdk-color-palette": {
-    "id": "mdk-color-palette",
-    "type": "mux",
-    "playbackId": "X78LIgQ2XXw02fZquupTip4h9U67kpPiDe02LjR6TUKqE",
-    "alt": "Mois du Kèr | exploration animée de la palette de couleurs de l’identité.",
-    "width": 1080,
-    "height": 1350
-  },
-  "mdk-heartbeat": {
-    "id": "mdk-heartbeat",
-    "type": "mux",
-    "playbackId": "TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M",
-    "alt": "Mois du Kèr | cœur anatomique animé au rythme d’un battement.",
-    "width": 1080,
-    "height": 1350
-  },
-  "mdk-heart-sea": {
-    "id": "mdk-heart-sea",
-    "type": "mux",
-    "playbackId": "xDDLKWiYfE1IvvsMeg01Q101WEd8MlqHziK7TUWaJl1LA",
-    "alt": "Mois du Kèr | animation d’un motif de cœurs en mouvement.",
-    "width": 1080,
-    "height": 1350
-  },
-  "mdk-rings": {
-    "id": "mdk-rings",
-    "type": "mux",
-    "playbackId": "FAhfWxfBylWVz1FMhMpzfR011KRs4f8xpWljCuu1txUg",
-    "alt": "Mois du Kèr | animation graphique de cercles concentriques issue de l’identité visuelle.",
-    "width": 1080,
-    "height": 1350
-  },
-  "ravine-business-card": {
-    "id": "ravine-business-card",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_business card.jpg",
-    "alt": "Ravine | identité visuelle appliquée à des cartes de visite.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-flyer": {
-    "id": "ravine-flyer",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_flyer.jpg",
-    "alt": "Ravine | déclinaison de l’identité sur flyer.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-textile": {
-    "id": "ravine-textile",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_textile.jpg",
-    "alt": "Ravine | application textile de l’identité visuelle.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-homepage": {
-    "id": "ravine-homepage",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_homepage.jpg",
-    "alt": "Ravine | direction artistique de la page d’accueil.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-laptop": {
-    "id": "ravine-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_laptop.jpg",
-    "alt": "Ravine | aperçu du projet éditorial sur ordinateur.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-desktop": {
-    "id": "ravine-desktop",
-    "type": "image",
-    "src": "/assets/photos/work/ravine/ravine_desktop.jpg",
-    "alt": "Ravine | composition éditoriale du site sur desktop.",
-    "width": 1600,
-    "height": 1067
-  },
-  "ravine-branding-video": {
-    "id": "ravine-branding-video",
-    "type": "video",
-    "src": "/assets/videos/ravine_branding.mp4",
-    "poster": "/assets/photos/work/ravine/ravine_homepage.jpg",
-    "alt": "Ravine | identité visuelle présentée en mouvement.",
-    "width": 1920,
-    "height": 1080
-  },
-  "randorun-poster": {
-    "id": "randorun-poster",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun__poster.jpg",
-    "alt": "RandoRunOi | série d’affiches de trail à La Réunion.",
-    "width": 1200,
-    "height": 1600
-  },
-  "randorun-cilaos": {
-    "id": "randorun-cilaos",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun_CILAOS WOMEN TRAIL.jpg",
-    "alt": "RandoRunOi | affiche Cilaos Women Trail.",
-    "width": 1200,
-    "height": 1600
-  },
-  "randorun-cimasa": {
-    "id": "randorun-cimasa",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun_CIMASARUN.jpg",
-    "alt": "RandoRunOi | affiche CimasaRun.",
-    "width": 1200,
-    "height": 1600
-  },
-  "randorun-mafate": {
-    "id": "randorun-mafate",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun_MAFATE TRAIL TOUR.jpg",
-    "alt": "RandoRunOi | affiche Mafate Trail Tour.",
-    "width": 1200,
-    "height": 1600
-  },
-  "randorun-raid974": {
-    "id": "randorun-raid974",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun_RAID974.jpg",
-    "alt": "RandoRunOi | affiche Raid 974.",
-    "width": 1200,
-    "height": 1600
-  },
-  "randorun-masters": {
-    "id": "randorun-masters",
-    "type": "image",
-    "src": "/assets/photos/work/randorun/randorun_TRAIL DES MASTERS.jpg",
-    "alt": "RandoRunOi | affiche Trail des Masters.",
-    "width": 1200,
-    "height": 1600
-  },
-  "sasha-laptop": {
-    "id": "sasha-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg",
-    "alt": "Sasha Yoga Flow | aperçu desktop du site de yoga.",
-    "width": 1600,
-    "height": 1067
-  },
-  "sasha-mobile": {
-    "id": "sasha-mobile",
-    "type": "image",
-    "src": "/assets/photos/work/sashayogaflow/mobile_ocre_marble.jpg",
-    "alt": "Sasha Yoga Flow | aperçu mobile du site et de la réservation.",
-    "width": 1200,
-    "height": 1600
-  },
-  "structure-laptop": {
-    "id": "structure-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/structure/structure__laptop.jpg",
-    "alt": "Structure | aperçu desktop du concept de site d’architecture.",
-    "width": 1600,
-    "height": 1067
-  },
-  "structure-mobile": {
-    "id": "structure-mobile",
-    "type": "image",
-    "src": "/assets/photos/work/structure/structure__mobile-solo.jpg",
-    "alt": "Structure | aperçu mobile du concept de site d’architecture.",
-    "width": 1200,
-    "height": 1600
-  },
-  "structure-mobile-multi": {
-    "id": "structure-mobile-multi",
-    "type": "image",
-    "src": "/assets/photos/work/structure/structure__mobile-multi.jpg",
-    "alt": "Structure | déclinaisons mobiles de l’interface.",
-    "width": 1600,
-    "height": 1067
-  },
-  "contraste-laptop": {
-    "id": "contraste-laptop",
-    "type": "image",
-    "src": "/assets/photos/work/contraste/contraste__laptop.jpg",
-    "alt": "Contraste | aperçu desktop du concept de site d’architecture.",
-    "width": 1600,
-    "height": 1067
-  },
-  "contraste-mobile": {
-    "id": "contraste-mobile",
-    "type": "image",
-    "src": "/assets/photos/work/contraste/contraste__mobile-multi.jpg",
-    "alt": "Contraste | déclinaisons mobiles de l’interface.",
-    "width": 1600,
-    "height": 1067
-  }
+  "home-cover":{"id":"home-cover","type":"image","src":"/assets/photos/work/kuro/mobile_on_grey_block.jpg","alt":"Sélection de projets de Chow Studio.","width":1600,"height":1067,"focalPoint":{"x":50,"y":50}},
+  "studio-founder-1":{"id":"studio-founder-1","type":"image","src":"/assets/photos/portrait shot.jpg","alt":"Portrait de Channy How-Choong, designer et développeuse frontend, fondatrice de Chow Studio.","width":1200,"height":1600,"focalPoint":{"x":50,"y":40}},
+  "atmosphere-laptop":{"id":"atmosphere-laptop","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__laptop.jpg","alt":"Atmosphere | aperçu desktop du site d’architecture intérieure.","width":1600,"height":1067},
+  "atmosphere_mobile-vid":{"id":"atmosphere_mobile-vid","type":"mux","playbackId":"t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s","alt":"Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.","width":1080,"height":1920,"fit":"cover","focalPoint":{"x":50,"y":64}},
+  "atmosphere-tablet":{"id":"atmosphere-tablet","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__tablet.jpg","alt":"Atmosphere | aperçu tablette du site.","width":1600,"height":1067},
+  "atmosphere-mobile-solo":{"id":"atmosphere-mobile-solo","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__mobile-solo.jpg","alt":"Atmosphere | aperçu mobile du site.","width":1200,"height":1600},
+  "kuro-laptop":{"id":"kuro-laptop","type":"image","src":"/assets/photos/work/kuro/kuro__laptop.jpg","alt":"Kuro | aperçu desktop du site du restaurant japonais.","width":1600,"height":1067},
+  "kuro-mobile":{"id":"kuro-mobile","type":"image","src":"/assets/photos/work/kuro/kuro__mobile.jpg","alt":"Kuro | aperçu mobile du parcours restaurant et réservation.","width":1200,"height":1600},
+  "kuro-grey":{"id":"kuro-grey","type":"image","src":"/assets/photos/work/kuro/mobile_on_grey_block.jpg","alt":"Kuro | interface mobile présentée sur fond gris.","width":1600,"height":1067},
+  "kuro-video":{"id":"kuro-video","type":"video","src":"/assets/videos/kuro-compressed.mp4","poster":"/assets/photos/work/kuro/kuro__laptop.jpg","alt":"Kuro | aperçu animé du site restaurant.","width":1920,"height":1080},
+  "kuro-seo":{"id":"kuro-seo","type":"image","src":"/assets/photos/work/kuro/mobile_on_grey_block.jpg","alt":"Kuro | web design et expérience de réservation pour un restaurant japonais.","width":1600,"height":1067,"focalPoint":{"x":50,"y":50}},
+  "maloya-mobile":{"id":"maloya-mobile","type":"image","src":"/assets/photos/work/maloya/mobile_mockup_multi.jpg","alt":"Maloya | aperçu mobile de la plateforme musicale.","width":1600,"height":1067},
+  "maloya-tablet":{"id":"maloya-tablet","type":"image","src":"/assets/photos/work/maloya/tablet_mockup.jpg","alt":"Maloya | aperçu tablette de la plateforme musicale.","width":1600,"height":1067},
+  "maloya-video":{"id":"maloya-video","type":"video","src":"/assets/videos/maloya-compressed.mp4","poster":"/assets/photos/work/maloya/tablet_mockup.jpg","alt":"Maloya | aperçu animé de l’expérience digitale musicale.","width":1920,"height":1080},
+  "maloya-menu":{"id":"maloya-menu","type":"video","src":"/assets/videos/maloya-menu.mp4","poster":"/assets/photos/work/maloya/tablet_mockup.jpg","alt":"Maloya | aperçu animé de l’expérience digitale musicale.","width":1350,"height":1080},
+  "maloya-mobile-vid":{"id":"maloya-mobile-vid","type":"video","src":"/assets/videos/maloya-mobile.mp4","poster":"/assets/photos/work/maloya/tablet_mockup.jpg","alt":"Maloya | aperçu animé de l’expérience digitale musicale.","width":1080,"height":1350},
+  "mois-du-ker-textile":{"id":"mois-du-ker-textile","type":"image","src":"/assets/photos/work/mois-du-ker/mdk_tshirt.jpg","alt":"Mois du Kèr | identité de campagne appliquée sur textile.","width":1200,"height":1200},
+  "mdk-logo-evolution":{"id":"mdk-logo-evolution","type":"mux","playbackId":"y00ycTIaXMmXNykktCQDLdfMG6eTFrp8YfmBoT8ImXqQ","alt":"Mois du Kèr | animation de l’évolution du logo vers sa forme condensée.","width":1080,"height":1920,"fit":"cover","focalPoint":{"x":50,"y":64}},
+  "mdk-seo":{"id":"mdk-seo","type":"image","src":"/assets/photos/work/mois-du-ker/mdk_tshirt.jpg","alt":"Mois du Kèr | identité visuelle de la campagne de prévention cardiovasculaire.","width":1200,"height":1200,"focalPoint":{"x":50,"y":50}},
+  "mdk-color-palette":{"id":"mdk-color-palette","type":"mux","playbackId":"X78LIgQ2XXw02fZquupTip4h9U67kpPiDe02LjR6TUKqE","alt":"Mois du Kèr | exploration animée de la palette de couleurs de l’identité.","width":1080,"height":1350},
+  "mdk-heartbeat":{"id":"mdk-heartbeat","type":"mux","playbackId":"TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M","alt":"Mois du Kèr | cœur anatomique animé au rythme d’un battement.","width":1080,"height":1350},
+  "mdk-heart-sea":{"id":"mdk-heart-sea","type":"mux","playbackId":"xDDLKWiYfE1IvvsMeg01Q101WEd8MlqHziK7TUWaJl1LA","alt":"Mois du Kèr | animation d’un motif de cœurs en mouvement.","width":1080,"height":1350},
+  "mdk-rings":{"id":"mdk-rings","type":"mux","playbackId":"FAhfWxfBylWVz1FMhMpzfR011KRs4f8xpWljCuu1txUg","alt":"Mois du Kèr | animation graphique de cercles concentriques issue de l’identité visuelle.","width":1080,"height":1350},
+  "ravine-business-card":{"id":"ravine-business-card","type":"image","src":"/assets/photos/work/ravine/ravine_business card.jpg","alt":"Ravine | identité visuelle appliquée à des cartes de visite.","width":1600,"height":1067},
+  "ravine-flyer":{"id":"ravine-flyer","type":"image","src":"/assets/photos/work/ravine/ravine_flyer.jpg","alt":"Ravine | déclinaison de l’identité sur flyer.","width":1600,"height":1067},
+  "ravine-textile":{"id":"ravine-textile","type":"image","src":"/assets/photos/work/ravine/ravine_textile.jpg","alt":"Ravine | application textile de l’identité visuelle.","width":1600,"height":1067},
+  "ravine-homepage":{"id":"ravine-homepage","type":"image","src":"/assets/photos/work/ravine/ravine_homepage.jpg","alt":"Ravine | direction artistique de la page d’accueil.","width":1600,"height":1067},
+  "ravine-laptop":{"id":"ravine-laptop","type":"image","src":"/assets/photos/work/ravine/ravine_laptop.jpg","alt":"Ravine | aperçu du projet éditorial sur ordinateur.","width":1600,"height":1067},
+  "ravine-desktop":{"id":"ravine-desktop","type":"image","src":"/assets/photos/work/ravine/ravine_desktop.jpg","alt":"Ravine | composition éditoriale du site sur desktop.","width":1600,"height":1067},
+  "ravine-branding-video":{"id":"ravine-branding-video","type":"video","src":"/assets/videos/ravine_branding.mp4","poster":"/assets/photos/work/ravine/ravine_homepage.jpg","alt":"Ravine | identité visuelle présentée en mouvement.","width":1920,"height":1080},
+  "randorun-poster":{"id":"randorun-poster","type":"image","src":"/assets/photos/work/randorun/randorun__poster.jpg","alt":"RandoRunOi | série d’affiches de trail à La Réunion.","width":1200,"height":1600},
+  "randorun-cilaos":{"id":"randorun-cilaos","type":"image","src":"/assets/photos/work/randorun/randorun_CILAOS WOMEN TRAIL.jpg","alt":"RandoRunOi | affiche Cilaos Women Trail.","width":1200,"height":1600},
+  "randorun-cimasa":{"id":"randorun-cimasa","type":"image","src":"/assets/photos/work/randorun/randorun_CIMASARUN.jpg","alt":"RandoRunOi | affiche CimasaRun.","width":1200,"height":1600},
+  "randorun-mafate":{"id":"randorun-mafate","type":"image","src":"/assets/photos/work/randorun/randorun_MAFATE TRAIL TOUR.jpg","alt":"RandoRunOi | affiche Mafate Trail Tour.","width":1200,"height":1600},
+  "randorun-raid974":{"id":"randorun-raid974","type":"image","src":"/assets/photos/work/randorun/randorun_RAID974.jpg","alt":"RandoRunOi | affiche Raid 974.","width":1200,"height":1600},
+  "randorun-masters":{"id":"randorun-masters","type":"image","src":"/assets/photos/work/randorun/randorun_TRAIL DES MASTERS.jpg","alt":"RandoRunOi | affiche Trail des Masters.","width":1200,"height":1600},
+  "sasha-laptop":{"id":"sasha-laptop","type":"image","src":"/assets/photos/work/sashayogaflow/laptop_natural_bgsasha.jpg","alt":"Sasha Yoga Flow | aperçu desktop du site de yoga.","width":1600,"height":1067},
+  "sasha-mobile":{"id":"sasha-mobile","type":"image","src":"/assets/photos/work/sashayogaflow/mobile_ocre_marble.jpg","alt":"Sasha Yoga Flow | aperçu mobile du site et de la réservation.","width":1200,"height":1600},
+  "structure-laptop":{"id":"structure-laptop","type":"image","src":"/assets/photos/work/structure/structure__laptop.jpg","alt":"Structure | aperçu desktop du concept de site d’architecture.","width":1600,"height":1067},
+  "structure-mobile":{"id":"structure-mobile","type":"image","src":"/assets/photos/work/structure/structure__mobile-solo.jpg","alt":"Structure | aperçu mobile du concept de site d’architecture.","width":1200,"height":1600},
+  "structure-mobile-multi":{"id":"structure-mobile-multi","type":"image","src":"/assets/photos/work/structure/structure__mobile-multi.jpg","alt":"Structure | déclinaisons mobiles de l’interface.","width":1600,"height":1067},
+  "contraste-laptop":{"id":"contraste-laptop","type":"image","src":"/assets/photos/work/contraste/contraste__laptop.jpg","alt":"Contraste | aperçu desktop du concept de site d’architecture.","width":1600,"height":1067},
+  "contraste-mobile":{"id":"contraste-mobile","type":"image","src":"/assets/photos/work/contraste/contraste__mobile-multi.jpg","alt":"Contraste | déclinaisons mobiles de l’interface.","width":1600,"height":1067}
 }
