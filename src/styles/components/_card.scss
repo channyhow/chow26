@@ -31,28 +31,15 @@
 
 .projectCard {
   .card__mediaWrap {
-    display: grid;
-    place-items: center;
+    min-width: 0;
     overflow: hidden;
     background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
-    @include media-frame($ratio-wide);
   }
 
-  .media,
-  .media__frame {
+  .card__media {
+    --media-ratio: #{$ratio-wide};
     width: 100%;
-    height: 100%;
     background: transparent;
-  }
-
-  .media {
-    overflow: hidden;
-  }
-
-  .media__frame {
-    display: grid;
-    place-items: center;
-    aspect-ratio: auto;
   }
 
   .card__body {
