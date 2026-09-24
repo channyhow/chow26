@@ -1,4 +1,5 @@
-import { lazy, Suspense, useLayoutEffect } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { SiteShell } from "@/app/SiteShell";
@@ -33,11 +34,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto",
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname]);
 
   return null;
@@ -56,10 +53,7 @@ function RoutedPage() {
 
   return (
     <>
-      <Seo
-        seo={page.seo}
-        slug={isNotFound ? location.pathname : page.slug}
-      />
+      <Seo seo={page.seo} slug={isNotFound ? location.pathname : page.slug} />
       <PageRenderer page={page} />
     </>
   );
@@ -67,10 +61,17 @@ function RoutedPage() {
 
 export function App() {
   const location = useLocation();
+  const [showInitialLoader, setShowInitialLoader] = useState(true);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setShowInitialLoader(false), 2400);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   return (
     <SiteShell>
       <ScrollToTop />
+      <AnimatePresence>{showInitialLoader && <RouteLoader />}</AnimatePresence>
       <div className="routeTransition" key={location.pathname}>
         <Routes location={location}>
           <Route
