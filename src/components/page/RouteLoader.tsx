@@ -1,32 +1,33 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
 
-export function RouteLoader({ disabled = false }: { disabled?: boolean }) {
-  if (disabled) {
-    return null;
-  }
-
-  const message = siteData.ui.loader.messages[0];
+export function RouteLoader() {
+  const reduceMotion = useReducedMotion();
+  const messages = siteData.ui.loader.messages;
 
   return (
     <motion.div
       className="loader"
-      aria-hidden="true"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 0 }}
+      role="status"
+      aria-live="polite"
+      aria-label="Chargement"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{
-        delay: 0.15,
-        duration: motionConfig.duration.fast,
+        duration: reduceMotion ? 0 : motionConfig.duration.fast,
         ease: motionConfig.easing.soft,
       }}
-      style={{ pointerEvents: "none" }}
     >
-      <span className="loader__mark" />
-      <div className="loader__messages">
-        <span>{message}</span>
+      <span className="loader__mark" aria-hidden="true" />
+      <div className="loader__messages" aria-hidden="true">
+        {messages.map((message) => (
+          <span key={message}>{message}</span>
+        ))}
       </div>
+      <span className="sr-only">Chargement de la page</span>
     </motion.div>
   );
 }
