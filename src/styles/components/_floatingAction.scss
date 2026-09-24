@@ -7,6 +7,18 @@
   right: clamp(#{$space-2}, 3vw, #{$space-3});
   bottom: clamp(#{$space-2}, 3vw, #{$space-3});
   z-index: $z-floating;
+  transition:
+    opacity $transition-interface,
+    visibility 0s linear 0s;
+}
+
+.floatingAction[data-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity $transition-interface,
+    visibility 0s linear $duration-default;
 }
 
 .floatingAction__details {
