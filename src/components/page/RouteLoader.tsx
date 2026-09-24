@@ -27,7 +27,6 @@ export function RouteLoader() {
           <span key={message}>{message}</span>
         ))}
       </div>
-      <span className="sr-only">Chargement de la page</span>
     </motion.div>
   );
 }
