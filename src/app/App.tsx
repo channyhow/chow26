@@ -72,12 +72,11 @@ export function App() {
     <SiteShell>
       <ScrollToTop />
       <div className="routeTransition" key={location.pathname}>
-        <RouteLoader disabled />
         <Routes location={location}>
           <Route
             path="/system"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <Seo seo={{ title: "System", robots: internalRobots }} slug="/system" />
                 <SystemPage />
                 <SystemReference />
@@ -87,7 +86,7 @@ export function App() {
           <Route
             path="/branding"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" />
                 <BrandingPage />
               </Suspense>
@@ -96,7 +95,7 @@ export function App() {
           <Route
             path="/projets/:slug"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <ProjectDetailPage />
               </Suspense>
             )}
