@@ -147,7 +147,7 @@
       "enabled": true,
       "label": "Komen i lé ?",
       "ariaLabel": "Parler d’un projet",
-      "hideWhileVisible": "#home-opening",
+      "hideWhileVisible": "#site-footer",
       "items": [
         { "label": "Parler d’un projet", "href": "/contact" }
       ]
