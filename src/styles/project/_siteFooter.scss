@@ -131,8 +131,7 @@
 @include mobile-down {
   .siteFooter {
     min-height: 0;
-    padding-top: clamp(3rem, 10vw, 4rem);
-    padding-bottom: var(--floating-action-safe-space, clamp(6.5rem, 24vw, 8rem));
+    padding-block: $section-space;
   }
 
   .siteFooter[data-panel-motion="true"] .siteFooter__inner {
