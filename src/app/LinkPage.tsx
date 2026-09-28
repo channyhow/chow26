@@ -6,20 +6,23 @@ import { Actions } from "@/components/navigation/Actions";
 import { Seo } from "@/components/page/Seo";
 import linkPageData from "@/data/linkPage.json";
 import { resolveMedia } from "@/data/resolveMedia";
+import siteData from "@/data/site.json";
 import type { ActionRef, ContentItem } from "@/types/content";
 
 const campaignContent = linkPageData.campaign as ContentItem;
 const socialLinks = linkPageData.socials as ActionRef[];
 const backgroundMedia = resolveMedia(linkPageData.backgroundMedia);
 const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
+const currentYear = new Date().getFullYear();
 
 export function LinkPage() {
   const reduceMotion = Boolean(useReducedMotion());
   const transition = reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
+  const site = siteData.site;
 
   return (
     <>
-      <Seo seo={{ title: "Liens | Chow Studio", description: "Chow Studio — design, identité visuelle et développement web. Découvrez le studio, un projet ou présentez le vôtre." }} slug="/link" />
+      <Seo seo={{ title: `Liens | ${site.name}`, description: site.seo.defaultDescription }} slug="/link" />
       <div className="linkPage">
         {backgroundMedia ? (
           <div className="linkPage__background" aria-hidden="true">
@@ -33,7 +36,7 @@ export function LinkPage() {
         </main>
         <motion.footer className="linkPage__footer" variants={reveal} initial="hidden" animate="visible" transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}>
           <Actions links={socialLinks} variant="social" className="linkPage__socials" />
-          <span className="linkPage__copyright">© Chow Studio 2026</span>
+          <a className="linkPage__copyright" href={site.url} aria-label={`Accueil ${site.name}`}>© {site.name} {currentYear}</a>
         </motion.footer>
       </div>
     </>
