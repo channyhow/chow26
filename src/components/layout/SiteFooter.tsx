@@ -117,42 +117,35 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
             ) : null}
           </motion.div>
 
-          <motion.div className="siteFooter__links" variants={containerVariants}>
-            {primaryLinks.length ? (
-              <motion.nav
-                className="siteFooter__nav"
-                aria-label="Navigation du pied de page"
-                variants={containerVariants}
-              >
-                <div className="siteFooter__navGroup">
-                  {primaryLinks.map((link) => (
-                    <motion.div key={`${link.label}-${link.href ?? link.linkKey ?? ""}`} variants={itemVariants}>
-                      <Actions links={[link]} />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.nav>
-            ) : null}
+          {primaryLinks.length ? (
+            <motion.nav
+              className="siteFooter__nav"
+              aria-label="Navigation du pied de page"
+              variants={containerVariants}
+            >
+              <Actions links={primaryLinks} className="siteFooter__navGroup" />
+            </motion.nav>
+          ) : null}
 
-            {secondaryLinks.length ? (
-              <motion.nav
-                className="siteFooter__support"
-                aria-label="Réseaux et informations"
-                variants={containerVariants}
-              >
-                {socialLinks.length ? (
-                  <motion.div className="siteFooter__social" variants={itemVariants}>
-                    <Actions links={socialLinks} className="siteFooter__navGroup" />
-                  </motion.div>
-                ) : null}
-                {legalLinks.length ? (
-                  <motion.div className="siteFooter__legal" variants={itemVariants}>
-                    <Actions links={legalLinks} className="siteFooter__navGroup" />
-                  </motion.div>
-                ) : null}
-              </motion.nav>
-            ) : null}
-          </motion.div>
+          {socialLinks.length ? (
+            <motion.nav
+              className="siteFooter__social"
+              aria-label="Réseaux sociaux"
+              variants={itemVariants}
+            >
+              <Actions links={socialLinks} className="siteFooter__navGroup" />
+            </motion.nav>
+          ) : null}
+
+          {legalLinks.length ? (
+            <motion.nav
+              className="siteFooter__legal"
+              aria-label="Informations légales"
+              variants={itemVariants}
+            >
+              <Actions links={legalLinks} className="siteFooter__navGroup" />
+            </motion.nav>
+          ) : null}
         </motion.div>
 
         {meta.length ? (
