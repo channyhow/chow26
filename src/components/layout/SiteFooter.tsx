@@ -66,7 +66,9 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const links = header?.links ?? [];
   const meta = header?.meta ?? [];
 
-  const primaryLinks = links.slice(0, 4);
+  const primaryLinks = links.slice(0, 4).map((link) =>
+    link.intent === "contact" ? { ...link, label: "Contact" } : link,
+  );
   const secondaryLinks = links.slice(4);
   const configuredSocialLinks = secondaryLinks.slice(0, 2);
   const socialLinks = configuredSocialLinks.some((link) => link.label === facebookAction.label)
