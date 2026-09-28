@@ -41,9 +41,15 @@ const socialPosition = (item: MediaItem) => {
   return "center";
 };
 
+const resolveImageMedia = (ref: string) => {
+  const direct = media[ref];
+  if (direct?.type === "image" && direct.src) return direct;
+  return Object.values(media).find((item) => item.type === "image" && item.src === ref) ?? null;
+};
+
 const resolveSocialImage = (ref: string) => {
-  const item = media[ref];
-  if (!item || item.type !== "image" || !item.src) return null;
+  const item = resolveImageMedia(ref);
+  if (!item?.src) return null;
 
   const params = new URLSearchParams({
     url: item.src,
@@ -64,10 +70,10 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     const title = seo?.title ?? defaults.defaultTitle;
     const description = seo?.description ?? defaults.defaultDescription;
     const canonical = seo?.canonical ?? absoluteUrl(slug === "/" ? "/" : slug);
-    const imageRef = seo?.image ?? defaults.defaultImage;
+    const imageRef = slug === "/" ? defaults.defaultImage : (seo?.image ?? defaults.defaultImage);
     const socialImage = resolveSocialImage(imageRef);
-    const defaultMedia = media[defaults.defaultImage];
-    const defaultImageSrc = defaultMedia?.type === "image" ? defaultMedia.src : defaults.defaultImage;
+    const defaultMedia = resolveImageMedia(defaults.defaultImage);
+    const defaultImageSrc = defaultMedia?.src ?? defaults.defaultImage;
     const image = socialImage?.url ?? absoluteUrl(defaultImageSrc);
     const imageAlt = seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt;
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
@@ -83,10 +89,9 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     ensureMeta('meta[property="og:image"]', "property", "og:image").content = image;
     ensureMeta('meta[property="og:image:secure_url"]', "property", "og:image:secure_url").content = image;
     ensureMeta('meta[property="og:image:alt"]', "property", "og:image:alt").content = imageAlt;
-
-    document.head.querySelector('meta[property="og:image:width"]')?.remove();
-    document.head.querySelector('meta[property="og:image:height"]')?.remove();
-    document.head.querySelector('meta[property="og:image:type"]')?.remove();
+    ensureMeta('meta[property="og:image:width"]', "property", "og:image:width").content = String(SOCIAL_WIDTH);
+    ensureMeta('meta[property="og:image:height"]', "property", "og:image:height").content = String(SOCIAL_HEIGHT);
+    ensureMeta('meta[property="og:image:type"]', "property", "og:image:type").content = "image/jpeg";
 
     ensureMeta('meta[name="twitter:title"]', "name", "twitter:title").content = title;
     ensureMeta('meta[name="twitter:description"]', "name", "twitter:description").content = description;
