@@ -15,7 +15,7 @@ import {
   revealItem,
   revealContainer,
 } from "@/motion/config";
-import type { Action, PanelBehavior, SectionBlock } from "@/types/content";
+import type { PanelBehavior, SectionBlock } from "@/types/content";
 
 export type SiteFooterProps = {
   block: SectionBlock;
@@ -25,13 +25,6 @@ export type SiteFooterProps = {
 const toArray = <T,>(value?: T | T[]): T[] => {
   if (!value) return [];
   return Array.isArray(value) ? value : [value];
-};
-
-const facebookAction: Action = {
-  label: "Facebook",
-  href: "https://www.facebook.com/hellochowstudio",
-  intent: "navigate",
-  priority: "secondary",
 };
 
 export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
@@ -66,17 +59,9 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const links = header?.links ?? [];
   const meta = header?.meta ?? [];
 
-  const primaryLinks = links.slice(0, 4).map((link) =>
-    link.intent === "contact"
-      ? { ...link, label: "Contact", intent: "navigate" as const }
-      : link,
-  );
-  const secondaryLinks = links.slice(4);
-  const configuredSocialLinks = secondaryLinks.slice(0, 2);
-  const socialLinks = configuredSocialLinks.some((link) => link.label === facebookAction.label)
-    ? configuredSocialLinks
-    : [...configuredSocialLinks, facebookAction];
-  const legalLinks = secondaryLinks.slice(2);
+  const primaryLinks = links.filter((link) => (link.group ?? "primary") === "primary");
+  const socialLinks = links.filter((link) => link.group === "social");
+  const legalLinks = links.filter((link) => link.group === "legal");
 
   return (
     <footer
@@ -120,31 +105,19 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
           </motion.div>
 
           {primaryLinks.length ? (
-            <motion.nav
-              className="siteFooter__nav"
-              aria-label="Navigation du pied de page"
-              variants={containerVariants}
-            >
+            <motion.nav className="siteFooter__nav" aria-label="Navigation du pied de page" variants={containerVariants}>
               <Actions links={primaryLinks} className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
 
           {socialLinks.length ? (
-            <motion.nav
-              className="siteFooter__social"
-              aria-label="Réseaux sociaux"
-              variants={itemVariants}
-            >
+            <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={itemVariants}>
               <Actions links={socialLinks} className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
 
           {legalLinks.length ? (
-            <motion.nav
-              className="siteFooter__legal"
-              aria-label="Informations légales"
-              variants={itemVariants}
-            >
+            <motion.nav className="siteFooter__legal" aria-label="Informations légales" variants={itemVariants}>
               <Actions links={legalLinks} className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
@@ -153,10 +126,7 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
         {meta.length ? (
           <motion.div className="siteFooter__meta" variants={containerVariants}>
             {meta.map((item) => (
-              <motion.span
-                key={`${item.label}-${item.value ?? ""}`}
-                variants={itemVariants}
-              >
+              <motion.span key={`${item.label}-${item.value ?? ""}`} variants={itemVariants}>
                 {item.value ? `${item.label}: ${item.value}` : item.label}
               </motion.span>
             ))}
