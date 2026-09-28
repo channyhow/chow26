@@ -50,7 +50,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
   const isProjectArchiveGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured !== true;
-  const inferredCardVariant: CardVariant = block.source?.collection === "services" ? "service" : "default";
+  const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
+  const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
+  const inferredCardVariant: CardVariant = block.source?.collection === "services" ? "service" : isProfileGrid ? "profile" : isStructuredEditorialList ? "editorial" : "default";
   const cardVariant = block.itemAppearance?.variant ?? inferredCardVariant;
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
   const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
