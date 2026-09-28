@@ -41,12 +41,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
+  const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction;
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
   const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
-  const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split");
+  const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
   const isProjectArchiveGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured !== true;
@@ -71,7 +72,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   const renderCard = (item: (typeof items)[number], index?: number) => <Card key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
-  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined} progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none"} scrollLinked={motionEnabled && motionLevel !== "none"}>{cards}</Grid>) : null;
+  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined} progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none" && !isLongFormList} scrollLinked={motionEnabled && motionLevel !== "none" && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
