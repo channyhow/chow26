@@ -31,6 +31,7 @@
 .linkPage__campaignText.textBlock {
   @include site-grid;
   width: 100%;
+  max-width: none;
   align-items: center;
   row-gap: $space-3;
 }
