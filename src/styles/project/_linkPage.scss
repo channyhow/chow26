@@ -43,19 +43,32 @@
 
 .linkPage__main {
   flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, .8fr);
+  display: flex;
   align-items: center;
-  gap: clamp(#{$space-4}, 7vw, 8rem);
   padding-block: clamp(#{$space-4}, 7vw, 7rem);
 }
 
+.linkPage__campaign { width: 100%; }
+
 .linkPage__campaignText.textBlock {
-  gap: $space-3;
-  max-width: 46rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, .8fr);
+  gap: clamp(#{$space-4}, 7vw, 8rem);
+  align-items: center;
 }
 
-.linkPage__campaignText .textBlock__header { gap: 0; }
+.linkPage__campaignText .textBlock__header,
+.linkPage__campaignText .textBlock__content {
+  grid-column: 1;
+}
+
+.linkPage__campaignText .textBlock__header { gap: $space-1; }
+
+.linkPage__campaignText .textBlock__eyebrow {
+  @include type-ui-compact;
+  color: var(--accent);
+}
 
 .linkPage__campaignText .textBlock__title {
   max-width: 10ch;
@@ -73,15 +86,19 @@
 .linkPage__campaignText .textBlock__content p { line-height: 1.45; }
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; }
 
-.linkPage__links {
+.linkPage__campaignText .textBlock__footer {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 100%;
+}
+
+.linkPage__campaignText .actions {
   display: grid;
   width: 100%;
   gap: $space-1;
 }
 
-.linkPage__links > div { min-width: 0; }
-
-.linkPage__link {
+.linkPage__campaignText .actions__link {
   width: 100%;
   min-height: 4.75rem;
   padding: $space-2 $space-3;
@@ -103,7 +120,7 @@
     background: color-mix(in srgb, var(--primary) 11%, transparent);
     transform: translateX(.2rem);
 
-    .linkPage__arrow { transform: translate(.22rem, -.12rem); }
+    .actions__arrow { transform: translate(.22rem, -.12rem); }
   }
 
   &:focus-visible {
@@ -112,7 +129,8 @@
   }
 }
 
-.linkPage__link--primary {
+.linkPage__campaignText .actions__link--primary,
+.linkPage__campaignText .actions__link[data-priority="primary"] {
   background: var(--accent);
   color: var(--primary);
   border-color: transparent;
@@ -123,19 +141,7 @@
   }
 }
 
-.linkPage__linkCopy {
-  display: grid;
-  gap: .2rem;
-  min-width: 0;
-}
-
-.linkPage__linkCopy small {
-  @include type-ui-compact;
-  font-weight: $font-weight-regular;
-  opacity: $opacity-muted;
-}
-
-.linkPage__arrow {
+.linkPage__campaignText .actions__arrow {
   flex: 0 0 auto;
   transition: transform $transition-hover;
 }
@@ -149,15 +155,26 @@
   gap: $space-3;
 }
 
-.linkPage__socials {
+.linkPage__socials.actions {
   display: flex;
   flex-wrap: wrap;
   gap: $flow-tight $space-3;
 }
 
-.linkPage__socials a {
-  @include interactive-text;
+.linkPage__socials .actions__link {
+  @include nav-link;
   @include type-ui-compact;
+}
+
+.linkPage__socials .actions__link::after {
+  content: "↗";
+  transition: transform $transition-hover;
+}
+
+.linkPage__socials .actions__link {
+  @include hover {
+    &::after { transform: translate(.18em, -.08em); }
+  }
 }
 
 .linkPage__copyright {
@@ -168,10 +185,17 @@
 @include tablet-down {
   .linkPage { padding-inline: $page-gutter; }
 
-  .linkPage__main {
+  .linkPage__campaignText.textBlock {
     grid-template-columns: 1fr;
     align-items: start;
     gap: $space-4;
+  }
+
+  .linkPage__campaignText .textBlock__header,
+  .linkPage__campaignText .textBlock__content,
+  .linkPage__campaignText .textBlock__footer {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .linkPage__campaignText .textBlock__title {
@@ -179,16 +203,12 @@
     font-size: clamp(3rem, 9vw, 5.25rem);
   }
 
-  .linkPage__links { width: min(100%, 46rem); }
+  .linkPage__campaignText .textBlock__footer { width: min(100%, 46rem); }
 }
 
 @include mobile-down {
   .linkPage { padding-top: $space-3; }
-
-  .linkPage__main {
-    gap: $space-4;
-    padding-block: $space-4;
-  }
+  .linkPage__main { padding-block: $space-4; }
 
   .linkPage__campaignText.textBlock { gap: $space-3; }
 
@@ -197,9 +217,9 @@
     font-size: clamp(2.75rem, 12vw, 4.5rem);
   }
 
-  .linkPage__links { width: 100%; }
+  .linkPage__campaignText .textBlock__footer { width: 100%; }
 
-  .linkPage__link {
+  .linkPage__campaignText .actions__link {
     min-height: 4.25rem;
     padding: $space-2;
   }
