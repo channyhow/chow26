@@ -5,6 +5,7 @@ import { Seo } from "@/components/page/Seo";
 import collections from "@/data/collections.json";
 import pages from "@/data/pages.json";
 import projectDetailData from "@/data/projectDetail.json";
+import { resolveActions } from "@/data/actionRegistry";
 import type {
   MetaItem,
   PageBlock,
@@ -84,7 +85,7 @@ function sectionFromTemplate(
 
 function createProjectPage(project: ProjectRecord): PageData {
   const detailLayout = project.projectLayout ?? "a";
-  const linkedMeta: MetaItem[] = (project.links ?? []).flatMap((link) => {
+  const linkedMeta: MetaItem[] = resolveActions(project.links ?? []).flatMap((link) => {
     if (!link.href) return [];
     return [{ label: link.label, href: link.href }];
   });
@@ -118,22 +119,16 @@ function createProjectPage(project: ProjectRecord): PageData {
         const end = Math.floor(((index + 1) * description.length) / storyMedia.length);
         const text = description.slice(start, Math.max(start + 1, end));
         const template = projectDetail.story.withMedia;
-        const baseDirection = detailLayout === "b" ? 1 : 0;
-        const isReverse = template.alternate
-          ? (index + baseDirection) % 2 === 1
-          : false;
-        const sectionTemplate = withoutAlternate(template);
+        const alternate = template.alternate !== false && index % 2 === 1;
 
         return sectionFromTemplate(
           `project-${project.id}-story-${index + 1}`,
           {
-            ...sectionTemplate,
+            ...withoutAlternate(template),
             className: [
-              sectionTemplate.className,
+              template.className,
               detailClasses,
-              template.alternate
-                ? `projectStoryMedia--${isReverse ? "reverse" : "forward"}`
-                : undefined,
+              alternate ? "projectDetail__story--alternate" : "",
             ].filter(Boolean).join(" "),
           },
           {
@@ -143,38 +138,37 @@ function createProjectPage(project: ProjectRecord): PageData {
         );
       })
     : [
-        (() => {
-          const template = withoutAlternate(projectDetail.story.withoutMedia);
-          return sectionFromTemplate(
-            `project-${project.id}-story`,
-            {
-              ...template,
-              className: [template.className, detailClasses].filter(Boolean).join(" "),
-            },
-            { header: { text: description } },
-          );
-        })(),
+        sectionFromTemplate(
+          `project-${project.id}-story`,
+          {
+            ...withoutAlternate(projectDetail.story.withoutMedia),
+            className: [projectDetail.story.withoutMedia.className, detailClasses].filter(Boolean).join(" "),
+          },
+          { header: { text: description } },
+        ),
       ];
+
+  const cta = sectionFromTemplate(
+    `project-${project.id}-cta`,
+    {
+      ...projectDetail.cta,
+      className: [projectDetail.cta.className, detailClasses].filter(Boolean).join(" "),
+    },
+  );
 
   const related = sectionFromTemplate(
     `project-${project.id}-related`,
     {
       ...projectDetail.related,
-      source: projectDetail.related.source
-        ? {
-            ...projectDetail.related.source,
-            query: {
-              ...projectDetail.related.source.query,
-              excludeIds: [project.id],
-            },
-          }
-        : undefined,
+      className: [projectDetail.related.className, detailClasses].filter(Boolean).join(" "),
+      source: {
+        collection: "projects",
+        query: {
+          excludeIds: [project.id],
+          limit: 3,
+        },
+      },
     },
-  );
-
-  const cta = sectionFromTemplate(
-    `project-${project.id}-cta`,
-    projectDetail.cta,
   );
 
   return {
@@ -182,13 +176,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     slug: project.href,
     variant: projectDetail.page.variant,
     seo: project.seo,
-    blocks: [
-      hero,
-      ...storyBlocks,
-      related,
-      cta,
-      projectDetail.footer,
-    ],
+    blocks: [hero, ...storyBlocks, cta, related, projectDetail.footer],
   };
 }
 
@@ -197,15 +185,11 @@ export function ProjectDetailPage() {
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
-    const notFoundPage = pageData.find(
-      (page) => page.id === projectDetail.page.notFoundPageId,
-    );
-
+    const notFoundPage = pageData.find((page) => page.id === projectDetail.page.notFoundPageId);
     if (!notFoundPage) return null;
-
     return (
       <>
-        <Seo seo={notFoundPage.seo} slug={`/projets/${slug ?? ""}`} />
+        {notFoundPage.seo ? <Seo seo={notFoundPage.seo} slug={notFoundPage.slug} /> : null}
         <PageRenderer page={notFoundPage} />
       </>
     );
@@ -215,7 +199,7 @@ export function ProjectDetailPage() {
 
   return (
     <>
-      <Seo seo={page.seo} slug={page.slug} />
+      {page.seo ? <Seo seo={page.seo} slug={page.slug} /> : null}
       <PageRenderer page={page} />
     </>
   );
