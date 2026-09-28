@@ -11,7 +11,6 @@
 
 .actions__link {
   @include type-body-bold;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -37,9 +36,7 @@
 
   &:focus-visible { @include focus-ring; }
 
-  &:active:not(:disabled, [aria-disabled="true"]) {
-    transform: translateY(1px);
-  }
+  &:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
 
   &:disabled,
   &[aria-disabled="true"] {
@@ -60,9 +57,7 @@
 }
 
 .actions__link:not([class*="actions__link--"]) {
-  @include hover {
-    .actions__label { background-size: 100% 1px; }
-  }
+  @include hover { .actions__label { background-size: 100% 1px; } }
 }
 
 .actions__link--primary,
@@ -96,9 +91,8 @@
 .actions__link--cta {
   @include hover {
     color: var(--accent);
-
     .actions__label { background-size: 100% 1px; }
-    .actions__arrow { transform: translateX(0.2em); }
+    .actions__arrow { transform: translate(0.2em, -0.06em); }
   }
 }
 
@@ -107,17 +101,13 @@
   transition: transform $transition-hover;
 }
 
-// @include reduced-motion {
-//   .actions__link,
-//   .actions__label,
-//   .actions__arrow {
-//     transition: none;
-//   }
+@include reduced-motion {
+  .actions__link,
+  .actions__label,
+  .actions__arrow { transition: none; }
 
-//   .actions__link:active,
-//   .actions__link--primary:hover,
-//   .actions__link--arrow:hover .actions__arrow,
-//   .actions__link--cta:hover .actions__arrow {
-//     transform: none;
-//   }
-// }
+  .actions__link:active,
+  .actions__link--primary:hover,
+  .actions__link--arrow:hover .actions__arrow,
+  .actions__link--cta:hover .actions__arrow { transform: none; }
+}
