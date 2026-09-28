@@ -1,5 +1,5 @@
 import scheduleData from "@/data/schedule.json";
-import { getLink } from "@/data/linkRegistry";
+import { getActionHref } from "@/data/actionRegistry";
 import type { CalendarEvent, ScheduleConfig, ScheduleEvent } from "@/types/schedule";
 
 const schedule = scheduleData as ScheduleConfig;
@@ -19,7 +19,7 @@ export function enrichScheduleEvent(event: CalendarEvent): ScheduleEvent {
     ...event,
     label: eventType?.label,
     media: eventType?.media,
-    bookingUrl: getLink(bookingLink),
+    bookingUrl: getActionHref(bookingLink),
   };
 }
 
