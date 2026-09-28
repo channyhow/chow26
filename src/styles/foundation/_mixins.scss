@@ -18,20 +18,13 @@
 }
 @mixin reduced-motion { @media (prefers-reduced-motion: reduce) { @content; } }
 
-// Shared structural grid. Keep page-specific asymmetry in child spans/offsets,
-// not by redefining a different column system for each section.
 @mixin site-grid($gap: $grid-gap) {
   display: grid;
   grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
   column-gap: $gap;
 
-  @include tablet-up {
-    grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
-  }
-
-  @include desktop-up {
-    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
-  }
+  @include tablet-up { grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr)); }
+  @include desktop-up { grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr)); }
 }
 
 @mixin focus-ring {
@@ -53,13 +46,25 @@
   align-items: center;
   gap: .35em;
 
-  .actions__arrow {
-    transition: transform $transition-hover;
-  }
+  .actions__arrow { transition: transform $transition-hover; }
+  @include hover { .actions__arrow { transform: translate(.18em, -.08em); } }
+}
 
-  @include hover {
-    .actions__arrow { transform: translate(.18em, -.08em); }
-  }
+@mixin social-action {
+  @include nav-link;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: $opacity-muted;
+  transition: color $transition-hover, opacity $transition-hover;
+
+  .actions__label { background-image: none; }
+
+  @include hover { opacity: 1; }
+  &:focus-visible { opacity: 1; }
 }
 
 @mixin brand-link {
@@ -102,9 +107,6 @@
   padding: 0;
 }
 
-// Shared previous / next navigation language for carousels and similar
-// directional interfaces. Keep these controls graphic and legible rather than
-// treating them like tiny utility icons.
 @mixin navigation-control {
   @include interactive-control;
   display: grid;
@@ -116,14 +118,8 @@
   font-weight: $font-weight-semibold;
   -webkit-tap-highlight-color: transparent;
 
-  &:disabled {
-    cursor: default;
-    opacity: $opacity-disabled;
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(1px);
-  }
+  &:disabled { cursor: default; opacity: $opacity-disabled; }
+  &:active:not(:disabled) { transform: translateY(1px); }
 
   @include hover {
     &:not(:disabled) {
@@ -208,10 +204,7 @@
 
 @mixin media-cover($fit: cover, $position: center) {
   .media__frame,
-  .media__asset {
-    width: 100%;
-    height: 100%;
-  }
+  .media__asset { width: 100%; height: 100%; }
   .media__asset { @include media-fill($fit, $position); }
 }
 
