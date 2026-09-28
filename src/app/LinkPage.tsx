@@ -12,12 +12,10 @@ import type { ActionRef, ContentItem } from "@/types/content";
 const campaignContent = linkPageData.campaign as ContentItem;
 const socialLinks = linkPageData.socials as ActionRef[];
 const backgroundMedia = resolveMedia(linkPageData.backgroundMedia);
-const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
 const currentYear = new Date().getFullYear();
 
 export function LinkPage() {
   const reduceMotion = Boolean(useReducedMotion());
-  const transition = reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
   const site = siteData.site;
 
   return (
@@ -25,16 +23,32 @@ export function LinkPage() {
       <Seo seo={{ title: `Liens | ${site.name}`, description: site.seo.defaultDescription }} slug="/link" />
       <div className="linkPage">
         {backgroundMedia ? (
-          <div className="linkPage__background" aria-hidden="true">
+          <motion.div
+            className="linkPage__background"
+            aria-hidden="true"
+            initial={reduceMotion ? false : { scale: 1.035, x: "-0.6%", y: "0.4%" }}
+            animate={reduceMotion ? undefined : { scale: [1.035, 1.065, 1.035], x: ["-0.6%", "0.7%", "-0.6%"], y: ["0.4%", "-0.5%", "0.4%"] }}
+            transition={reduceMotion ? undefined : { duration: 22, ease: "easeInOut", repeat: Infinity }}
+          >
             <Media media={backgroundMedia} priority sizes="100vw" className="linkPage__backgroundMedia" />
-          </div>
+          </motion.div>
         ) : null}
-        <main className="linkPage__main">
+        <motion.main
+          className="linkPage__main"
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           <section className="linkPage__campaign" aria-label="Recherche de projets">
             <TextBlock content={campaignContent} titleAs="h1" className="linkPage__campaignText" actionsVariant="panel" />
           </section>
-        </main>
-        <motion.footer className="linkPage__footer" variants={reveal} initial="hidden" animate="visible" transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}>
+        </motion.main>
+        <motion.footer
+          className="linkPage__footer"
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.45, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Actions links={socialLinks} variant="social" className="linkPage__socials" />
           <a className="linkPage__copyright" href={site.url} aria-label={`Accueil ${site.name}`}>© {site.name} {currentYear}</a>
         </motion.footer>
