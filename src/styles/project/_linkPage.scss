@@ -162,19 +162,38 @@
 }
 
 .linkPage__socials .actions__link {
-  @include nav-link;
   @include type-ui-compact;
-}
 
-.linkPage__socials .actions__link::after {
-  content: "↗";
-  transition: transform $transition-hover;
-}
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  gap: .4em;
+  opacity: $opacity-muted;
+  transition: color $transition-hover, opacity $transition-hover;
 
-.linkPage__socials .actions__link {
   @include hover {
-    &::after { transform: translate(.18em, -.08em); }
+    color: var(--accent);
+    opacity: 1;
+
+    .actions__arrow { transform: translate(.18em, -.08em); }
   }
+
+  &:focus-visible {
+    color: var(--accent);
+    opacity: 1;
+  }
+}
+
+.linkPage__socials .actions__label {
+  background-image: none;
+}
+
+.linkPage__socials .actions__arrow {
+  flex: 0 0 auto;
+  transition: transform $transition-hover;
 }
 
 .linkPage__copyright {
