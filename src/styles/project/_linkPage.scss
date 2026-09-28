@@ -1,0 +1,138 @@
+.linkPage {
+  --link-gutter: clamp(1.25rem, 4vw, 4rem);
+  width: min(100%, 54rem);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) var(--link-gutter) 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.linkPage__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .35rem 1rem;
+  align-items: start;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.linkPage__header p { margin: 0; text-align: right; }
+
+.linkPage__brand {
+  grid-row: 1 / 3;
+  width: 4.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  gap: .05rem;
+  background: var(--accent);
+  color: var(--primary);
+  text-decoration: none;
+  font-size: .62rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.linkPage__campaign {
+  position: relative;
+  padding: clamp(5rem, 13svh, 8rem) 0 clamp(4rem, 10svh, 6rem);
+}
+
+.linkPage__index {
+  font: 500 .68rem/1 var(--font-body);
+  letter-spacing: .05em;
+}
+
+.linkPage__campaign > .linkPage__index {
+  position: absolute;
+  top: clamp(2.5rem, 7svh, 4rem);
+  right: 0;
+}
+
+.linkPage__campaign h1 {
+  max-width: 9ch;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(3.6rem, 13vw, 7.8rem);
+  font-weight: 500;
+  line-height: .86;
+  letter-spacing: -.055em;
+  text-transform: uppercase;
+}
+
+.linkPage__campaign p {
+  max-width: 34rem;
+  margin: clamp(2rem, 5vw, 3.25rem) 0 1.75rem;
+  font: 400 clamp(.95rem, 2vw, 1.1rem)/1.45 var(--font-body);
+}
+
+.linkPage__primaryAction {
+  width: fit-content;
+  min-height: 3.25rem;
+  padding: .9rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--primary);
+  color: var(--secondary);
+  text-decoration: none;
+  font: 600 .8rem/1 var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+
+.linkPage__links { border-top: 1px solid currentColor; }
+
+.linkPage__link {
+  min-height: 5rem;
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  font: 500 clamp(1.1rem, 3vw, 1.55rem)/1.1 var(--font-body);
+}
+
+.linkPage__link > :last-child { font-size: 1.25rem; }
+
+.linkPage__footer {
+  margin-top: auto;
+  padding-top: clamp(3rem, 9svh, 6rem);
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font: 500 .68rem/1.4 var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.linkPage__socials { display: flex; gap: 1rem; }
+.linkPage__socials a { color: inherit; text-decoration: none; }
+
+@media (hover: hover) {
+  .linkPage__primaryAction,
+  .linkPage__link,
+  .linkPage__socials a { transition: opacity 180ms ease; }
+  .linkPage__primaryAction:hover,
+  .linkPage__link:hover,
+  .linkPage__socials a:hover { opacity: .58; }
+}
+
+@media (max-width: 35rem) {
+  .linkPage__header { grid-template-columns: 1fr; }
+  .linkPage__header p { text-align: left; }
+  .linkPage__brand { grid-row: auto; margin-bottom: .75rem; }
+  .linkPage__campaign { padding-top: 5rem; }
+  .linkPage__campaign > .linkPage__index { top: 2.5rem; }
+  .linkPage__link { grid-template-columns: 2.25rem 1fr auto; }
+  .linkPage__footer { flex-direction: column; }
+}
