@@ -61,10 +61,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
     >
       {!isLinkPage ? <SmoothScroll /> : null}
       {!isLinkPage ? <ScrollProgress mode={scrollProgress} /> : null}
-      {!isLinkPage ? <Header /> : null}
+      <Header />
       <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
       {!isLinkPage ? <FloatingAction /> : null}
-      {!isLinkPage ? <Drawer /> : null}
+      <Drawer />
     </div>
   );
 }
