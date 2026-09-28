@@ -33,7 +33,7 @@ export function LinkPage() {
 
           <nav className="linkPage__links" aria-label="Liens Chow Studio">
             <a className="linkPage__link linkPage__link--primary" href={tallyUrl} target="_blank" rel="noreferrer">
-              <span>Présenter mon projet</span>
+              <span>Votre entreprise pourrait en faire partie</span>
               <span aria-hidden="true">↗</span>
             </a>
             <Link className="linkPage__link" to="/a-propos">
@@ -41,7 +41,7 @@ export function LinkPage() {
               <span aria-hidden="true">→</span>
             </Link>
             <Link className="linkPage__link" to="/projets/mois-du-ker">
-              <span>Mois du Kèr</span>
+              <span>Case study · Mois du Kèr</span>
               <span aria-hidden="true">→</span>
             </Link>
             <a className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
@@ -57,7 +57,7 @@ export function LinkPage() {
             <a href="https://www.facebook.com/hellochowstudio" target="_blank" rel="noreferrer">Facebook ↗</a>
             <a href="https://www.linkedin.com/company/chow-studio/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
-          <span>© Chow Studio 2026</span>
+          <span className="linkPage__copyright">© Chow Studio 2026</span>
         </footer>
       </div>
     </>
