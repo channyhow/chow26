@@ -10,7 +10,7 @@ export function LinkPage() {
       <Seo
         seo={{
           title: "Liens | Chow Studio",
-          description: "Chow Studio — design, identité visuelle et développement web. Découvrez les projets ou présentez le vôtre.",
+          description: "Chow Studio — design, identité visuelle et développement web. Découvrez le studio, un projet ou présentez le vôtre.",
         }}
         slug="/link"
       />
@@ -22,27 +22,34 @@ export function LinkPage() {
           </Link>
         </header>
 
-        <section className="linkPage__campaign" aria-labelledby="link-campaign-title">
-          <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
-          <p>
-            Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer,
-            repenser ou faire évoluer leur identité ou leur site web.
-          </p>
-          <a className="linkPage__primaryAction" href={tallyUrl} target="_blank" rel="noreferrer">
-            Présenter mon projet <span aria-hidden="true">↗</span>
-          </a>
-        </section>
+        <main className="linkPage__main">
+          <section className="linkPage__campaign" aria-labelledby="link-campaign-title">
+            <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
+            <p>
+              Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer,
+              repenser ou faire évoluer leur identité ou leur site web.
+            </p>
+          </section>
 
-        <nav className="linkPage__links" aria-label="Liens Chow Studio">
-          <Link className="linkPage__link" to="/projets">
-            <span>Découvrir les projets</span>
-            <span aria-hidden="true">→</span>
-          </Link>
-          <a className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
-            <span>Parler de votre projet</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </nav>
+          <nav className="linkPage__links" aria-label="Liens Chow Studio">
+            <a className="linkPage__link linkPage__link--primary" href={tallyUrl} target="_blank" rel="noreferrer">
+              <span>Présenter mon projet</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <Link className="linkPage__link" to="/a-propos">
+              <span>À propos de Chow Studio</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link className="linkPage__link" to="/projets/mois-du-ker">
+              <span>Mois du Kèr</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <a className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
+              <span>Contact</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </nav>
+        </main>
 
         <footer className="linkPage__footer">
           <div className="linkPage__socials">
