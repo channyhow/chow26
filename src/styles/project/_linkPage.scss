@@ -68,50 +68,6 @@
 .linkPage__campaignText .textBlock__content p { line-height: 1.45; }
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; }
 
-.linkPage__campaignText .actions {
-  display: grid;
-  width: 100%;
-  gap: $space-1;
-}
-
-.linkPage__campaignText .actions__link {
-  width: 100%;
-  min-height: 4.75rem;
-  padding: $space-2 $space-3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $space-3;
-  color: inherit;
-  text-decoration: none;
-  @include type-body-bold;
-  @include glass($gray-100, 9%);
-  transition: color $transition-hover, background-color $transition-hover, transform $transition-hover;
-
-  @include hover {
-    color: var(--accent);
-    background: color-mix(in srgb, #{$gray-100} 14%, transparent);
-    transform: translateX(.2rem);
-    .actions__arrow { transform: translate(.22rem, -.12rem); }
-  }
-
-  &:focus-visible { @include focus-ring; color: var(--accent); }
-}
-
-.linkPage__campaignText .actions__link--primary,
-.linkPage__campaignText .actions__link[data-priority="primary"] {
-  background: var(--accent);
-  color: var(--primary);
-  border-color: transparent;
-
-  @include hover { background: var(--primary); color: var(--secondary); }
-}
-
-.linkPage__campaignText .actions__arrow {
-  flex: 0 0 auto;
-  transition: transform $transition-hover;
-}
-
 .linkPage__footer {
   margin-top: auto;
   padding-top: $space-3;
@@ -164,11 +120,6 @@
   }
 
   .linkPage__campaignText .textBlock__footer { width: 100%; }
-
-  .linkPage__campaignText .actions__link {
-    min-height: 4.25rem;
-    padding: $space-2;
-  }
 
   .linkPage__footer {
     flex-direction: column;
