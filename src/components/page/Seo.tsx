@@ -67,15 +67,16 @@ const resolveSocialImage = (ref: string) => {
 export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
   useEffect(() => {
     const defaults = siteData.site.seo;
-    const title = seo?.title ?? defaults.defaultTitle;
-    const description = seo?.description ?? defaults.defaultDescription;
-    const canonical = seo?.canonical ?? absoluteUrl(slug === "/" ? "/" : slug);
-    const imageRef = slug === "/" ? defaults.defaultImage : (seo?.image ?? defaults.defaultImage);
+    const isHome = slug === "/";
+    const title = isHome ? defaults.defaultTitle : (seo?.title ?? defaults.defaultTitle);
+    const description = isHome ? defaults.defaultDescription : (seo?.description ?? defaults.defaultDescription);
+    const canonical = seo?.canonical ?? absoluteUrl(isHome ? "/" : slug);
+    const imageRef = isHome ? defaults.defaultImage : (seo?.image ?? defaults.defaultImage);
     const socialImage = resolveSocialImage(imageRef);
     const defaultMedia = resolveImageMedia(defaults.defaultImage);
     const defaultImageSrc = defaultMedia?.src ?? defaults.defaultImage;
     const image = socialImage?.url ?? absoluteUrl(defaultImageSrc);
-    const imageAlt = seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt;
+    const imageAlt = isHome ? defaults.imageAlt : (seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt);
     const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
 
     document.documentElement.lang = siteData.site.defaultLocale;
