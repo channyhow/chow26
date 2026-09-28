@@ -42,9 +42,12 @@
 }
 
 .linkPage__main {
+  flex: 1;
   display: grid;
-  gap: clamp(#{$space-3}, 5vw, #{$space-5});
-  padding-block: clamp(#{$space-4}, 8vw, 7rem);
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, .8fr);
+  align-items: center;
+  gap: clamp(#{$space-4}, 7vw, 8rem);
+  padding-block: clamp(#{$space-4}, 7vw, 7rem);
 }
 
 .linkPage__campaignText.textBlock {
@@ -72,7 +75,7 @@
 
 .linkPage__links {
   display: grid;
-  width: min(100%, 46rem);
+  width: 100%;
   gap: $space-1;
 }
 
@@ -139,7 +142,7 @@
 
 .linkPage__footer {
   margin-top: auto;
-  padding-top: clamp(#{$space-4}, 8vh, 6rem);
+  padding-top: $space-3;
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -165,10 +168,18 @@
 @include tablet-down {
   .linkPage { padding-inline: $page-gutter; }
 
+  .linkPage__main {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: $space-4;
+  }
+
   .linkPage__campaignText .textBlock__title {
     max-width: 9ch;
     font-size: clamp(3rem, 9vw, 5.25rem);
   }
+
+  .linkPage__links { width: min(100%, 46rem); }
 }
 
 @include mobile-down {
