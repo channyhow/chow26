@@ -51,23 +51,10 @@
   max-width: 28rem;
 }
 
-.siteFooter__links {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $layout-gap;
-  min-width: 0;
-}
-
 .siteFooter__nav,
-.siteFooter__support {
+.siteFooter__social,
+.siteFooter__legal {
   min-width: 0;
-}
-
-.siteFooter__support {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-content: start;
-  gap: $layout-gap;
 }
 
 .siteFooter__navGroup.actions {
@@ -110,16 +97,12 @@
 
 @include tablet-up {
   .siteFooter__main {
-    grid-template-columns: 1fr;
-    gap: $section-content-gap;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $layout-gap;
   }
 
-  .siteFooter__links {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .siteFooter__support {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .siteFooter__identity {
+    grid-column: 1 / -1;
   }
 
   .siteFooter__meta {
@@ -132,13 +115,12 @@
 
 @include desktop-up {
   .siteFooter__main {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr) minmax(0, 0.65fr) minmax(0, 0.8fr);
+    grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 0.65fr));
     gap: clamp(#{$space-3}, 4vw, 5rem);
   }
 
-  .siteFooter__links,
-  .siteFooter__support {
-    display: contents;
+  .siteFooter__identity {
+    grid-column: auto;
   }
 }
 
@@ -161,18 +143,17 @@
   }
 
   .siteFooter__main {
-    gap: clamp(#{$space-3}, 8vw, #{$space-4});
-  }
-
-  .siteFooter__links {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $layout-gap;
+    column-gap: $layout-gap;
+    row-gap: $space-3;
   }
 
-  .siteFooter__support {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-2;
+  .siteFooter__identity {
+    grid-column: 1 / -1;
+  }
+
+  .siteFooter__navGroup.actions {
+    gap: $flow-tight;
   }
 
   .siteFooter__legal {
