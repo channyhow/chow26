@@ -20,14 +20,13 @@ export function Card({ item, frame = false, effect = "none", className, variant 
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const isService = variant === "service";
-  const cardMedia = isProject && media?.type === "mux" ? { ...media, focalPoint: { x: 50, y: 50 } } : media;
-  const mediaOrientation = getMediaOrientation(cardMedia ?? undefined);
+  const mediaOrientation = getMediaOrientation(media ?? undefined);
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject ? { title: item.title, ...(projectMission ? { text: projectMission } : {}) } : item;
   const cardClassName = clsx("card", isProject && "projectCard", variant !== "default" && `card--${variant}`, frame && "frame", effect === "glass" && "effectGlass", effect === "grain" && "effectGrain", className);
 
   const content = <>
-    {cardMedia ? <div className="card__mediaWrap" data-media-type={cardMedia.type} data-orientation={mediaOrientation}><Media media={cardMedia} className="card__media" /></div> : null}
+    {media ? <div className="card__mediaWrap" data-media-type={media.type} data-orientation={mediaOrientation}><Media media={media} className="card__media" position={isProject ? "50% 50%" : undefined} /></div> : null}
     <TextBlock content={visibleItem} titleAs="h3" className="card__body" metaVariant={isService ? "rows" : "default"} />
   </>;
 
