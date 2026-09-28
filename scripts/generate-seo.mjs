@@ -19,12 +19,15 @@ const site = siteData.site;
 const seo = site.seo;
 const pwa = site.pwa;
 const baseUrl = site.url.replace(/\/$/, "");
+const privateRoutes = ["/link", "/system", "/branding", "/netlify-forms.html"];
 const projectPages = (collections.projects ?? []).map((project) => ({
   id: `project-${project.id}`,
   slug: project.href,
   seo: project.seo,
 }));
-const indexablePages = [...pages, ...projectPages].filter((page) => page.seo?.robots?.index !== false);
+const indexablePages = [...pages, ...projectPages].filter(
+  (page) => page.seo?.robots?.index !== false && !privateRoutes.includes(page.slug),
+);
 
 const manifest = {
   id: "/",
@@ -40,33 +43,16 @@ const manifest = {
   background_color: siteData.theme.colors.secondary,
   theme_color: seo.themeColor,
   icons: [
-    {
-      src: "/android-chrome-192x192.png",
-      sizes: "192x192",
-      type: "image/png",
-      purpose: "any",
-    },
-    {
-      src: "/android-chrome-512x512.png",
-      sizes: "512x512",
-      type: "image/png",
-      purpose: "any",
-    },
-    {
-      src: "/android-chrome-512x512.png",
-      sizes: "512x512",
-      type: "image/png",
-      purpose: "maskable",
-    },
+    { src: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+    { src: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+    { src: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
   ],
 };
 
 const robots = [
   "User-agent: *",
   "Allow: /",
-  "Disallow: /system",
-  "Disallow: /branding",
-  "Disallow: /netlify-forms.html",
+  ...privateRoutes.map((route) => `Disallow: ${route}`),
   `Sitemap: ${baseUrl}/sitemap.xml`,
   "",
 ].join("\n");
@@ -104,41 +90,13 @@ const llms = [
   "",
   ...indexablePages.map((page) => {
     const url = page.seo?.canonical ?? `${baseUrl}${page.slug === "/" ? "" : page.slug}`;
-    const description = page.seo?.description ? ` — ${page.seo.description}` : "";
+    const description = page.seo?.description ? ` | ${page.seo.description}` : "";
     return `- ${page.seo?.title ?? page.id}: ${url}${description}`;
   }),
-  ...(services.length
-    ? [
-        "",
-        "## Services represented",
-        "",
-        ...services.map((service) => `- ${service}`),
-      ]
-    : []),
-  ...(expertise.length
-    ? [
-        "",
-        "## Topics",
-        "",
-        ...expertise.map((item) => `- ${item}`),
-      ]
-    : []),
-  ...(areas.length
-    ? [
-        "",
-        "## Service areas",
-        "",
-        ...areas.map((area) => `- ${area}`),
-      ]
-    : []),
-  ...(projectLocations.length
-    ? [
-        "",
-        "## Geographic focus",
-        "",
-        ...projectLocations.map((location) => `- ${location}`),
-      ]
-    : []),
+  ...(services.length ? ["", "## Services represented", "", ...services.map((service) => `- ${service}`)] : []),
+  ...(expertise.length ? ["", "## Topics", "", ...expertise.map((item) => `- ${item}`)] : []),
+  ...(areas.length ? ["", "## Service areas", "", ...areas.map((area) => `- ${area}`)] : []),
+  ...(projectLocations.length ? ["", "## Geographic focus", "", ...projectLocations.map((location) => `- ${location}`)] : []),
   "",
   "## Contact and attribution",
   "",
@@ -159,4 +117,4 @@ await Promise.all([
   writeFile(resolve(publicDir, "llms.txt"), llms),
 ]);
 
-console.log("SEO assets generated from site.json + pages.json");
+console.log(`SEO assets generated: ${indexablePages.length} indexable URLs; ${privateRoutes.length} private routes excluded.`);
