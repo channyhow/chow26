@@ -1,4 +1,4 @@
-import type { Action } from "./content";
+import type { ActionRef } from "./content";
 
 export type FormFieldType =
   | "text"
@@ -40,5 +40,5 @@ export type FormSchema = {
   fallbackHeight?: number;
   submitLabel?: string;
   fields: FormField[];
-  links?: Action[];
+  links?: ActionRef[];
 };
