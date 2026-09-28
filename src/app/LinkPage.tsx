@@ -26,8 +26,8 @@ export function LinkPage() {
           <section className="linkPage__campaign" aria-labelledby="link-campaign-title">
             <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
             <p>
-              Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer,
-              repenser ou faire évoluer leur identité ou leur site web.
+              Pour mes prochains projets, je recherche trois entreprises qui souhaitent <strong>créer,
+              repenser ou faire évoluer leur identité ou leur site web.</strong>
             </p>
           </section>
 
