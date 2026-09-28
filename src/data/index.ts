@@ -4,6 +4,7 @@ import globalBlocks from "@/data/globalBlocks.json";
 import media from "@/data/media.json";
 import navigation from "@/data/navigation.json";
 import pages from "@/data/pages.json";
+import services from "@/data/services.json";
 import site from "@/data/site.json";
 
 export {
@@ -13,5 +14,6 @@ export {
   media,
   navigation,
   pages,
+  services,
   site,
 };
