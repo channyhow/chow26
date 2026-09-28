@@ -119,96 +119,25 @@
             "surface": "solid",
             "color": "secondary",
             "blocks": [
-              {
-                "id": "studio-services",
-                "type": "Section",
-                "layout": "horizontal-scroll",
-                "surface": "solid",
-                "color": "secondary",
-                "motion": "scene",
-                "motionPreset": "ambient",
-                "content": {
-                  "header": {
-                    "text": [
-                      "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
-                    ]
-                  },
-                  "items": [
-                    {
-                      "id": "studio-service-identity",
-                      "eyebrow": "Logo · Branding · Direction visuelle",
-                      "title": "Identité visuelle",
-                      "text": [
-                        "Donnez à votre projet une identité claire et reconnaissable, du logo à un univers visuel plus complet."
-                      ],
-                      "media": "ravine-business-card",
-                      "meta": [
-                        { "label": "Pour", "value": "Lancement · Repositionnement · Nouvelle identité" },
-                        { "label": "Peut inclure", "value": "Logo · Typographie · Couleurs · Direction visuelle" },
-                        { "label": "Budget", "value": "À partir de 800 € HT" }
-                      ],
-                      "tags": ["Logo", "Branding", "Identité visuelle"],
-                      "links": [
-                        {
-                          "label": "Parlez de votre identité",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "studio-service-website",
-                      "eyebrow": "Design web · Développement · SEO",
-                      "title": "Site web",
-                      "text": [
-                        "Présentez votre activité clairement, guidez vos visiteurs vers l’essentiel et facilitez la prise de contact grâce à un site sur mesure, rapide, accessible et responsive."
-                      ],
-                      "media": "atmosphere-laptop",
-                      "meta": [
-                        { "label": "Pour", "value": "Création · Refonte · Nouvelle présence digitale" },
-                        { "label": "Peut inclure", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
-                        { "label": "Budget", "value": "À partir de 1 500 € HT" }
-                      ],
-                      "tags": ["Site web", "UX/UI", "Frontend"],
-                      "links": [
-                        {
-                          "label": "Parlez de votre site",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    },
-                    {
-                      "id": "studio-service-integrations",
-                      "eyebrow": "Réservation · Paiement · Formulaires · Outils",
-                      "title": "Fonctionnalités & intégrations",
-                      "text": [
-                        "Faites évoluer votre site avec les fonctionnalités dont votre activité a besoin : réservation, paiement, formulaires, contenus dynamiques ou connexion à vos outils."
-                      ],
-                      "media": "structure-mobile-multi",
-                      "meta": [
-                        { "label": "Pour", "value": "Site existant · Nouveau service · Nouveau parcours" },
-                        { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Services externes" },
-                        { "label": "Budget", "value": "À partir de 800 € HT" }
-                      ],
-                      "tags": ["Intégrations", "Automatisation", "Frontend"],
-                      "links": [
-                        {
-                          "label": "Faites évoluer votre site",
-                          "href": "/contact",
-                          "intent": "contact",
-                          "priority": "secondary",
-                          "variant": "cta"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
+            {
+  "id": "studio-services",
+  "type": "Section",
+  "layout": "horizontal-scroll",
+  "surface": "solid",
+  "color": "secondary",
+  "motion": "scene",
+  "motionPreset": "ambient",
+  "source": {
+    "collection": "services"
+  },
+  "content": {
+    "header": {
+      "text": [
+        "Le périmètre dépend de ce qui existe déjà. L’enjeu n’est pas d’ajouter des livrables, mais de construire ce dont le projet a réellement besoin pour devenir plus clair, plus cohérent et plus facile à utiliser."
+      ]
+    }
+  }
+}
             ]
           },
           {
