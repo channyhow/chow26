@@ -9,12 +9,22 @@ export type ActionsProps = {
   className?: string;
 };
 
-function isProjectStartAction(label: string) {
+const SOCIAL_LABELS = new Set(["instagram", "linkedin", "facebook"]);
+
+function normalizeLabel(label: string) {
   return label
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .trim()
-    .toLocaleLowerCase("fr") === "demarrer un projet";
+    .toLocaleLowerCase("fr");
+}
+
+function isProjectStartAction(label: string) {
+  return normalizeLabel(label) === "demarrer un projet";
+}
+
+function isSocialAction(label: string) {
+  return SOCIAL_LABELS.has(normalizeLabel(label));
 }
 
 function resolveVariant(action: Action, index: number, actionCount: number) {
@@ -53,9 +63,12 @@ export function Actions({ links = [], className }: ActionsProps) {
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
         const variant = resolveVariant(action, index, links.length);
-        const hasArrow = variant === "arrow" || variant === "cta";
         const href = intent === "submit" ? undefined : action.href ?? getLink(action.linkKey);
         const external = Boolean(href && isExternalHref(href));
+        const hasArrow =
+          variant === "arrow" ||
+          variant === "cta" ||
+          isSocialAction(action.label);
 
         const classNames = clsx(
           "actions__link",
