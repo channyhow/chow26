@@ -30,10 +30,7 @@ const toArray = <T,>(value?: T | T[]): T[] => {
 export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 94%", "end 24%"],
-  });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 94%", "end 24%"] });
   const y = useTransform(
     scrollYProgress,
     [0, 0.42, 1],
@@ -46,10 +43,7 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   );
   const hasPanelMotion = panelBehavior === "cover" || panelBehavior === "stack";
   const motionStyle = hasPanelMotion
-    ? ({
-        "--footer-motion-y": y,
-        "--footer-motion-opacity": opacity,
-      } as unknown as MotionStyle)
+    ? ({ "--footer-motion-y": y, "--footer-motion-opacity": opacity } as unknown as MotionStyle)
     : undefined;
   const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
   const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
@@ -58,10 +52,17 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const eyebrows = toArray(header?.eyebrow).filter(Boolean);
   const links = header?.links ?? [];
   const meta = header?.meta ?? [];
+  const usesGroups = links.some((link) => link.group);
 
-  const primaryLinks = links.filter((link) => (link.group ?? "primary") === "primary");
-  const socialLinks = links.filter((link) => link.group === "social");
-  const legalLinks = links.filter((link) => link.group === "legal");
+  const primaryLinks = usesGroups
+    ? links.filter((link) => (link.group ?? "primary") === "primary")
+    : links.slice(0, 4);
+  const socialLinks = usesGroups
+    ? links.filter((link) => link.group === "social")
+    : links.slice(4, 6);
+  const legalLinks = usesGroups
+    ? links.filter((link) => link.group === "legal")
+    : links.slice(6);
 
   return (
     <footer
@@ -83,22 +84,11 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
       >
         <motion.div className="siteFooter__main" variants={containerVariants}>
           <motion.div className="siteFooter__identity" variants={containerVariants}>
-            {eyebrows[0] ? (
-              <motion.p className="siteFooter__name" variants={itemVariants}>
-                {eyebrows[0]}
-              </motion.p>
-            ) : null}
-
+            {eyebrows[0] ? <motion.p className="siteFooter__name" variants={itemVariants}>{eyebrows[0]}</motion.p> : null}
             {eyebrows.length > 1 ? (
               <motion.div className="siteFooter__baselines" variants={containerVariants}>
                 {eyebrows.slice(1).map((eyebrow) => (
-                  <motion.p
-                    key={eyebrow}
-                    className="siteFooter__baseline"
-                    variants={itemVariants}
-                  >
-                    {eyebrow}
-                  </motion.p>
+                  <motion.p key={eyebrow} className="siteFooter__baseline" variants={itemVariants}>{eyebrow}</motion.p>
                 ))}
               </motion.div>
             ) : null}
@@ -109,13 +99,11 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
               <Actions links={primaryLinks} className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
-
           {socialLinks.length ? (
             <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={itemVariants}>
               <Actions links={socialLinks} className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
-
           {legalLinks.length ? (
             <motion.nav className="siteFooter__legal" aria-label="Informations légales" variants={itemVariants}>
               <Actions links={legalLinks} className="siteFooter__navGroup" />
