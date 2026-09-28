@@ -20,7 +20,14 @@ export function LinkPage() {
 
   return (
     <>
-      <Seo seo={{ title: `Liens | ${site.name}`, description: site.seo.defaultDescription }} slug="/link" />
+      <Seo
+        seo={{
+          title: `Liens | ${site.name}`,
+          description: site.seo.defaultDescription,
+          robots: { index: false, follow: true },
+        }}
+        slug="/link"
+      />
       <div className="linkPage">
         {backgroundMedia ? (
           <motion.div
