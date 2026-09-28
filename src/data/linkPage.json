@@ -3,7 +3,7 @@
   "campaign": {
     "eyebrow": "#appel à projets",
     "title": "Je recherche 3 entreprises",
-    "text": "Pour mes prochains projets, je recherche trois entreprises qui souhaitent **créer, repenser ou faire évoluer leur identité ou leur site web.**",
+    "text": "Je recherche des restaurants, lieux, studios, marques et projets indépendants, à Paris, à La Réunion ou ailleurs, qui souhaitent créer ou faire évoluer leur identité ou leur site web.\n\n**Candidatures jusqu’au 18 octobre.**",
     "links": ["project-call", "about-studio", "mdk-case-study", "contact"]
   },
   "socials": ["instagram", "linkedin", "facebook"]
