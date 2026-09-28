@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionStyle } from "motion/react";
 
 import { Actions } from "@/components/navigation/Actions";
+import { resolveActions } from "@/data/actionRegistry";
 import { motionConfig, reducedRevealItem, reducedStaggerContainer, revealItem, revealContainer } from "@/motion/config";
 import type { PanelBehavior, SectionBlock } from "@/types/content";
 
@@ -22,22 +23,19 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
   const header = block.content?.header;
   const eyebrows = toArray(header?.eyebrow).filter(Boolean);
-  const links = header?.links ?? [];
+  const links = resolveActions(header?.links ?? []);
   const meta = header?.meta ?? [];
-  const usesGroups = links.some((link) => typeof link !== "string" && Boolean(link.group));
-  const getGroup = (link: (typeof links)[number]) => typeof link === "string" ? undefined : link.group;
-  const getLabel = (link: (typeof links)[number]) => typeof link === "string" ? "" : link.label;
-  const getHref = (link: (typeof links)[number]) => typeof link === "string" ? "" : (link.href ?? "");
+  const usesGroups = links.some((link) => Boolean(link.group));
 
   const primaryLinks = usesGroups
-    ? links.filter((link) => (getGroup(link) ?? "primary") === "primary")
-    : links.filter((link) => !SOCIAL_LABELS.has(getLabel(link).trim().toLowerCase()) && !LEGAL_HREFS.has(getHref(link)));
+    ? links.filter((link) => (link.group ?? "primary") === "primary")
+    : links.filter((link) => !SOCIAL_LABELS.has(link.label.trim().toLowerCase()) && !LEGAL_HREFS.has(link.href ?? ""));
   const socialLinks = usesGroups
-    ? links.filter((link) => getGroup(link) === "social")
-    : links.filter((link) => SOCIAL_LABELS.has(getLabel(link).trim().toLowerCase()));
+    ? links.filter((link) => link.group === "social")
+    : links.filter((link) => SOCIAL_LABELS.has(link.label.trim().toLowerCase()));
   const legalLinks = usesGroups
-    ? links.filter((link) => getGroup(link) === "legal")
-    : links.filter((link) => LEGAL_HREFS.has(getHref(link)));
+    ? links.filter((link) => link.group === "legal")
+    : links.filter((link) => LEGAL_HREFS.has(link.href ?? ""));
 
   return (
     <footer ref={ref} id={block.id} className="siteFooter" data-surface={block.surface} data-color={block.color} data-panel-motion={hasPanelMotion ? "true" : undefined} aria-label="Pied de page">
