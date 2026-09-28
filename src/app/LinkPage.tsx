@@ -47,6 +47,7 @@ export function LinkPage() {
         <footer className="linkPage__footer">
           <div className="linkPage__socials">
             <a href="https://www.instagram.com/hellochowstudio/" target="_blank" rel="noreferrer">Instagram ↗</a>
+            <a href="https://www.facebook.com/hellochowstudio" target="_blank" rel="noreferrer">Facebook ↗</a>
             <a href="https://www.linkedin.com/company/chow-studio/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
           <span>© Chow Studio 2026</span>
