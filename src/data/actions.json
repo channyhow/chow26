@@ -5,7 +5,7 @@
   "talk-identity": { "label": "Parlez de votre identité", "href": "/contact", "intent": "contact", "variant": "cta" },
   "talk-website": { "label": "Parlez de votre site", "href": "/contact", "intent": "contact", "variant": "cta" },
   "evolve-website": { "label": "Faites évoluer votre site", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "project-call": { "label": "Ça m’intéresse", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
+  "project-call": { "label": "Parler de mon projet", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
 
   "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
   "return-home": { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
