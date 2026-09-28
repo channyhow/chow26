@@ -4,16 +4,10 @@ import { Link } from "react-router-dom";
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
 import { resolveMedia } from "@/data/resolveMedia";
-import type { CardEffect, ContentItem } from "@/types/content";
+import type { CardEffect, CardVariant, ContentItem } from "@/types/content";
 import { getMediaOrientation } from "@/utils/media";
 
-export type CardProps = {
-  item: ContentItem;
-  frame?: boolean;
-  effect?: CardEffect;
-  className?: string;
-  variant?: "default" | "service";
-};
+export type CardProps = { item: ContentItem; frame?: boolean; effect?: CardEffect; className?: string; variant?: CardVariant; };
 
 function getProjectMission(item: ContentItem) {
   if (!Array.isArray(item.text)) return undefined;
@@ -30,7 +24,7 @@ export function Card({ item, frame = false, effect = "none", className, variant 
   const mediaOrientation = getMediaOrientation(cardMedia ?? undefined);
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject ? { title: item.title, ...(projectMission ? { text: projectMission } : {}) } : item;
-  const cardClassName = clsx("card", isProject && "projectCard", isService && "card--service", frame && "frame", effect === "glass" && "effectGlass", effect === "grain" && "effectGrain", className);
+  const cardClassName = clsx("card", isProject && "projectCard", variant !== "default" && `card--${variant}`, frame && "frame", effect === "glass" && "effectGlass", effect === "grain" && "effectGrain", className);
 
   const content = <>
     {cardMedia ? <div className="card__mediaWrap" data-media-type={cardMedia.type} data-orientation={mediaOrientation}><Media media={cardMedia} className="card__media" /></div> : null}
