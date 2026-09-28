@@ -4,8 +4,10 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 
 import muxTokenHandler from "./netlify/functions/mux-token.mjs";
+import actionsData from "./src/data/actions.json";
 import collectionsData from "./src/data/collections.json";
 import globalBlocksData from "./src/data/globalBlocks.json";
+import mediaData from "./src/data/media.json";
 import { blockRegistrySchema, collectionsSchema } from "./src/data/schemas";
 import siteData from "./src/data/site.json";
 
@@ -35,11 +37,8 @@ function muxTokenDevPlugin(): Plugin {
       server.middlewares.use("/.netlify/functions/mux-token", async (req, res) => {
         try {
           const origin = `http://${req.headers.host ?? "localhost"}`;
-          const request = new Request(new URL(req.url ?? "", origin), {
-            method: req.method,
-          });
+          const request = new Request(new URL(req.url ?? "", origin), { method: req.method });
           const response = await muxTokenHandler(request);
-
           res.statusCode = response.status;
           response.headers.forEach((value, key) => res.setHeader(key, value));
           res.end(await response.text());
@@ -58,23 +57,29 @@ function seoIndexPlugin(): Plugin {
   const site = siteData.site;
   const seo = site.seo;
   const siteUrl = site.url.replace(/\/$/, "");
-  const imageUrl = new URL(seo.defaultImage, `${siteUrl}/`).toString();
+  const media = mediaData as Record<string, { type: string; src?: string; alt?: string; focalPoint?: { x: number; y: number } }>;
+  const actions = actionsData as Record<string, { href?: string }>;
+  const imageMedia = media[seo.defaultImage];
+  if (!imageMedia || imageMedia.type !== "image" || !imageMedia.src) {
+    throw new Error(`site.seo.defaultImage must reference image media: "${seo.defaultImage}"`);
+  }
+  const point = imageMedia.focalPoint;
+  const position = !point ? "center" : point.y <= 35 ? "top" : point.y >= 65 ? "bottom" : point.x <= 35 ? "left" : point.x >= 65 ? "right" : "center";
+  const imageParams = new URLSearchParams({ url: imageMedia.src, w: "1200", h: "630", fit: "cover", position, fm: "jpg", q: "85" });
+  const imageUrl = `${siteUrl}/.netlify/images?${imageParams.toString()}`;
+  const imageAlt = seo.imageAlt ?? imageMedia.alt ?? site.name;
   const businessId = `${siteUrl}/#business`;
   const creatorId = `${siteUrl}/#creator`;
 
-  const sameAs = Object.values(site.socials)
-    .filter((social) => social.enabled && /^https?:\/\//.test(social.href))
-    .map((social) => social.href);
+  const sameAs = site.socials
+    .map((id) => actions[id]?.href)
+    .filter((href): href is string => Boolean(href && /^https?:\/\//.test(href)));
 
   const areaServed = (seo.areaServed ?? [])
     .filter((area) => area.name)
-    .map((area) => ({
-      "@type": areaTypeMap[area.kind] ?? "Place",
-      name: area.name,
-    }));
+    .map((area) => ({ "@type": areaTypeMap[area.kind] ?? "Place", name: area.name }));
 
   const services = (seo.services ?? []).filter((service) => service.name);
-
   const creator = site.credits?.name
     ? {
         "@type": "Person",
@@ -100,18 +105,10 @@ function seoIndexPlugin(): Plugin {
       ? {
           address: {
             "@type": "PostalAddress",
-            ...(site.contact.address.street
-              ? { streetAddress: site.contact.address.street }
-              : {}),
-            ...(site.contact.address.postalCode
-              ? { postalCode: site.contact.address.postalCode }
-              : {}),
-            ...(site.contact.address.city
-              ? { addressLocality: site.contact.address.city }
-              : {}),
-            ...(site.contact.address.country
-              ? { addressCountry: site.contact.address.country }
-              : {}),
+            ...(site.contact.address.street ? { streetAddress: site.contact.address.street } : {}),
+            ...(site.contact.address.postalCode ? { postalCode: site.contact.address.postalCode } : {}),
+            ...(site.contact.address.city ? { addressLocality: site.contact.address.city } : {}),
+            ...(site.contact.address.country ? { addressCountry: site.contact.address.country } : {}),
           },
         }
       : {}),
@@ -149,7 +146,7 @@ function seoIndexPlugin(): Plugin {
         description: seo.defaultDescription,
         inLanguage: site.defaultLocale,
         publisher: { "@id": businessId },
-        ...(creator ? { creator: { "@id": creatorId } } : {}),
+        ...(creator ? { creator: { "@id": creatorId } : {}),
       },
     ],
   }).replaceAll("<", "\\u003c");
@@ -163,7 +160,7 @@ function seoIndexPlugin(): Plugin {
     __OG_LOCALE__: site.defaultLocale.replace("-", "_"),
     __SEO_TITLE__: seo.defaultTitle,
     __SEO_IMAGE__: imageUrl,
-    __SEO_IMAGE_ALT__: seo.imageAlt,
+    __SEO_IMAGE_ALT__: imageAlt,
     __TWITTER_CARD__: seo.twitterCard,
   };
 
@@ -182,21 +179,11 @@ function seoIndexPlugin(): Plugin {
 export default defineConfig(({ mode }) => {
   validateStaticData();
 
-  if (mode === "development") {
-    Object.assign(process.env, loadEnv(mode, process.cwd(), "MUX_"));
-  }
+  if (mode === "development") Object.assign(process.env, loadEnv(mode, process.cwd(), "MUX_"));
 
   return {
     plugins: [seoIndexPlugin(), muxTokenDevPlugin(), react()],
-    resolve: {
-      alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
-      },
-    },
-    build: {
-      target: "es2022",
-      cssCodeSplit: true,
-      sourcemap: false,
-    },
+    resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
+    build: { target: "es2022", cssCodeSplit: true, sourcemap: false },
   };
 });
