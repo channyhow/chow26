@@ -4,15 +4,12 @@ import { TextBlock } from "@/components/content/TextBlock";
 import { Actions } from "@/components/navigation/Actions";
 import { Seo } from "@/components/page/Seo";
 import linkPageData from "@/data/linkPage.json";
-import type { Action, ContentItem } from "@/types/content";
+import type { ActionRef, ContentItem } from "@/types/content";
 
 const campaignContent = linkPageData.campaign as ContentItem;
-const socialLinks = linkPageData.socials as Action[];
+const socialLinks = linkPageData.socials as ActionRef[];
 
-const reveal = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0 },
-};
+const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } };
 
 export function LinkPage() {
   const reduceMotion = Boolean(useReducedMotion());
@@ -20,20 +17,13 @@ export function LinkPage() {
 
   return (
     <>
-      <Seo
-        seo={{
-          title: "Liens | Chow Studio",
-          description: "Chow Studio — design, identité visuelle et développement web. Découvrez le studio, un projet ou présentez le vôtre.",
-        }}
-        slug="/link"
-      />
+      <Seo seo={{ title: "Liens | Chow Studio", description: "Chow Studio — design, identité visuelle et développement web. Découvrez le studio, un projet ou présentez le vôtre." }} slug="/link" />
       <div className="linkPage">
         <main className="linkPage__main">
           <section className="linkPage__campaign" aria-label="Recherche de projets">
             <TextBlock content={campaignContent} titleAs="h1" className="linkPage__campaignText" />
           </section>
         </main>
-
         <motion.footer className="linkPage__footer" variants={reveal} initial="hidden" animate="visible" transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}>
           <Actions links={socialLinks} variant="social" className="linkPage__socials" />
           <span className="linkPage__copyright">© Chow Studio 2026</span>
