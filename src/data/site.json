@@ -90,6 +90,11 @@
         "href": "https://www.linkedin.com/in/channyhow",
         "enabled": true
       },
+      "facebook": {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/hellochowstudio",
+        "enabled": true
+      },
       "email": {
         "label": "E-mail",
         "href": "mailto:channyhow@gmail.com",
