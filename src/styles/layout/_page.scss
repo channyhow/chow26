@@ -2,6 +2,7 @@
 @use "../foundation/mixins" as *;
 
 .page {
+  --page-start-offset: #{$header-height};
   position: relative;
 }
 
@@ -11,6 +12,21 @@
   background: var(--secondary);
 }
 
+/* Route-start contract: the first normal section, or the first section inside
+   the first panel, clears the persistent header. Section spacing remains owned
+   by Section; this only adds the header offset once at the page boundary. */
+.page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
+.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+  padding-top: calc(var(--section-space, #{$section-space}) + var(--page-start-offset));
+}
+
+/* Immersive route openings own their internal composition, but their content
+   still receives header clearance rather than relying on a page-specific patch. */
+.page__content > .section:first-child[data-layout="media-overlay"] .section__overlayContent,
+.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="media-overlay"] .section__overlayContent {
+  padding-top: calc(clamp(#{$space-4}, 12vh, 9rem) + var(--page-start-offset));
+}
+
 /* Footer base styling is semantic, not dependent on where the footer lives.
    Top-level page footers and footers rendered inside scroll panels share it. */
 .page__footer,
@@ -18,8 +34,6 @@
   position: relative;
   z-index: $z-base;
   overflow: visible;
-  // background: var(--theme-primary);
-  // color: var(--secondary);
 }
 
 .page[data-footer-reveal="true"] {
@@ -54,17 +68,3 @@
     scroll-padding-bottom: var(--floating-action-safe-zone);
   }
 }
-
-// @include reduced-motion {
-//   .page[data-footer-reveal="true"] > .page__content {
-//     margin-bottom: 0;
-//     box-shadow: none;
-//   }
-
-//   .page[data-footer-reveal="true"] > .page__footer {
-//     position: relative;
-//     height: auto;
-//     overflow: visible;
-//     overscroll-behavior: auto;
-//   }
-// }
