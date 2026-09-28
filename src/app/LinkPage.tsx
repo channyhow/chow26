@@ -1,10 +1,19 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 
 import { Seo } from "@/components/page/Seo";
 
 const tallyUrl = "https://tally.so/r/7RpgvA";
 
+const reveal = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export function LinkPage() {
+  const reduceMotion = Boolean(useReducedMotion());
+  const transition = reduceMotion ? { duration: 0 } : { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const };
+
   return (
     <>
       <Seo
@@ -15,50 +24,85 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
-        <header className="linkPage__header">
+        <motion.header
+          className="linkPage__header"
+          variants={reveal}
+          initial="hidden"
+          animate="visible"
+          transition={transition}
+        >
           <Link className="linkPage__brand" to="/" aria-label="Chow Studio, accueil">
             <span>CHOW</span>
             <span>STUDIO</span>
           </Link>
-        </header>
+        </motion.header>
 
         <main className="linkPage__main">
-          <section className="linkPage__campaign" aria-labelledby="link-campaign-title">
+          <motion.section
+            className="linkPage__campaign"
+            aria-labelledby="link-campaign-title"
+            variants={reveal}
+            initial="hidden"
+            animate="visible"
+            transition={{ ...transition, delay: reduceMotion ? 0 : 0.06 }}
+          >
             <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
             <p>
               Pour mes prochains projets, je recherche trois entreprises qui souhaitent <strong>créer,
               repenser ou faire évoluer leur identité ou leur site web.</strong>
             </p>
-          </section>
+          </motion.section>
 
-          <nav className="linkPage__links" aria-label="Liens Chow Studio">
-            <a className="linkPage__link linkPage__link--primary" href={tallyUrl} target="_blank" rel="noreferrer">
-              <span>Votre entreprise pourrait en faire partie</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-            <Link className="linkPage__link" to="/a-propos">
-              <span>À propos de Chow Studio</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-            <Link className="linkPage__link" to="/projets/mois-du-ker">
-              <span>Case study · Mois du Kèr</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-            <a className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
+          <motion.nav
+            className="linkPage__links"
+            aria-label="Liens Chow Studio"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.055, delayChildren: reduceMotion ? 0 : 0.12 } },
+            }}
+          >
+            <motion.a variants={reveal} transition={transition} className="linkPage__link linkPage__link--primary" href={tallyUrl} target="_blank" rel="noreferrer">
+              <span className="linkPage__linkCopy">
+                <span>Votre entreprise pourrait en faire partie</span>
+                <small>Identité visuelle · site web · refonte</small>
+              </span>
+              <span className="linkPage__arrow" aria-hidden="true">↗</span>
+            </motion.a>
+            <motion.div variants={reveal} transition={transition}>
+              <Link className="linkPage__link" to="/a-propos">
+                <span>À propos de Chow Studio</span>
+                <span className="linkPage__arrow" aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+            <motion.div variants={reveal} transition={transition}>
+              <Link className="linkPage__link" to="/projets/mois-du-ker">
+                <span>Case study · Mois du Kèr</span>
+                <span className="linkPage__arrow" aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+            <motion.a variants={reveal} transition={transition} className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
               <span>Contact</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </nav>
+              <span className="linkPage__arrow" aria-hidden="true">↗</span>
+            </motion.a>
+          </motion.nav>
         </main>
 
-        <footer className="linkPage__footer">
+        <motion.footer
+          className="linkPage__footer"
+          variants={reveal}
+          initial="hidden"
+          animate="visible"
+          transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}
+        >
           <div className="linkPage__socials">
             <a href="https://www.instagram.com/hellochowstudio/" target="_blank" rel="noreferrer">Instagram ↗</a>
             <a href="https://www.facebook.com/hellochowstudio" target="_blank" rel="noreferrer">Facebook ↗</a>
             <a href="https://www.linkedin.com/company/chow-studio/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
           <span className="linkPage__copyright">© Chow Studio 2026</span>
-        </footer>
+        </motion.footer>
       </div>
     </>
   );
