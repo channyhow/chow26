@@ -9,8 +9,6 @@ export type ActionsProps = {
   className?: string;
 };
 
-const CONTACT_ACTION_LABEL = "Parler d’un projet";
-
 function isProjectStartAction(label: string) {
   return label
     .normalize("NFD")
@@ -45,10 +43,7 @@ function getInternalPathname(href: string) {
   return href.split(/[?#]/, 1)[0] || "/";
 }
 
-export function Actions({
-  links = [],
-  className,
-}: ActionsProps) {
+export function Actions({ links = [], className }: ActionsProps) {
   const { pathname } = useLocation();
 
   if (!links.length) return null;
@@ -57,9 +52,10 @@ export function Actions({
     <div className={clsx("actions", className)}>
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
-        const label = intent === "contact" ? CONTACT_ACTION_LABEL : action.label;
         const variant = resolveVariant(action, index, links.length);
         const hasArrow = variant === "arrow" || variant === "cta";
+        const href = intent === "submit" ? undefined : action.href ?? getLink(action.linkKey);
+        const external = Boolean(href && isExternalHref(href));
 
         const classNames = clsx(
           "actions__link",
@@ -68,9 +64,11 @@ export function Actions({
 
         const content = (
           <>
-            <span className="actions__label">{label}</span>
+            <span className="actions__label">{action.label}</span>
             {hasArrow ? (
-              <span className="actions__arrow" aria-hidden="true">→</span>
+              <span className="actions__arrow" aria-hidden="true">
+                {external ? "↗" : "→"}
+              </span>
             ) : null}
           </>
         );
@@ -89,11 +87,8 @@ export function Actions({
           );
         }
 
-        const href = action.href ?? getLink(action.linkKey);
-
         if (!href) return null;
 
-        const external = isExternalHref(href);
         const internal = !external && isInternalHref(href);
         const isCurrentPage = internal && getInternalPathname(href) === pathname;
         const key = `${action.label}-${action.linkKey ?? href}`;
