@@ -35,7 +35,6 @@
     transform $transition-hover;
 
   &:focus-visible { @include focus-ring; }
-
   &:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
 
   &:disabled,
@@ -101,6 +100,15 @@
   transition: transform $transition-hover;
 }
 
+.actions--social {
+  gap: $space-3;
+
+  .actions__link {
+    @include social-action;
+    @include type-ui-compact;
+  }
+}
+
 @include reduced-motion {
   .actions__link,
   .actions__label,
@@ -109,5 +117,6 @@
   .actions__link:active,
   .actions__link--primary:hover,
   .actions__link--arrow:hover .actions__arrow,
-  .actions__link--cta:hover .actions__arrow { transform: none; }
+  .actions__link--cta:hover .actions__arrow,
+  .actions--social .actions__link:hover .actions__arrow { transform: none; }
 }
