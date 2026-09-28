@@ -146,7 +146,7 @@ function seoIndexPlugin(): Plugin {
         description: seo.defaultDescription,
         inLanguage: site.defaultLocale,
         publisher: { "@id": businessId },
-        ...(creator ? { creator: { "@id": creatorId } : {}),
+        ...(creator ? { creator: { "@id": creatorId } } : {}),
       },
     ],
   }).replaceAll("<", "\\u003c");
