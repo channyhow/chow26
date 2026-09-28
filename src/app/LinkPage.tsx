@@ -8,7 +8,7 @@ const tallyUrl = "https://tally.so/r/7RpgvA";
 
 const campaignContent = {
   title: "Je recherche 3 entreprises",
-  text: "Pour mes prochains projets, je recherche trois entreprises qui souhaitent **créer, repenser ou faire évoluer leur identité ou leur site web.**",
+  text: "**Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer, repenser ou faire évoluer leur identité ou leur site web.**",
 };
 
 const reveal = {
@@ -45,11 +45,7 @@ export function LinkPage() {
 
         <main className="linkPage__main">
           <section className="linkPage__campaign" aria-label="Recherche de projets">
-            <TextBlock
-              content={campaignContent}
-              titleAs="h1"
-              className="linkPage__campaignText"
-            />
+            <TextBlock content={campaignContent} titleAs="h1" className="linkPage__campaignText" />
           </section>
 
           <motion.nav
@@ -63,10 +59,7 @@ export function LinkPage() {
             }}
           >
             <motion.a variants={reveal} transition={transition} className="linkPage__link linkPage__link--primary" href={tallyUrl} target="_blank" rel="noreferrer">
-              <span className="linkPage__linkCopy">
-                <span>Votre entreprise pourrait en faire partie</span>
-                <small>Identité visuelle · site web · refonte</small>
-              </span>
+              <span>Répondre à l’appel à projets</span>
               <span className="linkPage__arrow" aria-hidden="true">↗</span>
             </motion.a>
             <motion.div variants={reveal} transition={transition}>
