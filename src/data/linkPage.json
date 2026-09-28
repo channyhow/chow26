@@ -3,16 +3,7 @@
     "eyebrow": "#appel à projets",
     "title": "Je recherche 3 entreprises",
     "text": "**Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer, repenser ou faire évoluer leur identité ou leur site web.**",
-    "links": [
-      { "label": "Répondre à l’appel à projets", "href": "https://tally.so/r/7RpgvA", "variant": "cta", "priority": "primary" },
-      { "label": "À propos de Chow Studio", "href": "/a-propos", "variant": "arrow" },
-      { "label": "Étude de cas · Mois du Kèr", "href": "/projets/mois-du-ker", "variant": "arrow" },
-      { "label": "Contact", "href": "https://tally.so/r/7RpgvA", "variant": "cta" }
-    ]
+    "links": ["project-call", "about-studio", "mdk-case-study", "contact"]
   },
-  "socials": [
-    { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "variant": "arrow", "group": "social" },
-    { "label": "LinkedIn", "href": "https://www.linkedin.com/company/chow-studio/", "variant": "arrow", "group": "social" },
-    { "label": "Facebook", "href": "https://www.facebook.com/hellochowstudio", "variant": "arrow", "group": "social" }
-  ]
+  "socials": ["instagram", "linkedin", "facebook"]
 }
