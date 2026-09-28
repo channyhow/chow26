@@ -1,0 +1,50 @@
+[
+  {
+    "id": "identity",
+    "eyebrow": "Logo · Branding · Direction visuelle",
+    "title": "Identité visuelle",
+    "text": ["Donnez à votre projet une identité claire et reconnaissable, du logo à un univers visuel plus complet."],
+    "media": "ravine-business-card",
+    "meta": [
+      { "label": "Pour", "value": "Lancement · Repositionnement · Nouvelle identité" },
+      { "label": "Peut inclure", "value": "Logo · Typographie · Couleurs · Direction visuelle" },
+      { "label": "Budget", "value": "À partir de 800 € HT" }
+    ],
+    "tags": ["Logo", "Branding", "Identité visuelle"],
+    "links": ["talk-identity"],
+    "featured": true,
+    "order": 1
+  },
+  {
+    "id": "website",
+    "eyebrow": "Design web · Développement · SEO",
+    "title": "Site web",
+    "text": ["Présentez votre activité clairement, guidez vos visiteurs vers l’essentiel et facilitez la prise de contact grâce à un site sur mesure, rapide, accessible et responsive."],
+    "media": "atmosphere-laptop",
+    "meta": [
+      { "label": "Pour", "value": "Création · Refonte · Nouvelle présence digitale" },
+      { "label": "Peut inclure", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
+      { "label": "Budget", "value": "À partir de 1 500 € HT" }
+    ],
+    "tags": ["Site web", "UX/UI", "Frontend"],
+    "links": ["talk-website"],
+    "featured": true,
+    "order": 2
+  },
+  {
+    "id": "integrations",
+    "eyebrow": "Réservation · Paiement · Formulaires · Outils",
+    "title": "Fonctionnalités & intégrations",
+    "text": ["Faites évoluer votre site avec les fonctionnalités dont votre activité a besoin : réservation, paiement, formulaires, contenus dynamiques ou connexion à vos outils."],
+    "media": "structure-mobile-multi",
+    "meta": [
+      { "label": "Pour", "value": "Site existant · Nouveau service · Nouveau parcours" },
+      { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Services externes" },
+      { "label": "Budget", "value": "À partir de 800 € HT" }
+    ],
+    "tags": ["Intégrations", "Automatisation", "Frontend"],
+    "links": ["evolve-website"],
+    "featured": true,
+    "order": 3
+  }
+]
