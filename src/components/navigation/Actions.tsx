@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Link, useLocation } from "react-router-dom";
 
-import { resolveActions } from "@/data/linkRegistry";
+import { resolveActions } from "@/data/actionRegistry";
 import type { Action, ActionRef } from "@/types/content";
 
 export type ActionsProps = {
