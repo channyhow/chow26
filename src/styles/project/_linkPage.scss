@@ -169,6 +169,7 @@
   border: 0;
   border-radius: 0;
   background: transparent;
+  box-shadow: none;
   color: inherit;
   gap: .4em;
   opacity: $opacity-muted;
@@ -176,13 +177,18 @@
 
   @include hover {
     color: var(--accent);
+    background: transparent;
+    box-shadow: none;
     opacity: 1;
+    transform: none;
 
     .actions__arrow { transform: translate(.18em, -.08em); }
   }
 
   &:focus-visible {
     color: var(--accent);
+    background: transparent;
+    box-shadow: none;
     opacity: 1;
   }
 }
