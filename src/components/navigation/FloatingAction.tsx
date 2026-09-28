@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { resolveActions } from "@/data/linkRegistry";
+import { resolveActions } from "@/data/actionRegistry";
 import siteData from "@/data/site.json";
 import type { ActionRef } from "@/types/content";
 
