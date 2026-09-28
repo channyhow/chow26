@@ -8,12 +8,15 @@
   "project-call": { "label": "Répondre à l’appel à projets", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
 
   "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
+  "return-home": { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
   "projects": { "label": "Projets", "href": "/projets", "intent": "navigate" },
-  "all-projects": { "label": "Voir tous les projets", "href": "/projets", "intent": "navigate", "variant": "arrow" },
+  "view-projects": { "label": "Voir les projets", "href": "/projets", "intent": "navigate" },
+  "all-projects": { "label": "Voir tous les projets", "href": "/projets", "intent": "navigate", "variant": "arrow", "priority": "secondary" },
   "discover-projects": { "label": "Découvrir les projets", "href": "/projets", "intent": "navigate" },
   "studio": { "label": "Studio", "href": "/studio", "intent": "navigate" },
   "about-studio": { "label": "À propos de Chow Studio", "href": "/studio", "intent": "navigate", "variant": "arrow" },
-  "studio-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate", "variant": "cta" },
+  "studio-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate", "variant": "cta", "priority": "secondary" },
+  "approach-services": { "label": "Voir les accompagnements", "href": "/approche", "intent": "navigate" },
   "mdk-case-study": { "label": "Étude de cas · Mois du Kèr", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
   "privacy-data": { "label": "Comment vos données sont utilisées", "href": "/confidentialite", "intent": "navigate", "priority": "secondary" },
 
