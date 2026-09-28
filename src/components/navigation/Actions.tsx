@@ -7,24 +7,15 @@ import type { Action } from "@/types/content";
 export type ActionsProps = {
   links?: Action[];
   className?: string;
+  variant?: "default" | "social";
 };
 
-const SOCIAL_LABELS = new Set(["instagram", "linkedin", "facebook"]);
-
-function normalizeLabel(label: string) {
+function isProjectStartAction(label: string) {
   return label
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .trim()
-    .toLocaleLowerCase("fr");
-}
-
-function isProjectStartAction(label: string) {
-  return normalizeLabel(label) === "demarrer un projet";
-}
-
-function isSocialAction(label: string) {
-  return SOCIAL_LABELS.has(normalizeLabel(label));
+    .toLocaleLowerCase("fr") === "demarrer un projet";
 }
 
 function resolveVariant(action: Action, index: number, actionCount: number) {
@@ -53,26 +44,24 @@ function getInternalPathname(href: string) {
   return href.split(/[?#]/, 1)[0] || "/";
 }
 
-export function Actions({ links = [], className }: ActionsProps) {
+export function Actions({ links = [], className, variant = "default" }: ActionsProps) {
   const { pathname } = useLocation();
+  const isSocial = variant === "social";
 
   if (!links.length) return null;
 
   return (
-    <div className={clsx("actions", className)}>
+    <div className={clsx("actions", isSocial && "actions--social", className)}>
       {links.map((action, index) => {
         const intent = action.intent ?? "navigate";
-        const variant = resolveVariant(action, index, links.length);
+        const actionVariant = isSocial ? undefined : resolveVariant(action, index, links.length);
         const href = intent === "submit" ? undefined : action.href ?? getLink(action.linkKey);
         const external = Boolean(href && isExternalHref(href));
-        const hasArrow =
-          variant === "arrow" ||
-          variant === "cta" ||
-          isSocialAction(action.label);
+        const hasArrow = isSocial || actionVariant === "arrow" || actionVariant === "cta";
 
         const classNames = clsx(
           "actions__link",
-          variant && `actions__link--${variant}`,
+          actionVariant && `actions__link--${actionVariant}`,
         );
 
         const content = (
@@ -80,7 +69,7 @@ export function Actions({ links = [], className }: ActionsProps) {
             <span className="actions__label">{action.label}</span>
             {hasArrow ? (
               <span className="actions__arrow" aria-hidden="true">
-                {external ? "↗" : "→"}
+                {isSocial || external ? "↗" : "→"}
               </span>
             ) : null}
           </>
