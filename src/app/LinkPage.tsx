@@ -1,9 +1,15 @@
 import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 
+import { TextBlock } from "@/components/content/TextBlock";
 import { Seo } from "@/components/page/Seo";
 
 const tallyUrl = "https://tally.so/r/7RpgvA";
+
+const campaignContent = {
+  title: "Je recherche 3 entreprises",
+  text: "Pour mes prochains projets, je recherche trois entreprises qui souhaitent **créer, repenser ou faire évoluer leur identité ou leur site web.**",
+};
 
 const reveal = {
   hidden: { opacity: 0, y: 18 },
@@ -38,20 +44,13 @@ export function LinkPage() {
         </motion.header>
 
         <main className="linkPage__main">
-          <motion.section
-            className="linkPage__campaign"
-            aria-labelledby="link-campaign-title"
-            variants={reveal}
-            initial="hidden"
-            animate="visible"
-            transition={{ ...transition, delay: reduceMotion ? 0 : 0.06 }}
-          >
-            <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
-            <p>
-              Pour mes prochains projets, je recherche trois entreprises qui souhaitent <strong>créer,
-              repenser ou faire évoluer leur identité ou leur site web.</strong>
-            </p>
-          </motion.section>
+          <section className="linkPage__campaign" aria-label="Recherche de projets">
+            <TextBlock
+              content={campaignContent}
+              titleAs="h1"
+              className="linkPage__campaignText"
+            />
+          </section>
 
           <motion.nav
             className="linkPage__links"
