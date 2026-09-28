@@ -4,6 +4,8 @@
 
 /* ==================================
    STUDIO — SERVICES
+   Page file owns composition only.
+   Card/TextBlock presentation lives with the components.
 ================================== */
 
 #studio-services {
@@ -22,9 +24,7 @@
   padding-inline: 0;
 }
 
-#studio-services > .section__inner > .section__header {
-  display: none;
-}
+#studio-services > .section__inner > .section__header { display: none; }
 
 #studio-services .section__body,
 #studio-services .contentSwitcher {
@@ -46,9 +46,7 @@
   opacity: 1;
 }
 
-#studio-services .horizontalScroll__labels span.is-active {
-  display: block;
-}
+#studio-services .horizontalScroll__labels span.is-active { display: block; }
 
 #studio-services .horizontalScroll__rule {
   background: color-mix(in srgb, currentColor 22%, transparent);
@@ -64,7 +62,7 @@
   padding-inline: $page-gutter;
 }
 
-#studio-services .card {
+#studio-services .card--service {
   display: grid;
   grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
   grid-template-areas: "media body";
@@ -73,97 +71,17 @@
   width: fit-content;
   max-width: 100%;
   margin-inline: auto;
-  overflow: visible;
-  background: transparent;
 }
 
-#studio-services .card__mediaWrap {
+#studio-services .card--service .card__mediaWrap {
   grid-area: media;
-  width: 100%;
-  min-width: 0;
   justify-self: start;
 }
 
-#studio-services .card__media {
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: $ratio-square;
-  background: transparent;
-  @include media-frame($ratio-square);
-}
-
-#studio-services .card__body {
+#studio-services .card--service .card__body {
   grid-area: body;
   align-self: center;
-  width: 100%;
   max-width: var(--studio-service-copy);
-  min-width: 0;
-  padding: $space-2 0 0;
-}
-
-#studio-services .card__body .textBlock {
-  display: flex;
-  flex-direction: column;
-  gap: $flow-default;
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-#studio-services .card__body .textBlock__eyebrow {
-  @include type-eyebrow;
-}
-
-#studio-services .card__body .textBlock__title {
-  @include type-heading-md;
-  max-width: 10ch;
-}
-
-#studio-services .card__body .textBlock__content {
-  @include type-body-sm;
-  width: 100%;
-  max-width: 34ch;
-  color: color-mix(in srgb, currentColor 68%, transparent);
-}
-
-#studio-services .card__body .textBlock__content > * + * {
-  margin-top: $flow-default;
-}
-
-#studio-services .card__body .textBlock__footer {
-  width: fit-content;
-  margin-top: $flow-tight;
-  padding-top: 0;
-}
-
-#studio-services .card__body .textBlock__meta {
-  display: grid;
-  gap: 0;
-  width: 100%;
-  margin-top: $space-3;
-  border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent);
-}
-
-#studio-services .card__body .textBlock__meta > * {
-  display: grid;
-  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
-  gap: $flow-default;
-  width: 100%;
-  padding-block: $flow-tight;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
-  color: color-mix(in srgb, currentColor 58%, transparent);
-}
-
-#studio-services .textBlock__metaLabel {
-  @include type-ui-compact;
-  font-size: $type-ui-compact;
-  color: color-mix(in srgb, currentColor 72%, transparent);
-}
-
-#studio-services .textBlock__metaValue {
-  @include type-caption;
-  min-width: 0;
-  text-transform: uppercase;
 }
 
 @include desktop-down {
@@ -175,74 +93,46 @@
 
 @include tablet-up {
   @include desktop-down {
-    #studio-services .card {
+    #studio-services .card--service {
       @include site-grid;
       width: 100%;
       align-items: start;
       gap: 0;
     }
 
-    #studio-services .card__mediaWrap {
-      grid-column: 1 / span 4;
-    }
+    #studio-services .card--service .card__mediaWrap { grid-column: 1 / span 4; }
+    #studio-services .card--service .card__media { @include media-frame($ratio-portrait); }
 
-    #studio-services .card__media {
-      @include media-frame($ratio-portrait);
-    }
-
-    #studio-services .card__body {
+    #studio-services .card--service .card__body {
       grid-column: 5 / span 4;
       max-width: none;
-      padding: 0 0 0 $space-3;
-      .textBlock__title {
-        display: none;
-      }
+      padding-left: $space-3;
     }
 
+    #studio-services .card--service .textBlock__title { display: none; }
   }
 }
 
 @include tablet-down {
-  #studio-services {
-    --studio-service-media: 28rem;
-  }
-
-  #studio-services .horizontalScroll__progress {
-    display: none;
-  }
+  #studio-services { --studio-service-media: 28rem; }
+  #studio-services .horizontalScroll__progress { display: none; }
 
   #studio-services .horizontalScroll__item {
     justify-items: stretch;
     padding-inline: $page-gutter;
   }
 
-  #studio-services .card {
+  #studio-services .card--service {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "media"
-      "body";
+    grid-template-areas: "media" "body";
     row-gap: $section-content-gap;
     width: min(100%, 34rem);
     padding-block: $space-2;
   }
 
-  #studio-services .card__mediaWrap {
-    width: min(100%, var(--studio-service-media));
-  }
-
-  #studio-services .card__body {
-    width: min(100%, 30rem);
-    padding-top: 0;
-  }
-
-  #studio-services .card__body .textBlock__title {
-    display: none;
-  }
-
-  #studio-services .card__body .textBlock__meta > * {
-    grid-template-columns: 1fr;
-    gap: $flow-tight;
-  }
+  #studio-services .card--service .card__mediaWrap { width: min(100%, var(--studio-service-media)); }
+  #studio-services .card--service .card__body { width: min(100%, 30rem); padding-top: 0; }
+  #studio-services .card--service .textBlock__title { display: none; }
 }
 
 @include mobile-down {
@@ -252,44 +142,21 @@
     padding-bottom: $space-3;
   }
 
-  #studio-services .card {
+  #studio-services .card--service {
     row-gap: $space-2;
     padding-block: 0;
   }
 
-  #studio-services .card__media {
-    aspect-ratio: $ratio-wide;
-    @include media-frame($ratio-wide);
-  }
+  #studio-services .card--service .card__media { @include media-frame($ratio-wide); }
+  #studio-services .card--service .textBlock { gap: $flow-tight; }
 
-  #studio-services .card__body .textBlock {
-    gap: $flow-tight;
-  }
-
-  #studio-services .card__body .textBlock__title {
+  #studio-services .card--service .textBlock__title {
     display: block;
     @include type-heading-sm;
     max-width: none;
   }
 
-  #studio-services .card__body .textBlock__content {
-    display: none;
-  }
-
-  #studio-services .card__body .textBlock__meta {
-    display: grid;
-    margin-top: $space-2;
-  }
-
-  #studio-services .card__body .textBlock__meta > * {
-    grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
-    align-items: baseline;
-    gap: $flow-default;
-  }
-
-  #studio-services .card__body .textBlock__meta > *:last-child {
-    color: currentColor;
-  }
+  #studio-services .card--service .textBlock__content { display: none; }
 }
 
 /* ==================================
@@ -303,9 +170,7 @@
   overflow: hidden;
 }
 
-#studio-approach {
-  isolation: isolate;
-}
+#studio-approach { isolation: isolate; }
 
 #studio-approach > .section__inner,
 #studio-founders > .section__inner {
@@ -334,17 +199,9 @@
   max-width: none;
 }
 
-#studio-approach .grid {
-  align-items: start;
-}
-
-#studio-approach .grid__item {
-  min-width: 0;
-}
-
-#studio-approach .grid__item:first-child {
-  width: 100%;
-}
+#studio-approach .grid { align-items: start; }
+#studio-approach .grid__item { min-width: 0; }
+#studio-approach .grid__item:first-child { width: 100%; }
 
 #studio-approach .card {
   min-width: 0;
@@ -357,13 +214,8 @@
   padding: $space-2;
 }
 
-#studio-approach .card__body {
-  padding: 0;
-}
-
-#studio-approach .card__body .textBlock {
-  gap: $flow-default;
-}
+#studio-approach .card__body { padding: 0; }
+#studio-approach .card__body .textBlock { gap: $flow-default; }
 
 #studio-approach .grid__item:first-child .textBlock {
   align-items: flex-start;
@@ -395,18 +247,14 @@
     min-height: auto;
   }
 
-  #studio-approach > .section__inner {
-    display: block;
-  }
+  #studio-approach > .section__inner { display: block; }
 
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-lg;
     max-width: 10ch;
   }
 
-  #studio-approach .grid__item:not(:first-child) .card {
-    padding: 0;
-  }
+  #studio-approach .grid__item:not(:first-child) .card { padding: 0; }
 }
 
 @include mobile-down {
@@ -417,9 +265,7 @@
   }
 
   #studio-approach .gridReveal,
-  #studio-approach .grid {
-    overflow: visible;
-  }
+  #studio-approach .grid { overflow: visible; }
 
   #studio-approach .grid {
     display: grid;
@@ -453,9 +299,7 @@
     border-bottom: 1px solid var(--studio-grid-line);
   }
 
-  #studio-approach .grid__item:not(:first-child) .textBlock__content {
-    max-width: 30ch;
-  }
+  #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
 /* ==================================
@@ -489,9 +333,7 @@
   min-width: 0;
 }
 
-#studio-founders .grid {
-  grid-template-columns: 1fr;
-}
+#studio-founders .grid { grid-template-columns: 1fr; }
 
 #studio-founders .card {
   @include site-grid;
@@ -517,9 +359,7 @@
 }
 
 #studio-founders .card__media .media,
-#studio-founders .card__media .media__frame {
-  background: transparent;
-}
+#studio-founders .card__media .media__frame { background: transparent; }
 
 #studio-founders .card__media .media__asset {
   filter: grayscale(1);
@@ -567,51 +407,26 @@
   color: currentColor;
 }
 
-#studio-founders .card__body .textBlock__content > * + * {
-  margin-top: $flow-default;
-}
-
-#studio-founders .card__body .textBlock__content strong {
-  font-weight: $font-weight-semibold;
-}
+#studio-founders .card__body .textBlock__content > * + * { margin-top: $flow-default; }
+#studio-founders .card__body .textBlock__content strong { font-weight: $font-weight-semibold; }
 
 @include tablet-up {
-  #studio-founders .card__mediaWrap {
-    grid-column: 1 / span 4;
-  }
-
-  #studio-founders .card__body.textBlock {
-    grid-column: 5 / span 4;
-  }
+  #studio-founders .card__mediaWrap { grid-column: 1 / span 4; }
+  #studio-founders .card__body.textBlock { grid-column: 5 / span 4; }
 }
 
 @include desktop-up {
-  #studio-founders .card__mediaWrap {
-    grid-column: 2 / span 3;
-  }
-
-  #studio-founders .card__body.textBlock {
-    grid-column: 7 / span 5;
-  }
+  #studio-founders .card__mediaWrap { grid-column: 2 / span 3; }
+  #studio-founders .card__body.textBlock { grid-column: 7 / span 5; }
 }
 
 @include tablet-down {
   #studio-founders,
-  #studio-founders .section__inner {
-    min-height: auto;
-  }
+  #studio-founders .section__inner { min-height: auto; }
 }
 
 @include mobile-down {
-  #studio-founders .card {
-    row-gap: $space-3;
-  }
-
-  #studio-founders .card__body.textBlock {
-    padding-top: 0;
-  }
-
-  #studio-founders .card__body .textBlock__content > :first-child {
-    @include type-body;
-  }
+  #studio-founders .card { row-gap: $space-3; }
+  #studio-founders .card__body.textBlock { padding-top: 0; }
+  #studio-founders .card__body .textBlock__content > :first-child { @include type-body; }
 }
