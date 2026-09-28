@@ -2,8 +2,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-
-
+/* Project detail owns narrative composition. Generic TextBlock and Media
+   presentation remains component-owned. */
 .projectDetail {
   --project-measure: 36rem;
   --project-media-measure: 34rem;
@@ -39,25 +39,22 @@
   max-width: var(--project-measure);
 }
 
+/* Deliberate project-title display treatment. */
 .projectHero .textBlock__title {
   @include type-display-lg;
   max-width: 10ch;
-  // letter-spacing: -0.045em;
-  // line-height: 0.94;
   text-transform: uppercase;
 }
 
 .projectHero .textBlock__subtitle {
   max-width: var(--project-media-measure);
   margin-top: $space-2;
-  font-size: $type-lead;
-  line-height: 1.45;
 }
 
+/* Hero facts are intentionally presented as compact project chips. */
 .projectHero .textBlock__meta {
   @include type-ui-compact;
   @include meta-chips($space-1 $space-3);
-
   width: 100%;
   max-width: var(--project-measure);
   align-items: center;
@@ -65,9 +62,7 @@
   padding-top: $space-2;
 }
 
-.projectHero .textBlock__meta > * {
-  min-width: 0;
-}
+.projectHero .textBlock__meta > * { min-width: 0; }
 
 .projectHero .split__secondary,
 .projectStoryMedia .split__secondary {
@@ -78,8 +73,8 @@
 .projectHero .media,
 .projectStoryMedia .media {
   width: min(100%, var(--project-media-measure));
-  margin: 0 auto;
-  border-radius: $radius-none;
+  margin-inline: auto;
+  --radius-media: #{$radius-none};
 }
 
 .projectHero .media[data-media-type="mux"] .media__frame,
@@ -87,17 +82,9 @@
   aspect-ratio: $ratio-portrait;
 }
 
-.projectHero .media[data-media-type="mux"] .media__asset,
-.projectStoryMedia .media[data-media-type="mux"] .media__asset {
-  --media-object-fit: cover;
-  object-fit: cover;
-}
-
 .projectStoryMedia,
 .projectStoryText,
-.projectCta {
-  --section-space: $space-5;
-}
+.projectCta { --section-space: $space-5; }
 
 .projectStoryMedia--forward {
   --split-primary-column: 2 / span 4;
@@ -110,14 +97,11 @@
 }
 
 .projectStoryMedia .section__inner,
-.projectStoryText .section__inner {
-  padding-block: $space-5;
-}
+.projectStoryText .section__inner { padding-block: $space-5; }
 
+/* Story rhythm is intentionally more generous than generic body copy. */
 .projectStoryMedia .textBlock__content,
-.projectStoryText .textBlock__content {
-  gap: $space-3;
-}
+.projectStoryText .textBlock__content { gap: $space-3; }
 
 .projectStoryMedia .textBlock__content p,
 .projectStoryText .textBlock__content p {
@@ -133,10 +117,6 @@
 
 .projectStoryMedia .media[data-media-type="image"][data-orientation="square"] .media__frame {
   aspect-ratio: $ratio-square;
-}
-
-.projectStoryMedia .media[data-media-type="image"] {
-  @include media-cover;
 }
 
 .projectCta .textBlock {
@@ -162,36 +142,23 @@
 
   .projectHero .section__inner,
   .projectStoryMedia .section__inner,
-  .projectStoryText .section__inner {
-    padding-block: $space-4;
-  }
+  .projectStoryText .section__inner { padding-block: $space-4; }
 
   .projectHero .split,
-  .projectStoryMedia .split {
-    gap: $space-4;
-  }
+  .projectStoryMedia .split { gap: $space-4; }
 
-  .projectHero .media,
-  .projectStoryMedia .media {
-    --project-media-measure: 32rem;
-  }
+  .projectHero,
+  .projectStoryMedia { --project-media-measure: 32rem; }
 }
 
 @include tablet-down {
-  .projectHero .section__inner {
-    padding-top: calc(#{$space-4} + #{$header-height});
-  }
-
-  .projectHero .textBlock__title {
-    font-size: clamp(3.4rem, 16vw, #{$space-5});
-  }
+  .projectHero .section__inner { padding-top: calc(#{$space-4} + #{$header-height}); }
+  .projectHero .textBlock__title { font-size: clamp(3.4rem, 16vw, #{$space-5}); }
 
   .projectHero .textBlock__meta {
     display: grid;
     grid-template-columns: 1fr;
   }
 
-  .projectHero .textBlock__meta > * {
-    white-space: normal;
-  }
+  .projectHero .textBlock__meta > * { white-space: normal; }
 }
