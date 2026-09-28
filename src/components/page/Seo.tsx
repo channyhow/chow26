@@ -8,6 +8,7 @@ import type { MediaItem } from "@/types/media";
 const SOCIAL_WIDTH = 1200;
 const SOCIAL_HEIGHT = 630;
 const media = mediaData as Record<string, MediaItem>;
+type ImageMediaItem = Extract<MediaItem, { type: "image" }>;
 
 const ensureMeta = (selector: string, attribute: "name" | "property", key: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -31,7 +32,7 @@ const ensureCanonical = () => {
 
 const absoluteUrl = (value: string) => new URL(value, siteData.site.url).toString();
 
-const socialPosition = (item: MediaItem) => {
+const socialPosition = (item: ImageMediaItem) => {
   const point = item.focalPoint;
   if (!point) return "center";
   if (point.y <= 35) return "top";
@@ -41,15 +42,20 @@ const socialPosition = (item: MediaItem) => {
   return "center";
 };
 
-const resolveImageMedia = (ref: string) => {
+const resolveImageMedia = (ref: string): ImageMediaItem | null => {
   const direct = media[ref];
-  if (direct?.type === "image" && direct.src) return direct;
-  return Object.values(media).find((item) => item.type === "image" && item.src === ref) ?? null;
+  if (direct?.type === "image") return direct;
+
+  const match = Object.values(media).find(
+    (item): item is ImageMediaItem => item.type === "image" && item.src === ref,
+  );
+
+  return match ?? null;
 };
 
 const resolveSocialImage = (ref: string) => {
   const item = resolveImageMedia(ref);
-  if (!item?.src) return null;
+  if (!item) return null;
 
   const params = new URLSearchParams({
     url: item.src,
