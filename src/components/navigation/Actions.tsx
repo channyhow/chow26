@@ -7,7 +7,7 @@ import type { Action, ActionRef } from "@/types/content";
 export type ActionsProps = {
   links?: ActionRef[];
   className?: string;
-  variant?: "default" | "social";
+  variant?: "default" | "social" | "panel";
 };
 
 function isProjectStartAction(label: string) {
@@ -33,7 +33,7 @@ export function Actions({ links = [], className, variant = "default" }: ActionsP
   if (!resolvedLinks.length) return null;
 
   return (
-    <div className={clsx("actions", isSocial && "actions--social", className)}>
+    <div className={clsx("actions", variant !== "default" && `actions--${variant}`, className)}>
       {resolvedLinks.map((action, index) => {
         const intent = action.intent ?? "navigate";
         const actionVariant = isSocial ? undefined : resolveVariant(action, index, resolvedLinks.length);
