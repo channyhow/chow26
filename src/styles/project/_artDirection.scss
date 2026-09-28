@@ -17,29 +17,18 @@ $bp-home-compact: 32rem;
   --project-gap-wide: clamp(#{$space-3}, 6vw, 7rem);
 }
 
-.section {
-  --section-space: var(--project-section-space);
-}
+.section { --section-space: var(--project-section-space); }
+.carousel { --carousel-media-ratio: #{$ratio-landscape}; }
 
-.carousel {
-  --carousel-media-ratio: #{$ratio-landscape};
-}
-
-#contact-default {
-  min-height: 100svh;
-}
-
-#contact-default .split {
-  align-items: start;
-}
+#contact-default { min-height: 100svh; }
+#contact-default .split { align-items: start; }
 
 /* ==================================
    HOME — TYPOGRAPHIC OPENING
+   Intentional composition exception.
 ================================== */
 
-body:has(#home-opening) .header {
-  --header-color: var(--primary);
-}
+body:has(#home-opening) .header { --header-color: var(--primary); }
 
 #home-opening {
   --section-title-width: none;
@@ -66,9 +55,7 @@ body:has(#home-opening) .header {
   @include media-cover;
 }
 
-#home-opening .section__mediaOverlay::after {
-  display: none;
-}
+#home-opening .section__mediaOverlay::after { display: none; }
 
 #home-opening .section__overlayContent {
   position: relative;
@@ -121,51 +108,19 @@ body:has(#home-opening) .header {
   padding-top: 0;
 }
 
-#home-opening .actions {
-  justify-content: start;
-  color: var(--secondary);
-}
-
-#home-opening .actions > :first-child {
-  padding-inline: 0;
-  border: 0;
-  background: transparent;
-}
-
-@include hover {
-  #home-opening .actions > :first-child:hover {
-    background: transparent;
-  }
-}
-
 /* ==================================
    PROJECT ARCHIVE / FEATURED
 ================================== */
 
 #projects-featured,
-#project-gallery {
-  --section-space: var(--project-section-space-compact);
-}
-
-#projects-featured .card {
-  margin-top: 0;
-  border-radius: $radius-none;
-  background: transparent;
-}
-
-#projects-featured .card__body {
-  padding-inline: 0;
-}
+#project-gallery { --section-space: var(--project-section-space-compact); }
 
 @include mobile-down {
-  #project-gallery .textBlock__header .textBlock__title {
-    max-width: none;
-  }
+  #project-gallery .textBlock__header .textBlock__title { max-width: none; }
 }
 
 /* ==================================
    APPROACH
-   Horizontal mechanics belong to the shared HorizontalScroll/Timeline system.
 ================================== */
 
 #approach-default {
@@ -180,112 +135,14 @@ body:has(#home-opening) .header {
 }
 
 /* ==================================
-   HOME SERVICES — CONTENT SWITCHER
+   HOME SERVICES
+   Shared split/media/action primitives own presentation.
 ================================== */
 
-#home-services {
-  --section-space: clamp(4.5rem, 8vw, 7rem);
-  --home-services-gap: clamp(#{$space-3}, 4vw, #{$space-4});
-}
-
-#home-services .section__inner {
-  display: grid;
-  grid-template-columns: minmax(16rem, 0.65fr) minmax(0, 1.35fr);
-  grid-template-areas: "header body";
-  gap: var(--project-gap-wide);
-  align-items: start;
-}
-
-#home-services > .section__inner > .section__header {
-  grid-area: header;
-  @include sticky-editorial;
-  width: min(100%, 30rem);
-  max-width: none;
-}
-
-#home-services > .section__inner > .section__body {
-  grid-area: body;
-  min-width: 0;
-}
-
-#home-services .contentSwitcher {
-  width: 100%;
-  min-width: 0;
-  gap: var(--home-services-gap);
-}
-
-#home-services .contentSwitcher__controls {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-}
-
-#home-services .contentSwitcher__controls button {
-  min-height: 4.5rem;
-  padding: $space-2 $space-1;
-  border: 0;
-  border-right: 1px solid currentColor;
-  border-radius: $radius-none;
-  background: transparent;
-  color: currentColor;
-  text-align: center;
-  @include type-ui-compact;
-}
-
-#home-services .contentSwitcher__controls button:last-child {
-  border-right: 0;
-}
-
-#home-services .contentSwitcher__controls button[aria-selected="true"] {
-  color: var(--accent);
-}
-
-#home-services .contentSwitcher__panel,
-#home-services .card {
-  min-width: 0;
-  overflow: visible;
-}
-
-#home-services .card {
-  @include split-composition(1.2fr, 0.8fr, var(--home-services-gap), end);
-  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
-  grid-template-areas: "media body";
-  margin-top: 0;
-  border-radius: $radius-none;
-  background: transparent;
-}
-
-#home-services .card__media {
-  grid-area: media;
-  @include media-frame($ratio-square);
-}
-
-#home-services .card__body {
-  grid-area: body;
-  align-self: end;
-  width: 100%;
-  max-width: none;
-  padding: 0;
-}
-
-#home-services .card__body .textBlock__title {
-  @include type-heading-lg;
-  max-width: none;
-}
-
-#home-services .card__body .textBlock__content,
-#home-services .card__body .textBlock__footer {
-  width: min(100%, 28rem);
-}
-
-#home-services .card__body .textBlock__meta {
-  @include meta-chips;
-}
+#home-services { --section-space: clamp(4.5rem, 8vw, 7rem); }
 
 /* ==================================
-   LEGAL — CGV / MENTIONS / CONFIDENTIALITÉ
+   LEGAL — deliberate large-title exception
 ================================== */
 
 #cgv-default,
@@ -297,18 +154,13 @@ body:has(#home-opening) .header {
 
 #cgv-default .section__header,
 #legal-notice-default .section__header,
-#privacy-default .section__header {
-  max-width: none;
-}
-
+#privacy-default .section__header,
 #cgv-default .section__header .textBlock__content,
 #legal-notice-default .section__header .textBlock__content,
 #privacy-default .section__header .textBlock__content,
 #cgv-default .section__header .textBlock__title,
 #legal-notice-default .section__header .textBlock__title,
-#privacy-default .section__header .textBlock__title {
-  max-width: none;
-}
+#privacy-default .section__header .textBlock__title { max-width: none; }
 
 #cgv-default .section__header .textBlock__title,
 #legal-notice-default .section__header .textBlock__title,
@@ -320,9 +172,7 @@ body:has(#home-opening) .header {
 
 #cgv-default .card__body,
 #legal-notice-default .card__body,
-#privacy-default .card__body {
-  padding-inline: 0;
-}
+#privacy-default .card__body { padding-inline: 0; }
 
 /* ==================================
    RESPONSIVE PAGE COMPOSITION
@@ -342,31 +192,8 @@ body:has(#home-opening) .header {
     column-gap: clamp(#{$space-3}, 5vw, 5rem);
   }
 
-  #home-opening .textBlock__header {
-    width: min(100%, 50rem);
-  }
-
-  #home-opening .textBlock__content {
-    width: min(100%, 25rem);
-  }
-
-  #home-services .section__inner {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "body";
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-  }
-
-  #home-services > .section__inner > .section__header {
-    position: static;
-    width: min(100%, 42rem);
-  }
-
-  #home-services .card {
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
-    gap: clamp(#{$space-3}, 4vw, 3.5rem);
-  }
+  #home-opening .textBlock__header { width: min(100%, 50rem); }
+  #home-opening .textBlock__content { width: min(100%, 25rem); }
 }
 
 @include desktop-down {
@@ -399,34 +226,18 @@ body:has(#home-opening) .header {
     width: min(100%, 42rem);
   }
 
-  #home-opening .textBlock__title {
-    width: min(11ch, 100%);
-  }
+  #home-opening .textBlock__title { width: min(11ch, 100%); }
 
   #home-opening .textBlock__content {
     width: min(100%, 26rem);
     margin-top: 0;
   }
 
-  #home-services {
-    --section-space: clamp(3.5rem, 7vw, 5rem);
-  }
-
-  #home-services .contentSwitcher__controls button {
-    min-height: $space-4;
-    padding-inline: $space-1;
-  }
-
-  #home-services .card {
-    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.8fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
+  #home-services { --section-space: clamp(3.5rem, 7vw, 5rem); }
 }
 
 @include tablet-down {
-  .site {
-    --project-gutter: clamp(#{$space-2}, 5vw, #{$space-3});
-  }
+  .site { --project-gutter: clamp(#{$space-2}, 5vw, #{$space-3}); }
 
   #home-opening .section__overlayContent {
     padding-top: clamp(5.5rem, 10svh, 7rem);
@@ -441,13 +252,8 @@ body:has(#home-opening) .header {
     opacity: 0.55;
   }
 
-  #home-opening .textBlock {
-    min-height: calc(100svh - 7rem);
-  }
-
-  #home-opening .textBlock__header {
-    width: min(100%, 30rem);
-  }
+  #home-opening .textBlock { min-height: calc(100svh - 7rem); }
+  #home-opening .textBlock__header { width: min(100%, 30rem); }
 
   #home-opening .textBlock__title {
     width: 10ch;
@@ -458,51 +264,6 @@ body:has(#home-opening) .header {
     width: min(100%, 22rem);
     @include type-body-sm;
   }
-
-  #home-opening .actions {
-    flex-wrap: wrap;
-    gap: $space-1 $space-2;
-  }
-
-  #home-services .section__inner,
-  #home-services .contentSwitcher {
-    gap: $space-3;
-  }
-
-  #home-services .contentSwitcher__controls {
-    overflow-x: auto;
-  }
-
-  #home-services .contentSwitcher__controls button {
-    min-width: 0;
-    min-height: 3.5rem;
-    padding: $space-1;
-    white-space: nowrap;
-  }
-
-  #home-services .card {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "media"
-      "body";
-    gap: $space-2;
-  }
-
-  #home-services .card__media {
-    width: 100%;
-    aspect-ratio: $ratio-landscape;
-  }
-
-  #home-services .card__body {
-    width: 100%;
-  }
-
-  // #cgv-default,
-  // #legal-notice-default,
-  // #privacy-default {
-  //   --section-space: $space-4;
-  //   --section-gap: $space-3;
-  // }
 
   #cgv-default .section__header .textBlock__title,
   #legal-notice-default .section__header .textBlock__title,
@@ -525,42 +286,9 @@ body:has(#home-opening) .header {
     height: 28svh;
   }
 
-  #home-opening .textBlock__title {
-    width: 9ch;
-  }
-
-  #home-opening .textBlock__content {
-    width: min(100%, 19rem);
-  }
-
-  #home-opening .textBlock__footer {
-    width: 100%;
-  }
-
-  #home-opening .actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  #home-services .contentSwitcher__controls {
-    grid-template-columns: 1fr;
-    border-bottom: 0;
-  }
-
-  #home-services .contentSwitcher__controls button {
-    justify-content: flex-start;
-    min-height: $space-4;
-    border-right: 0;
-    border-bottom: 1px solid currentColor;
-    text-align: left;
-  }
-
-  // #cgv-default,
-  // #legal-notice-default,
-  // #privacy-default {
-  //   --section-space: $space-4;
-  //   --section-gap: $space-2;
-  // }
+  #home-opening .textBlock__title { width: 9ch; }
+  #home-opening .textBlock__content { width: min(100%, 19rem); }
+  #home-opening .textBlock__footer { width: 100%; }
 
   #cgv-default .section__header .textBlock__title,
   #legal-notice-default .section__header .textBlock__title,
