@@ -1,4 +1,5 @@
-import { lazy, Suspense, useLayoutEffect } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
+import { AnimatePresence } from "motion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { SiteShell } from "@/app/SiteShell";
@@ -63,17 +64,23 @@ function RoutedPage() {
 
 export function App() {
   const location = useLocation();
+  const [showInitialLoader, setShowInitialLoader] = useState(true);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setShowInitialLoader(false), 2400);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   return (
     <SiteShell>
       <ScrollToTop />
+      <AnimatePresence>{showInitialLoader && <RouteLoader />}</AnimatePresence>
       <div className="routeTransition" key={location.pathname}>
-        <RouteLoader disabled />
         <Routes location={location}>
           <Route
             path="/link"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <LinkPage />
               </Suspense>
             )}
@@ -81,7 +88,7 @@ export function App() {
           <Route
             path="/system"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <Seo seo={{ title: "System", robots: internalRobots }} slug="/system" />
                 <SystemPage />
                 <SystemReference />
@@ -91,7 +98,7 @@ export function App() {
           <Route
             path="/branding"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" />
                 <BrandingPage />
               </Suspense>
@@ -100,7 +107,7 @@ export function App() {
           <Route
             path="/projets/:slug"
             element={(
-              <Suspense fallback={null}>
+              <Suspense fallback={<RouteLoader />}>
                 <ProjectDetailPage />
               </Suspense>
             )}
