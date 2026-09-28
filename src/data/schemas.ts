@@ -11,6 +11,11 @@ const actionSchema = z.object({
   message: "Action requires href or linkKey",
 });
 
+/* Content may reference a centralized action by id or provide a local action
+   object for exceptional one-off cases. Runtime types already model this as
+   ActionRef; static validation must accept the same contract. */
+const actionRefSchema = z.union([z.string().min(1), actionSchema]);
+
 const formFieldSchema = z.object({
   name: z.string().min(1),
   label: z.string().min(1),
@@ -37,7 +42,7 @@ const formSchema = z.object({
   fallbackHeight: z.number().positive().optional(),
   submitLabel: z.string().optional(),
   fields: z.array(formFieldSchema),
-  links: z.array(actionSchema).optional(),
+  links: z.array(actionRefSchema).optional(),
 });
 
 const stringOrStringArraySchema = z.union([z.string(), z.array(z.string())]);
@@ -81,7 +86,7 @@ const contentItemSchema: z.ZodTypeAny = z.object({
   subtitle: stringOrStringArraySchema.optional(),
   text: stringOrStringArraySchema.optional(),
   media: z.union([z.string(), z.array(z.string())]).optional(),
-  links: z.array(actionSchema).optional(),
+  links: z.array(actionRefSchema).optional(),
   meta: z.array(metaItemSchema).optional(),
   tags: z.array(z.string()).optional(),
   category: z.string().optional(),
@@ -127,7 +132,7 @@ export const sectionSchema = z.object({
     header: contentItemSchema.optional(),
     items: z.array(contentItemSchema).optional(),
     media: z.union([z.string(), z.array(z.string())]).optional(),
-    links: z.array(actionSchema).optional(),
+    links: z.array(actionRefSchema).optional(),
     form: z.union([z.string().min(1), formSchema]).optional(),
   }).optional(),
   frame: z.boolean().optional(),
