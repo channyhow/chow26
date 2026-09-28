@@ -34,20 +34,10 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 94%", "end 24%"] });
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.42, 1],
-    reduceMotion ? ["0.5rem", "0rem", "-0.15rem"] : ["2rem", "0rem", "-0.65rem"],
-  );
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 1],
-    reduceMotion ? [0.94, 1, 1] : [0.7, 1, 1],
-  );
+  const y = useTransform(scrollYProgress, [0, 0.42, 1], reduceMotion ? ["0.5rem", "0rem", "-0.15rem"] : ["2rem", "0rem", "-0.65rem"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], reduceMotion ? [0.94, 1, 1] : [0.7, 1, 1]);
   const hasPanelMotion = panelBehavior === "cover" || panelBehavior === "stack";
-  const motionStyle = hasPanelMotion
-    ? ({ "--footer-motion-y": y, "--footer-motion-opacity": opacity } as unknown as MotionStyle)
-    : undefined;
+  const motionStyle = hasPanelMotion ? ({ "--footer-motion-y": y, "--footer-motion-opacity": opacity } as unknown as MotionStyle) : undefined;
   const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
   const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
@@ -59,11 +49,7 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
 
   const primaryLinks = usesGroups
     ? links.filter((link) => (link.group ?? "primary") === "primary")
-    : links.filter(
-        (link) =>
-          !SOCIAL_LABELS.has(link.label.trim().toLowerCase()) &&
-          !LEGAL_HREFS.has(link.href ?? ""),
-      );
+    : links.filter((link) => !SOCIAL_LABELS.has(link.label.trim().toLowerCase()) && !LEGAL_HREFS.has(link.href ?? ""));
   const socialLinks = usesGroups
     ? links.filter((link) => link.group === "social")
     : links.filter((link) => SOCIAL_LABELS.has(link.label.trim().toLowerCase()));
@@ -72,31 +58,14 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
     : links.filter((link) => LEGAL_HREFS.has(link.href ?? ""));
 
   return (
-    <footer
-      ref={ref}
-      id={block.id}
-      className="siteFooter"
-      data-surface={block.surface}
-      data-color={block.color}
-      data-panel-motion={hasPanelMotion ? "true" : undefined}
-      aria-label="Pied de page"
-    >
-      <motion.div
-        className="siteFooter__inner"
-        style={motionStyle}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={motionConfig.viewport}
-      >
+    <footer ref={ref} id={block.id} className="siteFooter" data-surface={block.surface} data-color={block.color} data-panel-motion={hasPanelMotion ? "true" : undefined} aria-label="Pied de page">
+      <motion.div className="siteFooter__inner" style={motionStyle} variants={containerVariants} initial="hidden" whileInView="visible" viewport={motionConfig.viewport}>
         <motion.div className="siteFooter__main" variants={containerVariants}>
           <motion.div className="siteFooter__identity" variants={containerVariants}>
             {eyebrows[0] ? <motion.p className="siteFooter__name" variants={itemVariants}>{eyebrows[0]}</motion.p> : null}
             {eyebrows.length > 1 ? (
               <motion.div className="siteFooter__baselines" variants={containerVariants}>
-                {eyebrows.slice(1).map((eyebrow) => (
-                  <motion.p key={eyebrow} className="siteFooter__baseline" variants={itemVariants}>{eyebrow}</motion.p>
-                ))}
+                {eyebrows.slice(1).map((eyebrow) => <motion.p key={eyebrow} className="siteFooter__baseline" variants={itemVariants}>{eyebrow}</motion.p>)}
               </motion.div>
             ) : null}
           </motion.div>
@@ -108,7 +77,7 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
           ) : null}
           {socialLinks.length ? (
             <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={itemVariants}>
-              <Actions links={socialLinks} className="siteFooter__navGroup" />
+              <Actions links={socialLinks} variant="social" className="siteFooter__navGroup" />
             </motion.nav>
           ) : null}
           {legalLinks.length ? (
