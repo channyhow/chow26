@@ -36,6 +36,7 @@
 @use "project/drawer" as chowDrawer;
 @use "project/siteFooter";
 @use "project/notFound";
+@use "project/linkPage";
 
 :root {
   color: var(--primary);
@@ -71,28 +72,17 @@ svg {
   max-width: 100%;
 }
 
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 button,
 input,
 select,
-textarea {
-  font: inherit;
-}
+textarea { font: inherit; }
 
 .page,
-.routeTransition {
-  min-height: 100svh;
-}
-
-.page {
-  overflow-x: clip;
-}
+.routeTransition { min-height: 100svh; }
+.page { overflow-x: clip; }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 }
