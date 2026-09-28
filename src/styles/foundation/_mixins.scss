@@ -47,6 +47,21 @@
   &:focus-visible { @include focus-ring; }
 }
 
+@mixin nav-link {
+  @include interactive-text;
+  display: inline-flex;
+  align-items: center;
+  gap: .35em;
+
+  .actions__arrow {
+    transition: transform $transition-hover;
+  }
+
+  @include hover {
+    .actions__arrow { transform: translate(.18em, -.08em); }
+  }
+}
+
 @mixin brand-link {
   font-family: var(--font-heading);
   font-weight: $font-weight-semibold;
