@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { Form } from "@/components/forms/Form";
+import { resolveActions } from "@/data/actionRegistry";
 import formsData from "@/data/forms.json";
 import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
@@ -10,7 +11,8 @@ import type { FormSchema } from "@/types/forms";
 
 const labels = siteData.ui.copy.navigation.drawerLabels;
 const forms = formsData as Record<"contact" | "reservation", FormSchema>;
-const navigationItems = [...navigationData.primary, ...navigationData.review].filter((item) => item.enabled);
+const navigationItems = resolveActions([...navigationData.primary, ...navigationData.review])
+  .filter((item) => item.href);
 const normalizePath = (path: string) => (path === "/" ? path : path.replace(/\/+$/, ""));
 
 export function Drawer() {
@@ -79,16 +81,19 @@ export function Drawer() {
         <div className="drawer__body" key={renderedView}>
           {renderedView === "menu" ? (
             <nav className="drawer__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.id}
-                  to={item.href}
-                  aria-current={normalizePath(pathname) === normalizePath(item.href) ? "page" : undefined}
-                  onClick={closeOverlay}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigationItems.map((item) => {
+                const href = item.href!;
+                return (
+                  <Link
+                    key={`${item.label}-${href}`}
+                    to={href}
+                    aria-current={normalizePath(pathname) === normalizePath(href) ? "page" : undefined}
+                    onClick={closeOverlay}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           ) : (
             <div className="drawer__content">
