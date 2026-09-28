@@ -15,7 +15,7 @@ import {
   revealItem,
   revealContainer,
 } from "@/motion/config";
-import type { PanelBehavior, SectionBlock } from "@/types/content";
+import type { Action, PanelBehavior, SectionBlock } from "@/types/content";
 
 export type SiteFooterProps = {
   block: SectionBlock;
@@ -25,6 +25,13 @@ export type SiteFooterProps = {
 const toArray = <T,>(value?: T | T[]): T[] => {
   if (!value) return [];
   return Array.isArray(value) ? value : [value];
+};
+
+const facebookAction: Action = {
+  label: "Facebook",
+  href: "https://www.facebook.com/hellochowstudio",
+  intent: "navigate",
+  priority: "secondary",
 };
 
 export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
@@ -61,7 +68,10 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
 
   const primaryLinks = links.slice(0, 4);
   const secondaryLinks = links.slice(4);
-  const socialLinks = secondaryLinks.slice(0, 2);
+  const configuredSocialLinks = secondaryLinks.slice(0, 2);
+  const socialLinks = configuredSocialLinks.some((link) => link.label === facebookAction.label)
+    ? configuredSocialLinks
+    : [...configuredSocialLinks, facebookAction];
   const legalLinks = secondaryLinks.slice(2);
 
   return (
