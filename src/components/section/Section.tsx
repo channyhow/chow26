@@ -19,7 +19,7 @@ import { resolveCollection } from "@/data/resolve";
 import { resolveMediaList } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type { MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
+import type { CardVariant, MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
 export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; };
@@ -50,8 +50,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
   const isProjectArchiveGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured !== true;
-  const isServiceCollection = block.source?.collection === "services";
-  const cardVariant = isServiceCollection ? "service" as const : "default" as const;
+  const inferredCardVariant: CardVariant = block.source?.collection === "services" ? "service" : "default";
+  const cardVariant = block.itemAppearance?.variant ?? inferredCardVariant;
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
   const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
     ? isProjectArchiveGrid
@@ -67,7 +67,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     return () => mediaQuery.removeEventListener("change", updateViewport);
   }, []);
 
-  const cards = items.map((item, index) => <Card key={item.id ?? `${item.title ?? "item"}-${index}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />);
+  const renderCard = (item: (typeof items)[number], index?: number) => <Card key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
+  const cards = items.map(renderCard);
   const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined} progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none"} scrollLinked={motionEnabled && motionLevel !== "none"}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
@@ -75,13 +76,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const id = item.id ?? `item-${index + 1}`;
     const label = item.title ?? (typeof item.eyebrow === "string" ? item.eyebrow : item.eyebrow?.[0]);
     if (!label) return [];
-    return [{ id, label, content: <Card item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} /> }];
+    return [{ id, label, content: renderCard(item, index) }];
   });
   const horizontalLabels = items.flatMap((item) => item.title ? [item.title] : []);
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
   const horizontalMotionItems = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={horizontalMotionEnabled}>{item}</ScrollScene>);
-
   const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer") => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={scrollProgress}>{content}</ScrollScene> : content) : null;
   const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
   let body: ReactNode;
