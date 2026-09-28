@@ -1,8 +1,12 @@
 import collectionsData from "@/data/collections.json";
 import globalBlocksData from "@/data/globalBlocks.json";
+import servicesData from "@/data/services.json";
 import type { ContentItem, SectionBlock, SourceRef } from "@/types/content";
 
-const collections = collectionsData as Record<string, ContentItem[]>;
+const collections = {
+  ...(collectionsData as Record<string, ContentItem[]>),
+  services: servicesData as ContentItem[],
+};
 const globalBlocks = globalBlocksData as Record<string, SectionBlock>;
 
 export function resolveBlock(ref: string): SectionBlock | undefined {
