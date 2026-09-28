@@ -22,8 +22,11 @@ export function LinkPage() {
     <>
       <Seo
         seo={{
-          title: `Liens | ${site.name}`,
-          description: site.seo.defaultDescription,
+          title: `Appel à projets | ${site.name}`,
+          description: "3 projets à sélectionner jusqu’au 18 octobre. Design web et identité visuelle à Paris, à La Réunion ou ailleurs.",
+          image: "kuro-grey",
+          imageAlt: "Appel à projets de Chow Studio pour des projets de design web et d’identité visuelle.",
+          canonical: `${site.url.replace(/\/$/, "")}/link`,
           robots: { index: false, follow: true },
         }}
         slug="/link"
