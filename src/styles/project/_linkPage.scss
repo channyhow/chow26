@@ -12,9 +12,17 @@
   color: var(--primary);
 }
 
+.linkPage__header,
+.linkPage__campaign,
+.linkPage__links,
+.linkPage__footer {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+}
+
 .linkPage__header {
   @include site-grid;
-  width: 100%;
 }
 
 .linkPage__brand {
@@ -34,19 +42,18 @@
 
 .linkPage__campaign {
   @include site-grid;
-  width: 100%;
-  padding-block: clamp(#{$space-5}, 12vw, 10rem);
+  padding-block: clamp(#{$space-5}, 11vw, 9rem);
   align-items: end;
 }
 
 .linkPage__campaign h1 {
-  grid-column: 1 / span 10;
+  grid-column: 1 / span 7;
   margin: 0;
   @include type-heading-xl;
-  max-width: none;
-  font-size: clamp(3.5rem, 6.4vw, 7.25rem);
-  line-height: .92;
-  letter-spacing: -.055em;
+  max-width: 10ch;
+  font-size: clamp(3.25rem, 5.5vw, 6.25rem);
+  line-height: .94;
+  letter-spacing: -.05em;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -54,8 +61,8 @@
 .linkPage__campaign p {
   grid-column: 8 / -1;
   width: 100%;
-  max-width: 34rem;
-  margin: $space-4 0 0;
+  max-width: 31rem;
+  margin: 0;
   justify-self: end;
   font-family: var(--font-body);
   line-height: 1.45;
@@ -74,26 +81,28 @@
 }
 
 .linkPage__links {
-  width: 100%;
-  border-top: 1px solid currentColor;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2 $space-4;
+  align-items: baseline;
 }
 
 .linkPage__link {
-  min-height: 5rem;
-  padding-inline: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $space-3;
-  border-bottom: 1px solid currentColor;
+  display: inline-flex;
+  align-items: baseline;
+  gap: $space-1;
   color: inherit;
   text-decoration: none;
   @include type-heading-md;
 }
 
+.linkPage__link:first-child {
+  font-weight: 600;
+}
+
 .linkPage__footer {
   margin-top: auto;
-  padding-top: $space-5;
+  padding-top: clamp(#{$space-5}, 10vh, 7rem);
   display: flex;
   justify-content: space-between;
   gap: $space-3;
@@ -133,19 +142,24 @@
     padding-inline: $page-gutter;
   }
 
-  .linkPage__brand {
-    grid-column: 1 / span 2;
+  .linkPage__campaign {
+    gap: $space-4 $grid-gap;
   }
 
   .linkPage__campaign h1 {
     grid-column: 1 / -1;
-    font-size: clamp(3rem, 10vw, 5.5rem);
+    max-width: 9ch;
+    font-size: clamp(3rem, 9vw, 5.25rem);
   }
 
   .linkPage__campaign p,
   .linkPage__primaryAction {
     grid-column: 2 / -1;
     justify-self: start;
+  }
+
+  .linkPage__campaign p {
+    margin-top: 0;
   }
 }
 
@@ -160,7 +174,8 @@
   }
 
   .linkPage__campaign h1 {
-    font-size: clamp(3rem, 14vw, 5rem);
+    max-width: 10ch;
+    font-size: clamp(2.75rem, 12vw, 4.5rem);
   }
 
   .linkPage__campaign p {
@@ -172,8 +187,13 @@
     margin-top: $space-3;
   }
 
+  .linkPage__links {
+    display: grid;
+    gap: $space-2;
+  }
+
   .linkPage__link {
-    min-height: 4.5rem;
+    width: fit-content;
   }
 
   .linkPage__footer {
