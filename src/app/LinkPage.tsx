@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from "motion/react";
-import { Link } from "react-router-dom";
 
 import { TextBlock } from "@/components/content/TextBlock";
 import { Actions } from "@/components/navigation/Actions";
@@ -29,13 +28,6 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
-        <motion.header className="linkPage__header" variants={reveal} initial="hidden" animate="visible" transition={transition}>
-          <Link className="linkPage__brand" to="/" aria-label="Chow Studio, accueil">
-            <span>CHOW</span>
-            <span>STUDIO</span>
-          </Link>
-        </motion.header>
-
         <main className="linkPage__main">
           <section className="linkPage__campaign" aria-label="Recherche de projets">
             <TextBlock content={campaignContent} titleAs="h1" className="linkPage__campaignText" />
