@@ -3,7 +3,7 @@ import globalBlocksData from "@/data/globalBlocks.json";
 import servicesData from "@/data/services.json";
 import type { ContentItem, SectionBlock, SourceRef } from "@/types/content";
 
-const collections = {
+const collections: Record<string, ContentItem[]> = {
   ...(collectionsData as Record<string, ContentItem[]>),
   services: servicesData as ContentItem[],
 };
