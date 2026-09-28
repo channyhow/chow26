@@ -7,7 +7,7 @@ import type { Action, ActionRef } from "@/types/content";
 export type ActionsProps = {
   links?: ActionRef[];
   className?: string;
-  variant?: "default" | "social" | "panel";
+  variant?: "default" | "nav" | "social" | "panel";
 };
 
 function isProjectStartAction(label: string) {
