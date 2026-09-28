@@ -1,15 +1,4 @@
 {
-  "primary": [
-    { "id": "home", "label": "Accueil", "href": "/", "enabled": true },
-    { "id": "projects", "label": "Projets", "href": "/projets", "enabled": true },
-    { "id": "studio", "label": "Studio", "href": "/studio", "enabled": true },
-    {
-      "id": "contact",
-      "label": "Parler d’un projet",
-      "href": "/contact",
-      "enabled": true,
-      "variant": "cta"
-    }
-  ],
+  "primary": ["home", "projects", "studio", "talk-project"],
   "review": []
 }
