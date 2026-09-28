@@ -1,0 +1,19 @@
+{
+  "contact": { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
+  "talk-project": { "label": "Parler d’un projet", "href": "/contact", "intent": "contact", "variant": "cta", "priority": "primary" },
+  "present-project": { "label": "Présenter votre projet", "href": "/contact", "intent": "contact", "variant": "cta" },
+  "project-call": { "label": "Répondre à l’appel à projets", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
+  "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
+  "projects": { "label": "Projets", "href": "/projets", "intent": "navigate" },
+  "all-projects": { "label": "Voir tous les projets", "href": "/projets", "intent": "navigate", "variant": "arrow" },
+  "studio": { "label": "Studio", "href": "/studio", "intent": "navigate" },
+  "about-studio": { "label": "À propos de Chow Studio", "href": "/studio", "intent": "navigate", "variant": "arrow" },
+  "studio-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate", "variant": "cta" },
+  "mdk-case-study": { "label": "Étude de cas · Mois du Kèr", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
+  "instagram": { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "intent": "navigate", "group": "social" },
+  "linkedin": { "label": "LinkedIn", "href": "https://www.linkedin.com/in/channyhow", "intent": "navigate", "group": "social" },
+  "facebook": { "label": "Facebook", "href": "https://www.facebook.com/hellochowstudio/", "intent": "navigate", "group": "social" },
+  "terms": { "label": "CGV", "href": "/cgv", "intent": "navigate", "group": "legal" },
+  "privacy": { "label": "Confidentialité", "href": "/confidentialite", "intent": "navigate", "group": "legal" },
+  "legal": { "label": "Mentions légales", "href": "/mentions-legales", "intent": "navigate", "group": "legal" }
+}
