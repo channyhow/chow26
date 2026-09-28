@@ -29,7 +29,15 @@ const publicIdentityData = { defaultDescription: site.seo?.defaultDescription, d
 
 const report = (condition, message) => { if (!condition) errors.push(message); };
 report(!caseStudyPattern.test(JSON.stringify(publicIdentityData)), "case-study wording must be confined to the legal page");
-const auditSeo = (seo, context) => { report(seo?.title?.trim(), `${context} needs an SEO title`); report(seo?.description?.trim(), `${context} needs an SEO description`); if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`); if (seo?.image) seoImages.add(seo.image); };
+const auditSeo = (seo, context) => {
+  report(seo?.title?.trim(), `${context} needs an SEO title`);
+  report(seo?.description?.trim(), `${context} needs an SEO description`);
+  report(!seo?.title?.includes("—"), `${context} SEO title must use | instead of an em dash`);
+  report(!seo?.description?.includes("—"), `${context} SEO description must use | instead of an em dash`);
+  report(!seo?.imageAlt?.includes("—"), `${context} SEO image alt must use | instead of an em dash`);
+  if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`);
+  if (seo?.image) seoImages.add(seo.image);
+};
 const isExternalHref = (href = "") => /^(?:https?:|mailto:|tel:)/.test(href) || href.startsWith("#");
 const assertInternalHref = (href, context) => { if (!href || isExternalHref(href)) return; const pathname = href.split(/[?#]/, 1)[0] || "/"; report(publicSlugs.has(pathname) || internalRoutes.has(pathname), `${context} links to unknown route "${href}"`); };
 const assertActionRef = (ref, context) => { if (typeof ref === "string") { report(Boolean(actions[ref]), `${context} references missing action "${ref}"`); return; } if (!ref || typeof ref !== "object") return; if (ref.linkKey) report(Boolean(actions[ref.linkKey]), `${context} references missing action "${ref.linkKey}"`); if (ref.href) assertInternalHref(ref.href, context); };
@@ -37,6 +45,7 @@ const collectRefs = (entry, context) => { if (entry?.ref) { report(Boolean(block
 const walkContent = (value, context) => { if (Array.isArray(value)) { value.forEach((item, index) => walkContent(item, `${context}[${index}]`)); return; } if (!value || typeof value !== "object") return; if (Array.isArray(value.links)) value.links.forEach((ref, index) => assertActionRef(ref, `${context}.links[${index}]`)); if (typeof value.label === "string" && typeof value.href === "string") assertInternalHref(value.href, context); Object.entries(value).forEach(([key, child]) => { if (key !== "links") walkContent(child, `${context}.${key}`); }); };
 
 report(site?.name?.trim(), "site.name is required"); report(/^https:\/\//.test(site?.url ?? ""), "site.url must be an absolute HTTPS URL"); report(site?.defaultLocale === "fr", "site.defaultLocale must match the French content"); report(site?.contact?.address?.city, "site contact city is required"); report(site?.contact?.address?.country, "site contact country is required"); report(site?.credits?.name, "site creator name is required"); report(site?.credits?.studio, "site creator studio is required"); report(site?.seo?.defaultImage, "a default social image is required"); report(Boolean(resolveMediaRef(site?.seo?.defaultImage)), `default social image references missing media "${site?.seo?.defaultImage}"`);
+auditSeo({ title: site?.seo?.defaultTitle, description: site?.seo?.defaultDescription, image: site?.seo?.defaultImage, imageAlt: site?.seo?.imageAlt }, "site defaults");
 for (const [id, action] of Object.entries(actions)) { report(action?.label?.trim(), `action "${id}" needs a label`); report(action?.href?.trim() || action?.linkKey?.trim(), `action "${id}" needs href or linkKey`); if (action?.linkKey) report(Boolean(actions[action.linkKey]), `action "${id}" references missing action "${action.linkKey}"`); if (action?.href) assertInternalHref(action.href, `action "${id}"`); }
 for (const id of site.socials ?? []) report(Boolean(actions[id]), `site.socials references missing action "${id}"`);
 for (const id of siteData.ui?.floatingAction?.items ?? []) report(Boolean(actions[id]), `ui.floatingAction.items references missing action "${id}"`);
