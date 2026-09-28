@@ -13,8 +13,7 @@
 }
 
 .linkPage__header,
-.linkPage__campaign,
-.linkPage__links,
+.linkPage__main,
 .linkPage__footer {
   width: 100%;
   max-width: $container-max;
@@ -40,17 +39,21 @@
   letter-spacing: .04em;
 }
 
+.linkPage__main {
+  display: grid;
+  gap: clamp(#{$space-3}, 5vw, #{$space-5});
+  padding-block: clamp(#{$space-4}, 8vw, 7rem);
+}
+
 .linkPage__campaign {
-  @include site-grid;
-  padding-block: clamp(#{$space-5}, 11vw, 9rem);
-  align-items: end;
+  display: grid;
+  gap: $space-3;
 }
 
 .linkPage__campaign h1 {
-  grid-column: 1 / span 7;
   margin: 0;
-  @include type-heading-xl;
   max-width: 10ch;
+  @include type-heading-xl;
   font-size: clamp(3.25rem, 5.5vw, 6.25rem);
   line-height: .94;
   letter-spacing: -.05em;
@@ -59,50 +62,43 @@
 }
 
 .linkPage__campaign p {
-  grid-column: 8 / -1;
-  width: 100%;
-  max-width: 31rem;
+  width: min(100%, 36rem);
   margin: 0;
-  justify-self: end;
   font-family: var(--font-body);
   line-height: 1.45;
 }
 
-.linkPage__primaryAction {
-  grid-column: 8 / -1;
-  width: fit-content;
-  margin-top: $space-3;
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
-  color: inherit;
-  text-decoration: none;
-  @include interactive-text;
-}
-
 .linkPage__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-2 $space-4;
-  align-items: baseline;
+  display: grid;
+  width: min(100%, 46rem);
+  gap: $space-1;
 }
 
 .linkPage__link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: $space-1;
-  color: inherit;
+  min-height: 4.75rem;
+  padding: $space-2 $space-3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  background: var(--primary);
+  color: var(--secondary);
   text-decoration: none;
-  @include type-heading-md;
+  @include type-body-bold;
 }
 
-.linkPage__link:first-child {
-  font-weight: 600;
+.linkPage__link--primary {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.linkPage__link > span:last-child {
+  flex: 0 0 auto;
 }
 
 .linkPage__footer {
   margin-top: auto;
-  padding-top: clamp(#{$space-5}, 10vh, 7rem);
+  padding-top: clamp(#{$space-4}, 8vh, 6rem);
   display: flex;
   justify-content: space-between;
   gap: $space-3;
@@ -115,6 +111,7 @@
 
 .linkPage__socials {
   display: flex;
+  flex-wrap: wrap;
   gap: $space-2;
 }
 
@@ -124,16 +121,14 @@
 }
 
 @media (hover: hover) {
-  .linkPage__primaryAction,
   .linkPage__link,
   .linkPage__socials a {
     transition: opacity 180ms ease;
   }
 
-  .linkPage__primaryAction:hover,
   .linkPage__link:hover,
   .linkPage__socials a:hover {
-    opacity: .58;
+    opacity: .62;
   }
 }
 
@@ -142,24 +137,9 @@
     padding-inline: $page-gutter;
   }
 
-  .linkPage__campaign {
-    gap: $space-4 $grid-gap;
-  }
-
   .linkPage__campaign h1 {
-    grid-column: 1 / -1;
     max-width: 9ch;
     font-size: clamp(3rem, 9vw, 5.25rem);
-  }
-
-  .linkPage__campaign p,
-  .linkPage__primaryAction {
-    grid-column: 2 / -1;
-    justify-self: start;
-  }
-
-  .linkPage__campaign p {
-    margin-top: 0;
   }
 }
 
@@ -168,9 +148,13 @@
     padding-top: $space-3;
   }
 
+  .linkPage__main {
+    gap: $space-4;
+    padding-block: $space-4;
+  }
+
   .linkPage__campaign {
-    display: block;
-    padding-block: $space-5;
+    gap: $space-3;
   }
 
   .linkPage__campaign h1 {
@@ -178,22 +162,13 @@
     font-size: clamp(2.75rem, 12vw, 4.5rem);
   }
 
-  .linkPage__campaign p {
-    width: min(100%, 30rem);
-    margin-top: $space-4;
-  }
-
-  .linkPage__primaryAction {
-    margin-top: $space-3;
-  }
-
   .linkPage__links {
-    display: grid;
-    gap: $space-2;
+    width: 100%;
   }
 
   .linkPage__link {
-    width: fit-content;
+    min-height: 4.25rem;
+    padding: $space-2;
   }
 
   .linkPage__footer {
