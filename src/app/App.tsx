@@ -11,6 +11,9 @@ import type { PageData } from "@/types/content";
 const BrandingPage = lazy(() =>
   import("@/app/BrandingPage").then((module) => ({ default: module.BrandingPage })),
 );
+const LinkPage = lazy(() =>
+  import("@/app/LinkPage").then((module) => ({ default: module.LinkPage })),
+);
 const ProjectDetailPage = lazy(() =>
   import("@/app/ProjectDetailPage").then((module) => ({ default: module.ProjectDetailPage })),
 );
@@ -33,11 +36,7 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto",
-    });
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname]);
 
   return null;
@@ -56,10 +55,7 @@ function RoutedPage() {
 
   return (
     <>
-      <Seo
-        seo={page.seo}
-        slug={isNotFound ? location.pathname : page.slug}
-      />
+      <Seo seo={page.seo} slug={isNotFound ? location.pathname : page.slug} />
       <PageRenderer page={page} />
     </>
   );
@@ -74,6 +70,14 @@ export function App() {
       <div className="routeTransition" key={location.pathname}>
         <RouteLoader disabled />
         <Routes location={location}>
+          <Route
+            path="/link"
+            element={(
+              <Suspense fallback={null}>
+                <LinkPage />
+              </Suspense>
+            )}
+          />
           <Route
             path="/system"
             element={(
