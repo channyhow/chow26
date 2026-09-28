@@ -39,9 +39,7 @@
   }
 }
 
-.actions__link:not([class*="actions__link--"]) .actions__label,
-.actions__link--arrow .actions__label,
-.actions__link--cta .actions__label {
+.actions__label {
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -49,8 +47,12 @@
   transition: background-size $transition-hover;
 }
 
-.actions__link:not([class*="actions__link--"]) {
-  @include hover { .actions__label { background-size: 100% 1px; } }
+.actions__link:not(.actions__link--primary, .actions__link--outline) {
+  @include hover {
+    color: var(--accent);
+    .actions__label { background-size: 100% 1px; }
+    .actions__arrow { transform: translate(0.18em, -0.08em); }
+  }
 }
 
 .actions__link--primary,
@@ -77,27 +79,38 @@
   @include hover { border-color: var(--accent); color: var(--accent); }
 }
 
-.actions__link--arrow,
-.actions__link--cta {
-  @include hover {
-    color: var(--accent);
-    .actions__label { background-size: 100% 1px; }
-    .actions__arrow { transform: translate(0.2em, -0.06em); }
-  }
-}
-
 .actions__arrow {
   display: inline-block;
+  flex: 0 0 auto;
   transition: transform $transition-hover;
 }
 
+/* Quiet text navigation. Footer, drawer and other navigation surfaces should
+   use this instead of rebuilding link resets locally. */
+.actions--nav,
 .actions--social {
-  gap: $space-3;
+  display: grid;
+  align-content: start;
+  justify-content: start;
+  gap: $flow-tight;
 
   .actions__link {
-    @include social-action;
-    @include type-ui-compact;
+    width: fit-content;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
   }
+}
+
+.actions--nav .actions__link { @include type-body-bold; }
+
+.actions--social .actions__link {
+  @include social-action;
+  @include type-ui-compact;
 }
 
 .actions--panel {
@@ -148,8 +161,6 @@
 
   .actions__link:active,
   .actions__link--primary:hover,
-  .actions__link--arrow:hover .actions__arrow,
-  .actions__link--cta:hover .actions__arrow,
-  .actions--social .actions__link:hover .actions__arrow,
+  .actions__link:hover .actions__arrow,
   .actions--panel .actions__link:hover { transform: none; }
 }
