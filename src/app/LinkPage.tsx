@@ -20,12 +20,9 @@ export function LinkPage() {
             <span>CHOW</span>
             <span>STUDIO</span>
           </Link>
-          <p>Design · Web · Identité visuelle</p>
-          <p>Paris · La Réunion</p>
         </header>
 
         <section className="linkPage__campaign" aria-labelledby="link-campaign-title">
-          <span className="linkPage__index" aria-hidden="true">(01)</span>
           <h1 id="link-campaign-title">Je recherche<br />3 entreprises</h1>
           <p>
             Pour mes prochains projets, je recherche trois entreprises qui souhaitent créer,
@@ -38,12 +35,10 @@ export function LinkPage() {
 
         <nav className="linkPage__links" aria-label="Liens Chow Studio">
           <Link className="linkPage__link" to="/projets">
-            <span className="linkPage__index">(02)</span>
             <span>Découvrir les projets</span>
             <span aria-hidden="true">→</span>
           </Link>
           <a className="linkPage__link" href={tallyUrl} target="_blank" rel="noreferrer">
-            <span className="linkPage__index">(03)</span>
             <span>Parler de votre projet</span>
             <span aria-hidden="true">↗</span>
           </a>
