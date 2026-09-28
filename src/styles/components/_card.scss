@@ -16,7 +16,7 @@
     transition: transform $transition-reveal;
   }
 
-  .textBlock__title { max-width: 22ch;  }
+  .textBlock__title { max-width: 22ch; }
   .textBlock__subtitle p { @include type-body; }
   .textBlock__meta { @include type-body-sm; }
 
@@ -101,17 +101,6 @@
 [data-variant="organic"] .card {
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
 }
-
-// @include reduced-motion {
-//   .card .media__asset {
-//     transition: none;
-//   }
-
-//   .card:hover .media__asset,
-//   .card:focus-within .media__asset {
-//     transform: none;
-//   }
-// }
 
 .card[href] {
   color: inherit;
