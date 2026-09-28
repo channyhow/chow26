@@ -23,7 +23,6 @@
 .card--service {
   overflow: visible;
   background: transparent;
-
   .card__mediaWrap { width: 100%; min-width: 0; }
   .card__media { width: 100%; min-width: 0; background: transparent; @include media-frame($ratio-square); }
   .card__body { width: 100%; min-width: 0; padding: $space-2 0 0; }
@@ -33,6 +32,46 @@
   .textBlock__content { @include type-body-sm; width: 100%; max-width: 34ch; color: color-mix(in srgb, currentColor 68%, transparent); }
   .textBlock__content > * + * { margin-top: $flow-default; }
   .textBlock__footer { width: fit-content; margin-top: $flow-tight; padding-top: 0; }
+}
+
+.card--editorial {
+  min-width: 0;
+  overflow: visible;
+  background: transparent;
+
+  .card__body { width: 100%; max-width: none; padding: 0; }
+  .card__body.textBlock { gap: $flow-default; }
+  .textBlock__title { @include type-heading-sm; max-width: none; }
+  .textBlock__content { @include type-body-sm; max-width: 26ch; color: color-mix(in srgb, currentColor 68%, transparent); }
+}
+
+.card--profile {
+  @include site-grid;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+
+  .card__mediaWrap { min-width: 0; padding: 0; background: transparent; }
+  .card__media { padding-top: 0; background: transparent; @include media-frame($ratio-square); }
+  .card__media .media, .card__media .media__frame { background: transparent; }
+  .card__media .media__asset { filter: grayscale(1); mix-blend-mode: multiply; }
+  .card__body.textBlock { align-self: center; grid-auto-rows: max-content; align-content: start; gap: $flow-default; width: 100%; max-width: none; padding: $space-2 0; }
+  .textBlock__title { @include type-heading-lg; max-width: 9ch; line-height: .92; letter-spacing: -.035em; }
+  .textBlock__subtitle { @include type-heading-sm; max-width: 22ch; }
+  .textBlock__header, .textBlock__content { width: 100%; max-width: none; }
+  .textBlock__content { @include type-body-sm; max-width: 36ch; color: color-mix(in srgb, currentColor 62%, transparent); }
+  .textBlock__content > :first-child { @include type-lead; max-width: 30ch; color: currentColor; }
+  .textBlock__content > * + * { margin-top: $flow-default; }
+  .textBlock__content strong { font-weight: $font-weight-semibold; }
+
+  @include mobile-down {
+    row-gap: $space-3;
+    .card__body.textBlock { padding-top: 0; }
+    .textBlock__content > :first-child { @include type-body; }
+  }
 }
 
 .projectCard {
