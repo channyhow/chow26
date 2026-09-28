@@ -26,7 +26,6 @@ const replaceMeta = (html, attribute, key, content) => {
   const tag = `<meta ${attribute}="${key}" content="${escapeAttribute(content)}" />`;
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace("</head>", `    ${tag}\n  </head>`);
 };
-const removeMeta = (html, attribute, key) => html.replace(new RegExp(`\\s*<meta\\b(?=[^>]*\\b${attribute}="${key}")[^>]*>`, "gi"), "");
 const replaceCanonical = (html, canonical) => {
   const tag = `<link rel="canonical" href="${escapeAttribute(canonical)}" />`;
   return html.replace(/<link\b(?=[^>]*\brel="canonical")[^>]*>/i, tag);
@@ -42,9 +41,15 @@ const socialPosition = (item) => {
   return "center";
 };
 
+const resolveImageMedia = (ref) => {
+  const direct = media[ref];
+  if (direct?.type === "image" && direct.src) return direct;
+  return Object.values(media).find((item) => item.type === "image" && item.src === ref) ?? null;
+};
+
 const resolveSocialImage = (ref) => {
-  const item = media[ref];
-  if (!item || item.type !== "image" || !item.src) return null;
+  const item = resolveImageMedia(ref);
+  if (!item?.src) return null;
   const params = new URLSearchParams({
     url: item.src,
     w: String(SOCIAL_WIDTH),
@@ -87,8 +92,8 @@ for (const page of routes) {
   const canonical = seo.canonical ?? `${baseUrl}${page.slug}`;
   const imageRef = seo.image ?? defaults.defaultImage;
   const socialImage = resolveSocialImage(imageRef);
-  const defaultMedia = media[defaults.defaultImage];
-  const defaultImageSrc = defaultMedia?.type === "image" ? defaultMedia.src : defaults.defaultImage;
+  const defaultMedia = resolveImageMedia(defaults.defaultImage);
+  const defaultImageSrc = defaultMedia?.src ?? defaults.defaultImage;
   const image = socialImage?.url ?? new URL(defaultImageSrc, `${baseUrl}/`).toString();
   const imageAlt = seo.imageAlt ?? socialImage?.alt ?? defaults.imageAlt;
   const index = seo.robots?.index !== false;
@@ -106,9 +111,9 @@ for (const page of routes) {
   html = replaceMeta(html, "property", "og:image", image);
   html = replaceMeta(html, "property", "og:image:secure_url", image);
   html = replaceMeta(html, "property", "og:image:alt", imageAlt);
-  html = removeMeta(html, "property", "og:image:width");
-  html = removeMeta(html, "property", "og:image:height");
-  html = removeMeta(html, "property", "og:image:type");
+  html = replaceMeta(html, "property", "og:image:width", String(SOCIAL_WIDTH));
+  html = replaceMeta(html, "property", "og:image:height", String(SOCIAL_HEIGHT));
+  html = replaceMeta(html, "property", "og:image:type", "image/jpeg");
   html = replaceMeta(html, "name", "twitter:title", title);
   html = replaceMeta(html, "name", "twitter:description", description);
   html = replaceMeta(html, "name", "twitter:image", image);
