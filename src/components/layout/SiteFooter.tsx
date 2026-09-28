@@ -27,6 +27,9 @@ const toArray = <T,>(value?: T | T[]): T[] => {
   return Array.isArray(value) ? value : [value];
 };
 
+const SOCIAL_LABELS = new Set(["instagram", "linkedin", "facebook"]);
+const LEGAL_HREFS = new Set(["/cgv", "/confidentialite", "/mentions-legales"]);
+
 export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
@@ -56,13 +59,17 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
 
   const primaryLinks = usesGroups
     ? links.filter((link) => (link.group ?? "primary") === "primary")
-    : links.slice(0, 4);
+    : links.filter(
+        (link) =>
+          !SOCIAL_LABELS.has(link.label.trim().toLowerCase()) &&
+          !LEGAL_HREFS.has(link.href ?? ""),
+      );
   const socialLinks = usesGroups
     ? links.filter((link) => link.group === "social")
-    : links.slice(4, 6);
+    : links.filter((link) => SOCIAL_LABELS.has(link.label.trim().toLowerCase()));
   const legalLinks = usesGroups
     ? links.filter((link) => link.group === "legal")
-    : links.slice(6);
+    : links.filter((link) => LEGAL_HREFS.has(link.href ?? ""));
 
   return (
     <footer
