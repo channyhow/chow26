@@ -38,7 +38,6 @@
   min-width: 0;
   overflow: visible;
   background: transparent;
-
   .card__body { width: 100%; max-width: none; padding: 0; }
   .card__body.textBlock { gap: $flow-default; }
   .textBlock__title { @include type-heading-sm; max-width: none; }
@@ -75,10 +74,26 @@
 }
 
 .projectCard {
-  .card__mediaWrap { display: grid; place-items: center; overflow: hidden; background: color-mix(in srgb, var(--primary) 4%, var(--secondary)); @include media-frame($ratio-wide); }
-  .media, .media__frame { width: 100%; height: 100%; background: transparent; }
-  .media { overflow: hidden; }
-  .media__frame { display: grid; place-items: center; aspect-ratio: auto; }
+  // Card composition owns the displayed ratio. Intrinsic media ratio must not
+  // compete with the project-card frame.
+  .card__mediaWrap {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: var(--card-media-ratio, #{$ratio-wide});
+    overflow: hidden;
+    background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+  }
+
+  .card__media,
+  .card__media .media__frame,
+  .card__media .media__asset {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card__media { margin: 0; overflow: hidden; background: transparent; }
+  .card__media .media__frame { aspect-ratio: auto; overflow: hidden; }
+  .card__media .media__asset { display: block; object-fit: cover; object-position: center; }
   .card__body { display: grid; gap: $flow-default; padding: $flow-default; }
   .textBlock, .textBlock__header, .textBlock__content, .textBlock__footer { gap: $flow-tight; }
   .textBlock__content { opacity: $opacity-quiet; }
