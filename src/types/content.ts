@@ -82,55 +82,163 @@ export type GridTrackPlacement = {
   justify?: "start" | "center" | "end" | "stretch";
 };
 
+export type GridPlacement = {
+  mobile?: GridTrackPlacement;
+  tablet?: GridTrackPlacement;
+  desktop?: GridTrackPlacement;
+};
+
 export type ContentItem = {
   id?: string;
   eyebrow?: string | string[];
   title?: string;
-  subtitle?: string;
-  text?: string[];
+  subtitle?: string | string[];
+  text?: string | string[];
+  media?: MediaRef | MediaRef[];
   links?: Action[];
   meta?: MetaItem[];
-  media?: MediaRef | MediaRef[];
-  items?: ContentItem[];
-  className?: string;
+  tags?: string[];
+  category?: string;
+  group?: string;
+  href?: string;
+  enabled?: boolean;
+  featured?: boolean;
+  order?: number;
+  slug?: string;
+  projectLayout?: ProjectLayout;
+  grid?: GridPlacement;
+  summary?: string;
+  description?: string[];
+  facts?: MetaItem[];
+  gallery?: MediaRef[];
+  seo?: PageSeo;
 };
 
-export type ContentSource = {
-  collection: string;
-  query?: Record<string, string | number | boolean>;
+export type ProjectRecord = ContentItem & {
+  id: string;
+  title: string;
+  text: string[];
+  media: MediaRef;
+  href: string;
+  slug: string;
+  summary: string;
+  description: string[];
+  facts: MetaItem[];
+  gallery?: MediaRef[];
+  links?: Action[];
+  seo: PageSeo;
+  projectLayout?: ProjectLayout;
+};
+
+export type SectionHeader = {
+  eyebrow?: string | string[];
+  title?: string;
+  subtitle?: string | string[];
+  text?: string | string[];
+  links?: Action[];
+  media?: MediaRef | MediaRef[];
+  meta?: MetaItem[];
 };
 
 export type SectionContent = {
-  header?: ContentItem;
+  header?: SectionHeader;
   items?: ContentItem[];
-  links?: Action[];
   media?: MediaRef | MediaRef[];
   form?: string | FormSchema;
+};
+
+export type SourceQuery = {
+  featured?: boolean;
+  enabled?: boolean;
+  category?: string;
+  group?: string;
+  limit?: number;
+  excludeIds?: string[];
+  prioritizeIds?: string[];
+};
+
+export type SourceRef = {
+  collection: string;
+  query?: SourceQuery;
 };
 
 export type SectionBlock = {
   id: string;
   type: "Section";
   layout?: SectionLayout;
-  groupLayout?: GroupLayout;
-  panelMode?: PanelMode;
-  panelSize?: PanelSize;
-  panelAlign?: PanelAlign;
-  panelSurface?: PanelSurface;
-  panelBehavior?: PanelBehavior;
   variant?: StyleVariant;
   tone?: Tone;
-  color?: SectionColor;
   surface?: SectionSurface;
+  color?: SectionColor;
+  timelineOrientation?: TimelineOrientation;
+  source?: SourceRef;
+  content?: SectionContent;
+  frame?: boolean;
+  progressive?: boolean;
+  itemAppearance?: CardAppearance;
   motion?: MotionLevel;
   motionPreset?: ScrollMotionPreset;
   motionRange?: ScrollMotionRange;
   motionIntensity?: MotionIntensity;
-  timelineOrientation?: TimelineOrientation;
-  projectLayout?: ProjectLayout;
   className?: string;
-  progressive?: boolean;
-  source?: ContentSource;
-  content?: SectionContent;
-  itemAppearance?: CardAppearance;
+};
+
+export type BlockRef = {
+  ref: string;
+};
+
+export type PanelBlock = BlockRef | SectionBlock;
+
+export type PanelLane = {
+  id: string;
+  behavior?: PanelBehavior;
+  size?: PanelSize;
+  align?: PanelAlign;
+  surface?: PanelSurface;
+  color?: SectionColor;
+  blocks: PanelBlock[];
+};
+
+export type SectionGroup = {
+  id: string;
+  type: "Group";
+  layout?: GroupLayout;
+  panel?: {
+    mode?: PanelMode;
+    size?: PanelSize;
+    align?: PanelAlign;
+    surface?: PanelSurface;
+    color?: SectionColor;
+  };
+  panels?: PanelLane[];
+  motion?: {
+    level: MotionLevel;
+    preset?:
+      | "panel"
+      | "media-reveal"
+      | "sticky-story"
+      | "horizontal-rail";
+  };
+  blocks?: PanelBlock[];
+};
+
+export type PageBlock = SectionBlock | SectionGroup | BlockRef;
+
+export type PageSeo = {
+  title: string;
+  description?: string;
+  image?: MediaRef;
+  canonical?: string;
+  robots?: {
+    index?: boolean;
+    follow?: boolean;
+  };
+};
+
+export type PageData = {
+  id: string;
+  slug: string;
+  variant?: StyleVariant;
+  seo?: PageSeo;
+  blocks: PageBlock[];
 };
