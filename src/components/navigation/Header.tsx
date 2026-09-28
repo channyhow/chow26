@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BurgerButton } from "@/components/navigation/BurgerButton";
-import { resolveActions } from "@/data/linkRegistry";
+import { resolveActions } from "@/data/actionRegistry";
 import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
 import type { ActionRef } from "@/types/content";
