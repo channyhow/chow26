@@ -253,6 +253,8 @@
           { "label": "Studio", "href": "/studio", "intent": "navigate" },
           { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
           { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "intent": "navigate" },
+                   { "label": "Facebook", "href": "https://www.facebook.com/hellochowstudio/", "intent": "navigate" },
+
           { "label": "LinkedIn", "href": "https://www.linkedin.com/in/channyhow", "intent": "navigate" },
           { "label": "CGV", "href": "/cgv", "intent": "navigate" },
           { "label": "Confidentialité", "href": "/confidentialite", "intent": "navigate" },
