@@ -22,19 +22,25 @@ export function FloatingAction() {
 
     action.dataset.hidden = "false";
 
-    if (!config.hideWhileVisible) return;
+    const selectors = [config.hideWhileVisible, ".siteFooter"].filter(Boolean) as string[];
+    const targets = selectors
+      .flatMap((selector) => Array.from(document.querySelectorAll<HTMLElement>(selector)));
 
-    const target = document.querySelector(config.hideWhileVisible);
-    if (!target) return;
+    if (!targets.length) return;
 
+    const visibleTargets = new Set<Element>();
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        action.dataset.hidden = entry.isIntersecting ? "true" : "false";
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleTargets.add(entry.target);
+          else visibleTargets.delete(entry.target);
+        });
+        action.dataset.hidden = visibleTargets.size ? "true" : "false";
       },
       { threshold: 0.12 },
     );
 
-    observer.observe(target);
+    targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, [config.hideWhileVisible, pathname]);
 
