@@ -5,14 +5,13 @@
 .linkPage {
   width: 100%;
   min-height: 100svh;
-  padding: $space-4 var(--project-gutter) $space-3;
+  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-3;
   display: flex;
   flex-direction: column;
   background: $gray-700;
   color: $gray-100;
 }
 
-.linkPage__header,
 .linkPage__main,
 .linkPage__footer {
   width: 100%;
@@ -20,50 +19,37 @@
   margin-inline: auto;
 }
 
-.linkPage__header { @include site-grid; }
-
-.linkPage__brand {
-  grid-column: 1 / span 2;
-  width: 4.5rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-  gap: .05rem;
-  background: var(--accent);
-  color: var(--primary);
-  text-decoration: none;
-  font: 700 .62rem/1 var(--font-body);
-  letter-spacing: .04em;
-  transition: transform $transition-hover;
-
-  @include hover { transform: rotate(-4deg) scale(1.03); }
-  &:focus-visible { @include focus-ring; }
-}
-
 .linkPage__main {
   flex: 1;
   display: flex;
   align-items: center;
-  padding-block: clamp(#{$space-4}, 7vw, 7rem);
+  padding-block: clamp(#{$space-3}, 5vw, #{$space-5});
 }
 
 .linkPage__campaign { width: 100%; }
 
 .linkPage__campaignText.textBlock {
+  @include site-grid;
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, .8fr);
-  gap: clamp(#{$space-4}, 7vw, 8rem);
   align-items: center;
+  row-gap: $space-3;
 }
 
-.linkPage__campaignText .textBlock__header,
+.linkPage__campaignText .textBlock__header {
+  grid-column: 1 / span 7;
+  gap: $space-1;
+}
+
 .linkPage__campaignText .textBlock__content {
-  grid-column: 1;
+  grid-column: 1 / span 6;
+  width: min(100%, 40rem);
 }
 
-.linkPage__campaignText .textBlock__header { gap: $space-1; }
+.linkPage__campaignText .textBlock__footer {
+  grid-column: 8 / span 5;
+  grid-row: 1 / span 2;
+  width: 100%;
+}
 
 .linkPage__campaignText .textBlock__eyebrow {
   @include type-ui-compact;
@@ -71,7 +57,7 @@
 }
 
 .linkPage__campaignText .textBlock__title {
-  max-width: 10ch;
+  max-width: 11ch;
   font-size: clamp(3.25rem, 5.5vw, 6.25rem);
   line-height: .94;
   letter-spacing: -.05em;
@@ -79,18 +65,8 @@
   text-wrap: balance;
 }
 
-.linkPage__campaignText .textBlock__content {
-  width: min(100%, 36rem);
-}
-
 .linkPage__campaignText .textBlock__content p { line-height: 1.45; }
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; }
-
-.linkPage__campaignText .textBlock__footer {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  width: 100%;
-}
 
 .linkPage__campaignText .actions {
   display: grid;
@@ -110,23 +86,16 @@
   text-decoration: none;
   @include type-body-bold;
   @include glass($gray-100, 9%);
-  transition:
-    color $transition-hover,
-    background-color $transition-hover,
-    transform $transition-hover;
+  transition: color $transition-hover, background-color $transition-hover, transform $transition-hover;
 
   @include hover {
     color: var(--accent);
     background: color-mix(in srgb, #{$gray-100} 14%, transparent);
     transform: translateX(.2rem);
-
     .actions__arrow { transform: translate(.22rem, -.12rem); }
   }
 
-  &:focus-visible {
-    @include focus-ring;
-    color: var(--accent);
-  }
+  &:focus-visible { @include focus-ring; color: var(--accent); }
 }
 
 .linkPage__campaignText .actions__link--primary,
@@ -135,10 +104,7 @@
   color: var(--primary);
   border-color: transparent;
 
-  @include hover {
-    background: var(--primary);
-    color: var(--secondary);
-  }
+  @include hover { background: var(--primary); color: var(--secondary); }
 }
 
 .linkPage__campaignText .actions__arrow {
@@ -155,52 +121,7 @@
   gap: $space-3;
 }
 
-.linkPage__socials.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $flow-tight $space-3;
-}
-
-.linkPage__socials .actions__link {
-  @include type-ui-compact;
-
-  min-height: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: inherit;
-  gap: .4em;
-  opacity: $opacity-muted;
-  transition: color $transition-hover, opacity $transition-hover;
-
-  @include hover {
-    color: var(--accent);
-    background: transparent;
-    box-shadow: none;
-    opacity: 1;
-    transform: none;
-
-    .actions__arrow { transform: translate(.18em, -.08em); }
-  }
-
-  &:focus-visible {
-    color: var(--accent);
-    background: transparent;
-    box-shadow: none;
-    opacity: 1;
-  }
-}
-
-.linkPage__socials .actions__label {
-  background-image: none;
-}
-
-.linkPage__socials .actions__arrow {
-  flex: 0 0 auto;
-  transition: transform $transition-hover;
-}
+.linkPage__socials.actions { gap: $flow-tight $space-3; }
 
 .linkPage__copyright {
   @include type-ui-compact;
@@ -211,6 +132,7 @@
   .linkPage { padding-inline: $page-gutter; }
 
   .linkPage__campaignText.textBlock {
+    display: grid;
     grid-template-columns: 1fr;
     align-items: start;
     gap: $space-4;
@@ -232,9 +154,8 @@
 }
 
 @include mobile-down {
-  .linkPage { padding-top: $space-3; }
-  .linkPage__main { padding-block: $space-4; }
-
+  .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
+  .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText.textBlock { gap: $space-3; }
 
   .linkPage__campaignText .textBlock__title {
