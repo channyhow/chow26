@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 
 import { Drawer } from "@/components/navigation/Drawer";
 import { FloatingAction } from "@/components/navigation/FloatingAction";
@@ -24,8 +25,7 @@ const headingFont =
       ? fonts.organicHeading
       : fonts.classicHeading;
 const foreground = tone === "inverse" ? colors.secondary : colors.primary;
-const background =
-  tone === "inverse" ? colors.primary : tone === "accent" ? colors.accent : colors.secondary;
+const background = tone === "inverse" ? colors.primary : tone === "accent" ? colors.accent : colors.secondary;
 const themeStyle: ThemeStyle = {
   "--theme-primary": colors.primary,
   "--theme-secondary": colors.secondary,
@@ -44,6 +44,8 @@ const themeStyle: ThemeStyle = {
 };
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+  const isLinkPage = pathname === "/link" || pathname === "/link/";
   const drawer = useUIStore(selectDrawerView);
   const overlayOpen = useUIStore(selectOverlayOpen);
 
@@ -54,14 +56,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-tone={tone}
       data-drawer={drawer ?? "closed"}
       data-overlay={overlayOpen ? "open" : "closed"}
+      data-minimal={isLinkPage ? "true" : "false"}
       style={themeStyle}
     >
-      <SmoothScroll />
-      <ScrollProgress mode={scrollProgress} />
-      <Header />
+      {!isLinkPage ? <SmoothScroll /> : null}
+      {!isLinkPage ? <ScrollProgress mode={scrollProgress} /> : null}
+      {!isLinkPage ? <Header /> : null}
       <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
-      <FloatingAction />
-      <Drawer />
+      {!isLinkPage ? <FloatingAction /> : null}
+      {!isLinkPage ? <Drawer /> : null}
     </div>
   );
 }
