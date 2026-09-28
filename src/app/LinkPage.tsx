@@ -29,13 +29,7 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
-        <motion.header
-          className="linkPage__header"
-          variants={reveal}
-          initial="hidden"
-          animate="visible"
-          transition={transition}
-        >
+        <motion.header className="linkPage__header" variants={reveal} initial="hidden" animate="visible" transition={transition}>
           <Link className="linkPage__brand" to="/" aria-label="Chow Studio, accueil">
             <span>CHOW</span>
             <span>STUDIO</span>
@@ -48,14 +42,8 @@ export function LinkPage() {
           </section>
         </main>
 
-        <motion.footer
-          className="linkPage__footer"
-          variants={reveal}
-          initial="hidden"
-          animate="visible"
-          transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}
-        >
-          <Actions links={socialLinks} className="linkPage__socials" />
+        <motion.footer className="linkPage__footer" variants={reveal} initial="hidden" animate="visible" transition={{ ...transition, delay: reduceMotion ? 0 : 0.3 }}>
+          <Actions links={socialLinks} variant="social" className="linkPage__socials" />
           <span className="linkPage__copyright">© Chow Studio 2026</span>
         </motion.footer>
       </div>
