@@ -85,8 +85,8 @@
   transition: transform $transition-hover;
 }
 
-/* Quiet navigation. Nav and social deliberately share the same UI baseline;
-   social differs only by its external-link behaviour/icon. */
+/* Quiet text navigation. Typography stays contextual so surfaces such as the
+   footer can opt into their own baseline without changing nav site-wide. */
 .actions--nav,
 .actions--social {
   display: grid;
@@ -95,7 +95,6 @@
   gap: $flow-tight;
 
   .actions__link {
-    @include type-ui-compact;
     width: fit-content;
     min-height: 0;
     padding: 0;
@@ -107,7 +106,12 @@
   }
 }
 
-.actions--social .actions__link { @include social-action; }
+.actions--nav .actions__link { @include type-body-bold; }
+
+.actions--social .actions__link {
+  @include social-action;
+  @include type-ui-compact;
+}
 
 .actions--panel {
   display: grid;
