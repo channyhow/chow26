@@ -26,13 +26,7 @@
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition:
-    color $transition-hover,
-    background-color $transition-hover,
-    border-color $transition-hover,
-    box-shadow $transition-hover,
-    opacity $transition-hover,
-    transform $transition-hover;
+  transition: color $transition-hover, background-color $transition-hover, border-color $transition-hover, box-shadow $transition-hover, opacity $transition-hover, transform $transition-hover;
 
   &:focus-visible { @include focus-ring; }
   &:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
@@ -80,10 +74,7 @@
 }
 
 .actions__link--outline {
-  @include hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  @include hover { border-color: var(--accent); color: var(--accent); }
 }
 
 .actions__link--arrow,
@@ -109,6 +100,47 @@
   }
 }
 
+.actions--panel {
+  display: grid;
+  width: 100%;
+  gap: $space-1;
+
+  .actions__link {
+    width: 100%;
+    min-height: 4.75rem;
+    padding: $space-2 $space-3;
+    justify-content: space-between;
+    border-radius: 0;
+    @include glass($gray-100, 9%);
+
+    @include hover {
+      color: var(--accent);
+      background: color-mix(in srgb, #{$gray-100} 14%, transparent);
+      transform: translateX(.2rem);
+      .actions__arrow { transform: translate(.22rem, -.12rem); }
+    }
+  }
+
+  .actions__link--primary,
+  .actions__link[data-priority="primary"] {
+    border-color: transparent;
+    background: var(--accent);
+    color: var(--primary);
+
+    @include hover {
+      background: var(--primary);
+      color: var(--secondary);
+    }
+  }
+}
+
+@include mobile-down {
+  .actions--panel .actions__link {
+    min-height: 4.25rem;
+    padding: $space-2;
+  }
+}
+
 @include reduced-motion {
   .actions__link,
   .actions__label,
@@ -118,5 +150,6 @@
   .actions__link--primary:hover,
   .actions__link--arrow:hover .actions__arrow,
   .actions__link--cta:hover .actions__arrow,
-  .actions--social .actions__link:hover .actions__arrow { transform: none; }
+  .actions--social .actions__link:hover .actions__arrow,
+  .actions--panel .actions__link:hover { transform: none; }
 }
