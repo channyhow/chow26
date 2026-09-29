@@ -40,7 +40,7 @@
 .linkPage__campaignText .textBlock__content { grid-column: 2 / span 5; align-self: start; width: min(100%, 31rem); }
 .linkPage__campaignText .textBlock__footer { grid-column: 8 / span 5; grid-row: 1 / span 2; align-self: center; width: 100%; }
 
-.linkPage__campaignText .textBlock__eyebrow { @include type-ui-compact; color: currentColor; white-space: pre-line; }
+.linkPage__campaignText .textBlock__eyebrow { @include type-ui; color: currentColor; white-space: pre-line; font-weight: $font-weight-bold;  }
 .linkPage__campaignText .textBlock__title {
   max-width: 8ch;
   color: $color-accent;
@@ -106,7 +106,7 @@
   .linkPage__campaignText.textBlock { gap: $space-4; }
 
   .linkPage__campaignText .textBlock__header { width: 100%; gap: $space-3; }
-  .linkPage__campaignText .textBlock__eyebrow { max-width: 22rem; font-size: clamp(.82rem, 3.7vw, 1rem); line-height: 1.25; }
+  .linkPage__campaignText .textBlock__eyebrow { max-width: 22rem; font-size: clamp(.82rem, 3.7vw, 1rem); line-height: 1.25; letter-spacing: -.02em; text-transform: uppercase; }
   .linkPage__campaignText .textBlock__title {
     max-width: 8ch;
     font-size: clamp(2.35rem, 11.5vw, 3.65rem);
