@@ -41,8 +41,6 @@ mat2 rotate2d(float a) {
   return mat2(c, -s, s, c);
 }
 
-/* AE-inspired Turbulent Basic approximation. No grid or explicit geometry:
-   all structure comes from accumulated soft turbulent noise. */
 float turbulentFractal(vec2 p) {
   float sum = 0.0;
   float weight = 0.0;
@@ -54,7 +52,6 @@ float turbulentFractal(vec2 p) {
     n = abs(n * 2.0 - 1.0);
     sum += n * amplitude;
     weight += amplitude;
-
     p = octaveRotation * p * 1.72 + vec2(3.17, -1.83);
     amplitude *= 0.63;
   }
@@ -65,39 +62,28 @@ float turbulentFractal(vec2 p) {
 void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
-
-  /* Large AE-like scale: broad empty secondary-colour ground with fragmented
-     dark networks rather than small grain or visible cells. */
   p *= 5.4;
 
-  /* Mild domain distortion creates the tangled, fibrous topology seen in the
-     AE frame without introducing a lattice. */
   vec2 warp = vec2(
     turbulentFractal(p * 0.38 + vec2(7.1, 2.3)),
     turbulentFractal(p * 0.38 + vec2(-3.8, 8.6))
   ) - 0.5;
 
   float n = turbulentFractal(p + warp * 1.15);
-
-  /* Approximate AE Invert + contrast/brightness treatment. Most of the frame
-     stays secondary; only a narrow turbulent range resolves into primary. */
   n = 1.0 - n;
   n = (n - 0.5) * 1.85 + 0.5;
   n -= 0.18;
 
-  /* Compress the continuous noise into broken charcoal/rust-like fibres while
-     retaining soft edges and internal detail. */
   float network = 1.0 - smoothstep(0.26, 0.53, n);
-
   float detail = turbulentFractal(p * 2.35 + warp * 0.65);
   detail = smoothstep(0.28, 0.72, detail);
   network *= 0.70 + detail * 0.30;
 
-  /* Very fine irregularity belongs only to the marks, not the clean ground. */
   float grain = softNoise(p * 17.0);
   network *= 0.88 + grain * 0.12;
   network = clamp(network * 0.76, 0.0, 0.82);
 
+  /* AE reference: warm stone ground with charcoal fractal marks over it. */
   vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
 }
@@ -153,9 +139,8 @@ export function FractalNoiseCanvas() {
     const resolution = gl.getUniformLocation(program, "u_resolution");
     const primary = gl.getUniformLocation(program, "u_primary");
     const secondary = gl.getUniformLocation(program, "u_secondary");
-    const styles = getComputedStyle(document.documentElement);
-    const primaryRgb = hexToRgb(styles.getPropertyValue("--color-primary") || "#161616");
-    const secondaryRgb = hexToRgb(styles.getPropertyValue("--color-secondary") || "#f6f5f3");
+    const primaryRgb = hexToRgb("#55564f");
+    const secondaryRgb = hexToRgb("#B8B3A1");
 
     const render = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
