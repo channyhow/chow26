@@ -39,8 +39,8 @@ float fbm(vec2 p) {
   mat2 rotation = mat2(0.80, 0.60, -0.60, 0.80);
   for (int i = 0; i < 7; i++) {
     value += amplitude * noise(p);
-    p = rotation * p * 2.03 + vec2(17.3, 9.2);
-    amplitude *= 0.52;
+    p = rotation * p * 2.02 + vec2(13.7, 9.2);
+    amplitude *= 0.51;
   }
   return value;
 }
@@ -49,38 +49,43 @@ void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
 
-  vec2 q = vec2(fbm(p * 1.55 + vec2(3.1, 8.7)), fbm(p * 1.55 + vec2(9.4, 2.6)));
-  vec2 r = vec2(
-    fbm(p * 1.86 + 1.48 * q + vec2(1.7, 6.2)),
-    fbm(p * 1.86 + 1.48 * q + vec2(8.3, 1.4))
+  /* AE-like turbulent base: broad deformation plus nested detail. */
+  vec2 warp = vec2(
+    fbm(p * 1.18 + vec2(2.4, 7.1)),
+    fbm(p * 1.18 + vec2(8.6, 3.3))
   );
+  vec2 warped = p + warp * 0.34;
 
-  float macro = fbm(p * 1.90 + 1.72 * r);
-  float middle = fbm(p * 5.35 + 0.82 * q + 0.48 * r);
-  float fine = fbm(p * 15.5 + 0.34 * r);
-  float grain = noise(p * 76.0 + q * 1.7);
+  float broad = fbm(warped * 3.15);
+  float medium = fbm(warped * 7.4 + warp * 0.72);
+  float fine = fbm(warped * 17.8 - warp * 0.31);
+  float grit = noise(warped * 63.0 + vec2(medium, broad) * 2.1);
 
-  /* A restrained ridge layer breaks the fluid marble shapes into drier,
-     branching structures while keeping the secondary ground dominant. */
-  float ridgeSource = fbm(p * 4.15 + 0.72 * q - 0.38 * r);
-  float ridges = 1.0 - abs(ridgeSource * 2.55);
-  ridges = smoothstep(0.56, 0.88, ridges);
+  /* Convert the turbulent field into a porous network rather than displaying
+     FBM as continuous grey smoke. This is the equivalent of pushing AE
+     Fractal Noise with Contrast/Brightness until only the branching structure
+     remains. */
+  float source = broad * 0.68 + medium * 0.25 + fine * 0.07;
+  float ridge = 1.0 - abs(source * 2.38);
 
-  float microSource = fbm(p * 10.8 + vec2(q.y, q.x) * 0.42);
-  float microRidges = 1.0 - abs(microSource * 3.15);
-  microRidges = smoothstep(0.67, 0.91, microRidges);
+  /* Medium/open AE state: mostly secondary with connected dark filaments. */
+  float edgeNoise = fine * 0.10 + grit * 0.035;
+  float network = smoothstep(0.655 + edgeNoise, 0.785 + edgeNoise, ridge);
 
-  float field = macro * 0.52 + middle * 0.19 + fine * 0.07;
-  field = field * 1.22 + 0.39;
-  field = smoothstep(0.27, 0.76, field);
+  /* Fine erosion makes the boundaries dirty and granular instead of smooth. */
+  float erosionField = fbm(warped * 26.0 + warp * 0.45);
+  float erosion = smoothstep(-0.08, 0.18, erosionField + grit * 0.16);
+  network *= mix(0.68, 1.0, erosion);
 
-  /* More open secondary space than the previous pass. */
-  field = mix(0.035, 0.60, field);
-  field += ridges * 0.20 + microRidges * 0.075;
-  field += fine * 0.026 + grain * 0.009;
-  field = clamp(field, 0.025, 0.78);
+  /* A second, thinner frequency adds the tiny broken branches visible in AE. */
+  float hairSource = fbm(warped * 11.2 + vec2(warp.y, warp.x) * 0.65);
+  float hairRidge = 1.0 - abs(hairSource * 2.95);
+  float hairs = smoothstep(0.79, 0.91, hairRidge + fine * 0.055);
+  network = max(network, hairs * 0.42);
 
-  vec3 color = mix(u_secondary, u_primary, field);
+  /* Preserve quiet background. No continuous grey base layer. */
+  network = clamp(network, 0.0, 0.88);
+  vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
 }
 `;
