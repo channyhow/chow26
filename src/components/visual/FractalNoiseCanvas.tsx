@@ -46,7 +46,6 @@ float turbulentFractal(vec2 p) {
   float weight = 0.0;
   float amplitude = 1.0;
   mat2 octaveRotation = rotate2d(0.055);
-
   for (int i = 0; i < 19; i++) {
     float n = softNoise(p);
     n = abs(n * 2.0 - 1.0);
@@ -55,35 +54,36 @@ float turbulentFractal(vec2 p) {
     p = octaveRotation * p * 1.72 + vec2(3.17, -1.83);
     amplitude *= 0.63;
   }
-
   return sum / max(weight, 0.0001);
 }
 
 void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
-  p *= 5.4;
+
+  /* Smaller scale and denser topology to approach the AE reference. */
+  p *= 8.2;
 
   vec2 warp = vec2(
-    turbulentFractal(p * 0.38 + vec2(7.1, 2.3)),
-    turbulentFractal(p * 0.38 + vec2(-3.8, 8.6))
+    turbulentFractal(p * 0.46 + vec2(7.1, 2.3)),
+    turbulentFractal(p * 0.46 + vec2(-3.8, 8.6))
   ) - 0.5;
 
-  float n = turbulentFractal(p + warp * 1.15);
+  float n = turbulentFractal(p + warp * 0.88);
   n = 1.0 - n;
-  n = (n - 0.5) * 1.85 + 0.5;
-  n -= 0.18;
+  n = (n - 0.5) * 2.15 + 0.5;
+  n -= 0.14;
 
-  float network = 1.0 - smoothstep(0.26, 0.53, n);
-  float detail = turbulentFractal(p * 2.35 + warp * 0.65);
-  detail = smoothstep(0.28, 0.72, detail);
-  network *= 0.70 + detail * 0.30;
+  /* Narrower threshold keeps the marks tighter instead of broad cloudy masses. */
+  float network = 1.0 - smoothstep(0.31, 0.48, n);
+  float detail = turbulentFractal(p * 2.7 + warp * 0.55);
+  detail = smoothstep(0.30, 0.68, detail);
+  network *= 0.76 + detail * 0.24;
 
-  float grain = softNoise(p * 17.0);
-  network *= 0.88 + grain * 0.12;
-  network = clamp(network * 0.76, 0.0, 0.82);
+  float grain = softNoise(p * 19.0);
+  network *= 0.90 + grain * 0.10;
+  network = clamp(network * 0.92, 0.0, 0.94);
 
-  /* AE reference: warm stone ground with charcoal fractal marks over it. */
   vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
 }
@@ -139,7 +139,7 @@ export function FractalNoiseCanvas() {
     const resolution = gl.getUniformLocation(program, "u_resolution");
     const primary = gl.getUniformLocation(program, "u_primary");
     const secondary = gl.getUniformLocation(program, "u_secondary");
-    const primaryRgb = hexToRgb("#55564f");
+    const primaryRgb = hexToRgb("#3f403b");
     const secondaryRgb = hexToRgb("#B8B3A1");
 
     const render = () => {
