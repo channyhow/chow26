@@ -16,76 +16,47 @@
   transition: background-color $duration-slow $ease-soft, color $duration-default $ease-standard;
 }
 
-/* AE-inspired Turbulent Basic / Soft Linear field. Complexity comes from layered octaves;
-   subtlety comes from compositing, not from flattening the fractal itself. */
+/* One oversized non-repeating turbulent field. Keeping the SVG larger than the viewport
+   removes the visible tile seam while preserving the AE-like evolving scale. */
 .linkPage::before {
   content: "";
-  position: absolute;
-  inset: -24%;
+  position: fixed;
+  inset: -35vmax;
   z-index: -1;
   pointer-events: none;
-  opacity: .28;
+  opacity: .22;
   background-color: $color-primary;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'%3E%3Cfilter id='n' x='-30%25' y='-30%25' width='160%25' height='160%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.0048 .0072' numOctaves='10' seed='19' stitchTiles='stitch' result='macro'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.017 .024' numOctaves='9' seed='47' stitchTiles='stitch' result='micro'/%3E%3CfeBlend in='macro' in2='micro' mode='soft-light' result='complex'/%3E%3CfeGaussianBlur in='complex' stdDeviation='1.25' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncG type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncB type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'%3E%3Cfilter id='n' x='-30%25' y='-30%25' width='160%25' height='160%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.0048 .0072' numOctaves='10' seed='19' stitchTiles='stitch' result='macro'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.017 .024' numOctaves='9' seed='47' stitchTiles='stitch' result='micro'/%3E%3CfeBlend in='macro' in2='micro' mode='soft-light' result='complex'/%3E%3CfeGaussianBlur in='complex' stdDeviation='1.25' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncG type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncB type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
-  -webkit-mask-size: 72rem 72rem;
-  mask-size: 72rem 72rem;
-  filter: contrast(1.5) brightness(.82);
+  -webkit-mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0085' numOctaves='8' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.021' numOctaves='6' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncG type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncB type='linear' slope='2.25' intercept='-.62'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0085' numOctaves='8' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.021' numOctaves='6' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncG type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncB type='linear' slope='2.25' intercept='-.62'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
-  transform-origin: 50% 50%;
+  transform-origin: center;
   animation: linkNoiseEvolution 18s $ease-soft infinite alternate;
   transition: background-color $duration-slow $ease-soft, opacity $duration-slow $ease-soft, filter $duration-slow $ease-soft, mix-blend-mode $duration-slow $ease-soft;
 }
 
-/* Very fine high-frequency information, analogous to the detail retained at high AE complexity. */
+/* Fine detail only. Also non-repeating so there can be no secondary seam. */
 .linkPage::after {
   content: "";
-  position: absolute;
-  inset: -10%;
+  position: fixed;
+  inset: -25vmax;
   z-index: -1;
   pointer-events: none;
-  opacity: .055;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'%3E%3Cfilter id='g' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.038' numOctaves='9' seed='91' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size: 30rem 30rem;
-  mix-blend-mode: overlay;
-  filter: contrast(1.5) brightness(.95);
-  animation: linkGrainEvolution 13s linear infinite alternate;
-  transition: opacity $duration-default $ease-standard, filter $duration-slow $ease-soft;
+  opacity: .025;
+  background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600' viewBox='0 0 1600 1600'%3E%3Cfilter id='g' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='7' seed='91'/%3E%3C/filter%3E%3Crect x='-160' y='-160' width='1920' height='1920' filter='url(%23g)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  animation: linkGrainEvolution 15s linear infinite alternate;
 }
 
-/* Contrast/brightness travel is intentionally stronger than spatial movement,
-   mirroring the AE keyframes while keeping the page readable. */
 @keyframes linkNoiseEvolution {
-  0% {
-    transform: translate3d(-1.5%, -1%, 0) scale(1.035);
-    -webkit-mask-size: 70rem 70rem;
-    mask-size: 70rem 70rem;
-    filter: contrast(1.5) brightness(.72);
-  }
-  32% {
-    transform: translate3d(.8%, -.5%, 0) scale(1.075);
-    -webkit-mask-size: 76rem 76rem;
-    mask-size: 76rem 76rem;
-    filter: contrast(1.22) brightness(.9);
-  }
-  64% {
-    transform: translate3d(-.6%, 1.2%, 0) scale(1.1);
-    -webkit-mask-size: 66rem 66rem;
-    mask-size: 66rem 66rem;
-    filter: contrast(1.03) brightness(1.18);
-  }
-  100% {
-    transform: translate3d(1.2%, .7%, 0) scale(1.06);
-    -webkit-mask-size: 73rem 73rem;
-    mask-size: 73rem 73rem;
-    filter: contrast(1.5) brightness(.86);
-  }
+  0% { transform: translate3d(-1.2%, -.7%, 0) scale(1.02); filter: contrast(1.5) brightness(.72); }
+  32% { transform: translate3d(.5%, -.3%, 0) scale(1.055); filter: contrast(1.22) brightness(.9); }
+  64% { transform: translate3d(-.4%, .8%, 0) scale(1.085); filter: contrast(1.03) brightness(1.18); }
+  100% { transform: translate3d(.8%, .4%, 0) scale(1.04); filter: contrast(1.5) brightness(.86); }
 }
 
 @keyframes linkGrainEvolution {
-  0% { transform: translate3d(-1%, .5%, 0) scale(1.02) rotate(-.15deg); }
-  50% { transform: translate3d(.6%, -.8%, 0) scale(1.055) rotate(.12deg); }
-  100% { transform: translate3d(-.4%, -.2%, 0) scale(1.035) rotate(-.08deg); }
+  0% { transform: translate3d(-.5%, .3%, 0) scale(1.01); }
+  100% { transform: translate3d(.5%, -.3%, 0) scale(1.035); }
 }
 
 .linkPage__main,
@@ -183,15 +154,12 @@
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::before {
     background-color: $color-accent;
-    opacity: .38;
+    opacity: .32;
     mix-blend-mode: screen;
     filter: contrast(1.5) brightness(.9);
   }
 
-  .linkPage:has(.linkPage__campaignText .actions a:hover)::after {
-    opacity: .08;
-    filter: contrast(1.6) brightness(1.05);
-  }
+  .linkPage:has(.linkPage__campaignText .actions a:hover)::after { opacity: .04; }
 
   .linkPage:has(.linkPage__campaignText .actions a:nth-child(even):hover)::before {
     background-color: $color-special;
@@ -223,7 +191,6 @@
 
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
-  .linkPage::before { -webkit-mask-size: 46rem 46rem; mask-size: 46rem 46rem; }
   .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText.textBlock { min-height: 76svh; gap: $space-3; }
 
