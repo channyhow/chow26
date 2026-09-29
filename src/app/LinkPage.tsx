@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { TextBlock } from "@/components/content/TextBlock";
 import { Actions } from "@/components/navigation/Actions";
 import { Seo } from "@/components/page/Seo";
+import { FractalNoiseCanvas } from "@/components/visual/FractalNoiseCanvas";
 import linkPageData from "@/data/linkPage.json";
 import siteData from "@/data/site.json";
 import type { ActionRef, ContentItem } from "@/types/content";
@@ -29,6 +30,7 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
+        <FractalNoiseCanvas />
         <motion.main
           className="linkPage__main"
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
