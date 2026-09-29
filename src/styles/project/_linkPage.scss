@@ -43,6 +43,7 @@
 .linkPage__campaignText .textBlock__eyebrow { @include type-ui-compact; color: currentColor; white-space: pre-line; }
 .linkPage__campaignText .textBlock__title {
   max-width: 8ch;
+  color: $color-accent;
   font-size: clamp(2rem, 3.25vw, 3.8rem);
   font-weight: $font-weight-bold;
   line-height: .9;
@@ -51,7 +52,7 @@
   white-space: pre-line;
 }
 .linkPage__campaignText .textBlock__content p { max-width: 30rem; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.12; letter-spacing: -.02em; text-transform: none; }
-.linkPage__campaignText strong { font-weight: $font-weight-semibold; }
+.linkPage__campaignText strong { font-weight: $font-weight-semibold; color: $color-accent; }
 
 .linkPage__footer { margin-top: auto; padding-top: $space-2; display: flex; justify-content: space-between; align-items: end; gap: $space-3; border-top: 1px solid currentColor; }
 .linkPage__socials.actions { gap: $flow-tight $space-3; }
