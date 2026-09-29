@@ -1,0 +1,188 @@
+import { useEffect, useRef } from "react";
+
+import "@/styles/components/_fractalNoiseCanvas.scss";
+
+const vertexShaderSource = `
+attribute vec2 a_position;
+varying vec2 v_uv;
+void main() {
+  v_uv = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}
+`;
+
+const fragmentShaderSource = `
+precision highp float;
+varying vec2 v_uv;
+uniform vec2 u_resolution;
+uniform vec3 u_primary;
+uniform vec3 u_secondary;
+uniform float u_time;
+
+float hash21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+float softNoise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  float a = hash21(i);
+  float b = hash21(i + vec2(1.0, 0.0));
+  float c = hash21(i + vec2(0.0, 1.0));
+  float d = hash21(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+mat2 rotate2d(float a) {
+  float s = sin(a);
+  float c = cos(a);
+  return mat2(c, -s, s, c);
+}
+
+float turbulentFractal(vec2 p) {
+  float sum = 0.0;
+  float weight = 0.0;
+  float amplitude = 1.0;
+  mat2 octaveRotation = rotate2d(0.055);
+  for (int i = 0; i < 19; i++) {
+    float n = softNoise(p);
+    n = abs(n * 2.0 - 1.0);
+    sum += n * amplitude;
+    weight += amplitude;
+    p = octaveRotation * p * 1.72 + vec2(3.17, -1.83);
+    amplitude *= 0.63;
+  }
+  return sum / max(weight, 0.0001);
+}
+
+void main() {
+  float aspect = u_resolution.x / max(u_resolution.y, 1.0);
+  vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
+  p *= 12.8;
+
+  /* Very slow evolution changes the network itself rather than translating it. */
+  float evolution = u_time * 0.055;
+  vec2 phase = vec2(sin(evolution * 0.73), cos(evolution * 0.61));
+  vec2 phaseB = vec2(cos(evolution * 0.47), sin(evolution * 0.83));
+
+  vec2 warp = vec2(
+    turbulentFractal(p * 0.34 + vec2(7.1, 2.3) + phase * 0.18),
+    turbulentFractal(p * 0.34 + vec2(-3.8, 8.6) + phaseB * 0.18)
+  ) - 0.5;
+
+  /* A second evolving field gently deforms local topology without visible drift. */
+  vec2 topologyWarp = vec2(
+    turbulentFractal(p * 0.17 + vec2(13.7, -4.2) + phaseB * 0.12),
+    turbulentFractal(p * 0.17 + vec2(-8.4, 11.9) - phase * 0.12)
+  ) - 0.5;
+
+  float n = turbulentFractal(p + warp * 0.48 + topologyWarp * 0.16);
+
+  /* Keep the established thin dark filament topology. */
+  float ridgeCenter = 0.355 + sin(evolution * 0.39) * 0.0035;
+  float ridge = abs(n - ridgeCenter);
+  float network = 1.0 - smoothstep(0.022, 0.105, ridge);
+
+  float detail = turbulentFractal(p * 2.9 + warp * 0.35 + phase * 0.07);
+  network *= smoothstep(0.20, 0.62, detail) * 0.38 + 0.62;
+
+  float grain = softNoise(p * 24.0 + phaseB * 0.08);
+  network *= 0.92 + grain * 0.08;
+  network = pow(clamp(network, 0.0, 1.0), 1.28);
+
+  vec3 color = mix(u_secondary, u_primary, network);
+  gl_FragColor = vec4(color, 1.0);
+}
+`;
+
+function hexToRgb(hex: string): [number, number, number] {
+  const value = hex.trim().replace("#", "");
+  const normalized = value.length === 3 ? value.split("").map((char) => char + char).join("") : value;
+  const parsed = Number.parseInt(normalized, 16);
+  return [((parsed >> 16) & 255) / 255, ((parsed >> 8) & 255) / 255, (parsed & 255) / 255];
+}
+
+function compileShader(gl: WebGLRenderingContext, type: number, source: string) {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error("Fractal shader compilation failed", gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+}
+
+export function FractalNoiseCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const gl = canvas.getContext("webgl", { alpha: false, antialias: false, powerPreference: "low-power" });
+    if (!gl) return;
+
+    const vertexShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    if (!vertexShader || !fragmentShader) return;
+    const program = gl.createProgram();
+    if (!program) return;
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+    gl.useProgram(program);
+    const position = gl.getAttribLocation(program, "a_position");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+    const resolution = gl.getUniformLocation(program, "u_resolution");
+    const primary = gl.getUniformLocation(program, "u_primary");
+    const secondary = gl.getUniformLocation(program, "u_secondary");
+    const time = gl.getUniformLocation(program, "u_time");
+    const primaryRgb = hexToRgb("#292a27");
+    const secondaryRgb = hexToRgb("#B8B3A1");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const startedAt = performance.now();
+    let animationFrame = 0;
+
+    const render = (now = startedAt) => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const width = Math.max(1, Math.round(canvas.clientWidth * dpr));
+      const height = Math.max(1, Math.round(canvas.clientHeight * dpr));
+      if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+      gl.viewport(0, 0, width, height);
+      gl.uniform2f(resolution, width, height);
+      gl.uniform3f(primary, ...primaryRgb);
+      gl.uniform3f(secondary, ...secondaryRgb);
+      gl.uniform1f(time, reduceMotion ? 0 : (now - startedAt) / 1000);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (!reduceMotion) animationFrame = requestAnimationFrame(render);
+    };
+
+    render();
+    const observer = new ResizeObserver(() => {
+      if (reduceMotion) render();
+    });
+    observer.observe(canvas);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(animationFrame);
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vertexShader);
+      gl.deleteShader(fragmentShader);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="fractalNoiseCanvas" aria-hidden="true" />;
+}
