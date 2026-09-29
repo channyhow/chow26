@@ -11,33 +11,66 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--secondary);
-  color: var(--primary);
-  transition: background-color 500ms ease, color 500ms ease;
+  background: #d9d2bf;
+  color: #ef4a16;
+  transition: background-color 450ms ease, color 450ms ease;
+}
+
+/* CSS/SVG equivalent of the animated Fractal Noise used in the campaign reel. */
+.linkPage::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .72;
+  background-color: #d9d2bf;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' viewBox='0 0 640 640'%3E%3Cfilter id='n' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .014' numOctaves='5' seed='8' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='1.7 0 0 0 -.45 0 1.7 0 0 -.45 0 0 1.7 0 -.45 0 0 0 1 0' result='contrast'/%3E%3CfeGaussianBlur in='contrast' stdDeviation='1.4' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3CfeFuncG type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3CfeFuncB type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23d9d2bf'/%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.88'/%3E%3C/svg%3E");
+  background-size: min(78vw, 900px) min(78vw, 900px);
+  filter: contrast(1.2) sepia(.08);
+  mix-blend-mode: multiply;
+  animation: linkNoiseDrift 18s linear infinite alternate;
+  transform: scale(1.18);
+}
+
+.linkPage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(239, 74, 22, .08);
+  mix-blend-mode: multiply;
+  transition: background-color 450ms ease;
+}
+
+@keyframes linkNoiseDrift {
+  0% { transform: scale(1.18) translate3d(-2%, -1%, 0) rotate(-1deg); }
+  45% { transform: scale(1.25) translate3d(2%, 1.5%, 0) rotate(.6deg); }
+  100% { transform: scale(1.2) translate3d(-1%, 2%, 0) rotate(-.4deg); }
 }
 
 .linkPage__motionField {
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   pointer-events: none;
 }
 
 .linkPage__motionWord {
   position: absolute;
-  width: min(94vw, 13ch);
-  text-align: center;
-  font-size: clamp(4rem, 13vw, 13rem);
+  right: 8%;
+  top: 34%;
+  width: min(48vw, 11ch);
+  text-align: right;
+  font-size: clamp(2.8rem, 5.2vw, 6rem);
   font-weight: $font-weight-bold;
-  line-height: .78;
-  letter-spacing: -.065em;
+  line-height: .92;
+  letter-spacing: -.04em;
   text-transform: uppercase;
-  color: var(--accent);
-  opacity: .2;
-  transition: color 500ms ease, opacity 500ms ease;
+  color: currentColor;
+  opacity: .9;
 }
 
 .linkPage__main,
@@ -52,8 +85,8 @@
 .linkPage__main {
   flex: 1;
   display: flex;
-  align-items: center;
-  padding-block: clamp(#{$space-3}, 5vw, #{$space-5});
+  align-items: stretch;
+  padding-block: clamp(#{$space-3}, 4vw, #{$space-5});
 }
 
 .linkPage__campaign { width: 100%; }
@@ -61,51 +94,63 @@
 .linkPage__campaignText.textBlock {
   @include site-grid;
   width: 100%;
+  min-height: min(72svh, 850px);
   max-width: none;
-  align-items: center;
+  align-content: space-between;
   row-gap: $space-3;
 }
 
 .linkPage__campaignText .textBlock__header {
-  grid-column: 1 / span 7;
+  grid-column: 2 / span 6;
+  align-self: start;
   gap: $space-1;
 }
 
 .linkPage__campaignText .textBlock__content {
-  grid-column: 1 / span 6;
-  width: min(100%, 40rem);
+  grid-column: 1 / span 5;
+  align-self: end;
+  width: min(100%, 31rem);
 }
 
 .linkPage__campaignText .textBlock__footer {
   grid-column: 8 / span 5;
   grid-row: 1 / span 2;
+  align-self: end;
   width: 100%;
 }
 
 .linkPage__campaignText .textBlock__eyebrow {
   @include type-ui-compact;
-  color: var(--accent);
+  color: currentColor;
 }
 
 .linkPage__campaignText .textBlock__title {
-  max-width: 11ch;
-  font-size: clamp(3.25rem, 5.5vw, 6.25rem);
+  max-width: none;
+  font-size: clamp(3rem, 5vw, 5.6rem);
+  font-weight: $font-weight-bold;
   line-height: .94;
-  letter-spacing: -.05em;
+  letter-spacing: -.04em;
   text-transform: uppercase;
   text-wrap: balance;
 }
 
-.linkPage__campaignText .textBlock__content p { line-height: 1.45; }
+.linkPage__campaignText .textBlock__content p {
+  font-size: clamp(1.65rem, 3vw, 3.3rem);
+  line-height: .96;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; }
 
 .linkPage__footer {
   margin-top: auto;
-  padding-top: $space-3;
+  padding-top: $space-2;
   display: flex;
   justify-content: space-between;
   align-items: end;
   gap: $space-3;
+  border-top: 1px solid currentColor;
 }
 
 .linkPage__socials.actions { gap: $flow-tight $space-3; }
@@ -117,16 +162,18 @@
 
 @media (hover: hover) and (pointer: fine) {
   .linkPage:has(.linkPage__campaignText .actions a:hover) {
-    background: var(--accent);
-    color: var(--primary);
+    background: #c84b2b;
+    color: #f6f5f3;
   }
 
-  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__motionWord,
-  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__campaignText .textBlock__eyebrow {
-    color: var(--primary);
+  .linkPage:has(.linkPage__campaignText .actions a:hover)::before {
+    opacity: .9;
+    filter: grayscale(1) contrast(1.35);
   }
 
-  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__motionWord { opacity: .12; }
+  .linkPage:has(.linkPage__campaignText .actions a:hover)::after {
+    background: rgba(112, 41, 24, .28);
+  }
 }
 
 @include tablet-down {
@@ -135,7 +182,8 @@
   .linkPage__campaignText.textBlock {
     display: grid;
     grid-template-columns: 1fr;
-    align-items: start;
+    min-height: 74svh;
+    align-content: space-between;
     gap: $space-4;
   }
 
@@ -146,30 +194,57 @@
     grid-row: auto;
   }
 
-  .linkPage__campaignText .textBlock__title {
-    max-width: 9ch;
-    font-size: clamp(3rem, 9vw, 5.25rem);
-  }
+  .linkPage__campaignText .textBlock__header { width: min(100%, 34rem); }
+  .linkPage__campaignText .textBlock__content { width: min(70%, 25rem); }
+  .linkPage__campaignText .textBlock__footer { width: min(100%, 34rem); margin-left: auto; }
 
-  .linkPage__campaignText .textBlock__footer { width: min(100%, 46rem); }
-  .linkPage__motionWord { font-size: clamp(5rem, 18vw, 10rem); }
+  .linkPage__motionWord {
+    top: 35%;
+    right: 7%;
+    width: 72vw;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
 }
 
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
+  .linkPage::before { background-size: 120vw 120vw; }
   .linkPage__main { padding-block: $space-3 $space-4; }
-  .linkPage__campaignText.textBlock { gap: $space-3; }
+  .linkPage__campaignText.textBlock { min-height: 76svh; gap: $space-3; }
+
+  .linkPage__campaignText .textBlock__header {
+    width: 100%;
+    text-align: center;
+  }
 
   .linkPage__campaignText .textBlock__title {
-    max-width: 10ch;
-    font-size: clamp(2.75rem, 12vw, 4.5rem);
+    font-size: clamp(2.35rem, 10vw, 4rem);
+  }
+
+  .linkPage__campaignText .textBlock__content {
+    width: min(68%, 18rem);
+    align-self: end;
+  }
+
+  .linkPage__campaignText .textBlock__content p {
+    font-size: clamp(1.65rem, 7vw, 2.6rem);
   }
 
   .linkPage__campaignText .textBlock__footer { width: 100%; }
-  .linkPage__motionWord { width: 96vw; font-size: clamp(4.25rem, 22vw, 7rem); }
+
+  .linkPage__motionWord {
+    top: 31%;
+    right: 8%;
+    width: 76vw;
+    font-size: clamp(2.1rem, 9vw, 3.5rem);
+  }
 
   .linkPage__footer {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkPage::before { animation: none; }
 }
