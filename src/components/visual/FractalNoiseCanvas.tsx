@@ -18,6 +18,7 @@ uniform vec2 u_resolution;
 uniform vec3 u_primary;
 uniform vec3 u_secondary;
 uniform float u_time;
+uniform float u_hover;
 float hash21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
 float softNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);float a=hash21(i);float b=hash21(i+vec2(1.,0.));float c=hash21(i+vec2(0.,1.));float d=hash21(i+vec2(1.,1.));return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}
 mat2 rotate2d(float a){float s=sin(a);float c=cos(a);return mat2(c,-s,s,c);}
@@ -55,42 +56,27 @@ void main(){
  network=mix(network,network*(.72+wash*.42),.48);
  network=smoothstep(.035,.94,network);
  network=pow(clamp(network,0.,1.),1.08);
-
- /* Keep the reference topology but lift the darkest deposits so type remains legible. */
  network*=.82;
- gl_FragColor=vec4(mix(u_secondary,u_primary,network),1.);
+
+ /* Hover preserves the topology and gently lifts only the dark deposit colour. */
+ vec3 hoverPrimary=mix(u_primary,u_secondary,.34);
+ vec3 noiseColor=mix(u_primary,hoverPrimary,u_hover);
+ gl_FragColor=vec4(mix(u_secondary,noiseColor,network),1.);
 }`;
 
 function hexToRgb(hex: string): [number, number, number] {
   const value = hex.trim().replace("#", "");
-  const normalized =
-    value.length === 3
-      ? value
-          .split("")
-          .map((c) => c + c)
-          .join("")
-      : value;
+  const normalized = value.length === 3 ? value.split("").map((c) => c + c).join("") : value;
   const parsed = Number.parseInt(normalized, 16);
-  return [
-    ((parsed >> 16) & 255) / 255,
-    ((parsed >> 8) & 255) / 255,
-    (parsed & 255) / 255,
-  ];
+  return [((parsed >> 16) & 255) / 255, ((parsed >> 8) & 255) / 255, (parsed & 255) / 255];
 }
-function compileShader(
-  gl: WebGLRenderingContext,
-  type: number,
-  source: string,
-) {
+function compileShader(gl: WebGLRenderingContext, type: number, source: string) {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(
-      "Fractal shader compilation failed",
-      gl.getShaderInfoLog(shader),
-    );
+    console.error("Fractal shader compilation failed", gl.getShaderInfoLog(shader));
     gl.deleteShader(shader);
     return null;
   }
@@ -102,11 +88,7 @@ export function FractalNoiseCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl", {
-      alpha: false,
-      antialias: false,
-      powerPreference: "low-power",
-    });
+    const gl = canvas.getContext("webgl", { alpha: false, antialias: false, powerPreference: "low-power" });
     if (!gl) return;
     const vs = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
     const fs = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
@@ -119,11 +101,7 @@ export function FractalNoiseCanvas() {
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
     const buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW,
-    );
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
     gl.useProgram(program);
     const position = gl.getAttribLocation(program, "a_position");
     gl.enableVertexAttribArray(position);
@@ -131,37 +109,41 @@ export function FractalNoiseCanvas() {
     const resolution = gl.getUniformLocation(program, "u_resolution"),
       primary = gl.getUniformLocation(program, "u_primary"),
       secondary = gl.getUniformLocation(program, "u_secondary"),
-      time = gl.getUniformLocation(program, "u_time");
-    const primaryRgb = hexToRgb("#595a57"),
-      secondaryRgb = hexToRgb("#B8B3A1");
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+      time = gl.getUniformLocation(program, "u_time"),
+      hover = gl.getUniformLocation(program, "u_hover");
+    const primaryRgb = hexToRgb("#595a57"), secondaryRgb = hexToRgb("#B8B3A1");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const startedAt = performance.now();
     let frame = 0;
+    let hoverTarget = 0;
+    let hoverAmount = 0;
+    const onEnter = () => { hoverTarget = 1; };
+    const onLeave = () => { hoverTarget = 0; };
+    canvas.addEventListener("pointerenter", onEnter);
+    canvas.addEventListener("pointerleave", onLeave);
+
     const render = (now = startedAt) => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5),
         width = Math.max(1, Math.round(canvas.clientWidth * dpr)),
         height = Math.max(1, Math.round(canvas.clientHeight * dpr));
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
-      }
+      if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
+      hoverAmount += (hoverTarget - hoverAmount) * 0.055;
       gl.viewport(0, 0, width, height);
       gl.uniform2f(resolution, width, height);
       gl.uniform3f(primary, ...primaryRgb);
       gl.uniform3f(secondary, ...secondaryRgb);
       gl.uniform1f(time, reduceMotion ? 0 : (now - startedAt) / 1000);
+      gl.uniform1f(hover, hoverAmount);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      if (!reduceMotion) frame = requestAnimationFrame(render);
+      if (!reduceMotion || Math.abs(hoverTarget - hoverAmount) > 0.001) frame = requestAnimationFrame(render);
     };
     render();
-    const observer = new ResizeObserver(() => {
-      if (reduceMotion) render();
-    });
+    const observer = new ResizeObserver(() => { if (reduceMotion) render(); });
     observer.observe(canvas);
     return () => {
       observer.disconnect();
+      canvas.removeEventListener("pointerenter", onEnter);
+      canvas.removeEventListener("pointerleave", onLeave);
       cancelAnimationFrame(frame);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
@@ -169,7 +151,5 @@ export function FractalNoiseCanvas() {
       gl.deleteShader(fs);
     };
   }, []);
-  return (
-    <canvas ref={canvasRef} className="fractalNoiseCanvas" aria-hidden="true" />
-  );
+  return <canvas ref={canvasRef} className="fractalNoiseCanvas" aria-hidden="true" />;
 }
