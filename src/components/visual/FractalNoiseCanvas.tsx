@@ -49,23 +49,36 @@ void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
 
-  vec2 q = vec2(fbm(p * 1.62 + vec2(3.1, 8.7)), fbm(p * 1.62 + vec2(9.4, 2.6)));
+  vec2 q = vec2(fbm(p * 1.55 + vec2(3.1, 8.7)), fbm(p * 1.55 + vec2(9.4, 2.6)));
   vec2 r = vec2(
-    fbm(p * 1.92 + 1.82 * q + vec2(1.7, 6.2)),
-    fbm(p * 1.92 + 1.82 * q + vec2(8.3, 1.4))
+    fbm(p * 1.86 + 1.48 * q + vec2(1.7, 6.2)),
+    fbm(p * 1.86 + 1.48 * q + vec2(8.3, 1.4))
   );
 
-  float macro = fbm(p * 1.96 + 2.25 * r);
-  float middle = fbm(p * 4.75 + 1.08 * q + 0.64 * r);
-  float fine = fbm(p * 13.5 + 0.48 * r);
-  float grain = noise(p * 70.0 + q * 2.0);
+  float macro = fbm(p * 1.90 + 1.72 * r);
+  float middle = fbm(p * 5.35 + 0.82 * q + 0.48 * r);
+  float fine = fbm(p * 15.5 + 0.34 * r);
+  float grain = noise(p * 76.0 + q * 1.7);
 
-  float field = macro * 0.68 + middle * 0.24 + fine * 0.105 + grain * 0.022;
-  field = field * 1.42 + 0.48;
-  field = smoothstep(0.23, 0.77, field);
-  field = mix(0.08, 0.78, field);
-  field += fine * 0.045 + grain * 0.012;
-  field = clamp(field, 0.055, 0.82);
+  /* A restrained ridge layer breaks the fluid marble shapes into drier,
+     branching structures while keeping the secondary ground dominant. */
+  float ridgeSource = fbm(p * 4.15 + 0.72 * q - 0.38 * r);
+  float ridges = 1.0 - abs(ridgeSource * 2.55);
+  ridges = smoothstep(0.56, 0.88, ridges);
+
+  float microSource = fbm(p * 10.8 + vec2(q.y, q.x) * 0.42);
+  float microRidges = 1.0 - abs(microSource * 3.15);
+  microRidges = smoothstep(0.67, 0.91, microRidges);
+
+  float field = macro * 0.52 + middle * 0.19 + fine * 0.07;
+  field = field * 1.22 + 0.39;
+  field = smoothstep(0.27, 0.76, field);
+
+  /* More open secondary space than the previous pass. */
+  field = mix(0.035, 0.60, field);
+  field += ridges * 0.20 + microRidges * 0.075;
+  field += fine * 0.026 + grain * 0.009;
+  field = clamp(field, 0.025, 0.78);
 
   vec3 color = mix(u_secondary, u_primary, field);
   gl_FragColor = vec4(color, 1.0);
