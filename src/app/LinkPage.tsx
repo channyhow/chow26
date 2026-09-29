@@ -1,17 +1,14 @@
 import { motion, useReducedMotion } from "motion/react";
 
-import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
 import { Actions } from "@/components/navigation/Actions";
 import { Seo } from "@/components/page/Seo";
 import linkPageData from "@/data/linkPage.json";
-import { resolveMedia } from "@/data/resolveMedia";
 import siteData from "@/data/site.json";
 import type { ActionRef, ContentItem } from "@/types/content";
 
 const campaignContent = linkPageData.campaign as ContentItem;
 const socialLinks = linkPageData.socials as ActionRef[];
-const backgroundMedia = resolveMedia(linkPageData.backgroundMedia);
 const currentYear = new Date().getFullYear();
 const campaignWords = ["RESTAURANTS", "LIEUX", "STUDIOS", "MARQUES", "PROJETS INDÉPENDANTS"];
 
@@ -33,18 +30,6 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
-        {backgroundMedia ? (
-          <motion.div
-            className="linkPage__background"
-            aria-hidden="true"
-            initial={reduceMotion ? false : { scale: 1.035, x: "-0.6%", y: "0.4%" }}
-            animate={reduceMotion ? undefined : { scale: [1.035, 1.065, 1.035], x: ["-0.6%", "0.7%", "-0.6%"], y: ["0.4%", "-0.5%", "0.4%"] }}
-            transition={reduceMotion ? undefined : { duration: 22, ease: "easeInOut", repeat: Infinity }}
-          >
-            <Media media={backgroundMedia} priority sizes="100vw" className="linkPage__backgroundMedia" />
-          </motion.div>
-        ) : null}
-
         <div className="linkPage__motionField" aria-hidden="true">
           {campaignWords.map((word, index) => (
             <motion.span
