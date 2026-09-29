@@ -15,7 +15,6 @@
   color: $color-primary;
 }
 
-/* Static texture study only. Broad AE-like structure with a clearly visible primary field. */
 .linkPage::before {
   content: "";
   position: fixed;
@@ -69,10 +68,12 @@
   row-gap: $space-3;
 }
 
+/* Keep the hierarchy close to the campaign reel: compact label/date, strong category stack,
+   restrained explanatory copy rather than a second oversized headline. */
 .linkPage__campaignText .textBlock__header {
-  grid-column: 2 / span 6;
+  grid-column: 2 / span 5;
   align-self: start;
-  gap: $space-1;
+  gap: $space-2;
 }
 
 .linkPage__campaignText .textBlock__content {
@@ -91,23 +92,25 @@
 .linkPage__campaignText .textBlock__eyebrow {
   @include type-ui-compact;
   color: currentColor;
+  white-space: pre-line;
 }
 
 .linkPage__campaignText .textBlock__title {
-  max-width: none;
-  font-size: clamp(3rem, 5vw, 5.6rem);
+  max-width: 8ch;
+  font-size: clamp(2rem, 3.25vw, 3.8rem);
   font-weight: $font-weight-bold;
-  line-height: .94;
-  letter-spacing: -.04em;
+  line-height: .9;
+  letter-spacing: -.035em;
   text-transform: uppercase;
-  text-wrap: balance;
+  white-space: pre-line;
 }
 
 .linkPage__campaignText .textBlock__content p {
-  font-size: clamp(1.65rem, 3vw, 3.3rem);
-  line-height: .96;
-  letter-spacing: -.035em;
-  text-transform: uppercase;
+  max-width: 30rem;
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  text-transform: none;
 }
 
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; }
@@ -147,8 +150,8 @@
     grid-row: auto;
   }
 
-  .linkPage__campaignText .textBlock__header { width: min(100%, 34rem); }
-  .linkPage__campaignText .textBlock__content { width: min(70%, 25rem); }
+  .linkPage__campaignText .textBlock__header { width: min(100%, 25rem); }
+  .linkPage__campaignText .textBlock__content { width: min(78%, 28rem); }
   .linkPage__campaignText .textBlock__footer { width: min(100%, 34rem); margin-left: auto; }
 }
 
@@ -157,9 +160,24 @@
   .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText.textBlock { min-height: 76svh; gap: $space-3; }
 
-  .linkPage__campaignText .textBlock__header { width: 100%; text-align: center; }
-  .linkPage__campaignText .textBlock__title { font-size: clamp(2.35rem, 10vw, 4rem); }
-  .linkPage__campaignText .textBlock__content { width: min(68%, 18rem); align-self: end; }
-  .linkPage__campaignText .textBlock__content p { font-size: clamp(1.65rem, 7vw, 2.6rem); }
+  .linkPage__campaignText .textBlock__header {
+    width: min(78%, 19rem);
+    text-align: left;
+  }
+
+  .linkPage__campaignText .textBlock__title {
+    max-width: 7ch;
+    font-size: clamp(2rem, 9vw, 3.2rem);
+  }
+
+  .linkPage__campaignText .textBlock__content {
+    width: min(82%, 22rem);
+    align-self: end;
+  }
+
+  .linkPage__campaignText .textBlock__content p {
+    font-size: clamp(1rem, 4.6vw, 1.3rem);
+  }
+
   .linkPage__campaignText .textBlock__footer { width: 100%; }
 }
