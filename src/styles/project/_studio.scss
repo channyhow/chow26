@@ -183,7 +183,6 @@
 ================================== */
 
 #studio-approach {
-  --section-space: clamp(#{$space-4}, 8vh, 7rem);
   --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
   min-height: 100svh;
 }
@@ -222,7 +221,6 @@
 
 @include tablet-down {
   #studio-approach {
-    --section-space: $space-4;
     --section-row-gap: $space-3;
     min-height: auto;
   }
@@ -239,7 +237,6 @@
 
 @include mobile-down {
   #studio-approach {
-    --section-space: $space-4;
     --section-row-gap: $space-3;
     overflow: visible;
   }
