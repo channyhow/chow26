@@ -13,6 +13,7 @@
   overflow: hidden;
   background: $gray-700;
   color: $gray-100;
+  transition: background-color 500ms ease, color 500ms ease;
 }
 
 .linkPage__background {
@@ -20,6 +21,7 @@
   inset: 0;
   z-index: -2;
   pointer-events: none;
+  transition: opacity 500ms ease, filter 500ms ease;
 }
 
 .linkPage__background::after {
@@ -27,6 +29,7 @@
   position: absolute;
   inset: 0;
   background: color-mix(in srgb, #{$gray-900} 54%, transparent);
+  transition: background-color 500ms ease;
 }
 
 .linkPage__backgroundMedia,
@@ -45,6 +48,30 @@
 
 .linkPage__backgroundMedia .media__frame { aspect-ratio: auto; }
 .linkPage__backgroundMedia .media__asset { object-fit: cover; }
+
+.linkPage__motionField {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.linkPage__motionWord {
+  position: absolute;
+  width: min(92vw, 13ch);
+  text-align: center;
+  font-size: clamp(4rem, 13vw, 13rem);
+  font-weight: $font-weight-bold;
+  line-height: .78;
+  letter-spacing: -.065em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .12;
+  transition: color 500ms ease;
+}
 
 .linkPage__main,
 .linkPage__footer {
@@ -121,6 +148,27 @@
   opacity: $opacity-soft;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .linkPage:has(.linkPage__campaignText .actions a:hover) {
+    background: var(--accent);
+    color: var(--primary);
+  }
+
+  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__background {
+    opacity: .18;
+    filter: grayscale(1) contrast(1.1);
+  }
+
+  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__background::after {
+    background: color-mix(in srgb, var(--accent) 72%, transparent);
+  }
+
+  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__motionWord,
+  .linkPage:has(.linkPage__campaignText .actions a:hover) .linkPage__campaignText .textBlock__eyebrow {
+    color: var(--primary);
+  }
+}
+
 @include tablet-down {
   .linkPage { padding-inline: $page-gutter; }
 
@@ -144,6 +192,7 @@
   }
 
   .linkPage__campaignText .textBlock__footer { width: min(100%, 46rem); }
+  .linkPage__motionWord { font-size: clamp(5rem, 18vw, 10rem); }
 }
 
 @include mobile-down {
@@ -157,6 +206,7 @@
   }
 
   .linkPage__campaignText .textBlock__footer { width: 100%; }
+  .linkPage__motionWord { width: 96vw; font-size: clamp(4.25rem, 22vw, 7rem); }
 
   .linkPage__footer {
     flex-direction: column;
