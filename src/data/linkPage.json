@@ -1,8 +1,8 @@
 {
   "campaign": {
-    "eyebrow": ["Appel à projets", "Date limite : 18.10.2026"],
-    "title": "Restaurant\nAssociation\nMarque\nStudio\nLieu\nProjet indépendant",
-    "text": "À Paris, à La Réunion ou ailleurs, pour créer ou faire évoluer votre **identité visuelle** ou votre site web.",
+    "eyebrow": ["Date limite: 18.10.2026"],
+    "title": "Appel à projets",
+    "text": "Je recherche **3 entreprises** : restaurants, associations, marques, studios ou lieux qui souhaitent créer ou faire évoluer leur **identité visuelle** ou leur site web, à Paris, à La Réunion ou ailleurs.",
     "links": ["project-call", "about-studio", "mdk-case-study", "contact"]
   },
   "socials": ["instagram", "linkedin", "facebook"]
