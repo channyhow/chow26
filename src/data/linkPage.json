@@ -1,9 +1,8 @@
 {
-  "backgroundMedia": "kuro-grey",
   "campaign": {
-    "eyebrow": "#appel à projets",
+    "eyebrow": "Appel à projets | Candidatures jusqu’au 18.10",
     "title": "Je recherche 3 entreprises",
-    "text": "Je recherche des restaurants, lieux, studios, marques et projets indépendants, à Paris, à La Réunion ou ailleurs, qui souhaitent créer ou faire évoluer leur identité ou leur site web.\n\n**Candidatures jusqu’au 18 octobre.**",
+    "text": "Restaurant, association, marque, studio, lieu.\n\n**Une identité ou un site web à créer ou à faire évoluer ?**",
     "links": ["project-call", "about-studio", "mdk-case-study", "contact"]
   },
   "socials": ["instagram", "linkedin", "facebook"]
