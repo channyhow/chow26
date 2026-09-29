@@ -10,7 +10,6 @@ import type { ActionRef, ContentItem } from "@/types/content";
 const campaignContent = linkPageData.campaign as ContentItem;
 const socialLinks = linkPageData.socials as ActionRef[];
 const currentYear = new Date().getFullYear();
-const campaignWords = ["RESTAURANTS", "LIEUX", "STUDIOS", "MARQUES", "PROJETS INDÉPENDANTS"];
 
 export function LinkPage() {
   const reduceMotion = Boolean(useReducedMotion());
@@ -30,20 +29,6 @@ export function LinkPage() {
         slug="/link"
       />
       <div className="linkPage">
-        <div className="linkPage__motionField" aria-hidden="true">
-          {campaignWords.map((word, index) => (
-            <motion.span
-              key={word}
-              className="linkPage__motionWord"
-              initial={reduceMotion ? false : { opacity: 0, y: "55%" }}
-              animate={reduceMotion ? { opacity: 0.12 } : { opacity: [0, 0.2, 0.2, 0], y: ["55%", "0%", "0%", "-55%"] }}
-              transition={reduceMotion ? { duration: 0 } : { duration: 8, delay: index * 1.35, repeat: Infinity, repeatDelay: campaignWords.length * 1.35 - 1.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </div>
-
         <motion.main
           className="linkPage__main"
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
