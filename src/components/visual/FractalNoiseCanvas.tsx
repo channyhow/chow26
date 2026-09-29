@@ -26,14 +26,39 @@ mat2 rotate2d(float a){float s=sin(a);float c=cos(a);return mat2(c,-s,s,c);}
 float turbulentFractal(vec2 p){float sum=0.;float weight=0.;float amplitude=1.;mat2 r=rotate2d(.055);for(int i=0;i<19;i++){float n=abs(softNoise(p)*2.-1.);sum+=n*amplitude;weight+=amplitude;p=r*p*1.72+vec2(3.17,-1.83);amplitude*=.63;}return sum/max(weight,.0001);}
 void main(){
  float aspect=u_resolution.x/max(u_resolution.y,1.);vec2 p=(v_uv-.5)*vec2(aspect,1.);p*=mix(12.8,13.35,u_interaction);
- float evolution=u_time*mix(.055,.082,u_interaction);vec2 phase=vec2(sin(evolution*.73),cos(evolution*.61));vec2 phaseB=vec2(cos(evolution*.47),sin(evolution*.83));
- vec2 warp=vec2(turbulentFractal(p*.34+vec2(7.1,2.3)+phase*.18),turbulentFractal(p*.34+vec2(-3.8,8.6)+phaseB*.18))-.5;
- vec2 topologyWarp=vec2(turbulentFractal(p*.17+vec2(13.7,-4.2)+phaseB*.12),turbulentFractal(p*.17+vec2(-8.4,11.9)-phase*.12))-.5;
- float n=turbulentFractal(p+warp*mix(.48,.55,u_interaction)+topologyWarp*mix(.16,.20,u_interaction));
- float ridgeCenter=.355+sin(evolution*.39)*mix(.0035,.006,u_interaction);float ridge=abs(n-ridgeCenter);float network=1.-smoothstep(mix(.022,.019,u_interaction),mix(.105,.096,u_interaction),ridge);
- float detail=turbulentFractal(p*2.9+warp*.35+phase*.07);float micro=turbulentFractal(p*6.4+topologyWarp*.42-phaseB*.06);float grit=softNoise(p*38.+phase*.10);float speck=softNoise(p*82.-phaseB*.07);
- network*=smoothstep(.18,.60,detail)*.32+.68;network*=.80+micro*mix(.28,.34,u_interaction);network+=smoothstep(.61,.83,micro)*mix(.13,.17,u_interaction);network*=.88+grit*mix(.16,.20,u_interaction);network+=(speck-.5)*mix(.055,.072,u_interaction);network=pow(clamp(network,0.,1.),mix(1.22,1.12,u_interaction));
- vec3 activePrimary=mix(u_primary,u_hoverPrimary,u_interaction);gl_FragColor=vec4(mix(u_secondary,activePrimary,network),1.);
+
+ /* Clearly visible but still slow evolution at rest; hover adds a modest acceleration. */
+ float evolution=u_time*mix(.13,.19,u_interaction);
+ vec2 phase=vec2(sin(evolution*.91),cos(evolution*.77));
+ vec2 phaseB=vec2(cos(evolution*.63),sin(evolution*1.03));
+
+ vec2 warp=vec2(
+   turbulentFractal(p*.34+vec2(7.1,2.3)+phase*mix(.42,.52,u_interaction)),
+   turbulentFractal(p*.34+vec2(-3.8,8.6)+phaseB*mix(.42,.52,u_interaction))
+ )-.5;
+ vec2 topologyWarp=vec2(
+   turbulentFractal(p*.17+vec2(13.7,-4.2)+phaseB*mix(.30,.38,u_interaction)),
+   turbulentFractal(p*.17+vec2(-8.4,11.9)-phase*mix(.30,.38,u_interaction))
+ )-.5;
+
+ float n=turbulentFractal(p+warp*mix(.58,.66,u_interaction)+topologyWarp*mix(.28,.34,u_interaction));
+ float ridgeCenter=.355+sin(evolution*.58)*mix(.008,.011,u_interaction);
+ float ridge=abs(n-ridgeCenter);
+ float network=1.-smoothstep(mix(.022,.019,u_interaction),mix(.105,.096,u_interaction),ridge);
+
+ float detail=turbulentFractal(p*2.9+warp*.42+phase*.16);
+ float micro=turbulentFractal(p*6.4+topologyWarp*.50-phaseB*.13);
+ float grit=softNoise(p*38.+phase*.22);
+ float speck=softNoise(p*82.-phaseB*.16);
+ network*=smoothstep(.18,.60,detail)*.32+.68;
+ network*=.80+micro*mix(.28,.34,u_interaction);
+ network+=smoothstep(.61,.83,micro)*mix(.13,.17,u_interaction);
+ network*=.88+grit*mix(.16,.20,u_interaction);
+ network+=(speck-.5)*mix(.055,.072,u_interaction);
+ network=pow(clamp(network,0.,1.),mix(1.22,1.12,u_interaction));
+
+ vec3 activePrimary=mix(u_primary,u_hoverPrimary,u_interaction);
+ gl_FragColor=vec4(mix(u_secondary,activePrimary,network),1.);
 }`;
 
 function hexToRgb(hex:string):[number,number,number]{const value=hex.trim().replace("#","");const normalized=value.length===3?value.split("").map(c=>c+c).join(""):value;const parsed=Number.parseInt(normalized,16);return[((parsed>>16)&255)/255,((parsed>>8)&255)/255,(parsed&255)/255];}
