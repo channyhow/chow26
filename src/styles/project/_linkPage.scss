@@ -16,47 +16,50 @@
   transition: background-color $duration-slow $ease-soft, color $duration-default $ease-standard;
 }
 
-/* One oversized non-repeating turbulent field. Keeping the SVG larger than the viewport
-   removes the visible tile seam while preserving the AE-like evolving scale. */
+/* Large branching field: stronger separation than the previous pass, without returning
+   to the soft cloudy look. The second turbulence layer carries the small-scale structure. */
 .linkPage::before {
   content: "";
   position: fixed;
   inset: -35vmax;
   z-index: -1;
   pointer-events: none;
-  opacity: .22;
+  opacity: .32;
   background-color: $color-primary;
-  -webkit-mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0085' numOctaves='8' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.021' numOctaves='6' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncG type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncB type='linear' slope='2.25' intercept='-.62'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
-  mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0085' numOctaves='8' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.021' numOctaves='6' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncG type='linear' slope='2.25' intercept='-.62'/%3E%3CfeFuncB type='linear' slope='2.25' intercept='-.62'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0095' numOctaves='9' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.031' numOctaves='8' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='3.1' intercept='-.96'/%3E%3CfeFuncG type='linear' slope='3.1' intercept='-.96'/%3E%3CfeFuncB type='linear' slope='3.1' intercept='-.96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800' viewBox='0 0 1800 1800'%3E%3Cfilter id='n' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0095' numOctaves='9' seed='19' result='a'/%3E%3CfeTurbulence type='turbulence' baseFrequency='.031' numOctaves='8' seed='47' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeComponentTransfer in='c'%3E%3CfeFuncR type='linear' slope='3.1' intercept='-.96'/%3E%3CfeFuncG type='linear' slope='3.1' intercept='-.96'/%3E%3CfeFuncB type='linear' slope='3.1' intercept='-.96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-180' y='-180' width='2160' height='2160' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
   transform-origin: center;
   animation: linkNoiseEvolution 18s $ease-soft infinite alternate;
   transition: background-color $duration-slow $ease-soft, opacity $duration-slow $ease-soft, filter $duration-slow $ease-soft, mix-blend-mode $duration-slow $ease-soft;
 }
 
-/* Fine detail only. Also non-repeating so there can be no secondary seam. */
+/* High-frequency grain/detail layer. This is deliberately visible now, but remains texture
+   rather than a second large pattern. */
 .linkPage::after {
   content: "";
   position: fixed;
   inset: -25vmax;
   z-index: -1;
   pointer-events: none;
-  opacity: .025;
-  background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600' viewBox='0 0 1600 1600'%3E%3Cfilter id='g' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='7' seed='91'/%3E%3C/filter%3E%3Crect x='-160' y='-160' width='1920' height='1920' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity: .095;
+  background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600' viewBox='0 0 1600 1600'%3E%3Cfilter id='g' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.075' numOctaves='8' seed='91' result='grain'/%3E%3CfeComponentTransfer in='grain'%3E%3CfeFuncR type='linear' slope='2.4' intercept='-.7'/%3E%3CfeFuncG type='linear' slope='2.4' intercept='-.7'/%3E%3CfeFuncB type='linear' slope='2.4' intercept='-.7'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-160' y='-160' width='1920' height='1920' filter='url(%23g)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
+  filter: contrast(1.45);
   animation: linkGrainEvolution 15s linear infinite alternate;
 }
 
 @keyframes linkNoiseEvolution {
-  0% { transform: translate3d(-1.2%, -.7%, 0) scale(1.02); filter: contrast(1.5) brightness(.72); }
-  32% { transform: translate3d(.5%, -.3%, 0) scale(1.055); filter: contrast(1.22) brightness(.9); }
-  64% { transform: translate3d(-.4%, .8%, 0) scale(1.085); filter: contrast(1.03) brightness(1.18); }
-  100% { transform: translate3d(.8%, .4%, 0) scale(1.04); filter: contrast(1.5) brightness(.86); }
+  0% { transform: translate3d(-1.2%, -.7%, 0) scale(1.02); filter: contrast(1.75) brightness(.66); }
+  32% { transform: translate3d(.5%, -.3%, 0) scale(1.055); filter: contrast(1.48) brightness(.84); }
+  64% { transform: translate3d(-.4%, .8%, 0) scale(1.085); filter: contrast(1.28) brightness(1.04); }
+  100% { transform: translate3d(.8%, .4%, 0) scale(1.04); filter: contrast(1.82) brightness(.76); }
 }
 
 @keyframes linkGrainEvolution {
-  0% { transform: translate3d(-.5%, .3%, 0) scale(1.01); }
-  100% { transform: translate3d(.5%, -.3%, 0) scale(1.035); }
+  0% { transform: translate3d(-.5%, .3%, 0) scale(1.01); filter: contrast(1.35) brightness(.9); }
+  50% { transform: translate3d(.15%, -.15%, 0) scale(1.022); filter: contrast(1.7) brightness(1.02); }
+  100% { transform: translate3d(.5%, -.3%, 0) scale(1.035); filter: contrast(1.45) brightness(.94); }
 }
 
 .linkPage__main,
@@ -154,12 +157,15 @@
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::before {
     background-color: $color-accent;
-    opacity: .32;
+    opacity: .42;
     mix-blend-mode: screen;
-    filter: contrast(1.5) brightness(.9);
+    filter: contrast(1.8) brightness(.82);
   }
 
-  .linkPage:has(.linkPage__campaignText .actions a:hover)::after { opacity: .04; }
+  .linkPage:has(.linkPage__campaignText .actions a:hover)::after {
+    opacity: .12;
+    filter: contrast(1.65) brightness(1.02);
+  }
 
   .linkPage:has(.linkPage__campaignText .actions a:nth-child(even):hover)::before {
     background-color: $color-special;
