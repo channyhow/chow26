@@ -61,28 +61,27 @@ void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
 
-  /* Smaller scale and denser topology to approach the AE reference. */
-  p *= 8.2;
+  /* Dark fractal is the noise. Higher frequency = smaller marks. */
+  p *= 12.8;
 
   vec2 warp = vec2(
-    turbulentFractal(p * 0.46 + vec2(7.1, 2.3)),
-    turbulentFractal(p * 0.46 + vec2(-3.8, 8.6))
+    turbulentFractal(p * 0.34 + vec2(7.1, 2.3)),
+    turbulentFractal(p * 0.34 + vec2(-3.8, 8.6))
   ) - 0.5;
 
-  float n = turbulentFractal(p + warp * 0.88);
-  n = 1.0 - n;
-  n = (n - 0.5) * 2.15 + 0.5;
-  n -= 0.14;
+  float n = turbulentFractal(p + warp * 0.48);
 
-  /* Narrower threshold keeps the marks tighter instead of broad cloudy masses. */
-  float network = 1.0 - smoothstep(0.31, 0.48, n);
-  float detail = turbulentFractal(p * 2.7 + warp * 0.55);
-  detail = smoothstep(0.30, 0.68, detail);
-  network *= 0.76 + detail * 0.24;
+  /* Select only a narrow band of the fractal to form thin dark filaments. */
+  float ridge = abs(n - 0.355);
+  float network = 1.0 - smoothstep(0.022, 0.105, ridge);
 
-  float grain = softNoise(p * 19.0);
-  network *= 0.90 + grain * 0.10;
-  network = clamp(network * 0.92, 0.0, 0.94);
+  /* Break and roughen the filaments at a finer scale without inflating them. */
+  float detail = turbulentFractal(p * 2.9 + warp * 0.35);
+  network *= smoothstep(0.20, 0.62, detail) * 0.38 + 0.62;
+
+  float grain = softNoise(p * 24.0);
+  network *= 0.92 + grain * 0.08;
+  network = pow(clamp(network, 0.0, 1.0), 1.28);
 
   vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
@@ -139,7 +138,7 @@ export function FractalNoiseCanvas() {
     const resolution = gl.getUniformLocation(program, "u_resolution");
     const primary = gl.getUniformLocation(program, "u_primary");
     const secondary = gl.getUniformLocation(program, "u_secondary");
-    const primaryRgb = hexToRgb("#3f403b");
+    const primaryRgb = hexToRgb("#292a27");
     const secondaryRgb = hexToRgb("#B8B3A1");
 
     const render = () => {
