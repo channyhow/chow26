@@ -18,73 +18,84 @@ uniform vec2 u_resolution;
 uniform vec3 u_primary;
 uniform vec3 u_secondary;
 
-vec2 hash22(vec2 p) {
-  p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-  return -1.0 + 2.0 * fract(sin(p) * 43758.5453123);
+float hash21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
 }
 
-float noise(vec2 p) {
+float valueNoise(vec2 p) {
   vec2 i = floor(p);
   vec2 f = fract(p);
-  vec2 u = f * f * (3.0 - 2.0 * f);
-  return mix(
-    mix(dot(hash22(i), f), dot(hash22(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x),
-    mix(dot(hash22(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)), dot(hash22(i + vec2(1.0)), f - vec2(1.0)), u.x), u.y
-  );
+  f = f * f * (3.0 - 2.0 * f);
+  float a = hash21(i);
+  float b = hash21(i + vec2(1.0, 0.0));
+  float c = hash21(i + vec2(0.0, 1.0));
+  float d = hash21(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
 float fbm(vec2 p) {
-  float value = 0.0;
-  float amplitude = 0.54;
-  mat2 rotation = mat2(0.80, 0.60, -0.60, 0.80);
-  for (int i = 0; i < 7; i++) {
-    value += amplitude * noise(p);
-    p = rotation * p * 2.02 + vec2(13.7, 9.2);
-    amplitude *= 0.51;
+  float v = 0.0;
+  float a = 0.5;
+  mat2 m = mat2(0.94, 0.34, -0.34, 0.94);
+  for (int i = 0; i < 5; i++) {
+    v += a * valueNoise(p);
+    p = m * p * 2.04 + 7.17;
+    a *= 0.5;
   }
-  return value;
+  return v;
 }
 
 void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
 
-  /* AE-like turbulent base: broad deformation plus nested detail. */
-  vec2 warp = vec2(
-    fbm(p * 1.18 + vec2(2.4, 7.1)),
-    fbm(p * 1.18 + vec2(8.6, 3.3))
-  );
-  vec2 warped = p + warp * 0.34;
+  /* Start from an orthogonal lattice. The AE reference has repeated broken
+     horizontal/vertical runs and rectangular cells beneath the corrosion. */
+  float cells = 11.5;
+  vec2 latticeP = p * cells;
 
-  float broad = fbm(warped * 3.15);
-  float medium = fbm(warped * 7.4 + warp * 0.72);
-  float fine = fbm(warped * 17.8 - warp * 0.31);
-  float grit = noise(warped * 63.0 + vec2(medium, broad) * 2.1);
+  /* Distort the grid, but preserve its orthogonal ancestry. */
+  vec2 distortion = vec2(
+    fbm(p * 2.15 + vec2(1.8, 6.4)),
+    fbm(p * 2.15 + vec2(8.2, 2.1))
+  ) - 0.5;
+  latticeP += distortion * 1.35;
 
-  /* Convert the turbulent field into a porous network rather than displaying
-     FBM as continuous grey smoke. This is the equivalent of pushing AE
-     Fractal Noise with Contrast/Brightness until only the branching structure
-     remains. */
-  float source = broad * 0.68 + medium * 0.25 + fine * 0.07;
-  float ridge = 1.0 - abs(source * 2.38);
+  vec2 local = abs(fract(latticeP) - 0.5);
+  float lineDistance = min(0.5 - local.x, 0.5 - local.y);
 
-  /* Medium/open AE state: mostly secondary with connected dark filaments. */
-  float edgeNoise = fine * 0.10 + grit * 0.035;
-  float network = smoothstep(0.655 + edgeNoise, 0.785 + edgeNoise, ridge);
+  /* Uneven line thickness: some runs disappear, others become rusty clumps. */
+  float corrosion = fbm(p * 7.8 + distortion * 1.7);
+  float breakup = fbm(p * 18.5 + vec2(corrosion, -corrosion) * 0.8);
+  float grain = valueNoise(p * 92.0 + distortion * 3.0);
 
-  /* Fine erosion makes the boundaries dirty and granular instead of smooth. */
-  float erosionField = fbm(warped * 26.0 + warp * 0.45);
-  float erosion = smoothstep(-0.08, 0.18, erosionField + grit * 0.16);
-  network *= mix(0.68, 1.0, erosion);
+  float width = 0.055 + corrosion * 0.085 + breakup * 0.025;
+  float lattice = 1.0 - smoothstep(width, width + 0.035, lineDistance);
 
-  /* A second, thinner frequency adds the tiny broken branches visible in AE. */
-  float hairSource = fbm(warped * 11.2 + vec2(warp.y, warp.x) * 0.65);
-  float hairRidge = 1.0 - abs(hairSource * 2.95);
-  float hairs = smoothstep(0.79, 0.91, hairRidge + fine * 0.055);
-  network = max(network, hairs * 0.42);
+  /* Aggressively rust away sections of the grid. */
+  float keep = smoothstep(0.34, 0.63, corrosion * 0.72 + breakup * 0.28);
+  lattice *= mix(0.12, 1.0, keep);
 
-  /* Preserve quiet background. No continuous grey base layer. */
-  network = clamp(network, 0.0, 0.88);
+  /* Build irregular deposits around surviving lines so it feels printed,
+     oxidised and fibrous rather than mathematically generated. */
+  float depositField = fbm(p * 13.0 + distortion * 2.4);
+  float deposits = smoothstep(0.58, 0.76, depositField + lattice * 0.30);
+  deposits *= smoothstep(0.25, 0.70, corrosion);
+
+  /* Fine broken graphite/rust fibres along the lattice. */
+  float hairMask = 1.0 - smoothstep(width + 0.025, width + 0.105, lineDistance);
+  float hairs = hairMask * smoothstep(0.57, 0.77, breakup + (grain - 0.5) * 0.18);
+
+  float network = max(lattice * 0.72, deposits * 0.56);
+  network = max(network, hairs * 0.48);
+
+  /* Grain only dirties existing marks; the off-white ground stays clean. */
+  network *= 0.82 + grain * 0.18;
+  network = smoothstep(0.10, 0.76, network);
+  network = clamp(network * 0.88, 0.0, 0.88);
+
   vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
 }
