@@ -16,50 +16,76 @@
   transition: background-color $duration-slow $ease-soft, color $duration-default $ease-standard;
 }
 
-/* Subtle evolving fractal field: secondary ground, primary texture. */
+/* AE-inspired Turbulent Basic / Soft Linear field. Complexity comes from layered octaves;
+   subtlety comes from compositing, not from flattening the fractal itself. */
 .linkPage::before {
   content: "";
   position: absolute;
-  inset: -28%;
+  inset: -24%;
   z-index: -1;
   pointer-events: none;
-  opacity: .16;
+  opacity: .28;
   background-color: $color-primary;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n' x='-35%25' y='-35%25' width='170%25' height='170%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .011' numOctaves='7' seed='17' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.021 .035' numOctaves='5' seed='41' stitchTiles='stitch' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeGaussianBlur in='c' stdDeviation='2.4' result='d'/%3E%3CfeComponentTransfer in='d'%3E%3CfeFuncR type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3CfeFuncG type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3CfeFuncB type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n' x='-35%25' y='-35%25' width='170%25' height='170%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .011' numOctaves='7' seed='17' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.021 .035' numOctaves='5' seed='41' stitchTiles='stitch' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeGaussianBlur in='c' stdDeviation='2.4' result='d'/%3E%3CfeComponentTransfer in='d'%3E%3CfeFuncR type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3CfeFuncG type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3CfeFuncB type='gamma' amplitude='1.25' exponent='1.15' offset='-.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
-  -webkit-mask-size: 58rem 58rem;
-  mask-size: 58rem 58rem;
-  filter: contrast(.9) brightness(1.08);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'%3E%3Cfilter id='n' x='-30%25' y='-30%25' width='160%25' height='160%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.0048 .0072' numOctaves='10' seed='19' stitchTiles='stitch' result='macro'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.017 .024' numOctaves='9' seed='47' stitchTiles='stitch' result='micro'/%3E%3CfeBlend in='macro' in2='micro' mode='soft-light' result='complex'/%3E%3CfeGaussianBlur in='complex' stdDeviation='1.25' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncG type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncB type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'%3E%3Cfilter id='n' x='-30%25' y='-30%25' width='160%25' height='160%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.0048 .0072' numOctaves='10' seed='19' stitchTiles='stitch' result='macro'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.017 .024' numOctaves='9' seed='47' stitchTiles='stitch' result='micro'/%3E%3CfeBlend in='macro' in2='micro' mode='soft-light' result='complex'/%3E%3CfeGaussianBlur in='complex' stdDeviation='1.25' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncG type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3CfeFuncB type='table' tableValues='.08 .18 .34 .56 .74 .88 .96'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 72rem 72rem;
+  mask-size: 72rem 72rem;
+  filter: contrast(1.5) brightness(.82);
+  mix-blend-mode: multiply;
   transform-origin: 50% 50%;
-  animation: linkNoiseEvolution 20s $ease-soft infinite alternate;
-  transition: background-color $duration-slow $ease-soft, opacity $duration-slow $ease-soft, filter $duration-slow $ease-soft;
+  animation: linkNoiseEvolution 18s $ease-soft infinite alternate;
+  transition: background-color $duration-slow $ease-soft, opacity $duration-slow $ease-soft, filter $duration-slow $ease-soft, mix-blend-mode $duration-slow $ease-soft;
 }
 
+/* Very fine high-frequency information, analogous to the detail retained at high AE complexity. */
 .linkPage::after {
   content: "";
   position: absolute;
-  inset: -12%;
+  inset: -10%;
   z-index: -1;
   pointer-events: none;
-  opacity: .035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055' numOctaves='4' seed='73' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.9'/%3E%3C/svg%3E");
-  background-size: 22rem 22rem;
-  mix-blend-mode: multiply;
-  filter: contrast(1.15) brightness(1.15);
-  animation: linkGrainEvolution 15s linear infinite alternate;
+  opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480' viewBox='0 0 480 480'%3E%3Cfilter id='g' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='turbulence' baseFrequency='.038' numOctaves='9' seed='91' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 30rem 30rem;
+  mix-blend-mode: overlay;
+  filter: contrast(1.5) brightness(.95);
+  animation: linkGrainEvolution 13s linear infinite alternate;
   transition: opacity $duration-default $ease-standard, filter $duration-slow $ease-soft;
 }
 
+/* Contrast/brightness travel is intentionally stronger than spatial movement,
+   mirroring the AE keyframes while keeping the page readable. */
 @keyframes linkNoiseEvolution {
-  0% { transform: translate3d(-2%, -1%, 0) scale(1.04); -webkit-mask-size: 54rem 54rem; mask-size: 54rem 54rem; filter: contrast(.82) brightness(1.12); }
-  33% { transform: translate3d(1%, -1%, 0) scale(1.1); -webkit-mask-size: 64rem 64rem; mask-size: 64rem 64rem; filter: contrast(1.02) brightness(.98); }
-  66% { transform: translate3d(-1%, 2%, 0) scale(1.14); -webkit-mask-size: 49rem 49rem; mask-size: 49rem 49rem; filter: contrast(1.12) brightness(1.06); }
-  100% { transform: translate3d(2%, 1%, 0) scale(1.08); -webkit-mask-size: 60rem 60rem; mask-size: 60rem 60rem; filter: contrast(.94) brightness(1.02); }
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.035);
+    -webkit-mask-size: 70rem 70rem;
+    mask-size: 70rem 70rem;
+    filter: contrast(1.5) brightness(.72);
+  }
+  32% {
+    transform: translate3d(.8%, -.5%, 0) scale(1.075);
+    -webkit-mask-size: 76rem 76rem;
+    mask-size: 76rem 76rem;
+    filter: contrast(1.22) brightness(.9);
+  }
+  64% {
+    transform: translate3d(-.6%, 1.2%, 0) scale(1.1);
+    -webkit-mask-size: 66rem 66rem;
+    mask-size: 66rem 66rem;
+    filter: contrast(1.03) brightness(1.18);
+  }
+  100% {
+    transform: translate3d(1.2%, .7%, 0) scale(1.06);
+    -webkit-mask-size: 73rem 73rem;
+    mask-size: 73rem 73rem;
+    filter: contrast(1.5) brightness(.86);
+  }
 }
 
 @keyframes linkGrainEvolution {
-  0% { transform: translate3d(-1%, 1%, 0) scale(1.03); }
-  100% { transform: translate3d(1%, -1%, 0) scale(1.08); }
+  0% { transform: translate3d(-1%, .5%, 0) scale(1.02) rotate(-.15deg); }
+  50% { transform: translate3d(.6%, -.8%, 0) scale(1.055) rotate(.12deg); }
+  100% { transform: translate3d(-.4%, -.2%, 0) scale(1.035) rotate(-.08deg); }
 }
 
 .linkPage__main,
@@ -157,13 +183,14 @@
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::before {
     background-color: $color-accent;
-    opacity: .24;
-    filter: contrast(1.08) brightness(1.04);
+    opacity: .38;
+    mix-blend-mode: screen;
+    filter: contrast(1.5) brightness(.9);
   }
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::after {
-    opacity: .055;
-    filter: contrast(1.2) brightness(1.05);
+    opacity: .08;
+    filter: contrast(1.6) brightness(1.05);
   }
 
   .linkPage:has(.linkPage__campaignText .actions a:nth-child(even):hover)::before {
@@ -196,7 +223,7 @@
 
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
-  .linkPage::before { -webkit-mask-size: 34rem 34rem; mask-size: 34rem 34rem; }
+  .linkPage::before { -webkit-mask-size: 46rem 46rem; mask-size: 46rem 46rem; }
   .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText.textBlock { min-height: 76svh; gap: $space-3; }
 
