@@ -16,7 +16,10 @@ precision highp float;
 varying vec2 v_uv;
 uniform vec2 u_resolution;
 uniform vec3 u_primary;
+uniform vec3 u_hoverPrimary;
 uniform vec3 u_secondary;
+uniform float u_time;
+uniform float u_interaction;
 
 float hash21(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -60,30 +63,40 @@ float turbulentFractal(vec2 p) {
 void main() {
   float aspect = u_resolution.x / max(u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
+  p *= mix(12.8, 13.35, u_interaction);
 
-  /* Dark fractal is the noise. Higher frequency = smaller marks. */
-  p *= 12.8;
+  float evolution = u_time * mix(0.055, 0.082, u_interaction);
+  vec2 phase = vec2(sin(evolution * 0.73), cos(evolution * 0.61));
+  vec2 phaseB = vec2(cos(evolution * 0.47), sin(evolution * 0.83));
 
   vec2 warp = vec2(
-    turbulentFractal(p * 0.34 + vec2(7.1, 2.3)),
-    turbulentFractal(p * 0.34 + vec2(-3.8, 8.6))
+    turbulentFractal(p * 0.34 + vec2(7.1, 2.3) + phase * 0.18),
+    turbulentFractal(p * 0.34 + vec2(-3.8, 8.6) + phaseB * 0.18)
   ) - 0.5;
 
-  float n = turbulentFractal(p + warp * 0.48);
+  vec2 topologyWarp = vec2(
+    turbulentFractal(p * 0.17 + vec2(13.7, -4.2) + phaseB * 0.12),
+    turbulentFractal(p * 0.17 + vec2(-8.4, 11.9) - phase * 0.12)
+  ) - 0.5;
 
-  /* Select only a narrow band of the fractal to form thin dark filaments. */
-  float ridge = abs(n - 0.355);
-  float network = 1.0 - smoothstep(0.022, 0.105, ridge);
+  float n = turbulentFractal(p + warp * mix(0.48, 0.55, u_interaction) + topologyWarp * mix(0.16, 0.20, u_interaction));
+  float ridgeCenter = 0.355 + sin(evolution * 0.39) * mix(0.0035, 0.006, u_interaction);
+  float ridge = abs(n - ridgeCenter);
+  float network = 1.0 - smoothstep(mix(0.022, 0.019, u_interaction), mix(0.105, 0.096, u_interaction), ridge);
 
-  /* Break and roughen the filaments at a finer scale without inflating them. */
-  float detail = turbulentFractal(p * 2.9 + warp * 0.35);
-  network *= smoothstep(0.20, 0.62, detail) * 0.38 + 0.62;
+  float detail = turbulentFractal(p * 2.9 + warp * 0.35 + phase * 0.07);
+  float micro = turbulentFractal(p * 6.4 + topologyWarp * 0.42 - phaseB * 0.06);
+  float grit = softNoise(p * 38.0 + phase * 0.10);
+  float speck = softNoise(p * 82.0 - phaseB * 0.07);
+  network *= smoothstep(0.18, 0.60, detail) * 0.32 + 0.68;
+  network *= 0.80 + micro * mix(0.28, 0.34, u_interaction);
+  network += smoothstep(0.61, 0.83, micro) * mix(0.13, 0.17, u_interaction);
+  network *= 0.88 + grit * mix(0.16, 0.20, u_interaction);
+  network += (speck - 0.5) * mix(0.055, 0.072, u_interaction);
+  network = pow(clamp(network, 0.0, 1.0), mix(1.22, 1.12, u_interaction));
 
-  float grain = softNoise(p * 24.0);
-  network *= 0.92 + grain * 0.08;
-  network = pow(clamp(network, 0.0, 1.0), 1.28);
-
-  vec3 color = mix(u_secondary, u_primary, network);
+  vec3 activePrimary = mix(u_primary, u_hoverPrimary, u_interaction);
+  vec3 color = mix(u_secondary, activePrimary, network);
   gl_FragColor = vec4(color, 1.0);
 }
 `;
@@ -137,11 +150,26 @@ export function FractalNoiseCanvas() {
 
     const resolution = gl.getUniformLocation(program, "u_resolution");
     const primary = gl.getUniformLocation(program, "u_primary");
+    const hoverPrimary = gl.getUniformLocation(program, "u_hoverPrimary");
     const secondary = gl.getUniformLocation(program, "u_secondary");
+    const time = gl.getUniformLocation(program, "u_time");
+    const interaction = gl.getUniformLocation(program, "u_interaction");
     const primaryRgb = hexToRgb("#292a27");
+    const hoverPrimaryRgb = hexToRgb("#d85234");
     const secondaryRgb = hexToRgb("#B8B3A1");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const startedAt = performance.now();
+    let animationFrame = 0;
+    let interactionTarget = 0;
+    let interactionValue = 0;
 
-    const render = () => {
+    const onPointerEnter = () => { if (canHover) interactionTarget = 1; };
+    const onPointerLeave = () => { interactionTarget = 0; };
+    canvas.addEventListener("pointerenter", onPointerEnter);
+    canvas.addEventListener("pointerleave", onPointerLeave);
+
+    const render = (now = startedAt) => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = Math.max(1, Math.round(canvas.clientWidth * dpr));
       const height = Math.max(1, Math.round(canvas.clientHeight * dpr));
@@ -149,15 +177,24 @@ export function FractalNoiseCanvas() {
       gl.viewport(0, 0, width, height);
       gl.uniform2f(resolution, width, height);
       gl.uniform3f(primary, ...primaryRgb);
+      gl.uniform3f(hoverPrimary, ...hoverPrimaryRgb);
       gl.uniform3f(secondary, ...secondaryRgb);
+      gl.uniform1f(time, reduceMotion ? 0 : (now - startedAt) / 1000);
+      if (!reduceMotion) interactionValue += (interactionTarget - interactionValue) * 0.065;
+      else interactionValue = interactionTarget;
+      gl.uniform1f(interaction, interactionValue);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (!reduceMotion) animationFrame = requestAnimationFrame(render);
     };
 
     render();
-    const observer = new ResizeObserver(render);
+    const observer = new ResizeObserver(() => { if (reduceMotion) render(); });
     observer.observe(canvas);
     return () => {
       observer.disconnect();
+      canvas.removeEventListener("pointerenter", onPointerEnter);
+      canvas.removeEventListener("pointerleave", onPointerLeave);
+      cancelAnimationFrame(animationFrame);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
