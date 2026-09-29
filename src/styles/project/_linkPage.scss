@@ -76,20 +76,25 @@
 
 @include tablet-down {
   .linkPage { padding-inline: $page-gutter; overflow: visible; }
-  .linkPage__main { align-items: center; padding-block: clamp(#{$space-2}, 3vw, #{$space-4}); }
+  .linkPage__main { align-items: stretch; padding-block: clamp(#{$space-2}, 3vw, #{$space-4}); }
   .linkPage__campaignText.textBlock {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(17rem, .82fr);
-    grid-template-rows: auto auto;
-    min-height: min(68svh, 720px);
-    align-content: center;
-    align-items: center;
-    column-gap: clamp(#{$space-3}, 5vw, #{$space-5});
-    row-gap: $space-2;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: auto;
+    align-content: start;
+    align-items: start;
+    gap: clamp(#{$space-3}, 4vw, #{$space-4});
   }
-  .linkPage__campaignText .textBlock__header { grid-column: 1; grid-row: 1; align-self: end; width: min(100%, 25rem); gap: $space-2; }
-  .linkPage__campaignText .textBlock__content { grid-column: 1; grid-row: 2; align-self: start; width: min(100%, 28rem); }
-  .linkPage__campaignText .textBlock__footer { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 100%; margin: 0; }
+  .linkPage__campaignText .textBlock__header,
+  .linkPage__campaignText .textBlock__content,
+  .linkPage__campaignText .textBlock__footer {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .linkPage__campaignText .textBlock__header { align-self: auto; width: min(100%, 30rem); gap: $space-2; }
+  .linkPage__campaignText .textBlock__content { align-self: auto; width: min(100%, 32rem); }
+  .linkPage__campaignText .textBlock__footer { align-self: auto; width: 100%; max-width: 34rem; margin: 0 0 0 auto; }
   .linkPage__campaignText .textBlock__title { font-size: clamp(2.15rem, 5.2vw, 3.25rem); }
   .linkPage__campaignText .textBlock__content p { font-size: clamp(1rem, 2.15vw, 1.18rem); line-height: 1.2; }
   .linkPage__campaignText .actions--panel .actions__link { min-height: 4.35rem; padding: $space-2; }
@@ -98,11 +103,8 @@
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; align-items: stretch; }
-  .linkPage__campaignText.textBlock { display: grid; grid-template-columns: 1fr; grid-template-rows: auto; min-height: auto; align-content: start; gap: $space-4; }
+  .linkPage__campaignText.textBlock { gap: $space-4; }
 
-  .linkPage__campaignText .textBlock__header,
-  .linkPage__campaignText .textBlock__content,
-  .linkPage__campaignText .textBlock__footer { grid-column: 1; grid-row: auto; }
   .linkPage__campaignText .textBlock__header { width: 100%; gap: $space-3; }
   .linkPage__campaignText .textBlock__eyebrow { max-width: 22rem; font-size: clamp(.82rem, 3.7vw, 1rem); line-height: 1.25; }
   .linkPage__campaignText .textBlock__title {
@@ -112,6 +114,6 @@
   }
   .linkPage__campaignText .textBlock__content { width: min(92%, 24rem); align-self: auto; }
   .linkPage__campaignText .textBlock__content p { font-size: clamp(1rem, 4.4vw, 1.22rem); line-height: 1.24; }
-  .linkPage__campaignText .textBlock__footer { width: 100%; margin-top: 0; }
+  .linkPage__campaignText .textBlock__footer { width: 100%; max-width: none; margin: 0; }
   .linkPage__footer { margin-top: $space-5; }
 }
