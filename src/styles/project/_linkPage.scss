@@ -11,66 +11,83 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #d9d2bf;
-  color: #ef4a16;
-  transition: background-color 450ms ease, color 450ms ease;
+  background: $color-secondary;
+  color: $color-primary;
+  transition: background-color $duration-slow $ease-soft, color $duration-default $ease-standard;
 }
 
-/* CSS/SVG equivalent of the animated Fractal Noise used in the campaign reel. */
+/* Dense multi-scale fractal field: secondary ground, primary noise. */
 .linkPage::before {
   content: "";
   position: absolute;
-  inset: -18%;
+  inset: -28%;
   z-index: -1;
   pointer-events: none;
-  opacity: .72;
-  background-color: #d9d2bf;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' viewBox='0 0 640 640'%3E%3Cfilter id='n' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008 .014' numOctaves='5' seed='8' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='1.7 0 0 0 -.45 0 1.7 0 0 -.45 0 0 1.7 0 -.45 0 0 0 1 0' result='contrast'/%3E%3CfeGaussianBlur in='contrast' stdDeviation='1.4' result='soft'/%3E%3CfeComponentTransfer in='soft'%3E%3CfeFuncR type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3CfeFuncG type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3CfeFuncB type='discrete' tableValues='0 .18 .42 .68 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23d9d2bf'/%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.88'/%3E%3C/svg%3E");
-  background-size: min(78vw, 900px) min(78vw, 900px);
-  filter: contrast(1.2) sepia(.08);
-  mix-blend-mode: multiply;
-  animation: linkNoiseDrift 18s linear infinite alternate;
-  transform: scale(1.18);
+  opacity: .84;
+  background-color: $color-primary;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n' x='-35%25' y='-35%25' width='170%25' height='170%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .011' numOctaves='7' seed='17' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.021 .035' numOctaves='5' seed='41' stitchTiles='stitch' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeGaussianBlur in='c' stdDeviation='1.8' result='d'/%3E%3CfeComponentTransfer in='d'%3E%3CfeFuncR type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3CfeFuncG type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3CfeFuncB type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cfilter id='n' x='-35%25' y='-35%25' width='170%25' height='170%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .011' numOctaves='7' seed='17' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.021 .035' numOctaves='5' seed='41' stitchTiles='stitch' result='b'/%3E%3CfeBlend in='a' in2='b' mode='multiply' result='c'/%3E%3CfeGaussianBlur in='c' stdDeviation='1.8' result='d'/%3E%3CfeComponentTransfer in='d'%3E%3CfeFuncR type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3CfeFuncG type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3CfeFuncB type='gamma' amplitude='1.7' exponent='1.45' offset='-.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 58rem 58rem;
+  mask-size: 58rem 58rem;
+  filter: contrast(1.1) brightness(.96);
+  transform-origin: 50% 50%;
+  animation: linkNoiseEvolution 16s $ease-soft infinite alternate;
+  transition: background-color $duration-slow $ease-soft, opacity $duration-slow $ease-soft, filter $duration-slow $ease-soft;
 }
 
+/* Fine secondary grain keeps the field alive between the large cloudy forms. */
 .linkPage::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -12%;
   z-index: -1;
   pointer-events: none;
-  background: rgba(239, 74, 22, .08);
+  opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360' viewBox='0 0 360 360'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055' numOctaves='4' seed='73' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.9'/%3E%3C/svg%3E");
+  background-size: 22rem 22rem;
   mix-blend-mode: multiply;
-  transition: background-color 450ms ease;
+  filter: contrast(1.55) brightness(1.15);
+  animation: linkGrainEvolution 11s linear infinite alternate;
+  transition: opacity $duration-default $ease-standard, filter $duration-slow $ease-soft;
 }
 
-@keyframes linkNoiseDrift {
-  0% { transform: scale(1.18) translate3d(-2%, -1%, 0) rotate(-1deg); }
-  45% { transform: scale(1.25) translate3d(2%, 1.5%, 0) rotate(.6deg); }
-  100% { transform: scale(1.2) translate3d(-1%, 2%, 0) rotate(-.4deg); }
+@keyframes linkNoiseEvolution {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1.04) rotate(-.8deg);
+    -webkit-mask-size: 52rem 52rem;
+    mask-size: 52rem 52rem;
+    filter: contrast(.92) brightness(1.12);
+  }
+  28% {
+    transform: translate3d(2%, -1%, 0) scale(1.14) rotate(.45deg);
+    -webkit-mask-size: 67rem 67rem;
+    mask-size: 67rem 67rem;
+    filter: contrast(1.45) brightness(.84);
+  }
+  57% {
+    transform: translate3d(-1%, 3%, 0) scale(1.24) rotate(-.3deg);
+    -webkit-mask-size: 43rem 43rem;
+    mask-size: 43rem 43rem;
+    filter: contrast(1.8) brightness(1.08);
+  }
+  78% {
+    transform: translate3d(3%, 1%, 0) scale(1.1) rotate(.7deg);
+    -webkit-mask-size: 76rem 76rem;
+    mask-size: 76rem 76rem;
+    filter: contrast(1.2) brightness(.78);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(1.2) rotate(-.5deg);
+    -webkit-mask-size: 59rem 59rem;
+    mask-size: 59rem 59rem;
+    filter: contrast(1.62) brightness(1.02);
+  }
 }
 
-.linkPage__motionField {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.linkPage__motionWord {
-  position: absolute;
-  right: 8%;
-  top: 34%;
-  width: min(48vw, 11ch);
-  text-align: right;
-  font-size: clamp(2.8rem, 5.2vw, 6rem);
-  font-weight: $font-weight-bold;
-  line-height: .92;
-  letter-spacing: -.04em;
-  text-transform: uppercase;
-  color: currentColor;
-  opacity: .9;
+@keyframes linkGrainEvolution {
+  0% { transform: translate3d(-2%, 1%, 0) scale(1.05); filter: contrast(1.25) brightness(1.2); }
+  50% { transform: translate3d(2%, -2%, 0) scale(1.14); filter: contrast(1.85) brightness(.86); }
+  100% { transform: translate3d(-1%, -1%, 0) scale(1.09); filter: contrast(1.5) brightness(1.08); }
 }
 
 .linkPage__main,
@@ -162,17 +179,23 @@
 
 @media (hover: hover) and (pointer: fine) {
   .linkPage:has(.linkPage__campaignText .actions a:hover) {
-    background: #c84b2b;
-    color: #f6f5f3;
+    background: $color-primary;
+    color: $color-secondary;
   }
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::before {
-    opacity: .9;
-    filter: grayscale(1) contrast(1.35);
+    background-color: $color-accent;
+    opacity: .96;
+    filter: contrast(1.75) brightness(1.12);
   }
 
   .linkPage:has(.linkPage__campaignText .actions a:hover)::after {
-    background: rgba(112, 41, 24, .28);
+    opacity: .32;
+    filter: contrast(2) brightness(.92) sepia(.2);
+  }
+
+  .linkPage:has(.linkPage__campaignText .actions a:nth-child(even):hover)::before {
+    background-color: $color-special;
   }
 }
 
@@ -197,18 +220,14 @@
   .linkPage__campaignText .textBlock__header { width: min(100%, 34rem); }
   .linkPage__campaignText .textBlock__content { width: min(70%, 25rem); }
   .linkPage__campaignText .textBlock__footer { width: min(100%, 34rem); margin-left: auto; }
-
-  .linkPage__motionWord {
-    top: 35%;
-    right: 7%;
-    width: 72vw;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-  }
 }
 
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
-  .linkPage::before { background-size: 120vw 120vw; }
+  .linkPage::before {
+    -webkit-mask-size: 34rem 34rem;
+    mask-size: 34rem 34rem;
+  }
   .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText.textBlock { min-height: 76svh; gap: $space-3; }
 
@@ -231,20 +250,9 @@
   }
 
   .linkPage__campaignText .textBlock__footer { width: 100%; }
-
-  .linkPage__motionWord {
-    top: 31%;
-    right: 8%;
-    width: 76vw;
-    font-size: clamp(2.1rem, 9vw, 3.5rem);
-  }
-
-  .linkPage__footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .linkPage::before { animation: none; }
+  .linkPage::before,
+  .linkPage::after { animation: none; }
 }
