@@ -63,7 +63,6 @@ void main() {
   vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
   p *= 12.8;
 
-  /* Very slow evolution changes the network itself rather than translating it. */
   float evolution = u_time * 0.055;
   vec2 phase = vec2(sin(evolution * 0.73), cos(evolution * 0.61));
   vec2 phaseB = vec2(cos(evolution * 0.47), sin(evolution * 0.83));
@@ -73,7 +72,6 @@ void main() {
     turbulentFractal(p * 0.34 + vec2(-3.8, 8.6) + phaseB * 0.18)
   ) - 0.5;
 
-  /* A second evolving field gently deforms local topology without visible drift. */
   vec2 topologyWarp = vec2(
     turbulentFractal(p * 0.17 + vec2(13.7, -4.2) + phaseB * 0.12),
     turbulentFractal(p * 0.17 + vec2(-8.4, 11.9) - phase * 0.12)
@@ -81,17 +79,22 @@ void main() {
 
   float n = turbulentFractal(p + warp * 0.48 + topologyWarp * 0.16);
 
-  /* Keep the established thin dark filament topology. */
   float ridgeCenter = 0.355 + sin(evolution * 0.39) * 0.0035;
   float ridge = abs(n - ridgeCenter);
   float network = 1.0 - smoothstep(0.022, 0.105, ridge);
 
+  /* More small-scale variation inside the established dark network. */
   float detail = turbulentFractal(p * 2.9 + warp * 0.35 + phase * 0.07);
-  network *= smoothstep(0.20, 0.62, detail) * 0.38 + 0.62;
+  float micro = turbulentFractal(p * 6.4 + topologyWarp * 0.42 - phaseB * 0.06);
+  float grit = softNoise(p * 38.0 + phase * 0.10);
+  float speck = softNoise(p * 82.0 - phaseB * 0.07);
 
-  float grain = softNoise(p * 24.0 + phaseB * 0.08);
-  network *= 0.92 + grain * 0.08;
-  network = pow(clamp(network, 0.0, 1.0), 1.28);
+  network *= smoothstep(0.18, 0.60, detail) * 0.32 + 0.68;
+  network *= 0.80 + micro * 0.28;
+  network += smoothstep(0.61, 0.83, micro) * 0.13;
+  network *= 0.88 + grit * 0.16;
+  network += (speck - 0.5) * 0.055;
+  network = pow(clamp(network, 0.0, 1.0), 1.22);
 
   vec3 color = mix(u_secondary, u_primary, network);
   gl_FragColor = vec4(color, 1.0);
