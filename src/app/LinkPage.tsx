@@ -5,18 +5,26 @@ import { TextBlock } from "@/components/content/TextBlock";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { FractalNoiseCanvas } from "@/components/visual/FractalNoiseCanvas";
 import { resolveBlock } from "@/data/resolve";
-import type { ContentItem, PageData, SectionBlock } from "@/types/content";
+import type { ContentItem, PageBlock, PageData, SectionBlock } from "@/types/content";
 
 type LinkPageProps = {
   page: PageData;
 };
 
+function resolveSection(block: PageBlock | undefined): SectionBlock | undefined {
+  if (!block) return undefined;
+  if ("ref" in block) return resolveBlock(block.ref);
+  return block.type === "Section" ? block : undefined;
+}
+
 export function LinkPage({ page }: LinkPageProps) {
   const reduceMotion = Boolean(useReducedMotion());
   const [hoverMode, setHoverMode] = useState<"idle" | "contrast" | "accent">("idle");
-  const campaign = resolveBlock(page.blocks[0]) as SectionBlock;
-  const footer = resolveBlock(page.blocks[1]) as SectionBlock;
-  const campaignContent = campaign.content?.header as ContentItem;
+  const campaign = resolveSection(page.blocks[0]);
+  const footer = resolveSection(page.blocks[1]);
+  const campaignContent = campaign?.content?.header as ContentItem | undefined;
+
+  if (!campaign || !campaignContent || !footer) return null;
 
   const updateHoverMode = (target: EventTarget | null) => {
     const link = target instanceof Element ? target.closest(".actions__link") : null;
