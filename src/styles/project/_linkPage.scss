@@ -15,7 +15,6 @@
   color: $color-primary;
 }
 
-/* Keep the campaign header legible over both the neutral and accent noise states. */
 .linkPage ~ .header,
 .site:has(.linkPage) .header {
   --header-color: #{$color-primary};
@@ -43,9 +42,8 @@
 
 .linkPage__campaignText.textBlock {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: clamp(#{$space-4}, 8vw, #{$space-6});
-  row-gap: $space-3;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
   align-items: center;
   max-width: none;
 }
@@ -56,11 +54,7 @@
   width: min(100%, 31rem);
 }
 
-.linkPage__campaignText .textBlock__header {
-  align-self: end;
-  gap: $space-2;
-}
-
+.linkPage__campaignText .textBlock__header { align-self: end; gap: 0; }
 .linkPage__campaignText .textBlock__content { align-self: start; }
 
 .linkPage__campaignText .textBlock__footer {
@@ -97,7 +91,6 @@
   color: $color-accent;
 }
 
-/* Campaign panels deliberately stay still; Actions owns their base styling. */
 .linkPage__campaignText .actions--panel .actions__link,
 .linkPage__campaignText .actions--panel .actions__link:hover {
   color: $color-primary;
@@ -121,11 +114,11 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
-  gap: $space-3;
+  gap: 0;
   border-top: 1px solid currentColor;
 }
 
-.linkPage__socials.actions { gap: $flow-tight $space-3; }
+.linkPage__socials.actions { gap: 0; }
 .linkPage__copyright { @include type-ui-compact; opacity: $opacity-soft; }
 
 @include tablet-down {
@@ -141,7 +134,7 @@
 
   .linkPage__campaignText.textBlock {
     grid-template-columns: 1fr;
-    gap: clamp(#{$space-3}, 4vw, #{$space-4});
+    gap: 0;
     align-content: start;
     align-items: start;
   }
@@ -156,6 +149,7 @@
 
   .linkPage__campaignText .textBlock__header { width: min(100%, 30rem); }
   .linkPage__campaignText .textBlock__content { width: min(100%, 32rem); }
+
   .linkPage__campaignText .textBlock__footer {
     width: 100%;
     max-width: 34rem;
@@ -171,8 +165,8 @@
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
-  .linkPage__campaignText.textBlock { gap: $space-4; }
-  .linkPage__campaignText .textBlock__header { width: 100%; gap: $space-3; }
+  .linkPage__campaignText.textBlock { gap: 0; }
+  .linkPage__campaignText .textBlock__header { width: 100%; gap: 0; }
 
   .linkPage__campaignText .textBlock__eyebrow {
     max-width: 22rem;
@@ -189,6 +183,7 @@
   }
 
   .linkPage__campaignText .textBlock__content { width: min(92%, 24rem); }
+
   .linkPage__campaignText .textBlock__content p {
     font-size: clamp(1rem, 4.4vw, 1.22rem);
     line-height: 1.24;
