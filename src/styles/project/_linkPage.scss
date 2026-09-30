@@ -89,10 +89,15 @@
   color: $color-primary;
 }
 
-// This is intentionally a LinkPage composition rule, not a global footer rule.
+// LinkPage alone gets an expanded desktop footer; the reusable footer stays standard.
 @media (min-width: 64rem) {
   .linkPageShell > .siteFooter {
     min-height: 80svh;
+  }
+
+  .linkPageShell > .siteFooter .siteFooter__inner {
+    min-height: calc(80svh - #{$space-3});
+    align-content: space-between;
   }
 }
 
