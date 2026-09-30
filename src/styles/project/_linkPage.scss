@@ -40,16 +40,11 @@
 .linkPage__campaignText .textBlock__content { grid-column: 2 / span 5; align-self: start; width: min(100%, 31rem); }
 .linkPage__campaignText .textBlock__footer { grid-column: 8 / span 5; grid-row: 1 / span 2; align-self: center; width: 100%; }
 
-.linkPage__campaignText .textBlock__eyebrow { @include type-ui; color: currentColor; white-space: pre-line; font-weight: $font-weight-bold;  }
+.linkPage__campaignText .textBlock__eyebrow { @include type-nav; color: currentColor; white-space: pre-line; font-weight: $font-weight-bold;  }
 .linkPage__campaignText .textBlock__title {
-  max-width: 8ch;
   color: $color-accent;
-  font-size: clamp(2rem, 3.25vw, 3.8rem);
-  font-weight: $font-weight-bold;
-  line-height: .9;
-  letter-spacing: -.035em;
-  text-transform: uppercase;
-  white-space: pre-line;
+  @include type-lead-bold;
+
 }
 .linkPage__campaignText .textBlock__content p { max-width: 30rem; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.12; letter-spacing: -.02em; text-transform: none; }
 .linkPage__campaignText strong { font-weight: $font-weight-semibold; color: $color-accent; }

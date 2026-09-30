@@ -79,6 +79,14 @@
   line-height: 1.58;
 }
 
+@mixin type-lead-bold {
+  font-family: var(--font-body);
+  font-size: $type-lead;
+  font-weight: $font-weight-bold;
+  line-height: 1.48;
+  text-transform: uppercase;
+}
+
 @mixin type-lead {
   font-family: var(--font-body);
   font-size: $type-lead;
