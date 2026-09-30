@@ -27,12 +27,6 @@ float softNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);f
 mat2 rotate2d(float a){float s=sin(a);float c=cos(a);return mat2(c,-s,s,c);}
 float turbulentFractal(vec2 p){float sum=0.;float weight=0.;float amplitude=1.;mat2 r=rotate2d(.055);for(int i=0;i<19;i++){float n=abs(softNoise(p)*2.-1.);sum+=n*amplitude;weight+=amplitude;p=r*p*1.72+vec2(3.17,-1.83);amplitude*=.63;}return sum/max(weight,.0001);}
 
-vec3 overlayBlend(vec3 base, vec3 blend){
-  vec3 low=2.0*base*blend;
-  vec3 high=1.0-2.0*(1.0-base)*(1.0-blend);
-  return mix(low,high,step(vec3(.5),base));
-}
-
 void main(){
   float aspect=u_resolution.x/max(u_resolution.y,1.);
   vec2 p=(v_uv-.5)*vec2(aspect,1.);
@@ -84,18 +78,14 @@ void main(){
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
-  // The field remains orange-led at rest. Hover reveals a much lighter secondary wash.
-  // Only the CTA receives accent coloration; normal links alter contrast/grain only.
   vec3 structureColor=mix(u_primary,u_accent,accentResponse*.72);
   float restDensity=.82;
   float hoverDensity=mix(restDensity,.48,hoverResponse);
   vec3 normalColor=mix(u_secondary,structureColor,network*hoverDensity);
-
   vec3 hoverWash=mix(u_secondary,structureColor,network*.40);
   float offWhiteLift=hoverResponse*mix(.62,.56,accentResponse);
   vec3 finalColor=mix(normalColor,hoverWash,offWhiteLift);
 
-  // Keep the darker topology legible as the overall field gets lighter.
   float relief=(broad-.5)*hoverResponse*.22+(fine-.5)*hoverResponse*.12;
   finalColor=clamp(finalColor+vec3(relief),0.0,1.0);
   gl_FragColor=vec4(finalColor,1.0);
@@ -168,7 +158,6 @@ export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasPro
     const primaryRgb = hexToRgb("#595a57"),
       secondaryRgb = hexToRgb("#B8B3A1"),
       accentRgb = hexToRgb("#D84517");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const startedAt = performance.now();
     let frame = 0, hoverAmount = 0, accentAmount = 0;
 
@@ -191,7 +180,7 @@ export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasPro
       gl.uniform3f(primary, ...primaryRgb);
       gl.uniform3f(secondary, ...secondaryRgb);
       gl.uniform3f(accent, ...accentRgb);
-      gl.uniform1f(time, reduceMotion ? 0 : (now - startedAt) / 1000);
+      gl.uniform1f(time, (now - startedAt) / 1000);
       gl.uniform1f(hover, hoverAmount);
       gl.uniform1f(accentHover, accentAmount);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -199,7 +188,7 @@ export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasPro
     };
 
     render();
-    const observer = new ResizeObserver(() => { if (reduceMotion) render(); });
+    const observer = new ResizeObserver(() => {});
     observer.observe(canvas);
     return () => {
       observer.disconnect();
