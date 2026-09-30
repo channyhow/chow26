@@ -22,7 +22,7 @@ for (const project of collections.projects ?? []) if (project.href) publicSlugs.
 for (const article of collections.journal ?? []) if (article.href) publicSlugs.add(article.href);
 const internalRoutes = new Set(["/system", "/branding"]);
 const forbiddenPlaceholderPatterns = [/og-placeholder/i, /lorem ipsum/i, /\+33 1 42 00 00 00/];
-const requiredPublicFiles = ["favicon.ico", "favicon.svg", "favicon-16x16.png", "favicon-32x32.png", "apple-touch-icon.png", "android-chrome-192x192.png", "android-chrome-512x512.png", "site.webmanifest", "service-worker.js", "offline.html", "robots.txt", "sitemap.xml", "llms.txt"];
+const requiredPublicFiles = ["favicon.ico", "favicon-16x16.png", "favicon-32x32.png", "apple-touch-icon.png", "android-chrome-192x192.png", "android-chrome-512x512.png", "site.webmanifest", "service-worker.js", "offline.html", "robots.txt", "sitemap.xml", "llms.txt"];
 const caseStudyPattern = /(?:case[ -]study|étude de cas)/i;
 const nonLegalPages = pages.filter((page) => page.id !== "legal");
 const publicIdentityData = { defaultDescription: site.seo?.defaultDescription, defaultImageAlt: site.seo?.imageAlt, pwaDescription: site.pwa?.description, pages: nonLegalPages.map((page) => ({ id: page.id, seo: page.seo })) };
