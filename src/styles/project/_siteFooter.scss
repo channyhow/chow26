@@ -71,6 +71,16 @@
 }
 
 @include desktop-up {
+  .siteFooter {
+    min-height: 36vh;
+  }
+
+  .siteFooter__inner,
+  #site-footer.section__inner {
+    min-height: calc(36vh - #{$space-3});
+    align-content: space-between;
+  }
+
   .siteFooter__main {
     grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 0.75fr));
     column-gap: clamp(#{$space-3}, 3vw, #{$space-5});
