@@ -37,7 +37,6 @@ void main(){
   vec2 p=(v_uv-.5)*vec2(aspect,1.);
   p*=14.0;
 
-  // Faster, clearly visible AE-style evolution without making the texture drift.
   float evolution=u_time*.22;
   vec2 phase=vec2(sin(evolution*.91),cos(evolution*.77));
   vec2 phaseB=vec2(cos(evolution*.63),sin(evolution*1.03));
@@ -60,14 +59,26 @@ void main(){
   float network=broad*.58+fine*.29+micro*.13;
   network=mix(network,network*(.80+wash*.30),.35);
 
-  // Raise the dark-noise threshold so more of #B8B3A1 remains visible.
-  network=smoothstep(.30,.70,network);
+  // Slow independent tonal evolution: the texture breathes in contrast and brightness.
+  float contrastPulse=.5+.5*sin(evolution*.71+1.1);
+  float brightnessPulse=.5+.5*sin(evolution*.49-0.8);
+  float gritPulse=.5+.5*sin(evolution*.93+2.2);
+  float lowThreshold=mix(.285,.325,contrastPulse);
+  float highThreshold=mix(.735,.675,contrastPulse);
+  network=smoothstep(lowThreshold,highThreshold,network);
   network=1.0-network;
 
-  float grit=softNoise(p*28.0+phase*.30);
-  float speck=softNoise(p*58.0-phaseB*.24);
-  network*=.72+grit*.22;
-  network+=(speck-.5)*.035;
+  // Grit evolves independently so fine detail appears to dissolve/re-form.
+  float gritScale=mix(25.0,32.0,gritPulse);
+  float speckScale=mix(52.0,66.0,1.0-gritPulse);
+  float grit=softNoise(p*gritScale+phase*.55+phaseC*.25);
+  float speck=softNoise(p*speckScale-phaseB*.42+phaseC*.18);
+  float gritStrength=mix(.16,.27,gritPulse);
+  network*=mix(.78,.69,gritPulse)+grit*gritStrength;
+  network+=(speck-.5)*mix(.025,.052,gritPulse);
+
+  // Equivalent of a restrained animated AE Brightness pass.
+  network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
   vec3 noiseColor=mix(u_primary,u_accent,u_hover);
