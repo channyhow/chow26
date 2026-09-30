@@ -9,29 +9,24 @@
   flex-direction: column;
   width: 100%;
   min-height: 100svh;
-  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-3;
+  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
   overflow: hidden;
   background: $color-secondary;
   color: $color-primary;
 }
 
-.linkPage ~ .header,
 .site:has(.linkPage) .header {
   --header-color: #{$color-primary};
 }
 
-.linkPage__main,
-.linkPage__footer {
+.linkPage__main {
   position: relative;
   z-index: 1;
-  width: min(100%, #{$container-max});
-  margin-inline: auto;
-}
-
-.linkPage__main {
   flex: 1;
   display: flex;
   align-items: center;
+  width: min(100%, #{$container-max});
+  margin-inline: auto;
   padding-block: clamp(#{$space-3}, 4vw, #{$space-5});
 }
 
@@ -106,17 +101,6 @@
   color: $color-primary;
 }
 
-.linkPage__footer {
-  margin-top: auto;
-  padding-top: $space-2;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  border-top: 1px solid currentColor;
-}
-
-.linkPage__copyright { @include type-ui-compact; opacity: $opacity-soft; }
-
 @include tablet-down {
   .linkPage {
     padding-inline: $page-gutter;
@@ -187,6 +171,4 @@
     max-width: none;
     margin: 0;
   }
-
-  .linkPage__footer { margin-top: $space-5; }
 }
