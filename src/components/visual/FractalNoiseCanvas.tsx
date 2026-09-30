@@ -45,7 +45,6 @@ void main(){
   vec2 phaseB=vec2(cos(evolution*.63),sin(evolution*1.03));
   vec2 phaseC=vec2(sin(evolution*.47),cos(evolution*1.21));
 
-  // Hover briefly opens the topology: more warp, tighter grain and a slight parallax-like offset.
   vec2 hoverDrift=vec2(sin(evolution*1.7),cos(evolution*1.31))*hoverResponse*.18;
   vec2 warp=vec2(
     turbulentFractal(p*.34+vec2(7.1,2.3)+phase*.72+hoverDrift),
@@ -85,14 +84,13 @@ void main(){
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
-  // Every campaign link increases contrast/depth. Only the primary CTA introduces orange.
   vec3 noiseColor=mix(u_primary,u_accent,accentResponse);
-  float hoverDensity=mix(.78,.98,hoverResponse);
+  // Keep substantially more off-white visible at rest. Hover restores density/contrast.
+  float hoverDensity=mix(.58,.98,hoverResponse);
   vec3 normalColor=mix(u_secondary,noiseColor,network*hoverDensity);
-  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.84,1.0,hoverResponse)));
-  vec3 finalColor=mix(normalColor,overlayColor,mix(.24,.38,hoverResponse));
+  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.66,1.0,hoverResponse)));
+  vec3 finalColor=mix(normalColor,overlayColor,mix(.14,.38,hoverResponse));
 
-  // A broad tonal layer gives the fractal a little more perceived relief while hovered.
   float relief=(broad-.5)*hoverResponse*.16+(fine-.5)*hoverResponse*.08;
   finalColor=clamp(finalColor+vec3(relief),0.0,1.0);
   gl_FragColor=vec4(finalColor,1.0);
