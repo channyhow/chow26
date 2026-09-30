@@ -4,9 +4,10 @@ import { dirname, resolve } from "node:path";
 const root = process.cwd();
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 
-const [siteData, pages, collections, media] = await Promise.all([
+const [siteData, pages, linkPage, collections, media] = await Promise.all([
   readJson("src/data/site.json"),
   readJson("src/data/pages.json"),
+  readJson("src/data/pages/link.json"),
   readJson("src/data/collections.json"),
   readJson("src/data/media.json"),
 ]);
@@ -18,7 +19,7 @@ const defaults = site.seo;
 const baseUrl = site.url.replace(/\/$/, "");
 const shell = await readFile(resolve(root, "dist/index.html"), "utf8");
 const projectPages = (collections.projects ?? []).map((project) => ({ id: `project-${project.id}`, slug: project.href, seo: project.seo, project }));
-const routes = [...pages, ...projectPages];
+const routes = [...pages, linkPage, ...projectPages];
 
 const escapeAttribute = (value = "") => String(value).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const replaceMeta = (html, attribute, key, content) => {
