@@ -102,7 +102,7 @@
     } }
   },
   "not-found-default": {
-    "id": "not-found-default", "type": "Section", "layout": "statement", "variant": "editorial", "surface": "solid", "color": "accent",
+    "id": "not-found-default", "type": "Section", "layout": "statement", "variant": "editorial", "surface": "solid", "color": "primary",
     "content": { "header": { "eyebrow": "404 | Page introuvable", "title": "Cette page n’est plus ici.", "text": ["Revenez à l’accueil ou profitez-en pour découvrir l’appel à projets en cours."], "links": ["return-home", "view-project-call"] } }
   }
 }
