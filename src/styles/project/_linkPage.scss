@@ -15,10 +15,6 @@
   color: $color-primary;
 }
 
-.site:has(.linkPage) .header {
-  --header-color: #{$color-primary};
-}
-
 .linkPage__main {
   position: relative;
   z-index: 1;
