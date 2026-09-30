@@ -2,6 +2,10 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
+.linkPageShell {
+  width: 100%;
+}
+
 .linkPage {
   position: relative;
   isolation: isolate;
@@ -14,11 +18,6 @@
   background: $color-secondary;
   color: $color-primary;
 }
-
-// .site:has(.linkPage) .header {
-//   --header-color: #{$color-primary};
-//   // background: $color-primary;
-// }
 
 .linkPage__main {
   position: relative;
@@ -64,17 +63,15 @@
   color: $color-accent;
 }
 
-.linkPage__campaignText .textBlock__subtitle p{
+.linkPage__campaignText .textBlock__subtitle p {
   @include type-ui-compact;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
 }
 
-// .linkPage__campaignText .textBlock__copy { @include type-body-bold; }
-
 .linkPage__campaignText .textBlock__content p {
   max-width: 30rem;
-  @include type-body-bold; 
+  @include type-body-bold;
 }
 
 .linkPage__campaignText strong {
@@ -82,37 +79,21 @@
   color: $color-accent;
 }
 
-// // Give the action stack a clear off-white surface while keeping the noise visible.
-// .linkPage__campaignText .actions--panel .actions__link {
-//   background: color-mix(in srgb, #{$color-secondary} 76%, transparent);
-//   color: $color-primary;
-//   transform: none;
-// }
-
-// .linkPage__campaignText .actions--panel .actions__link:hover,
-// .linkPage__campaignText .actions--panel .actions__link:focus-visible {
-//   background: color-mix(in srgb, #{$color-secondary} 90%, transparent);
-//   color: $color-primary;
-//   transform: none;
-// }
-
-// .linkPage__campaignText .actions--panel .actions__link:hover .actions__label { background-size: 0 1px; }
-// .linkPage__campaignText .actions--panel .actions__link:hover .actions__arrow { transform: none; }
-
-// // The CTA uses the same off-white rest state; orange is interaction only.
-// .linkPage__campaignText .actions--panel .actions__link--primary,
-// .linkPage__campaignText .actions--panel .actions__link[data-priority="primary"] {
-//   background: color-mix(in srgb, #{$color-secondary} 76%, transparent);
-//   color: $color-primary;
-//   transition: background-color 180ms ease, color 180ms ease;
-// }
-
+// The action component keeps its canonical styling. Only the campaign CTA
+// receives the accent interaction required by this page.
 .linkPage__campaignText .actions--panel .actions__link--primary:hover,
 .linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:hover,
 .linkPage__campaignText .actions--panel .actions__link--primary:focus-visible,
 .linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:focus-visible {
   background: $color-accent;
   color: $color-primary;
+}
+
+// This is intentionally a LinkPage composition rule, not a global footer rule.
+@media (min-width: 64rem) {
+  .linkPageShell > .siteFooter {
+    min-height: 80svh;
+  }
 }
 
 @include tablet-down {
@@ -159,26 +140,7 @@
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
   .linkPage__campaignText .textBlock__header { width: 100%; }
-
-  // .linkPage__campaignText .textBlock__title {
-  //   max-width: 8ch;
-  //   font-size: clamp(2.35rem, 11.5vw, 3.65rem);
-  //   line-height: .92;
-  // }
-
-  // .linkPage__campaignText .textBlock__subtitle {
-  //   max-width: 22rem;
-  //   font-size: clamp(.82rem, 3.7vw, 1rem);
-  //   line-height: 1.25;
-  //   letter-spacing: -.02em;
-  // }
-
   .linkPage__campaignText .textBlock__content { width: min(92%, 24rem); }
-
-  // .linkPage__campaignText .textBlock__content p {
-  //   font-size: clamp(1rem, 4.4vw, 1.22rem);
-  //   line-height: 1.24;
-  // }
 
   .linkPage__campaignText .textBlock__footer {
     width: 100%;
