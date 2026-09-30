@@ -136,11 +136,13 @@
     padding: $space-2 $space-3;
     justify-content: space-between;
     border-radius: 0;
-    @include glass($gray-100, 9%);
+        // border: 1px solid $gray-700;
+
+    @include glass;
 
     @include hover {
       color: var(--accent);
-      background: color-mix(in srgb, #{$gray-100} 14%, transparent);
+      background: color-mix(in srgb, #{$gray-100} 4%, transparent);
       transform: translateX(.2rem);
       .actions__arrow { transform: translate(.22rem, -.12rem); }
     }
@@ -148,13 +150,15 @@
 
   .actions__link--primary,
   .actions__link[data-priority="primary"] {
-    border-color: transparent;
-    background: var(--accent);
+    background: transparent;
+    border: 1px solid $color-accent;
     color: var(--primary);
+          background: color-mix(in srgb, #{$color-accent} 14%, transparent);
+
+    @include glass($color-accent, 0.5);
 
     @include hover {
-      background: var(--primary);
-      color: var(--secondary);
+      background: var(--accent);
     }
   }
 }
