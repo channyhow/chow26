@@ -37,7 +37,10 @@
 }
 
 .linkPage__campaignText .textBlock__header { grid-column: 2 / span 5; align-self: end; gap: $space-2; }
-.linkPage__campaignText .textBlock__content { grid-column: 2 / span 5; align-self: start; width: min(100%, 31rem); }
+.linkPage__campaignText .textBlock__content { grid-column: 2 / span 5; align-self: start; width: min(100%, 31rem); 
+}
+.linkPage__campaignText .textBlock__copy { 
+@include type-body-bold}
 .linkPage__campaignText .textBlock__footer { grid-column: 8 / span 5; grid-row: 1 / span 2; align-self: center; width: 100%; }
 
 .linkPage__campaignText .textBlock__eyebrow { @include type-nav; color: currentColor; white-space: pre-line; font-weight: $font-weight-bold;  }
@@ -90,8 +93,8 @@
   .linkPage__campaignText .textBlock__header { align-self: auto; width: min(100%, 30rem); gap: $space-2; }
   .linkPage__campaignText .textBlock__content { align-self: auto; width: min(100%, 32rem); }
   .linkPage__campaignText .textBlock__footer { align-self: auto; width: 100%; max-width: 34rem; margin: 0 0 0 auto; }
-  .linkPage__campaignText .textBlock__title { font-size: clamp(2.15rem, 5.2vw, 3.25rem); }
-  .linkPage__campaignText .textBlock__content p { font-size: clamp(1rem, 2.15vw, 1.18rem); line-height: 1.2; }
+  // .linkPage__campaignText .textBlock__title { font-size: clamp(2.15rem, 5.2vw, 3.25rem); }
+  // .linkPage__campaignText .textBlock__content p { font-size: clamp(1rem, 2.15vw, 1.18rem); line-height: 1.2; }
   .linkPage__campaignText .actions--panel .actions__link { min-height: 4.35rem; padding: $space-2; }
 }
 

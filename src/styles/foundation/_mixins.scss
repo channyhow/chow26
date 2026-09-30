@@ -163,11 +163,10 @@
 @mixin rule-top($strength: 18%) { border-top: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 @mixin rule-bottom($strength: 18%) { border-bottom: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 
-@mixin glass($surface: var(--surface, #{$color-secondary}), $alpha: 72%) {
+@mixin glass($surface: var(--surface, #{$color-secondary}), $alpha: 1.5%) {
   background: color-mix(in srgb, $surface $alpha, transparent);
-  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-  backdrop-filter: blur($glass-blur) saturate(0.9);
-  -webkit-backdrop-filter: blur($glass-blur) saturate(0.9);
+  backdrop-filter: blur(4px) saturate(0.95);
+  -webkit-backdrop-filter: blur(4px) saturate(0.95);
 }
 
 @mixin grain {

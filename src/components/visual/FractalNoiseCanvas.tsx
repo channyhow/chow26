@@ -143,7 +143,7 @@ export function FractalNoiseCanvas() {
 
     const primaryRgb = hexToRgb("#595a57"),
       secondaryRgb = hexToRgb("#B8B3A1"),
-      accentRgb = hexToRgb("#ae482d");
+      accentRgb = hexToRgb("#D84517");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const hoverSurface = canvas.closest(".linkPage") as HTMLElement | null;
     const startedAt = performance.now();
