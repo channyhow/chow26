@@ -56,7 +56,6 @@
 }
 
 .actions__link--primary,
-.actions__link--accent,
 .actions__link--outline {
   padding-inline: $space-2;
   border: 1px solid currentColor;
@@ -76,17 +75,15 @@
   }
 }
 
+// Accent is a typographic action variant, not a filled button.
+// It keeps the surrounding surface and uses the campaign accent as emphasis.
 .actions__link--accent {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--primary);
+  color: var(--accent);
 
   @include hover {
-    border-color: var(--secondary);
-    background: var(--secondary);
-    color: var(--primary);
-    box-shadow: 0 0.35rem 1rem color-mix(in srgb, var(--accent) 20%, transparent);
-    transform: translateY(-1px);
+    color: var(--secondary);
+    .actions__label { background-size: 100% 1px; }
+    .actions__arrow { transform: translate(0.18em, -0.08em); }
   }
 }
 
