@@ -43,7 +43,6 @@
 .linkPage__campaignText.textBlock {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  // gap: 0;
   align-items: center;
   max-width: none;
 }
@@ -54,7 +53,7 @@
   width: min(100%, 31rem);
 }
 
-.linkPage__campaignText .textBlock__header { align-self: end;  }
+.linkPage__campaignText .textBlock__header { align-self: end; }
 .linkPage__campaignText .textBlock__content { align-self: start; }
 
 .linkPage__campaignText .textBlock__footer {
@@ -64,16 +63,15 @@
   width: 100%;
 }
 
-.linkPage__campaignText .textBlock__eyebrow {
-  @include type-nav;
-  color: currentColor;
-  white-space: pre-line;
-  font-weight: $font-weight-bold;
-}
-
 .linkPage__campaignText .textBlock__title {
   @include type-lead-bold;
   color: $color-accent;
+}
+
+.linkPage__campaignText .textBlock__subtitle {
+  @include type-nav;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
 }
 
 .linkPage__campaignText .textBlock__copy { @include type-body-bold; }
@@ -114,11 +112,9 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
-  gap: 0;
   border-top: 1px solid currentColor;
 }
 
-.linkPage__socials.actions { gap: 0; }
 .linkPage__copyright { @include type-ui-compact; opacity: $opacity-soft; }
 
 @include tablet-down {
@@ -134,7 +130,6 @@
 
   .linkPage__campaignText.textBlock {
     grid-template-columns: 1fr;
-    // gap: 0;
     align-content: start;
     align-items: start;
   }
@@ -165,21 +160,19 @@
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
-  // .linkPage__campaignText.textBlock { gap: 0; }
-  .linkPage__campaignText .textBlock__header { width: 100%;  }
-
-  .linkPage__campaignText .textBlock__eyebrow {
-    max-width: 22rem;
-    font-size: clamp(.82rem, 3.7vw, 1rem);
-    line-height: 1.25;
-    letter-spacing: -.02em;
-    text-transform: uppercase;
-  }
+  .linkPage__campaignText .textBlock__header { width: 100%; }
 
   .linkPage__campaignText .textBlock__title {
     max-width: 8ch;
     font-size: clamp(2.35rem, 11.5vw, 3.65rem);
     line-height: .92;
+  }
+
+  .linkPage__campaignText .textBlock__subtitle {
+    max-width: 22rem;
+    font-size: clamp(.82rem, 3.7vw, 1rem);
+    line-height: 1.25;
+    letter-spacing: -.02em;
   }
 
   .linkPage__campaignText .textBlock__content { width: min(92%, 24rem); }
