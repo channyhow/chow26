@@ -20,6 +20,7 @@ uniform vec3 u_secondary;
 uniform vec3 u_accent;
 uniform float u_time;
 uniform float u_hover;
+uniform float u_accentHover;
 
 float hash21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
 float softNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);float a=hash21(i);float b=hash21(i+vec2(1.,0.));float c=hash21(i+vec2(0.,1.));float d=hash21(i+vec2(1.,1.));return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}
@@ -37,53 +38,63 @@ void main(){
   vec2 p=(v_uv-.5)*vec2(aspect,1.);
   p*=14.0;
 
+  float hoverResponse=smoothstep(0.0,.82,u_hover);
+  float accentResponse=smoothstep(0.0,.82,u_accentHover);
   float evolution=u_time*.22;
   vec2 phase=vec2(sin(evolution*.91),cos(evolution*.77));
   vec2 phaseB=vec2(cos(evolution*.63),sin(evolution*1.03));
   vec2 phaseC=vec2(sin(evolution*.47),cos(evolution*1.21));
 
+  // Hover briefly opens the topology: more warp, tighter grain and a slight parallax-like offset.
+  vec2 hoverDrift=vec2(sin(evolution*1.7),cos(evolution*1.31))*hoverResponse*.18;
   vec2 warp=vec2(
-    turbulentFractal(p*.34+vec2(7.1,2.3)+phase*.72),
-    turbulentFractal(p*.34+vec2(-3.8,8.6)+phaseB*.72)
+    turbulentFractal(p*.34+vec2(7.1,2.3)+phase*.72+hoverDrift),
+    turbulentFractal(p*.34+vec2(-3.8,8.6)+phaseB*.72-hoverDrift)
   )-.5;
   vec2 topologyWarp=vec2(
     turbulentFractal(p*.17+vec2(13.7,-4.2)+phaseB*.56),
     turbulentFractal(p*.17+vec2(-8.4,11.9)-phase*.56)
   )-.5;
 
-  float broad=turbulentFractal(p+warp*.72+topologyWarp*.34+phaseC*.08);
-  float fine=turbulentFractal(p*2.15+warp*.48+phase*.28);
-  float micro=turbulentFractal(p*5.2+topologyWarp*.40-phaseB*.22);
+  float warpDepth=mix(.72,1.08,hoverResponse);
+  float topologyDepth=mix(.34,.58,hoverResponse);
+  float broad=turbulentFractal(p+warp*warpDepth+topologyWarp*topologyDepth+phaseC*.08);
+  float fine=turbulentFractal(p*mix(2.15,2.48,hoverResponse)+warp*mix(.48,.68,hoverResponse)+phase*.28);
+  float micro=turbulentFractal(p*mix(5.2,6.4,hoverResponse)+topologyWarp*.40-phaseB*.22);
   float wash=turbulentFractal(p*.68+warp*.55-topologyWarp*.25+phaseB*.18);
 
   float network=broad*.58+fine*.29+micro*.13;
-  network=mix(network,network*(.80+wash*.30),.35);
+  network=mix(network,network*(.80+wash*.30),mix(.35,.50,hoverResponse));
 
   float contrastPulse=.5+.5*sin(evolution*.71+1.1);
   float brightnessPulse=.5+.5*sin(evolution*.49-0.8);
   float gritPulse=.5+.5*sin(evolution*.93+2.2);
-  float lowThreshold=mix(.285,.325,contrastPulse);
-  float highThreshold=mix(.735,.675,contrastPulse);
+  float lowThreshold=mix(.285,.325,contrastPulse)-hoverResponse*.045;
+  float highThreshold=mix(.735,.675,contrastPulse)+hoverResponse*.045;
   network=smoothstep(lowThreshold,highThreshold,network);
   network=1.0-network;
+  network=clamp((network-.5)*mix(1.0,1.34,hoverResponse)+.5,0.0,1.0);
 
-  float gritScale=mix(25.0,32.0,gritPulse);
-  float speckScale=mix(52.0,66.0,1.0-gritPulse);
-  float grit=softNoise(p*gritScale+phase*.55+phaseC*.25);
-  float speck=softNoise(p*speckScale-phaseB*.42+phaseC*.18);
-  float gritStrength=mix(.16,.27,gritPulse);
+  float gritScale=mix(25.0,32.0,gritPulse)*mix(1.0,1.22,hoverResponse);
+  float speckScale=mix(52.0,66.0,1.0-gritPulse)*mix(1.0,1.30,hoverResponse);
+  float grit=softNoise(p*gritScale+phase*.55+phaseC*.25+hoverDrift*2.0);
+  float speck=softNoise(p*speckScale-phaseB*.42+phaseC*.18-hoverDrift*3.0);
+  float gritStrength=mix(.16,.27,gritPulse)+hoverResponse*.12;
   network*=mix(.78,.69,gritPulse)+grit*gritStrength;
-  network+=(speck-.5)*mix(.025,.052,gritPulse);
+  network+=(speck-.5)*(mix(.025,.052,gritPulse)+hoverResponse*.075);
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
-  // Hover responds quickly and pushes the dark network decisively into the accent.
-  float hoverResponse=smoothstep(0.0,.72,u_hover);
-  vec3 noiseColor=mix(u_primary,u_accent,hoverResponse);
-  float hoverDensity=mix(.78,.92,hoverResponse);
+  // Every campaign link increases contrast/depth. Only the primary CTA introduces orange.
+  vec3 noiseColor=mix(u_primary,u_accent,accentResponse);
+  float hoverDensity=mix(.78,.98,hoverResponse);
   vec3 normalColor=mix(u_secondary,noiseColor,network*hoverDensity);
-  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.84,.96,hoverResponse)));
-  vec3 finalColor=mix(normalColor,overlayColor,mix(.24,.31,hoverResponse));
+  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.84,1.0,hoverResponse)));
+  vec3 finalColor=mix(normalColor,overlayColor,mix(.24,.38,hoverResponse));
+
+  // A broad tonal layer gives the fractal a little more perceived relief while hovered.
+  float relief=(broad-.5)*hoverResponse*.16+(fine-.5)*hoverResponse*.08;
+  finalColor=clamp(finalColor+vec3(relief),0.0,1.0);
   gl_FragColor=vec4(finalColor,1.0);
 }`;
 
@@ -107,8 +118,17 @@ function compileShader(gl: WebGLRenderingContext, type: number, source: string) 
   return shader;
 }
 
-export function FractalNoiseCanvas() {
+type FractalNoiseCanvasProps = {
+  hoverMode?: "idle" | "contrast" | "accent";
+};
+
+export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const hoverModeRef = useRef(hoverMode);
+
+  useEffect(() => {
+    hoverModeRef.current = hoverMode;
+  }, [hoverMode]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -139,28 +159,30 @@ export function FractalNoiseCanvas() {
       secondary = gl.getUniformLocation(program, "u_secondary"),
       accent = gl.getUniformLocation(program, "u_accent"),
       time = gl.getUniformLocation(program, "u_time"),
-      hover = gl.getUniformLocation(program, "u_hover");
+      hover = gl.getUniformLocation(program, "u_hover"),
+      accentHover = gl.getUniformLocation(program, "u_accentHover");
 
     const primaryRgb = hexToRgb("#595a57"),
       secondaryRgb = hexToRgb("#B8B3A1"),
       accentRgb = hexToRgb("#D84517");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const hoverSurface = canvas.closest(".linkPage") as HTMLElement | null;
     const startedAt = performance.now();
-    let frame = 0, hoverTarget = 0, hoverAmount = 0;
-
-    const onEnter = () => { hoverTarget = 1; };
-    const onLeave = () => { hoverTarget = 0; };
-    hoverSurface?.addEventListener("pointerenter", onEnter);
-    hoverSurface?.addEventListener("pointerleave", onLeave);
+    let frame = 0, hoverAmount = 0, accentAmount = 0;
 
     const render = (now = startedAt) => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5),
         width = Math.max(1, Math.round(canvas.clientWidth * dpr)),
         height = Math.max(1, Math.round(canvas.clientHeight * dpr));
       if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
-      const hoverEase = hoverTarget > hoverAmount ? 0.20 : 0.12;
+
+      const mode = hoverModeRef.current;
+      const hoverTarget = mode === "idle" ? 0 : 1;
+      const accentTarget = mode === "accent" ? 1 : 0;
+      const hoverEase = hoverTarget > hoverAmount ? 0.24 : 0.22;
+      const accentEase = accentTarget > accentAmount ? 0.24 : 0.22;
       hoverAmount += (hoverTarget - hoverAmount) * hoverEase;
+      accentAmount += (accentTarget - accentAmount) * accentEase;
+
       gl.viewport(0, 0, width, height);
       gl.uniform2f(resolution, width, height);
       gl.uniform3f(primary, ...primaryRgb);
@@ -168,8 +190,9 @@ export function FractalNoiseCanvas() {
       gl.uniform3f(accent, ...accentRgb);
       gl.uniform1f(time, reduceMotion ? 0 : (now - startedAt) / 1000);
       gl.uniform1f(hover, hoverAmount);
+      gl.uniform1f(accentHover, accentAmount);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      if (!reduceMotion || Math.abs(hoverTarget - hoverAmount) > 0.001) frame = requestAnimationFrame(render);
+      frame = requestAnimationFrame(render);
     };
 
     render();
@@ -177,8 +200,6 @@ export function FractalNoiseCanvas() {
     observer.observe(canvas);
     return () => {
       observer.disconnect();
-      hoverSurface?.removeEventListener("pointerenter", onEnter);
-      hoverSurface?.removeEventListener("pointerleave", onLeave);
       cancelAnimationFrame(frame);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
