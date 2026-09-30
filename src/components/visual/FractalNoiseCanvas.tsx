@@ -84,14 +84,19 @@ void main(){
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
-  vec3 noiseColor=mix(u_primary,u_accent,accentResponse);
-  // Keep substantially more off-white visible at rest. Hover restores density/contrast.
-  float hoverDensity=mix(.58,.98,hoverResponse);
-  vec3 normalColor=mix(u_secondary,noiseColor,network*hoverDensity);
-  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.66,1.0,hoverResponse)));
-  vec3 finalColor=mix(normalColor,overlayColor,mix(.14,.38,hoverResponse));
+  // The field remains orange-led at rest. Hover reveals a much lighter secondary wash.
+  // Only the CTA receives accent coloration; normal links alter contrast/grain only.
+  vec3 structureColor=mix(u_primary,u_accent,accentResponse*.72);
+  float restDensity=.82;
+  float hoverDensity=mix(restDensity,.48,hoverResponse);
+  vec3 normalColor=mix(u_secondary,structureColor,network*hoverDensity);
 
-  float relief=(broad-.5)*hoverResponse*.16+(fine-.5)*hoverResponse*.08;
+  vec3 hoverWash=mix(u_secondary,structureColor,network*.40);
+  float offWhiteLift=hoverResponse*mix(.62,.56,accentResponse);
+  vec3 finalColor=mix(normalColor,hoverWash,offWhiteLift);
+
+  // Keep the darker topology legible as the overall field gets lighter.
+  float relief=(broad-.5)*hoverResponse*.22+(fine-.5)*hoverResponse*.12;
   finalColor=clamp(finalColor+vec3(relief),0.0,1.0);
   gl_FragColor=vec4(finalColor,1.0);
 }`;
@@ -176,8 +181,8 @@ export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasPro
       const mode = hoverModeRef.current;
       const hoverTarget = mode === "idle" ? 0 : 1;
       const accentTarget = mode === "accent" ? 1 : 0;
-      const hoverEase = hoverTarget > hoverAmount ? 0.24 : 0.22;
-      const accentEase = accentTarget > accentAmount ? 0.24 : 0.22;
+      const hoverEase = hoverTarget > hoverAmount ? 0.28 : 0.24;
+      const accentEase = accentTarget > accentAmount ? 0.28 : 0.24;
       hoverAmount += (hoverTarget - hoverAmount) * hoverEase;
       accentAmount += (accentTarget - accentAmount) * accentEase;
 
