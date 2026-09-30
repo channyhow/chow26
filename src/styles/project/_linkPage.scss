@@ -85,8 +85,16 @@
   color: $color-accent;
 }
 
-.linkPage__campaignText .actions--panel .actions__link,
-.linkPage__campaignText .actions--panel .actions__link:hover {
+// Give the action stack a clear off-white surface while keeping the noise visible.
+.linkPage__campaignText .actions--panel .actions__link {
+  background: color-mix(in srgb, #{$color-secondary} 76%, transparent);
+  color: $color-primary;
+  transform: none;
+}
+
+.linkPage__campaignText .actions--panel .actions__link:hover,
+.linkPage__campaignText .actions--panel .actions__link:focus-visible {
+  background: color-mix(in srgb, #{$color-secondary} 90%, transparent);
   color: $color-primary;
   transform: none;
 }
@@ -94,10 +102,10 @@
 .linkPage__campaignText .actions--panel .actions__link:hover .actions__label { background-size: 0 1px; }
 .linkPage__campaignText .actions--panel .actions__link:hover .actions__arrow { transform: none; }
 
-// The CTA remains neutral at rest. Orange is a deliberate interaction state only.
+// The CTA uses the same off-white rest state; orange is interaction only.
 .linkPage__campaignText .actions--panel .actions__link--primary,
 .linkPage__campaignText .actions--panel .actions__link[data-priority="primary"] {
-  background: transparent;
+  background: color-mix(in srgb, #{$color-secondary} 76%, transparent);
   color: $color-primary;
   transition: background-color 180ms ease, color 180ms ease;
 }
