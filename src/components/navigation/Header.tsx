@@ -20,7 +20,6 @@ const smoothstep = (value: number) => value * value * (3 - 2 * value);
 export function Header() {
   const { pathname } = useLocation();
   const currentPath = normalizePath(pathname);
-  const isLinkPage = currentPath === "/link";
   const items = resolveActions(navigationData.primary as ActionRef[]);
   const home = items.find((item) => item.href === "/");
   const primaryItems = items.filter((item) => item.href !== "/");
@@ -41,23 +40,19 @@ export function Header() {
       const menuSlot = menuSlotRef.current;
       if (!header || !logo) return;
 
-      if (isLinkPage) {
-        setSurface("primary");
-      } else {
-        const sampleX = Math.round(window.innerWidth / 2);
-        const sampleY = 32;
-        const layers = document.elementsFromPoint(sampleX, sampleY);
-        let nextSurface: HeaderSurface = "secondary";
-        for (const layer of layers) {
-          const element = (layer as HTMLElement).closest<HTMLElement>(".sectionGroup__panel[data-panel-color], .section[data-color]");
-          const color = getSurface(element);
-          if (isHeaderSurface(color)) { nextSurface = color; break; }
-        }
-        setSurface((current) => current === nextSurface ? current : nextSurface);
+      const sampleX = Math.round(window.innerWidth / 2);
+      const sampleY = 32;
+      const layers = document.elementsFromPoint(sampleX, sampleY);
+      let nextSurface: HeaderSurface = "secondary";
+      for (const layer of layers) {
+        const element = (layer as HTMLElement).closest<HTMLElement>(".sectionGroup__panel[data-panel-color], .section[data-color]");
+        const color = getSurface(element);
+        if (isHeaderSurface(color)) { nextSurface = color; break; }
       }
+      setSurface((current) => current === nextSurface ? current : nextSurface);
 
       const splitDistance = Math.max(window.innerHeight * 0.8, 1);
-      const rawProgress = isLinkPage ? 1 : clamp01(window.scrollY / splitDistance);
+      const rawProgress = clamp01(window.scrollY / splitDistance);
       const progress = smoothstep(rawProgress);
       const desktop = window.matchMedia("(min-width: 64rem)").matches;
       const viewportWidth = window.innerWidth;
@@ -79,7 +74,7 @@ export function Header() {
         const menuWidth = menuSlot.getBoundingClientRect().width;
         const logoEnd = -(viewportWidth / 2) + gutter + (logoWidth / 2);
         const menuEnd = (viewportWidth / 2) - gutter - (menuWidth / 2);
-        const menuOpacity = isLinkPage ? 1 : clamp01((rawProgress - 0.08) / 0.32);
+        const menuOpacity = clamp01((rawProgress - 0.08) / 0.32);
         header.style.setProperty("--header-logo-x", `${lerp(0, logoEnd, progress)}px`);
         header.style.setProperty("--header-nav-x", "0px");
         header.style.setProperty("--header-menu-x", `${lerp(0, menuEnd, progress)}px`);
@@ -96,10 +91,10 @@ export function Header() {
       window.removeEventListener("resize", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [currentPath, isLinkPage]);
+  }, [currentPath]);
 
   return (
-    <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface} data-static={isLinkPage ? "true" : undefined}>
+    <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface}>
       <Link ref={logoRef} className="header__logo" to={home?.href ?? "/"} viewTransition aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`} aria-current={currentPath === "/" ? "page" : undefined}>{siteData.site.name}</Link>
       <nav ref={navRef} className="header__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
         {primaryItems.map((item) => item.href ? (
