@@ -43,7 +43,7 @@
 .linkPage__campaignText.textBlock {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  // gap: 0;
   align-items: center;
   max-width: none;
 }
@@ -54,7 +54,7 @@
   width: min(100%, 31rem);
 }
 
-.linkPage__campaignText .textBlock__header { align-self: end; gap: 0; }
+.linkPage__campaignText .textBlock__header { align-self: end;  }
 .linkPage__campaignText .textBlock__content { align-self: start; }
 
 .linkPage__campaignText .textBlock__footer {
@@ -134,7 +134,7 @@
 
   .linkPage__campaignText.textBlock {
     grid-template-columns: 1fr;
-    gap: 0;
+    // gap: 0;
     align-content: start;
     align-items: start;
   }
@@ -165,8 +165,8 @@
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
-  .linkPage__campaignText.textBlock { gap: 0; }
-  .linkPage__campaignText .textBlock__header { width: 100%; gap: 0; }
+  // .linkPage__campaignText.textBlock { gap: 0; }
+  .linkPage__campaignText .textBlock__header { width: 100%;  }
 
   .linkPage__campaignText .textBlock__eyebrow {
     max-width: 22rem;
