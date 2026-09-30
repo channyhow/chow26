@@ -6,7 +6,6 @@ import { SiteShell } from "@/app/SiteShell";
 import { PageRenderer } from "@/components/page/PageRenderer";
 import { RouteLoader } from "@/components/page/RouteLoader";
 import { Seo } from "@/components/page/Seo";
-import linkPage from "@/data/pages/link.json";
 import pages from "@/data/pages.json";
 import type { PageData } from "@/types/content";
 
@@ -26,7 +25,7 @@ const SystemReference = lazy(() =>
   import("@/app/SystemReference").then((module) => ({ default: module.SystemReference })),
 );
 
-const pageData = [...(pages as PageData[]), linkPage as PageData];
+const pageData = pages as PageData[];
 const internalRobots = { index: false, follow: false } as const;
 
 function normalizePath(pathname: string) {
