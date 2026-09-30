@@ -93,10 +93,18 @@
 .linkPage__campaignText .actions--panel .actions__link:hover .actions__label { background-size: 0 1px; }
 .linkPage__campaignText .actions--panel .actions__link:hover .actions__arrow { transform: none; }
 
+// The CTA remains neutral at rest. Orange is a deliberate interaction state only.
 .linkPage__campaignText .actions--panel .actions__link--primary,
-.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"],
+.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"] {
+  background: transparent;
+  color: $color-primary;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
 .linkPage__campaignText .actions--panel .actions__link--primary:hover,
-.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:hover {
+.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:hover,
+.linkPage__campaignText .actions--panel .actions__link--primary:focus-visible,
+.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:focus-visible {
   background: $color-accent;
   color: $color-primary;
 }
