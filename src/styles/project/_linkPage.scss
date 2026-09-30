@@ -16,7 +16,8 @@
 }
 
 .site:has(.linkPage) .header {
-  --header-color: #{$color-primary};
+  --header-color: #{$color-secondary};
+  background: $color-primary;
 }
 
 .linkPage__main {
