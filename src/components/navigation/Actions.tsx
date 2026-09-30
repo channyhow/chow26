@@ -39,7 +39,7 @@ export function Actions({ links = [], className, variant = "default" }: ActionsP
         const actionVariant = isSocial ? undefined : resolveVariant(action, index, resolvedLinks.length);
         const href = intent === "submit" ? undefined : action.href;
         const external = Boolean(href && isExternalHref(href));
-        const hasArrow = isSocial || actionVariant === "arrow" || actionVariant === "cta";
+        const hasArrow = isSocial || actionVariant === "arrow" || actionVariant === "cta" || actionVariant === "accent";
         const classNames = clsx("actions__link", actionVariant && `actions__link--${actionVariant}`);
         const content = <><span className="actions__label">{action.label}</span>{hasArrow ? <span className="actions__arrow" aria-hidden="true">{isSocial || external ? "↗" : "→"}</span> : null}</>;
 
