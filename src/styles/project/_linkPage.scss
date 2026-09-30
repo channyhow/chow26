@@ -28,7 +28,7 @@
 .linkPage__campaign { width: 100%; }
 
 .linkPage__campaignText.textBlock {
-  @include site-grid;
+  // @include site-grid;
   width: 100%;
   min-height: min(72svh, 850px);
   max-width: none;
@@ -36,8 +36,8 @@
   row-gap: $space-3;
 }
 
-.linkPage__campaignText .textBlock__header { grid-column: 2 / span 5; align-self: end; gap: $space-2; }
-.linkPage__campaignText .textBlock__content { grid-column: 2 / span 5; align-self: start; width: min(100%, 31rem); 
+.linkPage__campaignText .textBlock__header { grid-column: 1 / span 5; align-self: end; gap: $space-2; }
+.linkPage__campaignText .textBlock__content { grid-column: 1 / span 5; align-self: start; width: min(100%, 31rem); 
 }
 .linkPage__campaignText .textBlock__copy { 
 @include type-body-bold}
