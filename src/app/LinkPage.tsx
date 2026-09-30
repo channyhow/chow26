@@ -38,7 +38,7 @@ export function LinkPage({ page }: LinkPageProps) {
   };
 
   return (
-    <>
+    <div className="linkPageShell">
       <div className="linkPage">
         <FractalNoiseCanvas hoverMode={hoverMode} />
         <motion.main
@@ -73,6 +73,6 @@ export function LinkPage({ page }: LinkPageProps) {
         </motion.main>
       </div>
       <SiteFooter block={footer} />
-    </>
+    </div>
   );
 }
