@@ -77,10 +77,13 @@ void main(){
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
-  vec3 noiseColor=mix(u_primary,u_accent,u_hover);
-  vec3 normalColor=mix(u_secondary,noiseColor,network*.78);
-  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*.84));
-  vec3 finalColor=mix(normalColor,overlayColor,.24);
+  // Hover responds quickly and pushes the dark network decisively into the accent.
+  float hoverResponse=smoothstep(0.0,.72,u_hover);
+  vec3 noiseColor=mix(u_primary,u_accent,hoverResponse);
+  float hoverDensity=mix(.78,.92,hoverResponse);
+  vec3 normalColor=mix(u_secondary,noiseColor,network*hoverDensity);
+  vec3 overlayColor=overlayBlend(u_secondary,mix(vec3(1.0),noiseColor,network*mix(.84,.96,hoverResponse)));
+  vec3 finalColor=mix(normalColor,overlayColor,mix(.24,.31,hoverResponse));
   gl_FragColor=vec4(finalColor,1.0);
 }`;
 
@@ -156,7 +159,8 @@ export function FractalNoiseCanvas() {
         width = Math.max(1, Math.round(canvas.clientWidth * dpr)),
         height = Math.max(1, Math.round(canvas.clientHeight * dpr));
       if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
-      hoverAmount += (hoverTarget - hoverAmount) * 0.07;
+      const hoverEase = hoverTarget > hoverAmount ? 0.20 : 0.12;
+      hoverAmount += (hoverTarget - hoverAmount) * hoverEase;
       gl.viewport(0, 0, width, height);
       gl.uniform2f(resolution, width, height);
       gl.uniform3f(primary, ...primaryRgb);
