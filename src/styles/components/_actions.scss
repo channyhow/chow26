@@ -47,7 +47,7 @@
   transition: background-size $transition-hover;
 }
 
-.actions__link:not(.actions__link--primary, .actions__link--outline) {
+.actions__link:not(.actions__link--primary, .actions__link--accent, .actions__link--outline) {
   @include hover {
     color: var(--accent);
     .actions__label { background-size: 100% 1px; }
@@ -56,6 +56,7 @@
 }
 
 .actions__link--primary,
+.actions__link--accent,
 .actions__link--outline {
   padding-inline: $space-2;
   border: 1px solid currentColor;
@@ -71,6 +72,20 @@
     background: var(--secondary);
     color: var(--primary);
     box-shadow: 0 0.35rem 1rem color-mix(in srgb, var(--primary) 16%, transparent);
+    transform: translateY(-1px);
+  }
+}
+
+.actions__link--accent {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--primary);
+
+  @include hover {
+    border-color: var(--secondary);
+    background: var(--secondary);
+    color: var(--primary);
+    box-shadow: 0 0.35rem 1rem color-mix(in srgb, var(--accent) 20%, transparent);
     transform: translateY(-1px);
   }
 }
