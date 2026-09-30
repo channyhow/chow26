@@ -6,7 +6,7 @@
   "talk-website": { "label": "Parlez de votre site", "href": "/contact", "intent": "contact", "variant": "cta" },
   "evolve-website": { "label": "Faites évoluer votre site", "href": "/contact", "intent": "contact", "variant": "cta" },
   "project-call": { "label": "Répondre à l'appel à projets", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
-  "view-project-call": { "label": "Voir l’appel à projets", "href": "/link", "intent": "navigate", "variant": "arrow", "priority": "secondary" },
+  "view-project-call": { "label": "Voir l’appel à projets", "href": "/link", "intent": "navigate", "variant": "accent", "priority": "secondary" },
 
   "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
   "return-home": { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
