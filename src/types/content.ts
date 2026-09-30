@@ -23,7 +23,7 @@ export type PanelSurface = SectionSurface;
 export type PanelBehavior = "fixed" | "moving" | "stack" | "cover";
 
 export type ActionIntent = "navigate" | "contact" | "call" | "directions" | "book" | "buy" | "subscribe" | "download" | "share" | "submit";
-export type ActionVariant = "primary" | "outline" | "arrow" | "cta";
+export type ActionVariant = "primary" | "accent" | "outline" | "arrow" | "cta";
 export type ActionGroup = "primary" | "social" | "legal";
 export type Action = { label: string; href?: string; linkKey?: string; variant?: ActionVariant; priority?: "primary" | "secondary"; intent?: ActionIntent; group?: ActionGroup; };
 export type ActionRef = string | Action;
