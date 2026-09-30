@@ -154,13 +154,13 @@
   }
 }
 
-@include reduced-motion {
-  .actions__link,
-  .actions__label,
-  .actions__arrow { transition: none; }
+// @include reduced-motion {
+//   .actions__link,
+//   .actions__label,
+//   .actions__arrow { transition: none; }
 
-  .actions__link:active,
-  .actions__link--primary:hover,
-  .actions__link:hover .actions__arrow,
-  .actions--panel .actions__link:hover { transform: none; }
-}
+//   .actions__link:active,
+//   .actions__link--primary:hover,
+//   .actions__link:hover .actions__arrow,
+//   .actions--panel .actions__link:hover { transform: none; }
+// }

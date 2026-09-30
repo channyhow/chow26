@@ -64,20 +64,20 @@
   65%, 100% { opacity: 0; transform: translateY(-0.25em); }
 }
 
-@include reduced-motion {
-  .loader__mark {
-    animation: none;
-    opacity: 1;
-  }
+// @include reduced-motion {
+//   .loader__mark {
+//     animation: none;
+//     opacity: 1;
+//   }
 
-  .loader__messages span {
-    display: none;
-    animation: none;
-    opacity: 1;
-    transform: none;
+//   .loader__messages span {
+//     display: none;
+//     animation: none;
+//     opacity: 1;
+//     transform: none;
 
-    &:first-child {
-      display: block;
-    }
-  }
-}
+//     &:first-child {
+//       display: block;
+//     }
+//   }
+// }
