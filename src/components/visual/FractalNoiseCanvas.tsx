@@ -7,7 +7,7 @@ attribute vec2 a_position;
 varying vec2 v_uv;
 void main() {
   v_uv = a_position * 0.5 + 0.5;
-  gl_Position = vec4(a_position, 0.0, 1.0, 1.0);
+  gl_Position = vec4(a_position, 0.0, 1.0);
 }
 `;
 
@@ -59,7 +59,6 @@ void main(){
   float network=broad*.58+fine*.29+micro*.13;
   network=mix(network,network*(.80+wash*.30),.35);
 
-  // Slow independent tonal evolution: the texture breathes in contrast and brightness.
   float contrastPulse=.5+.5*sin(evolution*.71+1.1);
   float brightnessPulse=.5+.5*sin(evolution*.49-0.8);
   float gritPulse=.5+.5*sin(evolution*.93+2.2);
@@ -68,7 +67,6 @@ void main(){
   network=smoothstep(lowThreshold,highThreshold,network);
   network=1.0-network;
 
-  // Grit evolves independently so fine detail appears to dissolve/re-form.
   float gritScale=mix(25.0,32.0,gritPulse);
   float speckScale=mix(52.0,66.0,1.0-gritPulse);
   float grit=softNoise(p*gritScale+phase*.55+phaseC*.25);
@@ -76,8 +74,6 @@ void main(){
   float gritStrength=mix(.16,.27,gritPulse);
   network*=mix(.78,.69,gritPulse)+grit*gritStrength;
   network+=(speck-.5)*mix(.025,.052,gritPulse);
-
-  // Equivalent of a restrained animated AE Brightness pass.
   network+=mix(-.035,.045,brightnessPulse);
   network=clamp(network,0.0,1.0);
 
