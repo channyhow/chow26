@@ -25,7 +25,7 @@ float softNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);f
 mat2 rotate2d(float a){float s=sin(a);float c=cos(a);return mat2(c,-s,s,c);}
 float turbulentFractal(vec2 p){float sum=0.;float weight=0.;float amplitude=1.;mat2 r=rotate2d(.055);for(int i=0;i<19;i++){float n=abs(softNoise(p)*2.-1.);sum+=n*amplitude;weight+=amplitude;p=r*p*1.72+vec2(3.17,-1.83);amplitude*=.63;}return sum/max(weight,.0001);}
 void main(){
- float aspect=u_resolution.x/max(u_resolution.y,1.);vec2 p=(v_uv-.5)*vec2(aspect,1.);p*=12.8;
+ float aspect=u_resolution.x/max(u_resolution.y,1.);vec2 p=(v_uv-.5)*vec2(aspect,1.);p*=8.0;
  float evolution=u_time*.13;
  vec2 phase=vec2(sin(evolution*.91),cos(evolution*.77));
  vec2 phaseB=vec2(cos(evolution*.63),sin(evolution*1.03));
@@ -34,16 +34,16 @@ void main(){
  float n=turbulentFractal(p+warp*.66+topologyWarp*.34);
  float ridgeCenter=.355+sin(evolution*.58)*.008;
  float ridge=abs(n-ridgeCenter);
- float network=1.-smoothstep(.016,.135,ridge);
- float detail=turbulentFractal(p*2.65+warp*.48+phase*.16);
+ float network=1.-smoothstep(.05,.05,ridge);
+ float detail=turbulentFractal(p*2.05+warp*.3+phase*.1);
  float micro=turbulentFractal(p*5.8+topologyWarp*.55-phaseB*.13);
  float wash=turbulentFractal(p*.72+warp*.62-topologyWarp*.28+phaseB*.08);
- float grit=softNoise(p*34.+phase*.22);
- float speck=softNoise(p*72.-phaseB*.16);
+ float grit=softNoise(p*8.+phase*.8);
+ float speck=softNoise(p*8.-phaseB*.16);
  network*=smoothstep(.12,.72,detail)*.25+.75;
  network*=.76+micro*.24;
  network+=smoothstep(.56,.88,micro)*.09;
- network*=.86+grit*.12;
+ network*=.9+grit*.8;
  network+=(speck-.5)*.035;
  network=mix(network,network*(.72+wash*.42),.48);
  network=smoothstep(.035,.94,network);
