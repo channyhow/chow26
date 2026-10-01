@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import { Card } from "@/components/content/Card";
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -44,7 +46,7 @@ export function CardItem({
       frame={frame}
       effect={effect}
       variant={variant}
-      className={className}
+      className={clsx(isProject && "projectCard", className)}
     >
       {media ? (
         <div
