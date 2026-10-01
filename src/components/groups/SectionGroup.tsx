@@ -101,16 +101,18 @@ function Panel({
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
   const { scrollY } = useScroll();
 
-  // Sticky elements stop moving in the viewport, so target-based useScroll progress
-  // can freeze while a panel is pinned. Derive progress from its document-flow
-  // position instead; offsetTop is unaffected by position: sticky.
+  // Sticky panels need progress based on the distance they can actually travel
+  // before the next panel arrives. Using the panel's full height made a 155svh
+  // opening advance only ~35% during its 55svh runway, so exit scenes never
+  // reached their fade/crossover states.
   const scrollYProgress = useTransform(scrollY, (latest) => {
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
 
     const start = getDocumentOffsetTop(element);
-    const distance = Math.max(element.offsetHeight, window.innerHeight, 1);
-    return Math.min(1, Math.max(0, (latest - start) / distance));
+    const viewportHeight = Math.max(window.innerHeight, 1);
+    const scrollRunway = Math.max(element.offsetHeight - viewportHeight, 1);
+    return Math.min(1, Math.max(0, (latest - start) / scrollRunway));
   });
 
   useEffect(() => {

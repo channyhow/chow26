@@ -183,3 +183,9 @@
 
   #studio-founders .media { max-width: 18rem; }
 }
+
+@include mobile-down {
+  #studio-founders .media {
+    margin-inline: auto;
+  }
+}
