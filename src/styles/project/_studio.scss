@@ -4,16 +4,13 @@
 
 /* ==================================
    STUDIO — SERVICES
-   Page file owns composition only.
-   Card/TextBlock presentation lives with the components.
+   Page owns section composition only.
+   HorizontalScroll, Card, Media and TextBlock own their presentation.
 ================================== */
 
 #studio-services {
   --section-space: 0;
   --text-width: none;
-  --studio-service-media: 30rem;
-  --studio-service-copy: 28rem;
-  --studio-service-gap: clamp(#{$space-3}, 5vw, #{$space-5});
   scroll-margin-top: calc(#{$header-height} + #{$space-2});
   padding-inline: 0;
 }
@@ -36,127 +33,8 @@
   padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
 }
 
-#studio-services .horizontalScroll__labels {
-  display: block;
-  min-height: 1.4em;
-}
-
-#studio-services .horizontalScroll__labels span {
-  display: none;
-  opacity: 1;
-}
-
-#studio-services .horizontalScroll__labels span.is-active { display: block; }
-
-#studio-services .horizontalScroll__rule {
-  background: color-mix(in srgb, currentColor 22%, transparent);
-}
-
-#studio-services .horizontalScroll__rule span {
-  height: 2px;
-  background: color-mix(in srgb, currentColor 72%, transparent);
-}
-
-#studio-services .horizontalScroll__item {
-  justify-items: center;
-  padding-inline: $page-gutter;
-}
-
-#studio-services .card--service {
-  display: grid;
-  grid-template-columns: minmax(0, var(--studio-service-media)) minmax(17rem, var(--studio-service-copy));
-  grid-template-areas: "media body";
-  align-items: center;
-  gap: var(--studio-service-gap);
-  width: fit-content;
-  max-width: 100%;
-  margin-inline: auto;
-}
-
-#studio-services .card--service .card__mediaWrap {
-  grid-area: media;
-  justify-self: start;
-}
-
-#studio-services .card--service .card__body {
-  grid-area: body;
-  align-self: center;
-  max-width: var(--studio-service-copy);
-}
-
-@include desktop-down {
-  #studio-services {
-    --studio-service-media: 27rem;
-    --studio-service-gap: $layout-gap;
-  }
-}
-
-@include tablet-up {
-  @include desktop-down {
-    #studio-services .card--service {
-      @include site-grid;
-      width: 100%;
-      align-items: start;
-      gap: 0;
-    }
-
-    #studio-services .card--service .card__mediaWrap { grid-column: 1 / span 4; }
-    #studio-services .card--service .card__media { @include media-frame($ratio-portrait); }
-
-    #studio-services .card--service .card__body {
-      grid-column: 5 / span 4;
-      max-width: none;
-      padding-left: $space-3;
-    }
-
-    #studio-services .card--service .textBlock__title { display: none; }
-  }
-}
-
 @include tablet-down {
-  #studio-services { --studio-service-media: 28rem; }
   #studio-services .horizontalScroll__progress { display: none; }
-
-  #studio-services .horizontalScroll__item {
-    justify-items: stretch;
-    padding-inline: $page-gutter;
-  }
-
-  #studio-services .card--service {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "media" "body";
-    row-gap: $section-content-gap;
-    width: min(100%, 34rem);
-    padding-block: $space-2;
-  }
-
-  #studio-services .card--service .card__mediaWrap { width: min(100%, var(--studio-service-media)); }
-  #studio-services .card--service .card__body { width: min(100%, 30rem); padding-top: 0; }
-  #studio-services .card--service .textBlock__title { display: none; }
-}
-
-@include mobile-down {
-  #studio-services .horizontalScroll__item {
-    align-items: start;
-    padding-top: calc(#{$header-height} + #{$space-3});
-    padding-bottom: $space-3;
-  }
-
-  #studio-services .card--service {
-    row-gap: $space-2;
-    padding-block: 0;
-  }
-
-  #studio-services .card--service .card__media { @include media-frame($ratio-wide); }
-  #studio-services .card--service .textBlock { gap: $flow-tight; }
-
-  #studio-services .card--service .textBlock__title {
-    display: block;
-    @include type-heading-sm;
-    max-width: none;
-  }
-
-  #studio-services .card--service .textBlock__content { display: none; }
 }
 
 /* ==================================
@@ -226,12 +104,10 @@
   }
 
   #studio-approach > .section__inner { display: block; }
-
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-lg;
     max-width: 10ch;
   }
-
   #studio-approach .grid__item:not(:first-child) .card--editorial { padding: 0; }
 }
 
@@ -245,7 +121,6 @@
   #studio-approach .grid { overflow: visible; }
 
   #studio-approach .grid {
-    display: grid;
     grid-template-columns: 1fr;
     gap: $space-3;
   }
@@ -258,17 +133,7 @@
     min-height: 0;
   }
 
-  #studio-approach .grid__item .card,
-  #studio-approach .grid__item .card__body,
-  #studio-approach .grid__item .textBlock {
-    width: 100%;
-    max-width: none;
-  }
-
-  #studio-approach .grid__item:first-child .textBlock__title {
-    @include type-heading-lg;
-    max-width: 9ch;
-  }
+  #studio-approach .grid__item:first-child .textBlock__title { max-width: 9ch; }
 
   #studio-approach .grid__item:not(:first-child) .card--editorial {
     height: auto;
@@ -303,9 +168,6 @@
 }
 
 #studio-founders .grid { grid-template-columns: 1fr; }
-
-#studio-founders .card--profile .card__mediaWrap { grid-column: 1 / span 4; }
-#studio-founders .card--profile .card__body { grid-column: 1 / span 4; }
 
 @include tablet-up {
   #studio-founders .card--profile .card__mediaWrap { grid-column: 1 / span 4; }
