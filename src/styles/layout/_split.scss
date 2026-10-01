@@ -15,11 +15,16 @@
 }
 
 @include desktop-up {
+  .split__primary,
+  .split__secondary {
+    grid-row: 1;
+  }
+
   .split__primary {
-    grid-column: var(--split-primary-column, 1 / span 5);
+    grid-column: var(--split-primary-column, 9 / -1);
   }
 
   .split__secondary {
-    grid-column: var(--split-secondary-column, 7 / span 6);
+    grid-column: var(--split-secondary-column, 1 / span 5);
   }
 }
