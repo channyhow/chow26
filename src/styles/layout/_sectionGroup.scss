@@ -123,10 +123,19 @@
   min-height: 100svh;
 }
 
-// The opening needs a short uncovered runway so its scroll-linked choreography
-// can actually be seen before the following cover panel enters the viewport.
+// The opening is a scroll track containing a pinned visual plane. The extra
+// track height is real layout distance, so panel scrollProgress advances while
+// the opening remains visible before the next cover panel arrives.
 .sectionGroup__panel[data-panel-id="home-opening-panel"] {
-  margin-bottom: 55svh;
+  position: relative;
+  top: auto;
+  min-height: 155svh;
+}
+
+.sectionGroup__panel[data-panel-id="home-opening-panel"] > .sectionGroup__surface {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
 }
 
 @include desktop-up {
