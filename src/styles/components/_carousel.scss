@@ -2,7 +2,6 @@
 @use "../foundation/mixins" as *;
 
 .carousel {
-  --carousel-media-ratio: #{$ratio-landscape};
   position: relative;
   display: grid;
   gap: $space-2;
@@ -32,9 +31,6 @@
   width: 100%;
   height: 100%;
 }
-
-/* Carousel owns only the media slot ratio. Media owns asset rendering. */
-.carousel__item .media { --media-ratio: var(--carousel-media-ratio); }
 
 .carousel__controls {
   display: flex;
@@ -73,10 +69,6 @@
 }
 
 @include mobile-down {
-  .section[data-source="projects"][data-featured="true"] .carousel {
-    --carousel-media-ratio: #{$ratio-wide};
-  }
-
   .section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
     content: "→";
     position: absolute;
