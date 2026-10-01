@@ -1,5 +1,6 @@
 export type MediaKind = "image" | "video" | "mux";
 export type MediaFit = "cover" | "contain";
+export type MediaRatio = "square" | "landscape" | "portrait" | "wide";
 
 export type FocalPoint = {
   x: number;
@@ -18,10 +19,8 @@ type MediaBase = {
   alt?: string;
   width?: number;
   height?: number;
-  /** Display framing owned by Media. Falls back to intrinsic dimensions. */
-  aspectRatio?: string;
-  aspectRatioTablet?: string;
-  aspectRatioMobile?: string;
+  /** Semantic display framing. Media is the sole owner of presentation ratio. */
+  ratio?: MediaRatio;
   fit?: MediaFit;
   focalPoint?: FocalPoint;
   caption?: string;
