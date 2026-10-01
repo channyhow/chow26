@@ -8,41 +8,27 @@
   border-radius: var(--radius-surface, #{$radius-default});
   background: var(--surface, transparent);
 
-  // Every card uses the same media chain. The card variant owns only the slot
-  // ratio; Media owns rendering and focal position.
+  /* Card owns the media slot. Media owns frame and asset rendering. */
   &__mediaWrap {
     width: 100%;
     min-width: 0;
     overflow: hidden;
   }
 
-  &__media,
-  &__media .media__frame,
-  &__media .media__asset {
-    width: 100%;
-    height: 100%;
-  }
-
   &__media {
-    display: block;
-    margin: 0;
-    overflow: hidden;
+    height: 100%;
     border-radius: $radius-none;
     background: transparent;
+    --media-ratio: auto;
   }
 
-  &__media .media__frame {
-    aspect-ratio: auto;
-    overflow: hidden;
-    background: transparent;
+  &__media .media__frame { height: 100%; }
+
+  &__body {
+    max-width: none;
+    padding: $flow-default;
   }
 
-  &__media .media__asset {
-    display: block;
-    object-fit: cover;
-  }
-
-  &__body { max-width: none; padding: $flow-default; }
   .media__asset { transition: transform $transition-reveal; }
   .textBlock__title { max-width: 22ch; }
   .textBlock__subtitle p { @include type-body; }
@@ -69,15 +55,14 @@
   .textBlock__content > * + * { margin-top: $flow-default; }
   .textBlock__footer { width: fit-content; margin-top: $flow-tight; padding-top: 0; }
 
-  @include tablet-down {
-    grid-template-columns: 1fr;
-  }
+  @include tablet-down { grid-template-columns: 1fr; }
 }
 
 .card--editorial {
   min-width: 0;
   overflow: visible;
   background: transparent;
+
   .card__body { width: 100%; max-width: none; padding: 0; }
   .card__body.textBlock { gap: $flow-default; }
   .textBlock__title { @include type-heading-sm; max-width: none; }
@@ -98,7 +83,12 @@
     padding: 0;
     background: transparent;
   }
-  .card__media .media__asset { filter: grayscale(1); mix-blend-mode: multiply; }
+
+  .card__media .media__asset {
+    filter: grayscale(1);
+    mix-blend-mode: multiply;
+  }
+
   .card__body.textBlock { align-self: center; grid-auto-rows: max-content; align-content: start; gap: $flow-default; width: 100%; max-width: none; padding: $space-2 0; }
   .textBlock__title { @include type-heading-lg; max-width: 9ch; line-height: .92; letter-spacing: -.035em; }
   .textBlock__subtitle { @include type-heading-sm; max-width: 22ch; }
