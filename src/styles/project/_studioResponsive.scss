@@ -1,0 +1,38 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+
+// Studio-specific responsive composition.
+// Keep the founder item full-width at tablet size so the nested site grid,
+// rather than the generic collection grid, owns the portrait/copy split.
+@include tablet-up {
+  @include desktop-down {
+    #studio-founders .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #studio-founders .grid__item {
+      grid-column: 1 / -1;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #studio-founders .card {
+      @include site-grid;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #studio-founders .card__mediaWrap {
+      grid-column: 1 / 4;
+      width: 100%;
+      min-width: 0;
+    }
+
+    #studio-founders .card__body.textBlock {
+      grid-column: 5 / -1;
+      width: 100%;
+      min-width: 0;
+      padding: 0;
+    }
+  }
+}
