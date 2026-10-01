@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion, type MotionValue } from "motion/react";
 
-import { Card } from "@/components/content/Card";
+import { CardItem } from "@/components/content/CardItem";
 import { Carousel } from "@/components/content/Carousel";
 import { ContentSwitcher } from "@/components/content/ContentSwitcher";
 import { Gallery } from "@/components/content/Gallery";
@@ -70,7 +70,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     return () => mediaQuery.removeEventListener("change", updateViewport);
   }, []);
 
-  const renderCard = (item: (typeof items)[number], index?: number) => <Card key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
+  const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
   const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined} progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none" && !isLongFormList} scrollLinked={motionEnabled && motionLevel !== "none" && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
