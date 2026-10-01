@@ -34,7 +34,7 @@ export function CardItem({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const isService = variant === "service";
-  const usesSquareMedia = isService || variant === "profile";
+  const ratio = isService || variant === "profile" ? "square" : undefined;
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject
     ? { title: item.title, ...(projectMission ? { text: projectMission } : {}) }
@@ -55,7 +55,7 @@ export function CardItem({
           data-media-type={media.type}
           data-orientation={getMediaOrientation(media)}
         >
-          <Media media={media} className="card__media" aspectRatio={usesSquareMedia ? "1 / 1" : undefined} />
+          <Media media={media} className="card__media" ratio={ratio} />
         </div>
       ) : null}
       <TextBlock
