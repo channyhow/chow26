@@ -12,23 +12,29 @@
   background: var(--secondary);
 }
 
-/* Route-start contract: the first normal section, or the first section inside
-   the first panel, clears the persistent header. Section spacing remains owned
-   by Section; this only adds the header offset once at the page boundary. */
+/* Route-start contract: every conventional first section clears the persistent
+   header exactly once. Section owns its normal rhythm; the page only contributes
+   the header-safe offset. */
 .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
 .page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
   padding-top: calc(var(--section-space, #{$section-space}) + var(--page-start-offset));
 }
 
-/* Immersive route openings own their internal composition, but their content
-   still receives header clearance rather than relying on a page-specific patch. */
+/* Horizontal-scroll sections own a sticky viewport, so padding the Section would
+   distort its scroll runway. Apply route-start clearance to the component instead.
+   This remains valid when the component collapses to normal flow on tablet/mobile. */
+.page__content > .section:first-child[data-layout="horizontal-scroll"] .horizontalScroll__viewport,
+.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="horizontal-scroll"] .horizontalScroll__viewport {
+  padding-top: var(--page-start-offset);
+}
+
+/* Immersive route openings deliberately allow media behind the header; readable
+   overlay content still clears it. */
 .page__content > .section:first-child[data-layout="media-overlay"] .section__overlayContent,
 .page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="media-overlay"] .section__overlayContent {
   padding-top: calc(clamp(#{$space-4}, 12vh, 9rem) + var(--page-start-offset));
 }
 
-/* Footer base styling is semantic, not dependent on where the footer lives.
-   Top-level page footers and footers rendered inside scroll panels share it. */
 .page__footer,
 .siteFooter {
   position: relative;
@@ -40,9 +46,6 @@
   --footer-reveal-height: clamp(24rem, 58svh, 44rem);
 }
 
-/* Footer reveal only applies to the direct page-level footer wrapper.
-   A footer inside a scroll panel keeps the same visual styling without becoming
-   fixed inside the panel. */
 @include tablet-up {
   .page[data-footer-reveal="true"] > .page__content {
     margin-bottom: var(--footer-reveal-height);
