@@ -2,9 +2,7 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
-.linkPageShell {
-  width: 100%;
-}
+.linkPageShell { width: 100%; }
 
 .linkPage {
   position: relative;
@@ -31,9 +29,7 @@
 }
 
 .linkPage__campaign,
-.linkPage__campaignText.textBlock {
-  width: 100%;
-}
+.linkPage__campaignText.textBlock { width: 100%; }
 
 .linkPage__campaignText.textBlock {
   display: grid;
@@ -79,21 +75,9 @@
   color: $color-accent;
 }
 
-// The action component keeps its canonical styling. Only the campaign CTA
-// receives the accent interaction required by this page.
-.linkPage__campaignText .actions--panel .actions__link--primary:hover,
-.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:hover,
-.linkPage__campaignText .actions--panel .actions__link--primary:focus-visible,
-.linkPage__campaignText .actions--panel .actions__link[data-priority="primary"]:focus-visible {
-  background: $color-accent;
-  color: $color-primary;
-}
-
-// LinkPage alone gets an expanded desktop footer; the reusable footer stays standard.
+/* This page alone deliberately expands the standard footer on desktop. */
 @media (min-width: 64rem) {
-  .linkPageShell > .siteFooter {
-    min-height: 80svh;
-  }
+  .linkPageShell > .siteFooter { min-height: 80svh; }
 
   .linkPageShell > .siteFooter .siteFooter__inner {
     min-height: calc(80svh - #{$space-3});
@@ -133,11 +117,6 @@
     width: 100%;
     max-width: 34rem;
     margin-left: auto;
-  }
-
-  .linkPage__campaignText .actions--panel .actions__link {
-    min-height: 4.35rem;
-    padding: $space-2;
   }
 }
 
