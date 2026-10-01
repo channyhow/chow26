@@ -54,7 +54,8 @@
     },
     "content": {
       "header": {
-        "title": "À découvrir aussi"
+        "eyebrow": "À découvrir aussi",
+        "title": "Des réponses différentes pour des contextes différents."
       }
     }
   },
