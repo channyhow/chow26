@@ -54,7 +54,7 @@ export function CardItem({
           data-media-type={media.type}
           data-orientation={getMediaOrientation(media)}
         >
-          <Media media={media} className="card__media" />
+          <Media media={media} className="card__media" aspectRatio={isService ? "1 / 1" : undefined} />
         </div>
       ) : null}
       <TextBlock
