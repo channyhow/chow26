@@ -71,10 +71,13 @@
   }
 }
 
+/* Meta rows are data, not stacked prose. Keep label/value relationships visible
+   on tablet instead of doubling every row's height. */
 @include tablet-down {
   .textBlock--meta-rows .textBlock__meta > * {
-    grid-template-columns: 1fr;
-    gap: $flow-tight;
+    grid-template-columns: minmax(7rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: $flow-default;
   }
 }
 
@@ -84,7 +87,6 @@
 
     .textBlock__meta > * {
       grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
-      align-items: baseline;
       gap: $flow-default;
     }
 
