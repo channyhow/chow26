@@ -34,6 +34,12 @@
     border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   }
 
+  /* The first service starts below the persistent header instead of using the
+     media as a backdrop for navigation. */
+  #studio-services .horizontalScroll__item:first-child {
+    padding-top: calc(#{$header-height} + #{$space-3});
+  }
+
   #studio-services .section__horizontalScrollLayer,
   #studio-services .section__horizontalScrollLayer .scrollScene__content,
   #studio-services .card--service,
@@ -97,12 +103,60 @@
     padding: $space-3 $page-gutter $space-4;
   }
 
-  #studio-services .card--service .card__split { display: block; }
-  #studio-services .card--service .split__secondary { margin-top: $space-2; }
+  #studio-services .horizontalScroll__item:first-child {
+    padding-top: calc(#{$header-height} + #{$space-2});
+  }
+
+  #studio-services .card--service .card__split {
+    display: block;
+  }
+
+  #studio-services .card--service .split__secondary {
+    margin-top: $space-3;
+  }
+
   #studio-services .card--service .card__media,
-  #studio-services .card--service .media__frame { aspect-ratio: 4 / 3; }
-  #studio-services .card--service .textBlock__title { @include type-heading-md; }
-  #studio-services .card--service .textBlock__content { max-width: 32ch; }
+  #studio-services .card--service .media__frame {
+    aspect-ratio: $ratio-wide;
+  }
+
+  #studio-services .card--service .textBlock__title {
+    @include type-heading-md;
+  }
+
+  #studio-services .card--service .textBlock__content {
+    max-width: 32ch;
+  }
+}
+
+/* At larger phone / small-tablet widths, keep the image full-width and let the
+   explanatory copy and practical buying information share the row beneath it.
+   Narrow phones retain the single-column reading order. */
+@media (min-width: 36rem) and (max-width: 48.75rem) {
+  #studio-services .card--service .card__body.textBlock {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, .9fr);
+    column-gap: clamp(#{$space-3}, 5vw, #{$space-4});
+    row-gap: $space-2;
+    align-items: start;
+  }
+
+  #studio-services .card--service .textBlock__header,
+  #studio-services .card--service .textBlock__content {
+    grid-column: 1;
+  }
+
+  #studio-services .card--service .textBlock__meta {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin-top: 0;
+  }
+
+  #studio-services .card--service .textBlock__footer {
+    grid-column: 1;
+    margin-top: $space-1;
+  }
 }
 
 /* Approach */
