@@ -17,7 +17,7 @@
 
 @include tablet-down {
   .split {
-    --split-gap: #{$flow};
+    --split-gap: #{$flow-default};
     align-items: start;
   }
 }
