@@ -3,8 +3,8 @@
 
 .scrollScene {
   position: relative;
-  overflow: clip;
   min-height: min(80svh, 48rem);
+  overflow: clip;
 }
 
 .section__scrollScene,
@@ -14,9 +14,7 @@
   overflow: visible;
 }
 
-.section__scrollLayer .scrollScene__content {
-  width: 100%;
-}
+.section__scrollLayer .scrollScene__content { width: 100%; }
 
 .scrollScene__content {
   position: relative;
@@ -39,10 +37,7 @@
   border-radius: var(--radius-media, #{$radius-full});
 }
 
-.scrollScene__shape--slow {
-  top: 10%;
-  left: 4%;
-}
+.scrollScene__shape--slow { top: 10%; left: 4%; }
 
 .scrollScene__shape--medium {
   top: 34%;
@@ -66,26 +61,13 @@
   background: color-mix(in srgb, currentColor 55%, transparent);
 }
 
-.scrollScene[data-preset="ambient"] .scrollScene__shape:nth-child(2) {
-  @include shape-blob;
-}
+.scrollScene[data-preset="ambient"] .scrollScene__shape:nth-child(2),
+[data-variant="organic"] .scrollScene__shape { @include shape-blob; }
 
-.scrollScene[data-preset="draw"] .scrollScene__shape {
-  opacity: 0.28;
-}
+.scrollScene[data-preset="draw"] .scrollScene__shape { opacity: 0.28; }
+[data-variant="editorial"] .scrollScene__shape { border-radius: $radius-none; }
 
-[data-variant="organic"] .scrollScene__shape {
-  @include shape-blob;
-}
-
-[data-variant="editorial"] .scrollScene__shape {
-  border-radius: $radius-none;
-}
-
-/* A drift scene with an exit range is the strong opening choreography: media
-   leads the scroll while copy holds briefly, creating a deliberate overlap
-   before both layers leave the first panel. The same sequence survives reduced
-   motion because its amplitude is already scaled in ScrollScene. */
+/* Opening choreography driven by ScrollScene variables. */
 .scrollScene[data-attention-exit="true"] .section__media {
   transform: translate3d(0, var(--scene-media-y, 0px), 0)
     scale(var(--scene-media-scale, 1));
@@ -98,13 +80,3 @@
   transform: translate3d(0, var(--scene-copy-y, 0px), 0);
   will-change: transform, opacity;
 }
-
-// @include reduced-motion {
-//   .scrollScene__shape {
-//     transform: none !important;
-//   }
-
-//   .scrollScene[data-preset="ambient"] .scrollScene__line {
-//     transform: none !important;
-//   }
-// }
