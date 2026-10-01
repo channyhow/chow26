@@ -8,8 +8,40 @@
   border-radius: var(--radius-surface, #{$radius-default});
   background: var(--surface, transparent);
 
-  &__mediaWrap { min-width: 0; }
-  &__media { border-radius: $radius-none; }
+  // Every card uses the same media chain. The card variant owns only the slot
+  // ratio; Media owns rendering and focal position.
+  &__mediaWrap {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  &__media,
+  &__media .media__frame,
+  &__media .media__asset {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__media {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    border-radius: $radius-none;
+    background: transparent;
+  }
+
+  &__media .media__frame {
+    aspect-ratio: auto;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  &__media .media__asset {
+    display: block;
+    object-fit: cover;
+  }
+
   &__body { max-width: none; padding: $flow-default; }
   .media__asset { transition: transform $transition-reveal; }
   .textBlock__title { max-width: 22ch; }
@@ -23,8 +55,8 @@
 .card--service {
   overflow: visible;
   background: transparent;
-  .card__mediaWrap { width: 100%; min-width: 0; }
-  .card__media { width: 100%; min-width: 0; background: transparent; @include media-frame($ratio-square); }
+
+  .card__mediaWrap { aspect-ratio: $ratio-square; }
   .card__body { width: 100%; min-width: 0; padding: $space-2 0 0; }
   .card__body.textBlock { display: flex; flex-direction: column; gap: $flow-default; max-width: none; }
   .textBlock__eyebrow { @include type-eyebrow; }
@@ -53,9 +85,11 @@
   overflow: visible;
   background: transparent;
 
-  .card__mediaWrap { min-width: 0; padding: 0; background: transparent; }
-  .card__media { padding-top: 0; background: transparent; @include media-frame($ratio-square); }
-  .card__media .media, .card__media .media__frame { background: transparent; }
+  .card__mediaWrap {
+    aspect-ratio: $ratio-square;
+    padding: 0;
+    background: transparent;
+  }
   .card__media .media__asset { filter: grayscale(1); mix-blend-mode: multiply; }
   .card__body.textBlock { align-self: center; grid-auto-rows: max-content; align-content: start; gap: $flow-default; width: 100%; max-width: none; padding: $space-2 0; }
   .textBlock__title { @include type-heading-lg; max-width: 9ch; line-height: .92; letter-spacing: -.035em; }
@@ -74,26 +108,11 @@
 }
 
 .projectCard {
-  // Card composition owns the displayed ratio. Intrinsic media ratio must not
-  // compete with the project-card frame.
   .card__mediaWrap {
-    width: 100%;
-    min-width: 0;
     aspect-ratio: var(--card-media-ratio, #{$ratio-wide});
-    overflow: hidden;
     background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
   }
 
-  .card__media,
-  .card__media .media__frame,
-  .card__media .media__asset {
-    width: 100%;
-    height: 100%;
-  }
-
-  .card__media { margin: 0; overflow: hidden; background: transparent; }
-  .card__media .media__frame { aspect-ratio: auto; overflow: hidden; }
-  .card__media .media__asset { display: block; object-fit: cover; object-position: center; }
   .card__body { display: grid; gap: $flow-default; padding: $flow-default; }
   .textBlock, .textBlock__header, .textBlock__content, .textBlock__footer { gap: $flow-tight; }
   .textBlock__content { opacity: $opacity-quiet; }
