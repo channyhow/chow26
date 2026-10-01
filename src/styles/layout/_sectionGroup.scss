@@ -123,6 +123,12 @@
   min-height: 100svh;
 }
 
+// The opening needs a short uncovered runway so its scroll-linked choreography
+// can actually be seen before the following cover panel enters the viewport.
+.sectionGroup__panel[data-panel-id="home-opening-panel"] {
+  margin-bottom: 55svh;
+}
+
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section {
     margin-top: calc($space-4 * -1);
