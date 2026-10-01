@@ -272,9 +272,8 @@
 
 @include tablet-down {
   #studio-founders {
-    /* Keep the desktop split on tablet; only tighten its proportions. */
-    --split-primary-column: 1 / span 5;
-    --split-secondary-column: 7 / -1;
+    --split-primary-column: 1 / 4;
+    --split-secondary-column: 5 / -1;
     min-height: 100svh;
   }
 
