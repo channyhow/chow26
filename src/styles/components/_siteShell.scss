@@ -10,13 +10,10 @@
   font-family: var(--font-body);
 }
 
-.site__canvas {
-  min-height: 100svh;
-}
+.site__canvas { min-height: 100svh; }
 
 .skipLink {
   @include type-ui-compact;
-
   position: fixed;
   inset: $space-1 auto auto $space-1;
   z-index: $z-loader;
@@ -47,31 +44,16 @@
   min-height: $header-height;
   padding-inline: var(--header-gutter);
   background: transparent;
-  // border-bottom: 1px solid color-mix(in srgb, currentColor 8%, transparent);
   backdrop-filter: blur(0.4rem) saturate(0.92);
   -webkit-backdrop-filter: blur(0.4rem) saturate(0.92);
-  box-shadow: none;
   color: var(--header-color, var(--primary));
   pointer-events: none;
-  transition:
-    color $transition-interface,
-    background-color $transition-interface;
+  transition: color $transition-interface, background-color $transition-interface;
 }
 
-.header[data-over-color="primary"] {
-  // background: color-mix(in srgb, var(--theme-primary) 42%, transparent);
-  color: var(--secondary);
-}
-
-.header[data-over-color="secondary"] {
-  // background: color-mix(in srgb, var(--theme-secondary) 38%, transparent);
-  color: var(--primary);
-}
-
-.header[data-over-color="accent"] {
-  // background: color-mix(in srgb, var(--theme-accent) 34%, transparent);
-  color: var(--primary);
-}
+.header[data-over-color="primary"] { color: var(--secondary); }
+.header[data-over-color="secondary"],
+.header[data-over-color="accent"] { color: var(--primary); }
 
 .header[data-over-color="special"] {
   background: color-mix(in srgb, var(--theme-special) 34%, transparent);
@@ -90,7 +72,6 @@
 .header__logo {
   @include type-ui-compact;
   @include interactive-text;
-
   pointer-events: auto;
   transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0);
 }
@@ -105,7 +86,6 @@
 .header__nav a {
   @include type-ui-compact;
   @include interactive-text;
-
   position: relative;
   pointer-events: auto;
 }
@@ -141,9 +121,7 @@
   align-items: center;
   gap: 0.45em;
 
-  span:last-child {
-    transition: transform $transition-hover;
-  }
+  span:last-child { transition: transform $transition-hover; }
 
   @include hover {
     span:last-child { transform: translateX(0.2em); }
@@ -155,49 +133,17 @@
   transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0);
 }
 
-.header__menuSlot .burgerButton {
-  pointer-events: auto;
-}
+.header__menuSlot .burgerButton { pointer-events: auto; }
 
 .site[data-drawer="menu"] .header,
 .site[data-drawer="contact"] .header,
-.site[data-drawer="reservation"] .header {
-  color: var(--theme-secondary);
-}
+.site[data-drawer="reservation"] .header { color: var(--theme-secondary); }
 
 .site[data-drawer="menu"] .header {
   background: color-mix(in srgb, var(--theme-primary) 82%, transparent);
-  border-bottom-color: color-mix(in srgb, var(--theme-secondary) 10%, transparent);
 }
 
 @include desktop-up {
-  .header[data-navigation="inline"] .header__nav {
-    display: flex;
-  }
-
-  .header[data-navigation="inline"] .header__menuSlot {
-    display: none;
-  }
+  .header[data-navigation="inline"] .header__nav { display: flex; }
+  .header[data-navigation="inline"] .header__menuSlot { display: none; }
 }
-
-@include tablet-down {
-  .header__nav {
-    display: none;
-  }
-}
-
-// @include reduced-motion {
-//   .skipLink,
-//   .header__nav a::after,
-//   .header__nav a[data-nav-variant="cta"] span:last-child {
-//     transition: none;
-//   }
-
-//   .header {
-//     transition-duration: $duration-fast;
-//   }
-
-//   .header__nav a[data-nav-variant="cta"]:hover span:last-child {
-//     transform: none;
-//   }
-// }
