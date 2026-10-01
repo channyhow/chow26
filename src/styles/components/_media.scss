@@ -12,9 +12,13 @@
 
 .media__frame {
   width: 100%;
-  aspect-ratio: var(--media-ratio, auto);
   overflow: hidden;
 }
+
+.media[data-ratio="square"] .media__frame { aspect-ratio: $ratio-square; }
+.media[data-ratio="landscape"] .media__frame { aspect-ratio: $ratio-landscape; }
+.media[data-ratio="portrait"] .media__frame { aspect-ratio: $ratio-portrait; }
+.media[data-ratio="wide"] .media__frame { aspect-ratio: $ratio-wide; }
 
 .media__asset {
   display: block;
@@ -28,14 +32,6 @@
   @include type-caption;
   padding: $space-1 $space-2;
   color: color-mix(in srgb, currentColor 65%, transparent);
-}
-
-@include tablet-down {
-  .media__frame { aspect-ratio: var(--media-ratio-tablet, var(--media-ratio, auto)); }
-}
-
-@include mobile-down {
-  .media__frame { aspect-ratio: var(--media-ratio-mobile, var(--media-ratio-tablet, var(--media-ratio, auto))); }
 }
 
 [data-variant="organic"] .media:nth-of-type(even) {
