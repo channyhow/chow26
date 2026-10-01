@@ -251,8 +251,11 @@
 
 @include mobile-down {
   #home-opening .section__mediaOverlay { min-height: 100svh; }
-  #home-opening .section__media { align-self: end; height: 52svh; }
-  #home-opening .section__media .media__asset { object-position: center 58%; }
+  #home-opening .section__media {
+    align-self: end;
+    height: 52svh;
+    --media-object-position: center 58%;
+  }
 
   #home-opening .section__overlayContent {
     align-items: flex-start;
