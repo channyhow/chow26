@@ -3,6 +3,7 @@
 
 .split {
   @include site-grid(var(--section-gap, #{$flow-loose}));
+  align-items: center;
   row-gap: var(--section-gap, #{$flow-loose});
 
   &__primary,
