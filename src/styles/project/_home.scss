@@ -133,10 +133,10 @@
 }
 
 #home-services { --split-primary-column: 9 / -1; --split-secondary-column: 1 / span 7; }
-#home-services .media__frame { aspect-ratio: $ratio-landscape; }
+#home-services .media { --media-ratio: #{$ratio-landscape}; }
 
 #final-cta { --split-primary-column: 2 / span 4; --split-secondary-column: 7 / -1; }
-#final-cta .media__frame { aspect-ratio: $ratio-portrait; }
+#final-cta .media { --media-ratio: #{$ratio-portrait}; }
 
 #projects-featured-carousel { min-height: 100svh; }
 #projects-featured-carousel .section__inner {
@@ -153,9 +153,6 @@
     width: 58%;
     height: 44svh;
   }
-
-  #home-opening .section__media .media__frame,
-  #home-opening .section__media .media__asset { height: 100%; }
 
   #home-opening .section__header.textBlock { align-items: end; }
 
@@ -196,7 +193,7 @@
   #home-services .split__primary { order: 2; justify-self: end; }
   #final-cta .split__primary { order: 1; }
   #final-cta .split__secondary { order: 2; margin-top: $space-2; }
-  #final-cta .media__frame { aspect-ratio: $ratio-landscape; }
+  #final-cta .media { --media-ratio: #{$ratio-landscape}; }
 }
 
 @include tablet-down {
@@ -255,10 +252,6 @@
 @include mobile-down {
   #home-opening .section__mediaOverlay { min-height: 100svh; }
   #home-opening .section__media { align-self: end; height: 52svh; }
-
-  #home-opening .section__media .media__frame,
-  #home-opening .section__media .media__asset { height: 100%; }
-
   #home-opening .section__media .media__asset { object-position: center 58%; }
 
   #home-opening .section__overlayContent {
@@ -300,6 +293,6 @@
 
   #projects-featured-gallery .projectCard .card__body { padding-top: $space-1; }
 
-  #home-services .media__frame,
-  #final-cta .media__frame { aspect-ratio: $ratio-landscape; }
+  #home-services .media,
+  #final-cta .media { --media-ratio: #{$ratio-landscape}; }
 }
