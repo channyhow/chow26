@@ -100,10 +100,9 @@
   #studio-services .card--service .textBlock__content { max-width: 32ch; }
 }
 
-/* 768px sits on the tablet breakpoint, where the generic horizontal component
-   intentionally switches to its wide-screen mode. Studio services need the
-   opposite behaviour: keep the editorial vertical reading mode through small
-   tablets, then introduce horizontal storytelling only once there is room. */
+/* Keep the existing breakpoint, but treat large phones / tablets as compact
+   desktop compositions rather than enlarged mobile cards. Interaction becomes
+   vertical; the editorial split survives. */
 @media (min-width: 36rem) and (max-width: 48.75rem) {
   .sectionGroup__panel[data-panel-id="studio-services-panel"] {
     position: relative;
@@ -115,9 +114,7 @@
     min-height: 0;
   }
 
-  #studio-services .horizontalScroll {
-    height: auto;
-  }
+  #studio-services .horizontalScroll { height: auto; }
 
   #studio-services .horizontalScroll__viewport {
     position: static;
@@ -126,9 +123,7 @@
     overflow: visible;
   }
 
-  #studio-services .horizontalScroll__progress {
-    display: none;
-  }
+  #studio-services .horizontalScroll__progress { display: none; }
 
   #studio-services .horizontalScroll__track {
     display: grid;
@@ -156,47 +151,47 @@
     min-width: 0;
   }
 
+  /* Preserve the desktop relationship: media and information remain side by
+     side. The previous stacked treatment made 768px feel like a large phone. */
   #studio-services .card--service .card__split {
-    display: block;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
+    gap: $space-3;
+    align-items: center;
+  }
+
+  #studio-services .card--service .split__primary,
+  #studio-services .card--service .split__secondary {
+    min-width: 0;
+    margin-top: 0;
   }
 
   #studio-services .card--service .card__media,
   #studio-services .card--service .media__frame {
     width: 100%;
-    aspect-ratio: $ratio-wide;
-  }
-
-  #studio-services .card--service .split__secondary {
-    margin-top: $space-3;
+    aspect-ratio: 4 / 3;
   }
 
   #studio-services .card--service .card__body.textBlock {
-    display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
-    column-gap: $space-3;
-    row-gap: $space-2;
-    align-items: start;
+    display: flex;
+    gap: $flow-tight;
   }
 
-  #studio-services .card--service .textBlock__header,
+  #studio-services .card--service .textBlock__title {
+    @include type-heading-sm;
+    max-width: 12ch;
+  }
+
   #studio-services .card--service .textBlock__content {
-    grid-column: 1;
+    max-width: 30ch;
   }
 
   #studio-services .card--service .textBlock__meta {
-    grid-column: 2;
-    grid-row: 1 / span 3;
-    align-self: start;
-    margin-top: 0;
-  }
-
-  #studio-services .card--service .textBlock__footer {
-    grid-column: 1;
     margin-top: $space-1;
   }
 
   #studio-services .card--service .textBlock__meta > * {
-    grid-template-columns: minmax(5.75rem, .7fr) minmax(0, 1.3fr);
+    grid-template-columns: minmax(5.5rem, .7fr) minmax(0, 1.3fr);
     gap: $space-2;
   }
 
@@ -277,14 +272,28 @@
 
 @include tablet-down {
   #studio-founders {
+    /* Keep the desktop split on tablet; only tighten its proportions. */
+    --split-primary-column: 1 / span 5;
+    --split-secondary-column: 7 / -1;
+    min-height: 100svh;
+  }
+
+  #studio-founders .media {
+    width: 100%;
+    max-width: 24rem;
+    margin-inline: auto;
+  }
+}
+
+@include mobile-down {
+  #studio-founders {
     --split-primary-column: 1 / -1;
     --split-secondary-column: 1 / -1;
     min-height: auto;
   }
 
-  #studio-founders .media { max-width: 18rem; }
-}
-
-@include mobile-down {
-  #studio-founders .media { margin-inline: auto; }
+  #studio-founders .media {
+    max-width: 18rem;
+    margin-inline: auto;
+  }
 }
