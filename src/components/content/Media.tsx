@@ -13,6 +13,9 @@ export type MediaProps = {
   autoPlay?: boolean;
   fit?: MediaFit;
   position?: string;
+  aspectRatio?: string;
+  aspectRatioTablet?: string;
+  aspectRatioMobile?: string;
 };
 
 type MediaStyle = CSSProperties & {
@@ -21,15 +24,18 @@ type MediaStyle = CSSProperties & {
   "--media-ratio-mobile"?: string;
 };
 
-export function Media({ media, className, priority = false, sizes = "100vw", autoPlay = true, fit, position }: MediaProps) {
+export function Media({ media, className, priority = false, sizes = "100vw", autoPlay = true, fit, position, aspectRatio, aspectRatioTablet, aspectRatioMobile }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const resolvedPosition = position ?? getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
   const intrinsicRatio = media.width && media.height ? `${media.width} / ${media.height}` : "auto";
+  const baseRatio = aspectRatio ?? media.aspectRatio ?? intrinsicRatio;
+  const tabletRatio = aspectRatioTablet ?? media.aspectRatioTablet ?? baseRatio;
+  const mobileRatio = aspectRatioMobile ?? media.aspectRatioMobile ?? tabletRatio;
   const mediaStyle: MediaStyle = {
-    "--media-ratio": media.aspectRatio ?? intrinsicRatio,
-    "--media-ratio-tablet": media.aspectRatioTablet ?? media.aspectRatio ?? intrinsicRatio,
-    "--media-ratio-mobile": media.aspectRatioMobile ?? media.aspectRatioTablet ?? media.aspectRatio ?? intrinsicRatio,
+    "--media-ratio": baseRatio,
+    "--media-ratio-tablet": tabletRatio,
+    "--media-ratio-mobile": mobileRatio,
   };
 
   useEffect(() => {
