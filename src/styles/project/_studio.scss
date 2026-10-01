@@ -2,9 +2,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Studio owns page composition only. HorizontalScroll, Grid, Card, Media and
-   TextBlock retain their component presentation. */
-
 /* Services */
 #studio-services {
   --section-space: 0;
@@ -25,27 +22,12 @@
   padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
 }
 
-/* Shared editorial composition */
-#studio-approach,
-#studio-founders {
-  --studio-grid-line: color-mix(in srgb, currentColor 16%, transparent);
-  position: relative;
-  overflow: hidden;
-}
-
+/* Approach */
 #studio-approach {
   --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
-  isolation: isolate;
   min-height: 100svh;
 }
 
-#studio-approach > .section__inner,
-#studio-founders > .section__inner {
-  position: relative;
-  z-index: 1;
-}
-
-/* Approach */
 #studio-approach > .section__inner {
   display: grid;
   align-content: center;
@@ -55,18 +37,10 @@
 
 #studio-approach .gridReveal { width: 100%; max-width: none; }
 #studio-approach .grid { align-items: start; }
-
 #studio-approach .grid__item:not(:first-child) .card--editorial {
   height: 100%;
   padding: $space-2;
 }
-
-// #studio-approach .grid__item:first-child .textBlock__title {
-//   @include type-heading-xl;
-//   max-width: 11ch;
-//   line-height: 0.88;
-//   letter-spacing: -0.045em;
-// }
 
 @include tablet-down {
   #studio-approach {
@@ -79,14 +53,9 @@
     @include type-heading-lg;
     max-width: 10ch;
   }
-  // #studio-approach .grid__item:not(:first-child) .card--editorial { padding: 0; }
 }
 
 @include mobile-down {
-  #studio-approach { overflow: visible; }
-  #studio-approach .gridReveal,
-  #studio-approach .grid { overflow: visible; }
-
   #studio-approach .grid {
     grid-template-columns: 1fr;
     gap: $space-3;
@@ -101,28 +70,20 @@
   }
 
   #studio-approach .grid__item:first-child .textBlock__title { max-width: 9ch; }
-
   #studio-approach .grid__item:not(:first-child) .card--editorial {
     height: auto;
-    // padding: 0 0 $space-2;
-    border-bottom: 1px solid var(--studio-grid-line);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
   }
 
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder / about: Split owns the composition. */
+/* Founder */
 #studio-founders {
   --media-background: transparent;
   --split-primary-column: 1 / span 5;
   --split-secondary-column: 7 / -1;
   min-height: 100svh;
-}
-
-#studio-founders > .section__inner {
-  display: grid;
-  align-items: center;
-  min-height: inherit;
 }
 
 @include tablet-down {
