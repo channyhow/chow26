@@ -10,24 +10,43 @@
   --section-copy-width: 34rem;
 }
 
-#home-opening .section__overlayContent {
-  align-items: flex-end;
+/* The opening needs a real viewport-sized stage. Without this, the media-overlay
+   inherits an indeterminate height inside ScrollScene and the exit progress has
+   almost no visible distance to animate through. */
+#home-opening .section__scrollScene,
+#home-opening .section__scrollScene > .scrollScene__content,
+#home-opening .section__scrollScene .section__inner,
+#home-opening .section__mediaOverlay {
   width: 100%;
+  min-height: 100svh;
+  height: 100svh;
+}
+
+#home-opening .section__overlayContent {
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
   padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
 }
 
 #home-opening .section__header.textBlock {
   @include site-grid;
-  align-items: end;
+  grid-template-rows: 1fr 1fr;
+  align-items: start;
   width: 100%;
+  height: 100%;
   max-width: none;
   margin: 0;
 }
 
-#home-opening .textBlock__header,
-#home-opening .textBlock__title { grid-column: 1 / span 10; }
+/* Copy opens the composition at upper right; the statement anchors the lower
+   left. They deliberately cross the media plane as it travels on scroll. */
+#home-opening .textBlock__header {
+  grid-column: 1 / span 10;
+  grid-row: 2;
+  align-self: end;
+}
 
-/* Intentional Home display-title exception. */
 #home-opening .textBlock__title {
   @include type-heading-xl;
   max-width: none;
@@ -39,23 +58,22 @@
 
 #home-opening .textBlock__content {
   grid-column: 8 / -1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
   width: 100%;
   max-width: 34rem;
   margin-top: clamp(#{$space-3}, 5vh, #{$space-5});
-  justify-self: end;
 }
 
-/* Desktop restores the earlier editorial opening: the image is a contained
-   visual field on the right, while title and positioning copy remain on the
-   shared grid. ScrollScene can still move both layers independently. */
 @include desktop-up {
   #home-opening .section__media {
-    align-self: end;
+    align-self: center;
     justify-self: end;
     width: 52%;
     height: 54svh;
     margin-right: var(--project-gutter);
-    margin-bottom: clamp(#{$space-3}, 5vh, #{$space-5});
+    margin-top: clamp(#{$space-4}, 8vh, 7rem);
   }
 
   #home-opening .section__media .media__frame,
@@ -274,7 +292,10 @@
     padding-bottom: $space-3;
   }
 
-  #home-opening .section__header.textBlock { display: block; }
+  #home-opening .section__header.textBlock {
+    display: block;
+    height: auto;
+  }
   #home-opening .textBlock__header { display: none; }
 
   #home-opening .textBlock__content {
