@@ -22,9 +22,57 @@
 #contact-default { min-height: 100svh; }
 #contact-default .split { align-items: start; }
 
-/* Project archive */
+/* Project archive composition */
 #projects-featured,
 #project-gallery { --section-space: var(--project-section-space-compact); }
+
+.projectArchiveGrid > .grid__lead,
+.projectArchiveLead { display: contents; }
+
+.projectArchiveLead__title,
+.projectArchiveLead__description {
+  min-width: 0;
+  align-self: start;
+}
+
+.projectArchiveLead__title { grid-column: 1; }
+.projectArchiveLead__title .textBlock,
+.projectArchiveLead__title .textBlock__title {
+  width: 100%;
+  max-width: none;
+}
+
+.projectArchiveLead__description {
+  grid-column: 1;
+  max-width: 34ch;
+}
+
+.projectArchiveLead__description .textBlock,
+.projectArchiveLead__description .textBlock__text { max-width: 34ch; }
+
+@include tablet-up {
+  .projectArchiveLead__title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .projectArchiveLead__description {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@include desktop-up {
+  .projectArchiveLead__title {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
+  .projectArchiveLead__description {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
 
 @include mobile-down {
   #project-gallery .textBlock__header .textBlock__title { max-width: none; }
