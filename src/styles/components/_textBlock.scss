@@ -1,4 +1,5 @@
 @use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
 @use "../foundation/typography" as *;
 
 .textBlock {
@@ -11,17 +12,25 @@
   &__content,
   &__footer,
   &__subtitle,
-  &__meta { display: grid; gap: $flow-tight; }
+  &__meta {
+    display: grid;
+    gap: $flow-tight;
+  }
 
   &__eyebrow { @include type-eyebrow; margin: 0; }
   &__title { @include type-body-bold; margin: 0; text-wrap: balance; }
   &__subtitle p { @include type-lead; margin: 0; }
 
   &__subtitle strong,
-  &__content strong { font: inherit; font-weight: $font-weight-bold; color: currentColor; }
+  &__content strong {
+    font: inherit;
+    font-weight: $font-weight-bold;
+    color: currentColor;
+  }
 
   &__content {
     gap: $flow-default;
+
     p { @include type-body; margin: 0; }
     .textBlock__copy { opacity: $opacity-muted; }
     p:last-child:not(:only-child) .textBlock__copy { opacity: $opacity-soft; }
@@ -62,21 +71,23 @@
   }
 }
 
-@media (max-width: #{$bp-tablet}) {
+@include tablet-down {
   .textBlock--meta-rows .textBlock__meta > * {
     grid-template-columns: 1fr;
     gap: $flow-tight;
   }
 }
 
-@media (max-width: #{$bp-mobile}) {
+@include mobile-down {
   .textBlock--meta-rows {
     .textBlock__meta { margin-top: $space-2; }
+
     .textBlock__meta > * {
       grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
       align-items: baseline;
       gap: $flow-default;
     }
+
     .textBlock__meta > *:last-child { color: currentColor; }
   }
 }
