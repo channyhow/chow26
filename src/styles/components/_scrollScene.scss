@@ -67,15 +67,27 @@
 .scrollScene[data-preset="draw"] .scrollScene__shape { opacity: 0.28; }
 [data-variant="editorial"] .scrollScene__shape { border-radius: $radius-none; }
 
-/* Opening choreography driven by ScrollScene variables. */
+/* Opening choreography is staged by one scroll progress. The media gains
+   presence first; title and copy are then caught and pushed away in sequence. */
 .scrollScene[data-attention-exit="true"] .section__media {
+  opacity: var(--scene-media-opacity, 1);
   transform: translate3d(0, var(--scene-media-y, 0px), 0)
     scale(var(--scene-media-scale, 1));
   transform-origin: center;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
-.scrollScene[data-attention-exit="true"] .section__overlayContent {
+.scrollScene[data-attention-exit="true"] .textBlock__header {
+  opacity: var(--scene-title-opacity, 1);
+  transform: translate3d(0, var(--scene-title-y, 0px), 0);
+  will-change: transform, opacity;
+}
+
+.scrollScene[data-attention-exit="true"] .textBlock__title {
+  color: var(--scene-title-color, #{$color-primary});
+}
+
+.scrollScene[data-attention-exit="true"] .textBlock__content {
   opacity: var(--scene-copy-opacity, 1);
   transform: translate3d(0, var(--scene-copy-y, 0px), 0);
   will-change: transform, opacity;
