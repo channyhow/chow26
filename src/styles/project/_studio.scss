@@ -111,34 +111,16 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder / about */
+/* Founder / about: Split owns the composition. */
 #studio-founders {
   --media-background: transparent;
-  --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
   min-height: 100svh;
 }
 
-#studio-founders .section__inner {
+#studio-founders > .section__inner {
   display: grid;
   align-items: center;
   min-height: inherit;
-}
-
-#studio-founders .section__body,
-#studio-founders .gridReveal,
-#studio-founders .grid {
-  width: 100%;
-  min-width: 0;
-}
-
-@include tablet-up {
-  #studio-founders .card--profile .card__mediaWrap { grid-column: 1 / span 4; }
-  #studio-founders .card--profile .card__body { grid-column: 5 / span 4; }
-}
-
-@include desktop-up {
-  #studio-founders .card--profile .card__mediaWrap { grid-column: 2 / span 3; }
-  #studio-founders .card--profile .card__body { grid-column: 7 / span 5; }
 }
 
 @include tablet-down {
