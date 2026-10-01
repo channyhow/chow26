@@ -31,6 +31,10 @@ export type ScrollSceneProps = {
 type LayeredSceneStyle = MotionStyle & {
   "--scene-media-y"?: MotionValue<string>;
   "--scene-media-scale"?: MotionValue<number>;
+  "--scene-media-opacity"?: MotionValue<number>;
+  "--scene-title-y"?: MotionValue<string>;
+  "--scene-title-opacity"?: MotionValue<number>;
+  "--scene-title-color"?: MotionValue<string>;
   "--scene-copy-y"?: MotionValue<string>;
   "--scene-copy-opacity"?: MotionValue<number>;
 };
@@ -93,29 +97,52 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // The attention exit is intentionally layered: imagery responds immediately,
-  // while the copy holds its ground long enough for the media to visibly cross behind it.
+  // Opening choreography: media gains presence first, then the advancing plane
+  // appears to catch the title and copy in sequence and push them out of view.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.68, 1],
-    [0, -190 * scale, -250 * scale],
+    [0, 0.28, 0.72, 1],
+    [0, -28 * scale, -190 * scale, -250 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
     scrollYProgress,
-    [0, 0.68, 1],
-    [1, reduceMotion ? 1.005 : 1.045, reduceMotion ? 1.008 : 1.07],
+    [0, 0.32, 0.72, 1],
+    [1, reduceMotion ? 1.002 : 1.025, reduceMotion ? 1.005 : 1.05, reduceMotion ? 1.008 : 1.07],
   );
+  const layeredMediaOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.76, 1],
+    [0.7, 1, 1, reduceMotion ? 0.82 : 0.18],
+  );
+
+  const layeredTitleYNumeric = useTransform(
+    scrollYProgress,
+    [0, 0.38, 0.68, 1],
+    [0, 0, -42 * scale, -118 * scale],
+  );
+  const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
+  const layeredTitleOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.56, 0.82, 1],
+    [1, 1, 0.72, reduceMotion ? 0.82 : 0],
+  );
+  const layeredTitleColor = useTransform(
+    scrollYProgress,
+    [0, 0.34, 0.52, 0.78],
+    ["#222224", "#222224", "#D84517", "#D84517"],
+  );
+
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.42, 1],
-    [0, 0, -96 * scale],
+    [0, 0.58, 0.8, 1],
+    [0, 0, -34 * scale, -92 * scale],
   );
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
   const layeredCopyOpacity = useTransform(
     scrollYProgress,
-    [0, 0.48, 1],
-    [1, 1, reduceMotion ? 0.9 : 0.58],
+    [0, 0.66, 0.86, 1],
+    [1, 1, 0.68, reduceMotion ? 0.86 : 0],
   );
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
@@ -128,6 +155,10 @@ export function ScrollScene({
     contentStyle = {
       "--scene-media-y": layeredMediaY,
       "--scene-media-scale": layeredMediaScale,
+      "--scene-media-opacity": layeredMediaOpacity,
+      "--scene-title-y": layeredTitleY,
+      "--scene-title-opacity": layeredTitleOpacity,
+      "--scene-title-color": layeredTitleColor,
       "--scene-copy-y": layeredCopyY,
       "--scene-copy-opacity": layeredCopyOpacity,
     };
