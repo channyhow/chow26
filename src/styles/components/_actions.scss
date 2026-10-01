@@ -26,7 +26,13 @@
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: color $transition-hover, background-color $transition-hover, border-color $transition-hover, box-shadow $transition-hover, opacity $transition-hover, transform $transition-hover;
+  transition:
+    color $transition-hover,
+    background-color $transition-hover,
+    border-color $transition-hover,
+    box-shadow $transition-hover,
+    opacity $transition-hover,
+    transform $transition-hover;
 
   &:focus-visible { @include focus-ring; }
   &:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
@@ -45,6 +51,12 @@
   background-repeat: no-repeat;
   background-size: 0 1px;
   transition: background-size $transition-hover;
+}
+
+.actions__arrow {
+  display: inline-block;
+  flex: 0 0 auto;
+  transition: transform $transition-hover;
 }
 
 .actions__link:not(.actions__link--primary, .actions__link--accent, .actions__link--outline) {
@@ -75,8 +87,6 @@
   }
 }
 
-// Accent is a typographic action variant, not a filled button.
-// It keeps the surrounding surface and uses the campaign accent as emphasis.
 .actions__link--accent {
   color: var(--accent);
 
@@ -88,13 +98,10 @@
 }
 
 .actions__link--outline {
-  @include hover { border-color: var(--accent); color: var(--accent); }
-}
-
-.actions__arrow {
-  display: inline-block;
-  flex: 0 0 auto;
-  transition: transform $transition-hover;
+  @include hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
 }
 
 /* Quiet text navigation. Typography stays contextual so surfaces such as the
@@ -125,6 +132,8 @@
   @include type-ui-compact;
 }
 
+/* Full-width campaign/list actions. This variant owns its complete visual
+   treatment so page styles only need to compose it, not restyle it. */
 .actions--panel {
   display: grid;
   width: 100%;
@@ -136,29 +145,26 @@
     padding: $space-2 $space-3;
     justify-content: space-between;
     border-radius: 0;
-        // border: 1px solid $gray-700;
-
     @include glass;
 
     @include hover {
       color: var(--accent);
       background: color-mix(in srgb, #{$gray-100} 4%, transparent);
-      transform: translateX(.2rem);
-      .actions__arrow { transform: translate(.22rem, -.12rem); }
+      transform: translateX(0.2rem);
+      .actions__arrow { transform: translate(0.22rem, -0.12rem); }
     }
   }
 
   .actions__link--primary,
   .actions__link[data-priority="primary"] {
-    background: transparent;
     border: 1px solid $color-accent;
+    background: color-mix(in srgb, #{$color-accent} 14%, transparent);
     color: var(--primary);
-          background: color-mix(in srgb, #{$color-accent} 14%, transparent);
-
-    @include glass($color-accent, 0.5);
+    @include glass($color-accent, 0.5%);
 
     @include hover {
       background: var(--accent);
+      color: var(--primary);
     }
   }
 }
@@ -169,14 +175,3 @@
     padding: $space-2;
   }
 }
-
-// @include reduced-motion {
-//   .actions__link,
-//   .actions__label,
-//   .actions__arrow { transition: none; }
-
-//   .actions__link:active,
-//   .actions__link--primary:hover,
-//   .actions__link:hover .actions__arrow,
-//   .actions--panel .actions__link:hover { transform: none; }
-// }
