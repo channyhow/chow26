@@ -57,9 +57,7 @@
     "layout": "grid",
     "surface": "solid",
     "color": "special",
-    "motion": "scene",
-    "motionPreset": "ambient",
-    "progressive": true,
+ 
     "source": {
       "collection": "projects"
     },
