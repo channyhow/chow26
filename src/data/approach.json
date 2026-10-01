@@ -1,0 +1,34 @@
+[
+  {
+    "id": "studio-approach-understand",
+    "title": "Comprendre",
+    "text": [
+      "Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."
+    ],
+    "order": 1
+  },
+  {
+    "id": "studio-approach-structure",
+    "title": "Structurer",
+    "text": [
+      "Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."
+    ],
+    "order": 2
+  },
+  {
+    "id": "studio-approach-design",
+    "title": "Concevoir",
+    "text": [
+      "Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."
+    ],
+    "order": 3
+  },
+  {
+    "id": "studio-approach-build",
+    "title": "Construire",
+    "text": [
+      "Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."
+    ],
+    "order": 4
+  }
+]
