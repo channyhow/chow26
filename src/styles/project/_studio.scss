@@ -25,12 +25,12 @@
   }
 
   #studio-services .horizontalScroll__track {
-    gap: clamp(#{$space-4}, 10vw, #{$space-5});
+    gap: clamp(#{$space-3}, 7vw, #{$space-4});
   }
 
   #studio-services .horizontalScroll__item {
     min-height: 0;
-    padding-block: 0;
+    padding-block: $space-3;
   }
 
   #studio-services .card--service .card__split {
@@ -44,7 +44,7 @@
   }
 
   #studio-services .card--service .split__secondary {
-    margin-top: $space-3;
+    margin-top: $space-2;
   }
 
   #studio-services .card--service .textBlock__title {
@@ -52,13 +52,20 @@
   }
 
   #studio-services .card--service .textBlock__content {
-    max-width: 38ch;
+    max-width: 42ch;
+  }
+
+  #studio-services .card--service .textBlock__meta {
+    margin-top: $space-2;
   }
 }
 
 @include mobile-down {
-  #studio-services .horizontalScroll__track { gap: $space-4; }
-  #studio-services .horizontalScroll__item { padding-inline: $page-gutter; }
+  #studio-services .horizontalScroll__track { gap: $space-3; }
+  #studio-services .horizontalScroll__item {
+    padding-inline: $page-gutter;
+    padding-block: $space-2 $space-3;
+  }
   #studio-services .card--service .card__split { display: block; }
   #studio-services .card--service .split__secondary { margin-top: $space-2; }
   #studio-services .card--service .textBlock__title { @include type-heading-md; }
