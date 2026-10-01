@@ -1,8 +1,8 @@
-import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import clsx from "clsx";
 
 import { MuxMedia } from "@/components/content/MuxMedia";
-import type { MediaFit, MediaItem } from "@/types/media";
+import type { MediaFit, MediaItem, MediaRatio } from "@/types/media";
 import { getMediaObjectPosition, getMediaOrientation } from "@/utils/media";
 
 export type MediaProps = {
@@ -13,30 +13,14 @@ export type MediaProps = {
   autoPlay?: boolean;
   fit?: MediaFit;
   position?: string;
-  aspectRatio?: string;
-  aspectRatioTablet?: string;
-  aspectRatioMobile?: string;
+  ratio?: MediaRatio;
 };
 
-type MediaStyle = CSSProperties & {
-  "--media-ratio"?: string;
-  "--media-ratio-tablet"?: string;
-  "--media-ratio-mobile"?: string;
-};
-
-export function Media({ media, className, priority = false, sizes = "100vw", autoPlay = true, fit, position, aspectRatio, aspectRatioTablet, aspectRatioMobile }: MediaProps) {
+export function Media({ media, className, priority = false, sizes = "100vw", autoPlay = true, fit, position, ratio }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const resolvedPosition = position ?? getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
-  const intrinsicRatio = media.width && media.height ? `${media.width} / ${media.height}` : "auto";
-  const baseRatio = aspectRatio ?? media.aspectRatio ?? intrinsicRatio;
-  const tabletRatio = aspectRatioTablet ?? media.aspectRatioTablet ?? baseRatio;
-  const mobileRatio = aspectRatioMobile ?? media.aspectRatioMobile ?? tabletRatio;
-  const mediaStyle: MediaStyle = {
-    "--media-ratio": baseRatio,
-    "--media-ratio-tablet": tabletRatio,
-    "--media-ratio-mobile": mobileRatio,
-  };
+  const resolvedRatio = ratio ?? media.ratio ?? getMediaOrientation(media);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -67,7 +51,7 @@ export function Media({ media, className, priority = false, sizes = "100vw", aut
   }
 
   return (
-    <figure className={clsx("media", className)} data-media-type={media.type} data-orientation={getMediaOrientation(media)} style={mediaStyle}>
+    <figure className={clsx("media", className)} data-media-type={media.type} data-orientation={getMediaOrientation(media)} data-ratio={resolvedRatio}>
       <div className="media__frame">{asset}</div>
       {media.caption ? <figcaption className="media__caption">{media.caption}</figcaption> : null}
     </figure>
