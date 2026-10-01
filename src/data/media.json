@@ -22,6 +22,18 @@
   "mdk-heartbeat":{"id":"mdk-heartbeat","type":"mux","playbackId":"TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M","alt":"Mois du Kèr | cœur anatomique animé au rythme d’un battement.","width":1080,"height":1350},
   "mdk-heart-sea":{"id":"mdk-heart-sea","type":"mux","playbackId":"xDDLKWiYfE1IvvsMeg01Q101WEd8MlqHziK7TUWaJl1LA","alt":"Mois du Kèr | animation d’un motif de cœurs en mouvement.","width":1080,"height":1350},
   "mdk-rings":{"id":"mdk-rings","type":"mux","playbackId":"FAhfWxfBylWVz1FMhMpzfR011KRs4f8xpWljCuu1txUg","alt":"Mois du Kèr | animation graphique de cercles concentriques issue de l’identité visuelle.","width":1080,"height":1350},
+  "mdk-poster": {
+  "id": "mdk-poster",
+  "type": "image",
+  "src": "/assets/photos/work/mois-du-ker/mdk_poster.webp",
+  "alt": "Mois du Kèr | affiche de la campagne de prévention cardiovasculaire."
+},
+"mdk-wall-poster": {
+  "id": "mdk-wall-poster",
+  "type": "image",
+  "src": "/assets/photos/work/mois-du-ker/mdk_wall-poster.webp",
+  "alt": "Mois du Kèr | identité visuelle appliquée à une affiche en situation."
+},
   "ravine-business-card":{"id":"ravine-business-card","type":"image","src":"/assets/photos/work/ravine/ravine_business card.jpg","alt":"Ravine | identité visuelle appliquée à des cartes de visite.","width":1600,"height":1067},
   "ravine-flyer":{"id":"ravine-flyer","type":"image","src":"/assets/photos/work/ravine/ravine_flyer.jpg","alt":"Ravine | déclinaison de l’identité sur flyer.","width":1600,"height":1067},
   "ravine-textile":{"id":"ravine-textile","type":"image","src":"/assets/photos/work/ravine/ravine_textile.jpg","alt":"Ravine | application textile de l’identité visuelle.","width":1600,"height":1067},
