@@ -97,19 +97,19 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Opening exit choreography: keep the media still while the foreground copy
-  // rises into it, then let the image recede behind the copy. The image never
-  // disappears completely; its final 10% presence keeps the composition alive.
+  // Opening exit: the image is a stationary backdrop while the copy rises
+  // across it. Only in the final beat, after the copy has crossed the image,
+  // does the media itself begin to recede.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.68, 0.84, 1],
-    [0, 0, -18 * scale, -46 * scale],
+    [0, 0.88, 0.96, 1],
+    [0, 0, -10 * scale, -24 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
     scrollYProgress,
-    [0, 0.68, 1],
-    [1, 1, reduceMotion ? 1 : 1.012],
+    [0, 0.88, 1],
+    [1, 1, reduceMotion ? 1 : 1.008],
   );
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
@@ -117,9 +117,6 @@ export function ScrollScene({
     [1, 1, 0.88, 0.52, reduceMotion ? 0.72 : 0.18, reduceMotion ? 0.7 : 0.1],
   );
 
-  // Title and copy begin together and stay visually grouped as they cross the
-  // media. The title travels slightly farther so the original vertical rhythm
-  // tightens rather than turning into two unrelated staggered animations.
   const layeredTitleYNumeric = useTransform(
     scrollYProgress,
     [0, 0.3, 0.52, 0.72, 0.9, 1],
@@ -127,11 +124,7 @@ export function ScrollScene({
   );
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
   const layeredTitleOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
-  const layeredTitleColor = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["#222224", "#222224"],
-  );
+  const layeredTitleColor = useTransform(scrollYProgress, [0, 1], ["#222224", "#222224"]);
 
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
