@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
+@use "../foundation/mixins" as *;
 
 .media {
   width: 100%;
@@ -27,6 +28,14 @@
   @include type-caption;
   padding: $space-1 $space-2;
   color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+@include tablet-down {
+  .media__frame { aspect-ratio: var(--media-ratio-tablet, var(--media-ratio, auto)); }
+}
+
+@include mobile-down {
+  .media__frame { aspect-ratio: var(--media-ratio-mobile, var(--media-ratio-tablet, var(--media-ratio, auto))); }
 }
 
 [data-variant="organic"] .media:nth-of-type(even) {
