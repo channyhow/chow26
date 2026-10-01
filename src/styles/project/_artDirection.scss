@@ -75,6 +75,11 @@
 }
 
 @include mobile-down {
+  /* Non-featured project archive headings intentionally use the full mobile
+     measure instead of Section's generic heading measure. */
+  .section[data-source="projects"]:not([data-featured="true"])
+    .section__header.textBlock
+    .textBlock__title,
   #project-gallery .textBlock__header .textBlock__title { max-width: none; }
 }
 
