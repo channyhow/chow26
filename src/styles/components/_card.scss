@@ -8,7 +8,7 @@
   border-radius: var(--radius-surface, #{$radius-default});
   background: var(--surface, transparent);
 
-  /* Card owns the media slot. Media owns frame and asset rendering. */
+  /* Card owns placement only. Media owns frame ratio and asset rendering. */
   &__mediaWrap {
     width: 100%;
     min-width: 0;
@@ -17,16 +17,10 @@
 
   &__media {
     width: 100%;
-    height: 100%;
     margin-inline: auto;
     border-radius: $radius-none;
     background: transparent;
-    --media-ratio: auto;
-    --media-object-fit: cover;
-    --media-object-position: center;
   }
-
-  &__media .media__frame { height: 100%; }
 
   &__body {
     max-width: none;
@@ -50,20 +44,12 @@
   overflow: visible;
   background: transparent;
 
-  /* The card owns the square slot; Media fills it and keeps its focal point
-     centered through the shared Media custom-property API. */
   .card__mediaWrap {
     display: grid;
     place-items: center;
-    aspect-ratio: $ratio-square;
   }
 
-  .card__media {
-    place-self: center;
-    --media-ratio: #{$ratio-square};
-    --media-object-fit: cover;
-    --media-object-position: center;
-  }
+  .card__media { place-self: center; }
 
   .card__body { width: 100%; min-width: 0; padding: 0; }
   .card__body.textBlock { display: flex; flex-direction: column; gap: $flow-default; max-width: none; }
@@ -98,7 +84,6 @@
   background: transparent;
 
   .card__mediaWrap {
-    aspect-ratio: $ratio-square;
     padding: 0;
     background: transparent;
   }
@@ -125,11 +110,7 @@
 }
 
 .projectCard {
-  .card__mediaWrap {
-    aspect-ratio: var(--card-media-ratio, #{$ratio-wide});
-    background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
-  }
-
+  .card__mediaWrap { background: color-mix(in srgb, var(--primary) 4%, var(--secondary)); }
   .card__body { display: grid; gap: $flow-default; padding: $flow-default; }
   .textBlock, .textBlock__header, .textBlock__content, .textBlock__footer { gap: $flow-tight; }
   .textBlock__content { opacity: $opacity-quiet; }
