@@ -20,10 +20,7 @@
 #studio-services .section__body { width: 100%; min-width: 0; }
 
 @include tablet-down {
-  /* Horizontal storytelling belongs to wide screens. Tablet becomes a compact
-     vertical editorial list so each offer is readable within one viewport. */
   #studio-services { padding-block: 0; }
-
   #studio-services .horizontalScroll__track { gap: 0; }
 
   #studio-services .horizontalScroll__item {
@@ -32,8 +29,6 @@
     border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   }
 
-  /* Reserve the persistent header as its own band. Media starts after it rather
-     than showing through the glass navigation. */
   #studio-services .horizontalScroll__item:first-child {
     padding-top: calc(#{$header-height} + #{$space-3});
   }
@@ -105,19 +100,69 @@
   #studio-services .card--service .textBlock__content { max-width: 32ch; }
 }
 
-/* Large phones / small tablets read as a compact editorial spread: image first,
-   then narrative and buying information in two columns. */
+/* 768px sits on the tablet breakpoint, where the generic horizontal component
+   intentionally switches to its wide-screen mode. Studio services need the
+   opposite behaviour: keep the editorial vertical reading mode through small
+   tablets, then introduce horizontal storytelling only once there is room. */
 @media (min-width: 36rem) and (max-width: 48.75rem) {
+  .sectionGroup__panel[data-panel-id="studio-services-panel"] {
+    position: relative;
+    top: auto;
+    min-height: 0;
+  }
+
+  .sectionGroup__panel[data-panel-id="studio-services-panel"] > .sectionGroup__surface {
+    min-height: 0;
+  }
+
+  #studio-services .horizontalScroll {
+    height: auto;
+  }
+
+  #studio-services .horizontalScroll__viewport {
+    position: static;
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  #studio-services .horizontalScroll__progress {
+    display: none;
+  }
+
+  #studio-services .horizontalScroll__track {
+    display: grid;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+  }
+
   #studio-services .horizontalScroll__item {
-    padding-inline: $space-3;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: $space-4 $space-3;
   }
 
   #studio-services .horizontalScroll__item:first-child {
     padding-top: calc(#{$header-height} + #{$space-3});
   }
 
+  #studio-services .section__horizontalScrollLayer,
+  #studio-services .section__horizontalScrollLayer .scrollScene__content,
+  #studio-services .card--service,
+  #studio-services .card--service .card__split {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #studio-services .card--service .card__split {
+    display: block;
+  }
+
   #studio-services .card--service .card__media,
   #studio-services .card--service .media__frame {
+    width: 100%;
     aspect-ratio: $ratio-wide;
   }
 
@@ -151,7 +196,7 @@
   }
 
   #studio-services .card--service .textBlock__meta > * {
-    grid-template-columns: minmax(6.25rem, .72fr) minmax(0, 1.28fr);
+    grid-template-columns: minmax(5.75rem, .7fr) minmax(0, 1.3fr);
     gap: $space-2;
   }
 
