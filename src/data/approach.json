@@ -5,6 +5,11 @@
     "text": [
       "Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."
     ],
+    "grid": {
+      "mobile": { "start": 1, "span": 4, "row": 2 },
+      "tablet": { "start": 1, "span": 4, "row": 2 },
+      "desktop": { "start": 1, "span": 3, "row": 2 }
+    },
     "order": 1
   },
   {
@@ -13,6 +18,11 @@
     "text": [
       "Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."
     ],
+    "grid": {
+      "mobile": { "start": 1, "span": 4, "row": 3 },
+      "tablet": { "start": 5, "span": 4, "row": 2 },
+      "desktop": { "start": 4, "span": 3, "row": 2 }
+    },
     "order": 2
   },
   {
@@ -21,6 +31,11 @@
     "text": [
       "Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."
     ],
+    "grid": {
+      "mobile": { "start": 1, "span": 4, "row": 4 },
+      "tablet": { "start": 1, "span": 4, "row": 3 },
+      "desktop": { "start": 7, "span": 3, "row": 2 }
+    },
     "order": 3
   },
   {
@@ -29,6 +44,11 @@
     "text": [
       "Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."
     ],
+    "grid": {
+      "mobile": { "start": 1, "span": 4, "row": 5 },
+      "tablet": { "start": 5, "span": 4, "row": 3 },
+      "desktop": { "start": 10, "span": 3, "row": 2 }
+    },
     "order": 4
   }
 ]
