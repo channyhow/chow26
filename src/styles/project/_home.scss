@@ -192,8 +192,8 @@
 }
 
 @include mobile-down {
-  /* Mobile becomes an editorial opening rather than a desktop overlay squeezed
-     into portrait: media first, statement second, with one shared gutter. */
+  /* Mobile starts with the statement, then the image. During the exit the copy
+     keeps rising above the media while the image yields and fades underneath. */
   #home-opening .section__scrollScene,
   #home-opening .section__scrollScene > .scrollScene__content,
   #home-opening .section__scrollScene .section__inner,
@@ -209,24 +209,26 @@
     gap: $space-4;
   }
 
-  #home-opening .section__media {
-    position: relative;
-    inset: auto;
-    order: 1;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    --media-object-position: center 58%;
-  }
-
   #home-opening .section__overlayContent {
     position: relative;
     inset: auto;
-    order: 2;
+    z-index: $z-raised;
+    order: 1;
     width: 100%;
     height: auto;
     padding: 0;
     align-items: flex-start;
+  }
+
+  #home-opening .section__media {
+    position: relative;
+    inset: auto;
+    z-index: $z-base;
+    order: 2;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    --media-object-position: center 58%;
   }
 
   #home-opening .section__header.textBlock { display: block; width: 100%; height: auto; }
