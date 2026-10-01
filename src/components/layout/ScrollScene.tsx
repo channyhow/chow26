@@ -97,42 +97,43 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Exit choreography starts from the exact resting composition. Media stays
-  // fully present first, then fades while title/copy overtake its visual layer.
+  // Let the opening composition register before it transforms. The photograph
+  // remains fully present through most of the first half of the exit runway;
+  // title/copy begin their crossover only shortly before the media recedes.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.22, 0.72, 1],
-    [0, 0, -18 * scale, -30 * scale],
+    [0, 0.48, 0.78, 1],
+    [0, 0, -14 * scale, -30 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
     scrollYProgress,
-    [0, 0.22, 1],
+    [0, 0.48, 1],
     [1, 1, reduceMotion ? 1 : 1.015],
   );
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
-    [0, 0.22, 0.46, 0.72, 0.9, 1],
-    [1, 1, 0.78, 0.34, reduceMotion ? 0.7 : 0, reduceMotion ? 0.68 : 0],
+    [0, 0.48, 0.64, 0.8, 0.94, 1],
+    [1, 1, 0.9, 0.48, reduceMotion ? 0.7 : 0, reduceMotion ? 0.68 : 0],
   );
 
   const layeredTitleYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.22, 0.48, 0.72, 0.9, 1],
-    [0, 0, -92 * scale, -210 * scale, -300 * scale, -330 * scale],
+    [0, 0.42, 0.58, 0.76, 0.92, 1],
+    [0, 0, -72 * scale, -190 * scale, -290 * scale, -330 * scale],
   );
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
   const layeredTitleOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
   const layeredTitleColor = useTransform(
     scrollYProgress,
-    [0, 0.38, 0.58, 1],
+    [0, 0.56, 0.7, 1],
     ["#222224", "#222224", "#D84517", "#D84517"],
   );
 
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.22, 0.5, 0.74, 0.9, 1],
-    [0, 0, -78 * scale, -184 * scale, -260 * scale, -286 * scale],
+    [0, 0.44, 0.6, 0.78, 0.92, 1],
+    [0, 0, -62 * scale, -170 * scale, -250 * scale, -286 * scale],
   );
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
   const layeredCopyOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
