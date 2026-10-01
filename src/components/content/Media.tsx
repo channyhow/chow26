@@ -15,13 +15,22 @@ export type MediaProps = {
   position?: string;
 };
 
+type MediaStyle = CSSProperties & {
+  "--media-ratio"?: string;
+  "--media-ratio-tablet"?: string;
+  "--media-ratio-mobile"?: string;
+};
+
 export function Media({ media, className, priority = false, sizes = "100vw", autoPlay = true, fit, position }: MediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const resolvedPosition = position ?? getMediaObjectPosition(media);
   const resolvedFit = fit ?? media.fit ?? "cover";
-  const mediaStyle = media.width && media.height
-    ? ({ "--media-ratio": `${media.width} / ${media.height}` } as CSSProperties)
-    : undefined;
+  const intrinsicRatio = media.width && media.height ? `${media.width} / ${media.height}` : "auto";
+  const mediaStyle: MediaStyle = {
+    "--media-ratio": media.aspectRatio ?? intrinsicRatio,
+    "--media-ratio-tablet": media.aspectRatioTablet ?? media.aspectRatio ?? intrinsicRatio,
+    "--media-ratio-mobile": media.aspectRatioMobile ?? media.aspectRatioTablet ?? media.aspectRatio ?? intrinsicRatio,
+  };
 
   useEffect(() => {
     const video = videoRef.current;
