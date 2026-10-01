@@ -97,13 +97,12 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Opening exit is deliberately staggered: the photograph rises first while
-  // remaining fully visible, then it fades as the title and copy follow upward.
-  // Typography never fades; it becomes the foreground as the media yields.
+  // Hold the resting composition first. Then stagger the exit: media rises,
+  // starts fading, title follows, copy follows. Typography stays fully legible.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.34, 0.64, 1],
-    [0, 0, -34 * scale, -58 * scale, -82 * scale],
+    [0, 0.3, 0.48, 0.72, 1],
+    [0, 0, -24 * scale, -54 * scale, -82 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
@@ -119,7 +118,7 @@ export function ScrollScene({
 
   const layeredTitleYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.38, 0.54, 0.74, 0.92, 1],
+    [0, 0.44, 0.58, 0.76, 0.92, 1],
     [0, 0, -64 * scale, -184 * scale, -286 * scale, -330 * scale],
   );
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
@@ -132,7 +131,7 @@ export function ScrollScene({
 
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.44, 0.6, 0.78, 0.92, 1],
+    [0, 0.52, 0.64, 0.8, 0.94, 1],
     [0, 0, -62 * scale, -170 * scale, -250 * scale, -286 * scale],
   );
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
