@@ -71,10 +71,9 @@
         { "label": "Mission", "value": "Logo & identité visuelle" }
       ],
       "gallery": [
-        "mdk-wall-poster",
-        "mdk-color-palette",
         "mois-du-ker-textile",
-        "mdk-heart-sea",
+        "mdk-heart-sea",        "mdk-poster",
+
         "mdk-logo-evolution"
       ],
       "seo": {
