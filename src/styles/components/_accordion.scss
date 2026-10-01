@@ -1,13 +1,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-.accordion {
-  @include rule-top(100%);
-}
-
-.accordion__item {
-  @include rule-bottom(100%);
-}
+.accordion { @include rule-top(100%); }
+.accordion__item { @include rule-bottom(100%); }
 
 .accordion__summary {
   display: flex;
@@ -29,9 +24,7 @@
   &:focus-visible { @include focus-ring; }
 }
 
-.accordion__item[open] .accordion__summary::after {
-  transform: rotate(45deg);
-}
+.accordion__item[open] .accordion__summary::after { transform: rotate(45deg); }
 
 .accordion__content {
   display: grid;
@@ -58,10 +51,3 @@
 
   p { margin: 0; }
 }
-
-// @include reduced-motion {
-//   .accordion__content,
-//   .accordion__summary::after {
-//     transition: none;
-//   }
-// }
