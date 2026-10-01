@@ -22,12 +22,7 @@
 }
 
 #studio-services > .section__inner > .section__header { display: none; }
-
-#studio-services .section__body,
-#studio-services .contentSwitcher {
-  width: 100%;
-  min-width: 0;
-}
+#studio-services .section__body { width: 100%; min-width: 0; }
 
 #studio-services .horizontalScroll__progress {
   padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
