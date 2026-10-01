@@ -122,6 +122,26 @@
   line-height: 1.08;
 }
 
+/* Related projects are a compact recommendation set, not the free-ratio
+   project archive. Keep their media frames visually equal regardless of the
+   source project's preferred archive ratio. */
+.projectRelated .projectCard .card__mediaWrap {
+  aspect-ratio: $ratio-landscape;
+}
+
+.projectRelated .projectCard .card__media,
+.projectRelated .projectCard .media__frame {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.projectRelated .projectCard .media__asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @include desktop-down {
   .projectHero,
   .projectHero.projectDetail--b,
