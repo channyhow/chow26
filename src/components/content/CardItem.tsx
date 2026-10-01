@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Card } from "@/components/content/Card";
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
+import { Split } from "@/components/layout/Split";
 import { resolveMedia } from "@/data/resolveMedia";
 import type { CardEffect, CardVariant, ContentItem } from "@/types/content";
 import { getMediaOrientation } from "@/utils/media";
@@ -34,11 +35,30 @@ export function CardItem({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const isService = variant === "service";
-  const ratio = isService || variant === "profile" ? "square" : undefined;
+  const ratio = variant === "profile" ? "square" : undefined;
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject
     ? { title: item.title, ...(projectMission ? { text: projectMission } : {}) }
     : item;
+
+  const mediaNode = media ? (
+    <div
+      className="card__mediaWrap"
+      data-media-type={media.type}
+      data-orientation={getMediaOrientation(media)}
+    >
+      <Media media={media} className="card__media" ratio={ratio} />
+    </div>
+  ) : null;
+
+  const bodyNode = (
+    <TextBlock
+      content={visibleItem}
+      titleAs="h3"
+      className="card__body"
+      metaVariant={isService ? "rows" : "default"}
+    />
+  );
 
   return (
     <Card
@@ -49,21 +69,20 @@ export function CardItem({
       variant={variant}
       className={clsx(isProject && "projectCard", className)}
     >
-      {media ? (
-        <div
-          className="card__mediaWrap"
-          data-media-type={media.type}
-          data-orientation={getMediaOrientation(media)}
-        >
-          <Media media={media} className="card__media" ratio={ratio} />
-        </div>
-      ) : null}
-      <TextBlock
-        content={visibleItem}
-        titleAs="h3"
-        className="card__body"
-        metaVariant={isService ? "rows" : "default"}
-      />
+      {isService && mediaNode ? (
+        <Split
+          primary={mediaNode}
+          secondary={bodyNode}
+          className="card__split"
+          primaryColumn="1 / span 6"
+          secondaryColumn="8 / span 4"
+        />
+      ) : (
+        <>
+          {mediaNode}
+          {bodyNode}
+        </>
+      )}
     </Card>
   );
 }
