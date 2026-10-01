@@ -128,8 +128,8 @@
   max-width: 30rem;
 }
 
-#home-services { --split-primary-column: 9 / -1; --split-secondary-column: 1 / span 7; }
-#final-cta { --split-primary-column: 2 / span 4; --split-secondary-column: 7 / -1; }
+#home-services { --split-primary-column: 9 / -1; --split-secondary-column: 1  / span 7;}
+#final-cta { --split-primary-column: 1 / span 4; --split-secondary-column: 7 / -1; }
 
 #projects-featured-carousel { min-height: 100svh; }
 #projects-featured-carousel .section__inner {
