@@ -35,7 +35,7 @@ export function CardItem({
   const media = resolveMedia(mediaRef);
   const isProject = Boolean(item.href?.startsWith("/projets/"));
   const isService = variant === "service";
-  const ratio = variant === "profile" ? "square" : undefined;
+  const ratio = variant === "profile" ? "square" : isService ? "landscape" : undefined;
   const projectMission = isProject ? getProjectMission(item) : undefined;
   const visibleItem = isProject
     ? { title: item.title, ...(projectMission ? { text: projectMission } : {}) }
