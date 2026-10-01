@@ -80,7 +80,6 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     if (!label) return [];
     return [{ id, label, content: renderCard(item, index) }];
   });
-  const horizontalLabels = items.flatMap((item) => item.title ? [item.title] : []);
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
   const horizontalMotionItems = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={horizontalMotionEnabled}>{item}</ScrollScene>);
@@ -110,7 +109,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const timeline = items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null;
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(timeline, "reverse"))}</>;
   } else if (layout === "horizontal-scroll") {
-    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(horizontalMotionItems.length ? <HorizontalScroll labels={horizontalLabels.length === cards.length ? horizontalLabels : undefined} preserveOnSmallScreens>{horizontalMotionItems}</HorizontalScroll> : null)}</>;
+    body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(horizontalMotionItems.length ? <HorizontalScroll>{horizontalMotionItems}</HorizontalScroll> : null)}</>;
   } else if (layout === "content-switcher") {
     body = <>{header ? <TextBlock content={header} className="section__header" /> : null}{region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}</>;
   } else if (layout === "media") {
