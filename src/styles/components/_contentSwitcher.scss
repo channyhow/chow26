@@ -20,9 +20,7 @@
       color: var(--secondary);
     }
 
-    @include hover {
-      opacity: $opacity-muted;
-    }
+    @include hover { opacity: $opacity-muted; }
   }
 }
 
@@ -31,9 +29,7 @@
   overflow: clip;
 }
 
-.contentSwitcher__panel {
-  min-width: 0;
-}
+.contentSwitcher__panel { min-width: 0; }
 
 .contentSwitcher--detailed {
   --content-switcher-top: calc(#{$header-height} + #{$space-2});
@@ -94,9 +90,7 @@
   opacity: 1;
 }
 
-.contentSwitcher--detailed .contentSwitcher__controls button span:last-child {
-  @include type-ui-compact-lower;
-}
+.contentSwitcher--detailed .contentSwitcher__controls button span:last-child { @include type-ui-compact-lower; }
 
 .contentSwitcher__index {
   @include type-ui-compact;
@@ -157,14 +151,3 @@
     font-size: $type-caption;
   }
 }
-
-// @include reduced-motion {
-//   .contentSwitcher--detailed {
-//     height: auto;
-//   }
-
-//   .contentSwitcher--detailed .contentSwitcher__sticky {
-//     position: static;
-//     height: auto;
-//   }
-// }
