@@ -81,12 +81,14 @@
 .projectStoryText,
 .projectCta { --section-space: $space-5; }
 
-.projectStoryMedia--forward {
+/* Section renders story copy as split primary and media as split secondary.
+   Alternate their grid placement here instead of relying on DOM order. */
+.projectStoryMedia {
   --split-primary-column: 2 / span 4;
   --split-secondary-column: 7 / span 5;
 }
 
-.projectStoryMedia--reverse {
+.projectStoryMedia.projectDetail__story--alternate {
   --split-primary-column: 8 / span 4;
   --split-secondary-column: 2 / span 5;
 }
@@ -145,8 +147,8 @@
 @include desktop-down {
   .projectHero,
   .projectHero.projectDetail--b,
-  .projectStoryMedia--forward,
-  .projectStoryMedia--reverse {
+  .projectStoryMedia,
+  .projectStoryMedia.projectDetail__story--alternate {
     --split-primary-column: 1 / -1;
     --split-secondary-column: 1 / -1;
   }
