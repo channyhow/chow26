@@ -43,6 +43,7 @@
   padding: $space-4 $space-3 $space-3;
   overflow-y: auto;
   overscroll-behavior: contain;
+  outline: 0;
   background: var(--drawer-surface);
   color: var(--drawer-color);
   box-shadow: $shadow-soft;
@@ -74,20 +75,26 @@
   line-height: 1;
 }
 
+.drawer__nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
 .drawer__content a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
 }
 
-.site[data-drawer="menu"] {
+.site[data-drawer="menu"],
+.site[data-drawer="contact"],
+.site[data-drawer="reservation"] {
   --drawer-surface: var(--theme-primary);
   --drawer-color: var(--theme-secondary);
 }
 
-.drawer[data-view="menu"] .drawer__dismiss {
-  display: none;
-}
+.drawer[data-view="menu"] .drawer__dismiss { display: none; }
 
 .drawer[data-view="menu"] .drawer__panel {
   inset: 0;
@@ -116,7 +123,6 @@
 
 .drawer[data-view="menu"] .drawer__nav a {
   @include type-nav;
-
   width: auto;
   color: inherit;
   line-height: 1.2;
@@ -134,12 +140,6 @@
 .drawer[data-view="menu"][open] .drawer__nav a:nth-child(4) { animation-delay: 260ms; }
 .drawer[data-view="menu"][open] .drawer__nav a:nth-child(5) { animation-delay: 320ms; }
 .drawer[data-view="menu"][open] .drawer__nav a:nth-child(6) { animation-delay: 380ms; }
-
-.site[data-drawer="contact"],
-.site[data-drawer="reservation"] {
-  --drawer-surface: var(--theme-primary);
-  --drawer-color: var(--theme-secondary);
-}
 
 @keyframes drawer-panel-in {
   to {
@@ -160,6 +160,8 @@
   }
 }
 
+@keyframes drawer-panel-fade-in { to { opacity: 1; } }
+
 @include tablet-down {
   .drawer__panel {
     width: 100%;
@@ -173,36 +175,15 @@
   .drawer[data-view="menu"] .drawer__panel {
     padding: $header-height var(--header-gutter, #{$space-2}) $space-2;
   }
+
+  .site .drawer__nav {
+    gap: clamp(1.25rem, 4vw, 1.75rem);
+    padding-top: $space-2;
+  }
+
+  .site .drawer__nav a {
+    @include type-heading-md;
+    font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+    text-transform: none;
+  }
 }
-
-@keyframes drawer-panel-fade-in { to { opacity: 1; } }
-
-// @include reduced-motion {
-//   .drawer__panel { transform: translate3d(0.25rem, 0, 0); }
-
-//   .drawer[open] .drawer__dismiss {
-//     animation: drawer-backdrop-in $duration-fast $ease-standard both;
-//   }
-
-//   .drawer[open] .drawer__panel {
-//     animation: drawer-panel-in $duration-fast $ease-standard both;
-//   }
-
-//   .drawer[data-view="menu"] .drawer__panel {
-//     transform: none;
-//   }
-
-//   .drawer[data-view="menu"][open] .drawer__nav a {
-//     animation-duration: $duration-fast;
-//     transform: translate3d(0, 0.2rem, 0);
-//   }
-
-//   .drawer[data-view="menu"][open] .drawer__nav a:nth-child(n) {
-//     animation-delay: 0ms;
-//   }
-
-//   @include tablet-down {
-//     .drawer__panel { transform: none; }
-//     .drawer[open] .drawer__panel { animation-name: drawer-panel-fade-in; }
-//   }
-// }
