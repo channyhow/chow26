@@ -97,35 +97,35 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Opening exit: the image yields first while the editorial copy rises through
-  // the vacated space. Copy stays readable instead of fading with the media.
+  // Exit choreography: preserve the resting composition. Once scrolling starts,
+  // media yields in place while title and copy travel upward across its layer.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.28, 0.72, 1],
-    [0, -20 * scale, -150 * scale, -220 * scale],
+    [0, 0.3, 0.72, 1],
+    [0, 0, -28 * scale, -48 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
     scrollYProgress,
-    [0, 0.32, 0.72, 1],
-    [1, reduceMotion ? 1.002 : 1.02, reduceMotion ? 1.004 : 1.04, reduceMotion ? 1.006 : 1.055],
+    [0, 0.42, 1],
+    [1, 1, reduceMotion ? 1 : 1.025],
   );
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
-    [0, 0.24, 0.58, 0.84, 1],
-    [1, 1, 0.72, reduceMotion ? 0.72 : 0.16, reduceMotion ? 0.65 : 0],
+    [0, 0.18, 0.48, 0.76, 0.94, 1],
+    [1, 1, 0.82, 0.38, reduceMotion ? 0.72 : 0.06, reduceMotion ? 0.68 : 0],
   );
 
   const layeredTitleYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.24, 0.62, 1],
-    [0, 0, -96 * scale, -230 * scale],
+    [0, 0.16, 0.5, 0.78, 1],
+    [0, 0, -110 * scale, -245 * scale, -330 * scale],
   );
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
   const layeredTitleOpacity = useTransform(
     scrollYProgress,
-    [0, 0.88, 1],
-    [1, 1, reduceMotion ? 0.9 : 0.82],
+    [0, 0.94, 1],
+    [1, 1, reduceMotion ? 0.92 : 0.88],
   );
   const layeredTitleColor = useTransform(
     scrollYProgress,
@@ -135,14 +135,14 @@ export function ScrollScene({
 
   const layeredCopyYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.34, 0.68, 1],
-    [0, 0, -72 * scale, -172 * scale],
+    [0, 0.2, 0.52, 0.8, 1],
+    [0, 0, -92 * scale, -210 * scale, -286 * scale],
   );
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
   const layeredCopyOpacity = useTransform(
     scrollYProgress,
-    [0, 0.9, 1],
-    [1, 1, reduceMotion ? 0.92 : 0.84],
+    [0, 0.96, 1],
+    [1, 1, reduceMotion ? 0.94 : 0.9],
   );
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
