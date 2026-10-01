@@ -18,8 +18,51 @@
 
 #studio-services > .section__inner > .section__header { display: none; }
 #studio-services .section__body { width: 100%; min-width: 0; }
-#studio-services .horizontalScroll__progress {
-  padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
+
+@include tablet-down {
+  #studio-services {
+    padding-block: $section-space;
+  }
+
+  #studio-services .horizontalScroll__track {
+    gap: clamp(#{$space-4}, 10vw, #{$space-5});
+  }
+
+  #studio-services .horizontalScroll__item {
+    min-height: 0;
+    padding-block: 0;
+  }
+
+  #studio-services .card--service .card__split {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: $layout-gap;
+  }
+
+  #studio-services .card--service .split__primary,
+  #studio-services .card--service .split__secondary {
+    grid-column: 1 / -1 !important;
+  }
+
+  #studio-services .card--service .split__secondary {
+    margin-top: $space-3;
+  }
+
+  #studio-services .card--service .textBlock__title {
+    max-width: 16ch;
+  }
+
+  #studio-services .card--service .textBlock__content {
+    max-width: 38ch;
+  }
+}
+
+@include mobile-down {
+  #studio-services .horizontalScroll__track { gap: $space-4; }
+  #studio-services .horizontalScroll__item { padding-inline: $page-gutter; }
+  #studio-services .card--service .card__split { display: block; }
+  #studio-services .card--service .split__secondary { margin-top: $space-2; }
+  #studio-services .card--service .textBlock__title { @include type-heading-md; }
+  #studio-services .card--service .textBlock__content { max-width: 32ch; }
 }
 
 /* Approach */
