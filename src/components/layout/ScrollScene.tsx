@@ -97,13 +97,13 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Let the opening composition register before it transforms. The photograph
-  // remains fully present through most of the first half of the exit runway;
-  // title/copy begin their crossover only shortly before the media recedes.
+  // Opening exit is deliberately staggered: the photograph rises first while
+  // remaining fully visible, then it fades as the title and copy follow upward.
+  // Typography never fades; it becomes the foreground as the media yields.
   const layeredMediaYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.48, 0.78, 1],
-    [0, 0, -14 * scale, -30 * scale],
+    [0, 0.1, 0.34, 0.64, 1],
+    [0, 0, -34 * scale, -58 * scale, -82 * scale],
   );
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
   const layeredMediaScale = useTransform(
@@ -119,8 +119,8 @@ export function ScrollScene({
 
   const layeredTitleYNumeric = useTransform(
     scrollYProgress,
-    [0, 0.42, 0.58, 0.76, 0.92, 1],
-    [0, 0, -72 * scale, -190 * scale, -290 * scale, -330 * scale],
+    [0, 0.38, 0.54, 0.74, 0.92, 1],
+    [0, 0, -64 * scale, -184 * scale, -286 * scale, -330 * scale],
   );
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
   const layeredTitleOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
