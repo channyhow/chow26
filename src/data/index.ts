@@ -1,3 +1,5 @@
+import actions from "@/data/actions.json";
+import approach from "@/data/approach.json";
 import collections from "@/data/collections.json";
 import forms from "@/data/forms.json";
 import globalBlocks from "@/data/globalBlocks.json";
@@ -8,6 +10,8 @@ import services from "@/data/services.json";
 import site from "@/data/site.json";
 
 export {
+  actions,
+  approach,
   collections,
   forms,
   globalBlocks,
