@@ -15,6 +15,7 @@ export type ScrollScenePreset = "drift" | "parallax" | "ambient" | "draw" | "rec
 export type ScrollSceneDirection = "forward" | "reverse";
 export type ScrollSceneRange = "through" | "exit";
 export type ScrollSceneIntensity = "quiet" | "default" | "expressive";
+export type ScrollSceneChoreography = "home-opening";
 
 export type ScrollSceneProps = {
   children: ReactNode;
@@ -22,6 +23,7 @@ export type ScrollSceneProps = {
   direction?: ScrollSceneDirection;
   range?: ScrollSceneRange;
   intensity?: ScrollSceneIntensity;
+  choreography?: ScrollSceneChoreography;
   className?: string;
   decorative?: boolean;
   enabled?: boolean;
@@ -51,6 +53,7 @@ export function ScrollScene({
   direction = "forward",
   range = "through",
   intensity = "default",
+  choreography,
   className,
   decorative = false,
   enabled = true,
@@ -61,9 +64,9 @@ export function ScrollScene({
   const [responsiveScale, setResponsiveScale] = useState(1);
   const motionEnabled = enabled;
   const sign = direction === "reverse" ? -1 : 1;
-  const isAttentionExit = range === "exit" && preset === "drift";
+  const isHomeOpening = choreography === "home-opening";
   const reducedScale = reduceMotion ? motionConfig.reduced.sceneScale : 1;
-  const attentionScale = isAttentionExit ? 2.35 : 1;
+  const attentionScale = isHomeOpening ? 2.35 : 1;
   const scale = responsiveScale * intensityScale[intensity] * reducedScale * attentionScale;
 
   useEffect(() => {
@@ -97,40 +100,19 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  // Opening exit: the image is a stationary backdrop while the copy rises
-  // across it. Only in the final beat, after the copy has crossed the image,
-  // does the media itself begin to recede.
-  const layeredMediaYNumeric = useTransform(
-    scrollYProgress,
-    [0, 0.88, 0.96, 1],
-    [0, 0, -10 * scale, -24 * scale],
-  );
+  const layeredMediaYNumeric = useTransform(scrollYProgress, [0, 0.88, 0.96, 1], [0, 0, -10 * scale, -24 * scale]);
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
-  const layeredMediaScale = useTransform(
-    scrollYProgress,
-    [0, 0.88, 1],
-    [1, 1, reduceMotion ? 1 : 1.008],
-  );
+  const layeredMediaScale = useTransform(scrollYProgress, [0, 0.88, 1], [1, 1, reduceMotion ? 1 : 1.008]);
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
     [0, 0.5, 0.64, 0.78, 0.92, 1],
     [1, 1, 0.88, 0.52, reduceMotion ? 0.72 : 0.18, reduceMotion ? 0.7 : 0.1],
   );
-
-  const layeredTitleYNumeric = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.52, 0.72, 0.9, 1],
-    [0, 0, -82 * scale, -188 * scale, -282 * scale, -326 * scale],
-  );
+  const layeredTitleYNumeric = useTransform(scrollYProgress, [0, 0.3, 0.52, 0.72, 0.9, 1], [0, 0, -82 * scale, -188 * scale, -282 * scale, -326 * scale]);
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
   const layeredTitleOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
   const layeredTitleColor = useTransform(scrollYProgress, [0, 1], ["#222224", "#222224"]);
-
-  const layeredCopyYNumeric = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.52, 0.72, 0.9, 1],
-    [0, 0, -74 * scale, -174 * scale, -258 * scale, -300 * scale],
-  );
+  const layeredCopyYNumeric = useTransform(scrollYProgress, [0, 0.3, 0.52, 0.72, 0.9, 1], [0, 0, -74 * scale, -174 * scale, -258 * scale, -300 * scale]);
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
   const layeredCopyOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
 
@@ -140,7 +122,7 @@ export function ScrollScene({
 
   let contentStyle: LayeredSceneStyle | undefined;
 
-  if (motionEnabled && isAttentionExit) {
+  if (motionEnabled && isHomeOpening) {
     contentStyle = {
       "--scene-media-y": layeredMediaY,
       "--scene-media-scale": layeredMediaScale,
@@ -173,9 +155,10 @@ export function ScrollScene({
       data-direction={direction}
       data-range={range}
       data-intensity={intensity}
+      data-choreography={choreography}
       data-enabled={motionEnabled ? "true" : "false"}
       data-reduced-motion={reduceMotion ? "true" : "false"}
-      data-attention-exit={isAttentionExit ? "true" : undefined}
+      data-attention-exit={isHomeOpening ? "true" : undefined}
       data-progress-source={progress ? "panel" : "self"}
     >
       {decorative ? (
@@ -187,15 +170,11 @@ export function ScrollScene({
               <motion.span className="scrollScene__shape scrollScene__shape--fast" style={motionEnabled ? { y: fastY } : undefined} />
             </>
           ) : null}
-          {showLine ? (
-            <motion.span className="scrollScene__line" style={motionEnabled ? { scaleY: lineScale } : { scaleY: 1 }} />
-          ) : null}
+          {showLine ? <motion.span className="scrollScene__line" style={motionEnabled ? { scaleY: lineScale } : { scaleY: 1 }} /> : null}
         </div>
       ) : null}
 
-      <motion.div className="scrollScene__content" style={contentStyle}>
-        {children}
-      </motion.div>
+      <motion.div className="scrollScene__content" style={contentStyle}>{children}</motion.div>
     </div>
   );
 }
