@@ -2,7 +2,7 @@
   "home-cover":{"id":"home-cover","type":"image","src":"/assets/photos/work/kuro/mobile_on_grey_block.jpg","alt":"Sélection de projets de Chow Studio.","width":1600,"height":1067,"focalPoint":{"x":50,"y":50}},
   "studio-founder-1":{"id":"studio-founder-1","type":"image","src":"/assets/photos/portrait shot.jpg","alt":"Portrait de Channy How-Choong, designer et développeuse frontend, fondatrice de Chow Studio.","width":1200,"height":1600,"focalPoint":{"x":50,"y":40}},
   "atmosphere-laptop":{"id":"atmosphere-laptop","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__laptop.jpg","alt":"Atmosphere | aperçu desktop du site d’architecture intérieure.","width":1600,"height":1067},
-  "atmosphere_mobile-vid":{"id":"atmosphere_mobile-vid","type":"mux","playbackId":"t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s","alt":"Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.","width":1080,"height":1920,"fit":"cover","focalPoint":{"x":50,"y":64}},
+  "atmosphere_mobile-vid":{"id":"atmosphere_mobile-vid","type":"mux","playbackId":"t6pgrLKNtaoA9JfI8vEg008l00eyc98EQ01YjJbHGQ3K1s","alt":"Atmosphere | aperçu animé de l’expérience mobile du site d’architecture intérieure.","width":1080,"height":1920,"ratio":"landscape","fit":"cover","focalPoint":{"x":50,"y":64}},
   "atmosphere-tablet":{"id":"atmosphere-tablet","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__tablet.jpg","alt":"Atmosphere | aperçu tablette du site.","width":1600,"height":1067},
   "atmosphere-mobile-solo":{"id":"atmosphere-mobile-solo","type":"image","src":"/assets/photos/work/atmosphere/atmosphere__mobile-solo.jpg","alt":"Atmosphere | aperçu mobile du site.","width":1200,"height":1600},
   "kuro-laptop":{"id":"kuro-laptop","type":"image","src":"/assets/photos/work/kuro/kuro__laptop.jpg","alt":"Kuro | aperçu desktop du site du restaurant japonais.","width":1600,"height":1067},
@@ -22,18 +22,8 @@
   "mdk-heartbeat":{"id":"mdk-heartbeat","type":"mux","playbackId":"TK7htApV1SS4mq2m700WaRhzZstIGuzhsm00HamyhzL02M","alt":"Mois du Kèr | cœur anatomique animé au rythme d’un battement.","width":1080,"height":1350},
   "mdk-heart-sea":{"id":"mdk-heart-sea","type":"mux","playbackId":"xDDLKWiYfE1IvvsMeg01Q101WEd8MlqHziK7TUWaJl1LA","alt":"Mois du Kèr | animation d’un motif de cœurs en mouvement.","width":1080,"height":1350},
   "mdk-rings":{"id":"mdk-rings","type":"mux","playbackId":"FAhfWxfBylWVz1FMhMpzfR011KRs4f8xpWljCuu1txUg","alt":"Mois du Kèr | animation graphique de cercles concentriques issue de l’identité visuelle.","width":1080,"height":1350},
-  "mdk-poster": {
-  "id": "mdk-poster",
-  "type": "image",
-  "src": "/assets/photos/work/mois-du-ker/mdk_poster.webp",
-  "alt": "Mois du Kèr | affiche de la campagne de prévention cardiovasculaire."
-},
-"mdk-wall-poster": {
-  "id": "mdk-wall-poster",
-  "type": "image",
-  "src": "/assets/photos/work/mois-du-ker/mdk_wall-poster.webp",
-  "alt": "Mois du Kèr | identité visuelle appliquée à une affiche en situation."
-},
+  "mdk-poster": {"id":"mdk-poster","type":"image","src":"/assets/photos/work/mois-du-ker/mdk_poster.webp","alt":"Mois du Kèr | affiche de la campagne de prévention cardiovasculaire."},
+  "mdk-wall-poster": {"id":"mdk-wall-poster","type":"image","src":"/assets/photos/work/mois-du-ker/mdk_wall-poster.webp","alt":"Mois du Kèr | identité visuelle appliquée à une affiche en situation."},
   "ravine-business-card":{"id":"ravine-business-card","type":"image","src":"/assets/photos/work/ravine/ravine_business card.jpg","alt":"Ravine | identité visuelle appliquée à des cartes de visite.","width":1600,"height":1067},
   "ravine-flyer":{"id":"ravine-flyer","type":"image","src":"/assets/photos/work/ravine/ravine_flyer.jpg","alt":"Ravine | déclinaison de l’identité sur flyer.","width":1600,"height":1067},
   "ravine-textile":{"id":"ravine-textile","type":"image","src":"/assets/photos/work/ravine/ravine_textile.jpg","alt":"Ravine | application textile de l’identité visuelle.","width":1600,"height":1067},
