@@ -19,7 +19,11 @@
 .section { --section-space: var(--project-section-space); }
 .carousel { --carousel-media-ratio: #{$ratio-landscape}; }
 
-#contact-default { min-height: 100svh; }
+#contact-default {
+  min-height: 100svh;
+  --split-primary-column: 1 / span 5;
+  --split-secondary-column: 8 / -1;
+}
 #contact-default .split { align-items: start; }
 
 /* Project archive composition */
