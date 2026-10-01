@@ -2,9 +2,9 @@
 @use "../foundation/mixins" as *;
 
 .split {
-  @include site-grid(var(--section-gap, #{$flow-loose}));
+  @include site-grid(var(--split-gap, var(--section-gap, #{$flow-loose})));
   align-items: center;
-  row-gap: var(--section-gap, #{$flow-loose});
+  row-gap: var(--split-gap, var(--section-gap, #{$flow-loose}));
 
   &__primary,
   &__secondary {
@@ -12,6 +12,13 @@
     width: 100%;
     min-width: 0;
     max-width: none;
+  }
+}
+
+@include tablet-down {
+  .split {
+    --split-gap: #{$flow};
+    align-items: start;
   }
 }
 
