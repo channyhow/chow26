@@ -45,6 +45,25 @@
   justify-self: end;
 }
 
+/* Desktop restores the earlier editorial opening: the image is a contained
+   visual field on the right, while title and positioning copy remain on the
+   shared grid. ScrollScene can still move both layers independently. */
+@include desktop-up {
+  #home-opening .section__media {
+    align-self: end;
+    justify-self: end;
+    width: 52%;
+    height: 54svh;
+    margin-right: var(--project-gutter);
+    margin-bottom: clamp(#{$space-3}, 5vh, #{$space-5});
+  }
+
+  #home-opening .section__media .media__frame,
+  #home-opening .section__media .media__asset {
+    height: 100%;
+  }
+}
+
 #projects-featured-carousel,
 #projects-featured-gallery,
 #home-services,
@@ -128,7 +147,7 @@
   max-width: 30rem;
 }
 
-#home-services { --split-primary-column: 9 / -1; --split-secondary-column: 1  / span 7;}
+#home-services { --split-primary-column: 9 / -1; --split-secondary-column: 1 / span 7; }
 #final-cta { --split-primary-column: 1 / span 4; --split-secondary-column: 7 / -1; }
 
 #projects-featured-carousel { min-height: 100svh; }
