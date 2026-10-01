@@ -78,12 +78,17 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder */
+/* Founder: compact portrait is the only Split exception. */
 #studio-founders {
-  --media-background: transparent;
-  --split-primary-column: 1 / span 5;
+  --split-primary-column: 1 / span 3;
   --split-secondary-column: 7 / -1;
+  --media-background: transparent;
   min-height: 100svh;
+}
+
+#studio-founders .media {
+  max-width: 100%;
+  mix-blend-mode: multiply;
 }
 
 @include tablet-down {
@@ -92,4 +97,6 @@
     --split-secondary-column: 1 / -1;
     min-height: auto;
   }
+
+  #studio-founders .media { max-width: 18rem; }
 }
