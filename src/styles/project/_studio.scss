@@ -2,12 +2,10 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* ==================================
-   STUDIO — SERVICES
-   Page owns section composition only.
-   HorizontalScroll, Card, Media and TextBlock own their presentation.
-================================== */
+/* Studio owns page composition only. HorizontalScroll, Grid, Card, Media and
+   TextBlock retain their component presentation. */
 
+/* Services */
 #studio-services {
   --section-space: 0;
   --text-width: none;
@@ -23,19 +21,11 @@
 
 #studio-services > .section__inner > .section__header { display: none; }
 #studio-services .section__body { width: 100%; min-width: 0; }
-
 #studio-services .horizontalScroll__progress {
   padding: calc(#{$header-height} + #{$space-2}) $page-gutter 0;
 }
 
-@include tablet-down {
-  #studio-services .horizontalScroll__progress { display: none; }
-}
-
-/* ==================================
-   STUDIO — SHARED EDITORIAL GRID
-================================== */
-
+/* Shared editorial composition */
 #studio-approach,
 #studio-founders {
   --studio-grid-line: color-mix(in srgb, currentColor 16%, transparent);
@@ -43,7 +33,11 @@
   overflow: hidden;
 }
 
-#studio-approach { isolation: isolate; }
+#studio-approach {
+  --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
+  isolation: isolate;
+  min-height: 100svh;
+}
 
 #studio-approach > .section__inner,
 #studio-founders > .section__inner {
@@ -51,38 +45,20 @@
   z-index: 1;
 }
 
-/* ==================================
-   STUDIO — APPROACH
-================================== */
-
-#studio-approach {
-  --section-row-gap: clamp(#{$space-4}, 7vh, 6rem);
-  min-height: 100svh;
-}
-
+/* Approach */
 #studio-approach > .section__inner {
   display: grid;
   align-content: center;
-}
-
-#studio-approach > .section__inner,
-#studio-approach .gridReveal {
   width: 100%;
   max-width: none;
 }
 
+#studio-approach .gridReveal { width: 100%; max-width: none; }
 #studio-approach .grid { align-items: start; }
-#studio-approach .grid__item { min-width: 0; }
-#studio-approach .grid__item:first-child { width: 100%; }
 
 #studio-approach .grid__item:not(:first-child) .card--editorial {
   height: 100%;
   padding: $space-2;
-}
-
-#studio-approach .grid__item:first-child .textBlock {
-  align-items: flex-start;
-  text-align: left;
 }
 
 #studio-approach .grid__item:first-child .textBlock__title {
@@ -107,11 +83,7 @@
 }
 
 @include mobile-down {
-  #studio-approach {
-    --section-row-gap: $space-3;
-    overflow: visible;
-  }
-
+  #studio-approach { overflow: visible; }
   #studio-approach .gridReveal,
   #studio-approach .grid { overflow: visible; }
 
@@ -139,10 +111,7 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* ==================================
-   STUDIO — FOUNDER / ABOUT
-================================== */
-
+/* Founder / about */
 #studio-founders {
   --media-background: transparent;
   --section-gap: clamp(#{$space-3}, 5vw, #{$space-5});
@@ -152,7 +121,7 @@
 #studio-founders .section__inner {
   display: grid;
   align-items: center;
-  min-height: 100svh;
+  min-height: inherit;
 }
 
 #studio-founders .section__body,
@@ -161,8 +130,6 @@
   width: 100%;
   min-width: 0;
 }
-
-#studio-founders .grid { grid-template-columns: 1fr; }
 
 @include tablet-up {
   #studio-founders .card--profile .card__mediaWrap { grid-column: 1 / span 4; }
@@ -175,6 +142,5 @@
 }
 
 @include tablet-down {
-  #studio-founders,
-  #studio-founders .section__inner { min-height: auto; }
+  #studio-founders { min-height: auto; }
 }
