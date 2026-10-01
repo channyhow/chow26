@@ -18,6 +18,10 @@ type MediaBase = {
   alt?: string;
   width?: number;
   height?: number;
+  /** Display framing owned by Media. Falls back to intrinsic dimensions. */
+  aspectRatio?: string;
+  aspectRatioTablet?: string;
+  aspectRatioMobile?: string;
   fit?: MediaFit;
   focalPoint?: FocalPoint;
   caption?: string;
