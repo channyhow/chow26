@@ -2,11 +2,16 @@
 @use "../foundation/mixins" as *;
 
 .section {
+  --section-bg: transparent;
+  --section-fg: inherit;
+  --section-glass-bg: color-mix(in srgb, var(--section-bg) 76%, transparent);
+
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-block: var(--section-space, #{$section-space});
   padding-inline: $page-gutter;
+  color: var(--section-fg);
 
   &__inner {
     flex: 1 1 auto;
@@ -18,10 +23,6 @@
     width: 100%;
     max-width: $container-narrow;
     margin-bottom: var(--section-gap, #{$section-content-gap});
-  }
-
-  &__header.textBlock {
-    max-width: $container-narrow;
   }
 
   &__header.textBlock .textBlock__title {
@@ -48,9 +49,7 @@
   }
 
   &__mediaOverlay > .section__media,
-  &__mediaOverlay > .section__overlayContent {
-    grid-area: 1 / 1;
-  }
+  &__mediaOverlay > .section__overlayContent { grid-area: 1 / 1; }
 
   &__mediaOverlay > .section__media {
     width: 100%;
@@ -59,14 +58,8 @@
     @include media-cover;
   }
 
-  &__mediaOverlay > .section__media > .scrollScene__content {
-    width: 100%;
-    height: 100%;
-  }
-
-  &__mediaOverlay > .section__overlayContent > .scrollScene__content {
-    width: 100%;
-  }
+  &__mediaOverlay > .section__media > .scrollScene__content { width: 100%; height: 100%; }
+  &__mediaOverlay > .section__overlayContent > .scrollScene__content { width: 100%; }
 
   &__overlayContent {
     position: relative;
@@ -78,26 +71,14 @@
   }
 }
 
-.section {
-  --section-bg: transparent;
-  --section-fg: inherit;
-  --section-glass-bg: color-mix(in srgb, var(--section-bg) 76%, transparent);
-  color: var(--section-fg);
-}
-
-.section[data-color="primary"] {
-  --section-bg: var(--theme-primary);
-  --section-fg: var(--theme-secondary);
-}
-
-.section[data-color="primary"] .section__header {
-  color: var(--theme-secondary);
-}
-
+.section[data-color="primary"] { --section-bg: var(--theme-primary); --section-fg: var(--theme-secondary); }
 .section[data-color="secondary"] { --section-bg: var(--theme-secondary); --section-fg: var(--theme-primary); }
 .section[data-color="accent"] { --section-bg: var(--theme-accent); --section-fg: var(--theme-primary); }
 .section[data-color="special"] { --section-bg: var(--theme-special); --section-fg: var(--theme-primary); }
+
 .section[data-surface="solid"] { background: var(--section-bg); }
+.section[data-surface="transparent"] { background: transparent; }
+
 .section[data-surface="glass"] {
   position: relative;
   background: transparent;
@@ -114,37 +95,31 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(0.95);
 }
 
-.section[data-surface="glass"] > * {
-  position: relative;
-  z-index: 1;
-}
-.section[data-surface="transparent"] { background: transparent; }
+.section[data-surface="glass"] > * { position: relative; z-index: 1; }
+
 .section[data-layout="media-overlay"] { padding: 0; }
 .section[data-layout="media-overlay"] .section__inner { display: flex; width: 100%; max-width: none; }
+
 .section[data-layout="statement"] .section__inner,
-.section[data-layout="text"] .section__inner { display: grid; justify-items: start; }
+.section[data-layout="text"] .section__inner {
+  display: grid;
+  justify-items: start;
+}
 
 @include desktop-up {
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)),
-  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) {
-    @include site-grid;
-  }
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) { @include site-grid; }
 
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
-  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock {
-    grid-column: 3 / span 8;
-  }
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock { grid-column: 3 / span 8; }
 }
 
 @include tablet-down {
-  /* Responsive content sections always keep a readable vertical inset.
-     Immersive overlays and horizontal-scroll scenes own their own spacing. */
   .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
     padding-block: max(var(--section-space, #{$section-space}), #{$space-3});
   }
 
   .section__header,
-  .section__header.textBlock,
   .section__body {
     width: 100%;
     max-width: none;
@@ -156,11 +131,7 @@
 
   .section[data-source="projects"]:not([data-featured="true"])
     .section__header.textBlock
-    .textBlock__title {
-    max-width: none;
-  }
+    .textBlock__title { max-width: none; }
 
-  .section__overlayContent {
-    padding-block: clamp(#{$space-4}, 10vh, #{$space-5});
-  }
+  .section__overlayContent { padding-block: clamp(#{$space-4}, 10vh, #{$space-5}); }
 }
