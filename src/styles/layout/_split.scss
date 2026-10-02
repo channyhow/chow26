@@ -22,12 +22,25 @@
   }
 }
 
-@include desktop-up {
+/* Tablet keeps the editorial split instead of inheriting the stacked mobile
+   placement at the exact 48rem boundary. The shared 8-column grid gives both
+   sides deliberate breathing room without changing the global breakpoint. */
+@include tablet-up {
   .split__primary,
   .split__secondary {
     grid-row: 1;
   }
 
+  .split__primary {
+    grid-column: 1 / 4;
+  }
+
+  .split__secondary {
+    grid-column: 5 / -1;
+  }
+}
+
+@include desktop-up {
   .split__primary {
     grid-column: var(--split-primary-column, 9 / -1);
   }
