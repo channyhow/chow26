@@ -2,12 +2,12 @@
   {
     "id": "identity",
     "eyebrow": "Logo · Identité visuelle · Supports de communication",
-    "title": "Identité & communication visuelle",
-    "text": ["Construisez une identité claire et reconnaissable, du logo à une communication visuelle cohérente sur vos supports imprimés et digitaux."],
+    "title": "Créer une présence reconnaissable",
+    "text": ["Votre projet existe, mais son image reste à construire ou manque de cohérence. Je crée une **identité visuelle claire** et les **supports de communication** qui permettent de la faire vivre, du **logo** aux déclinaisons imprimées et digitales."],
     "media": "mdk-wall-poster",
     "meta": [
-      { "label": "Pour", "value": "Lancement · Repositionnement · Nouvelle identité" },
-      { "label": "Peut inclure", "value": "Logo · Charte graphique · Typographie · Couleurs · Supports de communication" },
+      { "label": "Pour", "value": "Lancement · Repositionnement · Image incohérente" },
+      { "label": "Solution", "value": "Logo · Identité visuelle · Charte graphique · Supports de communication" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
     "tags": ["Logo", "Identité visuelle", "Communication visuelle"],
@@ -18,12 +18,12 @@
   {
     "id": "website",
     "eyebrow": "Création de site internet · Refonte · SEO",
-    "title": "Site internet & présence digitale",
-    "text": ["Présentez votre activité clairement avec un site internet sur mesure : création ou refonte, design web, développement, responsive et optimisation pour faciliter la découverte de votre activité et la prise de contact."],
+    "title": "Rendre votre activité claire en ligne",
+    "text": ["Vous avez besoin d’un site, ou l’existant ne représente plus correctement votre activité. Je conçois ou repense votre **site internet** pour clarifier l’offre, structurer les contenus et faciliter la **découverte**, la **navigation** et la **prise de contact**."],
     "media": "atmosphere-laptop",
     "meta": [
-      { "label": "Pour", "value": "Création de site · Refonte · Nouvelle présence digitale" },
-      { "label": "Peut inclure", "value": "Structure · UX/UI · Design web · Développement · SEO · Accessibilité" },
+      { "label": "Pour", "value": "Création de site · Refonte · Site difficile à comprendre" },
+      { "label": "Solution", "value": "Structure · UX/UI · Design web · Développement · SEO · Accessibilité" },
       { "label": "Budget", "value": "À partir de 1 500 € HT" }
     ],
     "tags": ["Création site internet", "Refonte site web", "Design web"],
@@ -34,12 +34,12 @@
   {
     "id": "integrations",
     "eyebrow": "Communication digitale · Réservation · Paiement · Formulaires",
-    "title": "Outils & communication digitale",
-    "text": ["Faites évoluer votre présence digitale avec les outils utiles à votre activité : réservation, paiement, formulaires, contenus dynamiques, automatisations ou connexion à vos services existants."],
+    "title": "Faire évoluer ce qui existe déjà",
+    "text": ["Votre présence existe déjà mais elle doit faire davantage. J’ajoute les **outils digitaux** utiles à votre activité et fais évoluer les parcours : **réservation**, **paiement**, **formulaires**, contenus dynamiques, automatisations ou connexion à vos services existants."],
     "media": "structure-mobile-multi",
     "meta": [
-      { "label": "Pour", "value": "Site existant · Nouveau service · Parcours digital" },
-      { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Automatisation · Services externes" },
+      { "label": "Pour", "value": "Site existant · Nouveau service · Parcours à simplifier" },
+      { "label": "Solution", "value": "Réservation · Paiement · Formulaires · CMS · Automatisation · Intégrations" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
     "tags": ["Communication digitale", "Intégrations", "Automatisation"],
