@@ -3,6 +3,7 @@
 
 .page {
   --page-start-offset: #{$header-height};
+  --page-start-gap: #{$space-3};
   position: relative;
 }
 
@@ -12,28 +13,17 @@
   background: var(--secondary);
 }
 
-/* Route-start contract: every conventional first section clears the persistent
-   header exactly once. Section owns its normal rhythm; the page only contributes
-   the header-safe offset. */
+/* Route-start contract: header clearance belongs to the page boundary. Section
+   keeps ownership of its normal vertical rhythm, so the opening does not stack
+   a full section-space on top of the persistent header. */
 .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
 .page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
-  padding-top: calc(var(--section-space, #{$section-space}) + var(--page-start-offset));
+  padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
 }
 
-/* Horizontal-scroll sections own a sticky viewport, so padding the Section would
-   distort its scroll runway. Apply route-start clearance to the component instead.
-   This remains valid when the component collapses to normal flow on tablet/mobile. */
-.page__content > .section:first-child[data-layout="horizontal-scroll"] .horizontalScroll__viewport,
-.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="horizontal-scroll"] .horizontalScroll__viewport {
-  padding-top: var(--page-start-offset);
-}
-
-/* Immersive route openings deliberately allow media behind the header; readable
-   overlay content still clears it. */
-.page__content > .section:first-child[data-layout="media-overlay"] .section__overlayContent,
-.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="media-overlay"] .section__overlayContent {
-  padding-top: calc(clamp(#{$space-4}, 12vh, 9rem) + var(--page-start-offset));
-}
+/* Horizontal-scroll and media-overlay openings own their first-view composition.
+   Do not add generic page-start padding to their viewport or overlay content;
+   those components handle their own readable/header-safe layout. */
 
 .page__footer,
 .siteFooter {
