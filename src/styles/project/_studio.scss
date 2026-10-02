@@ -100,7 +100,7 @@
   #studio-services .card--service .split__secondary { margin-top: $space-3; }
 
   #studio-services .card--service .card__media,
-  #studio-services .card--service .media__frame { aspect-ratio: $ratio-wide; }
+  #studio-services .card--service .media__frame { aspect-ratio: $ratio-square; }
 
   #studio-services .card--service .textBlock__title { @include type-heading-md; }
   #studio-services .card--service .textBlock__content { max-width: 32ch; }
@@ -173,7 +173,7 @@
   #studio-services .card--service .card__media,
   #studio-services .card--service .media__frame {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: $ratio-wide;
   }
 
   #studio-services .card--service .card__body.textBlock {
@@ -287,17 +287,22 @@
 }
 
 @include mobile-down {
+  #studio-founders > .section__inner {
+      .split--media-lead .split__primary {
+    width: unset;
+    }}
   #studio-founders {
     --split-gap: #{$space-4};
     padding-block: max(#{$space-4}, 8svh);
   }
 
-  #studio-founders > .section__inner {
-    min-height: calc(100svh - (2 * max(#{$space-4}, 8svh)));
-  }
+  // #studio-founders > .section__inner {
+  //   min-height: calc(100svh - (2 * max(#{$space-4}, 8svh)));
+  // }
 
   #studio-founders .media {
-    max-width: 18rem;
-    margin-inline: auto;
+    // max-width: 18rem;
+    // margin-inline: auto;
+    aspect-ratio: $ratio-square;
   }
 }
