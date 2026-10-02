@@ -2,6 +2,11 @@
 @use "../foundation/mixins" as *;
 
 .split {
+  --split-primary-tablet: 1 / 4;
+  --split-secondary-tablet: 5 / -1;
+  --split-primary-desktop: 9 / -1;
+  --split-secondary-desktop: 1 / span 5;
+
   @include site-grid(var(--split-gap, var(--section-gap, #{$flow-loose})));
   align-items: center;
   row-gap: var(--split-gap, var(--section-gap, #{$flow-loose}));
@@ -13,6 +18,27 @@
     min-width: 0;
     max-width: none;
   }
+
+  &--balanced {
+    --split-primary-tablet: 1 / 5;
+    --split-secondary-tablet: 5 / -1;
+    --split-primary-desktop: 1 / span 5;
+    --split-secondary-desktop: 7 / -1;
+  }
+
+  &--editorial {
+    --split-primary-tablet: 1 / 4;
+    --split-secondary-tablet: 5 / -1;
+    --split-primary-desktop: 8 / -1;
+    --split-secondary-desktop: 1 / span 5;
+  }
+
+  &--media-lead {
+    --split-primary-tablet: 1 / 5;
+    --split-secondary-tablet: 5 / -1;
+    --split-primary-desktop: 7 / -1;
+    --split-secondary-desktop: 1 / span 6;
+  }
 }
 
 @include tablet-down {
@@ -22,9 +48,6 @@
   }
 }
 
-/* Tablet keeps the editorial split instead of inheriting the stacked mobile
-   placement at the exact 48rem boundary. The shared 8-column grid gives both
-   sides deliberate breathing room without changing the global breakpoint. */
 @include tablet-up {
   .split__primary,
   .split__secondary {
@@ -32,20 +55,20 @@
   }
 
   .split__primary {
-    grid-column: 1 / 4;
+    grid-column: var(--split-primary-tablet);
   }
 
   .split__secondary {
-    grid-column: 5 / -1;
+    grid-column: var(--split-secondary-tablet);
   }
 }
 
 @include desktop-up {
   .split__primary {
-    grid-column: var(--split-primary-column, 9 / -1);
+    grid-column: var(--split-primary-column, var(--split-primary-desktop));
   }
 
   .split__secondary {
-    grid-column: var(--split-secondary-column, 1 / span 5);
+    grid-column: var(--split-secondary-column, var(--split-secondary-desktop));
   }
 }
