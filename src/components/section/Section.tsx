@@ -90,14 +90,14 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   if (layout === "split") {
     const primary = header ? <TextBlock content={header} /> : null;
-    body = <Split primary={motionLayer(primary, "forward")} secondary={motionLayer(secondary, "reverse")} />;
+    body = <Split variant={block.splitVariant} primary={motionLayer(primary, "forward")} secondary={motionLayer(secondary, "reverse")} />;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
     const profileMedia = resolveMedia(profileMediaRef);
     const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    body = <Split className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" />} />;
+    body = <Split variant={block.splitVariant ?? "media-lead"} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" />} />;
   } else if (layout === "media-overlay") {
     body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}</div>;
   } else if (layout === "gallery") {
@@ -124,7 +124,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
 
-  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={isProfileGrid ? "split" : layout} data-variant={block.variant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
+  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={isProfileGrid ? "split" : layout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
     {shouldTrackScroll && layout === "media-overlay" ? mediaOverlayScene : shouldTrackScroll ? <div className="section__inner">{body}</div> : shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: revealDistance }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: revealDuration, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>}
   </motion.section>;
 }
