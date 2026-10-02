@@ -34,7 +34,7 @@
   }
 
   &--media-lead {
-    --split-primary-tablet: 1 / 5;
+    --split-primary-tablet: 1 / 4;
     --split-secondary-tablet: 5 / -1;
     --split-primary-desktop: 7 / -1;
     --split-secondary-desktop: 1 / span 6;
@@ -45,6 +45,11 @@
   .split {
     --split-gap: #{$flow-default};
     align-items: start;
+  }
+
+  .split--media-lead .split__primary {
+    width: min(72vw, 24rem);
+    justify-self: start;
   }
 }
 
