@@ -180,8 +180,13 @@
     max-width: 12ch;
   }
 
-  #studio-services .card--service .textBlock__content { max-width: 30ch; }
-  #studio-services .card--service .textBlock__meta { margin-top: $space-1; }
+  #studio-services .card--service .textBlock__content {
+    max-width: 30ch;
+  }
+
+  #studio-services .card--service .textBlock__meta {
+    margin-top: $space-1;
+  }
 
   #studio-services .card--service .textBlock__meta > * {
     grid-template-columns: minmax(5.5rem, .7fr) minmax(0, 1.3fr);
@@ -189,7 +194,9 @@
   }
 
   #studio-services .card--service .textBlock__metaLabel,
-  #studio-services .card--service .textBlock__metaValue { overflow-wrap: anywhere; }
+  #studio-services .card--service .textBlock__metaValue {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* Approach */
@@ -248,69 +255,39 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder: compact portrait is the only Split exception. */
+/* Founder uses the reusable media-lead Split composition. Project styling only
+   owns the portrait treatment and panel rhythm, not responsive grid placement. */
 #studio-founders {
-  --split-primary-column: 2 / span 3;
-  --split-secondary-column: 7 / -1;
   --media-background: transparent;
   min-height: 100svh;
 }
 
 #studio-founders .media {
-  max-width: 100%;
+  width: 100%;
   mix-blend-mode: multiply;
 }
 
 @include tablet-down {
-  #studio-founders {
-    min-height: 100svh;
-  }
-
   #studio-founders > .section__inner {
     display: flex;
     align-items: center;
+    min-height: 100svh;
   }
 
   #studio-founders .split {
-    gap: $space-4;
-    align-items: center;
     width: 100%;
-  }
-
-  #studio-founders .split__primary {
-    grid-column: 1 / 4;
-    grid-row: 1;
-  }
-
-  #studio-founders .split__secondary {
-    grid-column: 5 / -1;
-    grid-row: 1;
-  }
-
-  #studio-founders .media {
-    width: 100%;
-    max-width: 18rem;
-    margin-inline: auto;
+    align-content: center;
   }
 }
 
 @include mobile-down {
   #studio-founders {
     --split-gap: #{$space-4};
-    min-height: 100svh;
     padding-block: max(#{$space-4}, 8svh);
   }
 
-  #studio-founders .split {
-    grid-template-columns: 1fr;
-    gap: var(--split-gap);
-    align-content: center;
-  }
-
-  #studio-founders .split__primary,
-  #studio-founders .split__secondary {
-    grid-column: 1 / -1;
-    grid-row: auto;
+  #studio-founders > .section__inner {
+    min-height: calc(100svh - (2 * max(#{$space-4}, 8svh)));
   }
 
   #studio-founders .media {
