@@ -50,6 +50,12 @@
   .textBlock__content p { @include type-body-sm; }
   .textBlock__content > * + * { margin-top: $flow-default; }
   .textBlock__footer { width: fit-content; margin-top: $flow-tight; padding-top: 0; }
+
+  /* Service media uses a stable editorial square on desktop. Smaller layouts
+     keep their responsive split/media rules instead of inheriting this ratio. */
+  @include desktop-up {
+    .media__frame { aspect-ratio: $ratio-square; }
+  }
 }
 
 .card--editorial {
