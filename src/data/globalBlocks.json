@@ -78,7 +78,7 @@
       "items": [{
         "subtitle": "Un même regard, de l’idée au résultat final.",
         "text": [
-          "Avant de créer des **sites internet**, des **identités visuelles** et des **supports de communication**, **Channy How** a travaillé dans le développement produit et la création entre **la Chine, Hong Kong, Sydney et la France**.",
+          "Originaire de **la Réunion**, où elle a grandi à **Saint-Denis**, **Channy How** a travaillé dans le développement produit et la création entre **la Chine, Hong Kong, Sydney et la France**, avant de se tourner vers les **sites internet**, les **identités visuelles** et les **supports de communication**.",
           "Cette expérience nourrit une manière de travailler attentive à **l’idée, au détail, aux contraintes de production** et surtout à ce qui doit réellement fonctionner une fois livré."
         ],
         "media": ["studio-founder-1"]
@@ -190,48 +190,20 @@
       ]
     }
   },
-  "site-footer": {
-    "id": "site-footer",
-    "type": "Section",
-    "layout": "list",
-    "content": {
-      "header": {
-        "eyebrow": ["Chow Studio", "Sites internet  | Identités visuelles  | Supports de communication  | Paris  | la Réunion"],
-        "links": [
-          { "label": "Accueil", "href": "/", "intent": "navigate" },
-          { "label": "Projets", "href": "/projets", "intent": "navigate" },
-          { "label": "Studio", "href": "/studio", "intent": "navigate" },
-          { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
-          { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "intent": "navigate" },
-          { "label": "LinkedIn", "href": "https://www.linkedin.com/in/channyhow", "intent": "navigate" },
-          { "label": "CGV", "href": "/cgv", "intent": "navigate" },
-          { "label": "Confidentialité", "href": "/confidentialite", "intent": "navigate" },
-          { "label": "Mentions légales", "href": "/mentions-legales", "intent": "navigate" }
-        ],
-        "meta": [
-          { "label": "Design et développement", "value": "Channy How" },
-          { "label": "© 2026 Chow Studio | Tous droits réservés" }
-        ]
-      }
-    }
-  },
   "not-found-default": {
     "id": "not-found-default",
     "type": "Section",
     "layout": "statement",
-    "variant": "editorial",
-    "surface": "solid",
-    "color": "accent",
     "content": {
       "header": {
-        "eyebrow": "404 | Page introuvable",
-        "title": "Cette page n’est plus ici.",
-        "text": ["Revenez à l’accueil ou poursuivez avec les projets du studio."],
-        "links": [
-          { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
-          { "label": "Voir les projets", "href": "/projets", "intent": "navigate" }
-        ]
+        "title": "Page introuvable",
+        "text": ["La page demandée n’existe pas ou a été déplacée."],
+        "links": ["home"]
       }
     }
+  },
+  "site-footer": {
+    "id": "site-footer",
+    "type": "Footer"
   }
 }
