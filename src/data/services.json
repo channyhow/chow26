@@ -1,48 +1,48 @@
 [
   {
     "id": "identity",
-    "eyebrow": "Logo · Identité visuelle · Supports de communication",
-    "title": "Créer une présence reconnaissable",
-    "text": ["Votre projet existe, mais son image reste à construire ou manque de cohérence. Je crée une **identité visuelle claire** et les **supports de communication** qui permettent de la faire vivre, du **logo** aux déclinaisons imprimées et digitales."],
+    "eyebrow": "Identité visuelle · Logo · Supports de communication",
+    "title": "Créer une identité claire et reconnaissable",
+    "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** aux **supports de communication**, pour que votre activité soit reconnaissable et cohérente sur tous vos supports."],
     "media": "mdk-wall-poster",
     "meta": [
-      { "label": "Pour", "value": "Lancement · Repositionnement · Image incohérente" },
-      { "label": "Solution", "value": "Logo · Identité visuelle · Charte graphique · Supports de communication" },
+      { "label": "Pour", "value": "Lancement · Repositionnement · Image à clarifier" },
+      { "label": "Prestations", "value": "Logo · Identité visuelle · Charte graphique · Supports de communication" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
-    "tags": ["Logo", "Identité visuelle", "Communication visuelle"],
+    "tags": ["Identité visuelle", "Logo", "Supports de communication"],
     "links": ["talk-identity"],
     "featured": true,
     "order": 1
   },
   {
     "id": "website",
-    "eyebrow": "Création de site internet · Refonte · SEO",
-    "title": "Rendre votre activité claire en ligne",
-    "text": ["Vous avez besoin d’un site, ou l’existant ne représente plus correctement votre activité. Je conçois ou repense votre **site internet** pour clarifier l’offre, structurer les contenus et faciliter la **découverte**, la **navigation** et la **prise de contact**."],
+    "eyebrow": "Création de site internet · Refonte de site internet · SEO",
+    "title": "Créer ou refaire votre site internet",
+    "text": ["Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge la **création** ou la **refonte de votre site internet** pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."],
     "media": "atmosphere-laptop",
     "meta": [
-      { "label": "Pour", "value": "Création de site · Refonte · Site difficile à comprendre" },
-      { "label": "Solution", "value": "Structure · UX/UI · Design web · Développement · SEO · Accessibilité" },
+      { "label": "Pour", "value": "Nouveau site · Refonte · Site difficile à comprendre" },
+      { "label": "Prestations", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
       { "label": "Budget", "value": "À partir de 1 500 € HT" }
     ],
-    "tags": ["Création site internet", "Refonte site web", "Design web"],
+    "tags": ["Création de site internet", "Refonte de site internet", "Design web"],
     "links": ["talk-website"],
     "featured": true,
     "order": 2
   },
   {
     "id": "integrations",
-    "eyebrow": "Communication digitale · Réservation · Paiement · Formulaires",
-    "title": "Faire évoluer ce qui existe déjà",
-    "text": ["Votre présence existe déjà mais elle doit faire davantage. J’ajoute les **outils digitaux** utiles à votre activité et fais évoluer les parcours : **réservation**, **paiement**, **formulaires**, contenus dynamiques, automatisations ou connexion à vos services existants."],
+    "eyebrow": "Outils digitaux · Réservation · Paiement · Formulaires",
+    "title": "Faire évoluer votre site et vos outils digitaux",
+    "text": ["Votre site existe déjà mais doit faire davantage. J’ajoute les **outils digitaux** utiles à votre activité, comme la **réservation**, le **paiement**, les **formulaires** ou les automatisations, pour rendre le parcours plus simple pour vous et vos clients."],
     "media": "structure-mobile-multi",
     "meta": [
       { "label": "Pour", "value": "Site existant · Nouveau service · Parcours à simplifier" },
-      { "label": "Solution", "value": "Réservation · Paiement · Formulaires · CMS · Automatisation · Intégrations" },
+      { "label": "Prestations", "value": "Réservation · Paiement · Formulaires · Gestion de contenu · Automatisation" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
-    "tags": ["Communication digitale", "Intégrations", "Automatisation"],
+    "tags": ["Outils digitaux", "Réservation", "Automatisation"],
     "links": ["evolve-website"],
     "featured": true,
     "order": 3
