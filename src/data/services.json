@@ -6,8 +6,8 @@
     "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** aux **supports de communication**, pour que votre activité soit reconnaissable et cohérente sur tous vos supports."],
     "media": "mdk-wall-poster",
     "meta": [
-      { "label": "Pour", "value": "**Lancement** · **Repositionnement** · **Image à clarifier**" },
-      { "label": "Prestations", "value": "**Logo** · **Identité visuelle** · **Charte graphique** · **Supports de communication**" },
+      { "label": "Pour", "value": "Lancement · Repositionnement · Image à clarifier" },
+      { "label": "Prestations", "value": "Logo · Identité visuelle · Charte graphique · Supports de communication" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
     "tags": ["Identité visuelle", "Logo", "Supports de communication"],
@@ -22,8 +22,8 @@
     "text": ["Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge la **création de site internet** ou la **refonte de site internet** pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."],
     "media": "atmosphere-laptop",
     "meta": [
-      { "label": "Pour", "value": "**Nouveau site** · **Refonte** · **Site difficile à comprendre**" },
-      { "label": "Prestations", "value": "**Structure** · **Design web** · **Développement** · **SEO** · **Accessibilité**" },
+      { "label": "Pour", "value": "Nouveau site · Refonte · Site difficile à comprendre" },
+      { "label": "Prestations", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
       { "label": "Budget", "value": "À partir de 1 500 € HT" }
     ],
     "tags": ["Création de site internet", "Refonte de site internet", "Design web"],
@@ -38,8 +38,8 @@
     "text": ["Votre site existe déjà mais doit faire davantage. J’ajoute les **outils digitaux** utiles à votre activité, comme la **réservation**, le **paiement**, les **formulaires** ou les **automatisations**, pour rendre le parcours plus simple pour vous et vos clients."],
     "media": "structure-mobile-multi",
     "meta": [
-      { "label": "Pour", "value": "**Site existant** · **Nouveau service** · **Parcours à simplifier**" },
-      { "label": "Prestations", "value": "**Réservation** · **Paiement** · **Formulaires** · **Gestion de contenu** · **Automatisation**" },
+      { "label": "Pour", "value": "Site existant · Nouveau service · Parcours à simplifier" },
+      { "label": "Prestations", "value": "Réservation · Paiement · Formulaires · Gestion de contenu · Automatisation" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
     "tags": ["Outils digitaux", "Réservation", "Automatisation"],
