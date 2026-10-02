@@ -19,6 +19,12 @@
 #studio-services > .section__inner > .section__header { display: none; }
 #studio-services .section__body { width: 100%; min-width: 0; }
 
+ #studio-services .card--service .card__media,
+  #studio-services .card--service .media__frame {
+    width: 100%;
+    aspect-ratio: $ratio-square;
+  }
+
 @include tablet-down {
   #studio-services { padding-block: 0; }
   #studio-services .horizontalScroll__track { gap: 0; }

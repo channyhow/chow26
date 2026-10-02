@@ -1,6 +1,6 @@
 # Chow Studio
 
-> Designer et développeuse frontend, sites web et identités visuelles entre Paris et La Réunion.
+> Studio indépendant de communication visuelle et digitale, sites internet et identités visuelles entre Paris et La Réunion.
 
 ## Identity
 
@@ -32,23 +32,28 @@
 
 ## Services represented
 
-- Création et refonte de sites web
-- Identité visuelle et branding
-- Direction digitale et UX/UI design
+- Création et refonte de sites internet
+- Identité et communication visuelle
+- Supports de communication
+- Communication digitale et UX/UI
 - Développement frontend
 
 ## Topics
 
-- Design web
+- Communication visuelle
+- Communication digitale
+- Création de site internet
 - Création de site web sur mesure
-- Refonte de site web
+- Refonte de site internet
 - Identité visuelle
-- Branding
-- Direction artistique digitale
+- Création de logo
+- Charte graphique
+- Supports de communication
+- Design web
 - UX/UI design
 - Développement frontend React
 - Design responsive
-- Expérience utilisateur
+- SEO
 
 ## Service areas
 
