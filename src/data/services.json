@@ -1,48 +1,48 @@
 [
   {
     "id": "identity",
-    "eyebrow": "Logo · Branding · Direction visuelle",
-    "title": "Identité visuelle",
-    "text": ["Donnez à votre projet une identité claire et reconnaissable, du logo à un univers visuel plus complet."],
+    "eyebrow": "Logo · Identité visuelle · Supports de communication",
+    "title": "Identité & communication visuelle",
+    "text": ["Construisez une identité claire et reconnaissable, du logo à une communication visuelle cohérente sur vos supports imprimés et digitaux."],
     "media": "mdk-wall-poster",
     "meta": [
       { "label": "Pour", "value": "Lancement · Repositionnement · Nouvelle identité" },
-      { "label": "Peut inclure", "value": "Logo · Typographie · Couleurs · Direction visuelle" },
+      { "label": "Peut inclure", "value": "Logo · Charte graphique · Typographie · Couleurs · Supports de communication" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
-    "tags": ["Logo", "Branding", "Identité visuelle"],
+    "tags": ["Logo", "Identité visuelle", "Communication visuelle"],
     "links": ["talk-identity"],
     "featured": true,
     "order": 1
   },
   {
     "id": "website",
-    "eyebrow": "Design web · Développement · SEO",
-    "title": "Site web",
-    "text": ["Présentez votre activité clairement, guidez vos visiteurs vers l’essentiel et facilitez la prise de contact grâce à un site sur mesure, rapide, accessible et responsive."],
+    "eyebrow": "Création de site internet · Refonte · SEO",
+    "title": "Site internet & présence digitale",
+    "text": ["Présentez votre activité clairement avec un site internet sur mesure : création ou refonte, design web, développement, responsive et optimisation pour faciliter la découverte de votre activité et la prise de contact."],
     "media": "atmosphere-laptop",
     "meta": [
-      { "label": "Pour", "value": "Création · Refonte · Nouvelle présence digitale" },
-      { "label": "Peut inclure", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
+      { "label": "Pour", "value": "Création de site · Refonte · Nouvelle présence digitale" },
+      { "label": "Peut inclure", "value": "Structure · UX/UI · Design web · Développement · SEO · Accessibilité" },
       { "label": "Budget", "value": "À partir de 1 500 € HT" }
     ],
-    "tags": ["Site web", "UX/UI", "Frontend"],
+    "tags": ["Création site internet", "Refonte site web", "Design web"],
     "links": ["talk-website"],
     "featured": true,
     "order": 2
   },
   {
     "id": "integrations",
-    "eyebrow": "Réservation · Paiement · Formulaires · Outils",
-    "title": "Fonctionnalités & intégrations",
-    "text": ["Faites évoluer votre site avec les fonctionnalités dont votre activité a besoin : réservation, paiement, formulaires, contenus dynamiques ou connexion à vos outils."],
+    "eyebrow": "Communication digitale · Réservation · Paiement · Formulaires",
+    "title": "Outils & communication digitale",
+    "text": ["Faites évoluer votre présence digitale avec les outils utiles à votre activité : réservation, paiement, formulaires, contenus dynamiques, automatisations ou connexion à vos services existants."],
     "media": "structure-mobile-multi",
     "meta": [
-      { "label": "Pour", "value": "Site existant · Nouveau service · Nouveau parcours" },
-      { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Services externes" },
+      { "label": "Pour", "value": "Site existant · Nouveau service · Parcours digital" },
+      { "label": "Peut inclure", "value": "Réservation · Paiement · Formulaires · CMS · Automatisation · Services externes" },
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
-    "tags": ["Intégrations", "Automatisation", "Frontend"],
+    "tags": ["Communication digitale", "Intégrations", "Automatisation"],
     "links": ["evolve-website"],
     "featured": true,
     "order": 3
