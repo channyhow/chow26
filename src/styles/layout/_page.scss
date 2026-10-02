@@ -3,6 +3,7 @@
 
 .page {
   --page-start-offset: #{$header-height};
+  --page-start-gap: #{$space-3};
   position: relative;
 }
 
@@ -12,20 +13,16 @@
   background: var(--secondary);
 }
 
-/* Route-start contract: the first normal section, or the first section inside
-   the first panel, clears the persistent header. Section spacing remains owned
-   by Section; this only adds the header offset once at the page boundary. */
+/* Route-start contract: header clearance belongs to the page boundary, while
+   Section keeps ownership of its normal vertical rhythm. Apply the clearance
+   once to conventional openings, including a section nested in the first panel. */
 .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
 .page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
-  padding-top: calc(var(--section-space, #{$section-space}) + var(--page-start-offset));
+  padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
 }
 
-/* Immersive route openings own their internal composition, but their content
-   still receives header clearance rather than relying on a page-specific patch. */
-.page__content > .section:first-child[data-layout="media-overlay"] .section__overlayContent,
-.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section[data-layout="media-overlay"] .section__overlayContent {
-  padding-top: calc(clamp(#{$space-4}, 12vh, 9rem) + var(--page-start-offset));
-}
+/* Immersive media-overlay and horizontal-scroll openings deliberately own their
+   first-view composition and therefore receive no generic route-start offset. */
 
 /* Footer base styling is semantic, not dependent on where the footer lives.
    Top-level page footers and footers rendered inside scroll panels share it. */
