@@ -10,6 +10,7 @@ export type ScrollMotionRange = "through" | "exit";
 export type MotionIntensity = "quiet" | "default" | "expressive";
 export type CardEffect = "none" | "glass" | "grain";
 export type CardVariant = "default" | "service" | "editorial" | "profile";
+export type SplitVariant = "default" | "balanced" | "editorial" | "media-lead";
 export type TimelineOrientation = "vertical" | "horizontal";
 export type ProjectLayout = "a" | "b";
 
@@ -68,7 +69,7 @@ export type SourceQuery = { featured?: boolean; enabled?: boolean; category?: st
 export type SourceRef = { collection: string; query?: SourceQuery };
 
 export type SectionBlock = {
-  id: string; type: "Section"; layout?: SectionLayout; variant?: StyleVariant; tone?: Tone; surface?: SectionSurface; color?: SectionColor; timelineOrientation?: TimelineOrientation; source?: SourceRef; content?: SectionContent; frame?: boolean; progressive?: boolean; itemAppearance?: CardAppearance; motion?: MotionLevel; motionPreset?: ScrollMotionPreset; motionRange?: ScrollMotionRange; motionIntensity?: MotionIntensity; className?: string;
+  id: string; type: "Section"; layout?: SectionLayout; variant?: StyleVariant; splitVariant?: SplitVariant; tone?: Tone; surface?: SectionSurface; color?: SectionColor; timelineOrientation?: TimelineOrientation; source?: SourceRef; content?: SectionContent; frame?: boolean; progressive?: boolean; itemAppearance?: CardAppearance; motion?: MotionLevel; motionPreset?: ScrollMotionPreset; motionRange?: ScrollMotionRange; motionIntensity?: MotionIntensity; className?: string;
 };
 export type BlockRef = { ref: string };
 export type PanelBlock = BlockRef | SectionBlock;
