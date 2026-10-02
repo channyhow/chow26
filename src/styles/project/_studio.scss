@@ -151,8 +151,6 @@
     min-width: 0;
   }
 
-  /* Preserve the desktop relationship: media and information remain side by
-     side. The previous stacked treatment made 768px feel like a large phone. */
   #studio-services .card--service .card__split {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
@@ -182,13 +180,8 @@
     max-width: 12ch;
   }
 
-  #studio-services .card--service .textBlock__content {
-    max-width: 30ch;
-  }
-
-  #studio-services .card--service .textBlock__meta {
-    margin-top: $space-1;
-  }
+  #studio-services .card--service .textBlock__content { max-width: 30ch; }
+  #studio-services .card--service .textBlock__meta { margin-top: $space-1; }
 
   #studio-services .card--service .textBlock__meta > * {
     grid-template-columns: minmax(5.5rem, .7fr) minmax(0, 1.3fr);
@@ -196,9 +189,7 @@
   }
 
   #studio-services .card--service .textBlock__metaLabel,
-  #studio-services .card--service .textBlock__metaValue {
-    overflow-wrap: anywhere;
-  }
+  #studio-services .card--service .textBlock__metaValue { overflow-wrap: anywhere; }
 }
 
 /* Approach */
@@ -272,25 +263,7 @@
 
 @include tablet-down {
   #studio-founders {
-    --split-primary-column: 1 / 4;
-    --split-secondary-column: 5 / -1;
     min-height: 100svh;
-  }
-
-  #studio-founders .media {
-    width: 100%;
-    max-width: 24rem;
-    margin-inline: auto;
-  }
-}
-
-@include mobile-down {
-  #studio-founders {
-    --split-primary-column: 1 / -1;
-    --split-secondary-column: 1 / -1;
-    --split-gap: #{$space-4};
-    min-height: 100svh;
-    padding-block: max(#{$space-4}, 8svh);
   }
 
   #studio-founders > .section__inner {
@@ -299,7 +272,37 @@
   }
 
   #studio-founders .split {
+    display: grid;
+    grid-template-columns: minmax(13rem, .82fr) minmax(0, 1.18fr);
+    gap: $space-4;
+    align-items: center;
     width: 100%;
+  }
+
+  #studio-founders .split__primary,
+  #studio-founders .split__secondary {
+    grid-column: auto;
+    grid-row: auto;
+    min-width: 0;
+  }
+
+  #studio-founders .media {
+    width: 100%;
+    max-width: 18rem;
+    margin-inline: auto;
+  }
+}
+
+@include mobile-down {
+  #studio-founders {
+    --split-gap: #{$space-4};
+    min-height: 100svh;
+    padding-block: max(#{$space-4}, 8svh);
+  }
+
+  #studio-founders .split {
+    grid-template-columns: 1fr;
+    gap: var(--split-gap);
     align-content: center;
   }
 
