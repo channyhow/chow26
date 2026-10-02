@@ -10,7 +10,7 @@
     "content": {
       "header": {
         "title": "Sites internet, identités visuelles et supports de communication, pensés avec clarté.",
-        "text": ["Chow Studio accompagne les entreprises, marques, lieux et projets pour créer ou faire évoluer leur **site internet**, leur **identité visuelle** et leurs **supports de communication**, à **La Réunion et Paris**."]
+        "text": ["Chow Studio accompagne les entreprises, marques, lieux et projets pour créer ou faire évoluer leur **site internet**, leur **identité visuelle** et leurs **supports de communication**, à **la Réunion et Paris**."]
       },
       "media": "kuro-grey"
     }
@@ -111,7 +111,7 @@
       "header": {
         "eyebrow": "Parler d’un projet",
         "title": "Quelques lignes suffisent pour commencer.",
-        "text": ["Vous n’avez pas besoin de savoir exactement quelle prestation choisir. Dites-moi simplement **ce qui existe**, **ce qui ne fonctionne plus** et **ce qui doit changer**. Nous définirons ensuite la bonne réponse, qu’il s’agisse d’un **site internet**, d’une **identité visuelle**, de **supports de communication** ou d’**outils digitaux**." ]
+        "text": ["Vous n’avez pas besoin de savoir exactement quelle prestation choisir. Dites-moi simplement **ce qui existe**, **ce qui ne fonctionne plus** et **ce qui doit changer**. Nous définirons ensuite la bonne réponse, qu’il s’agisse d’un **site internet**, d’une **identité visuelle**, de **supports de communication** ou d’**outils digitaux**."]
       },
       "form": "contact"
     }
@@ -138,7 +138,7 @@
     "id": "links-profile",
     "type": "Section",
     "layout": "statement",
-    "content": { "header": { "title": "Chow Studio", "text": ["**Sites internet**, **identités visuelles** et **supports de communication** à **La Réunion et Paris**."], "media": "studio-founder-1" } }
+    "content": { "header": { "title": "Chow Studio", "text": ["**Sites internet**, **identités visuelles** et **supports de communication** à **la Réunion et Paris**."], "media": "studio-founder-1" } }
   },
   "links-primary": { "id": "links-primary", "type": "Section", "layout": "list", "source": { "collection": "links", "query": { "group": "primary", "enabled": true } } },
   "legal-notice-default": {
@@ -171,6 +171,67 @@
         { "title": "Livraison et fichiers sources", "text": ["La livraison porte sur les éléments et formats prévus au devis. Les fichiers de travail, fichiers sources ou éléments éditables ne sont inclus que lorsqu’ils sont expressément prévus dans la prestation."] },
         { "title": "Propriété intellectuelle des prestations", "text": ["Les créations réalisées par Chow Studio restent soumises aux droits de propriété intellectuelle de leur autrice. Les droits d’exploitation éventuellement cédés ou concédés au client sont ceux expressément prévus dans le devis, le contrat ou tout accord écrit applicable.", "La livraison ou le paiement d’une création n’emporte pas, à lui seul, cession générale des droits de reproduction, d’adaptation ou de modification. Les déclinaisons, adaptations ou animations d’une identité visuelle doivent rester dans le cadre des droits effectivement accordés et respecter le droit moral de l’autrice."] }
       ]
+    }
+  },
+  "privacy-default": {
+    "id": "privacy-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": { "title": "Confidentialité et données personnelles" },
+      "items": [
+        { "title": "Responsable du traitement", "text": ["Les données collectées sur ce site sont traitées par Channy How-Choong  | Chow Studio. Pour toute question relative à vos données personnelles ou pour exercer vos droits, vous pouvez écrire à channyhow@gmail.com."] },
+        { "title": "Formulaires de contact", "text": ["Lorsque vous utilisez un formulaire, les informations que vous choisissez de transmettre, notamment nom, adresse e-mail, entreprise éventuelle, besoin, calendrier, budget et message, sont utilisées uniquement pour comprendre votre demande, vous répondre et, le cas échéant, préparer une relation contractuelle.", "La base juridique de ce traitement est l’exécution de mesures précontractuelles prises à votre demande. Les champs indiqués comme obligatoires sont nécessaires pour pouvoir traiter la demande ; les autres sont facultatifs."] },
+        { "title": "Destinataires et hébergement", "text": ["Les informations envoyées via les formulaires sont destinées à Chow Studio et aux prestataires techniques strictement nécessaires au fonctionnement du site et à la réception des demandes. Le site est hébergé par Netlify. Chow Studio ne vend pas les données transmises via le site."] },
+        { "title": "Durée de conservation", "text": ["Les données d’une demande qui ne donne pas lieu à une relation contractuelle sont conservées pendant le temps nécessaire à son traitement puis, lorsqu’elles restent utiles au suivi d’une relation de prospect, au maximum trois ans à compter de leur collecte ou du dernier contact émanant de la personne. Les données devant être conservées pour respecter une obligation légale ou défendre un droit peuvent faire l’objet d’un archivage distinct pendant la durée applicable."] },
+        { "title": "Cookies et mesure d’audience", "text": ["Dans sa configuration actuelle, le site n’utilise pas d’outil de mesure d’audience et ne dépose pas de traceur publicitaire ou marketing. Il n’affiche donc pas de bannière de consentement inutile. Si des outils nécessitant un consentement sont activés ultérieurement, ils devront être bloqués avant consentement et cette politique sera mise à jour.", "Des traceurs strictement nécessaires au fonctionnement ou à la sécurité du service peuvent, le cas échéant, être utilisés sans consentement lorsqu’ils entrent dans les exemptions prévues par la réglementation."] },
+        { "title": "Intelligence artificielle", "text": ["Aucune donnée envoyée par les visiteurs via les formulaires du site n’est, dans la configuration actuelle, transmise automatiquement à un service d’intelligence artificielle. Si une fonctionnalité impliquant un tel traitement est ajoutée, les informations pertinentes sur sa finalité, son fonctionnement et ses destinataires devront être indiquées avant sa mise en service."] },
+        { "title": "Vos droits", "text": ["Vous pouvez demander l’accès à vos données, leur rectification, leur effacement ou la limitation de leur traitement lorsque ces droits sont applicables. Vous pouvez exercer ces droits en écrivant à channyhow@gmail.com.", "Si vous estimez, après avoir contacté Chow Studio, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL."] }
+      ]
+    }
+  },
+  "site-footer": {
+    "id": "site-footer",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": ["Chow Studio", "Sites internet  | Identités visuelles  | Supports de communication  | Paris  | la Réunion"],
+        "links": [
+          { "label": "Accueil", "href": "/", "intent": "navigate" },
+          { "label": "Projets", "href": "/projets", "intent": "navigate" },
+          { "label": "Studio", "href": "/studio", "intent": "navigate" },
+          { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
+          { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "intent": "navigate" },
+          { "label": "LinkedIn", "href": "https://www.linkedin.com/in/channyhow", "intent": "navigate" },
+          { "label": "CGV", "href": "/cgv", "intent": "navigate" },
+          { "label": "Confidentialité", "href": "/confidentialite", "intent": "navigate" },
+          { "label": "Mentions légales", "href": "/mentions-legales", "intent": "navigate" }
+        ],
+        "meta": [
+          { "label": "Design et développement", "value": "Channy How" },
+          { "label": "© 2026 Chow Studio | Tous droits réservés" }
+        ]
+      }
+    }
+  },
+  "not-found-default": {
+    "id": "not-found-default",
+    "type": "Section",
+    "layout": "statement",
+    "variant": "editorial",
+    "surface": "solid",
+    "color": "accent",
+    "content": {
+      "header": {
+        "eyebrow": "404 | Page introuvable",
+        "title": "Cette page n’est plus ici.",
+        "text": ["Revenez à l’accueil ou poursuivez avec les projets du studio."],
+        "links": [
+          { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
+          { "label": "Voir les projets", "href": "/projets", "intent": "navigate" }
+        ]
+      }
     }
   }
 }
