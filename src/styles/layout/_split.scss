@@ -49,7 +49,7 @@
 
   .split--media-lead .split__primary {
     width: min(72vw, 24rem);
-    justify-self: start;
+    justify-self: center;
   }
 }
 
@@ -59,12 +59,40 @@
     grid-row: 1;
   }
 
-  .split__primary {
-    grid-column: var(--split-primary-tablet);
+  .split__primary { grid-column: var(--split-primary-tablet); }
+  .split__secondary { grid-column: var(--split-secondary-tablet); }
+}
+
+/* Portrait tablets behave like an editorial page rather than a compressed
+   desktop: media and copy use separate rows and stay deliberately inset. */
+@media (min-width: 48rem) and (max-width: 63.999rem) and (orientation: portrait) {
+  .split { align-items: start; }
+
+  .split--media-lead {
+    row-gap: clamp(#{$space-3}, 5vh, #{$space-5});
   }
 
-  .split__secondary {
-    grid-column: var(--split-secondary-tablet);
+  .split--media-lead .split__primary {
+    grid-column: 3 / 7;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .split--media-lead .split__secondary {
+    grid-column: 3 / 8;
+    grid-row: 2;
+  }
+
+  .split--editorial .split__primary {
+    grid-column: 3 / 8;
+    grid-row: 1;
+  }
+
+  .split--editorial .split__secondary {
+    grid-column: 2 / 7;
+    grid-row: 2;
   }
 }
 
