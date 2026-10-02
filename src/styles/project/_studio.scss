@@ -288,7 +288,19 @@
   #studio-founders {
     --split-primary-column: 1 / -1;
     --split-secondary-column: 1 / -1;
-    min-height: auto;
+    --split-gap: #{$space-4};
+    min-height: 100svh;
+    padding-block: max(#{$space-4}, 8svh);
+  }
+
+  #studio-founders > .section__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  #studio-founders .split {
+    width: 100%;
+    align-content: center;
   }
 
   #studio-founders .media {
