@@ -80,11 +80,11 @@
 #home-services,
 #final-cta { --section-space: clamp(#{$space-5}, 12vw, 11rem); }
 
-#approach-default { --section-space: clamp(#{$space-5}, 12vw, 11rem); }
+#studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel { --section-space: clamp(#{$space-5}, 12vw, 11rem); }
 
 #projects-featured-gallery,
 #home-services,
-#approach-default,
+#studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel,
 #final-cta { min-height: min(82svh, 54rem); }
 
 #projects-featured-gallery .section__inner {
@@ -93,15 +93,15 @@
   min-height: inherit;
 }
 
-#approach-default .section__inner {
+#studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .section__inner {
   display: grid;
   align-content: center;
   width: 100%;
   min-height: inherit;
 }
 
-#approach-default .grid { align-items: start; }
-#approach-default .card--editorial { height: 100%; }
+#studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .grid { align-items: start; }
+#studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .card--editorial { height: 100%; }
 
 #projects-featured-gallery .section__header {
   grid-column: 1 / span 3;
@@ -147,7 +147,7 @@
   #projects-featured-gallery .section__header { grid-column: 1 / span 2; }
   #projects-featured-gallery .section__body { grid-column: 3 / -1; }
   #home-services,
-  #approach-default,
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel,
   #final-cta { min-height: auto; }
   #home-services .split,
   #final-cta .split { align-items: start; gap: $space-4; min-height: 0; }
@@ -170,11 +170,11 @@
   #projects-featured-carousel,
   #projects-featured-gallery,
   #home-services,
-  #approach-default,
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel,
   #final-cta { --section-space: clamp(#{$space-4}, 10vw, #{$space-5}); }
   #projects-featured-gallery,
   #home-services,
-  #approach-default,
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel,
   #final-cta { min-height: auto; }
   #projects-featured-gallery .section__inner { gap: $space-4 $grid-gap; }
   #projects-featured-gallery .section__header,
@@ -249,7 +249,7 @@
   #projects-featured-gallery .grid__item:nth-child(3) { grid-column: auto; }
   #projects-featured-gallery .projectCard .card__body { padding-top: $space-1; }
 
-  #approach-default .section__inner { display: block; }
-  #approach-default .grid { grid-template-columns: 1fr; gap: $space-3; }
-  #approach-default .grid__item { grid-column: auto !important; grid-row: auto !important; }
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .section__inner { display: block; }
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .grid { grid-template-columns: 1fr; gap: $space-3; }
+  #studio-service-integrations-panel, #studio-service-website-panel, #studio-service-identity-panel .grid__item { grid-column: auto !important; grid-row: auto !important; }
 }
