@@ -1,29 +1,29 @@
 [
   {
     "id": "identity",
-    "eyebrow": "Identité visuelle · Logo · Supports de communication",
+    "eyebrow": "Identité visuelle · Logo · Système graphique",
     "title": "Créer une identité claire et reconnaissable",
-    "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** aux **supports de communication**, pour que votre activité soit reconnaissable et cohérente sur tous vos supports."],
+    "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** au système graphique, pour que votre activité soit reconnaissable et cohérente sur les supports dont elle a réellement besoin."],
     "media": "mdk-wall-poster",
     "meta": [
       { "label": "Pour", "value": "Lancement · Repositionnement · Image à clarifier" },
-      { "label": "Prestations", "value": "Logo · Identité visuelle · Charte graphique · Supports de communication" },
-      { "label": "Budget", "value": "À partir de 1 200 € HT" }
+      { "label": "Prestations", "value": "Logo · Identité visuelle · Système graphique · Déclinaisons" },
+      { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
-    "tags": ["Identité visuelle", "Logo", "Supports de communication"],
+    "tags": ["Identité visuelle", "Logo", "Système graphique"],
     "links": ["talk-identity"],
     "featured": true,
     "order": 1
   },
   {
     "id": "website",
-    "eyebrow": "Création de site internet · Refonte de site internet · SEO",
+    "eyebrow": "Création de site internet · Refonte · SEO",
     "title": "Créer ou refaire votre site internet",
-    "text": ["Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge la **création de site internet** ou la **refonte de site internet** pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."],
+    "text": ["Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge sa création ou sa refonte, de la structure au développement, pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."],
     "media": "atmosphere-laptop",
     "meta": [
       { "label": "Pour", "value": "Nouveau site · Refonte · Site difficile à comprendre" },
-      { "label": "Prestations", "value": "Structure · Design web · Développement · SEO · Accessibilité" },
+      { "label": "Prestations", "value": "Structure · Design web · Développement · SEO · Réservation · Paiement · Formulaires" },
       { "label": "Budget", "value": "À partir de 1 500 € HT" }
     ],
     "tags": ["Création de site internet", "Refonte de site internet", "Design web"],
@@ -33,16 +33,16 @@
   },
   {
     "id": "integrations",
-    "eyebrow": "Outils digitaux · Réservation · Paiement · Formulaires",
-    "title": "Faire évoluer votre site et vos outils digitaux",
-    "text": ["Votre site existe déjà mais doit faire davantage. J’ajoute les **outils digitaux** utiles à votre activité, comme la **réservation**, le **paiement**, les **formulaires** ou les **automatisations**, pour rendre le parcours plus simple pour vous et vos clients."],
+    "eyebrow": "Supports de communication · Print · Digital · Motion",
+    "title": "Faire vivre votre identité sur vos supports",
+    "text": ["Une identité doit fonctionner au-delà du logo. Je conçois les **supports de communication** utiles à votre activité, de l’affiche aux formats digitaux, en passant par les campagnes, les déclinaisons et le **motion**, pour garder une présence cohérente d’un support à l’autre."],
     "media": "structure-mobile-multi",
     "meta": [
-      { "label": "Pour", "value": "Site existant · Nouveau service · Parcours à simplifier" },
-      { "label": "Prestations", "value": "Réservation · Paiement · Formulaires · Gestion de contenu · Automatisation" },
-      { "label": "Budget", "value": "À partir de 800 € HT" }
+      { "label": "Pour", "value": "Campagne · Événement · Communication régulière · Identité à déployer" },
+      { "label": "Prestations", "value": "Affiches · Print · Digital · Campagnes · Templates · Motion" },
+      { "label": "Budget", "value": "Sur devis" }
     ],
-    "tags": ["Outils digitaux", "Réservation", "Automatisation"],
+    "tags": ["Supports de communication", "Print", "Digital", "Motion"],
     "links": ["evolve-website"],
     "featured": true,
     "order": 3
