@@ -24,20 +24,17 @@
               "id": "studio-services-intro",
               "type": "Section",
               "layout": "split",
-              "splitVariant": "editorial",
+              "splitVariant": "media-lead",
+              "className": "home-preview home-preview--services",
               "surface": "solid",
               "color": "primary",
               "motion": "scene",
-              "motionPreset": "ambient",
+              "motionPreset": "parallax",
               "content": {
                 "header": {
-                  "title": "Choisir le bon point de départ.",
-                  "text": ["Identité, site ou outils digitaux : le périmètre dépend de ce qui existe déjà et de ce qui doit réellement évoluer."],
-                  "links": [
-                    { "label": "Identité visuelle", "href": "#studio-service-identity-panel" },
-                    { "label": "Site internet", "href": "#studio-service-website-panel" },
-                    { "label": "Fonctionnalités & intégrations", "href": "#studio-service-integrations-panel" }
-                  ]
+                  "title": "Créer, clarifier ou faire évoluer votre présence.",
+                  "text": ["Selon votre besoin, je peux créer ou faire évoluer votre **site internet**, votre **identité visuelle**, vos **supports de communication** et les **outils digitaux** utiles à votre activité."],
+                  "links": ["studio-service-identity", "studio-service-website", "studio-service-integrations"]
                 },
                 "media": "atmosphere_mobile-vid"
               }
