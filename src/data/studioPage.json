@@ -53,7 +53,7 @@
             "id": "studio-service-identity",
             "type": "Section",
             "layout": "split",
-            "splitVariant": "balanced",
+            "splitVariant": "media-lead",
             "surface": "solid",
             "color": "secondary",
             "motion": "scene",
@@ -73,7 +73,7 @@
             "id": "studio-service-website",
             "type": "Section",
             "layout": "split",
-            "splitVariant": "balanced",
+            "splitVariant": "editorial",
             "surface": "solid",
             "color": "special",
             "motion": "scene",
@@ -93,7 +93,7 @@
             "id": "studio-service-integrations",
             "type": "Section",
             "layout": "split",
-            "splitVariant": "balanced",
+            "splitVariant": "media-lead",
             "surface": "solid",
             "color": "accent",
             "motion": "scene",
@@ -109,7 +109,7 @@
           "align": "center",
           "surface": "glass",
           "color": "secondary",
-          "blocks": [{ "id": "studio-approach", "type": "Section", "layout": "list", "motion": "scene", "motionPreset": "draw", "source": { "collection": "approach" } }]
+          "blocks": [{ "ref": "approach-default" }]
         },
         {
           "id": "studio-founders-panel",
