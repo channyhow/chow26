@@ -33,10 +33,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
   const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
+  const splitItem = layout === "split" && items.length === 1 ? items[0] : undefined;
   const formRef = block.content?.form;
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
+  const splitItemMediaRef = splitItem ? (Array.isArray(splitItem.media) ? splitItem.media[0] : splitItem.media) : undefined;
+  const splitItemMedia = resolveMedia(splitItemMediaRef);
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? "micro";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
@@ -89,8 +92,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (layout === "split") {
-    const primary = header ? <TextBlock content={header} /> : null;
-    body = <Split variant={block.splitVariant} primary={motionLayer(primary, "forward")} secondary={motionLayer(secondary, "reverse")} />;
+    const primaryContent = splitItem ? { ...splitItem, media: undefined } : header;
+    const primary = primaryContent ? <TextBlock content={primaryContent} /> : null;
+    const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
+    body = <Split variant={block.splitVariant} primary={motionLayer(primary, "forward")} secondary={motionLayer(splitSecondary, "reverse")} />;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
