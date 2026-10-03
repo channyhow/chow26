@@ -41,16 +41,15 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const splitItemMediaRef = splitItem ? (Array.isArray(splitItem.media) ? splitItem.media[0] : splitItem.media) : undefined;
   const splitItemMedia = resolveMedia(splitItemMediaRef);
   const motionEnabled = siteData.ui.experience.sectionReveal;
-  const motionLevel = block.motion ?? "micro";
+  const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
   const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  // Split compositions are intentionally static while their layout system is normalized.
-  const shouldTrackScroll = layout !== "split" && motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
-  const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
+  const scenePreset: ScrollMotionPreset = block.motionPreset ?? (layout === "split" ? "recede" : motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
-  const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
+  const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
   const isHomeOpening = block.id === "home-opening";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
@@ -97,7 +96,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primaryContent = splitItem ? { ...splitItem, media: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
-    body = <Split variant={block.splitVariant} primary={primary} secondary={splitSecondary} />;
+    const splitMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+    const mediaLayer = splitSecondary ? <motion.div className="section__splitMediaMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 12, scale: reduceMotion ? 1 : 0.996 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0, scale: 1 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div> : null;
+    const textLayer = primary ? <motion.div className="section__splitTextMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 10 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div> : null;
+    body = <Split variant={block.splitVariant} primary={motionLayer(textLayer, "forward")} secondary={motionLayer(mediaLayer, "forward")} />;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
@@ -131,7 +133,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
 
-  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={isProfileGrid ? "split" : layout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={block.motionPreset ?? (motionLevel === "micro" ? "drift" : undefined)} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
+  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={isProfileGrid ? "split" : layout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={scenePreset} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
     {shouldTrackScroll && layout === "media-overlay" ? mediaOverlayScene : shouldTrackScroll ? <div className="section__inner">{body}</div> : shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: revealDistance }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: revealDuration, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>}
   </motion.section>;
 }
