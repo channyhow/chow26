@@ -10,9 +10,6 @@
   --section-copy-width: 34rem;
 }
 
-/* The opening needs a real viewport-sized stage. Without this, the media-overlay
-   inherits an indeterminate height inside ScrollScene and the exit progress has
-   almost no visible distance to animate through. */
 #home-opening .section__scrollScene,
 #home-opening .section__scrollScene > .scrollScene__content,
 #home-opening .section__scrollScene .section__inner,
@@ -83,10 +80,11 @@
 #home-services,
 #final-cta { --section-space: clamp(#{$space-5}, 12vw, 11rem); }
 
-#approach-default { --section-space: 0; padding-inline: 0; }
+#approach-default { --section-space: clamp(#{$space-5}, 12vw, 11rem); }
 
 #projects-featured-gallery,
 #home-services,
+#approach-default,
 #final-cta { min-height: min(82svh, 54rem); }
 
 #projects-featured-gallery .section__inner {
@@ -96,12 +94,14 @@
 }
 
 #approach-default .section__inner {
-  display: block;
+  display: grid;
+  align-content: center;
   width: 100%;
-  max-width: none;
-  min-height: 0;
-  padding-inline: 0;
+  min-height: inherit;
 }
+
+#approach-default .grid { align-items: start; }
+#approach-default .card--editorial { height: 100%; }
 
 #projects-featured-gallery .section__header {
   grid-column: 1 / span 3;
@@ -147,6 +147,7 @@
   #projects-featured-gallery .section__header { grid-column: 1 / span 2; }
   #projects-featured-gallery .section__body { grid-column: 3 / -1; }
   #home-services,
+  #approach-default,
   #final-cta { min-height: auto; }
   #home-services .split,
   #final-cta .split { align-items: start; gap: $space-4; min-height: 0; }
@@ -155,7 +156,7 @@
   #final-cta .split__primary,
   #final-cta .split__secondary { grid-column: 1 / -1; grid-row: auto; }
   #home-services .split__secondary { order: 1; }
-  #home-services .split__primary { order: 2; justify-self: end; }
+  #home-services .split__primary { order: 2; justify-self: center; }
   #final-cta .split__primary { order: 1; }
   #final-cta .split__secondary { order: 2; margin-top: $space-2; }
 }
@@ -169,9 +170,11 @@
   #projects-featured-carousel,
   #projects-featured-gallery,
   #home-services,
+  #approach-default,
   #final-cta { --section-space: clamp(#{$space-4}, 10vw, #{$space-5}); }
   #projects-featured-gallery,
   #home-services,
+  #approach-default,
   #final-cta { min-height: auto; }
   #projects-featured-gallery .section__inner { gap: $space-4 $grid-gap; }
   #projects-featured-gallery .section__header,
@@ -184,7 +187,7 @@
   #final-cta .split__primary,
   #final-cta .split__secondary { grid-column: 1 / -1; grid-row: auto; }
   #home-services .split__secondary { order: 1; }
-  #home-services .split__primary { order: 2; justify-self: end; }
+  #home-services .split__primary { order: 2; justify-self: center; }
   #final-cta .split__primary { order: 1; }
   #final-cta .split__secondary { order: 2; }
   #home-services .textBlock,
@@ -192,8 +195,6 @@
 }
 
 @include mobile-down {
-  /* Keep the resting mobile composition media first, copy second. Motion owns
-     the crossover on scroll; layout does not reorder itself during the scene. */
   #home-opening .section__scrollScene,
   #home-opening .section__scrollScene > .scrollScene__content,
   #home-opening .section__scrollScene .section__inner,
@@ -247,4 +248,8 @@
   #projects-featured-gallery .grid__item:nth-child(2),
   #projects-featured-gallery .grid__item:nth-child(3) { grid-column: auto; }
   #projects-featured-gallery .projectCard .card__body { padding-top: $space-1; }
+
+  #approach-default .section__inner { display: block; }
+  #approach-default .grid { grid-template-columns: 1fr; gap: $space-3; }
+  #approach-default .grid__item { grid-column: auto !important; grid-row: auto !important; }
 }
