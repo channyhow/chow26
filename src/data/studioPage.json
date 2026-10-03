@@ -31,9 +31,7 @@
               "content": {
                 "header": {
                   "title": "Ce que le studio peut construire avec vous",
-                  "text": [
-                    "Identité, site ou outils digitaux : chaque projet part de ce qui existe déjà et de ce qui doit réellement évoluer."
-                  ],
+                  "text": ["Identité, site ou outils digitaux : chaque projet part de ce qui existe déjà et de ce qui doit réellement évoluer."],
                   "links": [
                     { "label": "Identité visuelle", "href": "#studio-service-identity-panel" },
                     { "label": "Site internet", "href": "#studio-service-website-panel" },
@@ -51,20 +49,18 @@
           "align": "center",
           "surface": "solid",
           "color": "secondary",
-          "blocks": [
-            {
-              "id": "studio-service-identity",
-              "type": "Section",
-              "layout": "split",
-              "splitVariant": "content-lead",
-              "surface": "solid",
-              "color": "secondary",
-              "motion": "scene",
-              "motionPreset": "ambient",
-              "className": "section--collection-panel",
-              "source": { "collection": "services", "query": { "prioritizeIds": ["identity"], "limit": 1 } }
-            }
-          ]
+          "blocks": [{
+            "id": "studio-service-identity",
+            "type": "Section",
+            "layout": "split",
+            "splitVariant": "balanced",
+            "surface": "solid",
+            "color": "secondary",
+            "motion": "scene",
+            "motionPreset": "ambient",
+            "className": "section--collection-panel",
+            "source": { "collection": "services", "query": { "prioritizeIds": ["identity"], "limit": 1 } }
+          }]
         },
         {
           "id": "studio-service-website-panel",
@@ -73,20 +69,18 @@
           "align": "center",
           "surface": "solid",
           "color": "special",
-          "blocks": [
-            {
-              "id": "studio-service-website",
-              "type": "Section",
-              "layout": "split",
-              "splitVariant": "content-lead",
-              "surface": "solid",
-              "color": "special",
-              "motion": "scene",
-              "motionPreset": "ambient",
-              "className": "section--collection-panel",
-              "source": { "collection": "services", "query": { "prioritizeIds": ["website"], "limit": 1 } }
-            }
-          ]
+          "blocks": [{
+            "id": "studio-service-website",
+            "type": "Section",
+            "layout": "split",
+            "splitVariant": "balanced",
+            "surface": "solid",
+            "color": "special",
+            "motion": "scene",
+            "motionPreset": "ambient",
+            "className": "section--collection-panel",
+            "source": { "collection": "services", "query": { "prioritizeIds": ["website"], "limit": 1 } }
+          }]
         },
         {
           "id": "studio-service-integrations-panel",
@@ -95,20 +89,18 @@
           "align": "center",
           "surface": "solid",
           "color": "accent",
-          "blocks": [
-            {
-              "id": "studio-service-integrations",
-              "type": "Section",
-              "layout": "split",
-              "splitVariant": "content-lead",
-              "surface": "solid",
-              "color": "accent",
-              "motion": "scene",
-              "motionPreset": "ambient",
-              "className": "section--collection-panel",
-              "source": { "collection": "services", "query": { "prioritizeIds": ["integrations"], "limit": 1 } }
-            }
-          ]
+          "blocks": [{
+            "id": "studio-service-integrations",
+            "type": "Section",
+            "layout": "split",
+            "splitVariant": "balanced",
+            "surface": "solid",
+            "color": "accent",
+            "motion": "scene",
+            "motionPreset": "ambient",
+            "className": "section--collection-panel",
+            "source": { "collection": "services", "query": { "prioritizeIds": ["integrations"], "limit": 1 } }
+          }]
         },
         {
           "id": "studio-approach-panel",
@@ -117,9 +109,7 @@
           "align": "center",
           "surface": "glass",
           "color": "secondary",
-          "blocks": [
-            { "id": "studio-approach", "type": "Section", "layout": "list", "motion": "scene", "motionPreset": "draw", "source": { "collection": "approach" } }
-          ]
+          "blocks": [{ "id": "studio-approach", "type": "Section", "layout": "list", "motion": "scene", "motionPreset": "draw", "source": { "collection": "approach" } }]
         },
         {
           "id": "studio-founders-panel",
