@@ -3,18 +3,20 @@ import { useReducedMotion, useScroll, useTransform, type MotionValue } from "mot
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
-import { resolveBlock } from "@/data/resolve";
+import { resolveBlock, resolveCollection } from "@/data/resolve";
 import type {
   PanelAlign,
   PanelBehavior,
   PanelBlock,
   PanelSize,
   PanelSurface,
+  SectionBlock,
   SectionColor,
   SectionGroup as SectionGroupData,
 } from "@/types/content";
 
 const glassBackdrop = "blur(1.1rem) saturate(1.05)";
+const collectionPanelColors: SectionColor[] = ["secondary", "special", "accent"];
 
 function renderBlocks(
   blocks: PanelBlock[],
@@ -75,6 +77,50 @@ function getDocumentOffsetTop(element: HTMLElement) {
   }
 
   return top;
+}
+
+function expandCollectionPanels(group: SectionGroupData) {
+  if (group.layout !== "scroll-panel" || !group.panels?.length) return group.panels;
+
+  return group.panels.flatMap((panel) => {
+    if (panel.blocks.length !== 1) return [panel];
+
+    const block = panel.blocks[0];
+    if ("ref" in block || block.layout !== "horizontal-scroll" || !block.source) {
+      return [panel];
+    }
+
+    const items = resolveCollection(block.source);
+    if (items.length <= 1) return [panel];
+
+    return items.map((item, index) => {
+      const itemId = item.id ?? `${index + 1}`;
+      const itemBlock: SectionBlock = {
+        ...block,
+        id: `${block.id}-${itemId}`,
+        layout: "grid",
+        className: [block.className, "section--collection-panel"].filter(Boolean).join(" "),
+        content: undefined,
+        source: {
+          ...block.source,
+          query: {
+            ...block.source?.query,
+            prioritizeIds: [itemId],
+            limit: 1,
+          },
+        },
+      };
+
+      return {
+        ...panel,
+        id: `${panel.id}-${itemId}`,
+        behavior: "moving" as const,
+        surface: "solid" as const,
+        color: collectionPanelColors[index % collectionPanelColors.length],
+        blocks: [itemBlock],
+      };
+    });
+  });
 }
 
 function Panel({
@@ -182,7 +228,8 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const defaultSurface = group.panel?.surface ?? "solid";
   const defaultColor = group.panel?.color ?? "secondary";
   const blocks = group.blocks ?? [];
-  const flattenedPanelBlocks = group.panels?.flatMap((panel) => panel.blocks) ?? [];
+  const panels = expandCollectionPanels(group);
+  const flattenedPanelBlocks = panels?.flatMap((panel) => panel.blocks) ?? [];
   const flowBlocks = blocks.length ? blocks : flattenedPanelBlocks;
 
   return (
@@ -193,8 +240,8 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
       data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"}
       data-preset={reduceMotion ? undefined : group.motion?.preset}
     >
-      {isPanel && group.panels?.length
-        ? group.panels.map((panel, index) => (
+      {isPanel && panels?.length
+        ? panels.map((panel, index) => (
             <Panel
               key={panel.id}
               id={panel.id}
