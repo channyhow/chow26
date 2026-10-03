@@ -9,9 +9,9 @@
     "motionIntensity": "quiet",
     "content": {
       "header": {
-        "title": "Sites, identités et directions visuelles, pensés avec clarté.",
+        "title": "Sites internet, identités visuelles et supports de communication.",
         "text": [
-          "Chow Studio accompagne les marques, studios et projets qui ont besoin de **clarifier leur présence**, construire une **identité cohérente** et la traduire en une **expérience digitale bien conçue**, depuis **Paris et la Réunion**."
+          "Chow Studio accompagne **entreprises, lieux, marques et associations** dans la création ou l’évolution de leur communication, de **l’identité visuelle au site internet**."
         ]
       },
       "media": "kuro-grey"
@@ -66,8 +66,8 @@
     "motionPreset": "parallax",
     "content": {
       "header": {
-        "title": "Créer, clarifier ou faire évoluer une présence.",
-        "text": ["**Identité**, **site web** et **développement frontend** selon ce dont le projet a réellement besoin."],
+        "title": "Une communication cohérente, du logo au site internet.",
+        "text": ["**Identité visuelle**, **supports de communication** et **site internet**, pensés ensemble ou selon ce dont votre projet a réellement besoin."],
         "links": [
           { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate", "priority": "secondary", "variant": "cta" }
         ]
@@ -87,12 +87,12 @@
         {
           "id": "approach-intro-title",
           "title": "Comprendre d’abord. Construire ensuite.",
-          "text": ["Que vous ayez besoin d’un **site web**, d’une **identité visuelle** ou de faire évoluer l’existant, le travail commence par **clarifier ce qui doit réellement être résolu**."]
+          "text": ["Que vous ayez besoin d’un **site internet**, d’une **identité visuelle**, de **supports de communication** ou de faire évoluer l’existant, le travail commence par **clarifier ce qui doit réellement être résolu**."]
         },
         { "id": "approach-understand", "title": "Comprendre", "text": ["Clarifier le projet, son public, ses objectifs et ses contraintes."] },
         { "id": "approach-structure", "title": "Structurer", "text": ["Organiser les priorités, les contenus et le parcours pour guider la suite."] },
         { "id": "approach-design", "title": "Concevoir", "text": ["Réunir typographie, image, rythme, interface et identité dans une **direction cohérente**."] },
-        { "id": "approach-build", "title": "Construire", "text": ["Traduire cette direction en une identité ou une expérience digitale **claire, responsive, accessible et maintenable**."] }
+        { "id": "approach-build", "title": "Construire", "text": ["Traduire cette direction en une identité, des supports ou une expérience digitale **clairs, cohérents et adaptés à leurs usages**."] }
       ]
     }
   },
@@ -104,10 +104,10 @@
     "content": {
       "items": [
         {
-          "subtitle": "Un même regard, du concept à l’interface.",
+          "subtitle": "Un même regard, de l’idée au résultat final.",
           "text": [
-            "Avant le web, **Channy How** a travaillé dans le **développement produit** et la création entre **la Chine, Hong Kong, Sydney et la France**.",
-            "Cette expérience nourrit une manière de travailler attentive à la fois à **l’idée, au détail, aux contraintes de production** et à ce qui doit réellement fonctionner une fois livré."
+            "Le parcours de **Channy How** entre création, développement produit, design et web lui permet aujourd’hui d’accompagner un projet dans son ensemble plutôt que d’en traiter chaque support séparément.",
+            "De **la Chine à Hong Kong, Sydney, Paris et La Réunion**, cette expérience nourrit une manière de travailler attentive à **l’idée, au détail, aux contraintes de production** et à ce qui doit réellement fonctionner une fois livré."
           ],
           "media": ["studio-founder-1"]
         }
@@ -133,8 +133,8 @@
     "source": { "collection": "journal", "query": { "featured": true, "limit": 3 } },
     "content": {
       "header": {
-        "title": "Design, structure et présence digitale.",
-        "text": ["Notes de travail sur les choix qui rendent un **site plus clair**, une **identité plus cohérente** et une **expérience plus utile**."]
+        "title": "Design, structure et communication.",
+        "text": ["Notes de travail sur les choix qui rendent un **site plus clair**, une **identité plus cohérente** et une communication plus facile à déployer." ]
       }
     },
     "itemAppearance": { "frame": true, "effect": "none" }
@@ -149,7 +149,7 @@
       "header": {
         "eyebrow": "Parler d’un projet",
         "title": "Quelques lignes suffisent pour commencer.",
-        "text": ["Quelques informations sur le point de départ, ce qui existe déjà et ce qui doit évoluer suffisent pour commencer : **site, identité, refonte** ou un besoin encore difficile à formuler."]
+        "text": ["Parlez-moi de votre projet, de ce qui existe déjà et de ce qui doit évoluer : **identité visuelle, supports de communication, site internet, refonte** ou un besoin encore difficile à formuler."]
       },
       "form": "contact"
     }
@@ -165,7 +165,7 @@
     "content": {
       "header": {
         "title": "Vous avez un projet en tête ?",
-        "text": ["Une idée, une présence à construire ou quelque chose qui mérite simplement d’être clarifié."],
+        "text": ["Une identité à créer, des supports à faire évoluer ou un site internet à construire ou repenser."],
         "links": [
           { "label": "Parler d’un projet", "href": "/contact", "intent": "contact", "priority": "primary", "variant": "cta" }
         ]
@@ -180,7 +180,7 @@
     "content": {
       "header": {
         "title": "Chow Studio",
-        "text": ["**Design web**, **identité visuelle** et **direction digitale** entre **Paris et La Réunion**."],
+        "text": ["**Identité visuelle**, **supports de communication** et **sites internet** entre **Paris et La Réunion**."],
         "media": "studio-founder-1"
       }
     }
@@ -246,7 +246,7 @@
     "layout": "list",
     "content": {
       "header": {
-        "eyebrow": ["Chow Studio", "Design web  | Identité visuelle  | Direction digitale  | Paris  | La Réunion"],
+        "eyebrow": ["Chow Studio", "Identité visuelle  | Supports de communication  | Sites internet  | Paris  | La Réunion"],
         "links": [
           { "label": "Accueil", "href": "/", "intent": "navigate" },
           { "label": "Projets", "href": "/projets", "intent": "navigate" },
