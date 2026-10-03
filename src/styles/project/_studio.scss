@@ -55,6 +55,38 @@
   .section--collection-panel .split {
     min-height: 0;
   }
+
+  /* On mobile the service is one editorial unit: image first, then copy.
+     Desktop alternation is spatial; mobile reading order stays consistent. */
+  .section--collection-panel .split {
+    --split-gap: #{$space-4};
+    align-items: start;
+  }
+
+  .section--collection-panel .split__primary,
+  .section--collection-panel .split__secondary {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .section--collection-panel .split__secondary {
+    grid-row: 1;
+  }
+
+  .section--collection-panel .split__primary {
+    grid-row: 2;
+  }
+
+  .section--collection-panel .textBlock {
+    max-width: none;
+  }
+
+  .section--collection-panel .media,
+  .section--collection-panel .media__frame {
+    aspect-ratio: $ratio-square;
+  }
 }
 
 /* Approach */
