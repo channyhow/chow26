@@ -3,205 +3,142 @@
 @use "../foundation/mixins" as *;
 
 /* Services */
-#studio-services {
+.section--collection-panel {
   --section-space: 0;
   --text-width: none;
-  scroll-margin-top: calc(#{$header-height} + #{$space-2});
+  width: 100%;
+  min-height: 100svh;
   padding-inline: 0;
 }
 
-#studio-services > .section__inner {
+.section--collection-panel > .section__inner {
+  display: flex;
+  align-items: center;
   width: 100%;
   max-width: none;
-  padding-inline: 0;
+  min-height: 100svh;
+  padding-inline: $page-gutter;
 }
 
-#studio-services > .section__inner > .section__header { display: none; }
-#studio-services .section__body { width: 100%; min-width: 0; }
+.section--collection-panel .section__body,
+.section--collection-panel .gridReveal,
+.section--collection-panel .grid,
+.section--collection-panel .grid__item,
+.section--collection-panel .card--service,
+.section--collection-panel .card--service .card__split {
+  width: 100%;
+  min-width: 0;
+}
 
-#studio-services .card--service .card__media,
-#studio-services .card--service .media__frame {
+.section--collection-panel .grid {
+  display: block;
+  width: 100%;
+}
+
+.section--collection-panel .card--service .card__split {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  gap: $grid-gap;
+}
+
+.section--collection-panel .card--service .split__primary {
+  grid-column: 1 / span 6 !important;
+}
+
+.section--collection-panel .card--service .split__secondary {
+  grid-column: 8 / span 4 !important;
+  margin-top: 0;
+}
+
+.section--collection-panel .card--service .card__media,
+.section--collection-panel .card--service .media__frame {
   width: 100%;
   aspect-ratio: $ratio-square;
 }
 
+.section--collection-panel .card--service .media__asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @include tablet-down {
-  #studio-services { padding-block: 0; }
-  #studio-services .horizontalScroll__track { gap: 0; }
-
-  #studio-services .horizontalScroll__item {
-    min-height: 0;
-    padding: clamp(#{$space-3}, 5vw, #{$space-4}) $page-gutter;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  .section--collection-panel > .section__inner {
+    padding-inline: clamp(#{$space-3}, 5vw, #{$space-4});
   }
 
-  #studio-services .horizontalScroll__item:first-child {
-    padding-top: calc(#{$header-height} + #{$space-3});
-  }
-
-  #studio-services .section__horizontalScrollLayer,
-  #studio-services .section__horizontalScrollLayer .scrollScene__content,
-  #studio-services .card--service,
-  #studio-services .card--service .card__split {
-    width: 100%;
-    min-height: 0;
-  }
-
-  #studio-services .card--service .card__split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(16rem, .88fr);
+  .section--collection-panel .card--service .card__split {
+    grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
     gap: clamp(#{$space-3}, 5vw, #{$space-5});
-    align-items: start;
+    align-items: center;
   }
 
-  #studio-services .card--service .split__primary,
-  #studio-services .card--service .split__secondary {
+  .section--collection-panel .card--service .split__primary,
+  .section--collection-panel .card--service .split__secondary {
     grid-column: auto !important;
     grid-row: auto;
     min-width: 0;
   }
 
-  #studio-services .card--service .split__secondary { margin-top: 0; }
-
-  #studio-services .card--service .card__media,
-  #studio-services .card--service .media__frame {
-    width: 100%;
+  .section--collection-panel .card--service .card__media,
+  .section--collection-panel .card--service .media__frame {
     aspect-ratio: 4 / 3;
   }
 
-  #studio-services .card--service .media__asset {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .section--collection-panel .card--service .card__body.textBlock {
+    gap: $flow-tight;
   }
 
-  #studio-services .card--service .card__body.textBlock { gap: $flow-tight; }
-
-  #studio-services .card--service .textBlock__title {
+  .section--collection-panel .card--service .textBlock__title {
     @include type-heading-sm;
     max-width: 14ch;
   }
 
-  #studio-services .card--service .textBlock__content { max-width: 38ch; }
-  #studio-services .card--service .textBlock__content p { @include type-body-sm; }
-  #studio-services .card--service .textBlock__meta { margin-top: $space-1; }
+  .section--collection-panel .card--service .textBlock__content {
+    max-width: 34ch;
+  }
+
+  .section--collection-panel .card--service .textBlock__content p {
+    @include type-body-sm;
+  }
+
+  .section--collection-panel .card--service .textBlock__meta {
+    margin-top: $space-1;
+  }
 }
 
 @include mobile-down {
-  #studio-services .horizontalScroll__item {
-    padding: $space-3 $page-gutter $space-4;
+  .section--collection-panel {
+    min-height: auto;
+    padding-block: calc(#{$header-height} + #{$space-3}) $space-5;
   }
 
-  #studio-services .horizontalScroll__item:first-child {
-    padding-top: calc(#{$header-height} + #{$space-3});
-  }
-
-  #studio-services .card--service .card__split { display: block; }
-  #studio-services .card--service .split__secondary { margin-top: $space-3; }
-
-  #studio-services .card--service .card__media,
-  #studio-services .card--service .media__frame { aspect-ratio: $ratio-wide; }
-
-  #studio-services .card--service .textBlock__title { @include type-heading-md; }
-  #studio-services .card--service .textBlock__content { max-width: 32ch; }
-}
-
-/* Keep the existing breakpoint, but treat large phones / tablets as compact
-   desktop compositions rather than enlarged mobile cards. Interaction becomes
-   vertical; the editorial split survives. */
-@media (min-width: 36rem) and (max-width: 48.75rem) {
-  .sectionGroup__panel[data-panel-id="studio-services-panel"] {
-    position: relative;
-    top: auto;
-    min-height: 0;
-  }
-
-  .sectionGroup__panel[data-panel-id="studio-services-panel"] > .sectionGroup__surface {
-    min-height: 0;
-  }
-
-  #studio-services .horizontalScroll { height: auto; }
-
-  #studio-services .horizontalScroll__viewport {
-    position: static;
+  .section--collection-panel > .section__inner {
     display: block;
-    height: auto;
-    overflow: visible;
+    min-height: auto;
+    padding-inline: $page-gutter;
   }
 
-  #studio-services .horizontalScroll__progress { display: none; }
-
-  #studio-services .horizontalScroll__track {
-    display: grid;
-    width: 100%;
-    height: auto;
-    transform: none !important;
+  .section--collection-panel .card--service .card__split {
+    display: block;
   }
 
-  #studio-services .horizontalScroll__item {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: $space-4 $space-3;
+  .section--collection-panel .card--service .split__secondary {
+    margin-top: $space-3;
   }
 
-  #studio-services .horizontalScroll__item:first-child {
-    padding-top: calc(#{$header-height} + #{$space-3});
+  .section--collection-panel .card--service .card__media,
+  .section--collection-panel .card--service .media__frame {
+    aspect-ratio: $ratio-wide;
   }
 
-  #studio-services .section__horizontalScrollLayer,
-  #studio-services .section__horizontalScrollLayer .scrollScene__content,
-  #studio-services .card--service,
-  #studio-services .card--service .card__split {
-    width: 100%;
-    min-width: 0;
+  .section--collection-panel .card--service .textBlock__title {
+    @include type-heading-md;
   }
 
-  #studio-services .card--service .card__split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
-    gap: $space-3;
-    align-items: center;
-  }
-
-  #studio-services .card--service .split__primary,
-  #studio-services .card--service .split__secondary {
-    min-width: 0;
-    margin-top: 0;
-  }
-
-  #studio-services .card--service .card__media,
-  #studio-services .card--service .media__frame {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-  }
-
-  #studio-services .card--service .card__body.textBlock {
-    display: flex;
-    gap: $flow-tight;
-  }
-
-  #studio-services .card--service .textBlock__title {
-    @include type-heading-sm;
-    max-width: 12ch;
-  }
-
-  #studio-services .card--service .textBlock__content {
-    max-width: 30ch;
-  }
-
-  #studio-services .card--service .textBlock__meta {
-    margin-top: $space-1;
-  }
-
-  #studio-services .card--service .textBlock__meta > * {
-    grid-template-columns: minmax(5.5rem, .7fr) minmax(0, 1.3fr);
-    gap: $space-2;
-  }
-
-  #studio-services .card--service .textBlock__metaLabel,
-  #studio-services .card--service .textBlock__metaValue {
-    overflow-wrap: anywhere;
+  .section--collection-panel .card--service .textBlock__content {
+    max-width: 32ch;
   }
 }
 
