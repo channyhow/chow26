@@ -5,9 +5,12 @@ import forms from "@/data/forms.json";
 import globalBlocks from "@/data/globalBlocks.json";
 import media from "@/data/media.json";
 import navigation from "@/data/navigation.json";
-import pages from "@/data/pages.json";
+import basePages from "@/data/pages.json";
 import services from "@/data/services.json";
 import site from "@/data/site.json";
+import studioPage from "@/data/studioPage.json";
+
+const pages = basePages.map((page) => (page.id === "studio" ? studioPage : page));
 
 export {
   actions,
