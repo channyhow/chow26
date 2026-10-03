@@ -111,13 +111,22 @@
         "type": "Group",
         "layout": "scroll-panel",
         "panels": [
+      {
+          "id": "studio-services-intro-panel",
+          "behavior": "stack",
+          "size": "full",
+          "align": "center",
+          "surface": "solid",
+          "color": "secondary",
+          "blocks": [{ "ref": "studio-services-intro" }]
+        },
           {
             "id": "studio-service-identity-panel",
             "behavior": "cover",
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "secondary",
+            "color": "special",
             "blocks": [
               {
                 "id": "studio-service-identity",
@@ -141,7 +150,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "special",
+            "color": "primary",
             "blocks": [
               {
                 "id": "studio-service-website",
@@ -165,7 +174,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "accent",
+            "color": "special",
             "blocks": [
               {
                 "id": "studio-service-integrations",

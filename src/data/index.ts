@@ -8,9 +8,9 @@ import navigation from "@/data/navigation.json";
 import basePages from "@/data/pages.json";
 import services from "@/data/services.json";
 import site from "@/data/site.json";
-import studioPage from "@/data/studioPage.json";
+// import studioPage from "@/data/studioPage.json";
 
-const pages = basePages.map((page) => (page.id === "studio" ? studioPage : page));
+const pages = basePages.map((page) => (page.id === "studio" ));
 
 export {
   actions,
