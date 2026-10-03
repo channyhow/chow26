@@ -23,28 +23,30 @@
             {
               "id": "studio-services-intro",
               "type": "Section",
-              "layout": "text",
+              "layout": "split",
+              "splitVariant": "editorial",
               "surface": "solid",
               "color": "primary",
               "motion": "scene",
               "motionPreset": "ambient",
               "content": {
                 "header": {
-                  "title": "Ce que le studio peut construire avec vous",
-                  "text": ["Identité, site ou outils digitaux : chaque projet part de ce qui existe déjà et de ce qui doit réellement évoluer."],
+                  "title": "Choisir le bon point de départ.",
+                  "text": ["Identité, site ou outils digitaux : le périmètre dépend de ce qui existe déjà et de ce qui doit réellement évoluer."],
                   "links": [
                     { "label": "Identité visuelle", "href": "#studio-service-identity-panel" },
                     { "label": "Site internet", "href": "#studio-service-website-panel" },
                     { "label": "Fonctionnalités & intégrations", "href": "#studio-service-integrations-panel" }
                   ]
-                }
+                },
+                "media": "atmosphere_mobile-vid"
               }
             }
           ]
         },
         {
           "id": "studio-service-identity-panel",
-          "behavior": "moving",
+          "behavior": "cover",
           "size": "full",
           "align": "center",
           "surface": "solid",
@@ -64,7 +66,7 @@
         },
         {
           "id": "studio-service-website-panel",
-          "behavior": "moving",
+          "behavior": "cover",
           "size": "full",
           "align": "center",
           "surface": "solid",
@@ -84,7 +86,7 @@
         },
         {
           "id": "studio-service-integrations-panel",
-          "behavior": "moving",
+          "behavior": "cover",
           "size": "full",
           "align": "center",
           "surface": "solid",
