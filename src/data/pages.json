@@ -113,7 +113,7 @@
         "panels": [
       {
           "id": "studio-services-intro-panel",
-          "behavior": "stack",
+          "behavior": "fixed",
           "size": "full",
           "align": "center",
           "surface": "solid",
@@ -139,7 +139,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "primary",
+            "color": "secondary",
             "blocks": [
               {
                 "ref": "studio-service-website"
@@ -155,7 +155,7 @@
             "color": "special",
             "blocks": [
               {
-                "id": "studio-service-integrations"
+                "ref": "studio-service-integrations"
               }
             ]
           },
