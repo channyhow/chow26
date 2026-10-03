@@ -2,7 +2,9 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Services */
+/* Services
+   Service sections now render their single collection item directly through
+   Section's reusable Split. Keep project styling on that actual structure. */
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
@@ -12,52 +14,38 @@
 }
 
 .section--collection-panel > .section__inner {
-  display: flex;
-  align-items: center;
   width: 100%;
   max-width: none;
   min-height: 100svh;
   padding-inline: $page-gutter;
 }
 
-.section--collection-panel .section__body,
-.section--collection-panel .gridReveal,
-.section--collection-panel .grid,
-.section--collection-panel .grid__item,
-.section--collection-panel .card--service,
-.section--collection-panel .card--service .card__split {
+.section--collection-panel .split {
+  --split-primary-column: 8 / span 4;
+  --split-secondary-column: 1 / span 6;
   width: 100%;
   min-width: 0;
-}
-
-.section--collection-panel .grid {
-  display: block;
-  width: 100%;
-}
-
-.section--collection-panel .card--service .card__split {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
   align-items: center;
   gap: $grid-gap;
 }
 
-.section--collection-panel .card--service .split__primary {
-  grid-column: 1 / span 6 !important;
+.section--collection-panel .split__primary,
+.section--collection-panel .split__secondary {
+  min-width: 0;
 }
 
-.section--collection-panel .card--service .split__secondary {
-  grid-column: 8 / span 4 !important;
-  margin-top: 0;
+.section--collection-panel .split__primary .textBlock {
+  width: 100%;
+  max-width: 34rem;
 }
 
-.section--collection-panel .card--service .card__media,
-.section--collection-panel .card--service .media__frame {
+.section--collection-panel .split__secondary .media,
+.section--collection-panel .split__secondary .media__frame {
   width: 100%;
   aspect-ratio: $ratio-square;
 }
 
-.section--collection-panel .card--service .media__asset {
+.section--collection-panel .split__secondary .media__asset {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -68,42 +56,45 @@
     padding-inline: clamp(#{$space-3}, 5vw, #{$space-4});
   }
 
-  .section--collection-panel .card--service .card__split {
+  .section--collection-panel .split {
     grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
     gap: clamp(#{$space-3}, 5vw, #{$space-5});
     align-items: center;
   }
 
-  .section--collection-panel .card--service .split__primary,
-  .section--collection-panel .card--service .split__secondary {
-    grid-column: auto !important;
-    grid-row: auto;
-    min-width: 0;
+  .section--collection-panel .split__secondary {
+    grid-column: 1 !important;
+    grid-row: 1;
   }
 
-  .section--collection-panel .card--service .card__media,
-  .section--collection-panel .card--service .media__frame {
+  .section--collection-panel .split__primary {
+    grid-column: 2 !important;
+    grid-row: 1;
+  }
+
+  .section--collection-panel .split__secondary .media,
+  .section--collection-panel .split__secondary .media__frame {
     aspect-ratio: 4 / 3;
   }
 
-  .section--collection-panel .card--service .card__body.textBlock {
+  .section--collection-panel .textBlock {
     gap: $flow-tight;
   }
 
-  .section--collection-panel .card--service .textBlock__title {
+  .section--collection-panel .textBlock__title {
     @include type-heading-sm;
     max-width: 14ch;
   }
 
-  .section--collection-panel .card--service .textBlock__content {
+  .section--collection-panel .textBlock__content {
     max-width: 34ch;
   }
 
-  .section--collection-panel .card--service .textBlock__content p {
+  .section--collection-panel .textBlock__content p {
     @include type-body-sm;
   }
 
-  .section--collection-panel .card--service .textBlock__meta {
+  .section--collection-panel .textBlock__meta {
     margin-top: $space-1;
   }
 }
@@ -120,24 +111,30 @@
     padding-inline: $page-gutter;
   }
 
-  .section--collection-panel .card--service .card__split {
-    display: block;
+  .section--collection-panel .split {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
   }
 
-  .section--collection-panel .card--service .split__secondary {
-    margin-top: $space-3;
+  .section--collection-panel .split__secondary {
+    order: 1;
   }
 
-  .section--collection-panel .card--service .card__media,
-  .section--collection-panel .card--service .media__frame {
+  .section--collection-panel .split__primary {
+    order: 2;
+  }
+
+  .section--collection-panel .split__secondary .media,
+  .section--collection-panel .split__secondary .media__frame {
     aspect-ratio: $ratio-wide;
   }
 
-  .section--collection-panel .card--service .textBlock__title {
+  .section--collection-panel .textBlock__title {
     @include type-heading-md;
   }
 
-  .section--collection-panel .card--service .textBlock__content {
+  .section--collection-panel .textBlock__content {
     max-width: 32ch;
   }
 }
