@@ -57,7 +57,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isProjectArchiveGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured !== true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
   const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
-  const cardVariant = block.itemAppearance?.variant ?? (block.source?.collection === "services" ? "service" : isStructuredEditorialList ? "editorial" : "default");
+  const isServiceCollection = block.source?.collection === "services";
+  const cardVariant = block.itemAppearance?.variant ?? (isServiceCollection ? "service" : isStructuredEditorialList ? "editorial" : "default");
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
   const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
     ? isProjectArchiveGrid
@@ -93,7 +94,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined } : header;
-    const primary = primaryContent ? <TextBlock content={primaryContent} /> : null;
+    const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
     body = <Split variant={block.splitVariant} primary={motionLayer(primary, "forward")} secondary={motionLayer(splitSecondary, "reverse")} />;
   } else if (isProfileGrid) {
