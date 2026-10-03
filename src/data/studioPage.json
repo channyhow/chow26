@@ -19,27 +19,7 @@
           "align": "center",
           "surface": "solid",
           "color": "primary",
-          "blocks": [
-            {
-              "id": "studio-services-intro",
-              "type": "Section",
-              "layout": "split",
-              "splitVariant": "media-lead",
-              "className": "home-preview home-preview--services",
-              "surface": "solid",
-              "color": "primary",
-              "motion": "scene",
-              "motionPreset": "parallax",
-              "content": {
-                "header": {
-                  "title": "Créer, clarifier ou faire évoluer votre présence.",
-                  "text": ["Selon votre besoin, je peux créer ou faire évoluer votre **site internet**, votre **identité visuelle**, vos **supports de communication** et les **outils digitaux** utiles à votre activité."],
-                  "links": ["studio-service-identity", "studio-service-website", "studio-service-integrations"]
-                },
-                "media": "atmosphere_mobile-vid"
-              }
-            }
-          ]
+          "blocks": [{ "ref": "studio-services-intro" }]
         },
         {
           "id": "studio-service-identity-panel",
