@@ -3,8 +3,8 @@
 @use "../foundation/mixins" as *;
 
 /* Services
-   Service sections now render their single collection item directly through
-   Section's reusable Split. Keep project styling on that actual structure. */
+   Service sections use the reusable Split composition. Project styling only
+   controls panel rhythm and media treatment; Split owns placement/order. */
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
@@ -21,12 +21,10 @@
 }
 
 .section--collection-panel .split {
-  --split-primary-column: 8 / span 4;
-  --split-secondary-column: 1 / span 6;
   width: 100%;
   min-width: 0;
+  min-height: inherit;
   align-items: center;
-  gap: $grid-gap;
 }
 
 .section--collection-panel .split__primary,
@@ -57,19 +55,7 @@
   }
 
   .section--collection-panel .split {
-    grid-template-columns: minmax(0, 1.08fr) minmax(17rem, .92fr);
-    gap: clamp(#{$space-3}, 5vw, #{$space-5});
     align-items: center;
-  }
-
-  .section--collection-panel .split__secondary {
-    grid-column: 1 !important;
-    grid-row: 1;
-  }
-
-  .section--collection-panel .split__primary {
-    grid-column: 2 !important;
-    grid-row: 1;
   }
 
   .section--collection-panel .split__secondary .media,
@@ -106,23 +92,13 @@
   }
 
   .section--collection-panel > .section__inner {
-    display: block;
     min-height: auto;
     padding-inline: $page-gutter;
   }
 
   .section--collection-panel .split {
-    display: flex;
-    flex-direction: column;
+    min-height: 0;
     gap: $space-3;
-  }
-
-  .section--collection-panel .split__secondary {
-    order: 1;
-  }
-
-  .section--collection-panel .split__primary {
-    order: 2;
   }
 
   .section--collection-panel .split__secondary .media,
