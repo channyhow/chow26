@@ -21,7 +21,8 @@
   width: 100%;
   min-width: 0;
   min-height: inherit;
-  align-items: center;
+  align-content: center;
+  align-items: start;
 }
 
 .section--collection-panel .split__primary,
@@ -34,9 +35,7 @@
   max-width: 34rem;
 }
 
-/* Override each media item's source ratio at the frame itself. Setting an
-   aspect ratio on .media alone left landscape frames sitting inside a square
-   wrapper, which caused the visible empty band below the image. */
+/* Service media share one square editorial frame regardless of source ratio. */
 .section--collection-panel .media {
   width: 100%;
   aspect-ratio: auto;
@@ -67,6 +66,7 @@
   /* Mobile has one predictable reading order regardless of desktop direction. */
   .section--collection-panel .split {
     --split-gap: #{$space-4};
+    align-content: start;
     align-items: start;
   }
 
