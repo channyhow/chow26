@@ -2,8 +2,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Studio services share one reusable Split treatment. Direction alternates in
-   data; project CSS only owns the common panel rhythm and media proportion. */
+/* Studio services use one consistent 50/50 Split system. The block variant
+   controls direction; this layer only owns service rhythm and media treatment. */
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
@@ -34,8 +34,16 @@
   max-width: 34rem;
 }
 
-.section--collection-panel .media,
-.section--collection-panel .media__frame {
+/* Override each media item's source ratio at the frame itself. Setting an
+   aspect ratio on .media alone left landscape frames sitting inside a square
+   wrapper, which caused the visible empty band below the image. */
+.section--collection-panel .media {
+  width: 100%;
+  aspect-ratio: auto;
+  background: transparent;
+}
+
+.section--collection-panel .media[data-ratio] .media__frame {
   width: 100%;
   aspect-ratio: $ratio-square;
 }
@@ -56,8 +64,7 @@
     min-height: 0;
   }
 
-  /* On mobile the service is one editorial unit: image first, then copy.
-     Desktop alternation is spatial; mobile reading order stays consistent. */
+  /* Mobile has one predictable reading order regardless of desktop direction. */
   .section--collection-panel .split {
     --split-gap: #{$space-4};
     align-items: start;
@@ -71,22 +78,9 @@
     justify-self: stretch;
   }
 
-  .section--collection-panel .split__secondary {
-    grid-row: 1;
-  }
-
-  .section--collection-panel .split__primary {
-    grid-row: 2;
-  }
-
-  .section--collection-panel .textBlock {
-    max-width: none;
-  }
-
-  .section--collection-panel .media,
-  .section--collection-panel .media__frame {
-    aspect-ratio: $ratio-square;
-  }
+  .section--collection-panel .split__secondary { grid-row: 1; }
+  .section--collection-panel .split__primary { grid-row: 2; }
+  .section--collection-panel .textBlock { max-width: none; }
 }
 
 /* Approach */
