@@ -46,11 +46,6 @@
     --split-gap: #{$flow-default};
     align-items: start;
   }
-
-  .split--media-lead .split__primary {
-    width: min(72vw, 24rem);
-    justify-self: center;
-  }
 }
 
 @include tablet-up {
