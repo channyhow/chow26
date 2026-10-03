@@ -46,7 +46,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
   const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
+  // Split compositions are intentionally static while their layout system is normalized.
+  const shouldTrackScroll = layout !== "split" && motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
   const scenePreset: ScrollMotionPreset = block.motionPreset ?? (motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (motionLevel === "micro" ? "quiet" : "default");
@@ -96,7 +97,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primaryContent = splitItem ? { ...splitItem, media: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
-    body = <Split variant={block.splitVariant} primary={motionLayer(primary, "forward")} secondary={motionLayer(splitSecondary, "reverse")} />;
+    body = <Split variant={block.splitVariant} primary={primary} secondary={splitSecondary} />;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
