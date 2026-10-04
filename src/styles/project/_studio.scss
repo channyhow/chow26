@@ -30,6 +30,25 @@
   min-width: 0;
 }
 
+/* Service media is always square and centred inside its split column. */
+.section--collection-panel .split__secondary {
+  display: grid;
+  place-items: center;
+}
+
+.section--collection-panel .split__secondary .media {
+  width: min(100%, var(--split-media-max-height));
+  max-width: var(--split-media-max-height);
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+}
+
+.section--collection-panel .split__secondary .media__frame {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
 /* Let the split column define the available width. TextBlock itself should not
    create a second, narrower layout column. Readability belongs to its prose. */
 .section--collection-panel .textBlock {
@@ -138,17 +157,19 @@
 }
 
 #studio-founders .split__secondary .media {
-  width: min(72%, 30rem);
-  max-height: none;
+  width: min(100%, 25rem);
+  max-width: 25rem;
+  max-height: 25rem;
   aspect-ratio: 1 / 1;
+  justify-self: center;
   background: transparent;
   mix-blend-mode: multiply;
 }
 
 #studio-founders .split__secondary .media__frame {
   width: 100%;
-  height: auto;
-  max-height: none;
+  height: 100%;
+  max-height: 25rem;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: transparent;
@@ -163,7 +184,7 @@
 
 @include tablet-down {
   #studio-founders .split__secondary .media {
-    width: min(76%, 26rem);
+    width: min(100%, 25rem);
   }
 }
 
@@ -174,7 +195,7 @@
   }
 
   #studio-founders .split__secondary .media {
-    width: min(78%, 18rem);
+    width: min(100%, 18rem);
     margin-inline: auto;
   }
 }
