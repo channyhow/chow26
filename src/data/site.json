@@ -8,7 +8,7 @@
     "supportedLocales": ["fr"],
     "seo": {
       "defaultTitle": "Chow Studio | Site internet & communication visuelle | Réunion Paris",
-      "defaultDescription": "Création et refonte de sites internet, identité visuelle, logo et supports de communication à La Réunion et Paris.",
+      "defaultDescription": "Création et refonte de sites internet, identités visuelles, logos et supports de communication entre Paris et La Réunion.",
       "defaultImage": "home-cover",
       "imageAlt": "Chow Studio | création de site internet, identité et communication visuelle à La Réunion et Paris",
       "siteType": "website",
@@ -24,11 +24,9 @@
       "knowsAbout": ["Communication visuelle", "Communication digitale", "Création de site internet", "Création de site web sur mesure", "Refonte de site internet", "Identité visuelle", "Création de logo", "Charte graphique", "Supports de communication", "Design web", "UX/UI design", "Développement frontend React", "Design responsive", "SEO"],
       "offerCatalogName": "Sites internet, identité et communication visuelle",
       "services": [
-        { "name": "Création et refonte de sites internet", "description": "Création et refonte de sites vitrines sur mesure : structure, UX/UI, design web, développement responsive, accessibilité et SEO." },
-        { "name": "Identité et communication visuelle", "description": "Création ou évolution de logos, identités visuelles, chartes graphiques et systèmes visuels cohérents avec le positionnement du projet." },
-        { "name": "Supports de communication", "description": "Conception de supports de communication imprimés et digitaux cohérents avec l’identité de la marque, du visuel de campagne aux déclinaisons graphiques." },
-        { "name": "Communication digitale et UX/UI", "description": "Cadrage, architecture de contenu, UX/UI et direction visuelle pour construire ou faire évoluer une présence digitale claire et cohérente." },
-        { "name": "Développement frontend", "description": "Intégration frontend responsive, accessible et maintenable pour traduire la direction visuelle en expérience web performante." }
+        { "name": "Création et refonte de sites internet", "description": "Création et refonte de sites vitrines sur mesure : structure, UX/UI, design web, développement frontend responsive, accessibilité et SEO." },
+        { "name": "Identité visuelle", "description": "Création ou évolution de logos, identités visuelles, chartes graphiques et systèmes visuels cohérents avec le positionnement du projet." },
+        { "name": "Supports de communication", "description": "Conception de supports de communication imprimés et digitaux cohérents avec l’identité de la marque, du visuel de campagne aux déclinaisons graphiques." }
       ],
       "projectLocations": ["Paris", "Île-de-France", "La Réunion", "France"]
     },
