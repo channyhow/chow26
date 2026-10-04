@@ -141,6 +141,16 @@
   min-height: 100svh;
 }
 
+/* A cover scene centers its Section composition as a whole. This works for the
+   default flex inner and for editorial inners that switch themselves to grid;
+   if content exceeds the viewport it still grows naturally rather than being
+   clipped or compressed. */
+.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section > .section__inner,
+.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section > .section__inner {
+  justify-content: center;
+  align-content: center;
+}
+
 /* Fixed scenes are the exception on compact layouts: they return to document
    flow. Cover/stack must not be disabled just because Split has stacked. */
 @include desktop-down {
