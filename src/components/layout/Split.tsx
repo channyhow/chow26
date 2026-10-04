@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import clsx from "clsx";
 
 export type SplitVariant = "default" | "balanced" | "editorial" | "media-lead";
+export type SplitRole = "content" | "media";
 
 export type SplitProps = {
   primary: ReactNode;
@@ -10,6 +11,8 @@ export type SplitProps = {
   variant?: SplitVariant;
   primaryColumn?: string;
   secondaryColumn?: string;
+  primaryRole?: SplitRole;
+  secondaryRole?: SplitRole;
 };
 
 type SplitStyle = CSSProperties & {
@@ -24,6 +27,8 @@ export function Split({
   variant = "default",
   primaryColumn,
   secondaryColumn,
+  primaryRole,
+  secondaryRole,
 }: SplitProps) {
   const style: SplitStyle = {
     ...(primaryColumn ? { "--split-primary-column": primaryColumn } : {}),
@@ -36,8 +41,8 @@ export function Split({
       data-split-variant={variant}
       style={style}
     >
-      <div className="split__primary">{primary}</div>
-      <div className="split__secondary">{secondary}</div>
+      <div className="split__primary" data-split-role={primaryRole}>{primary}</div>
+      <div className="split__secondary" data-split-role={secondaryRole}>{secondary}</div>
     </div>
   );
 }
