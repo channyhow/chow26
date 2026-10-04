@@ -1,4 +1,4 @@
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -31,8 +31,6 @@ function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel
     return <Section key={entry.id || `panel-section-${index + 1}`} block={entry} suppressSceneMotion={suppressSceneMotion} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} />;
   });
 }
-
-function panelKey(block: PanelBlock, index: number) { return "ref" in block ? block.ref : block.id || `panel-${index + 1}`; }
 
 function getDocumentOffsetTop(element: HTMLElement) {
   let top = 0;
@@ -74,49 +72,53 @@ function resolvePanelLanes(group: SectionGroupData): PanelLane[] {
   const mode = group.panel?.mode ?? "scene";
 
   if (mode === "stack") {
-    return blocks.map((block, index) => ({
-      id: `${group.id}-${index + 1}`,
-      behavior: "overlay",
-      frame: "viewport",
-      blocks: [block],
-    }));
+    return blocks.map((block, index) => ({ id: `${group.id}-${index + 1}`, behavior: "overlay", frame: "viewport", blocks: [block] }));
   }
 
   if (!blocks.length) return [];
 
   return [
-    {
-      id: `${group.id}-scene`,
-      behavior: "sticky",
-      frame: "viewport",
-      size: "full",
-      align: "center",
-      surface: "transparent",
-      blocks: [blocks[0]],
-    },
-    ...blocks.slice(1).map((block, index) => ({
-      id: `${group.id}-panel-${index + 1}`,
-      behavior: "normal" as const,
-      blocks: [block],
-    })),
+    { id: `${group.id}-scene`, behavior: "sticky", frame: "viewport", size: "full", align: "center", surface: "transparent", blocks: [blocks[0]] },
+    ...blocks.slice(1).map((block, index) => ({ id: `${group.id}-panel-${index + 1}`, behavior: "normal" as const, blocks: [block] })),
   ];
 }
 
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    if (behavior !== "sticky" || frame !== "content") return;
+    const element = ref.current;
+    if (!element) return;
+
+    const updateStickyTop = () => {
+      const viewportHeight = window.innerHeight;
+      const stickyTop = Math.min(0, viewportHeight - element.offsetHeight);
+      element.style.setProperty("--panel-sticky-top", `${stickyTop}px`);
+    };
+
+    updateStickyTop();
+    const observer = new ResizeObserver(updateStickyTop);
+    observer.observe(element);
+    window.addEventListener("resize", updateStickyTop);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateStickyTop);
+      element.style.removeProperty("--panel-sticky-top");
+    };
+  }, [behavior, frame]);
+
   const scrollYProgress = useTransform(scrollY, (latest) => {
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
-
     const viewportHeight = Math.max(window.innerHeight, 1);
     const offsetTop = getDocumentOffsetTop(element);
     const start = offsetTop - viewportHeight;
     const end = offsetTop + element.offsetHeight;
-    const runway = Math.max(end - start, 1);
-
-    return Math.min(1, Math.max(0, (latest - start) / runway));
+    return Math.min(1, Math.max(0, (latest - start) / Math.max(end - start, 1)));
   });
+
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
   return (
@@ -146,18 +148,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
     <div className="sectionGroup" data-layout={layout} data-panel-mode={isPanel ? mode : undefined} data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"} data-preset={reduceMotion ? undefined : group.motion?.preset}>
       {isPanel
         ? panelLanes.map((panel, index) => (
-            <Panel
-              key={panel.id}
-              id={panel.id}
-              behavior={panel.behavior ?? "normal"}
-              frame={panel.frame ?? defaultFrame}
-              size={panel.size ?? defaultSize}
-              align={panel.align ?? defaultAlign}
-              surface={panel.surface ?? defaultSurface}
-              color={panel.color ?? defaultColor}
-              blocks={panel.blocks}
-              index={index}
-            />
+            <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />
           ))
         : renderBlocks(flowBlocks)}
     </div>
