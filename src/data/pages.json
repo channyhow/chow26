@@ -406,7 +406,7 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "site-footer" }]
+            "blocks": [{ "ref": "final-cta" },{ "ref": "site-footer" }]
           }
         ]
       }
