@@ -3,9 +3,7 @@
 
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
-.sectionGroup[data-layout="scroll-panel"] {
-  display: flow-root;
-}
+.sectionGroup[data-layout="scroll-panel"] { display: flow-root; }
 
 .sectionGroup__panel {
   --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
@@ -24,18 +22,11 @@
 
 .sectionGroup__surface {
   position: relative;
-  min-height: inherit;
   color: inherit;
   background: transparent;
 }
 
-.sectionGroup__surface > .section {
-  color: inherit;
-}
-
-.sectionGroup__panel[data-panel-id$="-final-panel"] {
-  min-height: auto;
-}
+.sectionGroup__surface > .section { color: inherit; }
 
 .sectionGroup__panel[data-panel-size="sm"] {
   --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
@@ -115,11 +106,19 @@
     position: relative;
   }
 
-  .sectionGroup__panel[data-panel-behavior="stack"],
   .sectionGroup__panel[data-panel-behavior="cover"] {
     position: sticky;
-    top: var(--panel-stack-top, 0);
+    top: 0;
     min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface {
+    min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="stack"] {
+    position: relative;
+    min-height: 0;
   }
 
   .sectionGroup[data-layout="overlap"] > .section + .section {
