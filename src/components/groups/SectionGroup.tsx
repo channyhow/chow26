@@ -20,12 +20,12 @@ import type {
 const glassBackdrop = "blur(1.1rem) saturate(1.05)";
 const collectionPanelColors: SectionColor[] = ["secondary", "special", "accent"];
 
-function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel = false, scrollProgress?: MotionValue<number>, panelBehavior?: PanelBehavior) {
+function renderBlocks(blocks: PanelBlock[], suppressSceneMotion = false, inPanel = false, scrollProgress?: MotionValue<number>) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
       const block = resolveBlock(entry.ref);
       if (!block) return null;
-      if (entry.ref === "site-footer") return <SiteFooter key={entry.ref} block={block} panelBehavior={panelBehavior} />;
+      if (entry.ref === "site-footer") return <SiteFooter key={entry.ref} block={block} />;
       return <Section key={entry.ref} block={block} suppressSceneMotion={suppressSceneMotion} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} />;
     }
     return <Section key={entry.id || `panel-section-${index + 1}`} block={entry} suppressSceneMotion={suppressSceneMotion} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} />;
@@ -64,17 +64,12 @@ function expandCollectionPanels(group: SectionGroupData) {
 
 function resolvePanelLanes(group: SectionGroupData): PanelLane[] {
   if (group.layout !== "scroll-panel") return [];
-
   const explicitPanels = expandCollectionPanels(group);
   if (explicitPanels?.length) return explicitPanels;
 
   const blocks = group.blocks ?? [];
   const mode = group.panel?.mode ?? "scene";
-
-  if (mode === "stack") {
-    return blocks.map((block, index) => ({ id: `${group.id}-${index + 1}`, behavior: "overlay", frame: "viewport", blocks: [block] }));
-  }
-
+  if (mode === "stack") return blocks.map((block, index) => ({ id: `${group.id}-${index + 1}`, behavior: "overlay", frame: "viewport", blocks: [block] }));
   if (!blocks.length) return [];
 
   return [
@@ -92,12 +87,7 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
     const element = ref.current;
     if (!element) return;
 
-    const updateStickyTop = () => {
-      const viewportHeight = window.innerHeight;
-      const stickyTop = Math.min(0, viewportHeight - element.offsetHeight);
-      element.style.setProperty("--panel-sticky-top", `${stickyTop}px`);
-    };
-
+    const updateStickyTop = () => element.style.setProperty("--panel-sticky-top", `${Math.min(0, window.innerHeight - element.offsetHeight)}px`);
     updateStickyTop();
     const observer = new ResizeObserver(updateStickyTop);
     observer.observe(element);
@@ -123,7 +113,7 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
   return (
     <div ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
-      <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, false, true, scrollYProgress, behavior)}</div>
+      <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, false, true, scrollYProgress)}</div>
     </div>
   );
 }
@@ -147,9 +137,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   return (
     <div className="sectionGroup" data-layout={layout} data-panel-mode={isPanel ? mode : undefined} data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"} data-preset={reduceMotion ? undefined : group.motion?.preset}>
       {isPanel
-        ? panelLanes.map((panel, index) => (
-            <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />
-          ))
+        ? panelLanes.map((panel, index) => <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />)
         : renderBlocks(flowBlocks)}
     </div>
   );
