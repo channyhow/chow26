@@ -69,10 +69,13 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
   const scrollYProgress = useTransform(scrollY, (latest) => {
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
-    const start = getDocumentOffsetTop(element);
+
     const viewportHeight = Math.max(window.innerHeight, 1);
-    const scrollRunway = Math.max(element.offsetHeight - viewportHeight, 1);
-    return Math.min(1, Math.max(0, (latest - start) / scrollRunway));
+    const start = getDocumentOffsetTop(element) - viewportHeight;
+    const end = getDocumentOffsetTop(element) + element.offsetHeight;
+    const runway = Math.max(end - start, 1);
+
+    return Math.min(1, Math.max(0, (latest - start) / runway));
   });
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
