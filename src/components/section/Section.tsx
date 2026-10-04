@@ -43,10 +43,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
-  const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher";
+  const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher" || isHorizontalTimeline;
   const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !isHorizontalTimeline && !ownsScrollInteraction && !isLongFormList;
+  const shouldTrackScroll = motionEnabled && usesScrollMotion && !suppressSceneMotion && !ownsScrollInteraction && !isLongFormList;
   const scenePreset: ScrollMotionPreset = block.motionPreset ?? (layout === "split" ? "recede" : motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
