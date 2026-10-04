@@ -31,98 +31,48 @@
   background: transparent;
 }
 
-/* The panel owns scene height. Its surface and Section inherit only that scene
-   floor; content remains free to grow beyond the viewport when necessary. */
 .sectionGroup__surface > .section {
   flex: 1 1 auto;
   min-height: inherit;
   color: inherit;
 }
 
-.sectionGroup__panel[data-panel-id$="-final-panel"] {
-  min-height: auto;
-}
+.sectionGroup__panel[data-panel-id$="-final-panel"] { min-height: auto; }
+.sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
+.sectionGroup__panel[data-panel-size="md"] { --panel-width: min(36rem, calc(100% - #{$space-3 * 2})); }
+.sectionGroup__panel[data-panel-size="lg"] { --panel-width: min(48rem, calc(100% - #{$space-3 * 2})); }
+.sectionGroup__panel[data-panel-size="full"] { --panel-width: 100%; --panel-inline-start: 0; --panel-inline-end: 0; }
+.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) { --panel-inline-start: $space-3; --panel-inline-end: auto; }
+.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) { --panel-inline-start: auto; --panel-inline-end: $space-3; }
 
-.sectionGroup__panel[data-panel-size="sm"] {
-  --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
-}
+.sectionGroup__panel[data-panel-color="primary"] { --panel-bg: var(--theme-primary); --panel-fg: var(--theme-secondary); }
+.sectionGroup__panel[data-panel-color="secondary"] { --panel-bg: var(--theme-secondary); --panel-fg: var(--theme-primary); }
+.sectionGroup__panel[data-panel-color="accent"] { --panel-bg: var(--theme-accent); --panel-fg: var(--theme-primary); }
+.sectionGroup__panel[data-panel-color="special"] { --panel-bg: var(--theme-special); --panel-fg: var(--theme-primary); }
+.sectionGroup__panel[data-panel-color="transparent"] { --panel-bg: transparent; --panel-fg: inherit; }
 
-.sectionGroup__panel[data-panel-size="md"] {
-  --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
-}
-
-.sectionGroup__panel[data-panel-size="lg"] {
-  --panel-width: min(48rem, calc(100% - #{$space-3 * 2}));
-}
-
-.sectionGroup__panel[data-panel-size="full"] {
-  --panel-width: 100%;
-  --panel-inline-start: 0;
-  --panel-inline-end: 0;
-}
-
-.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) {
-  --panel-inline-start: $space-3;
-  --panel-inline-end: auto;
-}
-
-.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) {
-  --panel-inline-start: auto;
-  --panel-inline-end: $space-3;
-}
-
-.sectionGroup__panel[data-panel-color="primary"] {
-  --panel-bg: var(--theme-primary);
-  --panel-fg: var(--theme-secondary);
-}
-
-.sectionGroup__panel[data-panel-color="secondary"] {
-  --panel-bg: var(--theme-secondary);
-  --panel-fg: var(--theme-primary);
-}
-
-.sectionGroup__panel[data-panel-color="accent"] {
-  --panel-bg: var(--theme-accent);
-  --panel-fg: var(--theme-primary);
-}
-
-.sectionGroup__panel[data-panel-color="special"] {
-  --panel-bg: var(--theme-special);
-  --panel-fg: var(--theme-primary);
-}
-
-.sectionGroup__panel[data-panel-color="transparent"] {
-  --panel-bg: transparent;
-  --panel-fg: inherit;
-}
-
-.sectionGroup__panel[data-panel-surface="transparent"] > .sectionGroup__surface {
-  background: transparent;
-}
-
-.sectionGroup__panel[data-panel-surface="solid"] > .sectionGroup__surface {
-  background: var(--panel-bg);
-}
-
+.sectionGroup__panel[data-panel-surface="transparent"] > .sectionGroup__surface { background: transparent; }
+.sectionGroup__panel[data-panel-surface="solid"] > .sectionGroup__surface { background: var(--panel-bg); }
 .sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface {
   background: var(--panel-glass-bg);
   backdrop-filter: blur($glass-blur) saturate(1.05);
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-.sectionGroup__panel[data-panel-behavior="fixed"] {
-  position: sticky;
-  top: 0;
-  min-height: 100svh;
+/* A cover is a sheet, not a translucent window. Glass remains available for
+   floating/non-cover panels, but a covering panel must fully occlude the scene
+   below it. This is what makes the panel transition read as one page replacing
+   another rather than two pages showing through each other. */
+.sectionGroup__panel[data-panel-behavior="cover"][data-panel-surface="glass"] > .sectionGroup__surface,
+.sectionGroup__panel[data-panel-behavior="stack"][data-panel-surface="glass"] > .sectionGroup__surface {
+  background: var(--panel-bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
-.sectionGroup__panel[data-panel-behavior="moving"] {
-  position: relative;
-}
+.sectionGroup__panel[data-panel-behavior="fixed"] { position: sticky; top: 0; min-height: 100svh; }
+.sectionGroup__panel[data-panel-behavior="moving"] { position: relative; }
 
-/* Cover/stack panels are sticky sheets in one shared stacking context. Later
-   panels sit above earlier panels, so their surfaces physically cover the
-   preceding scene instead of revealing the page background between them. */
 .sectionGroup__panel[data-panel-behavior="stack"],
 .sectionGroup__panel[data-panel-behavior="cover"] {
   position: sticky;
@@ -132,10 +82,7 @@
 }
 
 .sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface {
-  min-height: 100svh;
-}
-
+.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface,
 .sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section,
 .sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section {
   min-height: 100svh;
@@ -147,22 +94,11 @@
   align-content: center;
 }
 
-/* Fixed scenes are the exception on compact layouts: they return to document
-   flow. Cover/stack keep their layering behavior at every breakpoint. */
 @include desktop-down {
-  .sectionGroup__panel[data-panel-behavior="fixed"] {
-    position: relative;
-    top: auto;
-    min-height: auto;
-  }
-
-  .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface {
-    min-height: 0;
-  }
+  .sectionGroup__panel[data-panel-behavior="fixed"] { position: relative; top: auto; min-height: auto; }
+  .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
 }
 
-// The opening is a scroll track containing a pinned visual plane. It stays at
-// the base of the panel stack while the following cover panel rises above it.
 .sectionGroup__panel[data-panel-id="home-opening-panel"] {
   position: relative;
   top: auto;
@@ -177,7 +113,5 @@
 }
 
 @include desktop-up {
-  .sectionGroup[data-layout="overlap"] > .section + .section {
-    margin-top: calc($space-4 * -1);
-  }
+  .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
 }
