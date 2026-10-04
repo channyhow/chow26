@@ -10,13 +10,23 @@
 ================================== */
 
 .site {
+  /* A restrained rhythm keeps related content perceptually grouped while
+     preserving the generous whitespace that defines the studio. */
   --project-section-space: clamp(5rem, 10vw, 10rem);
   --project-section-space-compact: clamp(#{$space-4}, 8vw, 8rem);
+  --project-section-gap: #{$section-content-gap};
+  --project-section-gap-loose: clamp(#{$space-3}, 4vw, #{$space-4});
 }
 
-.section { --section-space: var(--project-section-space); }
+.section {
+  --section-space: var(--project-section-space);
+  --section-gap: var(--project-section-gap);
+}
+
 .carousel { --carousel-media-ratio: #{$ratio-landscape}; }
 
+/* Conversion section: asymmetry creates hierarchy without adding containers
+   or decorative separation. */
 #contact-default {
   min-height: 100svh;
   --split-primary-column: 1 / span 5;
@@ -24,6 +34,8 @@
 }
 #contact-default .split { align-items: start; }
 
+/* Project browsing is intentionally tighter than narrative sections so cards
+   read as one continuous family. */
 #projects-featured,
 #project-gallery { --section-space: var(--project-section-space-compact); }
 
@@ -36,50 +48,35 @@
   #project-gallery .textBlock__header .textBlock__title { max-width: none; }
 }
 
-/* Legal pages: deliberate large-title exception. */
-#cgv-default,
-#legal-notice-default,
-#privacy-default {
+/* Legal documents share one editorial hierarchy: generous title scale,
+   unrestricted measure and no card inset. This remains a project-level
+   exception because it describes a content family rather than a component. */
+:is(#cgv-default, #legal-notice-default, #privacy-default) {
   --section-space: clamp(#{$space-4}, 7vw, #{$space-5});
-  --section-gap: clamp(#{$space-3}, 4vw, #{$space-4});
+  --section-gap: var(--project-section-gap-loose);
+  --section-title-width: none;
+  --section-title-width-mobile: none;
+  --section-copy-width: none;
 }
 
-#cgv-default .section__header,
-#legal-notice-default .section__header,
-#privacy-default .section__header,
-#cgv-default .section__header .textBlock__content,
-#legal-notice-default .section__header .textBlock__content,
-#privacy-default .section__header .textBlock__content,
-#cgv-default .section__header .textBlock__title,
-#legal-notice-default .section__header .textBlock__title,
-#privacy-default .section__header .textBlock__title { max-width: none; }
+:is(#cgv-default, #legal-notice-default, #privacy-default) .section__header {
+  max-width: none;
+}
 
-#cgv-default .section__header .textBlock__title,
-#legal-notice-default .section__header .textBlock__title,
-#privacy-default .section__header .textBlock__title {
-  font-size: 5rem;
-  line-height: 0.95;
+:is(#cgv-default, #legal-notice-default, #privacy-default)
+  .section__header
+  .textBlock__title {
+  @include type-display-lg;
+  max-width: none;
   text-transform: uppercase;
 }
 
-#cgv-default .card__body,
-#legal-notice-default .card__body,
-#privacy-default .card__body { padding-inline: 0; }
-
-@include tablet-down {
-  #cgv-default .section__header .textBlock__title,
-  #legal-notice-default .section__header .textBlock__title,
-  #privacy-default .section__header .textBlock__title {
-    font-size: clamp(2.25rem, 8vw, 3.75rem);
-    line-height: 0.98;
-  }
+:is(#cgv-default, #legal-notice-default, #privacy-default)
+  .section__header
+  .textBlock__content {
+  max-width: none;
 }
 
-@media (max-width: 32rem) {
-  #cgv-default .section__header .textBlock__title,
-  #legal-notice-default .section__header .textBlock__title,
-  #privacy-default .section__header .textBlock__title {
-    font-size: clamp(2rem, 9vw, 2.75rem);
-    line-height: 1;
-  }
+:is(#cgv-default, #legal-notice-default, #privacy-default) .card__body {
+  padding-inline: 0;
 }
