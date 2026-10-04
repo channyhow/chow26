@@ -195,7 +195,6 @@
 }
 
 @mixin meta-chips($gap: $space-1) { display: flex; flex-wrap: wrap; gap: $gap; > * { flex: 0 0 auto; } }
-@mixin split-composition($media: 1fr, $content: 1fr, $gap: $space-3, $align: center) { display: grid; grid-template-columns: minmax(0, $media) minmax(0, $content); gap: $gap; align-items: $align; min-width: 0; }
 @mixin sticky-editorial($top: $sticky-offset) { position: sticky; top: $top; align-self: start; }
 @mixin shape-arch { border-radius: $radius-full $radius-full $radius-default $radius-default; }
 @mixin shape-blob { border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; }
