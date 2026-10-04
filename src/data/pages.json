@@ -81,26 +81,26 @@
         "type": "Group",
         "layout": "scroll-panel",
         "panels": [
-          {
-            "id": "projects-gallery-panel",
-            "behavior": "normal",
+  {
+  "id": "projects-gallery-panel",
+  "behavior": "normal",
   "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [{ "ref": "project-gallery" }]
-          },
-          {
-            "id": "projects-final-panel",
-            "behavior": "overlay",
-            "frame": "viewport",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
-          }
+  "size": "full",
+  "align": "center",
+  "surface": "solid",
+  "color": "secondary",
+  "blocks": [{ "ref": "project-gallery" }]
+},
+{
+  "id": "projects-final-panel",
+  "behavior": "sticky",
+  "frame": "viewport",
+  "size": "full",
+  "align": "center",
+  "surface": "glass",
+  "color": "primary",
+  "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+}
         ]
       }
     ]
@@ -409,8 +409,8 @@
         "panels": [
           {
             "id": "contact-content-panel",
-            "behavior": "sticky",
-            "frame": "viewport",
+  "behavior": "normal",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -535,8 +535,8 @@
         "panels": [
           {
             "id": "cgv-content-panel",
-            "behavior": "sticky",
-            "frame": "viewport",
+          "behavior": "normal",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -690,8 +690,8 @@
         "panels": [
           {
             "id": "privacy-content-panel",
-            "behavior": "sticky",
-            "frame": "viewport",
+     "behavior": "normal",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
