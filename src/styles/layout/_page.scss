@@ -13,17 +13,21 @@
   background: var(--secondary);
 }
 
-/* Route-start contract: header clearance belongs to the page boundary. Section
-   keeps ownership of its normal vertical rhythm, so the opening does not stack
-   a full section-space on top of the persistent header. */
+/* Route-start contract: header clearance belongs to ordinary document-flow
+   openings. Viewport-managed panels own their full scene geometry and must stay
+   mathematically centred, so fixed/stack/cover panels do not inherit this
+   page-start padding. This keeps the rule structural rather than route-specific. */
 .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
-.page__content > .sectionGroup:first-child > .sectionGroup__panel:first-child > .sectionGroup__surface > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+.page__content > .sectionGroup:first-child
+  > .sectionGroup__panel:first-child:not([data-panel-behavior="fixed"]):not([data-panel-behavior="stack"]):not([data-panel-behavior="cover"])
+  > .sectionGroup__surface
+  > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
   padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
 }
 
-/* Horizontal-scroll and media-overlay openings own their first-view composition.
-   Do not add generic page-start padding to their viewport or overlay content;
-   those components handle their own readable/header-safe layout. */
+/* Horizontal-scroll, media-overlay and viewport-panel openings own their
+   first-view composition. Their components handle readable/header-safe layout
+   without moving the centred scene itself. */
 
 .page__footer,
 .siteFooter {
