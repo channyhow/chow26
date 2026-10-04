@@ -4,7 +4,6 @@
 
 /* Studio service panels only own panel rhythm. Split owns the geometry. */
 .section--collection-panel {
-  --section-space: 0;
   --text-width: none;
   width: 100%;
   min-height: 100svh;
@@ -35,28 +34,20 @@
   max-width: none;
 }
 
-@include mobile-down {
-  .section--collection-panel { min-height: auto; }
+@include tablet-down {
+  .section--collection-panel {
+    min-height: auto;
+  }
 
   .section--collection-panel > .section__inner,
-  .section--collection-panel .split { min-height: 0; }
+  .section--collection-panel .split {
+    min-height: 0;
+  }
 
   .section--collection-panel .split {
-    --split-gap: #{$space-4};
     align-content: start;
     align-items: start;
   }
-
-  .section--collection-panel .split__primary,
-  .section--collection-panel .split__secondary {
-    grid-column: 1 / -1;
-    width: 100%;
-    max-width: none;
-    justify-self: stretch;
-  }
-
-  .section--collection-panel .split__secondary { grid-row: 1; }
-  .section--collection-panel .split__primary { grid-row: 2; }
 }
 
 /* Approach */
