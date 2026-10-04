@@ -68,47 +68,51 @@
   transition: opacity $transition-hover;
 }
 
-@include mobile-down {
-  .section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
-    content: "→";
-    position: absolute;
-    top: 50%;
-    right: $space-3;
-    z-index: $z-raised;
-    font-size: 2.25rem;
-    font-weight: $font-weight-semibold;
-    line-height: 1;
-    pointer-events: none;
-    transform: translateY(-50%);
-    animation: carousel-next-cue 1.6s $ease-soft infinite;
-  }
+/* Featured project carousels use one visual navigation language: the floating
+   directional cue. The button group remains available to keyboard users when
+   focused, without competing with the card-level arrow in the composition. */
+.section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: clamp(#{$space-2}, 3vw, #{$space-3});
+  z-index: $z-raised;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  pointer-events: none;
+  transform: translateY(-50%);
+  animation: carousel-next-cue 1.6s $ease-soft infinite;
+}
 
+.section[data-source="projects"][data-featured="true"] .carousel__controls {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__controls:focus-within {
+  position: absolute;
+  right: $space-2;
+  bottom: $space-2;
+  z-index: $z-raised;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}
+
+@include mobile-down {
   .section[data-source="projects"][data-featured="true"] .carousel__track {
     grid-auto-columns: min(84vw, 24rem);
-  }
-
-  @media (pointer: coarse) {
-    .section[data-source="projects"][data-featured="true"] .carousel__controls {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    .section[data-source="projects"][data-featured="true"] .carousel__controls:focus-within {
-      position: static;
-      width: auto;
-      height: auto;
-      margin: 0;
-      overflow: visible;
-      clip: auto;
-      clip-path: none;
-      white-space: normal;
-    }
   }
 }
 
