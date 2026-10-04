@@ -83,12 +83,3 @@
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
 }
-
-@include reduced-motion {
-  /* Reduced motion disables sticky persistence without changing frame geometry,
-     surface, document order or overlay stacking semantics. */
-  .sectionGroup__panel[data-panel-behavior="sticky"] {
-    position: relative;
-    top: auto;
-  }
-}
