@@ -60,10 +60,11 @@
   }
 }
 
-/* Below desktop every split normalizes to one media-led column. Roles, rather
-   than primary/secondary DOM position, define the visual order so desktop
-   variants remain free to alternate composition. */
-@include tablet-down {
+/* Split compositions stay media-led until the desktop breakpoint. Tablet is
+   deliberately included: the 8-column tablet grid is useful elsewhere, but a
+   two-up split is too compressed for editorial media + copy. Roles, rather
+   than primary/secondary DOM position, define the stacked reading order. */
+@include desktop-down {
   .split {
     --split-gap: #{$flow-default};
     --split-media-max-height: min(56svh, 36rem);
