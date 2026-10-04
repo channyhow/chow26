@@ -8,6 +8,7 @@ import type {
   PanelAlign,
   PanelBehavior,
   PanelBlock,
+  PanelFrame,
   PanelSize,
   PanelSurface,
   SectionBlock,
@@ -115,6 +116,7 @@ function expandCollectionPanels(group: SectionGroupData) {
         ...panel,
         id: `${panel.id}-${itemId}`,
         behavior: "normal" as const,
+        frame: "content" as const,
         surface: "solid" as const,
         color: collectionPanelColors[index % collectionPanelColors.length],
         blocks: [itemBlock],
@@ -126,6 +128,7 @@ function expandCollectionPanels(group: SectionGroupData) {
 function Panel({
   id,
   behavior,
+  frame,
   size,
   align,
   surface,
@@ -135,6 +138,7 @@ function Panel({
 }: {
   id: string;
   behavior: PanelBehavior;
+  frame: PanelFrame;
   size: PanelSize;
   align: PanelAlign;
   surface: PanelSurface;
@@ -172,6 +176,7 @@ function Panel({
       className="sectionGroup__panel"
       data-panel-id={id}
       data-panel-behavior={behavior}
+      data-panel-frame={frame}
       data-panel-size={size}
       data-panel-align={align}
       data-panel-surface={surface}
@@ -190,6 +195,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const layout = group.layout ?? "flow";
   const isPanel = layout === "scroll-panel";
   const mode = group.panel?.mode ?? "scene";
+  const defaultFrame = group.panel?.frame ?? "content";
   const defaultSize = group.panel?.size ?? "md";
   const defaultAlign = group.panel?.align ?? "center";
   const defaultSurface = group.panel?.surface ?? "solid";
@@ -213,6 +219,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
               key={panel.id}
               id={panel.id}
               behavior={panel.behavior ?? "normal"}
+              frame={panel.frame ?? defaultFrame}
               size={panel.size ?? defaultSize}
               align={panel.align ?? defaultAlign}
               surface={panel.surface ?? defaultSurface}
@@ -227,6 +234,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                 key={panelKey(block, index)}
                 id={`${group.id}-${index + 1}`}
                 behavior="overlay"
+                frame="viewport"
                 size={defaultSize}
                 align={defaultAlign}
                 surface={defaultSurface}
@@ -241,6 +249,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                   <Panel
                     id={`${group.id}-scene`}
                     behavior="pinned"
+                    frame="viewport"
                     size="full"
                     align="center"
                     surface="transparent"
@@ -253,6 +262,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                       key={panelKey(block, index + 1)}
                       id={`${group.id}-panel-${index + 1}`}
                       behavior="normal"
+                      frame={defaultFrame}
                       size={defaultSize}
                       align={defaultAlign}
                       surface={defaultSurface}
