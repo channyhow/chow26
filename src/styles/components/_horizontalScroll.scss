@@ -2,115 +2,23 @@
 @use "../foundation/mixins" as *;
 @use "../foundation/typography" as *;
 
-.horizontalScroll {
-  height: calc(100svh + (var(--horizontal-scroll-count) - 1) * 58svh);
-  width: 100%;
-}
-
-.horizontalScroll__viewport {
-  position: sticky;
-  top: 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  width: 100%;
-  height: 100svh;
-  overflow: hidden;
-}
-
-.horizontalScroll__progress {
-  grid-row: 1;
-  align-self: end;
-  width: min(100%, #{$container-wide});
-  margin-inline: auto;
-  padding: clamp(#{$space-2}, 4svh, #{$space-4}) clamp(#{$space-2}, 5vw, #{$space-5}) 0;
-}
-
-.horizontalScroll__labels {
-  display: grid;
-  grid-template-columns: repeat(var(--horizontal-scroll-count), minmax(0, 1fr));
-  gap: $layout-gap;
-  padding-bottom: $flow-default;
-  @include type-ui-compact-lower;
-}
-
-.horizontalScroll__labels span {
-  min-width: 0;
-  opacity: $opacity-quiet;
-  transition: opacity $duration-fast $ease-standard;
-}
-
-.horizontalScroll__labels span.is-active {
-  opacity: $opacity-muted;
-}
-
-.horizontalScroll__rule {
-  position: relative;
-  height: 1px;
-  background: color-mix(in srgb, currentColor 16%, transparent);
-}
-
-.horizontalScroll__rule span {
-  position: absolute;
-  inset-block-start: -1px;
-  inset-inline-start: 0;
-  display: block;
-  width: calc(100% / var(--horizontal-scroll-count));
-  height: 2px;
-  background: color-mix(in srgb, currentColor 62%, transparent);
-}
-
-.horizontalScroll__track {
-  grid-row: 2;
-  display: flex;
-  width: max-content;
-  height: 100%;
-}
-
-.horizontalScroll__item {
-  flex: 0 0 100vw;
-  display: grid;
-  place-items: center;
-  width: 100vw;
-  min-width: 0;
-  height: 100%;
-  padding: clamp(#{$space-3}, 5svh, #{$space-5}) clamp(#{$space-2}, 5vw, #{$space-5});
-}
-
-.horizontalScroll__item > * {
-  width: min(100%, #{$container-wide});
-}
+.horizontalScroll { height: calc(100svh + (var(--horizontal-scroll-count) - 1) * 58svh); width: 100%; }
+.horizontalScroll__viewport { position: sticky; top: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); width: 100%; height: 100svh; overflow: hidden; }
+.horizontalScroll__progress { grid-row: 1; align-self: end; width: min(100%, #{$container-wide}); margin-inline: auto; padding: clamp(#{$space-2}, 4svh, #{$space-4}) clamp(#{$space-2}, 5vw, #{$space-5}) 0; }
+.horizontalScroll__labels { display: grid; grid-template-columns: repeat(var(--horizontal-scroll-count), minmax(0, 1fr)); gap: $layout-gap; padding-bottom: $flow-default; @include type-ui-compact-lower; }
+.horizontalScroll__labels span { min-width: 0; opacity: $opacity-quiet; transition: opacity $duration-fast $ease-standard; }
+.horizontalScroll__labels span.is-active { opacity: $opacity-muted; }
+.horizontalScroll__rule { position: relative; height: 1px; background: color-mix(in srgb, currentColor 16%, transparent); }
+.horizontalScroll__rule span { position: absolute; inset-block-start: -1px; inset-inline-start: 0; display: block; width: calc(100% / var(--horizontal-scroll-count)); height: 2px; background: color-mix(in srgb, currentColor 62%, transparent); }
+.horizontalScroll__track { grid-row: 2; display: flex; width: max-content; height: 100%; }
+.horizontalScroll__item { flex: 0 0 100vw; display: grid; place-items: center; width: 100vw; min-width: 0; height: 100%; padding: clamp(#{$space-3}, 5svh, #{$space-5}) clamp(#{$space-2}, 5vw, #{$space-5}); }
+.horizontalScroll__item > * { width: min(100%, #{$container-wide}); }
 
 @include tablet-down {
-  .horizontalScroll:not([data-preserve-small="true"]) {
-    height: auto;
-  }
-
-  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__viewport {
-    position: static;
-    display: block;
-    height: auto;
-    overflow: visible;
-  }
-
-  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__progress {
-    display: none;
-  }
-
-  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__track {
-    display: grid;
-    width: 100%;
-    height: auto;
-    transform: none !important;
-  }
-
-  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__item {
-    width: 100%;
-    height: auto;
-    min-height: 80svh;
-    padding-inline: clamp(1.5rem, 6vw, 2.5rem);
-  }
-
-  .horizontalScroll[data-preserve-small="true"] .horizontalScroll__item {
-    padding-inline: $page-gutter;
-  }
+  .horizontalScroll:not([data-preserve-small="true"]) { height: auto; }
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__viewport { position: static; display: block; height: auto; overflow: visible; }
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__progress { display: none; }
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__track { display: grid; width: 100%; height: auto; transform: none !important; }
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__item { width: 100%; height: auto; min-height: 80svh; padding-inline: $page-gutter; }
+  .horizontalScroll[data-preserve-small="true"] .horizontalScroll__item { padding-inline: $page-gutter; }
 }
