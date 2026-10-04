@@ -115,6 +115,11 @@
   .textBlock__meta { display: none; }
 }
 
+/* Featured project galleries use one predictable landscape frame regardless of source media. */
+.section[data-source="projects"][data-featured="true"] .projectCard .media__frame {
+  aspect-ratio: $ratio-wide;
+}
+
 /* Project index becomes a consistent scan on small screens; editorial ratios remain intact elsewhere. */
 @include mobile-down {
   #project-grid .projectCard .media__frame {
