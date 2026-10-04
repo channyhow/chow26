@@ -16,7 +16,7 @@
           {
             "id": "home-opening-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -25,7 +25,7 @@
           {
             "id": "home-projects-gallery-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
