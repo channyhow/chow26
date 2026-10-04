@@ -12,8 +12,6 @@
 .site {
   --project-section-space: clamp(5rem, 10vw, 10rem);
   --project-section-space-compact: clamp(#{$space-4}, 8vw, 8rem);
-  --project-gutter: clamp(#{$space-3}, 6vw, #{$space-5});
-  --project-gap-wide: clamp(#{$space-3}, 6vw, 7rem);
 }
 
 .section { --section-space: var(--project-section-space); }
@@ -186,8 +184,6 @@
 #privacy-default .card__body { padding-inline: 0; }
 
 @include tablet-down {
-  .site { --project-gutter: clamp(#{$space-2}, 5vw, #{$space-3}); }
-
   #cgv-default .section__header .textBlock__title,
   #legal-notice-default .section__header .textBlock__title,
   #privacy-default .section__header .textBlock__title {
