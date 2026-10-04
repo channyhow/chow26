@@ -3,7 +3,9 @@
 
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
-.sectionGroup[data-layout="scroll-panel"] { display: flow-root; }
+.sectionGroup[data-layout="scroll-panel"] {
+  display: flow-root;
+}
 
 .sectionGroup__panel {
   --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
@@ -22,94 +24,113 @@
 
 .sectionGroup__surface {
   position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: inherit;
   color: inherit;
   background: transparent;
 }
 
 .sectionGroup__surface > .section {
-  flex: 1 1 auto;
-  min-height: inherit;
   color: inherit;
 }
 
-.sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
-.sectionGroup__panel[data-panel-size="md"] { --panel-width: min(36rem, calc(100% - #{$space-3 * 2})); }
-.sectionGroup__panel[data-panel-size="lg"] { --panel-width: min(48rem, calc(100% - #{$space-3 * 2})); }
-.sectionGroup__panel[data-panel-size="full"] { --panel-width: 100%; --panel-inline-start: 0; --panel-inline-end: 0; }
-.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) { --panel-inline-start: $space-3; --panel-inline-end: auto; }
-.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) { --panel-inline-start: auto; --panel-inline-end: $space-3; }
+.sectionGroup__panel[data-panel-id$="-final-panel"] {
+  min-height: auto;
+}
 
-.sectionGroup__panel[data-panel-color="primary"] { --panel-bg: var(--theme-primary); --panel-fg: var(--theme-secondary); }
-.sectionGroup__panel[data-panel-color="secondary"] { --panel-bg: var(--theme-secondary); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="accent"] { --panel-bg: var(--theme-accent); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="special"] { --panel-bg: var(--theme-special); --panel-fg: var(--theme-primary); }
-.sectionGroup__panel[data-panel-color="transparent"] { --panel-bg: transparent; --panel-fg: inherit; }
+.sectionGroup__panel[data-panel-size="sm"] {
+  --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
+}
 
-.sectionGroup__panel[data-panel-surface="transparent"] > .sectionGroup__surface { background: transparent; }
-.sectionGroup__panel[data-panel-surface="solid"] > .sectionGroup__surface { background: var(--panel-bg); }
+.sectionGroup__panel[data-panel-size="md"] {
+  --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
+}
+
+.sectionGroup__panel[data-panel-size="lg"] {
+  --panel-width: min(48rem, calc(100% - #{$space-3 * 2}));
+}
+
+.sectionGroup__panel[data-panel-size="full"] {
+  --panel-width: 100%;
+  --panel-inline-start: 0;
+  --panel-inline-end: 0;
+}
+
+.sectionGroup__panel[data-panel-align="left"]:not([data-panel-size="full"]) {
+  --panel-inline-start: $space-3;
+  --panel-inline-end: auto;
+}
+
+.sectionGroup__panel[data-panel-align="right"]:not([data-panel-size="full"]) {
+  --panel-inline-start: auto;
+  --panel-inline-end: $space-3;
+}
+
+.sectionGroup__panel[data-panel-color="primary"] {
+  --panel-bg: var(--theme-primary);
+  --panel-fg: var(--theme-secondary);
+}
+
+.sectionGroup__panel[data-panel-color="secondary"] {
+  --panel-bg: var(--theme-secondary);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="accent"] {
+  --panel-bg: var(--theme-accent);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="special"] {
+  --panel-bg: var(--theme-special);
+  --panel-fg: var(--theme-primary);
+}
+
+.sectionGroup__panel[data-panel-color="transparent"] {
+  --panel-bg: transparent;
+  --panel-fg: inherit;
+}
+
+.sectionGroup__panel[data-panel-surface="transparent"] > .sectionGroup__surface {
+  background: transparent;
+}
+
+.sectionGroup__panel[data-panel-surface="solid"] > .sectionGroup__surface {
+  background: var(--panel-bg);
+}
+
 .sectionGroup__panel[data-panel-surface="glass"] > .sectionGroup__surface {
   background: var(--panel-glass-bg);
   backdrop-filter: blur($glass-blur) saturate(1.05);
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-/* Panel behaviour contract:
-   fixed = explicit sticky viewport panel
-   cover = sticky viewport panel that can be covered by the following panel
-   stack/moving = normal document flow. Every panel keeps its DOM-order layer
-   so later flow panels can pass over earlier sticky panels. */
-.sectionGroup__panel[data-panel-behavior="fixed"] {
-  position: sticky;
-  top: 0;
-  z-index: calc(var(--panel-index) + 1);
-  min-height: 100svh;
-}
-
-.sectionGroup__panel[data-panel-behavior="cover"] {
-  position: sticky;
-  top: var(--panel-stack-top, 0);
-  z-index: calc(var(--panel-index) + 1);
-  min-height: 100svh;
-}
-
-.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section {
-  min-height: 100svh;
-}
-
-.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section > .section__inner {
-  justify-content: center;
-  align-content: center;
-}
-
-.sectionGroup__panel[data-panel-behavior="stack"],
-.sectionGroup__panel[data-panel-behavior="moving"] {
-  position: relative;
-  top: auto;
-  z-index: calc(var(--panel-index) + 1);
-  min-height: auto;
-}
-
-.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="moving"] > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section,
-.sectionGroup__panel[data-panel-behavior="moving"] > .sectionGroup__surface > .section {
-  min-height: 0;
-}
-
-@include desktop-down {
+@include desktop-up {
   .sectionGroup__panel[data-panel-behavior="fixed"] {
-    position: relative;
-    top: auto;
-    min-height: auto;
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
   }
 
-  .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
+  .sectionGroup__panel[data-panel-behavior="moving"] {
+    position: relative;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="stack"],
+  .sectionGroup__panel[data-panel-behavior="cover"] {
+    position: sticky;
+    top: var(--panel-stack-top, 0);
+    min-height: 100svh;
+  }
+
+  .sectionGroup[data-layout="overlap"] > .section + .section {
+    margin-top: calc($space-4 * -1);
+  }
 }
 
-@include desktop-up {
-  .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
+@include reduced-motion {
+  .sectionGroup__panel {
+    position: relative !important;
+    top: auto !important;
+    min-height: 0 !important;
+  }
 }
