@@ -68,24 +68,19 @@
   transition: opacity $transition-hover;
 }
 
-/* Featured project carousels use one visual navigation language: the floating
-   directional cue. The button group remains available to keyboard users when
-   focused, without competing with the card-level arrow in the composition. */
-.section[data-source="projects"][data-featured="true"] .carousel[data-can-next="true"]::after {
-  content: "→";
-  position: absolute;
-  top: 50%;
-  right: clamp(#{$space-2}, 3vw, #{$space-3});
-  z-index: $z-raised;
-  font-size: clamp(2.25rem, 4vw, 3rem);
-  font-weight: $font-weight-semibold;
-  line-height: 1;
-  pointer-events: none;
-  transform: translateY(-50%);
-  animation: carousel-next-cue 1.6s $ease-soft infinite;
+/* Featured project carousels use the real next button as their floating cue.
+   This keeps the clean single-arrow composition without replacing navigation
+   with a decorative pseudo-element. Previous remains keyboard-reachable and
+   only surfaces when focused. */
+.section[data-source="projects"][data-featured="true"] .carousel__controls {
+  position: static;
+  width: 0;
+  height: 0;
+  margin: 0;
+  gap: 0;
 }
 
-.section[data-source="projects"][data-featured="true"] .carousel__controls {
+.section[data-source="projects"][data-featured="true"] .carousel__control:first-child {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -96,18 +91,47 @@
   white-space: nowrap;
 }
 
-.section[data-source="projects"][data-featured="true"] .carousel__controls:focus-within {
-  position: absolute;
-  right: $space-2;
+.section[data-source="projects"][data-featured="true"] .carousel__control:first-child:focus-visible {
+  right: clamp(#{$space-2}, 3vw, #{$space-3});
   bottom: $space-2;
   z-index: $z-raised;
-  width: auto;
-  height: auto;
+  width: clamp(3.25rem, 4.5vw, 4rem);
+  height: clamp(3.25rem, 4.5vw, 4rem);
   margin: 0;
   overflow: visible;
   clip: auto;
   clip-path: none;
   white-space: normal;
+  background: var(--secondary);
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child {
+  position: absolute;
+  top: 50%;
+  right: clamp(#{$space-2}, 3vw, #{$space-3});
+  z-index: $z-raised;
+  width: clamp(3rem, 5vw, 4rem);
+  height: clamp(3rem, 5vw, 4rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateY(-50%);
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child:not(:disabled) {
+  animation: carousel-next-cue 1.6s $ease-soft infinite;
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child .carousel__arrow {
+  width: clamp(2.25rem, 4vw, 3rem);
+  height: clamp(2.25rem, 4vw, 3rem);
+  stroke-width: 1.7;
+  opacity: 1;
 }
 
 @include mobile-down {
@@ -144,5 +168,12 @@
     width: 1.85rem;
     height: 1.85rem;
     stroke-width: 2.25;
+  }
+
+  /* Featured navigation deliberately overrides the generic desktop control
+     cluster and keeps the same floating-arrow language at every breakpoint. */
+  .section[data-source="projects"][data-featured="true"] .carousel__controls {
+    position: static;
+    transform: none;
   }
 }
