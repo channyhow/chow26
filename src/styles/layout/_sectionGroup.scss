@@ -88,6 +88,27 @@
   align-content: center;
 }
 
+/* A cover panel normally owns the sticky layer. If its content contains a
+   vertical-to-horizontal interaction, that interaction must own the sticky
+   viewport and the vertical runway instead. The panel stays in the same
+   stacking plane so it still covers the preceding panel, but is no longer a
+   sticky ancestor that traps the nested horizontal scroll. */
+.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) {
+  position: relative;
+  top: auto;
+  min-height: auto;
+}
+
+.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface,
+.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface > .section {
+  min-height: 0;
+}
+
+.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface > .section > .section__inner {
+  justify-content: flex-start;
+  align-content: start;
+}
+
 @include desktop-down {
   .sectionGroup__panel[data-panel-behavior="fixed"] { position: relative; top: auto; min-height: auto; }
   .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
