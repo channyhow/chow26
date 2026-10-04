@@ -147,10 +147,6 @@ function Panel({
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
   const { scrollY } = useScroll();
 
-  // Sticky panels need progress based on the distance they can actually travel
-  // before the next panel arrives. Using the panel's full height made a 155svh
-  // opening advance only ~35% during its 55svh runway, so exit scenes never
-  // reached their fade/crossover states.
   const scrollYProgress = useTransform(scrollY, (latest) => {
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
@@ -167,8 +163,14 @@ function Panel({
     const element = ref.current;
     if (!element) return;
 
+    /* Sticky top is structural. Recomputing it from window.innerHeight on every
+       mobile browser chrome resize changes the sticky constraint mid-scroll and
+       makes horizontal carousels appear to jump as the next panel arrives. Use
+       the panel's CSS 100svh floor as the stable viewport reference instead. */
     const measure = () => {
-      const overflow = Math.max(0, element.scrollHeight - window.innerHeight);
+      const surface = element.firstElementChild as HTMLElement | null;
+      const sceneFloor = surface?.clientHeight ?? element.clientHeight;
+      const overflow = Math.max(0, element.scrollHeight - sceneFloor);
       const nextTop = -overflow;
       setStickyTop((current) => (current === nextTop ? current : nextTop));
     };
@@ -177,12 +179,10 @@ function Panel({
 
     const observer = new ResizeObserver(measure);
     observer.observe(element);
-    window.addEventListener("resize", measure);
+    const surface = element.firstElementChild;
+    if (surface instanceof HTMLElement) observer.observe(surface);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", measure);
-    };
+    return () => observer.disconnect();
   }, [needsStickyOffset]);
 
   const style = {
