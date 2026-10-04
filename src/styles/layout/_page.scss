@@ -13,50 +13,17 @@
   background: var(--secondary);
 }
 
-/* Route-start contract: header clearance belongs to ordinary document-flow
-   openings. Viewport-managed panels own their full scene geometry and must stay
-   mathematically centred, so fixed/stack/cover panels do not inherit this
-   page-start padding. This keeps the rule structural rather than route-specific. */
-.page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
-.page__content > .sectionGroup:first-child
-  > .sectionGroup__panel:first-child:not([data-panel-behavior="pinned"]):not([data-panel-behavior="overlay"]):not([data-panel-behavior="sticky"])
-  > .sectionGroup__surface
-  > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+/* Ordinary route openings clear the persistent header. Viewport-managed
+   compositions own their first-view geometry and therefore opt out here. */
+.page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
   padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
 }
-
-/* Horizontal-scroll, media-overlay and viewport-panel openings own their
-   first-view composition. Their components handle readable/header-safe layout
-   without moving the centred scene itself. */
 
 .page__footer,
 .siteFooter {
   position: relative;
   z-index: $z-base;
   overflow: visible;
-}
-
-.page[data-footer-reveal="true"] {
-  --footer-reveal-height: clamp(24rem, 58svh, 44rem);
-}
-
-@include tablet-up {
-  .page[data-footer-reveal="true"] > .page__content {
-    margin-bottom: var(--footer-reveal-height);
-    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.06);
-  }
-
-  .page[data-footer-reveal="true"] > .page__footer {
-    position: fixed;
-    inset: auto 0 0;
-    height: var(--footer-reveal-height);
-    overflow: clip;
-    overscroll-behavior: none;
-  }
-
-  .page[data-footer-reveal="true"] > .page__footer > .siteFooter {
-    min-height: 100%;
-  }
 }
 
 @include mobile-down {
