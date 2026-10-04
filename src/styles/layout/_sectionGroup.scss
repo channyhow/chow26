@@ -47,6 +47,7 @@
 
 .sectionGroup__panel[data-panel-frame="viewport"] > .sectionGroup__surface {
   display: flex;
+  flex-direction: column;
   min-height: 100svh;
 }
 
