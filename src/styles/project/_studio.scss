@@ -6,20 +6,14 @@
   --text-width: none;
   --split-media-ratio: #{$ratio-square};
   --split-media-max-height: min(62svh, 42rem);
-  width: 100%;
 }
-.section--collection-panel > .section__inner { width: 100%; max-width: none; }
-.section--collection-panel .split { width: 100%; min-width: 0; align-content: center; }
-.section--collection-panel .split__primary, .section--collection-panel .split__secondary { min-width: 0; }
+.section--collection-panel .split { align-content: center; }
 .section--collection-panel .split__secondary { display: grid; place-items: center; }
 .section--collection-panel .split__secondary .media {
   width: min(100%, var(--split-media-max-height));
   max-width: var(--split-media-max-height);
-  aspect-ratio: $ratio-square;
   justify-self: center;
 }
-.section--collection-panel .split__secondary .media__frame { width: 100%; height: 100%; aspect-ratio: $ratio-square; }
-.section--collection-panel .textBlock { width: 100%; max-width: none; }
 @include desktop-down { .section--collection-panel .split { align-content: start; align-items: start; } }
 
 #studio-approach { --section-row-gap: clamp(#{$space-4}, 7vh, 6rem); min-height: 100svh; }
@@ -41,19 +35,21 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-#studio-founders { --media-background: transparent; }
-#studio-founders .split { --split-media-ratio: #{$ratio-square}; --split-media-max-height: none; }
+#studio-founders {
+  --media-background: transparent;
+  --split-media-ratio: #{$ratio-square};
+  --split-media-max-height: none;
+}
 #studio-founders .split__secondary { display: grid; place-items: center; }
 #studio-founders .split__secondary .media {
-  @include media-cover;
-  width: min(100%, 25rem); max-width: 25rem; max-height: 25rem;
-  aspect-ratio: $ratio-square; justify-self: center; background: transparent;
+  width: min(100%, 25rem);
+  max-width: 25rem;
+  max-height: 25rem;
+  justify-self: center;
+  background: transparent;
 }
-#studio-founders .split__secondary .media__frame {
-  width: 100%; height: 100%; max-height: 25rem; aspect-ratio: $ratio-square; overflow: hidden; background: transparent;
-}
+#studio-founders .split__secondary .media__frame { max-height: 25rem; overflow: hidden; background: transparent; }
 #studio-founders .split__secondary .media__asset { mix-blend-mode: multiply; }
-@include tablet-down { #studio-founders .split__secondary .media { width: min(100%, 25rem); } }
 @include mobile-down {
   #studio-founders { --split-gap: #{$space-4}; }
   #studio-founders .split__secondary .media { width: min(100%, 18rem); margin-inline: auto; }
