@@ -27,7 +27,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "secondary",
+            "color": "special",
             "blocks": [{ "ref": "projects-featured-gallery" }]
           },
           {
@@ -113,7 +113,7 @@
         "panels": [
       {
           "id": "studio-services-intro-panel",
-          "behavior": "fixed",
+          "behavior": "cover",
           "size": "full",
           "align": "center",
           "surface": "solid",
