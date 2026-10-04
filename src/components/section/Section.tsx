@@ -99,7 +99,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
     const mediaLayer = splitSecondary ? <motion.div className="section__splitMediaMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 12, scale: reduceMotion ? 1 : 0.996 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0, scale: 1 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div> : null;
     const textLayer = primary ? <motion.div className="section__splitTextMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 10 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div> : null;
-    const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} />;
+    const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     body = motionLayer(splitComposition, "forward", "section__splitScrollLayer");
   } else if (isProfileGrid) {
     const profile = items[0];
@@ -107,7 +107,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const profileMedia = resolveMedia(profileMediaRef);
     const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    body = <Split variant={block.splitVariant ?? "media-lead"} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" />} />;
+    body = <Split variant={block.splitVariant ?? "media-lead"} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" />} primaryRole="media" secondaryRole="content" />;
   } else if (layout === "media-overlay") {
     body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" /></div> : null}</div>;
   } else if (layout === "gallery") {
