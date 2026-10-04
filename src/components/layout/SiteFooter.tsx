@@ -17,7 +17,7 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 94%", "end 24%"] });
   const y = useTransform(scrollYProgress, [0, 0.42, 1], reduceMotion ? ["0.5rem", "0rem", "-0.15rem"] : ["2rem", "0rem", "-0.65rem"]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 1], reduceMotion ? [0.94, 1, 1] : [0.7, 1, 1]);
-  const hasPanelMotion = panelBehavior === "cover" || panelBehavior === "stack";
+  const hasPanelMotion = panelBehavior === "sticky" || panelBehavior === "overlay";
   const motionStyle = hasPanelMotion ? ({ "--footer-motion-y": y, "--footer-motion-opacity": opacity } as unknown as MotionStyle) : undefined;
   const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
   const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
