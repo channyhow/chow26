@@ -15,6 +15,9 @@
 
   &__inner {
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: min(100%, #{$container-max});
     margin-inline: auto;
   }
@@ -104,6 +107,7 @@
 .section[data-layout="text"] .section__inner {
   display: grid;
   justify-items: start;
+  align-content: center;
 }
 
 @include desktop-up {
