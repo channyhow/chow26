@@ -29,14 +29,17 @@
 .sectionGroup__surface { position: relative; color: inherit; background: transparent; }
 .sectionGroup__surface > .section { color: inherit; }
 
-/* Frame defines vertical perimeter independently of behavior. */
-.sectionGroup__panel[data-panel-frame="content"] {
+/* Every framed panel owns at least one clean viewport.
+   Content frames may grow naturally; viewport frames also make their
+   section inhabit the full panel perimeter. */
+.sectionGroup__panel[data-panel-frame] {
   min-height: 100svh;
 
   > .sectionGroup__surface {
     min-height: 100svh;
   }
 }
+
 .sectionGroup__panel[data-panel-frame="viewport"]
   > .sectionGroup__surface
   > .section {
