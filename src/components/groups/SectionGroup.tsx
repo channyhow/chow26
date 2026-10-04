@@ -221,7 +221,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
               index={index}
             />
           ))
-        : isPanel && mode === "overlay"
+        : isPanel && mode === "stack"
           ? blocks.map((block, index) => (
               <Panel
                 key={panelKey(block, index)}
