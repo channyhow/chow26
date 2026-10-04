@@ -19,6 +19,7 @@ export type SectionLayout = "text" | "statement" | "split" | "grid" | "list" | "
 export type GroupLayout = "flow" | "scroll-panel" | "sticky" | "overlap";
 export type PanelMode = "scene" | "stack";
 export type PanelSize = "sm" | "md" | "lg" | "full";
+export type PanelFrame = "content" | "viewport";
 export type PanelAlign = "left" | "center" | "right";
 export type PanelSurface = SectionSurface;
 export type PanelBehavior = "pinned" | "normal" | "overlay" | "sticky";
@@ -73,7 +74,7 @@ export type SectionBlock = {
 };
 export type BlockRef = { ref: string };
 export type PanelBlock = BlockRef | SectionBlock;
-export type PanelLane = { id: string; behavior?: PanelBehavior; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor; blocks: PanelBlock[] };
-export type SectionGroup = { id: string; type: "Group"; layout?: GroupLayout; panel?: { mode?: PanelMode; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor }; panels?: PanelLane[]; motion?: { level: MotionLevel; preset?: "panel" | "media-reveal" | "sticky-story" | "horizontal-rail" }; blocks?: PanelBlock[] };
+export type PanelLane = { id: string; behavior?: PanelBehavior; frame?: PanelFrame; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor; blocks: PanelBlock[] };
+export type SectionGroup = { id: string; type: "Group"; layout?: GroupLayout; panel?: { mode?: PanelMode; frame?: PanelFrame; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor }; panels?: PanelLane[]; motion?: { level: MotionLevel; preset?: "panel" | "media-reveal" | "sticky-story" | "horizontal-rail" }; blocks?: PanelBlock[] };
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;
 export type PageData = { id: string; slug: string; variant?: StyleVariant; seo?: PageSeo; blocks: PageBlock[] };
