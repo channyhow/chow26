@@ -70,6 +70,10 @@ function resolvePanelLanes(group: SectionGroupData): PanelLane[] {
   return group.layout === "scroll-panel" ? expandCollectionPanels(group.panels) : [];
 }
 
+function getViewportHeight() {
+  return window.visualViewport?.height ?? window.innerHeight;
+}
+
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -80,8 +84,8 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
     if (!element) return;
 
     const updateStickyTop = () => {
-      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
-      element.style.setProperty("--panel-sticky-top", `${Math.min(0, viewportHeight - element.offsetHeight)}px`);
+      const panelHeight = element.getBoundingClientRect().height;
+      element.style.setProperty("--panel-sticky-top", `${Math.min(0, getViewportHeight() - panelHeight)}px`);
     };
 
     updateStickyTop();
@@ -102,11 +106,11 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
 
-    const viewportHeight = Math.max(window.visualViewport?.height ?? window.innerHeight, 1);
+    const viewportHeight = Math.max(getViewportHeight(), 1);
     const rect = element.getBoundingClientRect();
     const offsetTop = rect.top + latest;
     const start = offsetTop - viewportHeight;
-    const end = offsetTop + element.offsetHeight;
+    const end = offsetTop + rect.height;
 
     return Math.min(1, Math.max(0, (latest - start) / Math.max(end - start, 1)));
   });
