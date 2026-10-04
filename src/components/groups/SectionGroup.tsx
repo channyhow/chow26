@@ -114,7 +114,7 @@ function expandCollectionPanels(group: SectionGroupData) {
       return {
         ...panel,
         id: `${panel.id}-${itemId}`,
-        behavior: "moving" as const,
+        behavior: "normal" as const,
         surface: "solid" as const,
         color: collectionPanelColors[index % collectionPanelColors.length],
         blocks: [itemBlock],
@@ -212,7 +212,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
             <Panel
               key={panel.id}
               id={panel.id}
-              behavior={panel.behavior ?? "moving"}
+              behavior={panel.behavior ?? "normal"}
               size={panel.size ?? defaultSize}
               align={panel.align ?? defaultAlign}
               surface={panel.surface ?? defaultSurface}
@@ -226,7 +226,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
               <Panel
                 key={panelKey(block, index)}
                 id={`${group.id}-${index + 1}`}
-                behavior="stack"
+                behavior="overlay"
                 size={defaultSize}
                 align={defaultAlign}
                 surface={defaultSurface}
@@ -240,7 +240,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                 <>
                   <Panel
                     id={`${group.id}-scene`}
-                    behavior="fixed"
+                    behavior="pinned"
                     size="full"
                     align="center"
                     surface="transparent"
@@ -252,7 +252,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
                     <Panel
                       key={panelKey(block, index + 1)}
                       id={`${group.id}-panel-${index + 1}`}
-                      behavior="moving"
+                      behavior="normal"
                       size={defaultSize}
                       align={defaultAlign}
                       surface={defaultSurface}
