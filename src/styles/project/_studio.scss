@@ -63,7 +63,9 @@
   max-width: none;
 }
 
-@include tablet-down {
+/* Once Split stacks (mobile + tablet), panels must become content-height too.
+   Keeping the desktop 100svh contract here clips long stacked compositions. */
+@include desktop-down {
   .section--collection-panel {
    
     --split-media-max-height: min(72svh, 32rem);
