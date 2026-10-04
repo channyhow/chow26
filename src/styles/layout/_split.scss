@@ -60,22 +60,27 @@
   }
 }
 
-/* Below desktop every split has one predictable reading order: media, then copy.
-   Desktop variants remain free to alternate composition without page overrides. */
+/* Below desktop every split normalizes to one media-led column. Roles, rather
+   than primary/secondary DOM position, define the visual order so desktop
+   variants remain free to alternate composition. */
 @include tablet-down {
   .split {
     --split-gap: #{$flow-default};
     --split-media-max-height: min(56svh, 36rem);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 
-  .split > [data-split-role="media"] {
+  .split > .split__primary,
+  .split > .split__secondary {
     grid-column: 1 / -1;
+  }
+
+  .split > [data-split-role="media"] {
     grid-row: 1;
   }
 
   .split > [data-split-role="content"] {
-    grid-column: 1 / -1;
     grid-row: 2;
   }
 }
