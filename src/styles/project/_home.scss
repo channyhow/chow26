@@ -133,8 +133,6 @@
   #home-opening .textBlock__content { grid-column: 6 / -1; max-width: 24rem; margin-top: 0; align-self: start; }
   #projects-featured-gallery .section__header { grid-column: 1 / span 2; }
   #projects-featured-gallery .section__body { grid-column: 3 / -1; }
-  #home-services,
-  #final-cta { min-height: auto; }
   #home-services .split,
   #final-cta .split { align-items: start; gap: $space-4; min-height: 0; }
   #home-services .split__primary,
@@ -157,9 +155,6 @@
   #projects-featured-gallery,
   #home-services,
   #final-cta { --section-space: clamp(#{$space-4}, 10vw, #{$space-5}); }
-  #projects-featured-gallery,
-  #home-services,
-  #final-cta { min-height: auto; }
   #projects-featured-gallery .section__inner { gap: $space-4 $grid-gap; }
   #projects-featured-gallery .section__header,
   #projects-featured-gallery .section__body { grid-column: 1 / -1; width: 100%; max-width: none; }
