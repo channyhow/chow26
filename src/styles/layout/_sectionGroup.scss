@@ -3,9 +3,7 @@
 
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
-.sectionGroup[data-layout="scroll-panel"] {
-  display: flow-root;
-}
+.sectionGroup[data-layout="scroll-panel"] { display: flow-root; }
 
 .sectionGroup__panel {
   --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
@@ -59,10 +57,6 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-/* A cover is a sheet, not a translucent window. Glass remains available for
-   floating/non-cover panels, but a covering panel must fully occlude the scene
-   below it. This is what makes the panel transition read as one page replacing
-   another rather than two pages showing through each other. */
 .sectionGroup__panel[data-panel-behavior="cover"][data-panel-surface="glass"] > .sectionGroup__surface,
 .sectionGroup__panel[data-panel-behavior="stack"][data-panel-surface="glass"] > .sectionGroup__surface {
   background: var(--panel-bg);
@@ -97,19 +91,6 @@
 @include desktop-down {
   .sectionGroup__panel[data-panel-behavior="fixed"] { position: relative; top: auto; min-height: auto; }
   .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
-}
-
-.sectionGroup__panel[data-panel-id="home-opening-panel"] {
-  position: relative;
-  top: auto;
-  z-index: 0;
-  min-height: 155svh;
-}
-
-.sectionGroup__panel[data-panel-id="home-opening-panel"] > .sectionGroup__surface {
-  position: sticky;
-  top: 0;
-  min-height: 100svh;
 }
 
 @include desktop-up {
