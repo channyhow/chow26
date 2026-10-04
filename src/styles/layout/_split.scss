@@ -6,6 +6,8 @@
   --split-secondary-tablet: 5 / -1;
   --split-primary-desktop: 7 / -1;
   --split-secondary-desktop: 1 / span 6;
+  --split-media-ratio: #{$ratio-landscape};
+  --split-media-max-height: min(62svh, 42rem);
 
   @include site-grid(var(--split-gap, var(--section-gap, #{$flow-loose})));
   align-items: center;
@@ -17,6 +19,28 @@
     width: 100%;
     min-width: 0;
     max-width: none;
+  }
+
+  /* Media geometry belongs to Split, not to individual pages or assets. */
+  .media {
+    width: 100%;
+    max-height: var(--split-media-max-height);
+    aspect-ratio: var(--split-media-ratio);
+    background: transparent;
+  }
+
+  .media[data-ratio] .media__frame,
+  .media__frame {
+    width: 100%;
+    height: 100%;
+    max-height: inherit;
+    aspect-ratio: inherit;
+  }
+
+  .media__asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* Equal editorial halves. Balanced/normal puts copy first and media second. */
@@ -47,6 +71,7 @@
 @include tablet-down {
   .split {
     --split-gap: #{$flow-default};
+    --split-media-max-height: min(56svh, 36rem);
     align-items: start;
   }
 }
