@@ -30,8 +30,18 @@
 .sectionGroup__surface > .section { color: inherit; }
 
 /* Frame defines vertical perimeter independently of behavior. */
-.sectionGroup__panel[data-panel-frame="content"] { min-height: 0; }
-.sectionGroup__panel[data-panel-frame="viewport"] { min-height: 100svh; }
+.sectionGroup__panel[data-panel-frame="content"] {
+  min-height: 100svh;
+
+  > .sectionGroup__surface {
+    min-height: 100svh;
+  }
+}
+.sectionGroup__panel[data-panel-frame="viewport"]
+  > .sectionGroup__surface
+  > .section {
+  min-height: 100svh;
+}
 
 .sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
 .sectionGroup__panel[data-panel-size="md"] { --panel-width: min(36rem, calc(100% - #{$space-3 * 2})); }
