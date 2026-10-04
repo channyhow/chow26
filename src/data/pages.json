@@ -34,8 +34,8 @@
           },
           {
             "id": "home-approach-panel",
-            "behavior": "normal",
-            "frame": "content",
+           "behavior": "sticky",
+"frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -83,7 +83,7 @@
         "panels": [
   {
   "id": "projects-gallery-panel",
-  "behavior": "normal",
+  "behavior": "sticky",
   "frame": "content",
   "size": "full",
   "align": "center",
@@ -409,8 +409,8 @@
         "panels": [
           {
             "id": "contact-content-panel",
-  "behavior": "normal",
-            "frame": "content",
+ "behavior": "sticky",
+"frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -528,8 +528,8 @@
         "panels": [
           {
             "id": "cgv-content-panel",
-          "behavior": "normal",
-            "frame": "content",
+         "behavior": "sticky",
+"frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -683,8 +683,8 @@
         "panels": [
           {
             "id": "privacy-content-panel",
-     "behavior": "normal",
-            "frame": "content",
+    "behavior": "sticky",
+"frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
