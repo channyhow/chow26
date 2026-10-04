@@ -155,7 +155,13 @@
    square language as services, but at a quieter editorial scale. */
 #studio-founders {
   --media-background: transparent;
+  --section-space: 0;
   min-height: 100svh;
+}
+
+#studio-founders > .section__inner {
+  min-height: inherit;
+  justify-content: center;
 }
 
 #studio-founders .section__body {
@@ -209,7 +215,12 @@
 @include mobile-down {
   #studio-founders {
     --split-gap: #{$space-4};
+    --section-space: #{$space-4};
     min-height: auto;
+  }
+
+  #studio-founders > .section__inner {
+    min-height: 0;
   }
 
   #studio-founders .section__body {
