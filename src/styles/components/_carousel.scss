@@ -1,173 +1,37 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-.carousel {
-  position: relative;
-  display: grid;
-  gap: $space-2;
-}
-
-.carousel__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(78%, 1fr);
-  gap: $space-2;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar { display: none; }
-}
-
-.carousel__item {
-  display: flex;
-  min-width: 0;
-  height: 100%;
-  scroll-snap-align: start;
-}
-
-.carousel__item > .card {
-  width: 100%;
-  height: 100%;
-}
-
-.carousel__controls {
-  display: flex;
-  justify-self: end;
-  gap: $space-1;
-}
-
+.carousel { position: relative; display: grid; gap: $space-2; }
+.carousel__track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(78%, 1fr); gap: $space-2; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
+.carousel__item { display: flex; min-width: 0; height: 100%; scroll-snap-align: start; }
+.carousel__item > .card { width: 100%; height: 100%; }
+.carousel__controls { display: flex; justify-self: end; gap: $space-1; }
 .carousel__control {
   @include navigation-control;
   border-color: color-mix(in srgb, currentColor 18%, transparent);
-
-  &:focus-visible {
-    border-color: currentColor;
-    .carousel__arrow { opacity: 1; }
-  }
-
-  @include hover {
-    &:not(:disabled) {
-      border-color: currentColor;
-      .carousel__arrow { opacity: 1; }
-    }
-  }
+  &:focus-visible { border-color: currentColor; .carousel__arrow { opacity: 1; } }
+  @include hover { &:not(:disabled) { border-color: currentColor; .carousel__arrow { opacity: 1; } } }
 }
+.carousel__arrow { width: 1.65rem; height: 1.65rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: $opacity-muted; pointer-events: none; transition: opacity $transition-hover; }
 
-.carousel__arrow {
-  width: 1.65rem;
-  height: 1.65rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: $opacity-muted;
-  pointer-events: none;
-  transition: opacity $transition-hover;
-}
-
-/* Featured project carousels keep only the next action in the visual
-   composition. The generic control row contributes no layout height, while
-   keyboard users can still recover the previous action on focus. */
-.section[data-source="projects"][data-featured="true"] .carousel__controls {
-  position: static;
-  width: 0;
-  height: 0;
-  margin: 0;
-  gap: 0;
-}
-
-.section[data-source="projects"][data-featured="true"] .carousel__control {
-  --radius-control: #{$radius-none};
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.section[data-source="projects"][data-featured="true"] .carousel__control:first-child {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
+.section[data-source="projects"][data-featured="true"] .carousel__controls { position: static; width: 0; height: 0; margin: 0; gap: 0; }
+.section[data-source="projects"][data-featured="true"] .carousel__control { --radius-control: #{$radius-none}; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.section[data-source="projects"][data-featured="true"] .carousel__control:first-child { @include visually-hidden; }
 .section[data-source="projects"][data-featured="true"] .carousel__control:first-child:focus-visible {
-  right: clamp(#{$space-2}, 3vw, #{$space-3});
-  bottom: $space-2;
-  z-index: $z-raised;
-  width: clamp(3.25rem, 4.5vw, 4rem);
-  height: clamp(3.25rem, 4.5vw, 4rem);
-  margin: 0;
-  overflow: visible;
-  clip: auto;
-  clip-path: none;
-  white-space: normal;
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+  @include visually-hidden-reset;
+  right: clamp(#{$space-2}, 3vw, #{$space-3}); bottom: $space-2; z-index: $z-raised;
+  width: clamp(3.25rem, 4.5vw, 4rem); height: clamp(3.25rem, 4.5vw, 4rem);
+  outline: 2px solid currentColor; outline-offset: 2px;
 }
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child { position: absolute; top: 50%; right: clamp(#{$space-2}, 3vw, #{$space-3}); z-index: $z-raised; width: clamp(3rem, 5vw, 4rem); height: clamp(3rem, 5vw, 4rem); padding: 0; transform: translateY(-50%); }
+.section[data-source="projects"][data-featured="true"] .carousel__control:last-child:disabled { opacity: 0; pointer-events: none; }
 
-.section[data-source="projects"][data-featured="true"] .carousel__control:last-child {
-  position: absolute;
-  top: 50%;
-  right: clamp(#{$space-2}, 3vw, #{$space-3});
-  z-index: $z-raised;
-  width: clamp(3rem, 5vw, 4rem);
-  height: clamp(3rem, 5vw, 4rem);
-  padding: 0;
-  transform: translateY(-50%);
-}
-
-.section[data-source="projects"][data-featured="true"] .carousel__control:last-child:disabled {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@include mobile-down {
-  .section[data-source="projects"][data-featured="true"] .carousel__track {
-    grid-auto-columns: min(84vw, 24rem);
-  }
-}
-
+@include mobile-down { .section[data-source="projects"][data-featured="true"] .carousel__track { grid-auto-columns: min(84vw, 24rem); } }
 @include tablet-up {
   .carousel__track { grid-auto-columns: minmax(22rem, 38%); }
-
-  .carousel__controls {
-    position: absolute;
-    top: 50%;
-    right: $space-2;
-    z-index: $z-raised;
-    gap: $flow-tight;
-    transform: translateY(-50%);
-  }
-
-  .carousel__control {
-    --radius-control: #{$radius-none};
-    width: clamp(3.5rem, 4.5vw, 4rem);
-    background: var(--secondary);
-    font-weight: $font-weight-strong;
-  }
-
-  .carousel__arrow {
-    width: 1.85rem;
-    height: 1.85rem;
-    stroke-width: 2.25;
-  }
-
-  /* Featured navigation deliberately overrides the generic desktop control
-     cluster and keeps the same floating-arrow language at every breakpoint. */
-  .section[data-source="projects"][data-featured="true"] .carousel__controls {
-    position: static;
-    transform: none;
-  }
-
-  .section[data-source="projects"][data-featured="true"] .carousel__control {
-    background: transparent;
-  }
+  .carousel__controls { position: absolute; top: 50%; right: $space-2; z-index: $z-raised; gap: $flow-tight; transform: translateY(-50%); }
+  .carousel__control { --radius-control: #{$radius-none}; width: clamp(3.5rem, 4.5vw, 4rem); background: var(--secondary); font-weight: $font-weight-strong; }
+  .carousel__arrow { width: 1.85rem; height: 1.85rem; stroke-width: 2.25; }
+  .section[data-source="projects"][data-featured="true"] .carousel__controls { position: static; transform: none; }
+  .section[data-source="projects"][data-featured="true"] .carousel__control { background: transparent; }
 }
