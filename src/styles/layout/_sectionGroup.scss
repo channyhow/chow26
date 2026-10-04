@@ -3,7 +3,13 @@
 
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
-.sectionGroup[data-layout="scroll-panel"] { display: flow-root; }
+
+/* Scroll-panel is only the containing/stacking context.
+   Individual panel behaviours own movement; surfaces own appearance. */
+.sectionGroup[data-layout="scroll-panel"] {
+  position: relative;
+  isolation: isolate;
+}
 
 .sectionGroup__panel {
   --panel-width: min(36rem, calc(100% - #{$space-3 * 2}));
@@ -12,11 +18,11 @@
   --panel-bg: var(--theme-secondary);
   --panel-fg: var(--theme-primary);
   --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 42%, transparent);
+
+  position: relative;
   width: var(--panel-width);
   margin-inline-start: var(--panel-inline-start);
   margin-inline-end: var(--panel-inline-end);
-  position: relative;
-  z-index: calc(var(--panel-index) + 1);
   color: var(--panel-fg);
   background: transparent;
 }
@@ -97,30 +103,32 @@
 }
 
 @include desktop-up {
-  .sectionGroup__panel[data-panel-behavior="pinned"] {
-    position: sticky;
-    top: 0;
-    min-height: 100svh;
-  }
-
-  .sectionGroup__panel[data-panel-behavior="normal"],
-  .sectionGroup__panel[data-panel-behavior="overlay"] {
+  /* normal: ordinary document flow */
+  .sectionGroup__panel[data-panel-behavior="normal"] {
     position: relative;
-    top: auto;
-    min-height: 0;
+    z-index: auto;
   }
 
-  .sectionGroup__panel[data-panel-behavior="overlay"] > .sectionGroup__surface {
-    min-height: 100svh;
-  }
-
+  /* sticky: viewport panel that remains while later panels pass over it */
   .sectionGroup__panel[data-panel-behavior="sticky"] {
     position: sticky;
     top: 0;
+    z-index: 0;
     min-height: 100svh;
   }
 
-  .sectionGroup__panel[data-panel-behavior="sticky"] > .sectionGroup__surface {
+  /* overlay: ordinary flow, one viewport minimum, explicitly above sticky */
+  .sectionGroup__panel[data-panel-behavior="overlay"] {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+  }
+
+  /* pinned: persistent scene; runway/progress is owned by the scene itself */
+  .sectionGroup__panel[data-panel-behavior="pinned"] {
+    position: sticky;
+    top: 0;
+    z-index: 0;
     min-height: 100svh;
   }
 
