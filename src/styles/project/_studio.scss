@@ -2,8 +2,7 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Studio services use the shared Split geometry. This layer only owns
-   service-specific panel rhythm and text measure. */
+/* Studio service panels only own panel rhythm. Split owns the geometry. */
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
@@ -22,7 +21,6 @@
   min-width: 0;
   min-height: inherit;
   align-content: center;
-  align-items: start;
 }
 
 .section--collection-panel .split__primary,
@@ -30,22 +28,19 @@
   min-width: 0;
 }
 
+/* Let the split column define the available width. TextBlock itself should not
+   create a second, narrower layout column. Readability belongs to its prose. */
 .section--collection-panel .textBlock {
   width: 100%;
-  max-width: 34rem;
+  max-width: none;
 }
 
 @include mobile-down {
-  .section--collection-panel {
-    min-height: auto;
-  }
+  .section--collection-panel { min-height: auto; }
 
   .section--collection-panel > .section__inner,
-  .section--collection-panel .split {
-    min-height: 0;
-  }
+  .section--collection-panel .split { min-height: 0; }
 
-  /* Mobile has one predictable reading order regardless of desktop direction. */
   .section--collection-panel .split {
     --split-gap: #{$space-4};
     align-content: start;
@@ -62,7 +57,6 @@
 
   .section--collection-panel .split__secondary { grid-row: 1; }
   .section--collection-panel .split__primary { grid-row: 2; }
-  .section--collection-panel .textBlock { max-width: none; }
 }
 
 /* Approach */
@@ -121,8 +115,8 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder is the intentional Split exception: portrait content uses a square
-   frame sized to sit close to the height of its accompanying copy. */
+/* Founder is the one intentional Split media exception. Force the frame itself
+   square as well as the Media root so intrinsic portrait dimensions cannot win. */
 #studio-founders {
   --media-background: transparent;
   min-height: 100svh;
@@ -133,9 +127,23 @@
   --split-media-max-height: min(54svh, 34rem);
 }
 
-#studio-founders .media {
-  mix-blend-mode: multiply;
+#studio-founders .media,
+#studio-founders .media__frame {
+  aspect-ratio: 1 / 1;
+  height: auto;
 }
+
+#studio-founders .media__frame {
+  overflow: hidden;
+}
+
+#studio-founders .media__asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#studio-founders .media { mix-blend-mode: multiply; }
 
 @include mobile-down {
   #studio-founders {
@@ -143,10 +151,7 @@
     min-height: auto;
   }
 
-  #studio-founders .split {
-    --split-media-max-height: min(52svh, 28rem);
-  }
-
+  #studio-founders .split { --split-media-max-height: min(52svh, 28rem); }
   #studio-founders .media {
     max-width: 18rem;
     margin-inline: auto;
