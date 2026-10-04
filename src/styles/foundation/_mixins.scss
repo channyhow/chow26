@@ -9,11 +9,7 @@
 @mixin between($min, $max) { @media (min-width: $min) and (max-width: calc(#{$max} - 0.001rem)) { @content; } }
 @mixin hover {
   @media (hover: hover) and (pointer: fine) {
-    @if & {
-      &:hover { @content; }
-    } @else {
-      @content;
-    }
+    @if & { &:hover { @content; } } @else { @content; }
   }
 }
 @mixin reduced-motion { @media (prefers-reduced-motion: reduce) { @content; } }
@@ -22,7 +18,6 @@
   display: grid;
   grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
   column-gap: $gap;
-
   @include tablet-up { grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr)); }
   @include desktop-up { grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr)); }
 }
@@ -30,6 +25,51 @@
 @mixin focus-ring {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin visually-hidden-reset {
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}
+
+@mixin interactive-underline($offset: -0.3em) {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 $offset;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform $transition-hover;
+  }
+
+  @include hover {
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
 }
 
 @mixin interactive-text {
@@ -45,7 +85,6 @@
   display: inline-flex;
   align-items: center;
   gap: .35em;
-
   .actions__arrow { transition: transform $transition-hover; }
   @include hover { .actions__arrow { transform: translate(.18em, -.08em); } }
 }
@@ -60,9 +99,7 @@
   box-shadow: none;
   opacity: $opacity-muted;
   transition: color $transition-hover, opacity $transition-hover;
-
   .actions__label { background-image: none; }
-
   @include hover { opacity: 1; }
   &:focus-visible { opacity: 1; }
 }
@@ -83,12 +120,7 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-  transition:
-    opacity $transition-hover,
-    background-color $transition-hover,
-    color $transition-hover,
-    border-color $transition-hover,
-    transform $transition-hover;
+  transition: opacity $transition-hover, background-color $transition-hover, color $transition-hover, border-color $transition-hover, transform $transition-hover;
   &:focus-visible { @include focus-ring; }
 }
 
@@ -117,49 +149,26 @@
   border-width: 1.5px;
   font-weight: $font-weight-semibold;
   -webkit-tap-highlight-color: transparent;
-
   &:disabled { cursor: default; opacity: $opacity-disabled; }
   &:active:not(:disabled) { transform: translateY(1px); }
-
   @include hover {
-    &:not(:disabled) {
-      color: var(--secondary);
-      background: var(--primary);
-      transform: translateY(-2px);
-    }
+    &:not(:disabled) { color: var(--secondary); background: var(--primary); transform: translateY(-2px); }
   }
 }
 
 @mixin field-control {
-  width: 100%;
-  min-width: 0;
-  min-height: $control-field-height;
-  padding: $space-2;
+  width: 100%; min-width: 0; min-height: $control-field-height; padding: $space-2;
   border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
-  border-radius: var(--radius-control, #{$radius-default});
-  appearance: none;
-  background: color-mix(in srgb, var(--secondary) 92%, transparent);
-  color: inherit;
-  outline: 0;
-  transition:
-    border-color $transition-hover,
-    box-shadow $transition-hover,
-    background $transition-hover,
-    opacity $transition-hover;
+  border-radius: var(--radius-control, #{$radius-default}); appearance: none;
+  background: color-mix(in srgb, var(--secondary) 92%, transparent); color: inherit; outline: 0;
+  transition: border-color $transition-hover, box-shadow $transition-hover, background $transition-hover, opacity $transition-hover;
   &::placeholder { color: currentColor; opacity: $opacity-soft; }
   @include hover { border-color: color-mix(in srgb, currentColor 48%, transparent); }
-  &:focus-visible {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 24%, transparent);
-  }
+  &:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 24%, transparent); }
   &:disabled { opacity: $opacity-disabled; cursor: not-allowed; }
 }
 
-@mixin pill-outline {
-  border: 1px solid currentColor;
-  border-radius: var(--radius-control, #{$radius-full});
-}
-
+@mixin pill-outline { border: 1px solid currentColor; border-radius: var(--radius-control, #{$radius-full}); }
 @mixin rule-top($strength: 18%) { border-top: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 @mixin rule-bottom($strength: 18%) { border-bottom: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 
@@ -171,62 +180,22 @@
 
 @mixin grain {
   position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.035;
-    background-image: radial-gradient(circle at 20% 20%, currentColor 0 0.5px, transparent 0.75px);
-    background-size: 4px 4px;
-    mix-blend-mode: soft-light;
-  }
+  &::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.035; background-image: radial-gradient(circle at 20% 20%, currentColor 0 0.5px, transparent 0.75px); background-size: 4px 4px; mix-blend-mode: soft-light; }
 }
 
-@mixin media-fill($fit: cover, $position: center) {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: $fit;
-  object-position: $position;
-}
-
+@mixin media-fill($fit: cover, $position: center) { width: 100%; height: 100%; display: block; object-fit: $fit; object-position: $position; }
 @mixin media-frame($ratio: $ratio-landscape, $fit: cover, $position: center) {
-  aspect-ratio: $ratio;
-  overflow: hidden;
-  > .media,
-  > .media__frame,
-  .media__frame,
-  .media__asset { width: 100%; height: 100%; }
+  aspect-ratio: $ratio; overflow: hidden;
+  > .media, > .media__frame, .media__frame, .media__asset { width: 100%; height: 100%; }
   .media__asset { @include media-fill($fit, $position); }
 }
-
 @mixin media-cover($fit: cover, $position: center) {
-  .media__frame,
-  .media__asset { width: 100%; height: 100%; }
+  .media__frame, .media__asset { width: 100%; height: 100%; }
   .media__asset { @include media-fill($fit, $position); }
 }
 
-@mixin meta-chips($gap: $space-1) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $gap;
-  > * { flex: 0 0 auto; }
-}
-
-@mixin split-composition($media: 1fr, $content: 1fr, $gap: $space-3, $align: center) {
-  display: grid;
-  grid-template-columns: minmax(0, $media) minmax(0, $content);
-  gap: $gap;
-  align-items: $align;
-  min-width: 0;
-}
-
-@mixin sticky-editorial($top: $sticky-offset) {
-  position: sticky;
-  top: $top;
-  align-self: start;
-}
-
+@mixin meta-chips($gap: $space-1) { display: flex; flex-wrap: wrap; gap: $gap; > * { flex: 0 0 auto; } }
+@mixin split-composition($media: 1fr, $content: 1fr, $gap: $space-3, $align: center) { display: grid; grid-template-columns: minmax(0, $media) minmax(0, $content); gap: $gap; align-items: $align; min-width: 0; }
+@mixin sticky-editorial($top: $sticky-offset) { position: sticky; top: $top; align-self: start; }
 @mixin shape-arch { border-radius: $radius-full $radius-full $radius-default $radius-default; }
 @mixin shape-blob { border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; }
