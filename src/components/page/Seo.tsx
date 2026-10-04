@@ -70,6 +70,15 @@ const resolveSocialImage = (ref: string) => {
   return { url: absoluteUrl(`/.netlify/images?${params.toString()}`), alt: item.alt };
 };
 
+const robotsContent = (seo?: PageSeo) => {
+  const index = seo?.robots?.index !== false;
+  const follow = seo?.robots?.follow !== false;
+
+  return index
+    ? `index,${follow ? "follow" : "nofollow"},max-image-preview:large,max-snippet:-1,max-video-preview:-1`
+    : `noindex,${follow ? "follow" : "nofollow"}`;
+};
+
 export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
   useEffect(() => {
     const defaults = siteData.site.seo;
@@ -83,13 +92,14 @@ export function Seo({ seo, slug }: { seo?: PageSeo; slug: string }) {
     const defaultImageSrc = defaultMedia?.src ?? defaults.defaultImage;
     const image = socialImage?.url ?? absoluteUrl(defaultImageSrc);
     const imageAlt = isHome ? defaults.imageAlt : (seo?.imageAlt ?? socialImage?.alt ?? defaults.imageAlt);
-    const robots = `${seo?.robots?.index === false ? "noindex" : "index"},${seo?.robots?.follow === false ? "nofollow" : "follow"}`;
+    const robots = robotsContent(seo);
 
     document.documentElement.lang = siteData.site.defaultLocale;
     document.title = title;
 
     ensureMeta('meta[name="description"]', "name", "description").content = description;
     ensureMeta('meta[name="robots"]', "name", "robots").content = robots;
+    ensureMeta('meta[name="googlebot"]', "name", "googlebot").content = robots;
     ensureMeta('meta[property="og:title"]', "property", "og:title").content = title;
     ensureMeta('meta[property="og:description"]', "property", "og:description").content = description;
     ensureMeta('meta[property="og:url"]', "property", "og:url").content = canonical;
