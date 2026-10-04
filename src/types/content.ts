@@ -22,7 +22,7 @@ export type PanelSize = "sm" | "md" | "lg" | "full";
 export type PanelFrame = "content" | "viewport";
 export type PanelAlign = "left" | "center" | "right";
 export type PanelSurface = SectionSurface;
-export type PanelBehavior = "pinned" | "normal" | "overlay" | "sticky";
+export type PanelBehavior = "normal" | "overlay" | "sticky";
 
 export type ActionIntent = "navigate" | "contact" | "call" | "directions" | "book" | "buy" | "subscribe" | "download" | "share" | "submit";
 export type ActionVariant = "primary" | "accent" | "outline" | "arrow" | "cta";
