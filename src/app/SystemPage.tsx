@@ -108,7 +108,7 @@ export function SystemPage() {
         <div className="section__inner stack">
           <TextBlock content={{ eyebrow: "Inventory", title: "Every shared component, in one place.", text: ["The inventory mirrors the shared component folders. Visual primitives are previewed below; shell and page infrastructure are documented without duplicating the live application shell."] }} />
           {componentGroups.map((group) => (
-            <div className="overlay" key={group.title}>
+            <div className="stack" key={group.title}>
               <TextBlock content={{ title: group.title, text: [group.purpose] }} titleAs="h2" />
               <Grid>
                 {group.components.map((component) => <Card key={component} item={{ title: component }} frame />)}
