@@ -188,10 +188,7 @@ export function FractalNoiseCanvas({ hoverMode = "idle" }: FractalNoiseCanvasPro
     };
 
     render();
-    const observer = new ResizeObserver(() => {});
-    observer.observe(canvas);
     return () => {
-      observer.disconnect();
       cancelAnimationFrame(frame);
       gl.deleteBuffer(buffer);
       gl.deleteProgram(program);
