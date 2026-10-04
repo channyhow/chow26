@@ -30,18 +30,13 @@ type MediaBase = {
   sourceUrl?: string;
 };
 
-type IntrinsicDimensions = {
-  width: number;
-  height: number;
-};
-
-export type ImageMediaItem = MediaBase & IntrinsicDimensions & {
+export type ImageMediaItem = MediaBase & {
   type: "image";
   src: string;
   sources?: MediaSource[];
 };
 
-export type VideoMediaItem = MediaBase & IntrinsicDimensions & {
+export type VideoMediaItem = MediaBase & {
   type: "video";
   src: string;
   poster?: string;
