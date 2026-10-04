@@ -68,10 +68,9 @@
   transition: opacity $transition-hover;
 }
 
-/* Featured project carousels keep only the directional arrow in the visual
-   composition. The button remains a full hit target, but has no control box,
-   border or background chrome. Previous stays visually hidden until keyboard
-   focus so pointer users see a single clean cue. */
+/* Featured project carousels keep only the next action in the visual
+   composition. The generic control row contributes no layout height, while
+   keyboard users can still recover the previous action on focus. */
 .section[data-source="projects"][data-featured="true"] .carousel__controls {
   position: static;
   width: 0;
@@ -125,31 +124,15 @@
   transform: translateY(-50%);
 }
 
-.section[data-source="projects"][data-featured="true"] .carousel__control:last-child:not(:disabled) {
-  animation: carousel-next-cue 1.6s $ease-soft infinite;
-}
-
 .section[data-source="projects"][data-featured="true"] .carousel__control:last-child:disabled {
   opacity: 0;
   pointer-events: none;
-}
-
-.section[data-source="projects"][data-featured="true"] .carousel__control:last-child .carousel__arrow {
-  width: clamp(2.25rem, 4vw, 3rem);
-  height: clamp(2.25rem, 4vw, 3rem);
-  stroke-width: 1.7;
-  opacity: 1;
 }
 
 @include mobile-down {
   .section[data-source="projects"][data-featured="true"] .carousel__track {
     grid-auto-columns: min(84vw, 24rem);
   }
-}
-
-@keyframes carousel-next-cue {
-  0%, 100% { transform: translate(-0.15rem, -50%); }
-  50% { transform: translate(0.25rem, -50%); }
 }
 
 @include tablet-up {
