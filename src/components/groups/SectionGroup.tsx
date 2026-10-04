@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useRef, type CSSProperties } from "react";
 import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -79,22 +79,6 @@ function getDocumentOffsetTop(element: HTMLElement) {
   return top;
 }
 
-function resolvePanelBlock(entry: PanelBlock): SectionBlock | undefined {
-  return "ref" in entry ? resolveBlock(entry.ref) : entry;
-}
-
-function blockOwnsScrollProgress(entry: PanelBlock) {
-  const block = resolvePanelBlock(entry);
-  if (!block) return false;
-
-  return block.layout === "horizontal-scroll"
-    || (block.layout === "timeline" && block.timelineOrientation === "horizontal");
-}
-
-function panelOwnsScrollProgress(blocks: PanelBlock[]) {
-  return blocks.some(blockOwnsScrollProgress);
-}
-
 function expandCollectionPanels(group: SectionGroupData) {
   if (group.layout !== "scroll-panel" || !group.panels?.length) return group.panels;
 
@@ -159,9 +143,6 @@ function Panel({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const effectiveBehavior: PanelBehavior = panelOwnsScrollProgress(blocks) ? "moving" : behavior;
-  const needsStickyOffset = effectiveBehavior === "stack" || effectiveBehavior === "cover";
-  const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
   const { scrollY } = useScroll();
 
   const scrollYProgress = useTransform(scrollY, (latest) => {
@@ -174,35 +155,8 @@ function Panel({
     return Math.min(1, Math.max(0, (latest - start) / scrollRunway));
   });
 
-  useEffect(() => {
-    if (!needsStickyOffset) return;
-
-    const element = ref.current;
-    if (!element) return;
-
-    const measure = () => {
-      const surface = element.firstElementChild as HTMLElement | null;
-      const sceneFloor = surface?.clientHeight ?? element.clientHeight;
-      const overflow = Math.max(0, element.scrollHeight - sceneFloor);
-      const nextTop = -overflow;
-      setStickyTop((current) => (current === nextTop ? current : nextTop));
-    };
-
-    measure();
-
-    const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    const surface = element.firstElementChild;
-    if (surface instanceof HTMLElement) observer.observe(surface);
-
-    return () => observer.disconnect();
-  }, [needsStickyOffset]);
-
   const style = {
     "--panel-index": index,
-    ...(needsStickyOffset && stickyTop !== null
-      ? { "--panel-stack-top": `${stickyTop}px` }
-      : {}),
   } as CSSProperties;
 
   const surfaceStyle = surface === "glass"
@@ -217,7 +171,7 @@ function Panel({
       ref={ref}
       className="sectionGroup__panel"
       data-panel-id={id}
-      data-panel-behavior={effectiveBehavior}
+      data-panel-behavior={behavior}
       data-panel-size={size}
       data-panel-align={align}
       data-panel-surface={surface}
@@ -225,7 +179,7 @@ function Panel({
       style={style}
     >
       <div className="sectionGroup__surface" style={surfaceStyle}>
-        {renderBlocks(blocks, false, true, scrollYProgress, effectiveBehavior)}
+        {renderBlocks(blocks, false, true, scrollYProgress, behavior)}
       </div>
     </div>
   );
