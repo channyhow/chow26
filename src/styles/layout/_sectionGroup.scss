@@ -81,25 +81,6 @@
   align-content: center;
 }
 
-/* HorizontalScroll owns its own sticky viewport/runway. Keep its containing
-   panel in normal flow, but preserve the panel's stacking index so the next
-   cover panel can pass cleanly over the complete interaction. */
-.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) {
-  position: relative;
-  top: auto;
-  min-height: auto;
-}
-
-.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface > .section {
-  min-height: 0;
-}
-
-.sectionGroup__panel[data-panel-behavior="cover"]:has(.horizontalScroll) > .sectionGroup__surface > .section > .section__inner {
-  justify-content: flex-start;
-  align-content: start;
-}
-
 @include desktop-down {
   .sectionGroup__panel[data-panel-behavior="fixed"] { position: relative; top: auto; min-height: auto; }
   .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
