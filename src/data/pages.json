@@ -16,7 +16,7 @@
           {
             "id": "home-opening-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -25,7 +25,7 @@
           {
             "id": "home-projects-gallery-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -34,8 +34,8 @@
           },
           {
             "id": "home-approach-panel",
-           "behavior": "normal",
-"frame": "content",
+            "behavior": "normal",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -45,7 +45,7 @@
           {
             "id": "home-services-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -83,8 +83,8 @@
         "panels": [
           {
             "id": "projects-gallery-panel",
-            "behavior": "sticky",
-"frame": "viewport",
+            "behavior": "normal",
+  "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -93,7 +93,7 @@
           },
           {
             "id": "projects-final-panel",
-                "behavior": "overlay",
+            "behavior": "overlay",
             "frame": "viewport",
             "size": "full",
             "align": "center",
@@ -119,20 +119,20 @@
         "type": "Group",
         "layout": "scroll-panel",
         "panels": [
-      {
-          "id": "studio-services-intro-panel",
-          "behavior": "sticky",
-"frame": "viewport",
-          "size": "full",
-          "align": "center",
-          "surface": "solid",
-          "color": "secondary",
-          "blocks": [{ "ref": "studio-services-intro" }]
-        },
+          {
+            "id": "studio-services-intro-panel",
+            "behavior": "sticky",
+            "frame": "viewport",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "studio-services-intro" }]
+          },
           {
             "id": "studio-service-identity-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -146,7 +146,7 @@
           {
             "id": "studio-service-website-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -160,7 +160,7 @@
           {
             "id": "studio-service-integrations-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -174,7 +174,7 @@
           {
             "id": "studio-approach-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -193,7 +193,7 @@
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -202,7 +202,7 @@
           },
           {
             "id": "studio-final-panel",
-                "behavior": "overlay",
+            "behavior": "overlay",
             "frame": "viewport",
             "size": "full",
             "align": "center",
@@ -231,7 +231,7 @@
           {
             "id": "approach-services-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -240,8 +240,9 @@
           },
           {
             "id": "approach-process-panel",
-                 "behavior": "sticky",
-"frame": "viewport",
+         "behavior": "normal",
+  "frame": "content",
+  "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "primary",
@@ -250,7 +251,7 @@
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -259,8 +260,9 @@
           },
           {
             "id": "approach-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -287,7 +289,7 @@
           {
             "id": "journal-archive-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -296,8 +298,9 @@
           },
           {
             "id": "journal-archive-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -323,8 +326,9 @@
         "panels": [
           {
             "id": "journal-site-clair-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -350,8 +354,9 @@
         "panels": [
           {
             "id": "journal-identite-systeme-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -377,8 +382,9 @@
         "panels": [
           {
             "id": "journal-design-developpement-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -404,7 +410,7 @@
           {
             "id": "contact-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -420,12 +426,13 @@
         "panels": [
           {
             "id": "contact-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" },{ "ref": "site-footer" }]
+            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
       }
@@ -481,7 +488,7 @@
           {
             "id": "legal-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -491,7 +498,7 @@
           {
             "id": "legal-terms-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -500,8 +507,9 @@
           },
           {
             "id": "legal-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -528,7 +536,7 @@
           {
             "id": "cgv-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -654,8 +662,9 @@
           },
           {
             "id": "cgv-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -682,7 +691,7 @@
           {
             "id": "privacy-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -691,8 +700,9 @@
           },
           {
             "id": "privacy-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
@@ -720,7 +730,7 @@
           {
             "id": "not-found-content-panel",
             "behavior": "sticky",
-"frame": "viewport",
+            "frame": "viewport",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -729,8 +739,9 @@
           },
           {
             "id": "not-found-final-panel",
-      "behavior": "overlay",
-            "frame": "viewport",            "size": "full",
+            "behavior": "overlay",
+            "frame": "viewport",
+            "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "special",
