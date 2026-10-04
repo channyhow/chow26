@@ -118,23 +118,10 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder is the one intentional Split media exception. It keeps the same
-   square language as services, but at a quieter editorial scale. */
+/* Founder is the one intentional Split media exception. Scene height/centering
+   comes from the panel foundation; this file only controls its media treatment. */
 #studio-founders {
   --media-background: transparent;
-  --section-space: 0;
-  min-height: 100svh;
-}
-
-#studio-founders > .section__inner {
-  min-height: inherit;
-  justify-content: center;
-}
-
-#studio-founders .section__body {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
 }
 
 #studio-founders .split {
@@ -182,16 +169,6 @@
 @include mobile-down {
   #studio-founders {
     --split-gap: #{$space-4};
-    --section-space: #{$space-4};
-    min-height: auto;
-  }
-
-  #studio-founders > .section__inner {
-    min-height: 0;
-  }
-
-  #studio-founders .section__body {
-    display: block;
   }
 
   #studio-founders .split__secondary .media {
