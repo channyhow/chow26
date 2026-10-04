@@ -59,10 +59,12 @@
 /* Panel behaviour contract:
    fixed = explicit sticky viewport panel
    cover = sticky viewport panel that can be covered by the following panel
-   stack/moving = normal document flow */
+   stack/moving = normal document flow. Every panel keeps its DOM-order layer
+   so later flow panels can pass over earlier sticky panels. */
 .sectionGroup__panel[data-panel-behavior="fixed"] {
   position: sticky;
   top: 0;
+  z-index: calc(var(--panel-index) + 1);
   min-height: 100svh;
 }
 
@@ -87,6 +89,7 @@
 .sectionGroup__panel[data-panel-behavior="moving"] {
   position: relative;
   top: auto;
+  z-index: calc(var(--panel-index) + 1);
   min-height: auto;
 }
 
