@@ -4,8 +4,8 @@
 .sectionGroup { position: relative; }
 .sectionGroup[data-layout="flow"] { display: block; }
 
-/* Scroll-panel is only the containing/stacking context.
-   Individual panel behaviours own movement; surfaces own appearance. */
+/* Scroll-panel establishes only the local stacking context.
+   Panels own document flow; sticky surfaces own viewport pinning. */
 .sectionGroup[data-layout="scroll-panel"] {
   position: relative;
   isolation: isolate;
@@ -105,30 +105,37 @@
 @include desktop-up {
   /* normal: ordinary document flow */
   .sectionGroup__panel[data-panel-behavior="normal"] {
-    position: relative;
     z-index: auto;
   }
 
-  /* sticky: viewport panel that remains while later panels pass over it */
+  /* sticky: panel stays in flow as the runway; only its surface pins. This
+     keeps tall panel content from becoming the sticky element itself. */
   .sectionGroup__panel[data-panel-behavior="sticky"] {
+    z-index: 0;
+    min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="sticky"] > .sectionGroup__surface {
     position: sticky;
     top: 0;
-    z-index: 0;
     min-height: 100svh;
   }
 
   /* overlay: ordinary flow, one viewport minimum, explicitly above sticky */
   .sectionGroup__panel[data-panel-behavior="overlay"] {
-    position: relative;
     z-index: 1;
     min-height: 100svh;
   }
 
-  /* pinned: persistent scene; runway/progress is owned by the scene itself */
+  /* pinned: same runway/surface separation, reserved for persistent scenes. */
   .sectionGroup__panel[data-panel-behavior="pinned"] {
+    z-index: 0;
+    min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="pinned"] > .sectionGroup__surface {
     position: sticky;
     top: 0;
-    z-index: 0;
     min-height: 100svh;
   }
 
@@ -138,9 +145,8 @@
 }
 
 @include reduced-motion {
-  .sectionGroup__panel {
+  .sectionGroup__surface {
     position: relative !important;
     top: auto !important;
-    min-height: 0 !important;
   }
 }
