@@ -115,8 +115,9 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder is the one intentional Split media exception. Force the frame itself
-   square as well as the Media root so intrinsic portrait dimensions cannot win. */
+/* Founder is the one intentional Split media exception. The split column owns
+   width; the Media frame owns the square crop. Do not constrain the Media root
+   with Split's landscape max-height, otherwise width and height diverge. */
 #studio-founders {
   --media-background: transparent;
   min-height: 100svh;
@@ -124,26 +125,32 @@
 
 #studio-founders .split {
   --split-media-ratio: #{$ratio-square};
-  --split-media-max-height: min(54svh, 34rem);
+  --split-media-max-height: none;
 }
 
-#studio-founders .media,
-#studio-founders .media__frame {
+#studio-founders .split__secondary .media {
+  width: 100%;
+  max-height: none;
   aspect-ratio: 1 / 1;
+  background: transparent;
+  mix-blend-mode: multiply;
+}
+
+#studio-founders .split__secondary .media__frame {
+  width: 100%;
   height: auto;
-}
-
-#studio-founders .media__frame {
+  max-height: none;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  background: transparent;
 }
 
-#studio-founders .media__asset {
+#studio-founders .split__secondary .media__asset {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
-
-#studio-founders .media { mix-blend-mode: multiply; }
 
 @include mobile-down {
   #studio-founders {
@@ -151,9 +158,8 @@
     min-height: auto;
   }
 
-  #studio-founders .split { --split-media-max-height: min(52svh, 28rem); }
-  #studio-founders .media {
-    max-width: 18rem;
+  #studio-founders .split__secondary .media {
+    width: min(100%, 18rem);
     margin-inline: auto;
   }
 }
