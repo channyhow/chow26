@@ -110,8 +110,6 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-// Panel behavior is deliberately shared across viewports. Mobile keeps the
-// same scene/stack interaction instead of flattening scroll panels into flow.
 .sectionGroup__panel[data-panel-behavior="fixed"] {
   position: sticky;
   top: 0;
@@ -127,6 +125,23 @@
   position: sticky;
   top: var(--panel-stack-top, 0);
   min-height: 100svh;
+}
+
+/* Sticky scenes only work while a panel can fit the viewport. At the same
+   breakpoint where Split becomes a vertical composition, let panels return to
+   normal document flow so tall content remains reachable. */
+@include desktop-down {
+  .sectionGroup__panel[data-panel-behavior="fixed"],
+  .sectionGroup__panel[data-panel-behavior="stack"],
+  .sectionGroup__panel[data-panel-behavior="cover"] {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+
+  .sectionGroup__panel > .sectionGroup__surface {
+    min-height: 0;
+  }
 }
 
 // The opening is a scroll track containing a pinned visual plane. The extra
