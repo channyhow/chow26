@@ -8,13 +8,25 @@
 }
 
 .section__scrollScene,
-.section__scrollLayer {
+.section__scrollLayer,
+.section__splitScrollLayer {
   width: 100%;
+  min-width: 0;
   min-height: 0;
   overflow: visible;
 }
 
-.section__scrollLayer .scrollScene__content { width: 100%; }
+.section__scrollLayer .scrollScene__content,
+.section__splitScrollLayer .scrollScene__content {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Split scenes move as one composition. The scroll transform belongs to this
+   wrapper only; the grid columns themselves never become motion containers. */
+.section__splitScrollLayer .scrollScene__content {
+  transform-origin: center top;
+}
 
 .scrollScene__content {
   position: relative;
