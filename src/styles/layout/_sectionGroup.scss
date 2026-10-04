@@ -102,39 +102,36 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
+/* Behavior is semantic, not breakpoint-dependent. */
+.sectionGroup__panel[data-panel-behavior="normal"] {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  min-height: 0;
+}
+
+.sectionGroup__panel[data-panel-behavior="sticky"] {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  min-height: 100svh;
+}
+
+.sectionGroup__panel[data-panel-behavior="overlay"] {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  min-height: 100svh;
+}
+
+.sectionGroup__panel[data-panel-behavior="pinned"] {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  min-height: 100svh;
+}
+
 @include desktop-up {
-  /* normal: ordinary document flow */
-  .sectionGroup__panel[data-panel-behavior="normal"] {
-    position: relative;
-    top: auto;
-    z-index: auto;
-    min-height: 0;
-  }
-
-  /* sticky: the panel itself pins to the viewport. */
-  .sectionGroup__panel[data-panel-behavior="sticky"] {
-    position: sticky;
-    top: 0;
-    z-index: 0;
-    min-height: 100svh;
-  }
-
-  /* overlay: ordinary flow, one viewport minimum, explicitly above sticky. */
-  .sectionGroup__panel[data-panel-behavior="overlay"] {
-    position: relative;
-    top: auto;
-    z-index: 1;
-    min-height: 100svh;
-  }
-
-  /* pinned: persistent sticky scene. */
-  .sectionGroup__panel[data-panel-behavior="pinned"] {
-    position: sticky;
-    top: 0;
-    z-index: 0;
-    min-height: 100svh;
-  }
-
   .sectionGroup[data-layout="overlap"] > .section + .section {
     margin-top: calc($space-4 * -1);
   }
