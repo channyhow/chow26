@@ -400,8 +400,8 @@
         "layout": "scroll-panel",
         "panels": [
           {
-            "id": "contact-footer",
-            "behavior": "normal",
+            "id": "contact-final-panel",
+            "behavior": "overlay",
             "size": "full",
             "align": "center",
             "surface": "glass",
