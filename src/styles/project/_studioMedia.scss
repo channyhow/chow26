@@ -1,0 +1,39 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+/*
+ * Studio media hierarchy
+ *
+ * Services share one strict square treatment at every breakpoint.
+ * Founder imagery remains square, but deliberately quieter than project/service media.
+ * Keep sizing here until the Studio pass is consolidated back into _studio.scss.
+ */
+
+#studio-services .card__media {
+  aspect-ratio: $ratio-square;
+  @include media-frame($ratio-square);
+}
+
+#studio-founders .card__mediaWrap {
+  width: min(72%, 30rem);
+  justify-self: end;
+}
+
+#studio-founders .card__media {
+  width: 100%;
+  aspect-ratio: $ratio-square;
+  @include media-frame($ratio-square);
+}
+
+@include tablet-down {
+  #studio-founders .card__mediaWrap {
+    width: min(72%, 26rem);
+    justify-self: start;
+  }
+}
+
+@include mobile-down {
+  #studio-founders .card__mediaWrap {
+    width: min(76%, 22rem);
+  }
+}
