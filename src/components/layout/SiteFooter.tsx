@@ -1,24 +1,17 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionStyle } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Actions } from "@/components/navigation/Actions";
 import { resolveActions } from "@/data/actionRegistry";
 import { motionConfig, reducedRevealItem, reducedStaggerContainer, revealItem, revealContainer } from "@/motion/config";
-import type { PanelBehavior, SectionBlock } from "@/types/content";
+import type { SectionBlock } from "@/types/content";
 
-export type SiteFooterProps = { block: SectionBlock; panelBehavior?: PanelBehavior; };
+export type SiteFooterProps = { block: SectionBlock };
 const toArray = <T,>(value?: T | T[]): T[] => !value ? [] : Array.isArray(value) ? value : [value];
 const SOCIAL_LABELS = new Set(["instagram", "linkedin", "facebook"]);
 const LEGAL_HREFS = new Set(["/cgv", "/confidentialite", "/mentions-legales"]);
 
-export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
-  const ref = useRef<HTMLElement>(null);
+export function SiteFooter({ block }: SiteFooterProps) {
   const reduceMotion = Boolean(useReducedMotion());
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 94%", "end 24%"] });
-  const y = useTransform(scrollYProgress, [0, 0.42, 1], reduceMotion ? ["0.5rem", "0rem", "-0.15rem"] : ["2rem", "0rem", "-0.65rem"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], reduceMotion ? [0.94, 1, 1] : [0.7, 1, 1]);
-  const hasPanelMotion = panelBehavior === "sticky" || panelBehavior === "overlay";
-  const motionStyle = hasPanelMotion ? ({ "--footer-motion-y": y, "--footer-motion-opacity": opacity } as unknown as MotionStyle) : undefined;
   const containerVariants = reduceMotion ? reducedStaggerContainer : revealContainer;
   const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
   const header = block.content?.header;
@@ -38,8 +31,8 @@ export function SiteFooter({ block, panelBehavior }: SiteFooterProps) {
     : links.filter((link) => LEGAL_HREFS.has(link.href ?? ""));
 
   return (
-    <footer ref={ref} id={block.id} className="siteFooter" data-surface={block.surface} data-color={block.color} data-panel-motion={hasPanelMotion ? "true" : undefined} aria-label="Pied de page">
-      <motion.div className="siteFooter__inner" style={motionStyle} variants={containerVariants} initial="hidden" whileInView="visible" viewport={motionConfig.viewport}>
+    <footer id={block.id} className="siteFooter" data-surface={block.surface} data-color={block.color} aria-label="Pied de page">
+      <motion.div className="siteFooter__inner" variants={containerVariants} initial="hidden" whileInView="visible" viewport={motionConfig.viewport}>
         <motion.div className="siteFooter__main" variants={containerVariants}>
           <motion.div className="siteFooter__identity" variants={containerVariants}>
             {eyebrows[0] ? <motion.p className="siteFooter__name" variants={itemVariants}>{eyebrows[0]}</motion.p> : null}
