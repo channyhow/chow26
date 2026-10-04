@@ -1,6 +1,7 @@
 import approachData from "@/data/approach.json";
 import collectionsData from "@/data/collections.json";
 import globalBlocksData from "@/data/globalBlocks.json";
+import identityOffersData from "@/data/identityOffers.json";
 import servicesData from "@/data/services.json";
 import type { ContentItem, SectionBlock, SourceRef } from "@/types/content";
 
@@ -14,6 +15,7 @@ const collections: Record<string, ContentItem[]> = {
   ...baseCollections,
   approach: approachData as ContentItem[],
   services: servicesData as ContentItem[],
+  identityOffers: identityOffersData as ContentItem[],
 };
 
 const globalBlocks = globalBlocksData as Record<string, SectionBlock>;
