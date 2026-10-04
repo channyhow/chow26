@@ -64,18 +64,7 @@ function expandCollectionPanels(group: SectionGroupData) {
 
 function resolvePanelLanes(group: SectionGroupData): PanelLane[] {
   if (group.layout !== "scroll-panel") return [];
-  const explicitPanels = expandCollectionPanels(group);
-  if (explicitPanels?.length) return explicitPanels;
-
-  const blocks = group.blocks ?? [];
-  const mode = group.panel?.mode ?? "scene";
-  if (mode === "stack") return blocks.map((block, index) => ({ id: `${group.id}-${index + 1}`, behavior: "overlay", frame: "viewport", blocks: [block] }));
-  if (!blocks.length) return [];
-
-  return [
-    { id: `${group.id}-scene`, behavior: "sticky", frame: "viewport", size: "full", align: "center", surface: "transparent", blocks: [blocks[0]] },
-    ...blocks.slice(1).map((block, index) => ({ id: `${group.id}-panel-${index + 1}`, behavior: "normal" as const, blocks: [block] })),
-  ];
+  return expandCollectionPanels(group) ?? [];
 }
 
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
@@ -122,7 +111,6 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const reduceMotion = useReducedMotion();
   const layout = group.layout ?? "flow";
   const isPanel = layout === "scroll-panel";
-  const mode = group.panel?.mode ?? "scene";
   const defaultFrame = group.panel?.frame ?? "content";
   const defaultSize = group.panel?.size ?? "md";
   const defaultAlign = group.panel?.align ?? "center";
@@ -135,7 +123,7 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const flowBlocks = blocks.length ? blocks : flattenedPanelBlocks;
 
   return (
-    <div className="sectionGroup" data-layout={layout} data-panel-mode={isPanel ? mode : undefined} data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"} data-preset={reduceMotion ? undefined : group.motion?.preset}>
+    <div className="sectionGroup" data-layout={layout} data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"} data-preset={reduceMotion ? undefined : group.motion?.preset}>
       {isPanel
         ? panelLanes.map((panel, index) => <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />)
         : renderBlocks(flowBlocks)}
