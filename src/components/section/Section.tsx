@@ -99,7 +99,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
     const mediaLayer = splitSecondary ? <motion.div className="section__splitMediaMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 12, scale: reduceMotion ? 1 : 0.996 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0, scale: 1 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div> : null;
     const textLayer = primary ? <motion.div className="section__splitTextMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 10 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div> : null;
-    body = <Split variant={block.splitVariant} primary={motionLayer(textLayer, "forward")} secondary={motionLayer(mediaLayer, "forward")} />;
+    const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} />;
+    body = motionLayer(splitComposition, "forward", "section__splitScrollLayer");
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
