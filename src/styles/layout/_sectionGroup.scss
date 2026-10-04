@@ -120,13 +120,24 @@
   position: relative;
 }
 
-/* Cover/stack remain real covering panels at every breakpoint. Panel.tsx
-   measures any content taller than the viewport and supplies a negative sticky
-   top, so the complete panel can scroll into view before the next one covers it. */
+/* Cover/stack remain real covering panels at every breakpoint. Their surfaces
+   own the viewport floor explicitly; relying on inherited min-height from a
+   sticky element left the child Section without a definite scene to center in.
+   Taller content can still grow and Panel.tsx supplies the negative sticky top. */
 .sectionGroup__panel[data-panel-behavior="stack"],
 .sectionGroup__panel[data-panel-behavior="cover"] {
   position: sticky;
   top: var(--panel-stack-top, 0);
+  min-height: 100svh;
+}
+
+.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface,
+.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface {
+  min-height: 100svh;
+}
+
+.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section,
+.sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section {
   min-height: 100svh;
 }
 
