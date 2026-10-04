@@ -5,7 +5,7 @@
 .sectionGroup[data-layout="flow"] { display: block; }
 
 /* Scroll-panel establishes only the local stacking context.
-   Each panel behavior owns its positioning contract. */
+   Frame owns block-size; behavior owns scroll positioning. */
 .sectionGroup[data-layout="scroll-panel"] {
   position: relative;
   isolation: isolate;
@@ -34,6 +34,10 @@
 }
 
 .sectionGroup__surface > .section { color: inherit; }
+
+/* Frame defines the panel's vertical perimeter independently of behavior. */
+.sectionGroup__panel[data-panel-frame="content"] { min-height: 0; }
+.sectionGroup__panel[data-panel-frame="viewport"] { min-height: 100svh; }
 
 .sectionGroup__panel[data-panel-size="sm"] {
   --panel-width: min(26rem, calc(100% - #{$space-3 * 2}));
@@ -102,33 +106,29 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-/* Behavior is semantic, not breakpoint-dependent. */
+/* Behavior is semantic and controls only scroll/stacking behavior. */
 .sectionGroup__panel[data-panel-behavior="normal"] {
   position: relative;
   top: auto;
   z-index: auto;
-  min-height: 0;
 }
 
 .sectionGroup__panel[data-panel-behavior="sticky"] {
   position: sticky;
   top: 0;
   z-index: 0;
-  min-height: 100svh;
 }
 
 .sectionGroup__panel[data-panel-behavior="overlay"] {
   position: relative;
   top: auto;
   z-index: 1;
-  min-height: 100svh;
 }
 
 .sectionGroup__panel[data-panel-behavior="pinned"] {
   position: sticky;
   top: 0;
   z-index: 0;
-  min-height: 100svh;
 }
 
 @include desktop-up {
