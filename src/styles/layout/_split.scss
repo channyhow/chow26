@@ -5,7 +5,6 @@
   --split-primary-desktop: 7 / -1;
   --split-secondary-desktop: 1 / span 6;
   --split-media-ratio: #{$ratio-landscape};
-  --split-media-max-height: min(62svh, 42rem);
 
   @include site-grid(var(--split-gap, var(--section-gap, #{$flow-loose})));
   align-items: center;
@@ -19,10 +18,9 @@
     max-width: none;
   }
 
-  /* Media geometry belongs to Split, not to individual pages or assets. */
+  /* Split owns media geometry; Media owns the asset itself. */
   .media {
     width: 100%;
-    max-height: var(--split-media-max-height);
     aspect-ratio: var(--split-media-ratio);
     background: transparent;
   }
@@ -31,41 +29,30 @@
   .media__frame {
     width: 100%;
     height: 100%;
-    max-height: inherit;
     aspect-ratio: inherit;
   }
 
-  .media__asset {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  @include media-cover;
 
-  /* Equal editorial halves. Balanced/normal puts copy first and media second. */
-  &--balanced {
-    --split-primary-desktop: 1 / span 6;
-    --split-secondary-desktop: 7 / -1;
-  }
-
-  /* Editorial is the alternating counterpart to media-lead: copy left, media right. */
+  /* Content left, media right. */
+  &--balanced,
   &--editorial {
     --split-primary-desktop: 1 / span 6;
     --split-secondary-desktop: 7 / -1;
   }
 
-  /* Media left, copy right. */
+  /* Media left, content right. Default Split uses the same geometry. */
   &--media-lead {
     --split-primary-desktop: 7 / -1;
     --split-secondary-desktop: 1 / span 6;
   }
 }
 
-/* Split compositions stay media-led until desktop. Roles, rather than
-   primary/secondary DOM position, define the stacked reading order. */
+/* All Split variants share one responsive invariant: media first, content second.
+   Art-directed desktop variants do not leak into the stacked composition. */
 @include desktop-down {
   .split {
     --split-gap: #{$flow-default};
-    --split-media-max-height: min(56svh, 36rem);
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
@@ -81,30 +68,6 @@
 
   .split > [data-split-role="content"] {
     grid-row: 2;
-  }
-}
-
-/* Tablet is its own editorial composition, not enlarged mobile. Keep the
-   media-led reading order but introduce a deliberate pause before copy,
-   constrain both beats independently, and leave room for floating controls.
-   Individual media ratios remain data-controlled. */
-@include between($bp-tablet, $bp-desktop) {
-  .split {
-    --split-gap: clamp(2.5rem, 5vw, 3.5rem);
-    --split-media-max-height: min(52svh, 32rem);
-    padding-bottom: max(#{$space-4}, calc(env(safe-area-inset-bottom) + #{$space-4}));
-  }
-
-  .split > [data-split-role="media"] {
-    width: var(--split-media-width-tablet, 72%);
-    max-width: 42rem;
-    justify-self: center;
-  }
-
-  .split > [data-split-role="content"] {
-    width: min(100%, var(--split-content-width-tablet, #{$measure-text}));
-    max-width: $measure-text;
-    justify-self: start;
   }
 }
 
