@@ -60,10 +60,8 @@
   }
 }
 
-/* Split compositions stay media-led until the desktop breakpoint. Tablet is
-   deliberately included: the 8-column tablet grid is useful elsewhere, but a
-   two-up split is too compressed for editorial media + copy. Roles, rather
-   than primary/secondary DOM position, define the stacked reading order. */
+/* Split compositions stay media-led until desktop. Roles, rather than
+   primary/secondary DOM position, define the stacked reading order. */
 @include desktop-down {
   .split {
     --split-gap: #{$flow-default};
@@ -83,6 +81,30 @@
 
   .split > [data-split-role="content"] {
     grid-row: 2;
+  }
+}
+
+/* Tablet is its own editorial composition, not enlarged mobile. Keep the
+   media-led reading order but introduce a deliberate pause before copy,
+   constrain both beats independently, and leave room for floating controls.
+   Individual media ratios remain data-controlled. */
+@include between($bp-tablet, $bp-desktop) {
+  .split {
+    --split-gap: clamp(2.5rem, 5vw, 3.5rem);
+    --split-media-max-height: min(52svh, 32rem);
+    padding-bottom: max(#{$space-4}, calc(env(safe-area-inset-bottom) + #{$space-4}));
+  }
+
+  .split > [data-split-role="media"] {
+    width: var(--split-media-width-tablet, 72%);
+    max-width: 42rem;
+    justify-self: center;
+  }
+
+  .split > [data-split-role="content"] {
+    width: min(100%, var(--split-content-width-tablet, #{$measure-text}));
+    max-width: $measure-text;
+    justify-self: start;
   }
 }
 
