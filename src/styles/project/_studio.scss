@@ -121,10 +121,16 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder keeps its portrait treatment; Split owns placement and responsive order. */
+/* Founder is the intentional Split exception: portrait content uses a square
+   frame sized to sit close to the height of its accompanying copy. */
 #studio-founders {
   --media-background: transparent;
   min-height: 100svh;
+}
+
+#studio-founders .split {
+  --split-media-ratio: #{$ratio-square};
+  --split-media-max-height: min(54svh, 34rem);
 }
 
 #studio-founders .media {
@@ -135,6 +141,10 @@
   #studio-founders {
     --split-gap: #{$space-4};
     min-height: auto;
+  }
+
+  #studio-founders .split {
+    --split-media-max-height: min(52svh, 28rem);
   }
 
   #studio-founders .media {
