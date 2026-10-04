@@ -31,8 +31,8 @@
   background: transparent;
 }
 
-/* A panel owns the available scene height; its Section fills that scene and
-   Section then centers its own content. Keep those responsibilities separate. */
+/* The panel owns scene height. Its surface and Section inherit only that scene
+   floor; content remains free to grow beyond the viewport when necessary. */
 .sectionGroup__surface > .section {
   flex: 1 1 auto;
   min-height: inherit;
@@ -120,6 +120,9 @@
   position: relative;
 }
 
+/* Cover/stack remain real covering panels at every breakpoint. Panel.tsx
+   measures any content taller than the viewport and supplies a negative sticky
+   top, so the complete panel can scroll into view before the next one covers it. */
 .sectionGroup__panel[data-panel-behavior="stack"],
 .sectionGroup__panel[data-panel-behavior="cover"] {
   position: sticky;
@@ -127,19 +130,16 @@
   min-height: 100svh;
 }
 
-/* Sticky scenes only work while a panel can fit the viewport. At the same
-   breakpoint where Split becomes a vertical composition, let panels return to
-   normal document flow so tall content remains reachable. */
+/* Fixed scenes are the exception on compact layouts: they return to document
+   flow. Cover/stack must not be disabled just because Split has stacked. */
 @include desktop-down {
-  .sectionGroup__panel[data-panel-behavior="fixed"],
-  .sectionGroup__panel[data-panel-behavior="stack"],
-  .sectionGroup__panel[data-panel-behavior="cover"] {
+  .sectionGroup__panel[data-panel-behavior="fixed"] {
     position: relative;
     top: auto;
     min-height: auto;
   }
 
-  .sectionGroup__panel > .sectionGroup__surface {
+  .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface {
     min-height: 0;
   }
 }
