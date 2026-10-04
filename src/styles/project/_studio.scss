@@ -2,23 +2,21 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Studio service panels only own panel rhythm. Split owns the geometry. */
+/* Studio service panels only own panel rhythm. The scroll-panel surface owns
+   viewport/cover behaviour; Section inner and Split own natural content size. */
 .section--collection-panel {
   --text-width: none;
   width: 100%;
-  min-height: 100svh;
 }
 
 .section--collection-panel > .section__inner {
   width: 100%;
   max-width: none;
-  min-height: inherit;
 }
 
 .section--collection-panel .split {
   width: 100%;
   min-width: 0;
-  min-height: inherit;
   align-content: center;
 }
 
@@ -34,18 +32,9 @@
   max-width: none;
 }
 
-/* Once Split stacks (mobile + tablet), panels must become content-height too.
-   Keeping the desktop 100svh contract here clips long stacked compositions. */
+/* Once Split stacks (mobile + tablet), keep natural content height and start
+   alignment. Cover behaviour remains a responsibility of SectionGroup. */
 @include desktop-down {
-  .section--collection-panel {
-    min-height: auto;
-  }
-
-  .section--collection-panel > .section__inner,
-  .section--collection-panel .split {
-    min-height: 0;
-  }
-
   .section--collection-panel .split {
     align-content: start;
     align-items: start;
