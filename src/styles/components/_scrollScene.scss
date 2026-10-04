@@ -79,8 +79,9 @@
 .scrollScene[data-preset="draw"] .scrollScene__shape { opacity: 0.28; }
 [data-variant="editorial"] .scrollScene__shape { border-radius: $radius-none; }
 
-/* Opening choreography is staged by one scroll progress. Media remains the
-   background layer; copy rises over it as the image yields and fades. */
+/* Opening choreography keeps the editorial copy anchored in the sticky cover
+   while the media yields on exit. The cover transition supplies the movement;
+   title/copy must not receive a second vertical transform. */
 .scrollScene[data-attention-exit="true"] .section__media {
   z-index: $z-base;
   opacity: var(--scene-media-opacity, 1);
@@ -103,9 +104,8 @@
 .scrollScene[data-attention-exit="true"] .textBlock__header {
   position: relative;
   z-index: $z-raised;
-  opacity: var(--scene-title-opacity, 1);
-  transform: translate3d(0, var(--scene-title-y, 0px), 0);
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: none;
 }
 
 .scrollScene[data-attention-exit="true"] .textBlock__title {
@@ -115,7 +115,6 @@
 .scrollScene[data-attention-exit="true"] .textBlock__content {
   position: relative;
   z-index: $z-raised;
-  opacity: var(--scene-copy-opacity, 1);
-  transform: translate3d(0, var(--scene-copy-y, 0px), 0);
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: none;
 }
