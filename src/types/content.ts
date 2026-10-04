@@ -59,7 +59,7 @@ export type SiteSeo = Seo & {
 export type PageSeo = Seo;
 
 export type ContentItem = {
-  id?: string; eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | string[]; media?: MediaRef | MediaRef[]; links?: ActionRef[]; meta?: MetaItem[]; tags?: string[]; category?: string; group?: string; href?: string; enabled?: boolean; featured?: boolean; order?: number; slug?: string; projectLayout?: ProjectLayout; grid?: GridPlacement; summary?: string; description?: string[]; facts?: MetaItem[]; gallery?: MediaRef[]; seo?: PageSeo;
+  id?: string; eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | string[]; media?: MediaRef | MediaRef[]; links?: ActionRef[]; meta?: MetaItem[]; tags?: string[]; category?: string; group?: string; href?: string; enabled?: boolean; featured?: boolean; order?: number; slug?: string; projectLayout?: ProjectLayout; grid?: GridPlacement; summary?: string; description?: string[]; facts?: MetaItem[]; gallery?: MediaRef[]; seo?: PageSeo; offers?: ContentItem[];
 };
 
 export type ProjectRecord = ContentItem & { id: string; title: string; text: string[]; media: MediaRef; href: string; slug: string; summary: string; description: string[]; facts: MetaItem[]; gallery?: MediaRef[]; links?: ActionRef[]; seo: PageSeo; projectLayout?: ProjectLayout; };
