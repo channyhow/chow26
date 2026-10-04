@@ -132,7 +132,7 @@
   #home-opening .textBlock__title { font-size: clamp(3.25rem, 7vw, 5.25rem); }
   #home-opening .textBlock__content { grid-column: 6 / -1; max-width: 24rem; margin-top: 0; align-self: start; }
   #projects-featured-gallery .section__header { grid-column: 1 / span 2; }
-  #projects-featured-gallery .section__body { grid-column: 3 / -1; }
+  #projects-featured-gallery .section__body { grid-column: 1 / -1; }
   #home-services .split,
   #final-cta .split { align-items: start; gap: $space-4; min-height: 0; }
   #home-services .split__primary,
