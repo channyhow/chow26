@@ -67,10 +67,19 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-/* Behavior controls only scroll/stacking. */
+/* Behavior controls only scroll/stacking.
+   Overlay owns the covering transition: it enters one viewport early and
+   remains in normal flow, so the same final-panel reveal works after either
+   a sticky viewport scene or long normal content. */
 .sectionGroup__panel[data-panel-behavior="normal"] { position: relative; top: auto; z-index: auto; }
 .sectionGroup__panel[data-panel-behavior="sticky"] { position: sticky; top: 0; z-index: 0; }
-.sectionGroup__panel[data-panel-behavior="overlay"] { position: relative; top: auto; z-index: 1; }
+.sectionGroup__panel[data-panel-behavior="overlay"] {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  margin-top: -100svh;
+  transform: translateY(100svh);
+}
 
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
