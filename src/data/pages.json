@@ -93,7 +93,7 @@
 },
 {
   "id": "projects-final-panel",
-  "behavior": "sticky",
+  "behavior": "overlay",
   "frame": "viewport",
   "size": "full",
   "align": "center",
@@ -416,15 +416,7 @@
             "surface": "solid",
             "color": "special",
             "blocks": [{ "ref": "contact-default" }]
-          }
-        ]
-      },
-      {
-        "id": "contact-footer-panel",
-        "type": "Group",
-        "layout": "scroll-panel",
-        "panels": [
-          {
+          }, {
             "id": "contact-final-panel",
             "behavior": "overlay",
             "frame": "viewport",
@@ -436,6 +428,7 @@
           }
         ]
       }
+      
     ]
   },
   {
