@@ -2,8 +2,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-/* Studio services use one consistent 50/50 Split system. The block variant
-   controls direction; this layer only owns service rhythm and media treatment. */
+/* Studio services use the shared Split geometry. This layer only owns
+   service-specific panel rhythm and text measure. */
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
@@ -33,24 +33,6 @@
 .section--collection-panel .textBlock {
   width: 100%;
   max-width: 34rem;
-}
-
-/* Service media share one square editorial frame regardless of source ratio. */
-.section--collection-panel .media {
-  width: 100%;
-  aspect-ratio: auto;
-  background: transparent;
-}
-
-.section--collection-panel .media[data-ratio] .media__frame {
-  width: 100%;
-  aspect-ratio: $ratio-square;
-}
-
-.section--collection-panel .media__asset {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 @include mobile-down {
@@ -146,7 +128,6 @@
 }
 
 #studio-founders .media {
-  width: 100%;
   mix-blend-mode: multiply;
 }
 
