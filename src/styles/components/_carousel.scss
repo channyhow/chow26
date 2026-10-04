@@ -68,16 +68,24 @@
   transition: opacity $transition-hover;
 }
 
-/* Featured project carousels use the real next button as their floating cue.
-   This keeps the clean single-arrow composition without replacing navigation
-   with a decorative pseudo-element. Previous remains keyboard-reachable and
-   only surfaces when focused. */
+/* Featured project carousels keep only the directional arrow in the visual
+   composition. The button remains a full hit target, but has no control box,
+   border or background chrome. Previous stays visually hidden until keyboard
+   focus so pointer users see a single clean cue. */
 .section[data-source="projects"][data-featured="true"] .carousel__controls {
   position: static;
   width: 0;
   height: 0;
   margin: 0;
   gap: 0;
+}
+
+.section[data-source="projects"][data-featured="true"] .carousel__control {
+  --radius-control: #{$radius-none};
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .section[data-source="projects"][data-featured="true"] .carousel__control:first-child {
@@ -102,7 +110,8 @@
   clip: auto;
   clip-path: none;
   white-space: normal;
-  background: var(--secondary);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .section[data-source="projects"][data-featured="true"] .carousel__control:last-child {
@@ -113,8 +122,6 @@
   width: clamp(3rem, 5vw, 4rem);
   height: clamp(3rem, 5vw, 4rem);
   padding: 0;
-  border: 0;
-  background: transparent;
   transform: translateY(-50%);
 }
 
@@ -175,5 +182,9 @@
   .section[data-source="projects"][data-featured="true"] .carousel__controls {
     position: static;
     transform: none;
+  }
+
+  .section[data-source="projects"][data-featured="true"] .carousel__control {
+    background: transparent;
   }
 }
