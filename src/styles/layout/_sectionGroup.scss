@@ -24,12 +24,18 @@
 
 .sectionGroup__surface {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: inherit;
   color: inherit;
   background: transparent;
 }
 
+/* A panel owns the available scene height; its Section fills that scene and
+   Section then centers its own content. Keep those responsibilities separate. */
 .sectionGroup__surface > .section {
+  flex: 1 1 auto;
+  min-height: inherit;
   color: inherit;
 }
 
