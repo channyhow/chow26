@@ -1,4 +1,4 @@
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -66,6 +66,29 @@ function expandCollectionPanels(group: SectionGroupData) {
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || behavior !== "sticky" || frame !== "content") return;
+
+    const updateStickyTop = () => {
+      const viewportHeight = window.innerHeight;
+      const stickyTop = Math.min(0, viewportHeight - element.offsetHeight);
+      element.style.setProperty("--panel-sticky-top", `${stickyTop}px`);
+    };
+
+    updateStickyTop();
+    const observer = new ResizeObserver(updateStickyTop);
+    observer.observe(element);
+    window.addEventListener("resize", updateStickyTop);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateStickyTop);
+      element.style.removeProperty("--panel-sticky-top");
+    };
+  }, [behavior, frame]);
+
   const scrollYProgress = useTransform(scrollY, (latest) => {
     const element = ref.current;
     if (!element || typeof window === "undefined") return 0;
