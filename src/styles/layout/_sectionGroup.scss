@@ -17,7 +17,9 @@
   --panel-fg: var(--theme-primary);
   --panel-glass-bg: color-mix(in srgb, var(--panel-bg) 42%, transparent);
   --panel-sticky-top: 0px;
+  --panel-stack-level: 0;
   position: relative;
+  z-index: var(--panel-stack-level);
   width: var(--panel-width);
   margin-inline-start: var(--panel-inline-start);
   margin-inline-end: var(--panel-inline-end);
@@ -67,16 +69,26 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-/* Behavior owns positioning. Content-height sticky panels may provide a
-   measured negative anchor; every other sticky panel resolves to zero. */
-.sectionGroup__panel[data-panel-behavior="normal"] { position: relative; z-index: auto; }
-.sectionGroup__panel[data-panel-behavior="sticky"] { position: sticky; top: var(--panel-sticky-top); z-index: 0; }
-.sectionGroup__panel[data-panel-behavior="overlay"] { position: relative; z-index: 1; }
+/* Behavior owns positioning and stacking only. Geometry remains frame-owned. */
+.sectionGroup__panel[data-panel-behavior="normal"] { --panel-stack-level: 0; }
+.sectionGroup__panel[data-panel-behavior="sticky"] {
+  --panel-stack-level: 0;
+  position: sticky;
+  top: var(--panel-sticky-top);
+}
+.sectionGroup__panel[data-panel-behavior="overlay"] {
+  --panel-stack-level: calc(var(--panel-index) + 1);
+}
 
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
 }
 
 @include reduced-motion {
-  .sectionGroup__panel { position: relative !important; top: auto !important; }
+  /* Reduced motion disables sticky persistence without changing frame geometry,
+     surface, document order or overlay stacking semantics. */
+  .sectionGroup__panel[data-panel-behavior="sticky"] {
+    position: relative;
+    top: auto;
+  }
 }
