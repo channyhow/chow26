@@ -85,12 +85,6 @@
     padding-bottom: $space-3;
   }
 
-  .siteFooter[data-panel-motion="true"] .siteFooter__inner {
-    opacity: var(--footer-motion-opacity, 1);
-    transform: translate3d(0, var(--footer-motion-y, 0), 0);
-    will-change: transform, opacity;
-  }
-
   .siteFooter__inner,
   #site-footer.section__inner { gap: $space-3; }
 
