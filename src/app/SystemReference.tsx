@@ -33,7 +33,7 @@ export function SystemReference() {
           <div className="systemReference__contexts">
             {businessContextsData.contexts.map((context) => (
               <article className="systemReference__context" key={context.id}>
-                <header className="stack">
+                <header className="overlay">
                   <p className="textBlock__eyebrow">{context.label}</p>
                   <h3>{context.goal}</h3>
                 </header>

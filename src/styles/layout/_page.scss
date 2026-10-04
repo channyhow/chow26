@@ -19,7 +19,7 @@
    page-start padding. This keeps the rule structural rather than route-specific. */
 .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]),
 .page__content > .sectionGroup:first-child
-  > .sectionGroup__panel:first-child:not([data-panel-behavior="fixed"]):not([data-panel-behavior="stack"]):not([data-panel-behavior="cover"])
+  > .sectionGroup__panel:first-child:not([data-panel-behavior="pinned"]):not([data-panel-behavior="overlay"]):not([data-panel-behavior="sticky"])
   > .sectionGroup__surface
   > .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
   padding-top: calc(var(--page-start-offset) + var(--page-start-gap));

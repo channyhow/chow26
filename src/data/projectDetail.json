@@ -65,7 +65,7 @@
     "panels": [
       {
         "id": "project-footer-panel",
-        "behavior": "moving",
+        "behavior": "normal",
         "size": "full",
         "align": "center",
         "surface": "solid",
