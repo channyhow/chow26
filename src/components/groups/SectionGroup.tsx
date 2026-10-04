@@ -79,6 +79,22 @@ function getDocumentOffsetTop(element: HTMLElement) {
   return top;
 }
 
+function resolvePanelBlock(entry: PanelBlock): SectionBlock | undefined {
+  return "ref" in entry ? resolveBlock(entry.ref) : entry;
+}
+
+function blockOwnsScrollProgress(entry: PanelBlock) {
+  const block = resolvePanelBlock(entry);
+  if (!block) return false;
+
+  return block.layout === "horizontal-scroll"
+    || (block.layout === "timeline" && block.timelineOrientation === "horizontal");
+}
+
+function panelOwnsScrollProgress(blocks: PanelBlock[]) {
+  return blocks.some(blockOwnsScrollProgress);
+}
+
 function expandCollectionPanels(group: SectionGroupData) {
   if (group.layout !== "scroll-panel" || !group.panels?.length) return group.panels;
 
@@ -143,7 +159,8 @@ function Panel({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const needsStickyOffset = behavior === "stack" || behavior === "cover";
+  const effectiveBehavior: PanelBehavior = panelOwnsScrollProgress(blocks) ? "moving" : behavior;
+  const needsStickyOffset = effectiveBehavior === "stack" || effectiveBehavior === "cover";
   const [stickyTop, setStickyTop] = useState<number | null>(needsStickyOffset ? 0 : null);
   const { scrollY } = useScroll();
 
@@ -163,10 +180,6 @@ function Panel({
     const element = ref.current;
     if (!element) return;
 
-    /* Sticky top is structural. Recomputing it from window.innerHeight on every
-       mobile browser chrome resize changes the sticky constraint mid-scroll and
-       makes horizontal carousels appear to jump as the next panel arrives. Use
-       the panel's CSS 100svh floor as the stable viewport reference instead. */
     const measure = () => {
       const surface = element.firstElementChild as HTMLElement | null;
       const sceneFloor = surface?.clientHeight ?? element.clientHeight;
@@ -204,7 +217,7 @@ function Panel({
       ref={ref}
       className="sectionGroup__panel"
       data-panel-id={id}
-      data-panel-behavior={behavior}
+      data-panel-behavior={effectiveBehavior}
       data-panel-size={size}
       data-panel-align={align}
       data-panel-surface={surface}
@@ -212,7 +225,7 @@ function Panel({
       style={style}
     >
       <div className="sectionGroup__surface" style={surfaceStyle}>
-        {renderBlocks(blocks, false, true, scrollYProgress, behavior)}
+        {renderBlocks(blocks, false, true, scrollYProgress, effectiveBehavior)}
       </div>
     </div>
   );
