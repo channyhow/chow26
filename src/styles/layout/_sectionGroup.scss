@@ -35,7 +35,6 @@
   color: inherit;
 }
 
-.sectionGroup__panel[data-panel-id$="-final-panel"] { min-height: auto; }
 .sectionGroup__panel[data-panel-size="sm"] { --panel-width: min(26rem, calc(100% - #{$space-3 * 2})); }
 .sectionGroup__panel[data-panel-size="md"] { --panel-width: min(36rem, calc(100% - #{$space-3 * 2})); }
 .sectionGroup__panel[data-panel-size="lg"] { --panel-width: min(48rem, calc(100% - #{$space-3 * 2})); }
@@ -57,10 +56,16 @@
   -webkit-backdrop-filter: blur($glass-blur) saturate(1.05);
 }
 
-.sectionGroup__panel[data-panel-behavior="fixed"] { position: sticky; top: 0; min-height: 100svh; }
-.sectionGroup__panel[data-panel-behavior="moving"] { position: relative; }
+/* Panel behaviour contract:
+   fixed = explicit sticky viewport panel
+   cover = sticky viewport panel that can be covered by the following panel
+   stack/moving = normal document flow */
+.sectionGroup__panel[data-panel-behavior="fixed"] {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+}
 
-.sectionGroup__panel[data-panel-behavior="stack"],
 .sectionGroup__panel[data-panel-behavior="cover"] {
   position: sticky;
   top: var(--panel-stack-top, 0);
@@ -68,21 +73,37 @@
   min-height: 100svh;
 }
 
-.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface,
 .sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface,
-.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section,
 .sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section {
   min-height: 100svh;
 }
 
-.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section > .section__inner,
 .sectionGroup__panel[data-panel-behavior="cover"] > .sectionGroup__surface > .section > .section__inner {
   justify-content: center;
   align-content: center;
 }
 
+.sectionGroup__panel[data-panel-behavior="stack"],
+.sectionGroup__panel[data-panel-behavior="moving"] {
+  position: relative;
+  top: auto;
+  min-height: auto;
+}
+
+.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface,
+.sectionGroup__panel[data-panel-behavior="moving"] > .sectionGroup__surface,
+.sectionGroup__panel[data-panel-behavior="stack"] > .sectionGroup__surface > .section,
+.sectionGroup__panel[data-panel-behavior="moving"] > .sectionGroup__surface > .section {
+  min-height: 0;
+}
+
 @include desktop-down {
-  .sectionGroup__panel[data-panel-behavior="fixed"] { position: relative; top: auto; min-height: auto; }
+  .sectionGroup__panel[data-panel-behavior="fixed"] {
+    position: relative;
+    top: auto;
+    min-height: auto;
+  }
+
   .sectionGroup__panel[data-panel-behavior="fixed"] > .sectionGroup__surface { min-height: 0; }
 }
 
