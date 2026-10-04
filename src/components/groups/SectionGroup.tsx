@@ -45,7 +45,8 @@ function expandCollectionPanels(group: SectionGroupData) {
     if (panel.blocks.length !== 1) return [panel];
     const block = panel.blocks[0];
     if ("ref" in block || block.layout !== "horizontal-scroll" || !block.source) return [panel];
-    const items = resolveCollection(block.source);
+    const source = block.source;
+    const items = resolveCollection(source);
     if (items.length <= 1) return [panel];
     return items.map((item, index) => {
       const itemId = item.id ?? `${index + 1}`;
@@ -55,7 +56,7 @@ function expandCollectionPanels(group: SectionGroupData) {
         layout: "grid",
         className: [block.className, "section--collection-panel"].filter(Boolean).join(" "),
         content: undefined,
-        source: { ...block.source, query: { ...block.source?.query, prioritizeIds: [itemId], limit: 1 } },
+        source: { collection: source.collection, query: { ...source.query, prioritizeIds: [itemId], limit: 1 } },
       };
       return { ...panel, id: `${panel.id}-${itemId}`, behavior: "normal" as const, frame: "content" as const, surface: "solid" as const, color: collectionPanelColors[index % collectionPanelColors.length], blocks: [itemBlock] };
     });
