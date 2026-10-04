@@ -2,9 +2,9 @@
   "contact": { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
   "talk-project": { "label": "Parler d’un projet", "href": "/contact", "intent": "contact", "variant": "cta", "priority": "primary" },
   "present-project": { "label": "Présenter votre projet", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "talk-identity": { "label": "Parler de votre identité", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "talk-website": { "label": "Parler de votre site", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "evolve-website": { "label": "Parler de vos supports", "href": "/contact", "intent": "contact", "variant": "cta" },
+  "talk-identity": { "label": "Identité visuelle", "href": "/contact", "intent": "contact", "variant": "cta" },
+  "talk-website": { "label": "Site internet", "href": "/contact", "intent": "contact", "variant": "cta" },
+  "evolve-website": { "label": "Supports de communication", "href": "/contact", "intent": "contact", "variant": "cta" },
   "project-call": { "label": "Parler de mon projet", "href": "https://tally.so/r/7RpgvA", "intent": "navigate", "variant": "cta", "priority": "primary" },
   "view-project-call": { "label": "Voir l’appel à projets", "href": "/link", "intent": "navigate", "variant": "accent", "priority": "secondary" },
 
