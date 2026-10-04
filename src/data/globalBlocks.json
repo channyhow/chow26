@@ -154,7 +154,6 @@
     "type": "Section",
     "layout": "split",
     "splitVariant": "media-lead",
-    "motion": "none",
     "content": {
       "items": [
         {
