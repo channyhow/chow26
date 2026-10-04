@@ -6,6 +6,8 @@
 .section--collection-panel {
   --section-space: 0;
   --text-width: none;
+  --split-media-ratio: #{$ratio-square};
+  --split-media-max-height: min(62svh, 42rem);
   width: 100%;
   min-height: 100svh;
 }
@@ -36,7 +38,10 @@
 }
 
 @include mobile-down {
-  .section--collection-panel { min-height: auto; }
+  .section--collection-panel {
+    --split-media-max-height: min(72svh, 32rem);
+    min-height: auto;
+  }
 
   .section--collection-panel > .section__inner,
   .section--collection-panel .split { min-height: 0; }
@@ -115,9 +120,8 @@
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
-/* Founder is the one intentional Split media exception. The split column owns
-   width; the Media frame owns the square crop. Do not constrain the Media root
-   with Split's landscape max-height, otherwise width and height diverge. */
+/* Founder is the one intentional Split media exception. It keeps the same
+   square language as services, but at a quieter editorial scale. */
 #studio-founders {
   --media-background: transparent;
   min-height: 100svh;
@@ -128,8 +132,13 @@
   --split-media-max-height: none;
 }
 
+#studio-founders .split__secondary {
+  display: grid;
+  place-items: center;
+}
+
 #studio-founders .split__secondary .media {
-  width: 100%;
+  width: min(72%, 30rem);
   max-height: none;
   aspect-ratio: 1 / 1;
   background: transparent;
@@ -152,6 +161,12 @@
   object-fit: cover;
 }
 
+@include tablet-down {
+  #studio-founders .split__secondary .media {
+    width: min(76%, 26rem);
+  }
+}
+
 @include mobile-down {
   #studio-founders {
     --split-gap: #{$space-4};
@@ -159,7 +174,7 @@
   }
 
   #studio-founders .split__secondary .media {
-    width: min(100%, 18rem);
+    width: min(78%, 18rem);
     margin-inline: auto;
   }
 }
