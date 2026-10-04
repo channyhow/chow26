@@ -9,6 +9,7 @@ import type {
   PanelBehavior,
   PanelBlock,
   PanelFrame,
+  PanelLane,
   PanelSize,
   PanelSurface,
   SectionBlock,
@@ -63,6 +64,44 @@ function expandCollectionPanels(group: SectionGroupData) {
   });
 }
 
+function resolvePanelLanes(group: SectionGroupData): PanelLane[] {
+  if (group.layout !== "scroll-panel") return [];
+
+  const explicitPanels = expandCollectionPanels(group);
+  if (explicitPanels?.length) return explicitPanels;
+
+  const blocks = group.blocks ?? [];
+  const mode = group.panel?.mode ?? "scene";
+
+  if (mode === "stack") {
+    return blocks.map((block, index) => ({
+      id: `${group.id}-${index + 1}`,
+      behavior: "overlay",
+      frame: "viewport",
+      blocks: [block],
+    }));
+  }
+
+  if (!blocks.length) return [];
+
+  return [
+    {
+      id: `${group.id}-scene`,
+      behavior: "sticky",
+      frame: "viewport",
+      size: "full",
+      align: "center",
+      surface: "transparent",
+      blocks: [blocks[0]],
+    },
+    ...blocks.slice(1).map((block, index) => ({
+      id: `${group.id}-panel-${index + 1}`,
+      behavior: "normal" as const,
+      blocks: [block],
+    })),
+  ];
+}
+
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -71,8 +110,9 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
     if (!element || typeof window === "undefined") return 0;
 
     const viewportHeight = Math.max(window.innerHeight, 1);
-    const start = getDocumentOffsetTop(element) - viewportHeight;
-    const end = getDocumentOffsetTop(element) + element.offsetHeight;
+    const offsetTop = getDocumentOffsetTop(element);
+    const start = offsetTop - viewportHeight;
+    const end = offsetTop + element.offsetHeight;
     const runway = Math.max(end - start, 1);
 
     return Math.min(1, Math.max(0, (latest - start) / runway));
@@ -97,19 +137,29 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const defaultSurface = group.panel?.surface ?? "solid";
   const defaultColor = group.panel?.color ?? "secondary";
   const blocks = group.blocks ?? [];
-  const panels = expandCollectionPanels(group);
-  const flattenedPanelBlocks = panels?.flatMap((panel) => panel.blocks) ?? [];
+  const explicitPanels = expandCollectionPanels(group);
+  const panelLanes = resolvePanelLanes(group);
+  const flattenedPanelBlocks = explicitPanels?.flatMap((panel) => panel.blocks) ?? [];
   const flowBlocks = blocks.length ? blocks : flattenedPanelBlocks;
 
   return (
     <div className="sectionGroup" data-layout={layout} data-panel-mode={isPanel ? mode : undefined} data-motion={reduceMotion ? "none" : group.motion?.level ?? "none"} data-preset={reduceMotion ? undefined : group.motion?.preset}>
-      {isPanel && panels?.length
-        ? panels.map((panel, index) => <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />)
-        : isPanel && mode === "stack"
-          ? blocks.map((block, index) => <Panel key={panelKey(block, index)} id={`${group.id}-${index + 1}`} behavior="overlay" frame="viewport" size={defaultSize} align={defaultAlign} surface={defaultSurface} color={defaultColor} blocks={[block]} index={index} />)
-          : isPanel && mode === "scene" && blocks.length
-            ? <><Panel id={`${group.id}-scene`} behavior="sticky" frame="viewport" size="full" align="center" surface="transparent" color={undefined} blocks={[blocks[0]]} index={0} />{blocks.slice(1).map((block, index) => <Panel key={panelKey(block, index + 1)} id={`${group.id}-panel-${index + 1}`} behavior="normal" frame={defaultFrame} size={defaultSize} align={defaultAlign} surface={defaultSurface} color={defaultColor} blocks={[block]} index={index + 1} />)}</>
-            : renderBlocks(flowBlocks)}
+      {isPanel
+        ? panelLanes.map((panel, index) => (
+            <Panel
+              key={panel.id}
+              id={panel.id}
+              behavior={panel.behavior ?? "normal"}
+              frame={panel.frame ?? defaultFrame}
+              size={panel.size ?? defaultSize}
+              align={panel.align ?? defaultAlign}
+              surface={panel.surface ?? defaultSurface}
+              color={panel.color ?? defaultColor}
+              blocks={panel.blocks}
+              index={index}
+            />
+          ))
+        : renderBlocks(flowBlocks)}
     </div>
   );
 }
