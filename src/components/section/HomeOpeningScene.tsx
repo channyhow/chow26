@@ -96,30 +96,46 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
     };
 
     const updateMobile = (progress: number) => {
-      const mediaTravel = [-165, -150, -220, -190] as const;
+      const viewport = window.innerHeight;
+      const toPx = (svh: number) => svh * viewport / 100;
+
+      /* Four independent tracks make the artboards scroll through the fixed
+         service stack instead of behaving like one translated collage.
+         Indices follow openingProjects: textile, Kuro, Atmosphere, Ravine. */
+      const tracks = [
+        { start: 0.24, end: 0.78, from: 0, to: -196 },
+        { start: 0.00, end: 0.55, from: 0, to: -126 },
+        { start: 0.16, end: 0.72, from: 0, to: -174 },
+        { start: 0.04, end: 0.62, from: 0, to: -142 },
+      ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
-        const stagger = index * 0.025;
-        const localTravel = range(progress, 0.02 + stagger, 0.74 + stagger);
-        const y = lerp(0, (mediaTravel[index] ?? -190) * window.innerHeight / 100, localTravel);
-        const fade = range(progress, 0.76 + stagger, 0.9 + stagger);
+        const track = tracks[index] ?? tracks[0];
+        const travel = range(progress, track.start, track.end);
+        const y = lerp(toPx(track.from), toPx(track.to), travel);
+        const fade = range(progress, Math.min(track.end + 0.04, 0.82), Math.min(track.end + 0.16, 0.96));
         element.style.opacity = String(1 - fade);
         element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
-      const release = range(progress, 0.72, 0.86);
+      /* Services are the visual anchor: they stay centred while all four
+         projects pass through the viewport, then release as one block. */
+      const release = range(progress, 0.70, 0.84);
+      const labelFade = range(progress, 0.82, 0.90);
       labelRefs.current.forEach((element) => {
         if (!element) return;
-        element.style.opacity = String(1 - range(progress, 0.8, 0.9));
-        element.style.transform = `translate3d(0, ${lerp(0, -34, release)}svh, 0)`;
+        element.style.opacity = String(1 - labelFade);
+        element.style.transform = `translate3d(0, ${lerp(0, -30, release)}svh, 0)`;
       });
 
+      /* The statement shares the release motion so it feels physically pulled
+         into the space vacated by the service stack rather than cross-fading. */
       if (statementRef.current) {
-        const reveal = range(progress, 0.74, 0.88);
-        const settle = range(progress, 0.8, 0.94);
+        const reveal = range(progress, 0.72, 0.84);
+        const pull = range(progress, 0.72, 0.92);
         statementRef.current.style.opacity = String(reveal);
-        statementRef.current.style.transform = `translate3d(0, ${lerp(32, -4, settle)}svh, 0)`;
+        statementRef.current.style.transform = `translate3d(0, ${lerp(36, -8, pull)}svh, 0)`;
       }
     };
 
