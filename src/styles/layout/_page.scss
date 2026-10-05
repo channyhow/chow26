@@ -26,7 +26,7 @@
   overflow: visible;
 }
 
-@include mobile-down {
+@include tablet-down {
   .page {
     --floating-action-safe-zone: clamp(5.5rem, 20vw, 7rem);
     scroll-padding-bottom: var(--floating-action-safe-zone);
