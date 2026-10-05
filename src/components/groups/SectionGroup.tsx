@@ -1,5 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from "react";
-import { useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { useReducedMotion, useScroll, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
@@ -76,7 +76,10 @@ function getViewportHeight() {
 
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
   useEffect(() => {
     if (behavior !== "sticky" || frame !== "content") return;
@@ -101,19 +104,6 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
       element.style.removeProperty("--panel-sticky-top");
     };
   }, [behavior, frame]);
-
-  const scrollYProgress = useTransform(scrollY, (latest) => {
-    const element = ref.current;
-    if (!element || typeof window === "undefined") return 0;
-
-    const viewportHeight = Math.max(getViewportHeight(), 1);
-    const rect = element.getBoundingClientRect();
-    const offsetTop = rect.top + latest;
-    const start = offsetTop - viewportHeight;
-    const end = offsetTop + rect.height;
-
-    return Math.min(1, Math.max(0, (latest - start) / Math.max(end - start, 1)));
-  });
 
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
