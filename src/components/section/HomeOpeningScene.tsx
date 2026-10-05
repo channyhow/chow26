@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import type { MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
@@ -9,7 +10,7 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
-  scrollProgress?: unknown;
+  scrollProgress?: MotionValue<number>;
 };
 
 const openingProjects = [
@@ -39,7 +40,7 @@ const renderInlineStrong = (value: string): ReactNode[] => value
     return strong ? <strong key={`${text}-${index}`}>{text}</strong> : <span key={`${text}-${index}`}>{text}</span>;
   });
 
-export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -99,9 +100,9 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       const viewport = window.innerHeight;
       const toPx = (svh: number) => svh * viewport / 100;
 
-      /* Four independent tracks make the artboards scroll through the fixed
-         service stack instead of behaving like one translated collage.
-         Indices follow openingProjects: textile, Kuro, Atmosphere, Ravine. */
+      /* One continuous composition: frame zero already contains Kuro,
+         Mois du Ker and the service stack. Later media starts below the fold
+         and enters before the earlier media has completely left. */
       const tracks = [
         { start: 0.24, end: 0.78, from: 0, to: -196 },
         { start: 0.00, end: 0.55, from: 0, to: -126 },
@@ -119,8 +120,6 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
-      /* Services are the visual anchor: they stay centred while all four
-         projects pass through the viewport, then release as one block. */
       const release = range(progress, 0.70, 0.84);
       const labelFade = range(progress, 0.82, 0.90);
       labelRefs.current.forEach((element) => {
@@ -129,14 +128,34 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         element.style.transform = `translate3d(0, ${lerp(0, -30, release)}svh, 0)`;
       });
 
-      /* The statement shares the release motion so it feels physically pulled
-         into the space vacated by the service stack rather than cross-fading. */
       if (statementRef.current) {
         const reveal = range(progress, 0.72, 0.84);
         const pull = range(progress, 0.72, 0.92);
         statementRef.current.style.opacity = String(reveal);
         statementRef.current.style.transform = `translate3d(0, ${lerp(36, -8, pull)}svh, 0)`;
       }
+    };
+
+    /* SectionGroup's MotionValue is measured from `start end` to `end start`.
+       The opening panel is taller than the viewport, so its visual frame-zero
+       is NOT MotionValue zero. Normalise the interval where the panel itself
+       occupies the viewport: top/top => 0, bottom/bottom => 1. This avoids the
+       old global-scroll calculation being corrupted by the sticky panel. */
+    const getMobileProgress = () => {
+      if (!scrollProgress) return 0;
+      const scene = sceneRef.current;
+      const section = scene?.closest("#home-opening");
+      const panel = scene?.closest(".sectionGroup__panel");
+      const contentHeight = Math.max(
+        section instanceof HTMLElement ? section.offsetHeight : 0,
+        panel instanceof HTMLElement ? panel.offsetHeight : 0,
+        window.innerHeight,
+      );
+      const viewport = window.innerHeight;
+      const total = contentHeight + viewport;
+      const start = viewport / total;
+      const end = contentHeight / total;
+      return clamp01((scrollProgress.get() - start) / Math.max(end - start, 0.001));
     };
 
     let frame = 0;
@@ -148,21 +167,12 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       }
 
       if (!mobile.matches) {
-        // Preserve the original desktop choreography exactly. Desktop was built
-        // against a 200svh runway and must not inherit the mobile section math.
         const desktopDistance = Math.max(window.innerHeight * 2, 1);
         updateDesktop(clamp01(window.scrollY / desktopDistance));
         return;
       }
 
-      const scene = sceneRef.current;
-      const section = scene?.closest("#home-opening");
-      const sectionTop = section instanceof HTMLElement
-        ? section.getBoundingClientRect().top + window.scrollY
-        : 0;
-      const sectionHeight = section instanceof HTMLElement ? section.offsetHeight : window.innerHeight * 3;
-      const distance = Math.max(sectionHeight - window.innerHeight, 1);
-      updateMobile(clamp01((window.scrollY - sectionTop) / distance));
+      updateMobile(getMobileProgress());
     };
 
     const scheduleResolve = () => {
@@ -170,19 +180,21 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
     };
 
     scheduleResolve();
+    const unsubscribeProgress = scrollProgress?.on("change", scheduleResolve);
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
     mobile.addEventListener("change", scheduleResolve);
     reducedMotion.addEventListener("change", scheduleResolve);
 
     return () => {
+      unsubscribeProgress?.();
       window.removeEventListener("scroll", scheduleResolve);
       window.removeEventListener("resize", scheduleResolve);
       mobile.removeEventListener("change", scheduleResolve);
       reducedMotion.removeEventListener("change", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [scrollProgress]);
 
   return (
     <div ref={sceneRef} className="homeOpeningScene">
