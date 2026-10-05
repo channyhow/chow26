@@ -79,7 +79,7 @@
   .siteFooter__identity { grid-column: auto; }
 }
 
-@include mobile-down {
+@include tablet-down {
   .siteFooter {
     padding-top: clamp(3rem, 10vw, 4rem);
     padding-bottom: $space-3;
@@ -89,12 +89,11 @@
   #site-footer.section__inner { gap: $space-3; }
 
   .siteFooter__main {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: $layout-gap;
+    grid-template-columns: 1fr;
     row-gap: $space-3;
   }
 
-  .siteFooter__identity { grid-column: 1 / -1; }
+  .siteFooter__identity { grid-column: 1; }
   .siteFooter__legal { opacity: $opacity-quiet; }
 
   .siteFooter__meta {
