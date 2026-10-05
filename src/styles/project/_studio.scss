@@ -37,8 +37,7 @@
 #studio-founders .split__secondary .media__asset { mix-blend-mode: multiply; }
 
 /* Tablet keeps Studio editorial rather than becoming a zoomed phone page.
-   Service media leads on five columns; copy uses three. Offers remain a compact
-   two-column decision layer underneath. */
+   Service media and copy use the full eight-column tablet grid. */
 @include between($bp-tablet, $bp-desktop) {
   .section--collection-panel {
     --split-media-ratio: #{$ratio-landscape};
@@ -69,15 +68,37 @@
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-4 $space-2; }
 
-  #studio-founders .split > [data-split-role="media"] { grid-column: 1 / span 5; order: 2; }
-  #studio-founders .split > [data-split-role="content"] { grid-column: 2 / span 8; order: 1; }
-  #studio-founders .split__secondary { place-items: center; }
+  /* Founder is one editorial unit: portrait and biography share the same row.
+     Keeping both on the section grid removes the large empty band that the
+     stacked tablet composition created. */
+  #studio-founders .split {
+    align-items: start;
+    align-content: center;
+    column-gap: var(--grid-gutter);
+  }
+
+  #studio-founders .split > [data-split-role="media"] {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    order: initial;
+  }
+
+  #studio-founders .split > [data-split-role="content"] {
+    grid-column: 4 / span 5;
+    grid-row: 1;
+    order: initial;
+  }
+
+  #studio-founders .split__secondary {
+    place-items: start stretch;
+  }
+
   #studio-founders .split__secondary .media,
   #studio-founders .split__secondary .media__frame {
-    width: min(100%, 22rem);
-    max-width: 15rem;
-    max-height: 15rem;
-    margin-inline: auto;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
     aspect-ratio: $ratio-square;
   }
 }
