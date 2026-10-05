@@ -124,7 +124,7 @@
 @mixin type-display-lg {
   font-family: var(--font-heading);
   font-size: $type-display-lg;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-semibold;
   line-height: 0.92;
   letter-spacing: -0.025em;
   text-transform: uppercase;

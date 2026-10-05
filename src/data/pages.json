@@ -442,26 +442,53 @@
       "robots": { "index": false, "follow": true }
     },
     "blocks": [
-      {
-        "id": "link-campaign",
-        "type": "Section",
-        "layout": "text",
-        "className": "linkPage__campaign",
-        "content": {
-          "header": {
-            "title": "Appel à projets",
-            "subtitle": ["Date limite: 18.10.2026"],
-            "text": "Je recherche **3 projets** à accompagner pour créer ou faire évoluer leur **identité visuelle**. Restaurants, lieux, studios, marques ou associations, à Paris, à La Réunion ou ailleurs.",
-            "links": [
-              "project-call",
-              "about-studio",
-              "mdk-case-study",
-              "contact"
-            ]
-          }
-        }
-      },
-      { "ref": "site-footer" }
+     {
+  "id": "link-story",
+  "type": "Group",
+  "layout": "scroll-panel",
+  "panels": [
+    {
+      "id": "link-campaign-panel",
+      "behavior": "sticky",
+      "frame": "viewport",
+      "size": "full",
+      "align": "center",
+      "surface": "solid",
+      "color": "secondary",
+      "blocks": [{ "ref": "linkpage-navigation" }]
+    },
+    {
+      "id": "link-founder-panel",
+      "behavior": "sticky",
+      "frame": "viewport",
+      "size": "full",
+      "align": "center",
+      "surface": "solid",
+      "color": "special",
+      "blocks": [{ "ref": "studio-founders" }]
+    },
+    {
+      "id": "link-conditions-panel",
+      "behavior": "sticky",
+      "frame": "viewport",
+      "size": "full",
+      "align": "center",
+      "surface": "solid",
+      "color": "secondary",
+      "blocks": [{ "ref": "opencall-conditions" }]
+    },
+    {
+      "id": "link-footer-panel",
+      "behavior": "overlay",
+      "frame": "viewport",
+      "size": "full",
+      "align": "center",
+      "surface": "glass",
+      "color": "primary",
+      "blocks": [{ "ref": "site-footer" }]
+    }
+  ]
+}
     ]
   },
   {
