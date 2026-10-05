@@ -19,17 +19,17 @@
     max-width: none;
   }
 
+  /* Split owns composition and supplies the requested media ratio.
+     Media keeps ownership of its physical frame and asset fitting. */
   .media {
     width: 100%;
-    aspect-ratio: var(--split-media-ratio);
-    background: transparent;
+    max-width: none;
   }
 
-  .media[data-ratio] .media__frame,
   .media__frame {
     width: 100%;
-    height: 100%;
-    aspect-ratio: inherit;
+    height: auto;
+    aspect-ratio: var(--split-media-ratio);
   }
 
   @include media-cover;
@@ -85,20 +85,8 @@
     .textBlock { max-width: none; }
   }
 
-  .split .media,
-  .split--editorial .media {
-    width: 100%;
-    max-width: none;
-  }
-
-  .split:not(.split--editorial) .media:not([data-ratio]),
-  .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .split--editorial .media[data-ratio],
-  .split--editorial .media[data-ratio] .media__frame {
-    aspect-ratio: $ratio-landscape;
+  .split--editorial {
+    --split-media-ratio: #{$ratio-landscape};
   }
 }
 
@@ -117,16 +105,6 @@
 
   .split:not(.split--editorial) > [data-split-role="media"] { grid-row: 1; }
   .split:not(.split--editorial) > [data-split-role="content"] { grid-row: 2; }
-
-  .split:not(.split--editorial) .media {
-    width: 100%;
-    max-width: none;
-  }
-
-  .split:not(.split--editorial) .media:not([data-ratio]),
-  .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
-    aspect-ratio: $ratio-landscape;
-  }
 
   .split--editorial {
     --split-gap: #{$mobile-gap-editorial};
@@ -154,17 +132,6 @@
 
   .split--editorial > [data-split-role="media"] { grid-row: 1; }
   .split--editorial > [data-split-role="content"] { grid-row: 2; }
-
-  .split--editorial .media {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .split--editorial .media,
-  .split--editorial .media[data-ratio],
-  .split--editorial .media[data-ratio] .media__frame {
-    aspect-ratio: var(--split-media-ratio);
-  }
 }
 
 @include desktop-up {
