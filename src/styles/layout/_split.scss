@@ -48,45 +48,70 @@
   }
 }
 
-/* Tablet is deliberately simplified: all splits stack media first, then content.
-   Authored media ratios remain available so tablet does not become an oversized mobile. */
+/* Tablet simplifies functional splits. Editorial splits keep their authored
+   composition longer so responsive art direction does not become a generic stack. */
 @include desktop-down {
-  .split {
+  .split:not(.split--editorial) {
     --split-gap: #{$flow-default};
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 
-  .split > .split__primary,
-  .split > .split__secondary {
+  .split:not(.split--editorial) > .split__primary,
+  .split:not(.split--editorial) > .split__secondary {
     grid-column: 1 / -1;
   }
 
-  .split > [data-split-role="media"] { grid-row: 1; }
-  .split > [data-split-role="content"] { grid-row: 2; }
+  .split:not(.split--editorial) > [data-split-role="media"] { grid-row: 1; }
+  .split:not(.split--editorial) > [data-split-role="content"] { grid-row: 2; }
 }
 
-/* Mobile keeps the split linear and media-led, but does not force a square crop.
-   Landscape is the default split ratio; authored ratios remain an art-direction choice. */
+/* Mobile functional splits are predictable: media first, full width and a clear
+   minimum gap. Landscape is only the fallback when no ratio was authored. */
 @include tablet-down {
-  .split {
+  .split:not(.split--editorial) {
     --split-gap: max(2rem, #{$flow-default});
     --split-media-ratio: #{$ratio-landscape};
   }
 
-  .split .media {
+  .split:not(.split--editorial) .media {
     width: 100%;
     max-width: none;
   }
 
-  .split .media:not([data-ratio]) {
+  .split:not(.split--editorial) .media:not([data-ratio]) {
     aspect-ratio: $ratio-landscape;
   }
 
-  .split .media:not([data-ratio]) .media__frame {
+  .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
     width: 100%;
     height: 100%;
     aspect-ratio: $ratio-landscape;
+  }
+
+  /* Editorial mobile is recomposed rather than flattened. Keep authored ratios,
+     widths and offsets available to the section; only provide a safe vertical flow. */
+  .split--editorial {
+    --split-gap: max(2rem, #{$flow-loose});
+    grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .split--editorial > .split__primary,
+  .split--editorial > .split__secondary {
+    min-width: 0;
+  }
+
+  .split--editorial > [data-split-role="media"] { grid-row: 1; }
+  .split--editorial > [data-split-role="content"] { grid-row: 2; }
+
+  .split--editorial .media {
+    max-width: 100%;
+  }
+
+  .split--editorial .media[data-ratio],
+  .split--editorial .media[data-ratio] .media__frame {
+    aspect-ratio: inherit;
   }
 }
 
