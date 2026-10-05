@@ -26,15 +26,15 @@
 #studio-approach > .section__inner { display: grid; align-content: center; width: 100%; max-width: none; }
 #studio-approach .gridReveal { width: 100%; max-width: none; }
 #studio-approach .grid { align-items: start; }
-#studio-approach .grid__item:not(:first-child) .card--editorial { height: 100%; padding: $space-2; }
+// #studio-approach .grid__item:not(:first-child) .card--editorial { height: 100%; padding: $space-2; }
 
 @include tablet-down {
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-3; }
-  #studio-approach .grid__item:first-child .textBlock__title { @include type-heading-lg; max-width: 10ch; }
-  #studio-approach .grid__item:not(:first-child) .card--editorial { @include rule-bottom(16%); height: auto; }
-  #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
+  // #studio-approach .grid__item:first-child .textBlock__title { @include type-heading-lg; max-width: 10ch; }
+  // #studio-approach .grid__item:not(:first-child) .card--editorial { @include rule-bottom(16%); height: auto; }
+  // #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
 
 #studio-founders {
