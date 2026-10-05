@@ -69,17 +69,16 @@
   .textBlock__content { @include type-body-sm; max-width: 26ch; color: color-mix(in srgb, currentColor 68%, transparent); }
 }
 
-/* Nested service offers share one editorial surface language. The small tone
-   shift distinguishes tiers without turning the pair into pricing widgets. */
+/* Nested service offers share one editorial surface language. */
 .section__offers .card--service {
   display: flex;
   height: 100%;
   padding: $space-3;
-  background: color-mix(in srgb, var(--primary) 4%, var(--secondary));
+  background: $color-dark-subtle;
 }
 
 .section__offers .card--service:nth-child(even) {
-  background: color-mix(in srgb, var(--primary) 9%, var(--secondary));
+  background: $color-dark-soft;
 }
 
 .section__offers .card--service .card__body.textBlock {
@@ -152,7 +151,7 @@
 }
 
 .projectCard {
-  .card__mediaWrap { background: color-mix(in srgb, var(--primary) 4%, var(--secondary)); }
+  .card__mediaWrap { background: $color-dark-subtle; }
   .card__body { display: grid; gap: $flow-default; padding: $flow-default; }
   .textBlock, .textBlock__header, .textBlock__content, .textBlock__footer { gap: $flow-tight; }
   .textBlock__content { opacity: $opacity-quiet; }
