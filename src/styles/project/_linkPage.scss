@@ -2,30 +2,28 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
-.linkPageShell,
-.linkPagePanels {
-  width: 100%;
+[data-panel-id="link-campaign-panel"] .sectionGroup__surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-.linkPagePanel {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  min-height: 100svh;
-  background: $color-secondary;
-  color: $color-primary;
+[data-panel-id="link-campaign-panel"] .fractalNoiseCanvas {
+  z-index: 0;
 }
 
-.linkPagePanel__inner {
-  display: flex;
-  align-items: center;
+[data-panel-id="link-campaign-panel"] .linkPage__campaign {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: transparent;
+}
+
+.linkPage__campaign .section__inner {
   width: min(100%, #{$container-max});
-  min-height: 100svh;
-  margin-inline: auto;
-  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
 }
 
-.linkPage__campaignText.textBlock {
+.linkPage__campaign .section__header.textBlock {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
@@ -33,72 +31,55 @@
   max-width: none;
 }
 
-.linkPage__campaignText .textBlock__header,
-.linkPage__campaignText .textBlock__content {
+.linkPage__campaign .textBlock__header,
+.linkPage__campaign .textBlock__content {
   grid-column: 1;
   width: min(100%, #{$container-narrow});
 }
 
-.linkPage__campaignText .textBlock__footer {
+.linkPage__campaign .textBlock__footer {
   grid-column: 2;
   grid-row: 1 / span 2;
   width: 100%;
 }
 
-.linkPage__campaignText .textBlock__title {
+.linkPage__campaign .textBlock__title {
   @include type-display-lg;
   color: $color-accent;
 }
 
-.linkPage__campaignText .textBlock__subtitle p { @include type-ui-compact; }
-.linkPage__campaignText .textBlock__content p { @include type-body-bold; }
-.linkPage__campaignText strong { color: $color-accent; }
+.linkPage__campaign .textBlock__subtitle p {
+  @include type-ui-compact;
+}
 
-.linkPage__campaignText .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
+.linkPage__campaign .textBlock__content p {
+  @include type-body-bold;
+}
+
+.linkPage__campaign strong {
+  color: $color-accent;
+}
+
+.linkPage__campaign .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
   opacity: 0.8;
 }
 
-.linkPagePanel--founder,
-.linkPagePanel--conditions {
-  display: flex;
-  align-items: center;
-}
-
-.linkPagePanel--founder > .section,
-.linkPagePanel--conditions > .section {
-  width: 100%;
-}
-
-.linkPagePanel--conditions .section__header { max-width: $container-narrow; }
-.linkPagePanel--conditions .grid { row-gap: $space-4; }
-.linkPagePanel--conditions .card { max-width: $container-narrow; }
-.linkPagePanel--conditions .textBlock__title { @include type-body-bold; }
-
 @include tablet-down {
-  .linkPagePanel {
-    position: relative;
-    min-height: auto;
-  }
-
-  .linkPagePanel__inner {
-    align-items: flex-start;
-    min-height: 100svh;
-    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
-  }
-
-  .linkPage__campaignText.textBlock {
+  .linkPage__campaign .section__header.textBlock {
     grid-template-columns: 1fr;
     align-content: start;
     align-items: start;
   }
 
-  .linkPage__campaignText .textBlock__header,
-  .linkPage__campaignText .textBlock__content,
-  .linkPage__campaignText .textBlock__footer {
+  .linkPage__campaign .textBlock__header,
+  .linkPage__campaign .textBlock__content,
+  .linkPage__campaign .textBlock__footer {
     grid-column: 1;
     grid-row: auto;
     width: 100%;
   }
 
-  .linkPage__campaignText .textBlock__footer { margin-top: $space-3; }
+  .linkPage__campaign .textBlock__footer {
+    margin-top: $space-3;
+  }
 }
