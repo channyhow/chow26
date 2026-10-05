@@ -18,6 +18,7 @@ import { HomeOpeningScene } from "@/components/section/HomeOpeningScene";
 import { forms } from "@/data";
 import { resolveCollection } from "@/data/resolve";
 import { resolveMedia, resolveMediaList } from "@/data/resolveMedia";
+import { resolveSplitComposition } from "@/data/splitCompositions";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
 import type { CardVariant, MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
@@ -41,6 +42,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const media = mediaItems[0];
   const splitItemMediaRef = splitItem ? (Array.isArray(splitItem.media) ? splitItem.media[0] : splitItem.media) : undefined;
   const splitItemMedia = resolveMedia(splitItemMediaRef);
+  const splitCompositionProps = resolveSplitComposition(block.id, block.splitComposition);
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
   const sectionMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
@@ -102,7 +104,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const textLayer = primary ? (sectionMotionEnabled
       ? <motion.div className="section__splitTextMotion" initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div>
       : <div className="section__splitTextMotion">{primary}</div>) : null;
-    const splitComposition = <Split variant={block.splitVariant} {...block.splitComposition} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
+    const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerCarousel = offers.length > 0
       ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</Carousel>
@@ -114,7 +116,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const profileMedia = resolveMedia(profileMediaRef);
     const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    body = <Split variant={block.splitVariant ?? "media-lead"} {...block.splitComposition} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />} primaryRole="media" secondaryRole="content" />;
+    body = <Split variant={block.splitVariant ?? "media-lead"} {...splitCompositionProps} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />} primaryRole="media" secondaryRole="content" />;
   } else if (layout === "media-overlay") {
     body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" motionEnabled={sectionMotionEnabled} /></div> : null}</div>;
   } else if (layout === "gallery") {
