@@ -138,6 +138,7 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
+/* Tablet stays derived from the desktop composition. */
 @include between($bp-tablet, $bp-desktop) {
   .homeOpeningScene { padding-inline: $page-gutter; }
   .homeOpeningScene__project--identity { grid-column: 1 / span 2; }
@@ -150,13 +151,11 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
-/* Mobile is one sticky viewport composition. The service stack is the visual
-   anchor; project media travels through that anchor before the statement is
-   pulled into view at the end of the opening timeline. */
-@include tablet-down {
-  // #home-opening .section__inner {
-  //   height: 300svh;
-  // }
+/* Only true mobile gets the artboard-inspired sticky sequence. */
+@media (max-width: calc(#{$bp-tablet} - 1px)) {
+  #home-opening .section__inner {
+    height: 300svh;
+  }
 
   .homeOpeningScene {
     display: block;
@@ -177,17 +176,17 @@
 
   .homeOpeningScene__project { align-self: auto; }
 
-  /* First frame deliberately contains only Kuro + Ravine. Atmosphere and the
-     textile project start below the viewport and enter as the scene scrolls. */
+  /* Initial frame: Kuro + Ravine only. The other two projects begin below
+     the viewport and travel upward through the held service stack. */
   .homeOpeningScene__project--web {
-    top: 13%;
+    top: 14%;
     left: $page-gutter;
     width: 68%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--supports {
-    top: 48%;
+    top: 60%;
     right: $page-gutter;
     width: 30%;
     aspect-ratio: $ratio-portrait;
@@ -207,11 +206,9 @@
     aspect-ratio: $ratio-square;
   }
 
-  /* The three links read as one compact block and hold in the middle while
-     media crosses above and below it. */
   .homeOpeningScene__label {
-    left: 25%;
-    width: 50%;
+    left: 22%;
+    width: 56%;
     z-index: $z-floating;
     text-align: center;
     pointer-events: auto;
@@ -239,12 +236,10 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  @include tablet-down {
-    #home-opening .section__inner { height: auto; }
-    .homeOpeningScene {
-      position: relative;
-      height: 100svh;
-    }
+@media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-tablet} - 1px)) {
+  #home-opening .section__inner { height: auto; }
+  .homeOpeningScene {
+    position: relative;
+    height: 100svh;
   }
 }
