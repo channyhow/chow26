@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 
-import type { CardEffect, CardVariant } from "@/types/content";
+import type { CardEffect, CardVariant, ContentSurface } from "@/types/content";
 
 export type CardProps = {
   children: ReactNode;
@@ -12,6 +12,7 @@ export type CardProps = {
   effect?: CardEffect;
   className?: string;
   variant?: CardVariant;
+  surface?: ContentSurface;
 };
 
 export function Card({
@@ -22,6 +23,7 @@ export function Card({
   effect = "none",
   className,
   variant = "default",
+  surface,
 }: CardProps) {
   const cardClassName = clsx(
     "card",
@@ -38,11 +40,12 @@ export function Card({
         className={cardClassName}
         to={href}
         aria-label={label ? `Consulter : ${label}` : "Consulter"}
+        data-surface={surface}
       >
         {children}
       </Link>
     );
   }
 
-  return <article className={cardClassName}>{children}</article>;
+  return <article className={cardClassName} data-surface={surface}>{children}</article>;
 }
