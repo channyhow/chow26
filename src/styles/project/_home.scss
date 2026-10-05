@@ -8,70 +8,145 @@
 
 #home-opening {
   --section-title-width: none;
-  --section-copy-width: 34rem;
+  --section-copy-width: 30rem;
 }
 
 #home-opening .section__scrollScene,
 #home-opening .section__scrollScene > .scrollScene__content,
-#home-opening .section__scrollScene .section__inner,
-#home-opening .section__mediaOverlay {
-  width: 100%;
-}
-
-#home-opening .section__overlayContent {
-  align-items: stretch;
+#home-opening .section__scrollScene .section__inner {
   width: 100%;
   height: 100%;
-  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
 }
 
-#home-opening .section__header.textBlock {
+#home-opening .section__inner {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+#home-opening .section__opening {
   @include site-grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-items: start;
   width: 100%;
-  height: 100%;
+  min-height: 100svh;
+  padding: calc(#{$header-height} + #{$space-3}) var(--project-gutter) $space-4;
+}
+
+#home-opening .section__media {
+  grid-column: 7 / -1;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: stretch;
+  width: 100%;
+  height: min(66svh, 48rem);
+  margin-top: $space-2;
+}
+
+#home-opening .section__media .media__frame,
+#home-opening .section__media .media__asset { height: 100%; }
+
+#home-opening .section__header.textBlock {
+  display: contents;
+  width: 100%;
   max-width: none;
   margin: 0;
 }
 
 #home-opening .textBlock__header {
-  grid-column: 1 / span 10;
+  grid-column: 1 / span 9;
   grid-row: 2;
   align-self: end;
+  z-index: $z-raised;
+  padding-top: $space-4;
 }
 
 #home-opening .textBlock__title {
-  @include type-heading-xl;
-  max-width: none;
-  // font-size: clamp(3.5rem, 6.4vw, 7.25rem);
-  // line-height: 0.92;
-  // letter-spacing: -0.055em;
+  @include type-display-lg;
+  max-width: 15ch;
+  line-height: .94;
+  letter-spacing: -.045em;
   text-wrap: balance;
 }
 
 #home-opening .textBlock__content {
-  grid-column: 8 / -1;
+  grid-column: 1 / span 4;
   grid-row: 1;
   align-self: start;
-  justify-self: end;
   width: 100%;
-  max-width: 34rem;
-  margin-top: clamp(#{$space-3}, 5vh, #{$space-5});
+  max-width: 30rem;
+  margin-top: clamp(#{$space-3}, 7vh, #{$space-5});
+  color: color-mix(in srgb, currentColor 72%, transparent);
 }
 
-@include desktop-up {
+@include between($bp-tablet, $bp-desktop) {
+  #home-opening .section__opening {
+    grid-template-rows: auto 1fr auto;
+    padding-inline: $page-gutter;
+  }
   #home-opening .section__media {
-    align-self: center;
-    justify-self: end;
-    width: 52%;
+    grid-column: 4 / -1;
+    grid-row: 1 / 3;
     height: 54svh;
-    margin-right: var(--project-gutter);
-    margin-top: clamp(#{$space-4}, 8vh, 7rem);
+  }
+  #home-opening .textBlock__content {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    margin-top: $space-3;
+  }
+  #home-opening .textBlock__header {
+    grid-column: 1 / span 7;
+    grid-row: 3;
+  }
+  #home-opening .textBlock__title {
+    font-size: clamp(3.25rem, 7vw, 5.25rem);
+    max-width: 13ch;
+  }
+}
+
+@include tablet-down {
+  #home-opening .section__opening {
+    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
+  }
+}
+
+@include mobile-down {
+  #home-opening .section__opening {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    gap: $space-3;
   }
 
-  #home-opening .section__media .media__frame,
-  #home-opening .section__media .media__asset { height: 100%; }
+  #home-opening .section__media {
+    order: 1;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    aspect-ratio: $ratio-portrait;
+    --media-object-position: center 58%;
+  }
+
+  #home-opening .textBlock__header {
+    order: 2;
+    width: 100%;
+    padding: 0;
+  }
+
+  #home-opening .textBlock__title {
+    font-size: clamp(2.75rem, 11vw, 4.75rem);
+    max-width: 12ch;
+    line-height: .96;
+  }
+
+  #home-opening .textBlock__content {
+    order: 3;
+    width: 100%;
+    max-width: 30rem;
+    margin: 0;
+  }
+
+  #home-opening .section__header.textBlock { display: contents; }
 }
 
 /* Featured work keeps only its intentional editorial composition here.
@@ -103,41 +178,11 @@
 #projects-featured-gallery .section__header .textBlock__footer { padding-top: $flow-default; }
 
 @include between($bp-tablet, $bp-desktop) {
-  #home-opening .section__media {
-    align-self: end;
-    justify-self: end;
-    width: 58%;
-    height: 44svh;
-  }
-
-  #home-opening .section__header.textBlock { align-items: end; }
-  #home-opening .textBlock__header,
-  #home-opening .textBlock__title { grid-column: 1 / span 5; }
-  #home-opening .textBlock__title { font-size: clamp(3.25rem, 7vw, 5.25rem); }
-  #home-opening .textBlock__content {
-    grid-column: 6 / -1;
-    max-width: 24rem;
-    margin-top: 0;
-    align-self: start;
-  }
-
   #projects-featured-gallery .section__header { grid-column: 1 / span 2; }
   #projects-featured-gallery .section__body { grid-column: 1 / -1; }
 }
 
 @include tablet-down {
-  #home-opening .section__overlayContent {
-    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
-  }
-
-  #home-opening .textBlock__header,
-  #home-opening .textBlock__title { grid-column: 1 / -1; }
-  #home-opening .textBlock__title { font-size: clamp(3rem, 10vw, 5.5rem); }
-  #home-opening .textBlock__content {
-    grid-column: 2 / -1;
-    max-width: 30rem;
-  }
-
   #projects-featured-gallery .section__inner { gap: $space-4 $grid-gap; }
   #projects-featured-gallery .section__header,
   #projects-featured-gallery .section__body {
@@ -149,48 +194,6 @@
 }
 
 @include mobile-down {
-  #home-opening .section__mediaOverlay {
-    display: flex;
-    flex-direction: column;
-    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
-    gap: $space-4;
-  }
-
-  #home-opening .section__overlayContent {
-    position: relative;
-    inset: auto;
-    z-index: $z-raised;
-    order: 2;
-    width: 100%;
-    height: auto;
-    padding: 0;
-    align-items: flex-start;
-  }
-
-  #home-opening .section__media {
-    position: relative;
-    inset: auto;
-    z-index: $z-base;
-    order: 1;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    --media-object-position: center 58%;
-  }
-
-  #home-opening .section__header.textBlock {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  #home-opening .textBlock__header { display: block; }
-  #home-opening .textBlock__content {
-    width: 100%;
-    max-width: 30rem;
-    margin-top: $space-3;
-  }
-
   #projects-featured-gallery .section__inner { display: block; }
   #projects-featured-gallery .section__header {
     width: 100%;
