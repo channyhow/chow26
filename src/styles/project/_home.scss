@@ -37,45 +37,12 @@
 
 .homeOpeningScene__project .media,
 .homeOpeningScene__project .media__frame,
-.homeOpeningScene__project .media__asset {
-  width: 100%;
-  height: 100%;
-}
+.homeOpeningScene__project .media__asset { width: 100%; height: 100%; }
 
-.homeOpeningScene__project--identity {
-  grid-column: 2 / span 2;
-  grid-row: 1;
-  width: 76%;
-  aspect-ratio: $ratio-square;
-  align-self: end;
-  margin-bottom: 10svh;
-}
-
-.homeOpeningScene__project--web {
-  grid-column: 4 / span 4;
-  grid-row: 1;
-  width: 100%;
-  aspect-ratio: $ratio-landscape;
-  align-self: center;
-}
-
-.homeOpeningScene__project--web-secondary {
-  grid-column: 9 / span 2;
-  grid-row: 1;
-  width: 88%;
-  aspect-ratio: $ratio-landscape;
-  align-self: end;
-  margin-bottom: 11svh;
-}
-
-.homeOpeningScene__project--supports {
-  grid-column: 11 / span 2;
-  grid-row: 1;
-  width: 76%;
-  aspect-ratio: $ratio-portrait;
-  align-self: center;
-  margin-top: 2svh;
-}
+.homeOpeningScene__project--identity { grid-column: 2 / span 2; grid-row: 1; width: 76%; aspect-ratio: $ratio-square; align-self: end; margin-bottom: 10svh; }
+.homeOpeningScene__project--web { grid-column: 4 / span 4; grid-row: 1; width: 100%; aspect-ratio: $ratio-landscape; align-self: center; }
+.homeOpeningScene__project--web-secondary { grid-column: 9 / span 2; grid-row: 1; width: 88%; aspect-ratio: $ratio-landscape; align-self: end; margin-bottom: 11svh; }
+.homeOpeningScene__project--supports { grid-column: 11 / span 2; grid-row: 1; width: 76%; aspect-ratio: $ratio-portrait; align-self: center; margin-top: 2svh; }
 
 .homeOpeningScene__label {
   position: relative;
@@ -85,34 +52,10 @@
   pointer-events: none;
   will-change: transform, opacity;
 }
-
-.homeOpeningScene__labelLink {
-  text-decoration: none;
-  @include type-lead-bold;
-}
-
-.homeOpeningScene__label--web {
-  grid-column: 2 / span 2;
-  grid-row: 1;
-  align-self: center;
-  margin-top: -22svh;
-}
-
-.homeOpeningScene__label--identity {
-  grid-column: 5 / span 3;
-  grid-row: 1;
-  z-index: $z-floating;
-  align-self: center;
-  margin-top: 60svh;
-  text-align: center;
-}
-
-.homeOpeningScene__label--supports {
-  grid-column: 9 / span 2;
-  grid-row: 1;
-  align-self: center;
-  margin-top: -5svh;
-}
+.homeOpeningScene__labelLink { text-decoration: none; @include type-lead-bold; }
+.homeOpeningScene__label--web { grid-column: 2 / span 2; grid-row: 1; align-self: center; margin-top: -22svh; }
+.homeOpeningScene__label--identity { grid-column: 5 / span 3; grid-row: 1; z-index: $z-floating; align-self: center; margin-top: 60svh; text-align: center; }
+.homeOpeningScene__label--supports { grid-column: 9 / span 2; grid-row: 1; align-self: center; margin-top: -5svh; }
 
 .homeOpeningScene__statement {
   @include type-lead;
@@ -125,42 +68,19 @@
   width: min(100%, $measure-text);
   will-change: transform, opacity;
 }
-
 .homeOpeningScene__statement p { margin: 0; }
-
-.homeOpeningScene__project:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: $space-1;
-}
+.homeOpeningScene__project:focus-visible { outline: 2px solid currentColor; outline-offset: $space-1; }
 
 @include hover {
   .homeOpeningScene__project .media { transition: transform $transition-hover; }
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-@include between($bp-tablet, $bp-desktop) {
-  .homeOpeningScene { padding-inline: $page-gutter; }
-  .homeOpeningScene__project--identity { grid-column: 1 / span 2; }
-  .homeOpeningScene__project--web { grid-column: 4 / span 5; }
-  .homeOpeningScene__project--web-secondary { grid-column: 8 / span 2; }
-  .homeOpeningScene__project--supports { grid-column: 10 / span 3; }
-  .homeOpeningScene__label--web { grid-column: 2 / span 2; }
-  .homeOpeningScene__label--identity { grid-column: 4 / span 4; }
-  .homeOpeningScene__label--supports { grid-column: 8 / span 3; }
-  .homeOpeningScene__statement { grid-column: 5 / span 5; }
-}
-
-/* Mobile has two distinct layers:
-   - .section__inner owns the 300svh scroll runway;
-   - .homeOpeningScene is the 100svh sticky viewport inside it.
-   The media and label wrappers deliberately do not create stacking contexts:
-   individual projects can pass behind or in front of the fixed label plane. */
-@media (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening {
-    height: auto;
-    min-height: 300svh;
-    overflow: visible;
-  }
+/* Phone + tablet share one authored opening scene. The opening is intentionally
+   exempt from the hybrid tablet system: it keeps the sticky mobile choreography
+   and simply gains a little more breathing room on the wider canvas. */
+@media (max-width: calc(#{$bp-desktop} - 1px)) {
+  #home-opening { height: auto; min-height: 300svh; overflow: visible; }
 
   #home-opening .section__inner {
     display: block;
@@ -184,84 +104,27 @@
   }
 
   .homeOpeningScene__media,
-  .homeOpeningScene__labels {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: auto;
-  }
-
+  .homeOpeningScene__labels { display: block; position: absolute; inset: 0; z-index: auto; }
   .homeOpeningScene__labels { pointer-events: none; }
 
   .homeOpeningScene__project,
   .homeOpeningScene__label,
-  .homeOpeningScene__statement {
-    position: absolute;
-    margin: 0;
-  }
+  .homeOpeningScene__statement { position: absolute; margin: 0; }
 
-  .homeOpeningScene__project {
-    align-self: auto;
-    pointer-events: auto;
-  }
-
-  /* Figure / ground rhythm: large web frames recede behind the service labels;
-     the smaller identity/support frames cross the type plane as foreground accents. */
+  .homeOpeningScene__project { align-self: auto; pointer-events: auto; }
   .homeOpeningScene__project--web,
-  .homeOpeningScene__project--web-secondary {
-    z-index: $z-raised;
-  }
-
-  .homeOpeningScene__label {
-    z-index: calc(#{$z-raised} + 1);
-  }
-
+  .homeOpeningScene__project--web-secondary { z-index: $z-raised; }
+  .homeOpeningScene__label { z-index: calc(#{$z-raised} + 1); }
   .homeOpeningScene__project--identity,
-  .homeOpeningScene__project--supports {
-    z-index: calc(#{$z-raised} + 2);
-  }
+  .homeOpeningScene__project--supports { z-index: calc(#{$z-raised} + 2); }
 
-  .homeOpeningScene__project--web {
-    top: 10%;
-    left: 8%;
-    width: 66%;
-    aspect-ratio: $ratio-landscape;
-  }
+  .homeOpeningScene__project--web { top: 10%; left: 8%; width: 66%; aspect-ratio: $ratio-landscape; }
+  .homeOpeningScene__project--identity { top: 68%; right: 11%; width: 39%; aspect-ratio: $ratio-square; }
+  .homeOpeningScene__project--web-secondary { top: 118%; left: 8%; width: 39%; aspect-ratio: $ratio-landscape; }
+  .homeOpeningScene__project--supports { top: 142%; right: 11%; width: 31%; aspect-ratio: $ratio-portrait; }
 
-  .homeOpeningScene__project--identity {
-    top: 68%;
-    right: 11%;
-    width: 39%;
-    aspect-ratio: $ratio-square;
-  }
-
-  .homeOpeningScene__project--web-secondary {
-    top: 118%;
-    left: 8%;
-    width: 39%;
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .homeOpeningScene__project--supports {
-    top: 142%;
-    right: 11%;
-    width: 31%;
-    aspect-ratio: $ratio-portrait;
-  }
-
-  .homeOpeningScene__label {
-    left: 22%;
-    width: 56%;
-    text-align: center;
-    pointer-events: auto;
-  }
-
-  .homeOpeningScene__labelLink {
-    display: block;
-    @include type-body-bold;
-    line-height: 1.05;
-  }
-
+  .homeOpeningScene__label { left: 22%; width: 56%; text-align: center; pointer-events: auto; }
+  .homeOpeningScene__labelLink { display: block; @include type-body-bold; line-height: 1.05; }
   .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
   .homeOpeningScene__label--identity { top: calc(50% - .525em); }
   .homeOpeningScene__label--supports { top: calc(50% + .525em); }
@@ -278,18 +141,17 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening {
-    min-height: 100svh;
-  }
+@include between($bp-tablet, $bp-desktop) {
+  .homeOpeningScene__project--web { left: 10%; width: 58%; }
+  .homeOpeningScene__project--identity { right: 12%; width: 31%; }
+  .homeOpeningScene__project--web-secondary { left: 10%; width: 34%; }
+  .homeOpeningScene__project--supports { right: 12%; width: 25%; }
+  .homeOpeningScene__label { left: 28%; width: 44%; }
+  .homeOpeningScene__statement { max-width: 26rem; }
+}
 
-  #home-opening .section__inner {
-    height: 100svh;
-    min-height: 100svh;
-  }
-
-  .homeOpeningScene {
-    position: relative;
-    height: 100svh;
-  }
+@media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-desktop} - 1px)) {
+  #home-opening { min-height: 100svh; }
+  #home-opening .section__inner { height: 100svh; min-height: 100svh; }
+  .homeOpeningScene { position: relative; height: 100svh; }
 }
