@@ -10,17 +10,20 @@
 }
 
 /* Case-study media uses one editorial portrait frame. */
-.projectDetail .media__frame {
+.projectDetail .split .media{
   aspect-ratio: $ratio-portrait;
+  max-height: 25rem;
+  object-fit: cover;
+  object-position: center center;
 }
 
-.projectDetail .media__asset,
-.projectDetail .media img,
-.projectDetail .media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+// .projectDetail .media__asset,
+// .projectDetail .media img,
+// .projectDetail .media video {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
 
 .projectHero {
   --section-space: 0;
