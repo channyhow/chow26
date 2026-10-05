@@ -66,25 +66,27 @@
   .split > [data-split-role="content"] { grid-row: 2; }
 }
 
-/* Mobile has one invariant regardless of authored split variant:
-   full-width square media first, content second. */
+/* Mobile keeps the split linear and media-led, but does not force a square crop.
+   Landscape is the default split ratio; authored ratios remain an art-direction choice. */
 @include tablet-down {
   .split {
-    --split-media-ratio: #{$ratio-square};
+    --split-gap: max(2rem, #{$flow-default});
+    --split-media-ratio: #{$ratio-landscape};
   }
 
-  .split .media,
-  .split .media[data-ratio] {
+  .split .media {
     width: 100%;
     max-width: none;
-    aspect-ratio: $ratio-square;
   }
 
-  .split .media[data-ratio] .media__frame,
-  .split .media__frame {
+  .split .media:not([data-ratio]) {
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .split .media:not([data-ratio]) .media__frame {
     width: 100%;
     height: 100%;
-    aspect-ratio: $ratio-square;
+    aspect-ratio: $ratio-landscape;
   }
 }
 
