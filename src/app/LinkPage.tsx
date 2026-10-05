@@ -29,7 +29,7 @@ export function LinkPage({ page }: LinkPageProps) {
   const reduceMotion = Boolean(useReducedMotion());
   const [hoverMode, setHoverMode] = useState<"idle" | "contrast" | "accent">("idle");
   const footer = resolveSection(page.blocks[1]);
-  const { navigation, founder, conditions } = linkPageData as LinkPageData;
+  const { navigation, founder } = linkPageData as LinkPageData;
 
   if (!footer) return null;
 
@@ -82,7 +82,7 @@ export function LinkPage({ page }: LinkPageProps) {
 
       <div className="linkPage__continuation">
         <Section block={founder} />
-        <Section block={conditions} />
+        {/* <Section block={conditions} /> */}
       </div>
 
       <SiteFooter block={footer} />

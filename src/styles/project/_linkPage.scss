@@ -38,6 +38,10 @@
   max-width: none;
 }
 
+.textBlock__content p:last-child:not(:only-child) .textBlock__copy {
+  opacity: 0.8;
+}
+
 .linkPage__campaignText .textBlock__header,
 .linkPage__campaignText .textBlock__content {
   grid-column: 1;
