@@ -9,18 +9,17 @@
   --project-media-measure: 34rem;
 }
 
-/* Case-study media keeps its source ratio. Layout controls its measure rather
-   than cropping every asset into one editorial frame. */
+/* Case-study media uses one editorial portrait frame. */
 .projectDetail .media__frame {
-  aspect-ratio: auto;
+  aspect-ratio: $ratio-portrait;
 }
 
 .projectDetail .media__asset,
 .projectDetail .media img,
 .projectDetail .media video {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 
 .projectHero {
