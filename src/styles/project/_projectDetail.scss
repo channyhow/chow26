@@ -49,9 +49,9 @@
 .projectRelated .projectCard .textBlock__content { opacity: 1; }
 .projectRelated .projectCard .textBlock__content p { @include type-heading-sm; color: currentColor; }
 
-/* Tablet preserves case-study composition on the 8-column system. Hero/story
-   media leads at 5 columns with a compact 3-column narrative rather than
-   collapsing into the phone stack. */
+/* Tablet uses an editorial stack: full-width media first, then narrative.
+   The text stays readable rather than being squeezed into three columns, while
+   metadata uses two columns to retain some desktop structure. */
 @include between($bp-tablet, $bp-desktop) {
   .projectDetail { --project-media-measure: 100%; --project-measure: 100%; }
 
@@ -60,13 +60,24 @@
   .projectStoryText .section__inner { padding-block: $space-4; }
 
   .projectHero .split,
-  .projectStoryMedia .split { gap: $space-3; }
+  .projectStoryMedia .split {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: $space-4 var(--grid-gap);
+    align-items: start;
+  }
 
   .projectHero .split > [data-split-role="media"],
-  .projectStoryMedia .split > [data-split-role="media"] { grid-column: 1 / span 5; }
+  .projectStoryMedia .split > [data-split-role="media"] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
 
   .projectHero .split > [data-split-role="content"],
-  .projectStoryMedia .split > [data-split-role="content"] { grid-column: 6 / span 3; }
+  .projectStoryMedia .split > [data-split-role="content"] {
+    grid-column: 2 / span 6;
+    grid-row: 2;
+  }
 
   .projectDetail .split .media,
   .projectHero .media,
@@ -78,9 +89,21 @@
     aspect-ratio: $ratio-landscape;
   }
 
-  .projectDetail .split .media__frame { width: 100%; height: 100%; max-height: none; aspect-ratio: $ratio-landscape; }
-  .projectHero .textBlock__meta { display: grid; grid-template-columns: 1fr; }
-  .projectHero .textBlock__meta > * { white-space: normal; }
+  .projectDetail .split .media__frame {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .projectHero .textBlock__meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: $space-3;
+    align-items: start;
+  }
+
+  .projectHero .textBlock__meta > * { min-width: 0; white-space: normal; }
 }
 
 @include tablet-down {
