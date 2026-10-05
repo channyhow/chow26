@@ -29,10 +29,10 @@
   z-index: $z-floating;
   align-self: center;
   margin: 0;
-  font-size: clamp(2.1rem, 2.8vw, 3.45rem);
-  font-weight: $font-weight-semibold;
-  line-height: .98;
-  letter-spacing: -.035em;
+  // font-size: clamp(2.1rem, 2.8vw, 3.45rem);
+  // font-weight: $font-weight-semibold;
+  // line-height: .98;
+  // letter-spacing: -.035em;
   pointer-events: none;
 }
 
@@ -100,9 +100,9 @@
   z-index: $z-floating;
   align-self: center;
   max-width: 9rem;
-  font-size: $font-size-xs;
+  font-size: $type-lead;
   font-weight: $font-weight-semibold;
-  line-height: 1.05;
+  // line-height: 1.05;
   text-transform: none;
   pointer-events: none;
 }
@@ -137,8 +137,8 @@
   align-self: center;
   width: min(100%, 25rem);
   margin-top: 30svh;
-  font-size: $font-size-sm;
-  line-height: 1.35;
+  // font-size: $type-body;
+  // line-height: 1.35;
   will-change: transform, opacity;
 }
 
@@ -208,7 +208,7 @@
     grid-row: 4;
     width: min(100%, 27rem);
     margin: $space-3 0 0;
-    font-size: $font-size-sm;
+    // font-size: $type-body;
   }
 }
 
