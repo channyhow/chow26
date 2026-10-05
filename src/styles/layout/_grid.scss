@@ -83,7 +83,8 @@
   .gridReveal__more:hover .gridReveal__moreIcon { transform: translateY(0.2rem); }
 }
 
-/* Mobile is intentionally linear. Editorial placement never overrides source order. */
+/* Phone layouts stay deliberately linear. Tablet gets its own compact editorial
+   density instead of inheriting either the one-column phone or desktop grid. */
 @include tablet-down {
   .grid--editorial {
     grid-template-columns: minmax(0, 1fr);
@@ -99,7 +100,9 @@
 }
 
 @include tablet-up {
-  .grid:not(.grid--editorial) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid:not(.grid--editorial) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 
   .grid--editorial > .grid__item {
     grid-column: var(--grid-column-tablet, var(--grid-column-mobile, auto));
@@ -110,7 +113,9 @@
 }
 
 @include desktop-up {
-  .grid:not(.grid--editorial) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid:not(.grid--editorial) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 
   .grid--editorial > .grid__item {
     grid-column: var(--grid-column-desktop, var(--grid-column-tablet, var(--grid-column-mobile, auto)));
