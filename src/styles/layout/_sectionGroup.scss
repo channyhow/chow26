@@ -84,7 +84,7 @@
    Margin extends the sticky runway without changing the panel's measured height
    or its sticky-top calculation. */
 .sectionGroup__panel[data-panel-id="home-opening-panel"] {
-  margin-bottom: 45svh;
+  margin-bottom: 200svh;
 }
 
 @include desktop-up {
