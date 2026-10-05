@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import type { MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
@@ -9,6 +10,7 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
+  scrollProgress?: MotionValue<number>;
 };
 
 const openingProjects = [
@@ -43,8 +45,7 @@ const renderInlineStrong = (value: string): ReactNode[] => value
     return strong ? <strong key={`${text}-${index}`}>{text}</strong> : <span key={`${text}-${index}`}>{text}</span>;
   });
 
-export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
-  const ref = useRef<HTMLDivElement>(null);
+export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const statementRef = useRef<HTMLDivElement>(null);
@@ -54,8 +55,6 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    let frame = 0;
-
     const labelTiming = [
       [0.04, 0.12, 0.66, 0.78, 12, -30],
       [0.1, 0.18, 0.7, 0.82, 12, -38],
@@ -68,15 +67,8 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       [0.12, 0.24, 0.6, 0.78, 0.06, 28, -176],
     ] as const;
 
-    const update = () => {
-      frame = 0;
-      const scene = ref.current;
-      if (!scene) return;
-
-      const rect = scene.getBoundingClientRect();
-      const viewportHeight = Math.max(window.innerHeight, 1);
-      const travel = Math.max(rect.height + viewportHeight, 1);
-      const progress = clamp01((viewportHeight - rect.top) / travel);
+    const update = (rawProgress: number) => {
+      const progress = clamp01(rawProgress);
 
       labelRefs.current.forEach((element, index) => {
         const timing = labelTiming[index];
@@ -107,23 +99,17 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       }
     };
 
-    const scheduleUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
+    if (!scrollProgress) {
+      update(0);
+      return;
+    }
 
-    scheduleUpdate();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-
-    return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
+    update(scrollProgress.get());
+    return scrollProgress.on("change", update);
+  }, [scrollProgress]);
 
   return (
-    <div ref={ref} className="homeOpeningScene">
+    <div className="homeOpeningScene">
       <nav className="homeOpeningScene__labels" aria-label="Services Chow Studio">
         {openingServices.map((service, index) => (
           <div
