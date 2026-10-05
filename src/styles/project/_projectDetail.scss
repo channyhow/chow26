@@ -9,21 +9,14 @@
   --project-media-measure: 34rem;
 }
 
-/* Case-study media uses one editorial portrait frame. */
-.projectDetail .split .media{
+/* Case-study split media keeps an editorial portrait frame until the mobile
+   layout contract takes over. */
+.projectDetail .split .media {
   aspect-ratio: $ratio-portrait;
   max-height: 25rem;
   object-fit: cover;
   object-position: center center;
 }
-
-// .projectDetail .media__asset,
-// .projectDetail .media img,
-// .projectDetail .media video {
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
 
 .projectHero {
   --section-space: 0;
@@ -55,8 +48,6 @@
   max-width: var(--project-measure);
 }
 
-/* Project names carry the display treatment; secondary section titles remain
-   one step quieter so the case-study hierarchy stays clear. */
 .projectHero .textBlock__title {
   @include type-display-lg;
   max-width: 10ch;
@@ -73,7 +64,6 @@
   margin-top: $space-2;
 }
 
-/* Hero facts are intentionally presented as compact project chips. */
 .projectHero .textBlock__meta {
   @include type-ui-compact;
   @include meta-chips($space-1 $space-3);
@@ -103,8 +93,6 @@
 .projectStoryText,
 .projectCta { --section-space: $space-5; }
 
-/* Section renders story copy as split primary and media as split secondary.
-   Alternate their grid placement here instead of relying on DOM order. */
 .projectStoryMedia {
   --split-primary-column: 2 / span 4;
   --split-secondary-column: 7 / span 5;
@@ -118,14 +106,11 @@
 .projectStoryMedia .section__inner,
 .projectStoryText .section__inner { padding-block: $space-5; }
 
-/* Story rhythm is intentionally more generous than generic body copy. */
 .projectStoryMedia .textBlock__content,
 .projectStoryText .textBlock__content { gap: $space-3; }
 
 .projectStoryMedia .textBlock__content p,
-.projectStoryText .textBlock__content p {
-  @include type-lead;
-}
+.projectStoryText .textBlock__content p { @include type-lead; }
 
 .projectStoryMedia strong,
 .projectStoryText strong {
@@ -138,11 +123,7 @@
   max-width: none;
 }
 
-/* Related projects are a compact recommendation set. Their changed ratio is
-   owned by the card wrapper; every asset fills that frame consistently. */
-.projectRelated .projectCard .card__mediaWrap {
-  aspect-ratio: $ratio-wide;
-}
+.projectRelated .projectCard .card__mediaWrap { aspect-ratio: $ratio-wide; }
 
 .projectRelated .projectCard .card__media,
 .projectRelated .projectCard .media__frame {
@@ -159,15 +140,12 @@
   object-fit: cover;
 }
 
-/* Reverse the related-card hierarchy: project descriptor leads, name supports. */
 .projectRelated .projectCard .textBlock__title {
   @include type-body;
   color: color-mix(in srgb, currentColor 34%, transparent);
 }
 
-.projectRelated .projectCard .textBlock__content {
-  opacity: 1;
-}
+.projectRelated .projectCard .textBlock__content { opacity: 1; }
 
 .projectRelated .projectCard .textBlock__content p {
   @include type-heading-sm;
@@ -195,6 +173,25 @@
 }
 
 @include tablet-down {
+  .projectDetail { --project-media-measure: 100%; }
+
+  .projectDetail .split .media,
+  .projectHero .media,
+  .projectStoryMedia .media {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin-inline: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  .projectDetail .split .media__frame {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: $ratio-square;
+  }
+
   .projectHero .section__inner { padding-top: calc(#{$space-4} + #{$header-height}); }
 
   .projectHero .textBlock__meta {
