@@ -68,7 +68,7 @@
   .textBlock__title {
   @include type-display-lg;
   max-width: none;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 }
 
 :is(#cgv-default, #legal-notice-default, #privacy-default)

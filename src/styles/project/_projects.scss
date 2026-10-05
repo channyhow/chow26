@@ -20,7 +20,6 @@
 #project-gallery .section__header .textBlock__title {
   @include type-display-lg;
   max-width: var(--section-title-width);
-  text-transform: uppercase;
 }
 
 @include tablet-down {
