@@ -76,17 +76,17 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-/* Phone + tablet share one authored opening scene. Keep the runway compact so
-   the final statement hands off to the following panel without a dead scroll tail. */
+/* Phone + tablet share one authored opening scene. Mobile gets a slightly
+   longer runway so the layered media choreography reads rather than rushes. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening { height: auto; min-height: 250svh; overflow: visible; }
+  #home-opening { height: auto; min-height: 280svh; overflow: visible; }
 
   #home-opening .section__inner {
     display: block;
     flex: none;
     width: 100%;
-    height: 250svh;
-    min-height: 250svh;
+    height: 280svh;
+    min-height: 280svh;
     margin: 0;
     overflow: visible;
   }
