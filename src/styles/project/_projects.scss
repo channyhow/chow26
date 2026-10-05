@@ -25,23 +25,25 @@
 
 @include tablet-down {
   #project-gallery {
-    --section-gap: #{$space-5};
+    --section-gap: #{$mobile-section-space};
   }
 
   #project-gallery > .section__inner {
-    padding-top: calc(#{$header-height} + #{$space-5});
-    padding-bottom: $space-5;
+    padding-top: calc(#{$header-height} + #{$mobile-section-space});
+    padding-bottom: $mobile-section-space;
   }
 
   #project-gallery .section__header {
-    margin-bottom: $space-5;
+    margin-bottom: $mobile-section-space;
   }
 
+  /* Repeated projects need clear separation, but not the cinematic pause used
+     by editorial media/text splits. */
   #project-gallery .gridReveal {
-    gap: $space-5;
+    gap: $mobile-gap-block;
   }
 
   #project-gallery .grid {
-    row-gap: $space-5;
+    row-gap: $mobile-gap-block;
   }
 }
