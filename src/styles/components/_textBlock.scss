@@ -30,9 +30,14 @@
   .textBlock__metaValue { @include type-caption; min-width: 0; text-transform: uppercase; }
 }
 
-@include tablet-down {
-  .textBlock--meta-rows .textBlock__meta > * { grid-template-columns: minmax(7rem, auto) minmax(0, 1fr); align-items: baseline; gap: $flow-default; }
+@include between($bp-tablet, $bp-desktop) {
+  .textBlock--meta-rows .textBlock__meta > * {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: $space-1;
+  }
 }
+
 @include mobile-down {
   .textBlock--meta-rows {
     .textBlock__meta { margin-top: $space-2; }
