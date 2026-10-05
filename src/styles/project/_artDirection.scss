@@ -23,7 +23,9 @@
   --section-gap: var(--project-section-gap);
 }
 
-.carousel { --carousel-media-ratio: #{$ratio-landscape}; }
+.carousel {
+  --carousel-media-ratio: #{$ratio-landscape};
+}
 
 /* Conversion section: asymmetry creates hierarchy without adding containers
    or decorative separation. */
@@ -31,20 +33,30 @@
   min-height: 100svh;
   --split-primary-column: 1 / span 5;
   --split-secondary-column: 8 / -1;
-}
-#contact-default .split { align-items: start; }
 
-/* On smaller screens the contact introduction should establish context before
-   the form. The generic split remains media-led elsewhere. */
-@include desktop-down {
-  #contact-default .split > [data-split-role="content"] { grid-row: 1; }
-  #contact-default .split > [data-split-role="media"] { grid-row: 2; }
+  .split {
+    align-items: start;
+  }
+
+  /* Establish context before asking for input on tablet and mobile while
+     leaving the shared Split reading order untouched. */
+  @include desktop-down {
+    .split > [data-split-role="content"] {
+      grid-row: 1;
+    }
+
+    .split > [data-split-role="media"] {
+      grid-row: 2;
+    }
+  }
 }
 
 /* Project browsing is intentionally tighter than narrative sections so cards
    read as one continuous family. */
 #projects-featured,
-#project-gallery { --section-space: var(--project-section-space-compact); }
+#project-gallery {
+  --section-space: var(--project-section-space-compact);
+}
 
 @include mobile-down {
   /* Non-featured project headings intentionally use the full mobile measure
@@ -52,7 +64,9 @@
   .section[data-source="projects"]:not([data-featured="true"])
     .section__header.textBlock
     .textBlock__title,
-  #project-gallery .textBlock__header .textBlock__title { max-width: none; }
+  #project-gallery .textBlock__header .textBlock__title {
+    max-width: none;
+  }
 }
 
 /* Legal documents share one editorial hierarchy: generous title scale,
@@ -64,34 +78,30 @@
   --section-title-width: none;
   --section-title-width-mobile: none;
   --section-copy-width: none;
-}
 
-:is(#cgv-default, #legal-notice-default, #privacy-default) .section__header {
-  max-width: none;
-  margin-top:$space-4;
+  .section__header {
+    max-width: none;
+    margin-top: $space-4;
 
-}
+    .textBlock__title {
+      @include type-display-lg;
+      max-width: none;
+    }
 
-:is(#cgv-default, #legal-notice-default, #privacy-default)
-  .section__header
-  .textBlock__title {
-  @include type-display-lg;
-  max-width: none;
-  // text-transform: uppercase;
-}
-
-#cgv-default, #legal-notice-default, #privacy-default {
-  .grid { grid-template-columns: 1fr;
-  .textBlock {max-width: none; }
+    .textBlock__content {
+      max-width: none;
+    }
   }
-}
 
-:is(#cgv-default, #legal-notice-default, #privacy-default)
-  .section__header
-  .textBlock__content {
-  max-width: none;
-}
+  .grid {
+    grid-template-columns: 1fr;
 
-:is(#cgv-default, #legal-notice-default, #privacy-default) .card__body {
-  padding-inline: 0;
+    .textBlock {
+      max-width: none;
+    }
+  }
+
+  .card__body {
+    padding-inline: 0;
+  }
 }
