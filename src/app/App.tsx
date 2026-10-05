@@ -31,24 +31,40 @@ function ScrollManager() {
     const id = decodeURIComponent(hash.slice(1));
     let frame = 0;
     let attempts = 0;
+    const settleTimers: number[] = [];
 
-    const scrollToTarget = () => {
+    const positionTarget = () => {
       const target = document.getElementById(id);
-      if (!target) {
+      if (!target) return false;
+
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: targetTop, left: 0, behavior: "auto" });
+      return true;
+    };
+
+    const findTarget = () => {
+      if (!positionTarget()) {
         attempts += 1;
-        if (attempts < 24) frame = window.requestAnimationFrame(scrollToTarget);
+        if (attempts < 30) frame = window.requestAnimationFrame(findTarget);
         return;
       }
 
-      const targetTop = target.getBoundingClientRect().top + window.scrollY;
-      const isPanel = target.classList.contains("sectionGroup__panel");
-      window.scrollTo({ top: targetTop + (isPanel ? 2 : 0), left: 0, behavior: "auto" });
+      // Panels can change height after route mount while fonts/media resolve.
+      // Re-anchor briefly so the requested sticky panel, not its predecessor,
+      // remains the active panel after layout has settled.
+      [80, 220, 500].forEach((delay) => {
+        settleTimers.push(window.setTimeout(positionTarget, delay));
+      });
     };
 
     frame = window.requestAnimationFrame(() => {
-      frame = window.requestAnimationFrame(scrollToTarget);
+      frame = window.requestAnimationFrame(findTarget);
     });
-    return () => window.cancelAnimationFrame(frame);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      settleTimers.forEach(window.clearTimeout);
+    };
   }, [pathname, hash]);
 
   return null;
