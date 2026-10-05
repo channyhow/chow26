@@ -33,12 +33,33 @@ function normalizePath(pathname: string) {
   return pathname.replace(/\/+$/, "");
 }
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      return;
+    }
+
+    const id = decodeURIComponent(hash.slice(1));
+    let frame = 0;
+    let attempts = 0;
+
+    const scrollToTarget = () => {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ block: "start", behavior: "auto" });
+        return;
+      }
+
+      attempts += 1;
+      if (attempts < 12) frame = window.requestAnimationFrame(scrollToTarget);
+    };
+
+    frame = window.requestAnimationFrame(scrollToTarget);
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -79,7 +100,7 @@ export function App() {
 
   return (
     <SiteShell>
-      <ScrollToTop />
+      <ScrollManager />
       <AnimatePresence>{showInitialLoader && <RouteLoader />}</AnimatePresence>
       <div className="routeTransition" key={location.pathname}>
         <Routes location={location}>
