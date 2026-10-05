@@ -60,7 +60,6 @@
   max-width: 10ch;
 }
 
-.projectRelated .textBlock__title,
 .projectCta .textBlock__title {
   @include type-heading-md;
   max-width: 22ch;
@@ -155,6 +154,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Reverse the related-card hierarchy: project descriptor leads, name supports. */
+.projectRelated .projectCard .textBlock__title {
+  @include type-body;
+  color: color-mix(in srgb, currentColor 34%, transparent);
+}
+
+.projectRelated .projectCard .textBlock__content {
+  opacity: 1;
+}
+
+.projectRelated .projectCard .textBlock__content p {
+  @include type-heading-sm;
+  color: currentColor;
 }
 
 @include desktop-down {
