@@ -46,9 +46,45 @@
   }
 }
 
-@include desktop-down {
+/* Tablet is a compact media-led composition, not oversized mobile. Splits stay
+   linear for reliable reading order, but media always owns the first beat and
+   uses the full available field. */
+@include between($bp-tablet, $bp-desktop) {
+  .split {
+    --split-gap: #{$space-5};
+    grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
+    column-gap: $grid-gap;
+    row-gap: var(--split-gap);
+    align-items: start;
+  }
+
+  .split > .split__primary,
+  .split > .split__secondary {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+  }
+
+  .split > [data-split-role="media"] { grid-row: 1; }
+  .split > [data-split-role="content"] { grid-row: 2; }
+
+  .split .media {
+    width: 100%;
+    max-width: none;
+  }
+
+  .split:not(.split--editorial) .media:not([data-ratio]),
+  .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+}
+
+/* Phone layouts stay linear and inherit the larger mobile rhythm established
+   in the responsive foundation. */
+@include tablet-down {
   .split:not(.split--editorial) {
     --split-gap: #{$mobile-gap-block};
+    --split-media-ratio: #{$ratio-landscape};
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
@@ -60,13 +96,6 @@
 
   .split:not(.split--editorial) > [data-split-role="media"] { grid-row: 1; }
   .split:not(.split--editorial) > [data-split-role="content"] { grid-row: 2; }
-}
-
-@include tablet-down {
-  .split:not(.split--editorial) {
-    --split-gap: #{$mobile-gap-block};
-    --split-media-ratio: #{$ratio-landscape};
-  }
 
   .split:not(.split--editorial) .media {
     width: 100%;
@@ -83,9 +112,6 @@
     aspect-ratio: $ratio-landscape;
   }
 
-  /* Editorial mobile is an authored 4-column composition, not a flattened split.
-     It gets the largest rhythm step: media and copy should read as successive beats,
-     not as two tightly coupled fields. */
   .split--editorial {
     --split-gap: #{$mobile-gap-editorial};
     grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
