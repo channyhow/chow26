@@ -29,11 +29,6 @@ const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
 const smoothstep = (value: number) => value * value * (3 - 2 * value);
 const range = (progress: number, start: number, end: number) => smoothstep(clamp01((progress - start) / Math.max(end - start, 0.001)));
-const hold = (progress: number, enterStart: number, enterEnd: number, exitStart: number, exitEnd: number) => {
-  const enter = range(progress, enterStart, enterEnd);
-  const exit = 1 - range(progress, exitStart, exitEnd);
-  return Math.min(enter, exit);
-};
 
 const renderInlineStrong = (value: string): ReactNode[] => value
   .split(/(\*\*[^*]+\*\*)/g)
@@ -54,54 +49,62 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    const labelTiming = [
-      [0.04, 0.12, 0.66, 0.78, 12, -30],
-      [0.1, 0.18, 0.7, 0.82, 12, -38],
-      [0.16, 0.24, 0.62, 0.74, 12, -34],
-    ] as const;
-    const mediaTiming = [
-      [0, 0.12, 0.64, 0.82, 0.12, 22, -118],
-      [0.04, 0.16, 0.72, 0.94, 0.12, 18, -156],
-      [0.08, 0.2, 0.68, 0.88, 0.08, 24, -136],
-      [0.12, 0.24, 0.6, 0.78, 0.06, 28, -176],
-    ] as const;
+    // Four clear beats:
+    // 1. media + labels resolve into the opening composition
+    // 2. they rise away together and pull the statement into the centre
+    // 3. the statement holds on its own
+    // 4. the statement fades only as the following panel is due to take over
+    const labelEntrance = [0.04, 0.09, 0.14] as const;
+    const mediaEntrance = [0, 0.035, 0.07, 0.105] as const;
+    const mediaInitialOpacity = [0.12, 0.12, 0.08, 0.06] as const;
+    const mediaStartY = [22, 18, 24, 28] as const;
+    const mediaExitY = [-150, -190, -168, -210] as const;
+    const labelExitY = [-72, -88, -80] as const;
 
     const update = (rawProgress: number) => {
       const progress = clamp01(rawProgress);
+      const rise = range(progress, 0.34, 0.58);
 
       labelRefs.current.forEach((element, index) => {
-        const timing = labelTiming[index];
-        if (!element || !timing) return;
-        const [enterStart, enterEnd, exitStart, exitEnd, startY, exitY] = timing;
-        const enter = range(progress, enterStart, enterEnd);
-        const exit = range(progress, exitStart, exitEnd);
-        element.style.opacity = String(hold(progress, enterStart, enterEnd, exitStart, exitEnd));
-        element.style.transform = `translate3d(0, ${lerp(lerp(startY, 0, enter), exitY, exit)}px, 0)`;
+        if (!element) return;
+        const enter = range(progress, labelEntrance[index] ?? 0.04, (labelEntrance[index] ?? 0.04) + 0.09);
+        const exit = range(progress, 0.38 + index * 0.018, 0.56 + index * 0.018);
+        const y = lerp(lerp(12, 0, enter), labelExitY[index] ?? -80, rise);
+        element.style.opacity = String(enter * (1 - exit));
+        element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
       projectRefs.current.forEach((element, index) => {
-        const timing = mediaTiming[index];
-        if (!element || !timing) return;
-        const [enterStart, enterEnd, exitStart, exitEnd, initialOpacity, startY, exitY] = timing;
-        const enter = range(progress, enterStart, enterEnd);
-        const exit = range(progress, exitStart, exitEnd);
-        const visibleOpacity = lerp(initialOpacity, 1, enter);
-        element.style.opacity = String(lerp(visibleOpacity, 0, exit));
-        element.style.transform = `translate3d(0, ${lerp(lerp(startY, 0, enter), exitY, exit)}px, 0)`;
+        if (!element) return;
+        const enterStart = mediaEntrance[index] ?? 0;
+        const enter = range(progress, enterStart, enterStart + 0.12);
+        const exit = range(progress, 0.35 + index * 0.018, 0.57 + index * 0.018);
+        const visibleOpacity = lerp(mediaInitialOpacity[index] ?? 0.08, 1, enter);
+        const y = lerp(
+          lerp(mediaStartY[index] ?? 22, 0, enter),
+          mediaExitY[index] ?? -170,
+          rise,
+        );
+        element.style.opacity = String(visibleOpacity * (1 - exit));
+        element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
       const statement = statementRef.current;
       if (statement) {
-        const reveal = range(progress, 0.72, 0.86);
-        statement.style.opacity = String(reveal);
-        statement.style.transform = `translate3d(0, ${lerp(22, 0, reveal)}px, 0)`;
+        const reveal = range(progress, 0.38, 0.58);
+        const fade = range(progress, 0.88, 0.98);
+        const statementY = lerp(52, 0, reveal);
+        statement.style.opacity = String(reveal * (1 - fade));
+        statement.style.transform = `translate3d(0, ${statementY}px, 0)`;
       }
     };
 
     let frame = 0;
     const resolveOpeningState = () => {
       frame = 0;
-      const scrollDistance = Math.max(window.innerHeight * 1.6, 1);
+      // The opening has a deliberately long runway (currently 200svh), so use
+      // a matching scroll distance. This leaves a genuine statement-only hold.
+      const scrollDistance = Math.max(window.innerHeight * 2, 1);
       update(window.scrollY / scrollDistance);
     };
     const scheduleResolve = () => {
