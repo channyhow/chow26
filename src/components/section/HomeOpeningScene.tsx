@@ -51,7 +51,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobile = window.matchMedia("(max-width: 64rem)");
+    const mobile = window.matchMedia("(max-width: 47.999rem)");
 
     const resetInlineStyles = () => {
       [...labelRefs.current, ...projectRefs.current, statementRef.current].forEach((element) => {
@@ -96,39 +96,31 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
     };
 
     const updateMobile = (progress: number) => {
-      /* Media travels through a stationary service stack. The offsets are
-         deliberately asymmetric so each scroll beat resembles a new artboard,
-         rather than four cards moving as one grid. */
-      const travel = range(progress, 0.02, 0.76);
-      const mediaTravel = [-150, -185, -205, -230] as const;
+      const mediaTravel = [-165, -150, -220, -190] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
         const stagger = index * 0.025;
         const localTravel = range(progress, 0.02 + stagger, 0.74 + stagger);
-        const y = lerp(18, (mediaTravel[index] ?? -190) * window.innerHeight / 100, localTravel);
-        const fade = range(progress, 0.7 + stagger, 0.86 + stagger);
+        const y = lerp(0, (mediaTravel[index] ?? -190) * window.innerHeight / 100, localTravel);
+        const fade = range(progress, 0.76 + stagger, 0.9 + stagger);
         element.style.opacity = String(1 - fade);
         element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
-      /* Services remain centred for most of the scene. Only once the media has
-         passed do they release upward, visually pulling the statement after them. */
-      const release = range(progress, 0.7, 0.84);
+      const release = range(progress, 0.72, 0.86);
       labelRefs.current.forEach((element) => {
         if (!element) return;
-        element.style.opacity = String(1 - range(progress, 0.79, 0.88));
+        element.style.opacity = String(1 - range(progress, 0.8, 0.9));
         element.style.transform = `translate3d(0, ${lerp(0, -34, release)}svh, 0)`;
       });
 
       if (statementRef.current) {
         const reveal = range(progress, 0.74, 0.88);
-        const settle = range(progress, 0.82, 0.94);
+        const settle = range(progress, 0.8, 0.94);
         statementRef.current.style.opacity = String(reveal);
         statementRef.current.style.transform = `translate3d(0, ${lerp(32, -4, settle)}svh, 0)`;
       }
-
-      void travel;
     };
 
     let frame = 0;
