@@ -22,23 +22,9 @@
   min-width: 0;
 }
 
-/* Split scenes move as one composition. The scroll transform belongs to this
-   wrapper only; the grid columns themselves never become motion containers. */
-.section__splitScrollLayer .scrollScene__content {
-  transform-origin: center top;
-}
-
-.scrollScene__content {
-  position: relative;
-  z-index: $z-raised;
-}
-
-.scrollScene__decor {
-  position: absolute;
-  inset: 0;
-  z-index: $z-base;
-  pointer-events: none;
-}
+.section__splitScrollLayer .scrollScene__content { transform-origin: center top; }
+.scrollScene__content { position: relative; z-index: $z-raised; }
+.scrollScene__decor { position: absolute; inset: 0; z-index: $z-base; pointer-events: none; }
 
 .scrollScene__shape {
   position: absolute;
@@ -50,18 +36,8 @@
 }
 
 .scrollScene__shape--slow { top: 10%; left: 4%; }
-
-.scrollScene__shape--medium {
-  top: 34%;
-  right: 8%;
-  width: clamp(4rem, 11vw, 8rem);
-}
-
-.scrollScene__shape--fast {
-  right: 26%;
-  bottom: 5%;
-  width: clamp(3rem, 8vw, 6rem);
-}
+.scrollScene__shape--medium { top: 34%; right: 8%; width: clamp(4rem, 11vw, 8rem); }
+.scrollScene__shape--fast { right: 26%; bottom: 5%; width: clamp(3rem, 8vw, 6rem); }
 
 .scrollScene__line {
   position: absolute;
@@ -75,37 +51,26 @@
 
 .scrollScene[data-preset="ambient"] .scrollScene__shape:nth-child(2),
 [data-variant="organic"] .scrollScene__shape { @include shape-blob; }
-
 .scrollScene[data-preset="draw"] .scrollScene__shape { opacity: 0.28; }
 [data-variant="editorial"] .scrollScene__shape { border-radius: $radius-none; }
 
-/* Opening choreography keeps the editorial copy anchored in the sticky cover
-   while the media yields on exit. The cover transition supplies the movement;
-   title/copy must not receive a second vertical transform. */
+/* Opening choreography: one shared progress source, three restrained rates.
+   Media yields first; the headline remains the visual anchor; supporting copy
+   moves slightly in the opposite direction. */
 .scrollScene[data-attention-exit="true"] .section__media {
   z-index: $z-base;
   opacity: var(--scene-media-opacity, 1);
-  transform: translate3d(0, var(--scene-media-y, 0px), 0)
-    scale(var(--scene-media-scale, 1));
+  transform: translate3d(0, var(--scene-media-y, 0px), 0) scale(var(--scene-media-scale, 1));
   transform-origin: center;
   will-change: transform, opacity;
-}
-
-.scrollScene[data-attention-exit="true"] .section__overlayContent {
-  z-index: $z-raised;
-  pointer-events: none;
-}
-
-.scrollScene[data-attention-exit="true"] .section__overlayContent a,
-.scrollScene[data-attention-exit="true"] .section__overlayContent button {
-  pointer-events: auto;
 }
 
 .scrollScene[data-attention-exit="true"] .textBlock__header {
   position: relative;
   z-index: $z-raised;
-  opacity: 1;
-  transform: none;
+  opacity: var(--scene-title-opacity, 1);
+  transform: translate3d(0, calc(var(--scene-title-y, 0px) * .12), 0);
+  will-change: transform;
 }
 
 .scrollScene[data-attention-exit="true"] .textBlock__title {
@@ -115,6 +80,16 @@
 .scrollScene[data-attention-exit="true"] .textBlock__content {
   position: relative;
   z-index: $z-raised;
-  opacity: 1;
-  transform: none;
+  opacity: var(--scene-copy-opacity, 1);
+  transform: translate3d(0, calc(var(--scene-copy-y, 0px) * -.08), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollScene[data-attention-exit="true"] .section__media,
+  .scrollScene[data-attention-exit="true"] .textBlock__header,
+  .scrollScene[data-attention-exit="true"] .textBlock__content {
+    transform: none;
+    opacity: 1;
+  }
 }
