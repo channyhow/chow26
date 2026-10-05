@@ -2,6 +2,7 @@ import { useRef, type ReactNode } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
+import { resolveMediaList } from "@/data/resolveMedia";
 import type { ContentItem } from "@/types/content";
 import type { MediaAsset } from "@/types/media";
 
@@ -10,6 +11,9 @@ type HomeOpeningSceneProps = {
   media: MediaAsset[];
   progress?: MotionValue<number>;
 };
+
+const openingMediaIds = ["mois-du-ker-textile", "kuro-grey", "atmosphere-laptop", "mdk-poster"];
+const projectLinks = ["/projets/mois-du-ker", "/projets/kuro", "/projets/atmosphere", "/projets/mois-du-ker"];
 
 const renderInlineStrong = (value: string): ReactNode[] => value
   .split(/(\*\*[^*]+\*\*)/g)
@@ -20,18 +24,12 @@ const renderInlineStrong = (value: string): ReactNode[] => value
     return strong ? <strong key={`${text}-${index}`}>{text}</strong> : <span key={`${text}-${index}`}>{text}</span>;
   });
 
-const projectLinks = [
-  "/projets/mois-du-ker",
-  "/projets/kuro",
-  "/projets/atmosphere",
-  "/projets/mois-du-ker",
-];
-
 export function HomeOpeningScene({ header, media, progress }: HomeOpeningSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
   const { scrollYProgress: localProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const p = progress ?? localProgress;
+  const sceneMedia = media.length >= 4 ? media.slice(0, 4) : resolveMediaList(openingMediaIds);
 
   const titleOpacity = useTransform(p, [0, 0.18, 0.34], [1, 1, reduceMotion ? 1 : 0]);
   const titleY = useTransform(p, [0, 0.34], [0, reduceMotion ? 0 : -48]);
@@ -64,7 +62,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
       </motion.div>
 
       <div className="homeOpeningScene__media" aria-label="Projets sélectionnés">
-        {media.slice(0, 4).map((item, index) => (
+        {sceneMedia.map((item, index) => (
           <motion.a
             key={item.id}
             className={`homeOpeningScene__project homeOpeningScene__project--${index + 1}`}
