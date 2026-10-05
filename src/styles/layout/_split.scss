@@ -46,56 +46,46 @@
   }
 }
 
-/* Tablet is an 8-column hybrid: preserve desktop relationships and asymmetry,
-   but let media lead. Generic splits use a 5/3 composition; editorial variants
-   can still provide authored placement through their tablet variables. */
+/* Tablet keeps the mobile media-led reading order, but uses the wider canvas
+   for a more editorial text measure instead of compressing content beside media. */
 @include between($bp-tablet, $bp-desktop) {
-  .split {
-    --split-gap: #{$space-4};
+  .split,
+  .split--balanced,
+  .split--editorial {
+    --split-gap: #{$space-5};
     grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
-    align-items: center;
+    align-items: start;
   }
 
   .split > .split__primary,
-  .split > .split__secondary {
+  .split > .split__secondary,
+  .split--balanced > .split__primary,
+  .split--balanced > .split__secondary,
+  .split--editorial > .split__primary,
+  .split--editorial > .split__secondary {
     width: 100%;
     min-width: 0;
     max-width: none;
   }
 
-  .split > [data-split-role="media"] {
-    grid-column: 1 / span 5;
-    grid-row: 1;
-  }
-
-  .split > [data-split-role="content"] {
-    grid-column: 6 / span 3;
-    grid-row: 1;
-  }
-
-  .split--balanced > .split__primary,
-  .split--editorial > .split__primary {
-    grid-column: var(--split-primary-tablet-column, 1 / span 4);
-  }
-
-  .split--balanced > .split__secondary,
-  .split--editorial > .split__secondary {
-    grid-column: var(--split-secondary-tablet-column, 5 / span 4);
-  }
-
+  .split > [data-split-role="media"],
   .split--balanced > [data-split-role="media"],
   .split--editorial > [data-split-role="media"] {
+    grid-column: 1 / -1;
     grid-row: 1;
   }
 
+  .split > [data-split-role="content"],
   .split--balanced > [data-split-role="content"],
   .split--editorial > [data-split-role="content"] {
-    grid-row: 1;
+    grid-column: 2 / span 6;
+    grid-row: 2;
   }
 
-  .split .media {
+  .split .media,
+  .split--editorial .media {
     width: 100%;
     max-width: none;
   }
@@ -103,6 +93,11 @@
   .split:not(.split--editorial) .media:not([data-ratio]),
   .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
     aspect-ratio: $ratio-landscape;
+  }
+
+  .split--editorial .media[data-ratio],
+  .split--editorial .media[data-ratio] .media__frame {
+    aspect-ratio: inherit;
   }
 }
 
