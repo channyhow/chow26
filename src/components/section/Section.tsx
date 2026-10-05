@@ -86,7 +86,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const horizontalMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
   const horizontalMotionItems = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={horizontalMotionEnabled}>{item}</ScrollScene>);
   const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer") => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={scrollProgress}>{content}</ScrollScene> : content) : null;
-  const region = (content: ReactNode) => content ? <div className="section__body">{content}</div> : null;
+  const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
   if (layout === "split") {
@@ -99,9 +99,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerCarousel = offers.length > 0
-      ? <Carousel>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} frame variant="editorial" />)}</Carousel>
+      ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="editorial" />)}</Carousel>
       : null;
-    body = <>{motionLayer(splitComposition, "forward", "section__splitScrollLayer")}{region(offerCarousel)}</>;
+    body = <>{motionLayer(splitComposition, "forward", "section__splitScrollLayer")}{region(offerCarousel, "section__offers")}</>;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
