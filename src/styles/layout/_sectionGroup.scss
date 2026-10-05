@@ -87,6 +87,32 @@
   margin-bottom: 200svh;
 }
 
+/* Mobile panels follow their content instead of forcing every authored viewport
+   frame to occupy a full screen. Sticky behavior remains intact, so the panel
+   system still layers naturally as content moves through the viewport. */
+@include tablet-down {
+  .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-frame="viewport"] {
+    min-height: 0;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-frame="viewport"] > .sectionGroup__surface {
+    min-height: 0;
+  }
+
+  .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-frame="viewport"] > .sectionGroup__surface > * {
+    flex: 0 1 auto;
+  }
+
+  /* The opening is intentionally cinematic and remains the one mobile viewport exception. */
+  .sectionGroup__panel[data-panel-id="home-opening-panel"] {
+    min-height: 100svh;
+  }
+
+  .sectionGroup__panel[data-panel-id="home-opening-panel"] > .sectionGroup__surface {
+    min-height: 100svh;
+  }
+}
+
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
 }
