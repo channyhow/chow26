@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Link } from "react-router-dom";
 
 import { Media } from "@/components/content/Media";
@@ -10,7 +10,6 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
-  progress?: MotionValue<number>;
 };
 
 const openingProjects = [
@@ -35,21 +34,17 @@ const renderInlineStrong = (value: string): ReactNode[] => value
     return strong ? <strong key={`${text}-${index}`}>{text}</strong> : <span key={`${text}-${index}`}>{text}</span>;
   });
 
-export function HomeOpeningScene({ header, media, progress }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: localProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const sourceProgress = progress ?? localProgress;
-
-  // SectionGroup already exposes progress for the complete panel journey:
-  // 0 = entering, ~0.5 = composed in the viewport, 1 = leaving.
-  // Keep that complete range so the entrance, hold and exit remain perceptible.
-  const p = useTransform(sourceProgress, [0, 1], [0, 1], { clamp: true });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const p = useTransform(scrollYProgress, [0, 1], [0, 1], { clamp: true });
 
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  // Stagger into a composed scene, hold it briefly, then disperse in a different
-  // order so the motion reads as choreography rather than one global fade.
   const webLabelOpacity = useTransform(p, [0.04, 0.12, 0.66, 0.78], [0, 1, 1, 0]);
   const identityLabelOpacity = useTransform(p, [0.1, 0.18, 0.7, 0.82], [0, 1, 1, 0]);
   const supportsLabelOpacity = useTransform(p, [0.16, 0.24, 0.62, 0.74], [0, 1, 1, 0]);
