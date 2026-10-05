@@ -256,7 +256,7 @@
 
   .homeOpeningScene__statement {
     top: 50%;
-    left: 50%;
+    // left: 50%;
     width: calc(100% - (#{$page-gutter} * 2));
     max-width: 22rem;
     z-index: calc(#{$z-floating} + 1);
