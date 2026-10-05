@@ -13,10 +13,10 @@ type HomeOpeningSceneProps = {
 };
 
 const openingProjects = [
-  { mediaId: "mois-du-ker-textile", href: "/projets/mois-du-ker", className: "identity" },
-  { mediaId: "kuro-grey", href: "/projets/kuro", className: "web" },
-  { mediaId: "atmosphere-laptop", href: "/projets/atmosphere", className: "web-secondary" },
-  { mediaId: "mdk-poster", href: "/projets/mois-du-ker", className: "supports" },
+  { mediaId: "mois-du-ker-textile", href: "/studio#studio-service-identity-panel", className: "identity" },
+  { mediaId: "kuro-grey", href: "/studio#studio-service-website-panel", className: "web" },
+  { mediaId: "atmosphere-laptop", href: "/studio#studio-service-website-panel", className: "web-secondary" },
+  { mediaId: "ravine-flyer", href: "/studio#studio-service-identity-panel", className: "supports" },
 ] as const;
 
 const openingServices = [
