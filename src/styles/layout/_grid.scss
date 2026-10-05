@@ -83,6 +83,21 @@
   .gridReveal__more:hover .gridReveal__moreIcon { transform: translateY(0.2rem); }
 }
 
+/* Mobile is intentionally linear. Editorial placement never overrides source order. */
+@include tablet-down {
+  .grid--editorial {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid--editorial > .grid__item {
+    grid-column: 1;
+    grid-row: auto;
+    align-self: auto;
+    justify-self: stretch;
+    width: 100%;
+  }
+}
+
 @include tablet-up {
   .grid:not(.grid--editorial) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
