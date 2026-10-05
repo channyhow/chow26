@@ -151,10 +151,17 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
-/* Only true mobile gets the artboard-inspired sticky sequence. */
+/* Mobile: the section itself is the scroll runway. The scene is its sticky
+   100svh child. This is essential: making .section__inner 300svh while the
+   section stays 100% high makes sticky resolve against the wrong containing
+   block, so the whole 300svh composition simply scrolls through the viewport. */
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening .section__inner {
+  #home-opening {
     height: 300svh;
+  }
+
+  #home-opening .section__inner {
+    height: 100%;
   }
 
   .homeOpeningScene {
@@ -167,9 +174,6 @@
     overflow: clip;
   }
 
-  /* Keep media and service copy on explicit full-viewport layers. Using
-     display:contents here made their absolute positioning depend on the
-     surrounding sticky/panel composition and could leave frame 1 blank. */
   .homeOpeningScene__media,
   .homeOpeningScene__labels {
     display: block;
@@ -195,8 +199,6 @@
     pointer-events: auto;
   }
 
-  /* Frame 1: exactly two visible images. Kuro leads high-left, the service
-     stack holds the middle of the viewport, Mois du Kèr sits lower-right. */
   .homeOpeningScene__project--web {
     top: 16%;
     left: 8%;
@@ -256,7 +258,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening .section__inner { height: auto; }
+  #home-opening { height: 100svh; }
+  #home-opening .section__inner { height: 100%; }
   .homeOpeningScene {
     position: relative;
     height: 100svh;
