@@ -3,7 +3,6 @@ import clsx from "clsx";
 import {
   AnimatePresence,
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
   type MotionValue,
@@ -12,8 +11,6 @@ import {
 import {
   fastStaggerContainer,
   motionConfig,
-  reducedRevealItem,
-  reducedStaggerContainer,
   revealItem,
 } from "@/motion/config";
 import type { GridPlacement, GridTrackPlacement } from "@/types/content";
@@ -45,7 +42,6 @@ type GridMotionItemProps = {
   usesDrawMotion: boolean;
   scrollLinked: boolean;
   progress: MotionValue<number>;
-  reduceMotion: boolean;
   itemVariants: typeof revealItem;
 };
 
@@ -101,30 +97,16 @@ function GridMotionItem({
   usesDrawMotion,
   scrollLinked,
   progress,
-  reduceMotion,
   itemVariants,
 }: GridMotionItemProps) {
-  const baseOffset = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
+  const baseOffset = motionConfig.distance.subtle;
   const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
   const staggerOffset = Math.min(index * 0.045, 0.27);
   const entryStart = 0.02 + staggerOffset;
   const entryEnd = Math.min(entryStart + 0.12, 0.46);
   const exitStart = Math.max(entryEnd + 0.18, 0.86);
-  const linkedY = useTransform(
-    progress,
-    [entryStart, entryEnd, exitStart, 1],
-    [
-      reduceMotion ? 0 : baseOffset * 0.55,
-      0,
-      0,
-      reduceMotion ? 0 : -baseOffset,
-    ],
-  );
-  const linkedOpacity = useTransform(
-    progress,
-    [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.85 : 0.42, 1, 1, reduceMotion ? 1 : 0.98],
-  );
+  const linkedY = useTransform(progress, [entryStart, entryEnd, exitStart, 1], [baseOffset * 0.55, 0, 0, -baseOffset]);
+  const linkedOpacity = useTransform(progress, [entryStart, entryEnd, exitStart, 1], [0.42, 1, 1, 0.98]);
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
     : placementStyle(placement);
@@ -136,18 +118,14 @@ function GridMotionItem({
       style={linkedStyle}
       variants={animateGrid && !usesDrawMotion && !scrollLinked ? itemVariants : undefined}
       initial={animateGrid && usesDrawMotion && !scrollLinked
-        ? {
-            opacity: reduceMotion ? 0.65 : 0,
-            x: drawOffset,
-            y: baseOffset,
-          }
+        ? { opacity: 0, x: drawOffset, y: baseOffset }
         : undefined}
       whileInView={animateGrid && usesDrawMotion && !scrollLinked ? { opacity: 1, x: 0, y: 0 } : undefined}
       viewport={animateGrid && usesDrawMotion && !scrollLinked ? motionConfig.viewport : undefined}
       transition={animateGrid && usesDrawMotion && !scrollLinked ? {
-        duration: reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow,
-        ease: reduceMotion ? motionConfig.easing.standard : motionConfig.easing.soft,
-        delay: index * (reduceMotion ? motionConfig.reduced.stagger : motionConfig.delay.staggerFast),
+        duration: motionConfig.duration.slow,
+        ease: motionConfig.easing.soft,
+        delay: index * motionConfig.delay.staggerFast,
       } : undefined}
     >
       {child}
@@ -165,7 +143,6 @@ export function Grid({
   motionEnabled = true,
   scrollLinked = false,
 }: GridProps) {
-  const reduceMotion = Boolean(useReducedMotion());
   const scrollRef = useRef<HTMLDivElement>(null);
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const progressiveGrid = progressive || childArray.length > gridRanges.desktop.initial;
@@ -205,15 +182,13 @@ export function Grid({
   const usesDrawMotion = motionPreset === "draw";
   const usesEditorialPlacement = Boolean(placements?.some(Boolean));
   const usesScrollLinkedMotion = animateGrid && scrollLinked;
-  const containerVariants = reduceMotion ? reducedStaggerContainer : fastStaggerContainer;
-  const itemVariants = reduceMotion ? reducedRevealItem : revealItem;
 
   return (
     <div className="gridReveal" ref={scrollRef} data-scroll-linked={usesScrollLinkedMotion ? "true" : undefined}>
       <motion.div
         id={progressiveGrid ? "project-grid" : undefined}
         className={clsx("grid", lead && "grid--withLead", usesEditorialPlacement && "grid--editorial", className)}
-        variants={animateGrid && !usesScrollLinkedMotion ? containerVariants : undefined}
+        variants={animateGrid && !usesScrollLinkedMotion ? fastStaggerContainer : undefined}
         initial={animateGrid && !usesScrollLinkedMotion ? "hidden" : false}
         whileInView={animateGrid && !usesScrollLinkedMotion ? "visible" : undefined}
         viewport={animateGrid && !usesScrollLinkedMotion ? motionConfig.viewport : undefined}
@@ -230,8 +205,7 @@ export function Grid({
               usesDrawMotion={usesDrawMotion}
               scrollLinked={usesScrollLinkedMotion}
               progress={scrollYProgress}
-              reduceMotion={reduceMotion}
-              itemVariants={itemVariants}
+              itemVariants={revealItem}
             />
           ))}
         </AnimatePresence>
