@@ -12,8 +12,12 @@ type HomeOpeningSceneProps = {
   progress?: MotionValue<number>;
 };
 
-const openingMediaIds = ["mois-du-ker-textile", "kuro-grey", "atmosphere-laptop", "mdk-poster"];
-const projectLinks = ["/projets/mois-du-ker", "/projets/kuro", "/projets/atmosphere", "/projets/mois-du-ker"];
+const openingProjects = [
+  { mediaId: "mois-du-ker-textile", href: "/projets/mois-du-ker", className: "identity" },
+  { mediaId: "kuro-grey", href: "/projets/kuro", className: "web" },
+  { mediaId: "atmosphere-laptop", href: "/projets/atmosphere", className: "web-secondary" },
+  { mediaId: "mdk-poster", href: "/projets/mois-du-ker", className: "supports" },
+] as const;
 
 const renderInlineStrong = (value: string): ReactNode[] => value
   .split(/(\*\*[^*]+\*\*)/g)
@@ -29,19 +33,27 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const reduceMotion = Boolean(useReducedMotion());
   const { scrollYProgress: localProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const p = progress ?? localProgress;
-  const sceneMedia = media.length >= 4 ? media.slice(0, 4) : resolveMediaList(openingMediaIds);
+  const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
+  const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  const titleOpacity = useTransform(p, [0, 0.18, 0.34], [1, 1, reduceMotion ? 1 : 0]);
-  const titleY = useTransform(p, [0, 0.34], [0, reduceMotion ? 0 : -48]);
-  const labelsOpacity = useTransform(p, [0.08, 0.22, 0.58, 0.72], [0, 1, 1, 0]);
-  const mediaOpacity = useTransform(p, [0, 0.2, 0.62, 0.92], [0.62, 1, 1, reduceMotion ? 0.72 : 0.08]);
-  const statementOpacity = useTransform(p, [0.52, 0.74, 1], [0, 1, 1]);
-  const statementY = useTransform(p, [0.52, 0.78], [reduceMotion ? 0 : 28, 0]);
+  const titleOpacity = useTransform(p, [0, 0.16, 0.32], [1, 1, reduceMotion ? 1 : 0]);
+  const titleY = useTransform(p, [0, 0.32], [0, reduceMotion ? 0 : -36]);
+  const labelsOpacity = useTransform(p, [0.1, 0.24, 0.56, 0.7], [0, 1, 1, reduceMotion ? 1 : 0]);
+  const statementOpacity = useTransform(p, [0.58, 0.76, 1], [0, 1, 1]);
+  const statementY = useTransform(p, [0.58, 0.8], [reduceMotion ? 0 : 24, 0]);
 
-  const mediaY1 = useTransform(p, [0.46, 1], [0, reduceMotion ? 0 : -120]);
-  const mediaY2 = useTransform(p, [0.42, 1], [0, reduceMotion ? 0 : -190]);
-  const mediaY3 = useTransform(p, [0.5, 1], [0, reduceMotion ? 0 : -150]);
-  const mediaY4 = useTransform(p, [0.38, 1], [0, reduceMotion ? 0 : -230]);
+  // Each image has its own entrance, hold and exit. Kuro establishes the scene
+  // first; the smaller applications resolve around it and leave asynchronously.
+  const mediaOpacity1 = useTransform(p, [0, 0.18, 0.56, 0.86], [0.18, 1, 1, reduceMotion ? 1 : 0]);
+  const mediaOpacity2 = useTransform(p, [0, 0.13, 0.62, 0.94], [0.38, 1, 1, reduceMotion ? 1 : 0]);
+  const mediaOpacity3 = useTransform(p, [0.05, 0.23, 0.54, 0.84], [0.12, 1, 1, reduceMotion ? 1 : 0]);
+  const mediaOpacity4 = useTransform(p, [0.08, 0.27, 0.5, 0.8], [0.1, 1, 1, reduceMotion ? 1 : 0]);
+  const mediaOpacities = [mediaOpacity1, mediaOpacity2, mediaOpacity3, mediaOpacity4];
+
+  const mediaY1 = useTransform(p, [0.48, 0.9], [0, reduceMotion ? 0 : -130]);
+  const mediaY2 = useTransform(p, [0.54, 1], [0, reduceMotion ? 0 : -175]);
+  const mediaY3 = useTransform(p, [0.44, 0.86], [0, reduceMotion ? 0 : -155]);
+  const mediaY4 = useTransform(p, [0.4, 0.82], [0, reduceMotion ? 0 : -210]);
   const mediaYs = [mediaY1, mediaY2, mediaY3, mediaY4];
 
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
@@ -63,16 +75,20 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
 
       <div className="homeOpeningScene__media" aria-label="Projets sélectionnés">
         {sceneMedia.map((item, index) => {
+          const project = openingProjects[index];
+          if (!project) return null;
           const projectName = item.alt?.split("|")[0].trim() ?? "sélectionné";
-          return <motion.a
-            key={item.id}
-            className={`homeOpeningScene__project homeOpeningScene__project--${index + 1}`}
-            href={projectLinks[index]}
-            style={{ opacity: mediaOpacity, y: mediaYs[index] }}
-            aria-label={`Voir le projet ${projectName}`}
-          >
-            <Media media={item} sizes={index === 1 ? "(min-width: 64rem) 28vw, 70vw" : "(min-width: 64rem) 12vw, 38vw"} />
-          </motion.a>;
+          return (
+            <motion.a
+              key={`${project.mediaId}-${index}`}
+              className={`homeOpeningScene__project homeOpeningScene__project--${project.className}`}
+              href={project.href}
+              style={{ opacity: mediaOpacities[index], y: mediaYs[index] }}
+              aria-label={`Voir le projet ${projectName}`}
+            >
+              <Media media={item} sizes={project.className === "web" ? "(min-width: 64rem) 28vw, 70vw" : "(min-width: 64rem) 12vw, 38vw"} />
+            </motion.a>
+          );
         })}
       </div>
 
