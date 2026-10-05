@@ -11,6 +11,10 @@ export type SplitProps = {
   variant?: SplitVariant;
   primaryColumn?: string;
   secondaryColumn?: string;
+  primaryMobileColumn?: string;
+  secondaryMobileColumn?: string;
+  primaryMobileOffset?: string;
+  secondaryMobileOffset?: string;
   primaryRole?: SplitRole;
   secondaryRole?: SplitRole;
 };
@@ -18,6 +22,10 @@ export type SplitProps = {
 type SplitStyle = CSSProperties & {
   "--split-primary-column"?: string;
   "--split-secondary-column"?: string;
+  "--split-primary-mobile-column"?: string;
+  "--split-secondary-mobile-column"?: string;
+  "--split-primary-mobile-offset"?: string;
+  "--split-secondary-mobile-offset"?: string;
 };
 
 export function Split({
@@ -27,12 +35,20 @@ export function Split({
   variant = "default",
   primaryColumn,
   secondaryColumn,
+  primaryMobileColumn,
+  secondaryMobileColumn,
+  primaryMobileOffset,
+  secondaryMobileOffset,
   primaryRole,
   secondaryRole,
 }: SplitProps) {
   const style: SplitStyle = {
     ...(primaryColumn ? { "--split-primary-column": primaryColumn } : {}),
     ...(secondaryColumn ? { "--split-secondary-column": secondaryColumn } : {}),
+    ...(primaryMobileColumn ? { "--split-primary-mobile-column": primaryMobileColumn } : {}),
+    ...(secondaryMobileColumn ? { "--split-secondary-mobile-column": secondaryMobileColumn } : {}),
+    ...(primaryMobileOffset ? { "--split-primary-mobile-offset": primaryMobileOffset } : {}),
+    ...(secondaryMobileOffset ? { "--split-secondary-mobile-offset": secondaryMobileOffset } : {}),
   };
 
   return (
