@@ -50,8 +50,8 @@ type GridMotionItemProps = {
 };
 
 const gridRanges = {
-  mobile: { initial: 4, step: 1 },
-  tablet: { initial: 4, step: 2 },
+  mobile: { initial: 6, step: 2 },
+  tablet: { initial: 6, step: 2 },
   desktop: { initial: 6, step: 3 },
 } satisfies Record<string, GridRange>;
 
@@ -168,6 +168,7 @@ export function Grid({
   const reduceMotion = Boolean(useReducedMotion());
   const scrollRef = useRef<HTMLDivElement>(null);
   const childArray = useMemo(() => Children.toArray(children), [children]);
+  const progressiveGrid = progressive || childArray.length > gridRanges.desktop.initial;
   const initialRange = useMemo(() => getGridRange(), []);
   const [range, setRange] = useState<GridRange>(initialRange);
   const [visibleCount, setVisibleCount] = useState(() => initialRange.initial);
@@ -178,7 +179,7 @@ export function Grid({
   });
 
   useEffect(() => {
-    if (!progressive) return;
+    if (!progressiveGrid) return;
 
     const desktop = window.matchMedia(responsiveQueries.desktopUp);
     const tablet = window.matchMedia(responsiveQueries.tabletUp);
@@ -196,11 +197,11 @@ export function Grid({
       desktop.removeEventListener("change", syncRange);
       tablet.removeEventListener("change", syncRange);
     };
-  }, [progressive]);
+  }, [progressiveGrid]);
 
-  const effectiveVisibleCount = progressive ? visibleCount : childArray.length;
-  const visibleChildren = progressive ? childArray.slice(0, effectiveVisibleCount) : childArray;
-  const hasMore = progressive && effectiveVisibleCount < childArray.length;
+  const effectiveVisibleCount = progressiveGrid ? visibleCount : childArray.length;
+  const visibleChildren = progressiveGrid ? childArray.slice(0, effectiveVisibleCount) : childArray;
+  const hasMore = progressiveGrid && effectiveVisibleCount < childArray.length;
   const usesDrawMotion = motionPreset === "draw";
   const usesEditorialPlacement = Boolean(placements?.some(Boolean));
   const usesScrollLinkedMotion = animateGrid && scrollLinked;
@@ -210,7 +211,7 @@ export function Grid({
   return (
     <div className="gridReveal" ref={scrollRef} data-scroll-linked={usesScrollLinkedMotion ? "true" : undefined}>
       <motion.div
-        id={progressive ? "project-grid" : undefined}
+        id={progressiveGrid ? "project-grid" : undefined}
         className={clsx("grid", lead && "grid--withLead", usesEditorialPlacement && "grid--editorial", className)}
         variants={animateGrid && !usesScrollLinkedMotion ? containerVariants : undefined}
         initial={animateGrid && !usesScrollLinkedMotion ? "hidden" : false}
