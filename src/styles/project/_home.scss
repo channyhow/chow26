@@ -256,12 +256,13 @@
 
   .homeOpeningScene__statement {
     top: 50%;
-    left: $page-gutter;
+    left: 50%;
     width: calc(100% - (#{$page-gutter} * 2));
     max-width: 22rem;
     z-index: calc(#{$z-floating} + 1);
     @include type-body;
     line-height: 1.25;
+    text-align: center;
     opacity: 0;
   }
 }
