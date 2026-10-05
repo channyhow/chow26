@@ -141,10 +141,18 @@
     overflow: hidden;
   }
 
+  .projectDetail .split .media[data-media-type="mux"] .media__asset > img,
   .projectDetail .split .media[data-media-type="mux"] mux-player {
     position: absolute !important;
     inset: 0;
+    width: 100% !important;
+    height: 100% !important;
     display: block;
+    object-fit: cover !important;
+    object-position: 50% 50% !important;
+  }
+
+  .projectDetail .split .media[data-media-type="mux"] mux-player {
     --media-object-fit: cover;
     --media-object-position: 50% 50%;
   }
