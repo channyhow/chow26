@@ -22,7 +22,6 @@
   overflow: clip;
 }
 
-
 .homeOpeningScene__media,
 .homeOpeningScene__labels { display: contents; }
 
@@ -43,7 +42,6 @@
   height: 100%;
 }
 
-/* Semantic scene roles replace positional nth-child styling. */
 .homeOpeningScene__project--identity {
   grid-column: 2 / span 2;
   grid-row: 1;
@@ -89,10 +87,10 @@
 }
 
 .homeOpeningScene__labelLink {
-  text-decoration: none; 
-   @include type-lead-bold;
-
+  text-decoration: none;
+  @include type-lead-bold;
 }
+
 .homeOpeningScene__label--web {
   grid-column: 2 / span 2;
   grid-row: 1;
@@ -117,8 +115,7 @@
 }
 
 .homeOpeningScene__statement {
-    @include type-lead;
-
+  @include type-lead;
   grid-column: 5 / span 4;
   grid-row: 1;
   position: relative;
@@ -136,7 +133,7 @@
   outline-offset: $space-1;
 }
 
-@media (hover: hover) and (pointer: fine) {
+@include hover {
   .homeOpeningScene__project .media { transition: transform $transition-hover; }
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
@@ -153,11 +150,9 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
+/* The opening is the deliberate mobile art-direction exception: it keeps its
+   compact collage, but the same composition now covers the whole <768 range. */
 @include tablet-down {
-  .homeOpeningScene { padding-inline: $page-gutter; }
-}
-
-@include mobile-down {
   .homeOpeningScene {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
