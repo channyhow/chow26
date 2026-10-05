@@ -3,31 +3,85 @@
 @use "../foundation/typography" as *;
 
 .textBlock {
-  display: grid; gap: $flow-default; width: 100%; max-width: var(--text-width, #{$measure-text});
-  &__header, &__content, &__footer, &__subtitle, &__meta { display: grid; gap: $flow-tight; }
-  &__eyebrow { @include type-eyebrow; margin: 0; }
-  &__title { @include type-body-bold; margin: 0; text-wrap: balance; }
-  &__subtitle p { @include type-lead; margin: 0; }
-  &__subtitle strong, &__content strong { font: inherit; font-weight: $font-weight-bold; color: currentColor; }
+  display: grid;
+  gap: $flow-default;
+  width: 100%;
+  max-width: var(--text-width, #{$measure-text});
+  &__header,
+  &__content,
+  &__footer,
+  &__subtitle,
+  &__meta {
+    display: grid;
+    gap: $flow-tight;
+  }
+  &__eyebrow {
+    @include type-eyebrow;
+    margin: 0;
+  }
+  &__title {
+    @include type-body-bold;
+    margin: 0;
+    // text-wrap: balance;
+  }
+  &__subtitle p {
+    @include type-lead;
+    margin: 0;
+  }
+  &__subtitle strong,
+  &__content strong {
+    font: inherit;
+    font-weight: $font-weight-bold;
+    color: currentColor;
+  }
   &__content {
     gap: $flow-default;
-    p { @include type-body; margin: 0; }
-    .textBlock__copy { opacity: $opacity-muted; }
-    p:last-child:not(:only-child) .textBlock__copy { opacity: $opacity-soft; }
+    p {
+      @include type-body;
+      margin: 0;
+    }
+    .textBlock__copy {
+      opacity: $opacity-muted;
+    }
+    p:last-child:not(:only-child) .textBlock__copy {
+      opacity: $opacity-soft;
+    }
   }
-  &__footer { gap: $flow-default; padding-top: $flow-tight; }
-  &__meta { @include type-meta; }
+  &__footer {
+    gap: $flow-default;
+    padding-top: $flow-tight;
+  }
+  &__meta {
+    @include type-meta;
+  }
 }
 
 .textBlock--meta-rows {
-  .textBlock__meta { @include rule-top(16%); display: grid; gap: 0; width: 100%; margin-top: $space-3; }
+  .textBlock__meta {
+    @include rule-top(16%);
+    display: grid;
+    gap: 0;
+    width: 100%;
+    margin-top: $space-3;
+  }
   .textBlock__meta > * {
     @include rule-bottom(16%);
-    display: grid; grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr); gap: $flow-default;
-    width: 100%; padding-block: $flow-tight; color: color-mix(in srgb, currentColor 58%, transparent);
+    display: grid;
+    grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+    gap: $flow-default;
+    width: 100%;
+    padding-block: $flow-tight;
+    color: color-mix(in srgb, currentColor 58%, transparent);
   }
-  .textBlock__metaLabel { @include type-ui-compact; color: color-mix(in srgb, currentColor 72%, transparent); }
-  .textBlock__metaValue { @include type-caption; min-width: 0; text-transform: uppercase; }
+  .textBlock__metaLabel {
+    @include type-ui-compact;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+  }
+  .textBlock__metaValue {
+    @include type-caption;
+    min-width: 0;
+    text-transform: uppercase;
+  }
 }
 
 @include between($bp-tablet, $bp-desktop) {
@@ -40,8 +94,15 @@
 
 @include mobile-down {
   .textBlock--meta-rows {
-    .textBlock__meta { margin-top: $space-2; }
-    .textBlock__meta > * { grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr); gap: $flow-default; }
-    .textBlock__meta > *:last-child { color: currentColor; }
+    .textBlock__meta {
+      margin-top: $space-2;
+    }
+    .textBlock__meta > * {
+      grid-template-columns: minmax(4.75rem, auto) minmax(0, 1fr);
+      gap: $flow-default;
+    }
+    .textBlock__meta > *:last-child {
+      color: currentColor;
+    }
   }
 }
