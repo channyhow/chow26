@@ -49,28 +49,30 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  const webLabelOpacity = useTransform(p, [0.02, 0.12, 0.5, 0.66], [0, 1, 1, 0]);
-  const identityLabelOpacity = useTransform(p, [0.08, 0.18, 0.55, 0.72], [0, 1, 1, 0]);
-  const supportsLabelOpacity = useTransform(p, [0.14, 0.24, 0.46, 0.62], [0, 1, 1, 0]);
-  const webLabelY = useTransform(p, [0.02, 0.12, 0.5, 0.68], [10, 0, 0, -34]);
-  const identityLabelY = useTransform(p, [0.08, 0.18, 0.55, 0.74], [10, 0, 0, -42]);
-  const supportsLabelY = useTransform(p, [0.14, 0.24, 0.46, 0.64], [10, 0, 0, -38]);
+  // Build the scene in small staggered beats, hold it fully composed, then let
+  // labels and media disperse independently. This avoids a long washed-out state.
+  const webLabelOpacity = useTransform(p, [0.04, 0.12, 0.68, 0.82], [0, 1, 1, 0]);
+  const identityLabelOpacity = useTransform(p, [0.1, 0.18, 0.72, 0.86], [0, 1, 1, 0]);
+  const supportsLabelOpacity = useTransform(p, [0.16, 0.24, 0.64, 0.78], [0, 1, 1, 0]);
+  const webLabelY = useTransform(p, [0.04, 0.12, 0.68, 0.84], [12, 0, 0, -30]);
+  const identityLabelY = useTransform(p, [0.1, 0.18, 0.72, 0.88], [12, 0, 0, -38]);
+  const supportsLabelY = useTransform(p, [0.16, 0.24, 0.64, 0.8], [12, 0, 0, -34]);
   const labelOpacities = [webLabelOpacity, identityLabelOpacity, supportsLabelOpacity];
   const labelYs = [webLabelY, identityLabelY, supportsLabelY];
 
-  const statementOpacity = useTransform(p, [0.66, 0.8, 1], [0, 1, 1]);
-  const statementY = useTransform(p, [0.66, 0.82], [24, 0]);
+  const statementOpacity = useTransform(p, [0.74, 0.86, 1], [0, 1, 1]);
+  const statementY = useTransform(p, [0.74, 0.88], [22, 0]);
 
-  const mediaOpacity1 = useTransform(p, [0, 0.14, 0.47, 0.7], [0.16, 1, 1, 0]);
-  const mediaOpacity2 = useTransform(p, [0, 0.08, 0.57, 0.9], [0.34, 1, 1, 0]);
-  const mediaOpacity3 = useTransform(p, [0.04, 0.2, 0.51, 0.77], [0.1, 1, 1, 0]);
-  const mediaOpacity4 = useTransform(p, [0.08, 0.25, 0.42, 0.64], [0.08, 1, 1, 0]);
+  const mediaOpacity1 = useTransform(p, [0, 0.12, 0.66, 0.84], [0.12, 1, 1, 0]);
+  const mediaOpacity2 = useTransform(p, [0.04, 0.16, 0.74, 0.96], [0.12, 1, 1, 0]);
+  const mediaOpacity3 = useTransform(p, [0.08, 0.2, 0.7, 0.9], [0.08, 1, 1, 0]);
+  const mediaOpacity4 = useTransform(p, [0.12, 0.24, 0.62, 0.8], [0.06, 1, 1, 0]);
   const mediaOpacities = [mediaOpacity1, mediaOpacity2, mediaOpacity3, mediaOpacity4];
 
-  const mediaY1 = useTransform(p, [0, 0.14, 0.47, 0.72], [18, 0, 0, -120]);
-  const mediaY2 = useTransform(p, [0, 0.08, 0.57, 0.92], [12, 0, 0, -160]);
-  const mediaY3 = useTransform(p, [0.04, 0.2, 0.51, 0.79], [20, 0, 0, -140]);
-  const mediaY4 = useTransform(p, [0.08, 0.25, 0.42, 0.66], [24, 0, 0, -180]);
+  const mediaY1 = useTransform(p, [0, 0.12, 0.66, 0.86], [22, 0, 0, -118]);
+  const mediaY2 = useTransform(p, [0.04, 0.16, 0.74, 0.98], [18, 0, 0, -156]);
+  const mediaY3 = useTransform(p, [0.08, 0.2, 0.7, 0.92], [24, 0, 0, -136]);
+  const mediaY4 = useTransform(p, [0.12, 0.24, 0.62, 0.82], [28, 0, 0, -176]);
   const mediaYs = [mediaY1, mediaY2, mediaY3, mediaY4];
 
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
