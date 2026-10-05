@@ -106,24 +106,24 @@ function GridMotionItem({
 }: GridMotionItemProps) {
   const baseOffset = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const drawOffset = index % 2 === 0 ? -baseOffset : baseOffset;
-  const staggerOffset = Math.min(index * 0.065, 0.39);
-  const entryStart = 0.04 + staggerOffset;
-  const entryEnd = Math.min(entryStart + 0.16, 0.6);
-  const exitStart = Math.max(entryEnd + 0.08, 0.78);
+  const staggerOffset = Math.min(index * 0.045, 0.27);
+  const entryStart = 0.02 + staggerOffset;
+  const entryEnd = Math.min(entryStart + 0.12, 0.46);
+  const exitStart = Math.max(entryEnd + 0.18, 0.86);
   const linkedY = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
     [
-      reduceMotion ? 0 : motionConfig.distance.subtle,
+      reduceMotion ? 0 : baseOffset * 0.55,
       0,
       0,
-      reduceMotion ? 0 : -motionConfig.distance.route,
+      reduceMotion ? 0 : -baseOffset,
     ],
   );
   const linkedOpacity = useTransform(
     progress,
     [entryStart, entryEnd, exitStart, 1],
-    [reduceMotion ? 0.65 : 0, 1, 1, reduceMotion ? 1 : 0.94],
+    [reduceMotion ? 0.85 : 0.42, 1, 1, reduceMotion ? 1 : 0.98],
   );
   const linkedStyle = scrollLinked
     ? { ...placementStyle(placement), y: linkedY, opacity: linkedOpacity }
