@@ -12,9 +12,6 @@ import type { PageData } from "@/types/content";
 const BrandingPage = lazy(() =>
   import("@/app/BrandingPage").then((module) => ({ default: module.BrandingPage })),
 );
-const LinkPage = lazy(() =>
-  import("@/app/LinkPage").then((module) => ({ default: module.LinkPage })),
-);
 const ProjectDetailPage = lazy(() =>
   import("@/app/ProjectDetailPage").then((module) => ({ default: module.ProjectDetailPage })),
 );
@@ -78,13 +75,7 @@ function RoutedPage() {
   return (
     <>
       <Seo seo={page.seo} slug={isNotFound ? location.pathname : page.slug} />
-      {page.id === "link" ? (
-        <Suspense fallback={<RouteLoader />}>
-          <LinkPage page={page} />
-        </Suspense>
-      ) : (
-        <PageRenderer page={page} />
-      )}
+      <PageRenderer page={page} />
     </>
   );
 }
