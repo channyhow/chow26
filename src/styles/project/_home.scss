@@ -76,8 +76,8 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-/* Phone + tablet share one authored opening scene. Mobile gets a slightly
-   longer runway so the layered media choreography reads rather than rushes. */
+/* Phone + tablet share one authored opening scene. Mobile gets a longer
+   runway so the layered media choreography reads rather than rushes. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
   #home-opening { height: auto; min-height: 280svh; overflow: visible; }
 
@@ -130,6 +130,7 @@
 
   .homeOpeningScene__statement {
     top: 50%;
+    left: 50%;
     width: calc(100% - (#{$page-gutter} * 2));
     max-width: 22rem;
     z-index: calc(#{$z-raised} + 3);
@@ -144,16 +145,10 @@
   #home-opening { min-height: 180svh; }
   #home-opening .section__inner { height: 180svh; min-height: 180svh; }
 
-  .homeOpeningScene__project--web { top: 8%;left: 10%; width: 50%; }
+  .homeOpeningScene__project--web { top: 8%; left: 10%; width: 50%; }
   .homeOpeningScene__project--identity { right: 12%; width: 31%; }
   .homeOpeningScene__project--web-secondary { left: 10%; width: 34%; }
   .homeOpeningScene__project--supports { right: 12%; width: 25%; }
   .homeOpeningScene__label { left: 28%; width: 44%; }
   .homeOpeningScene__statement { max-width: 26rem; }
-}
-
-@media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening { min-height: 100svh; }
-  #home-opening .section__inner { height: 100svh; min-height: 100svh; }
-  .homeOpeningScene { position: relative; height: 100svh; }
 }
