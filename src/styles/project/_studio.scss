@@ -68,9 +68,6 @@
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-4 $space-2; }
 
-  /* Treat portrait + biography as one wide editorial composition.
-     The media gets enough visual weight to anchor the story while the copy
-     keeps a readable measure instead of being squeezed into a narrow rail. */
   #studio-founders .split {
     grid-template-columns: repeat(8, minmax(0, 1fr));
     align-items: start;
@@ -91,9 +88,7 @@
     min-width: 0;
   }
 
-  #studio-founders .split__secondary {
-    place-items: start stretch;
-  }
+  #studio-founders .split__secondary { place-items: start stretch; }
 
   #studio-founders .split__secondary .media,
   #studio-founders .split__secondary .media__frame {
@@ -118,14 +113,44 @@
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-3; }
 
-  #studio-founders { --split-gap: #{$space-4}; }
-  #studio-founders .split__secondary { place-items: stretch; }
+  /* Keep the founder portrait as a small editorial signature on mobile too. */
+  #studio-founders { --split-gap: #{$space-3}; }
+
+  #studio-founders .split {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  #studio-founders .split > [data-split-role="content"] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    order: initial;
+    min-width: 0;
+  }
+
+  #studio-founders .split > [data-split-role="media"] {
+    grid-column: 3 / -1;
+    grid-row: 2;
+    order: initial;
+  }
+
+  #studio-founders .split__secondary {
+    place-items: start stretch;
+  }
+
   #studio-founders .split__secondary .media,
   #studio-founders .split__secondary .media__frame {
     width: 100%;
     max-width: none;
     max-height: none;
-    margin-inline: 0;
+    margin: 0;
     aspect-ratio: $ratio-square;
+  }
+
+  #studio-founders .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
   }
 }
