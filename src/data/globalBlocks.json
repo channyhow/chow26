@@ -492,10 +492,11 @@
     "header": {
       "title": "Appel à projets",
       "subtitle": ["Date limite : 18.10.2026"],
-      "text": [
-        "Je recherche **3 projets** à accompagner pour créer ou faire évoluer leur **identité visuelle**, dans un périmètre défini ensemble : jusqu’à 5 éléments maximum, choisis selon les besoins du projet.",
-        "Restaurants, lieux, studios, marques ou associations, à Paris, à La Réunion ou ailleurs."
-      ],
+    "text": [
+  "Chow Studio invite **3 projets** à créer ou faire évoluer leur **identité visuelle**.",
+  "Restaurants, lieux, studios, marques ou associations, **à Paris, à La Réunion ou ailleurs**.",
+  "Pour chaque projet, nous définirons ensemble un périmètre de **5 éléments maximum**, choisis selon les besoins : logo ou variation, palette, direction typographique, supports ou mises en situation."
+],
       "links": [
         "project-call",
         "studio-service-identity",
@@ -534,9 +535,7 @@
     "content": {
       "header": {
         "title": "L’appel à projets, en détail",
-        "text": [
-          "Je sélectionne **3 projets** avec lesquels développer une identité visuelle ou faire évoluer une identité existante, dans la limite de **5 éléments maximum** définis ensemble selon les besoins du projet."
-        ]
+      "text": ["Chow Studio invite 3 projets à créer ou faire évoluer leur identité visuelle, à Paris, à La Réunion ou ailleurs."]
       },
       "items": [
         {
