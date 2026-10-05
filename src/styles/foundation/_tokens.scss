@@ -44,6 +44,7 @@ $color-light-muted:  rgb(246 245 243 / 0.28);
 $surface-subtle: color-mix(in srgb, $color-primary 6%, $color-secondary);
 $surface-soft:   color-mix(in srgb, $color-primary 14%, $color-secondary);
 $surface-muted:  color-mix(in srgb, $color-primary 22%, $color-secondary);
+
 $space-1: 0.5rem;
 $space-2: 1rem;
 $space-3: 2rem;
