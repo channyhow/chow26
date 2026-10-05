@@ -49,28 +49,33 @@
 .projectRelated .projectCard .textBlock__content { opacity: 1; }
 .projectRelated .projectCard .textBlock__content p { @include type-heading-sm; color: currentColor; }
 
-/* Tablet project detail — editorial split system.
-   Tablet is neither compressed desktop nor enlarged mobile: each split becomes
-   a consistent media-led document block, with one shared ratio, crop behaviour,
-   spacing rhythm and readable text measure. */
+/* Tablet project detail — one editorial rhythm:
+   full-width landscape media, full-width copy below, one shared section gap.
+   Keep media geometry on the frame and force every asset type (including Mux)
+   to fill that frame rather than carrying its intrinsic ratio into the layout. */
 @include between($bp-tablet, $bp-desktop) {
   .projectDetail {
     --project-media-measure: 100%;
     --project-measure: 100%;
+    --project-tablet-gap: #{$space-5};
   }
 
   .projectHero,
-  .projectStoryMedia { --section-space: 0; }
+  .projectStoryMedia,
+  .projectStoryText { --section-space: 0; }
 
   .projectHero .section__inner,
-  .projectStoryMedia .section__inner { padding-block: $space-4; }
+  .projectStoryMedia .section__inner,
+  .projectStoryText .section__inner {
+    padding-block: var(--project-tablet-gap);
+  }
 
   .projectHero .split,
   .projectStoryMedia .split {
     display: grid;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: var(--grid-gap);
-    row-gap: $space-4;
+    row-gap: var(--project-tablet-gap);
     align-items: start;
   }
 
@@ -84,7 +89,7 @@
 
   .projectHero .split > [data-split-role="content"],
   .projectStoryMedia .split > [data-split-role="content"] {
-    grid-column: 2 / span 6;
+    grid-column: 1 / -1;
     grid-row: 2;
     min-width: 0;
   }
@@ -98,28 +103,61 @@
     width: 100%;
     max-width: none;
     max-height: none;
-    margin-inline: 0;
+    margin: 0;
   }
 
-  .projectDetail .split .media,
-  .projectDetail .split .media__frame {
+  .projectDetail .split .media {
     aspect-ratio: $ratio-landscape;
-    max-height: none;
+    overflow: hidden;
+  }
+
+  .projectDetail .split .media__frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: inherit;
     overflow: hidden;
   }
 
   .projectDetail .split .media__asset,
+  .projectDetail .split .media__asset > img,
+  .projectDetail .split .media__asset > video,
+  .projectDetail .split .media__asset > mux-player,
   .projectDetail .split img,
-  .projectDetail .split video {
-    width: 100%;
-    height: 100%;
+  .projectDetail .split video,
+  .projectDetail .split mux-player {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    max-height: none;
     object-fit: cover;
     object-position: center center;
   }
 
+  .projectDetail .split .media[data-media-type="mux"] .media__asset {
+    position: absolute !important;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  .projectDetail .split .media[data-media-type="mux"] mux-player {
+    position: absolute !important;
+    inset: 0;
+    display: block;
+    --media-object-fit: cover;
+    --media-object-position: 50% 50%;
+  }
+
   .projectHero .textBlock,
-  .projectStoryMedia .textBlock { max-width: none; }
-  .projectHero .textBlock__title { max-width: none; }
+  .projectStoryMedia .textBlock,
+  .projectStoryText .textBlock {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .projectHero .textBlock__title,
   .projectHero .textBlock__subtitle { max-width: none; }
 
   .projectHero .textBlock__meta {
@@ -134,13 +172,6 @@
   .projectHero .textBlock__meta > * {
     min-width: 0;
     white-space: normal;
-  }
-
-  .projectStoryText .section__inner { padding-block: $space-5; }
-  .projectStoryText .textBlock {
-    width: auto;
-    max-width: none;
-    margin-inline: calc((100% - (7 * var(--grid-gap))) / 8);
   }
 }
 
