@@ -33,6 +33,7 @@ export type MetaItem = { label: string; value?: string; href?: string };
 export type MediaRef = string;
 export type GridTrackPlacement = { start?: number; span?: number; row?: number; rowSpan?: number; align?: "start" | "center" | "end" | "stretch"; justify?: "start" | "center" | "end" | "stretch" };
 export type GridPlacement = { mobile?: GridTrackPlacement; tablet?: GridTrackPlacement; desktop?: GridTrackPlacement };
+export type SplitComposition = { primaryColumn?: string; secondaryColumn?: string; primaryMobileColumn?: string; secondaryMobileColumn?: string; primaryMobileOffset?: string; secondaryMobileOffset?: string };
 
 export type Seo = {
   title: string;
@@ -70,7 +71,7 @@ export type SourceQuery = { featured?: boolean; enabled?: boolean; category?: st
 export type SourceRef = { collection: string; query?: SourceQuery };
 
 export type SectionBlock = {
-  id: string; type: "Section"; layout?: SectionLayout; variant?: StyleVariant; splitVariant?: SplitVariant; tone?: Tone; surface?: SectionSurface; color?: SectionColor; timelineOrientation?: TimelineOrientation; source?: SourceRef; content?: SectionContent; frame?: boolean; progressive?: boolean; itemAppearance?: CardAppearance; motion?: MotionLevel; motionPreset?: ScrollMotionPreset; motionRange?: ScrollMotionRange; motionIntensity?: MotionIntensity; className?: string;
+  id: string; type: "Section"; layout?: SectionLayout; variant?: StyleVariant; splitVariant?: SplitVariant; splitComposition?: SplitComposition; tone?: Tone; surface?: SectionSurface; color?: SectionColor; timelineOrientation?: TimelineOrientation; source?: SourceRef; content?: SectionContent; frame?: boolean; progressive?: boolean; itemAppearance?: CardAppearance; motion?: MotionLevel; motionPreset?: ScrollMotionPreset; motionRange?: ScrollMotionRange; motionIntensity?: MotionIntensity; className?: string;
 };
 export type BlockRef = { ref: string };
 export type PanelBlock = BlockRef | SectionBlock;
