@@ -36,8 +36,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  const titleOpacity = useTransform(p, [0, 0.16, 0.32], [1, 1, reduceMotion ? 1 : 0]);
-  const titleY = useTransform(p, [0, 0.32], [0, reduceMotion ? 0 : -36]);
+ 
   const labelsOpacity = useTransform(p, [0.1, 0.24, 0.56, 0.7], [0, 1, 1, reduceMotion ? 1 : 0]);
   const statementOpacity = useTransform(p, [0.58, 0.76, 1], [0, 1, 1]);
   const statementY = useTransform(p, [0.58, 0.8], [reduceMotion ? 0 : 24, 0]);
@@ -60,12 +59,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
 
   return (
     <div ref={ref} className="homeOpeningScene">
-      <motion.h1 className="homeOpeningScene__title" style={{ opacity: titleOpacity, y: titleY }}>
-        <span>Sites internet,</span>
-        <span>identités visuelles</span>
-        <span>et supports de communication,</span>
-        <span>pensés avec clarté.</span>
-      </motion.h1>
+    
 
       <motion.div className="homeOpeningScene__labels" style={{ opacity: labelsOpacity }} aria-hidden="true">
         <span className="homeOpeningScene__label homeOpeningScene__label--web">Sites internet</span>
