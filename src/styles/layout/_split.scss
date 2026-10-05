@@ -5,10 +5,11 @@
   --split-primary-desktop: 7 / -1;
   --split-secondary-desktop: 1 / span 6;
   --split-media-ratio: #{$ratio-landscape};
+  --split-gap: #{$space-4};
 
-  @include site-grid(var(--split-gap, var(--section-gap, #{$flow-loose})));
+  @include site-grid(var(--split-gap));
   align-items: center;
-  row-gap: var(--split-gap, var(--section-gap, #{$flow-loose}));
+  row-gap: var(--split-gap);
 
   &__primary,
   &__secondary {
@@ -47,7 +48,7 @@
 
 @include desktop-down {
   .split:not(.split--editorial) {
-    --split-gap: #{$flow-default};
+    --split-gap: #{$space-4};
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
@@ -63,7 +64,7 @@
 
 @include tablet-down {
   .split:not(.split--editorial) {
-    --split-gap: max(2rem, #{$flow-default});
+    --split-gap: #{$space-4};
     --split-media-ratio: #{$ratio-landscape};
   }
 
@@ -86,7 +87,7 @@
      Defaults create an asymmetric poster rhythm while CSS variables let individual
      sections choose their own spans and offsets without project-specific selectors. */
   .split--editorial {
-    --split-gap: max(3rem, #{$flow-loose});
+    --split-gap: #{$space-4};
     grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
