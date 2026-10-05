@@ -61,18 +61,19 @@
 }
 
 #home-opening .textBlock__title {
-  @include type-display-lg;
-  max-width: 15ch;
-  line-height: .94;
-  letter-spacing: -.045em;
+  font-size: clamp(3.5rem, 5.2vw, 6rem);
+  font-weight: $font-weight-regular;
+  max-width: 16ch;
+  line-height: .96;
+  letter-spacing: -.04em;
   text-wrap: balance;
 }
 
 #home-opening .textBlock__content {
   position: relative;
   z-index: $z-raised;
-  width: min(100%, 30rem);
-  margin-top: $space-4;
+  width: min(100%, 27rem);
+  margin-top: $space-3;
   color: color-mix(in srgb, currentColor 72%, transparent);
 }
 
@@ -90,8 +91,8 @@
   }
 
   #home-opening .textBlock__title {
-    font-size: clamp(3.25rem, 7vw, 5.25rem);
-    max-width: 13ch;
+    font-size: clamp(3rem, 5.8vw, 4.75rem);
+    max-width: 14ch;
   }
 
   #home-opening .textBlock__content { margin-top: $space-3; }
@@ -128,14 +129,14 @@
   }
 
   #home-opening .textBlock__title {
-    font-size: clamp(2.75rem, 11vw, 4.75rem);
-    max-width: 12ch;
-    line-height: .96;
+    font-size: clamp(2.5rem, 9.5vw, 4rem);
+    max-width: 13ch;
+    line-height: .98;
   }
 
   #home-opening .textBlock__content {
     width: 100%;
-    max-width: 30rem;
+    max-width: 27rem;
     margin-top: $space-2;
   }
 }
