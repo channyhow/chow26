@@ -69,19 +69,15 @@
   .textBlock__content { @include type-body-sm; max-width: 26ch; color: color-mix(in srgb, currentColor 68%, transparent); }
 }
 
+.card[data-surface="subtle"] { background: $surface-subtle; }
+.card[data-surface="soft"] { background: $surface-soft; }
+.card[data-surface="muted"] { background: $surface-muted; }
+
 /* Nested service offers share one editorial surface language. */
 .section__offers .card--service {
   display: flex;
   height: 100%;
   padding: $space-3;
-}
-
-.section__offers .card--service:nth-child(odd) {
-  background: $surface-subtle;
-}
-
-.section__offers .card--service:nth-child(even) {
-  background: $surface-soft;
 }
 
 .section__offers .card--service .card__body.textBlock {
