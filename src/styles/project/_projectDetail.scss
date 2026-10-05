@@ -59,7 +59,8 @@
   max-width: 10ch;
 }
 
-.projectCta .textBlock__title {
+.projectCta .textBlock__title,
+.projectRelated .section__header .textBlock__title {
   @include type-heading-md;
   max-width: 22ch;
 }
