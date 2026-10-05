@@ -122,7 +122,7 @@
     "id": "studio-service-website",
     "type": "Section",
     "layout": "split",
-    "splitVariant": "editorial",
+    "splitVariant": "media-lead",
 
     "className": "section--collection-panel",
     "source": {
