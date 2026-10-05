@@ -54,6 +54,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
   const isHomeOpening = block.id === "home-opening";
+  const isProjectCaseStudySplit = layout === "split" && (block.className?.split(/\s+/).some((className) => className === "projectHero" || className === "projectStoryMedia") ?? false);
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
@@ -96,10 +97,14 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
 
-    // A Split owns its geometry. Keep its direct content in normal document flow;
-    // scroll-scene wrappers add viewport-sized boxes and can break mobile grid sizing.
-    const mediaLayer = splitSecondary ? <div className="section__splitMediaMotion">{splitSecondary}</div> : null;
-    const textLayer = primary ? <div className="section__splitTextMotion">{primary}</div> : null;
+    // Standard splits keep direct children in normal flow so their responsive grid
+    // geometry stays stable. Case-study hero/story media deliberately restores the
+    // scroll layer: those authored blocks need media motion, while CTA/related
+    // project sections remain untouched.
+    const mediaContent = splitSecondary ? <div className="section__splitMediaMotion">{splitSecondary}</div> : null;
+    const textContent = primary ? <div className="section__splitTextMotion">{primary}</div> : null;
+    const mediaLayer = isProjectCaseStudySplit ? motionLayer(mediaContent, "reverse", "section__splitMediaScrollLayer", "quiet") : mediaContent;
+    const textLayer = isProjectCaseStudySplit ? motionLayer(textContent, "forward", "section__splitTextScrollLayer", "quiet") : textContent;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerCarousel = offers.length > 0 ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</Carousel> : null;
