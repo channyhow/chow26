@@ -1,35 +1,17 @@
-import {
-  Children,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { Children, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { motion } from "motion/react";
 
 import siteData from "@/data/site.json";
-import {
-  fastStaggerContainer,
-  motionConfig,
-  reducedRevealItem,
-  reducedStaggerContainer,
-  revealItem,
-} from "@/motion/config";
+import { fastStaggerContainer, motionConfig, revealItem } from "@/motion/config";
 
 type Direction = "previous" | "next";
 
 function ArrowIcon({ direction }: { direction: Direction }) {
-  return (
-    <svg className="carousel__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d={direction === "previous" ? "M15 5 8 12l7 7" : "m9 5 7 7-7 7"} />
-    </svg>
-  );
+  return <svg className="carousel__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={direction === "previous" ? "M15 5 8 12l7 7" : "m9 5 7 7-7 7"} /></svg>;
 }
 
 export function Carousel({ children, label }: { children: ReactNode; label?: string }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const count = Children.count(children);
   const [canPrevious, setCanPrevious] = useState(false);
   const [canNext, setCanNext] = useState(count > 1);
@@ -47,10 +29,7 @@ export function Carousel({ children, label }: { children: ReactNode; label?: str
   const move = (direction: -1 | 1) => {
     const track = trackRef.current;
     if (!track) return;
-    track.scrollBy({
-      left: direction * track.clientWidth * 0.82,
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
+    track.scrollBy({ left: direction * track.clientWidth * 0.82, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -66,41 +45,15 @@ export function Carousel({ children, label }: { children: ReactNode; label?: str
 
   return (
     <section className="carousel" aria-label={carouselLabel} data-can-next={canNext || undefined}>
-      <motion.div
-        ref={trackRef}
-        className="carousel__track"
-        role="group"
-        aria-roledescription="carrousel"
-        aria-label={carouselLabel}
-        onScroll={updateControls}
-        variants={reduceMotion ? reducedStaggerContainer : fastStaggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={motionConfig.viewport}
-      >
+      <motion.div ref={trackRef} className="carousel__track" role="group" aria-roledescription="carrousel" aria-label={carouselLabel} onScroll={updateControls} variants={fastStaggerContainer} initial="hidden" whileInView="visible" viewport={motionConfig.viewport}>
         {Children.map(children, (child, index) => (
-          <motion.div
-            className="carousel__item"
-            role="group"
-            aria-roledescription="diapositive"
-            aria-label={`${index + 1} ${copy.positionSeparator} ${count}`}
-            variants={reduceMotion ? reducedRevealItem : revealItem}
-          >
-            {child}
-          </motion.div>
+          <motion.div className="carousel__item" role="group" aria-roledescription="diapositive" aria-label={`${index + 1} ${copy.positionSeparator} ${count}`} variants={revealItem}>{child}</motion.div>
         ))}
       </motion.div>
-
-      {count > 1 && (
-        <div className="carousel__controls" role="group" aria-label={copy.navigationLabel}>
-          <button className="carousel__control" type="button" onClick={() => move(-1)} disabled={!canPrevious} aria-label={copy.previousLabel ?? "Diapositive précédente"}>
-            <ArrowIcon direction="previous" />
-          </button>
-          <button className="carousel__control" type="button" onClick={() => move(1)} disabled={!canNext} aria-label={copy.nextLabel ?? "Diapositive suivante"}>
-            <ArrowIcon direction="next" />
-          </button>
-        </div>
-      )}
+      {count > 1 && <div className="carousel__controls" role="group" aria-label={copy.navigationLabel}>
+        <button className="carousel__control" type="button" onClick={() => move(-1)} disabled={!canPrevious} aria-label={copy.previousLabel ?? "Diapositive précédente"}><ArrowIcon direction="previous" /></button>
+        <button className="carousel__control" type="button" onClick={() => move(1)} disabled={!canNext} aria-label={copy.nextLabel ?? "Diapositive suivante"}><ArrowIcon direction="next" /></button>
+      </div>}
     </section>
   );
 }
