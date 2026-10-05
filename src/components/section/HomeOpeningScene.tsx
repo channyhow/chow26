@@ -36,30 +36,31 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  // The opening reads in three beats: projects establish the studio's range,
-  // service labels identify that range, then the constellation clears for the statement.
-  const webLabelOpacity = useTransform(p, [0.08, 0.18, 0.54, 0.7], [0, 1, 1, 0]);
-  const identityLabelOpacity = useTransform(p, [0.14, 0.24, 0.54, 0.7], [0, 1, 1, 0]);
-  const supportsLabelOpacity = useTransform(p, [0.2, 0.3, 0.54, 0.7], [0, 1, 1, 0]);
-  const webLabelY = useTransform(p, [0.08, 0.2], [10, 0]);
-  const identityLabelY = useTransform(p, [0.14, 0.26], [10, 0]);
-  const supportsLabelY = useTransform(p, [0.2, 0.32], [10, 0]);
+  // Labels follow the same asynchronous rhythm as the media constellation:
+  // each one enters, holds, then rises and clears independently.
+  const webLabelOpacity = useTransform(p, [0.07, 0.17, 0.5, 0.66], [0, 1, 1, 0]);
+  const identityLabelOpacity = useTransform(p, [0.13, 0.23, 0.55, 0.72], [0, 1, 1, 0]);
+  const supportsLabelOpacity = useTransform(p, [0.19, 0.29, 0.46, 0.62], [0, 1, 1, 0]);
+  const webLabelY = useTransform(p, [0.07, 0.17, 0.5, 0.68], [10, 0, 0, -34]);
+  const identityLabelY = useTransform(p, [0.13, 0.23, 0.55, 0.74], [10, 0, 0, -42]);
+  const supportsLabelY = useTransform(p, [0.19, 0.29, 0.46, 0.64], [10, 0, 0, -38]);
 
-  const statementOpacity = useTransform(p, [0.6, 0.76, 1], [0, 1, 1]);
-  const statementY = useTransform(p, [0.6, 0.8], [24, 0]);
+  // The statement waits until the constellation has visibly started to clear.
+  const statementOpacity = useTransform(p, [0.66, 0.8, 1], [0, 1, 1]);
+  const statementY = useTransform(p, [0.66, 0.82], [24, 0]);
 
-  // Kuro is the visual anchor. The smaller applications arrive around it rather
-  // than as a simultaneous gallery reveal, then leave at different speeds.
-  const mediaOpacity1 = useTransform(p, [0, 0.2, 0.54, 0.84], [0.16, 1, 1, 0]);
-  const mediaOpacity2 = useTransform(p, [0, 0.12, 0.62, 0.94], [0.34, 1, 1, 0]);
-  const mediaOpacity3 = useTransform(p, [0.06, 0.25, 0.52, 0.82], [0.1, 1, 1, 0]);
-  const mediaOpacity4 = useTransform(p, [0.1, 0.3, 0.48, 0.78], [0.08, 1, 1, 0]);
+  // Each project has its own entrance, hold and exit. Opacity loss starts with
+  // the upward movement rather than behaving as one grouped gallery fade.
+  const mediaOpacity1 = useTransform(p, [0, 0.18, 0.47, 0.7], [0.16, 1, 1, 0]);
+  const mediaOpacity2 = useTransform(p, [0, 0.12, 0.57, 0.9], [0.34, 1, 1, 0]);
+  const mediaOpacity3 = useTransform(p, [0.05, 0.24, 0.51, 0.77], [0.1, 1, 1, 0]);
+  const mediaOpacity4 = useTransform(p, [0.09, 0.29, 0.42, 0.64], [0.08, 1, 1, 0]);
   const mediaOpacities = [mediaOpacity1, mediaOpacity2, mediaOpacity3, mediaOpacity4];
 
-  const mediaY1 = useTransform(p, [0, 0.2, 0.48, 0.88], [18, 0, 0, -120]);
-  const mediaY2 = useTransform(p, [0, 0.14, 0.54, 1], [12, 0, 0, -160]);
-  const mediaY3 = useTransform(p, [0.06, 0.25, 0.44, 0.84], [20, 0, 0, -140]);
-  const mediaY4 = useTransform(p, [0.1, 0.3, 0.4, 0.8], [24, 0, 0, -180]);
+  const mediaY1 = useTransform(p, [0, 0.18, 0.47, 0.72], [18, 0, 0, -120]);
+  const mediaY2 = useTransform(p, [0, 0.12, 0.57, 0.92], [12, 0, 0, -160]);
+  const mediaY3 = useTransform(p, [0.05, 0.24, 0.51, 0.79], [20, 0, 0, -140]);
+  const mediaY4 = useTransform(p, [0.09, 0.29, 0.42, 0.66], [24, 0, 0, -180]);
   const mediaYs = [mediaY1, mediaY2, mediaY3, mediaY4];
 
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
