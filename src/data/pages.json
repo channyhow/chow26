@@ -24,7 +24,7 @@
           },     {
             "id": "home-services-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -44,7 +44,7 @@
           },       {
   "id": "home-opencall-panel",
   "behavior": "sticky",
-  "frame": "viewport",
+  "frame": "content",
   "size": "full",
   "align": "center",
   "surface": "solid",
@@ -55,7 +55,7 @@
           {
             "id": "home-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
 
             "size": "full",
             "align": "center",
@@ -94,7 +94,7 @@
 {
   "id": "projects-final-panel",
   "behavior": "overlay",
-  "frame": "viewport",
+  "frame": "content",
   "size": "full",
   "align": "center",
   "surface": "glass",
@@ -122,7 +122,7 @@
           {
             "id": "studio-services-intro-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -146,7 +146,7 @@
           {
             "id": "studio-service-website-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -160,7 +160,7 @@
           {
             "id": "studio-service-integrations-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -174,7 +174,7 @@
           {
             "id": "studio-approach-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -193,7 +193,7 @@
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -203,7 +203,7 @@
           {
             "id": "studio-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -231,7 +231,7 @@
           {
             "id": "approach-services-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -251,7 +251,7 @@
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -261,7 +261,7 @@
           {
             "id": "approach-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -289,7 +289,7 @@
           {
             "id": "journal-archive-content-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -299,7 +299,7 @@
           {
             "id": "journal-archive-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -327,7 +327,7 @@
           {
             "id": "journal-site-clair-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -355,7 +355,7 @@
           {
             "id": "journal-identite-systeme-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -383,7 +383,7 @@
           {
             "id": "journal-design-developpement-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -419,7 +419,7 @@
           }, {
             "id": "contact-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -450,7 +450,7 @@
     {
       "id": "link-campaign-panel",
       "behavior": "sticky",
-      "frame": "viewport",
+      "frame": "content",
       "size": "full",
       "align": "center",
       "surface": "solid",
@@ -460,7 +460,7 @@
     {
       "id": "link-footer-panel",
       "behavior": "overlay",
-      "frame": "viewport",
+      "frame": "content",
       "size": "full",
       "align": "center",
       "surface": "glass",
@@ -488,7 +488,7 @@
           {
             "id": "legal-content-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -498,7 +498,7 @@
           {
             "id": "legal-terms-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -508,7 +508,7 @@
           {
             "id": "legal-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -663,7 +663,7 @@
           {
             "id": "cgv-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -701,7 +701,7 @@
           {
             "id": "privacy-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
@@ -730,7 +730,7 @@
           {
             "id": "not-found-content-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -740,7 +740,7 @@
           {
             "id": "not-found-final-panel",
             "behavior": "overlay",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "glass",
