@@ -9,6 +9,7 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
+  scrollProgress?: unknown;
 };
 
 const openingProjects = [
@@ -100,9 +101,6 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
     let frame = 0;
     const resolveOpeningState = () => {
       frame = 0;
-      // Same source-of-truth as Header: real document scroll, not the sticky
-      // panel's bounding box. Sticky targets stop moving while pinned, so their
-      // target progress cannot drive a continuous choreography.
       const scrollDistance = Math.max(window.innerHeight * 1.6, 1);
       update(window.scrollY / scrollDistance);
     };
