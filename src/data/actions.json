@@ -25,7 +25,7 @@
   "approach-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate" },
   "mdk-case-study": { "label": "Le Mois du Kèr", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
   "privacy-data": { "label": "Comment vos données sont utilisées", "href": "/confidentialite", "intent": "navigate", "priority": "secondary" },
-
+"linkpage-founder": { "label": "À propos de Chow Studio", "href": "/link#studio-founders", "intent": "navigate","variant": "arrow" },
   "atmosphere-site": { "label": "Voir le site", "href": "https://atmosphere-studio.netlify.app", "intent": "navigate" },
   "mdk-dossier": { "label": "Voir le dossier", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" },
   "kuro-site": { "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" },
