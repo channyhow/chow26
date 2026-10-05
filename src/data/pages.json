@@ -476,16 +476,7 @@
             "color": "secondary",
             "blocks": [{ "ref": "legal-notice-default" }]
           },
-          {
-            "id": "legal-terms-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "special",
-            "blocks": [{ "ref": "terms-of-sale-default" }]
-          },
+        
           {
             "id": "legal-final-panel",
             "behavior": "overlay",

@@ -61,6 +61,8 @@
 
 :is(#cgv-default, #legal-notice-default, #privacy-default) .section__header {
   max-width: none;
+  margin-top:$space-4;
+
 }
 
 :is(#cgv-default, #legal-notice-default, #privacy-default)
@@ -69,6 +71,12 @@
   @include type-display-lg;
   max-width: none;
   // text-transform: uppercase;
+}
+
+#cgv-default, #legal-notice-default, #privacy-default {
+  .grid { grid-template-columns: 1fr;
+  .textBlock {max-width: none; }
+  }
 }
 
 :is(#cgv-default, #legal-notice-default, #privacy-default)
