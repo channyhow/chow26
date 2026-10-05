@@ -50,13 +50,12 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
 
   useEffect(() => {
     // Four clear beats:
-    // 1. media + labels resolve into the opening composition
-    // 2. they rise away together and pull the statement into the centre
+    // 1. labels are immediately legible while media resolves from a quiet state
+    // 2. media + labels rise away together and pull the statement into the centre
     // 3. the statement holds on its own
     // 4. the statement fades only as the following panel is due to take over
-    const labelEntrance = [0.04, 0.09, 0.14] as const;
     const mediaEntrance = [0, 0.035, 0.07, 0.105] as const;
-    const mediaInitialOpacity = [0.12, 0.12, 0.08, 0.06] as const;
+    const mediaInitialOpacity = [0.32, 0.4, 0.3, 0.28] as const;
     const mediaStartY = [22, 18, 24, 28] as const;
     const mediaExitY = [-150, -190, -168, -210] as const;
     const labelExitY = [-72, -88, -80] as const;
@@ -67,10 +66,9 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
 
       labelRefs.current.forEach((element, index) => {
         if (!element) return;
-        const enter = range(progress, labelEntrance[index] ?? 0.04, (labelEntrance[index] ?? 0.04) + 0.09);
         const exit = range(progress, 0.38 + index * 0.018, 0.56 + index * 0.018);
-        const y = lerp(lerp(12, 0, enter), labelExitY[index] ?? -80, rise);
-        element.style.opacity = String(enter * (1 - exit));
+        const y = lerp(0, labelExitY[index] ?? -80, rise);
+        element.style.opacity = String(1 - exit);
         element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
 
@@ -79,7 +77,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         const enterStart = mediaEntrance[index] ?? 0;
         const enter = range(progress, enterStart, enterStart + 0.12);
         const exit = range(progress, 0.35 + index * 0.018, 0.57 + index * 0.018);
-        const visibleOpacity = lerp(mediaInitialOpacity[index] ?? 0.08, 1, enter);
+        const visibleOpacity = lerp(mediaInitialOpacity[index] ?? 0.3, 1, enter);
         const y = lerp(
           lerp(mediaStartY[index] ?? 22, 0, enter),
           mediaExitY[index] ?? -170,
