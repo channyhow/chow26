@@ -4,17 +4,20 @@
 
 .linkPageShell { width: 100%; }
 
-.linkPage {
+.linkPagePanel {
   position: relative;
+  width: 100%;
+  min-height: 100svh;
+  background: $color-secondary;
+  color: $color-primary;
+}
+
+.linkPagePanel--campaign {
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-height: 100svh;
   padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
   overflow: hidden;
-  background: $color-secondary;
-  color: $color-primary;
 }
 
 .linkPage__main {
@@ -38,7 +41,7 @@
   max-width: none;
 }
 
-.textBlock__content p:last-child:not(:only-child) .textBlock__copy {
+.linkPage__campaignText .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
   opacity: 0.8;
 }
 
@@ -63,65 +66,27 @@
 .linkPage__campaignText .textBlock__content p { @include type-body-bold; }
 .linkPage__campaignText strong { color: $color-accent; }
 
-.linkPage__continuation {
-  position: relative;
-  z-index: 2;
-  background: $color-secondary;
-  color: $color-primary;
+.linkPagePanel--founder,
+.linkPagePanel--conditions {
+  display: flex;
+  align-items: center;
 }
 
-.linkPage__continuation strong {
-  font-weight: $font-weight-semibold;
-  color: inherit;
-}
-
-.linkPage__studio,
-.linkPage__conditions {
-  --section-space: #{$space-5};
-}
-
-/* These continuation sections are intentionally static. Keep them outside
-   inherited reveal/scroll states so media and text cannot remain transparent. */
-.linkPage__continuation .section__inner,
-.linkPage__continuation .section__body,
-.linkPage__continuation .section__splitMediaMotion,
-.linkPage__continuation .section__splitTextMotion {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-}
-
-.linkPage__studio .split { align-items: center; }
-
-.linkPage__studio .media {
-  width: min(100%, 25rem);
-  margin-inline: auto;
-}
-
-.linkPage__studio .media__frame {
-  aspect-ratio: $ratio-portrait;
-  overflow: hidden;
-}
-
-.linkPage__studio .media__asset,
-.linkPage__studio img,
-.linkPage__studio video {
+.linkPagePanel--founder > .section,
+.linkPagePanel--conditions > .section {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
-.linkPage__conditions .section__header { max-width: $container-narrow; }
-.linkPage__conditions .grid { row-gap: $space-4; }
-.linkPage__conditions .card { max-width: $container-narrow; }
+.linkPagePanel--conditions .section__header { max-width: $container-narrow; }
+.linkPagePanel--conditions .grid { row-gap: $space-4; }
+.linkPagePanel--conditions .card { max-width: $container-narrow; }
 
-.linkPage__conditions .textBlock__title {
+.linkPagePanel--conditions .textBlock__title {
   @include type-body-bold;
-  color: inherit;
 }
 
 @include tablet-down {
-  .linkPage {
+  .linkPagePanel--campaign {
     padding-inline: $page-gutter;
     overflow: visible;
   }
@@ -149,6 +114,6 @@
 }
 
 @include mobile-down {
-  .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
+  .linkPagePanel--campaign { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
 }
