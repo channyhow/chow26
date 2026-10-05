@@ -25,7 +25,7 @@
   align-items: center;
   width: min(100%, #{$container-max});
   margin-inline: auto;
-  padding-block: clamp(#{$space-3}, 4vw, #{$space-5});
+  padding-block: $space-4;
 }
 
 .linkPage__campaign,
@@ -41,48 +41,69 @@
 .linkPage__campaignText .textBlock__header,
 .linkPage__campaignText .textBlock__content {
   grid-column: 1;
-  width: min(100%, 31rem);
+  width: min(100%, #{$container-narrow});
 }
-
-.linkPage__campaignText .textBlock__header { align-self: end; }
-.linkPage__campaignText .textBlock__content { align-self: start; }
 
 .linkPage__campaignText .textBlock__footer {
   grid-column: 2;
   grid-row: 1 / span 2;
-  align-self: center;
   width: 100%;
 }
 
 .linkPage__campaignText .textBlock__title {
-  @include type-lead-bold;
+  @include type-display-lg;
   color: $color-accent;
 }
 
-.linkPage__campaignText .textBlock__subtitle p {
-  @include type-ui-compact;
-  font-weight: $font-weight-bold;
-  text-transform: uppercase;
+.linkPage__campaignText .textBlock__subtitle p { @include type-ui-compact; }
+.linkPage__campaignText .textBlock__content p { @include type-body-bold; }
+.linkPage__campaignText strong { color: $color-accent; }
+
+.linkPage__continuation {
+  background: $color-secondary;
+  color: $color-primary;
 }
 
-.linkPage__campaignText .textBlock__content p {
-  max-width: 30rem;
-  @include type-body-bold;
+.linkPage__studio {
+  --section-space: #{$space-5};
 }
 
-.linkPage__campaignText strong {
-  font-weight: $font-weight-semibold;
-  color: $color-accent;
+.linkPage__studio .split {
+  align-items: center;
 }
 
-/* This page alone deliberately expands the standard footer on desktop. */
-@media (min-width: 64rem) {
-  .linkPageShell > .siteFooter { min-height: 80svh; }
+.linkPage__studio .media {
+  width: min(100%, 25rem);
+  margin-inline: auto;
+}
 
-  .linkPageShell > .siteFooter .siteFooter__inner {
-    min-height: calc(80svh - #{$space-3});
-    align-content: space-between;
-  }
+.linkPage__studio .media__frame {
+  aspect-ratio: $ratio-portrait;
+  overflow: hidden;
+}
+
+.linkPage__studio .media__asset,
+.linkPage__studio img,
+.linkPage__studio video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.linkPage__conditions {
+  --section-space: #{$space-5};
+}
+
+.linkPage__conditions .section__header {
+  max-width: $container-small;
+}
+
+.linkPage__conditions .grid {
+  row-gap: $space-4;
+}
+
+.linkPage__conditions .card {
+  max-width: $container-small;
 }
 
 @include tablet-down {
@@ -93,7 +114,7 @@
 
   .linkPage__main {
     align-items: stretch;
-    padding-block: clamp(#{$space-2}, 3vw, #{$space-4});
+    padding-block: $space-3 $space-4;
   }
 
   .linkPage__campaignText.textBlock {
@@ -107,28 +128,15 @@
   .linkPage__campaignText .textBlock__footer {
     grid-column: 1;
     grid-row: auto;
-    align-self: auto;
+    width: 100%;
   }
 
-  .linkPage__campaignText .textBlock__header { width: min(100%, 30rem); }
-  .linkPage__campaignText .textBlock__content { width: min(100%, 32rem); }
-
   .linkPage__campaignText .textBlock__footer {
-    width: 100%;
-    max-width: 34rem;
-    margin-left: auto;
+    margin-top: $space-3;
   }
 }
 
 @include mobile-down {
   .linkPage { padding-top: calc(#{$header-height} + #{$space-2}); }
   .linkPage__main { padding-block: $space-3 $space-4; }
-  .linkPage__campaignText .textBlock__header { width: 100%; }
-  .linkPage__campaignText .textBlock__content { width: min(92%, 24rem); }
-
-  .linkPage__campaignText .textBlock__footer {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
 }
