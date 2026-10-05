@@ -24,6 +24,26 @@ $color-light-subtle: rgb(246 245 243 / 0.04);
 $color-light-soft: rgb(246 245 243 / 0.09);
 $color-light-muted: rgb(246 245 243 / 0.16);
 
+$color-dark-subtle:  rgb(34 34 36 / 0.04);
+$color-dark-soft:    rgb(34 34 36 / 0.09);
+$color-dark-muted:   rgb(34 34 36 / 0.16);
+
+$color-light-subtle: rgb(246 245 243 / 0.04);
+$color-light-soft:   rgb(246 245 243 / 0.09);
+$color-light-muted:  rgb(246 245 243 / 0.16);
+// Transparent overlays
+$color-dark-subtle: rgb(34 34 36 / 0.08);
+$color-dark-soft:   rgb(34 34 36 / 0.16);
+$color-dark-muted:  rgb(34 34 36 / 0.28);
+
+$color-light-subtle: rgb(246 245 243 / 0.08);
+$color-light-soft:   rgb(246 245 243 / 0.16);
+$color-light-muted:  rgb(246 245 243 / 0.28);
+
+// Opaque surfaces derived from the Chow palette
+$surface-subtle: color-mix(in srgb, $color-primary 6%, $color-secondary);
+$surface-soft:   color-mix(in srgb, $color-primary 14%, $color-secondary);
+$surface-muted:  color-mix(in srgb, $color-primary 22%, $color-secondary);
 $space-1: 0.5rem;
 $space-2: 1rem;
 $space-3: 2rem;

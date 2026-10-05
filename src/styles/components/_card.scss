@@ -74,11 +74,14 @@
   display: flex;
   height: 100%;
   padding: $space-3;
-  background: $color-dark-subtle;
+}
+
+.section__offers .card--service:nth-child(odd) {
+  background: $surface-subtle;
 }
 
 .section__offers .card--service:nth-child(even) {
-  background: $color-dark-soft;
+  background: $surface-soft;
 }
 
 .section__offers .card--service .card__body.textBlock {
