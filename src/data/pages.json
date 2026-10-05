@@ -21,28 +21,7 @@
             "align": "center",
             "surface": "solid",
             "blocks": [{ "ref": "home-opening" }]
-          },
-          {
-            "id": "home-projects-gallery-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "special",
-            "blocks": [{ "ref": "projects-featured-gallery" }]
-          },
-          {
-            "id": "home-approach-panel",
-           "behavior": "sticky",
-"frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
-          },
-          {
+          },     {
             "id": "home-services-panel",
             "behavior": "sticky",
             "frame": "viewport",
@@ -52,6 +31,27 @@
             "color": "special",
             "blocks": [{ "ref": "home-services" }]
           },
+
+          {
+            "id": "home-approach-panel",
+           "behavior": "sticky",
+"frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [{ "ref": "approach-default" }]
+          },       {
+  "id": "home-opencall-panel",
+  "behavior": "sticky",
+  "frame": "viewport",
+  "size": "full",
+  "align": "center",
+  "surface": "solid",
+  "color": "special",
+  "blocks": [{ "ref": "linkpage-navigation" }]
+},
+     
           {
             "id": "home-final-panel",
             "behavior": "overlay",
