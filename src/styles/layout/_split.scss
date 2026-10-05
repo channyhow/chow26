@@ -160,9 +160,10 @@
     max-width: 100%;
   }
 
+  .split--editorial .media,
   .split--editorial .media[data-ratio],
   .split--editorial .media[data-ratio] .media__frame {
-    aspect-ratio: inherit;
+    aspect-ratio: var(--split-media-ratio);
   }
 }
 
