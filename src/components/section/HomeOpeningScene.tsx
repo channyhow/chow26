@@ -131,6 +131,14 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         return;
       }
 
+      if (!mobile.matches) {
+        // Preserve the original desktop choreography exactly. Desktop was built
+        // against a 200svh runway and must not inherit the mobile section math.
+        const desktopDistance = Math.max(window.innerHeight * 2, 1);
+        updateDesktop(clamp01(window.scrollY / desktopDistance));
+        return;
+      }
+
       const scene = sceneRef.current;
       const section = scene?.closest("#home-opening");
       const sectionTop = section instanceof HTMLElement
@@ -138,10 +146,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         : 0;
       const sectionHeight = section instanceof HTMLElement ? section.offsetHeight : window.innerHeight * 3;
       const distance = Math.max(sectionHeight - window.innerHeight, 1);
-      const progress = clamp01((window.scrollY - sectionTop) / distance);
-
-      if (mobile.matches) updateMobile(progress);
-      else updateDesktop(progress);
+      updateMobile(clamp01((window.scrollY - sectionTop) / distance));
     };
 
     const scheduleResolve = () => {
