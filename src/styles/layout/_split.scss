@@ -46,27 +46,54 @@
   }
 }
 
-/* Tablet is a compact media-led composition, not oversized mobile. Splits stay
-   linear for reliable reading order, but media always owns the first beat and
-   uses the full available field. */
+/* Tablet is an 8-column hybrid: preserve desktop relationships and asymmetry,
+   but let media lead. Generic splits use a 5/3 composition; editorial variants
+   can still provide authored placement through their tablet variables. */
 @include between($bp-tablet, $bp-desktop) {
   .split {
-    --split-gap: #{$space-5};
+    --split-gap: #{$space-4};
     grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
-    align-items: start;
+    align-items: center;
   }
 
   .split > .split__primary,
   .split > .split__secondary {
-    grid-column: 1 / -1;
     width: 100%;
+    min-width: 0;
     max-width: none;
   }
 
-  .split > [data-split-role="media"] { grid-row: 1; }
-  .split > [data-split-role="content"] { grid-row: 2; }
+  .split > [data-split-role="media"] {
+    grid-column: 1 / span 5;
+    grid-row: 1;
+  }
+
+  .split > [data-split-role="content"] {
+    grid-column: 6 / span 3;
+    grid-row: 1;
+  }
+
+  .split--balanced > .split__primary,
+  .split--editorial > .split__primary {
+    grid-column: var(--split-primary-tablet-column, 1 / span 4);
+  }
+
+  .split--balanced > .split__secondary,
+  .split--editorial > .split__secondary {
+    grid-column: var(--split-secondary-tablet-column, 5 / span 4);
+  }
+
+  .split--balanced > [data-split-role="media"],
+  .split--editorial > [data-split-role="media"] {
+    grid-row: 1;
+  }
+
+  .split--balanced > [data-split-role="content"],
+  .split--editorial > [data-split-role="content"] {
+    grid-row: 1;
+  }
 
   .split .media {
     width: 100%;
@@ -79,8 +106,6 @@
   }
 }
 
-/* Phone layouts stay linear and inherit the larger mobile rhythm established
-   in the responsive foundation. */
 @include tablet-down {
   .split:not(.split--editorial) {
     --split-gap: #{$mobile-gap-block};
@@ -102,13 +127,8 @@
     max-width: none;
   }
 
-  .split:not(.split--editorial) .media:not([data-ratio]) {
-    aspect-ratio: $ratio-landscape;
-  }
-
+  .split:not(.split--editorial) .media:not([data-ratio]),
   .split:not(.split--editorial) .media:not([data-ratio]) .media__frame {
-    width: 100%;
-    height: 100%;
     aspect-ratio: $ratio-landscape;
   }
 
@@ -152,15 +172,8 @@
 
 @include desktop-up {
   .split__primary,
-  .split__secondary {
-    grid-row: 1;
-  }
+  .split__secondary { grid-row: 1; }
 
-  .split__primary {
-    grid-column: var(--split-primary-column, var(--split-primary-desktop));
-  }
-
-  .split__secondary {
-    grid-column: var(--split-secondary-column, var(--split-secondary-desktop));
-  }
+  .split__primary { grid-column: var(--split-primary-column, var(--split-primary-desktop)); }
+  .split__secondary { grid-column: var(--split-secondary-column, var(--split-secondary-desktop)); }
 }
