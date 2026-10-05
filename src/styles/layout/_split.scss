@@ -48,8 +48,8 @@
   }
 }
 
-/* All Split variants share one responsive invariant: media first, content second.
-   Art-directed desktop variants do not leak into the stacked composition. */
+/* Tablet is deliberately simplified: all splits stack media first, then content.
+   Authored media ratios remain available so tablet does not become an oversized mobile. */
 @include desktop-down {
   .split {
     --split-gap: #{$flow-default};
@@ -62,12 +62,29 @@
     grid-column: 1 / -1;
   }
 
-  .split > [data-split-role="media"] {
-    grid-row: 1;
+  .split > [data-split-role="media"] { grid-row: 1; }
+  .split > [data-split-role="content"] { grid-row: 2; }
+}
+
+/* Mobile has one invariant regardless of authored split variant:
+   full-width square media first, content second. */
+@include tablet-down {
+  .split {
+    --split-media-ratio: #{$ratio-square};
   }
 
-  .split > [data-split-role="content"] {
-    grid-row: 2;
+  .split .media,
+  .split .media[data-ratio] {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: $ratio-square;
+  }
+
+  .split .media[data-ratio] .media__frame,
+  .split .media__frame {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: $ratio-square;
   }
 }
 
