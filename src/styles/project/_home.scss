@@ -77,8 +77,7 @@
 }
 
 /* Phone + tablet share one authored opening scene. Keep the runway compact so
-   the final statement hands off to the following panel without a dead scroll
-   tail: 250svh on phone, slightly shorter on tablet where more is visible. */
+   the final statement hands off to the following panel without a dead scroll tail. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
   #home-opening { height: auto; min-height: 250svh; overflow: visible; }
 
@@ -142,8 +141,8 @@
 }
 
 @include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 230svh; }
-  #home-opening .section__inner { height: 230svh; min-height: 230svh; }
+  #home-opening { min-height: 180svh; }
+  #home-opening .section__inner { height: 180svh; min-height: 180svh; }
 
   .homeOpeningScene__project--web { left: 10%; width: 58%; }
   .homeOpeningScene__project--identity { right: 12%; width: 31%; }
