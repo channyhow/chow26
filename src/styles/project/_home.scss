@@ -22,7 +22,6 @@
   overflow: clip;
 }
 
-
 .homeOpeningScene__media,
 .homeOpeningScene__labels { display: contents; }
 
@@ -43,7 +42,6 @@
   height: 100%;
 }
 
-/* Semantic scene roles replace positional nth-child styling. */
 .homeOpeningScene__project--identity {
   grid-column: 2 / span 2;
   grid-row: 1;
@@ -89,10 +87,10 @@
 }
 
 .homeOpeningScene__labelLink {
-  text-decoration: none; 
-   @include type-lead-bold;
-
+  text-decoration: none;
+  @include type-lead-bold;
 }
+
 .homeOpeningScene__label--web {
   grid-column: 2 / span 2;
   grid-row: 1;
@@ -117,8 +115,7 @@
 }
 
 .homeOpeningScene__statement {
-    @include type-lead;
-
+  @include type-lead;
   grid-column: 5 / span 4;
   grid-row: 1;
   position: relative;
@@ -159,59 +156,89 @@
 
 @include mobile-down {
   .homeOpeningScene {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
-    gap: $space-3 $space-2;
-    min-height: auto;
-    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-5;
-    overflow: hidden;
+    display: block;
+    min-height: 100svh;
+    padding: 0;
+    overflow: clip;
+  }
+
+  /* Labels are their own fixed visual layer. Images travel above/below it. */
+  .homeOpeningScene__labels {
+    position: absolute;
+    inset: 0;
+    z-index: $z-floating;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .homeOpeningScene__label {
+    display: block;
+    position: relative;
+    margin: 0;
+    text-align: center;
+    line-height: 1.02;
+  }
+
+  .homeOpeningScene__labelLink {
+    @include type-lead-bold;
+    pointer-events: auto;
+  }
+
+  .homeOpeningScene__media {
+    position: absolute;
+    inset: 0;
+    z-index: $z-raised;
+    display: block;
+    pointer-events: none;
   }
 
   .homeOpeningScene__project {
-    width: 100%;
+    position: absolute;
+    display: block;
     margin: 0;
-    align-self: auto;
+    pointer-events: auto;
   }
 
-  .homeOpeningScene__project--identity {
-    grid-column: 1;
-    grid-row: 1;
-    width: 78%;
-    aspect-ratio: $ratio-square;
-    align-self: end;
-  }
-
+  /* Opening artboard: only Kuro + Mois du Kèr are visible at first paint. */
   .homeOpeningScene__project--web {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    width: 72%;
-    justify-self: end;
+    top: 20svh;
+    left: $page-gutter;
+    width: 66%;
     aspect-ratio: $ratio-landscape;
   }
 
+  .homeOpeningScene__project--identity {
+    top: 66svh;
+    right: $page-gutter;
+    width: 39%;
+    aspect-ratio: $ratio-square;
+  }
+
   .homeOpeningScene__project--web-secondary {
-    grid-column: 1;
-    grid-row: 2;
-    width: 92%;
+    top: 84svh;
+    left: $page-gutter;
+    width: 47%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--supports {
-    grid-column: 2;
-    grid-row: 2;
-    width: 70%;
-    justify-self: end;
+    top: 91svh;
+    right: $page-gutter;
+    width: 34%;
     aspect-ratio: $ratio-portrait;
   }
 
-  .homeOpeningScene__label { display: none; }
-
   .homeOpeningScene__statement {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    justify-self: start;
-    width: min(100%, 27rem);
-    margin: $space-3 0 0;
+    @include type-lead;
+    position: absolute;
+    z-index: $z-floating;
+    top: 50%;
+    left: $page-gutter;
+    width: calc(100% - (#{$page-gutter} * 2));
+    margin: 0;
+    transform: translateY(52px);
   }
 }
