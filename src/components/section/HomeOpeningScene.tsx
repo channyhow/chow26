@@ -1,6 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import type { MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
@@ -10,7 +9,6 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
-  scrollProgress?: MotionValue<number>;
 };
 
 const openingProjects = [
@@ -45,7 +43,7 @@ const renderInlineStrong = (value: string): ReactNode[] => value
     return strong ? <strong key={`${text}-${index}`}>{text}</strong> : <span key={`${text}-${index}`}>{text}</span>;
   });
 
-export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const statementRef = useRef<HTMLDivElement>(null);
@@ -99,14 +97,29 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       }
     };
 
-    if (!scrollProgress) {
-      update(0);
-      return;
-    }
+    let frame = 0;
+    const resolveOpeningState = () => {
+      frame = 0;
+      // Same source-of-truth as Header: real document scroll, not the sticky
+      // panel's bounding box. Sticky targets stop moving while pinned, so their
+      // target progress cannot drive a continuous choreography.
+      const scrollDistance = Math.max(window.innerHeight * 1.6, 1);
+      update(window.scrollY / scrollDistance);
+    };
+    const scheduleResolve = () => {
+      if (!frame) frame = window.requestAnimationFrame(resolveOpeningState);
+    };
 
-    update(scrollProgress.get());
-    return scrollProgress.on("change", update);
-  }, [scrollProgress]);
+    scheduleResolve();
+    window.addEventListener("scroll", scheduleResolve, { passive: true });
+    window.addEventListener("resize", scheduleResolve);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleResolve);
+      window.removeEventListener("resize", scheduleResolve);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <div className="homeOpeningScene">
