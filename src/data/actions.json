@@ -10,6 +10,7 @@
   "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
   "return-home": { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
   "projects": { "label": "Projets", "href": "/projets", "intent": "navigate" },
+  "case-studies": { "label": "Études de cas", "href": "/projets", "intent": "navigate", "variant": "arrow" },
   "view-projects": { "label": "Voir les projets", "href": "/projets", "intent": "navigate" },
   "all-projects": { "label": "Voir tous les projets", "href": "/projets", "intent": "navigate", "variant": "arrow", "priority": "secondary" },
   "discover-projects": { "label": "Découvrir les projets", "href": "/projets", "intent": "navigate" },
