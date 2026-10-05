@@ -1,0 +1,34 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+
+/* Project archive owns page-level composition; cards remain component-owned. */
+#project-gallery {
+  --section-title-width: 18ch;
+  --section-title-width-mobile: 100%;
+}
+
+#project-gallery > .section__inner {
+  padding-top: calc(#{$header-height} + #{$space-5});
+}
+
+#project-gallery .section__header {
+  max-width: none;
+  margin-bottom: $space-5;
+}
+
+#project-gallery .section__header .textBlock__title {
+  @include type-display-lg;
+  max-width: var(--section-title-width);
+  text-transform: uppercase;
+}
+
+@include tablet-down {
+  #project-gallery > .section__inner {
+    padding-top: calc(#{$header-height} + #{$space-4});
+  }
+
+  #project-gallery .section__header {
+    margin-bottom: $space-4;
+  }
+}
