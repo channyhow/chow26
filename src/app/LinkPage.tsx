@@ -3,12 +3,20 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { TextBlock } from "@/components/content/TextBlock";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { Section } from "@/components/section/Section";
 import { FractalNoiseCanvas } from "@/components/visual/FractalNoiseCanvas";
+import linkPageData from "@/data/linkPage.json";
 import { resolveBlock } from "@/data/resolve";
 import type { ContentItem, PageBlock, PageData, SectionBlock } from "@/types/content";
 
 type LinkPageProps = {
   page: PageData;
+};
+
+type LinkPageData = {
+  navigation: ContentItem;
+  founder: SectionBlock;
+  conditions: SectionBlock;
 };
 
 function resolveSection(block: PageBlock | undefined): SectionBlock | undefined {
@@ -20,11 +28,10 @@ function resolveSection(block: PageBlock | undefined): SectionBlock | undefined 
 export function LinkPage({ page }: LinkPageProps) {
   const reduceMotion = Boolean(useReducedMotion());
   const [hoverMode, setHoverMode] = useState<"idle" | "contrast" | "accent">("idle");
-  const campaign = resolveSection(page.blocks[0]);
   const footer = resolveSection(page.blocks[1]);
-  const campaignContent = campaign?.content?.header as ContentItem | undefined;
+  const { navigation, founder, conditions } = linkPageData as LinkPageData;
 
-  if (!campaign || !campaignContent || !footer) return null;
+  if (!footer) return null;
 
   const updateHoverMode = (target: EventTarget | null) => {
     const link = target instanceof Element ? target.closest(".actions__link") : null;
@@ -64,7 +71,7 @@ export function LinkPage({ page }: LinkPageProps) {
             }}
           >
             <TextBlock
-              content={campaignContent}
+              content={navigation}
               titleAs="h1"
               className="linkPage__campaignText"
               actionsVariant="panel"
@@ -72,6 +79,12 @@ export function LinkPage({ page }: LinkPageProps) {
           </section>
         </motion.main>
       </div>
+
+      <div className="linkPage__continuation">
+        <Section block={founder} />
+        <Section block={conditions} />
+      </div>
+
       <SiteFooter block={footer} />
     </div>
   );
