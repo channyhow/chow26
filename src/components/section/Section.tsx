@@ -27,11 +27,9 @@ import type { FormSchema } from "@/types/forms";
 export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; };
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
-const mobileQuery = "(max-width: 47.999rem)";
 
 export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const [isPhoneViewport, setIsPhoneViewport] = useState(false);
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
@@ -70,18 +68,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   useEffect(() => {
     const carouselMedia = window.matchMedia(mobileCarouselQuery);
-    const phoneMedia = window.matchMedia(mobileQuery);
-    const updateViewport = () => {
-      setIsMobileViewport(carouselMedia.matches);
-      setIsPhoneViewport(phoneMedia.matches);
-    };
+    const updateViewport = () => setIsMobileViewport(carouselMedia.matches);
     updateViewport();
     carouselMedia.addEventListener("change", updateViewport);
-    phoneMedia.addEventListener("change", updateViewport);
-    return () => {
-      carouselMedia.removeEventListener("change", updateViewport);
-      phoneMedia.removeEventListener("change", updateViewport);
-    };
+    return () => carouselMedia.removeEventListener("change", updateViewport);
   }, []);
 
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
@@ -107,13 +97,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
-    const keepServiceMediaVisible = isServiceCollection && isPhoneViewport;
-    const mediaLayer = splitSecondary ? (sectionMotionEnabled && !keepServiceMediaVisible
-      ? <motion.div className="section__splitMediaMotion" initial={{ opacity: 0, y: 12, scale: 0.996 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={motionConfig.viewport} transition={{ duration: 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div>
-      : <div className="section__splitMediaMotion">{splitSecondary}</div>) : null;
-    const textLayer = primary ? (sectionMotionEnabled
-      ? <motion.div className="section__splitTextMotion" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: 0.78, delay: 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div>
-      : <div className="section__splitTextMotion">{primary}</div>) : null;
+    const mediaLayer = splitSecondary ? <div className="section__splitMediaMotion">{splitSecondary}</div> : null;
+    const textLayer = primary ? <div className="section__splitTextMotion">{primary}</div> : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerCarousel = offers.length > 0
