@@ -16,7 +16,8 @@
           { "label": "Comprend", "value": "Logo principal · 1 variation · Palette · Typographies · Principes visuels · Jusqu’à 2 applications prioritaires" },
           { "label": "Budget", "value": "À partir de 800 € HT" }
         ],
-        "links": ["identity-essential-contact"]
+        "links": ["identity-essential-contact"],
+        "surface": "subtle"
       },
       {
         "id": "identity-complete",
@@ -27,7 +28,8 @@
           { "label": "Comprend", "value": "Logo principal · Jusqu’à 2 variations · Palette · Système typographique · Système graphique · Règles d’usage · Jusqu’à 4 applications prioritaires" },
           { "label": "Budget", "value": "À partir de 1 200 € HT" }
         ],
-        "links": ["identity-complete-contact"]
+        "links": ["identity-complete-contact"],
+        "surface": "soft"
       }
     ],
     "featured": true,
