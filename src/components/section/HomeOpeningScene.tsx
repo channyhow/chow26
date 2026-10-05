@@ -4,11 +4,11 @@ import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } f
 import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
 import type { ContentItem } from "@/types/content";
-import type { MediaAsset } from "@/types/media";
+import type { MediaItem } from "@/types/media";
 
 type HomeOpeningSceneProps = {
   header?: ContentItem;
-  media: MediaAsset[];
+  media: MediaItem[];
   progress?: MotionValue<number>;
 };
 
@@ -62,17 +62,18 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
       </motion.div>
 
       <div className="homeOpeningScene__media" aria-label="Projets sélectionnés">
-        {sceneMedia.map((item, index) => (
-          <motion.a
+        {sceneMedia.map((item, index) => {
+          const projectName = item.alt?.split("|")[0].trim() ?? "sélectionné";
+          return <motion.a
             key={item.id}
             className={`homeOpeningScene__project homeOpeningScene__project--${index + 1}`}
             href={projectLinks[index]}
             style={{ opacity: mediaOpacity, y: mediaYs[index] }}
-            aria-label={`Voir le projet ${item.alt.split("|")[0].trim()}`}
+            aria-label={`Voir le projet ${projectName}`}
           >
             <Media media={item} sizes={index === 1 ? "(min-width: 64rem) 28vw, 70vw" : "(min-width: 64rem) 12vw, 38vw"} />
-          </motion.a>
-        ))}
+          </motion.a>;
+        })}
       </div>
 
       <motion.div className="homeOpeningScene__statement" style={{ opacity: statementOpacity, y: statementY }}>
