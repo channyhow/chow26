@@ -1,8 +1,9 @@
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useReducedMotion, useScroll, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
+import { FractalNoiseCanvas } from "@/components/visual/FractalNoiseCanvas";
 import { resolveBlock, resolveCollection } from "@/data/resolve";
 import type {
   PanelAlign,
@@ -76,6 +77,8 @@ function getViewportHeight() {
 
 function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [hoverMode, setHoverMode] = useState<"idle" | "contrast" | "accent">("idle");
+  const isLinkCampaign = id === "link-campaign-panel";
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -105,12 +108,50 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
     };
   }, [behavior, frame]);
 
+  const updateHoverMode = (target: EventTarget | null) => {
+    if (!isLinkCampaign) return;
+    const link = target instanceof Element ? target.closest(".actions__link") : null;
+    if (!link) {
+      setHoverMode("idle");
+      return;
+    }
+    const isPrimary = link.matches('.actions__link--primary, [data-priority="primary"]');
+    setHoverMode(isPrimary ? "accent" : "contrast");
+  };
+
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
 
   return (
-    <div id={id} ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
-      <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollYProgress)}</div>
+    <div
+      id={id}
+      ref={ref}
+      className="sectionGroup__panel"
+      data-panel-id={id}
+      data-panel-behavior={behavior}
+      data-panel-frame={frame}
+      data-panel-size={size}
+      data-panel-align={align}
+      data-panel-surface={surface}
+      data-panel-color={color}
+      style={style}
+      onPointerOver={isLinkCampaign ? (event) => updateHoverMode(event.target) : undefined}
+      onPointerOut={isLinkCampaign ? (event) => {
+        const next = event.relatedTarget;
+        if (next instanceof Node && event.currentTarget.contains(next)) updateHoverMode(next);
+        else setHoverMode("idle");
+      } : undefined}
+      onFocus={isLinkCampaign ? (event) => updateHoverMode(event.target) : undefined}
+      onBlur={isLinkCampaign ? (event) => {
+        const next = event.relatedTarget;
+        if (next instanceof Node && event.currentTarget.contains(next)) updateHoverMode(next);
+        else setHoverMode("idle");
+      } : undefined}
+    >
+      <div className="sectionGroup__surface" style={surfaceStyle}>
+        {isLinkCampaign ? <FractalNoiseCanvas hoverMode={hoverMode} /> : null}
+        {renderBlocks(blocks, true, scrollYProgress)}
+      </div>
     </div>
   );
 }
