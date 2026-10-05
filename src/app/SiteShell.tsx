@@ -59,8 +59,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-minimal={isLinkPage ? "true" : "false"}
       style={themeStyle}
     >
-      {!isLinkPage ? <SmoothScroll /> : null}
-      {/* {!isLinkPage ? <ScrollProgress mode={scrollProgress} /> : null} */}
+      <SmoothScroll />
+      {/* <ScrollProgress mode={scrollProgress} /> */}
       <Header />
       <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
       {!isLinkPage ? <FloatingAction /> : null}
