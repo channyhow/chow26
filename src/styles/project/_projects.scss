@@ -23,6 +23,29 @@
   max-width: var(--section-title-width);
 }
 
+/* Tablet archive is an index: six projects read as a compact 3 x 2 field before
+   progressive disclosure. Keep breathing room, but avoid the oversized mobile
+   card rhythm that made the page unnecessarily long. */
+@include between($bp-tablet, $bp-desktop) {
+  #project-gallery > .section__inner {
+    padding-top: calc(#{$header-height} + #{$space-4});
+    padding-bottom: $space-5;
+  }
+
+  #project-gallery .section__header {
+    margin-bottom: $space-4;
+  }
+
+  #project-gallery .gridReveal {
+    gap: $space-4;
+  }
+
+  #project-gallery .grid {
+    column-gap: $space-2;
+    row-gap: $space-4;
+  }
+}
+
 @include tablet-down {
   #project-gallery {
     --section-gap: #{$mobile-section-space};
@@ -37,8 +60,6 @@
     margin-bottom: $mobile-section-space;
   }
 
-  /* Repeated projects need clear separation, but not the cinematic pause used
-     by editorial media/text splits. */
   #project-gallery .gridReveal {
     gap: $mobile-gap-block;
   }
