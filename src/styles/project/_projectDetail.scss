@@ -193,25 +193,25 @@
   }
 
   .projectHero .section__inner {
-    padding-top: calc(#{$space-5} + #{$header-height});
-    padding-bottom: $space-5;
+    padding-top: calc(#{$mobile-section-space} + #{$header-height});
+    padding-bottom: $mobile-section-space;
   }
 
   .projectStoryMedia,
   .projectStoryText,
   .projectCta,
   .projectRelated {
-    --section-space: #{$space-5};
+    --section-space: #{$mobile-section-space};
   }
 
   .projectStoryMedia .section__inner,
   .projectStoryText .section__inner {
-    padding-block: $space-5;
+    padding-block: $mobile-section-space;
   }
 
   .projectHero .split,
   .projectStoryMedia .split {
-    gap: $space-5;
+    gap: $mobile-gap-editorial;
   }
 
   .projectHero .textBlock__meta {
