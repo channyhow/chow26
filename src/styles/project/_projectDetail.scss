@@ -2,178 +2,71 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-/* Project detail owns narrative composition. Generic TextBlock and Media
-   presentation remains component-owned. */
-.projectDetail {
-  --project-measure: 36rem;
-  --project-media-measure: 34rem;
-}
+.projectDetail { --project-measure: 36rem; --project-media-measure: 34rem; }
+.projectDetail .split .media { aspect-ratio: $ratio-portrait; max-height: 25rem; object-fit: cover; object-position: center center; }
 
-/* Case-study split media keeps an editorial portrait frame until the mobile
-   layout contract takes over. */
-.projectDetail .split .media {
-  aspect-ratio: $ratio-portrait;
-  max-height: 25rem;
-  object-fit: cover;
-  object-position: center center;
-}
-
-.projectHero {
-  --section-space: 0;
-  --split-primary-column: 1 / span 5;
-  --split-secondary-column: 7 / span 6;
-}
-
-.projectHero.projectDetail--b {
-  --split-primary-column: 8 / span 5;
-  --split-secondary-column: 1 / span 6;
-}
-
-.projectHero .section__inner {
-  width: 100%;
-  max-width: none;
-  padding-block: $space-5;
-}
-
+.projectHero { --section-space: 0; --split-primary-column: 1 / span 5; --split-secondary-column: 7 / span 6; }
+.projectHero.projectDetail--b { --split-primary-column: 8 / span 5; --split-secondary-column: 1 / span 6; }
+.projectHero .section__inner { width: 100%; max-width: none; padding-block: $space-5; }
 .projectHero .split,
-.projectStoryMedia .split {
-  align-items: center;
-  gap: $space-3;
-}
-
+.projectStoryMedia .split { align-items: center; gap: $space-3; }
 .projectHero .textBlock,
 .projectStoryMedia .textBlock,
-.projectStoryText .textBlock {
-  width: 100%;
-  max-width: var(--project-measure);
-}
-
-.projectHero .textBlock__title {
-  @include type-display-lg;
-  max-width: 10ch;
-}
-
+.projectStoryText .textBlock { width: 100%; max-width: var(--project-measure); }
+.projectHero .textBlock__title { @include type-display-lg; max-width: 10ch; }
 .projectCta .textBlock__title,
-.projectRelated .section__header .textBlock__title {
-  @include type-heading-md;
-  max-width: 22ch;
-}
-
-.projectHero .textBlock__subtitle {
-  max-width: var(--project-media-measure);
-  margin-top: $space-2;
-}
-
-.projectHero .textBlock__meta {
-  @include type-ui-compact;
-  @include meta-chips($space-1 $space-3);
-  width: 100%;
-  max-width: var(--project-measure);
-  align-items: center;
-  margin-top: $space-1;
-  padding-top: $space-2;
-}
-
+.projectRelated .section__header .textBlock__title { @include type-heading-md; max-width: 22ch; }
+.projectHero .textBlock__subtitle { max-width: var(--project-media-measure); margin-top: $space-2; }
+.projectHero .textBlock__meta { @include type-ui-compact; @include meta-chips($space-1 $space-3); width: 100%; max-width: var(--project-measure); align-items: center; margin-top: $space-1; padding-top: $space-2; }
 .projectHero .textBlock__meta > * { min-width: 0; }
-
 .projectHero .split__secondary,
-.projectStoryMedia .split__secondary {
-  display: grid;
-  place-items: center;
-}
-
+.projectStoryMedia .split__secondary { display: grid; place-items: center; }
 .projectHero .media,
-.projectStoryMedia .media {
-  width: min(100%, var(--project-media-measure));
-  margin-inline: auto;
-  --radius-media: #{$radius-none};
-}
+.projectStoryMedia .media { width: min(100%, var(--project-media-measure)); margin-inline: auto; --radius-media: #{$radius-none}; }
 
 .projectStoryMedia,
 .projectStoryText,
 .projectCta { --section-space: $space-5; }
-
-.projectStoryMedia {
-  --split-primary-column: 2 / span 4;
-  --split-secondary-column: 7 / span 5;
-}
-
-.projectStoryMedia.projectDetail__story--alternate {
-  --split-primary-column: 8 / span 4;
-  --split-secondary-column: 2 / span 5;
-}
-
+.projectStoryMedia { --split-primary-column: 2 / span 4; --split-secondary-column: 7 / span 5; }
+.projectStoryMedia.projectDetail__story--alternate { --split-primary-column: 8 / span 4; --split-secondary-column: 2 / span 5; }
 .projectStoryMedia .section__inner,
 .projectStoryText .section__inner { padding-block: $space-5; }
-
 .projectStoryMedia .textBlock__content,
 .projectStoryText .textBlock__content { gap: $space-3; }
-
 .projectStoryMedia .textBlock__content p,
 .projectStoryText .textBlock__content p { @include type-lead; }
-
 .projectStoryMedia strong,
-.projectStoryText strong {
-  font-weight: $font-weight-strong;
-  color: color-mix(in srgb, currentColor 84%, var(--accent) 16%);
-}
-
-.projectCta .textBlock {
-  width: min(100%, 48rem);
-  max-width: none;
-}
+.projectStoryText strong { font-weight: $font-weight-strong; color: color-mix(in srgb, currentColor 84%, var(--accent) 16%); }
+.projectCta .textBlock { width: min(100%, 48rem); max-width: none; }
 
 .projectRelated .projectCard .card__mediaWrap { aspect-ratio: $ratio-wide; }
-
 .projectRelated .projectCard .card__media,
-.projectRelated .projectCard .media__frame {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;
-}
-
+.projectRelated .projectCard .media__frame { width: 100%; height: 100%; aspect-ratio: auto; }
 .projectRelated .projectCard .media__asset,
 .projectRelated .projectCard img,
-.projectRelated .projectCard video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.projectRelated .projectCard .textBlock__title {
-  @include type-body;
-  color: color-mix(in srgb, currentColor 34%, transparent);
-}
-
+.projectRelated .projectCard video { width: 100%; height: 100%; object-fit: cover; }
+.projectRelated .projectCard .textBlock__title { @include type-body; color: color-mix(in srgb, currentColor 34%, transparent); }
 .projectRelated .projectCard .textBlock__content { opacity: 1; }
+.projectRelated .projectCard .textBlock__content p { @include type-heading-sm; color: currentColor; }
 
-.projectRelated .projectCard .textBlock__content p {
-  @include type-heading-sm;
-  color: currentColor;
-}
-
-@include desktop-down {
-  .projectHero,
-  .projectHero.projectDetail--b,
-  .projectStoryMedia,
-  .projectStoryMedia.projectDetail__story--alternate {
-    --split-primary-column: 1 / -1;
-    --split-secondary-column: 1 / -1;
-  }
+/* Tablet preserves case-study composition on the 8-column system. Hero/story
+   media leads at 5 columns with a compact 3-column narrative rather than
+   collapsing into the phone stack. */
+@include between($bp-tablet, $bp-desktop) {
+  .projectDetail { --project-media-measure: 100%; --project-measure: 100%; }
 
   .projectHero .section__inner,
   .projectStoryMedia .section__inner,
   .projectStoryText .section__inner { padding-block: $space-4; }
 
   .projectHero .split,
-  .projectStoryMedia .split { gap: $space-4; }
+  .projectStoryMedia .split { gap: $space-3; }
 
-  .projectHero,
-  .projectStoryMedia { --project-media-measure: 32rem; }
-}
+  .projectHero .split > [data-split-role="media"],
+  .projectStoryMedia .split > [data-split-role="media"] { grid-column: 1 / span 5; }
 
-@include tablet-down {
-  .projectDetail { --project-media-measure: 100%; }
+  .projectHero .split > [data-split-role="content"],
+  .projectStoryMedia .split > [data-split-role="content"] { grid-column: 6 / span 3; }
 
   .projectDetail .split .media,
   .projectHero .media,
@@ -182,42 +75,30 @@
     max-width: none;
     max-height: none;
     margin-inline: 0;
-    aspect-ratio: $ratio-square;
+    aspect-ratio: $ratio-landscape;
   }
 
-  .projectDetail .split .media__frame {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    aspect-ratio: $ratio-square;
-  }
+  .projectDetail .split .media__frame { width: 100%; height: 100%; max-height: none; aspect-ratio: $ratio-landscape; }
+  .projectHero .textBlock__meta { display: grid; grid-template-columns: 1fr; }
+  .projectHero .textBlock__meta > * { white-space: normal; }
+}
 
-  // .projectHero .section__inner {
-  //   padding-top: calc(#{$mobile-section-space} + #{$header-height});
-  //   padding-bottom: $mobile-section-space;
-  // }
+@include tablet-down {
+  .projectDetail { --project-media-measure: 100%; }
+
+  .projectDetail .split .media,
+  .projectHero .media,
+  .projectStoryMedia .media { width: 100%; max-width: none; max-height: none; margin-inline: 0; aspect-ratio: $ratio-square; }
+  .projectDetail .split .media__frame { width: 100%; height: 100%; max-height: none; aspect-ratio: $ratio-square; }
 
   .projectStoryMedia,
   .projectStoryText,
   .projectCta,
-  .projectRelated {
-    --section-space: #{$mobile-section-space};
-  }
-
+  .projectRelated { --section-space: #{$mobile-section-space}; }
   .projectStoryMedia .section__inner,
-  .projectStoryText .section__inner {
-    padding-block: $mobile-section-space;
-  }
-
+  .projectStoryText .section__inner { padding-block: $mobile-section-space; }
   .projectHero .split,
-  .projectStoryMedia .split {
-    gap: $mobile-gap-editorial;
-  }
-
-  .projectHero .textBlock__meta {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
+  .projectStoryMedia .split { gap: $mobile-gap-editorial; }
+  .projectHero .textBlock__meta { display: grid; grid-template-columns: 1fr; }
   .projectHero .textBlock__meta > * { white-space: normal; }
 }
