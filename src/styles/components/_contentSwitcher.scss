@@ -131,23 +131,36 @@
 
 @include tablet-down {
   .contentSwitcher--detailed {
-    --content-switcher-top: calc(#{$header-height} + #{$space-1});
-    --content-switcher-step: 72svh;
+    height: auto;
   }
 
   .contentSwitcher--detailed .contentSwitcher__sticky {
+    position: static;
+    display: grid;
+    grid-template-rows: auto auto;
+    height: auto;
     gap: $space-2;
-    padding-block: $space-1 $space-2;
+    padding-block: $space-2;
+  }
+
+  .contentSwitcher--detailed .contentSwitcher__controls {
+    grid-template-columns: 1fr;
+    gap: $flow-tight;
+    border-bottom: 0;
   }
 
   .contentSwitcher--detailed .contentSwitcher__controls button {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
-    min-height: 3rem;
-    padding-right: $flow-tight;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: $flow-default;
+    min-height: $control-min-height;
+    padding: $flow-tight 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
   }
 
-  .contentSwitcher--detailed .contentSwitcher__controls button span:last-child {
-    font-size: $type-caption;
+  .contentSwitcher--detailed .contentSwitcher__rule { display: none; }
+
+  .contentSwitcher--detailed .contentSwitcher__viewport {
+    display: block;
+    overflow: visible;
   }
 }
