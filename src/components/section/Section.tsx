@@ -91,7 +91,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (isHomeOpening) {
-    body = <HomeOpeningScene header={header} media={mediaItems} progress={scrollProgress} />;
+    body = <HomeOpeningScene header={header} media={mediaItems} />;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
