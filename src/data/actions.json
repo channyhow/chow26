@@ -19,6 +19,8 @@
   "studio-service-identity": { "label": "Identité visuelle", "href": "/studio#studio-service-identity-panel", "intent": "navigate", "variant": "arrow" },
   "studio-service-website": { "label": "Site internet", "href": "/studio#studio-service-website-panel", "intent": "navigate", "variant": "arrow" },
   "studio-service-integrations": { "label": "Supports de communication", "href": "/studio#studio-service-integrations-panel", "intent": "navigate", "variant": "arrow" },
+  "talk-website": { "label": "Parler d’un site internet", "href": "/contact", "intent": "contact", "variant": "arrow" },
+  "evolve-website": { "label": "Parler de mes supports", "href": "/contact", "intent": "contact", "variant": "arrow" },
   "approach-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate" },
   "mdk-case-study": { "label": "Étude de cas | Mois du Kèr", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
   "privacy-data": { "label": "Comment vos données sont utilisées", "href": "/confidentialite", "intent": "navigate", "priority": "secondary" },
