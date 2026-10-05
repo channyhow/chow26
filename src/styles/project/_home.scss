@@ -150,107 +150,88 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
-/* Mobile is intentionally art-directed like the opening artboards.
-   This is not the generic split/grid responsive system. */
+/* Mobile follows the supplied artboard as one overlapping stage. Elements are
+   absolutely placed so scroll transforms change state without reflowing a
+   12-row grid. The header remains outside this scene. */
 @include tablet-down {
   .homeOpeningScene {
-    display: grid;
-    grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
-    grid-template-rows: repeat(12, minmax(3.5rem, 1fr));
-    column-gap: $grid-gap;
-    row-gap: 0;
-    min-height: 100svh;
-    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
-    align-items: stretch;
+    display: block;
+    min-height: calc(100svh - #{$header-height});
+    padding: 0;
     overflow: clip;
   }
 
+  .homeOpeningScene__project,
+  .homeOpeningScene__label,
+  .homeOpeningScene__statement {
+    position: absolute;
+    margin: 0;
+  }
+
   .homeOpeningScene__project {
-    width: 100%;
-    margin: 0;
-    align-self: stretch;
+    align-self: auto;
   }
 
-  /* Kuro is the visual anchor: broad, high and deliberately off-centre. */
+  /* Opening state: large Kuro image near the top-left. */
   .homeOpeningScene__project--web {
-    grid-column: 1 / span 3;
-    grid-row: 2 / span 3;
-    width: 100%;
+    top: 7%;
+    left: $page-gutter;
+    width: 69%;
     aspect-ratio: $ratio-landscape;
-    justify-self: start;
-    align-self: center;
   }
 
-  /* The poster is the narrow vertical counterweight from the artboard. */
+  /* Mois du Kèr: narrow portrait image on the right. */
   .homeOpeningScene__project--supports {
-    grid-column: 3 / span 2;
-    grid-row: 6 / span 3;
-    width: 72%;
+    top: 43%;
+    right: $page-gutter;
+    width: 31%;
     aspect-ratio: $ratio-portrait;
-    justify-self: end;
-    align-self: start;
   }
 
-  /* Secondary work enters lower in the composition instead of forming cells. */
+  /* Atmosphere: lower-left landscape image. */
   .homeOpeningScene__project--web-secondary {
-    grid-column: 1 / span 2;
-    grid-row: 8 / span 2;
-    width: 88%;
+    top: 67%;
+    left: $page-gutter;
+    width: 38%;
     aspect-ratio: $ratio-landscape;
-    justify-self: start;
-    align-self: end;
   }
 
+  /* Identity/textile: small lower-right counterweight. */
   .homeOpeningScene__project--identity {
-    grid-column: 3 / span 2;
-    grid-row: 10 / span 2;
-    width: 72%;
+    top: 76%;
+    right: 14%;
+    width: 27%;
     aspect-ratio: $ratio-square;
-    justify-self: end;
-    align-self: center;
   }
 
+  /* One typographic block, not three independently centred labels. */
   .homeOpeningScene__label {
-    display: block;
+    left: 31%;
+    width: 38%;
     z-index: $z-floating;
-    margin: 0;
-    align-self: center;
-    justify-self: center;
     text-align: center;
     pointer-events: auto;
   }
 
   .homeOpeningScene__labelLink {
+    display: block;
     @include type-body-bold;
     line-height: 1.05;
   }
 
-  .homeOpeningScene__label--web {
-    grid-column: 2 / span 2;
-    grid-row: 5;
-  }
+  .homeOpeningScene__label--web { top: 34%; }
+  .homeOpeningScene__label--identity { top: calc(34% + 1.05em); }
+  .homeOpeningScene__label--supports { top: calc(34% + 2.1em); }
 
-  .homeOpeningScene__label--identity {
-    grid-column: 2 / span 2;
-    grid-row: 5;
-    transform: translateY(1.25em);
-  }
-
-  .homeOpeningScene__label--supports {
-    grid-column: 2 / span 2;
-    grid-row: 5;
-    transform: translateY(2.5em);
-  }
-
+  /* Final state from the artboard: copy settles in the lower half and the
+     remaining textile image can pass beside it before everything clears. */
   .homeOpeningScene__statement {
-    grid-column: 1 / -1;
-    grid-row: 6 / span 5;
-    align-self: center;
-    justify-self: start;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding-inline: 0;
+    top: 56%;
+    left: $page-gutter;
+    width: calc(100% - (#{$page-gutter} * 2));
+    max-width: 22rem;
+    z-index: $z-floating;
     @include type-body;
+    line-height: 1.25;
   }
 }
