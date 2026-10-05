@@ -76,18 +76,18 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-/* Phone + tablet share one authored opening scene. The opening is intentionally
-   exempt from the hybrid tablet system: it keeps the sticky mobile choreography
-   and simply gains a little more breathing room on the wider canvas. */
+/* Phone + tablet share one authored opening scene. Keep the runway compact so
+   the final statement hands off to the following panel without a dead scroll
+   tail: 250svh on phone, slightly shorter on tablet where more is visible. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening { height: auto; min-height: 300svh; overflow: visible; }
+  #home-opening { height: auto; min-height: 250svh; overflow: visible; }
 
   #home-opening .section__inner {
     display: block;
     flex: none;
     width: 100%;
-    height: 300svh;
-    min-height: 300svh;
+    height: 250svh;
+    min-height: 250svh;
     margin: 0;
     overflow: visible;
   }
@@ -142,6 +142,9 @@
 }
 
 @include between($bp-tablet, $bp-desktop) {
+  #home-opening { min-height: 230svh; }
+  #home-opening .section__inner { height: 230svh; min-height: 230svh; }
+
   .homeOpeningScene__project--web { left: 10%; width: 58%; }
   .homeOpeningScene__project--identity { right: 12%; width: 31%; }
   .homeOpeningScene__project--web-secondary { left: 10%; width: 34%; }
