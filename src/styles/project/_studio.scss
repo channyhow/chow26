@@ -68,25 +68,27 @@
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-4 $space-2; }
 
-  /* Founder is one editorial unit: portrait and biography share the same row.
-     Keeping both on the section grid removes the large empty band that the
-     stacked tablet composition created. */
+  /* Treat portrait + biography as one wide editorial composition.
+     The media gets enough visual weight to anchor the story while the copy
+     keeps a readable measure instead of being squeezed into a narrow rail. */
   #studio-founders .split {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
     align-items: start;
     align-content: center;
     column-gap: var(--grid-gutter);
   }
 
   #studio-founders .split > [data-split-role="media"] {
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
     grid-row: 1;
     order: initial;
   }
 
   #studio-founders .split > [data-split-role="content"] {
-    grid-column: 4 / span 5;
+    grid-column: 5 / span 4;
     grid-row: 1;
     order: initial;
+    min-width: 0;
   }
 
   #studio-founders .split__secondary {
@@ -100,6 +102,11 @@
     max-height: none;
     margin: 0;
     aspect-ratio: $ratio-square;
+  }
+
+  #studio-founders .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
   }
 }
 
