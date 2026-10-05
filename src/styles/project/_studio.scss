@@ -5,16 +5,22 @@
 .section--collection-panel {
   --text-width: none;
   --split-media-ratio: #{$ratio-square};
-  --split-media-max-height: min(62svh, 42rem);
+  --split-media-max-height: min(78svh, 54rem);
 }
 .section--collection-panel .split { align-content: center; }
 .section--collection-panel .split__secondary { display: grid; place-items: center; }
 .section--collection-panel .split__secondary .media {
-  width: min(100%, var(--split-media-max-height));
+  width: 100%;
   max-width: var(--split-media-max-height);
-  justify-self: center;
+  justify-self: stretch;
 }
-@include desktop-down { .section--collection-panel .split { align-content: start; align-items: start; } }
+@include desktop-down {
+  .section--collection-panel .split { align-content: start; align-items: start; }
+  .section--collection-panel .split__secondary .media {
+    width: 100%;
+    max-width: none;
+  }
+}
 
 #studio-approach { --section-row-gap: clamp(#{$space-4}, 7vh, 6rem); min-height: 100svh; }
 #studio-approach > .section__inner { display: grid; align-content: center; width: 100%; max-width: none; }
