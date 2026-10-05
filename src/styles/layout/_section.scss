@@ -115,9 +115,9 @@
 }
 
 @include tablet-down {
-  .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
-    padding-block: max(var(--section-space, #{$section-space}), #{$space-3});
-  }
+  // .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+  //   padding-block: max(var(--section-space, #{$section-space}), #{$space-3});
+  // }
 
   .section__header,
   .section__body {

@@ -100,12 +100,12 @@
   }
 
   .split--editorial > .split__primary {
-    grid-column: var(--split-primary-mobile-column, 1 / span 3);
+    grid-column: var(--split-primary-mobile-column, 1 / span 4);
     translate: 0 var(--split-primary-mobile-offset, 0);
   }
 
   .split--editorial > .split__secondary {
-    grid-column: var(--split-secondary-mobile-column, 2 / -1);
+    grid-column: var(--split-secondary-mobile-column, 1 / -1);
     translate: 0 var(--split-secondary-mobile-offset, 0);
   }
 

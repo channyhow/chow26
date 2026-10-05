@@ -154,9 +154,9 @@
    anchor; project media travels through that anchor before the statement is
    pulled into view at the end of the opening timeline. */
 @include tablet-down {
-  #home-opening .section__inner {
-    height: 300svh;
-  }
+  // #home-opening .section__inner {
+  //   height: 300svh;
+  // }
 
   .homeOpeningScene {
     display: block;
