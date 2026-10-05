@@ -25,7 +25,7 @@
   align-items: center;
   width: min(100%, #{$container-max});
   margin-inline: auto;
-  padding-block: $space-4;
+  padding: $space-4;
 }
 
 .linkPage__campaign,
@@ -95,7 +95,7 @@
 }
 
 .linkPage__conditions .section__header {
-  max-width: $container-small;
+  max-width: $container-narrow;
 }
 
 .linkPage__conditions .grid {
@@ -103,7 +103,7 @@
 }
 
 .linkPage__conditions .card {
-  max-width: $container-small;
+  max-width: $container-narrow;
 }
 
 @include tablet-down {
