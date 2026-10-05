@@ -457,16 +457,7 @@
       "color": "secondary",
       "blocks": [{ "ref": "linkpage-navigation" }]
     },
-    {
-      "id": "link-founder-panel",
-      "behavior": "sticky",
-      "frame": "viewport",
-      "size": "full",
-      "align": "center",
-      "surface": "solid",
-      "color": "special",
-      "blocks": [{ "ref": "studio-founders" }]
-    },
+
     {
       "id": "link-conditions-panel",
       "behavior": "sticky",
@@ -474,7 +465,7 @@
       "size": "full",
       "align": "center",
       "surface": "solid",
-      "color": "secondary",
+      "color": "special",
       "blocks": [{ "ref": "opencall-conditions" }]
     },
     {
@@ -485,7 +476,7 @@
       "align": "center",
       "surface": "glass",
       "color": "primary",
-      "blocks": [{ "ref": "site-footer" }]
+      "blocks": [{"ref":"studio-founders"},{ "ref": "site-footer" }]
     }
   ]
 }
