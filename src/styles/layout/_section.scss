@@ -28,10 +28,6 @@
     margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
-  &__header.textBlock .textBlock__title {
-    max-width: var(--section-title-width, #{$measure-heading});
-  }
-
   &__header.textBlock .textBlock__subtitle,
   &__header.textBlock .textBlock__content {
     max-width: var(--section-copy-width, #{$measure-header-copy});
@@ -127,10 +123,6 @@
   .section__body {
     width: 100%;
     max-width: none;
-  }
-
-  .section__header.textBlock .textBlock__title {
-    max-width: var(--section-title-width-mobile, #{$measure-heading-wide});
   }
 
   .section__overlayContent { padding-block: clamp(#{$space-4}, 10vh, #{$space-5}); }
