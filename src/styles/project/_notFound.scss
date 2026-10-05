@@ -67,7 +67,7 @@
   }
 }
 
-@include mobile-down {
+@include tablet-down {
   #not-found-default .section__inner,
   #not-found-default .section__scrollScene,
   #not-found-default .section__scrollLayer,
@@ -81,9 +81,10 @@
   #not-found-default .textBlock__title { max-width: 14ch; }
 
   #not-found-default .actions {
-    width: auto;
-    flex-direction: row;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  #not-found-default .actions__link { width: auto; }
+  #not-found-default .actions__link { width: 100%; }
 }
