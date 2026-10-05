@@ -40,6 +40,7 @@ const renderInlineStrong = (value: string): ReactNode[] => value
   });
 
 export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const statementRef = useRef<HTMLDivElement>(null);
@@ -49,40 +50,42 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    // Four clear beats:
-    // 1. labels are immediately legible while media resolves from a quiet state
-    // 2. media + labels rise away together and pull the statement into the centre
-    // 3. the statement holds on its own
-    // 4. the statement fades only as the following panel is due to take over
-    const mediaEntrance = [0, 0.035, 0.07, 0.105] as const;
-    const mediaInitialOpacity = [0.32, 0.4, 0.3, 0.28] as const;
-    const mediaStartY = [22, 18, 24, 28] as const;
     const mediaExitY = [-150, -190, -168, -210] as const;
     const labelExitY = [-72, -88, -80] as const;
 
     const update = (rawProgress: number) => {
       const progress = clamp01(rawProgress);
+      const isMobile = window.matchMedia("(max-width: 48rem)").matches;
       const rise = range(progress, 0.34, 0.58);
 
       labelRefs.current.forEach((element, index) => {
         if (!element) return;
         const exit = range(progress, 0.38 + index * 0.018, 0.56 + index * 0.018);
-        const y = lerp(0, labelExitY[index] ?? -80, rise);
         element.style.opacity = String(1 - exit);
-        element.style.transform = `translate3d(0, ${y}px, 0)`;
+        element.style.transform = `translate3d(0, ${lerp(0, labelExitY[index] ?? -80, rise)}px, 0)`;
       });
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
-        const enterStart = mediaEntrance[index] ?? 0;
-        const enter = range(progress, enterStart, enterStart + 0.12);
+
+        // Mobile opens exactly like the artboard: Kuro + Mois du Kèr are already
+        // present around the fixed service labels. The lower pair enters only as
+        // the first pair starts travelling through the viewport.
+        const enterStart = isMobile
+          ? ([0, 0, 0.14, 0.2] as const)[index] ?? 0
+          : ([0, 0.035, 0.07, 0.105] as const)[index] ?? 0;
+        const initialOpacity = isMobile
+          ? (index < 2 ? 1 : 0)
+          : ([0.32, 0.4, 0.3, 0.28] as const)[index] ?? 0.3;
+        const startY = isMobile
+          ? ([0, 0, 34, 42] as const)[index] ?? 0
+          : ([22, 18, 24, 28] as const)[index] ?? 22;
+        const enter = range(progress, enterStart, enterStart + (isMobile ? 0.1 : 0.12));
         const exit = range(progress, 0.35 + index * 0.018, 0.57 + index * 0.018);
-        const visibleOpacity = lerp(mediaInitialOpacity[index] ?? 0.3, 1, enter);
-        const y = lerp(
-          lerp(mediaStartY[index] ?? 22, 0, enter),
-          mediaExitY[index] ?? -170,
-          rise,
-        );
+        const targetOpacity = index < 2 || !isMobile ? 1 : 1;
+        const visibleOpacity = lerp(initialOpacity, targetOpacity, enter);
+        const y = lerp(lerp(startY, 0, enter), mediaExitY[index] ?? -170, rise);
+
         element.style.opacity = String(visibleOpacity * (1 - exit));
         element.style.transform = `translate3d(0, ${y}px, 0)`;
       });
@@ -91,24 +94,32 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       if (statement) {
         const reveal = range(progress, 0.38, 0.58);
         const fade = range(progress, 0.88, 0.98);
-        const statementY = lerp(52, 0, reveal);
         statement.style.opacity = String(reveal * (1 - fade));
-        statement.style.transform = `translate3d(0, ${statementY}px, 0)`;
+        statement.style.transform = `translate3d(0, ${lerp(52, 0, reveal)}px, 0)`;
       }
     };
 
     let frame = 0;
     const resolveOpeningState = () => {
       frame = 0;
-      // The opening has a deliberately long runway (currently 200svh), so use
-      // a matching scroll distance. This leaves a genuine statement-only hold.
-      const scrollDistance = Math.max(window.innerHeight * 2, 1);
-      update(window.scrollY / scrollDistance);
+      const scene = sceneRef.current;
+      const panel = scene?.closest<HTMLElement>("[data-panel-behavior]") ?? scene?.parentElement;
+      if (!panel) {
+        update(0);
+        return;
+      }
+
+      const rect = panel.getBoundingClientRect();
+      const travel = Math.max(panel.scrollHeight - window.innerHeight, window.innerHeight * 2, 1);
+      update(-rect.top / travel);
     };
     const scheduleResolve = () => {
       if (!frame) frame = window.requestAnimationFrame(resolveOpeningState);
     };
 
+    // Establish the visible opening immediately rather than waiting for the
+    // first scroll event. This also prevents a blank first paint after reload.
+    update(0);
     scheduleResolve();
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
@@ -121,7 +132,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   }, []);
 
   return (
-    <div className="homeOpeningScene">
+    <div ref={sceneRef} className="homeOpeningScene">
       <nav className="homeOpeningScene__labels" aria-label="Services Chow Studio">
         {openingServices.map((service, index) => (
           <div
