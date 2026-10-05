@@ -64,6 +64,13 @@ $header-offset: clamp(0rem, 4vw, #{$space-4});
 $sticky-offset: clamp(#{$space-5}, 10svh, #{$space-5 + $space-3});
 $glass-blur: 1.1rem;
 
+// Mobile vertical rhythm. These describe relationships rather than individual
+// components so repeated layouts share one cadence while editorial moments can breathe.
+$mobile-gap-content: $space-3; // related content inside one block
+$mobile-gap-block: $space-4; // repeated cards / distinct blocks
+$mobile-gap-editorial: clamp(#{$space-5}, 20svh, #{$space-5 + $space-4}); // media -> copy beat
+$mobile-section-space: $space-5; // section entry / exit breathing room
+
 $padding-compact: $space-2;
 $padding-default: $space-3;
 $padding-spacious: $space-4;
