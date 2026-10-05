@@ -119,7 +119,7 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
 
   return (
-    <div ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
+    <div id={id} ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
       <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollYProgress)}</div>
     </div>
   );
