@@ -31,12 +31,14 @@ export type ScrollSceneProps = {
 };
 
 type LayeredSceneStyle = MotionStyle & {
+  "--scene-media-x"?: MotionValue<string>;
   "--scene-media-y"?: MotionValue<string>;
   "--scene-media-scale"?: MotionValue<number>;
   "--scene-media-opacity"?: MotionValue<number>;
   "--scene-title-y"?: MotionValue<string>;
   "--scene-title-opacity"?: MotionValue<number>;
   "--scene-title-color"?: MotionValue<string>;
+  "--scene-copy-x"?: MotionValue<string>;
   "--scene-copy-y"?: MotionValue<string>;
   "--scene-copy-opacity"?: MotionValue<number>;
 };
@@ -100,21 +102,29 @@ export function ScrollScene({
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  const layeredMediaYNumeric = useTransform(scrollYProgress, [0, 0.88, 0.96, 1], [0, 0, -10 * scale, -24 * scale]);
+  /* Home opening follows the artboard sequence: composed → separate → dissolve.
+     All layers share the panel progress but travel at different rates. */
+  const layeredMediaXNumeric = useTransform(scrollYProgress, [0, 0.28, 0.62, 1], [0, 0, -20 * scale, -42 * scale]);
+  const layeredMediaX = useTransform(layeredMediaXNumeric, (value) => `${value}px`);
+  const layeredMediaYNumeric = useTransform(scrollYProgress, [0, 0.28, 0.62, 1], [0, 0, 52 * scale, 104 * scale]);
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
-  const layeredMediaScale = useTransform(scrollYProgress, [0, 0.88, 1], [1, 1, reduceMotion ? 1 : 1.008]);
+  const layeredMediaScale = useTransform(scrollYProgress, [0, 0.62, 1], [1, 1, reduceMotion ? 1 : 0.96]);
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.64, 0.78, 0.92, 1],
-    [1, 1, 0.88, 0.52, reduceMotion ? 0.72 : 0.18, reduceMotion ? 0.7 : 0.1],
+    [0, 0.3, 0.58, 0.78, 1],
+    [1, 1, 0.9, reduceMotion ? 0.82 : 0.46, reduceMotion ? 0.78 : 0.12],
   );
-  const layeredTitleYNumeric = useTransform(scrollYProgress, [0, 0.3, 0.52, 0.72, 0.9, 1], [0, 0, -82 * scale, -188 * scale, -282 * scale, -326 * scale]);
+
+  const layeredTitleYNumeric = useTransform(scrollYProgress, [0, 0.24, 0.5, 0.76, 1], [0, 0, -72 * scale, -184 * scale, -292 * scale]);
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
-  const layeredTitleOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
+  const layeredTitleOpacity = useTransform(scrollYProgress, [0, 0.56, 0.78, 1], [1, 1, reduceMotion ? 0.9 : 0.55, reduceMotion ? 0.84 : 0]);
   const layeredTitleColor = useTransform(scrollYProgress, [0, 1], ["#222224", "#222224"]);
-  const layeredCopyYNumeric = useTransform(scrollYProgress, [0, 0.3, 0.52, 0.72, 0.9, 1], [0, 0, -74 * scale, -174 * scale, -258 * scale, -300 * scale]);
+
+  const layeredCopyXNumeric = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0, 0, -8 * scale, -18 * scale]);
+  const layeredCopyX = useTransform(layeredCopyXNumeric, (value) => `${value}px`);
+  const layeredCopyYNumeric = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0, 0, 22 * scale, 42 * scale]);
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
-  const layeredCopyOpacity = useTransform(scrollYProgress, [0, 1], [1, 1]);
+  const layeredCopyOpacity = useTransform(scrollYProgress, [0, 0.74, 0.92, 1], [1, 1, 0.9, reduceMotion ? 0.86 : 0.72]);
 
   const showMovingShapes = preset === "ambient" && !reduceMotion;
   const showLine = preset === "draw" || preset === "ambient";
@@ -124,12 +134,14 @@ export function ScrollScene({
 
   if (motionEnabled && isHomeOpening) {
     contentStyle = {
+      "--scene-media-x": layeredMediaX,
       "--scene-media-y": layeredMediaY,
       "--scene-media-scale": layeredMediaScale,
       "--scene-media-opacity": layeredMediaOpacity,
       "--scene-title-y": layeredTitleY,
       "--scene-title-opacity": layeredTitleOpacity,
       "--scene-title-color": layeredTitleColor,
+      "--scene-copy-x": layeredCopyX,
       "--scene-copy-y": layeredCopyY,
       "--scene-copy-opacity": layeredCopyOpacity,
     };
