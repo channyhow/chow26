@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { Link } from "react-router-dom";
 
 import { Media } from "@/components/content/Media";
@@ -37,7 +37,6 @@ const renderInlineStrong = (value: string): ReactNode[] => value
 
 export function HomeOpeningScene({ header, media, progress }: HomeOpeningSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduceMotion = Boolean(useReducedMotion());
   const { scrollYProgress: localProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const sourceProgress = progress ?? localProgress;
 
@@ -84,10 +83,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
           <motion.div
             key={service.className}
             className={`homeOpeningScene__label homeOpeningScene__label--${service.className}`}
-            style={{
-              opacity: reduceMotion ? 1 : labelOpacities[index],
-              y: reduceMotion ? 0 : labelYs[index],
-            }}
+            style={{ opacity: labelOpacities[index], y: labelYs[index] }}
           >
             <Link to={service.href} className="homeOpeningScene__labelLink">
               {service.label}
@@ -107,10 +103,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
               key={`${project.mediaId}-${index}`}
               className={`homeOpeningScene__project homeOpeningScene__project--${project.className}`}
               href={project.href}
-              style={{
-                opacity: reduceMotion ? 1 : mediaOpacities[index],
-                y: reduceMotion ? 0 : mediaYs[index],
-              }}
+              style={{ opacity: mediaOpacities[index], y: mediaYs[index] }}
               aria-label={`Voir le projet ${projectName}`}
             >
               <Media
@@ -124,10 +117,7 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
 
       <motion.div
         className="homeOpeningScene__statement"
-        style={{
-          opacity: reduceMotion ? 1 : statementOpacity,
-          y: reduceMotion ? 0 : statementY,
-        }}
+        style={{ opacity: statementOpacity, y: statementY }}
       >
         {paragraphs.map((paragraph) => <p key={paragraph}>{renderInlineStrong(paragraph)}</p>)}
       </motion.div>
