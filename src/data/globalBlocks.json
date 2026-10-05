@@ -512,7 +512,7 @@
   }
 },
   "linkpage-founder": {
-    "id": "link-studio",
+    "id": "linkpage-founder",
     "type": "Section",
     "layout": "split",
     "splitVariant": "media-lead",
@@ -531,7 +531,7 @@
     }
   },
   "opencall-conditions": {
-    "id": "link-project-call-details",
+    "id": "opencall-conditions",
     "type": "Section",
     "layout": "list",
     "motion": "none",
