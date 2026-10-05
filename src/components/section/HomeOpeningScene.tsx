@@ -39,32 +39,38 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
   const { scrollYProgress: localProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const p = progress ?? localProgress;
+  const sourceProgress = progress ?? localProgress;
+
+  // SectionGroup progress begins while a panel is still entering the viewport,
+  // so a full-height panel is already around 0.5 when it reaches its composed
+  // resting state. Remap that visible half to a scene-local 0 → 1 range.
+  const p = useTransform(sourceProgress, [progress ? 0.5 : 0, 1], [0, 1], { clamp: true });
+
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  const webLabelOpacity = useTransform(p, [0.07, 0.17, 0.5, 0.66], [0, 1, 1, 0]);
-  const identityLabelOpacity = useTransform(p, [0.13, 0.23, 0.55, 0.72], [0, 1, 1, 0]);
-  const supportsLabelOpacity = useTransform(p, [0.19, 0.29, 0.46, 0.62], [0, 1, 1, 0]);
-  const webLabelY = useTransform(p, [0.07, 0.17, 0.5, 0.68], [10, 0, 0, -34]);
-  const identityLabelY = useTransform(p, [0.13, 0.23, 0.55, 0.74], [10, 0, 0, -42]);
-  const supportsLabelY = useTransform(p, [0.19, 0.29, 0.46, 0.64], [10, 0, 0, -38]);
+  const webLabelOpacity = useTransform(p, [0.02, 0.12, 0.5, 0.66], [0, 1, 1, 0]);
+  const identityLabelOpacity = useTransform(p, [0.08, 0.18, 0.55, 0.72], [0, 1, 1, 0]);
+  const supportsLabelOpacity = useTransform(p, [0.14, 0.24, 0.46, 0.62], [0, 1, 1, 0]);
+  const webLabelY = useTransform(p, [0.02, 0.12, 0.5, 0.68], [10, 0, 0, -34]);
+  const identityLabelY = useTransform(p, [0.08, 0.18, 0.55, 0.74], [10, 0, 0, -42]);
+  const supportsLabelY = useTransform(p, [0.14, 0.24, 0.46, 0.64], [10, 0, 0, -38]);
   const labelOpacities = [webLabelOpacity, identityLabelOpacity, supportsLabelOpacity];
   const labelYs = [webLabelY, identityLabelY, supportsLabelY];
 
   const statementOpacity = useTransform(p, [0.66, 0.8, 1], [0, 1, 1]);
   const statementY = useTransform(p, [0.66, 0.82], [24, 0]);
 
-  const mediaOpacity1 = useTransform(p, [0, 0.18, 0.47, 0.7], [0.16, 1, 1, 0]);
-  const mediaOpacity2 = useTransform(p, [0, 0.12, 0.57, 0.9], [0.34, 1, 1, 0]);
-  const mediaOpacity3 = useTransform(p, [0.05, 0.24, 0.51, 0.77], [0.1, 1, 1, 0]);
-  const mediaOpacity4 = useTransform(p, [0.09, 0.29, 0.42, 0.64], [0.08, 1, 1, 0]);
+  const mediaOpacity1 = useTransform(p, [0, 0.14, 0.47, 0.7], [0.16, 1, 1, 0]);
+  const mediaOpacity2 = useTransform(p, [0, 0.08, 0.57, 0.9], [0.34, 1, 1, 0]);
+  const mediaOpacity3 = useTransform(p, [0.04, 0.2, 0.51, 0.77], [0.1, 1, 1, 0]);
+  const mediaOpacity4 = useTransform(p, [0.08, 0.25, 0.42, 0.64], [0.08, 1, 1, 0]);
   const mediaOpacities = [mediaOpacity1, mediaOpacity2, mediaOpacity3, mediaOpacity4];
 
-  const mediaY1 = useTransform(p, [0, 0.18, 0.47, 0.72], [18, 0, 0, -120]);
-  const mediaY2 = useTransform(p, [0, 0.12, 0.57, 0.92], [12, 0, 0, -160]);
-  const mediaY3 = useTransform(p, [0.05, 0.24, 0.51, 0.79], [20, 0, 0, -140]);
-  const mediaY4 = useTransform(p, [0.09, 0.29, 0.42, 0.66], [24, 0, 0, -180]);
+  const mediaY1 = useTransform(p, [0, 0.14, 0.47, 0.72], [18, 0, 0, -120]);
+  const mediaY2 = useTransform(p, [0, 0.08, 0.57, 0.92], [12, 0, 0, -160]);
+  const mediaY3 = useTransform(p, [0.04, 0.2, 0.51, 0.79], [20, 0, 0, -140]);
+  const mediaY4 = useTransform(p, [0.08, 0.25, 0.42, 0.66], [24, 0, 0, -180]);
   const mediaYs = [mediaY1, mediaY2, mediaY3, mediaY4];
 
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
