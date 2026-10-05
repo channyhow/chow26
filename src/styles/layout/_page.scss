@@ -15,9 +15,9 @@
 
 /* Ordinary route openings clear the persistent header. Viewport-managed
    compositions own their first-view geometry and therefore opt out here. */
-.page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
-  padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
-}
+// .page__content > .section:first-child:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
+//   padding-top: calc(var(--page-start-offset) + var(--page-start-gap));
+// }
 
 .page__footer,
 .siteFooter {

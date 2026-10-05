@@ -171,25 +171,7 @@
               }
             ]
           },
-          {
-            "id": "studio-approach-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "secondary",
-            "blocks": [
-              {
-                "id": "studio-approach",
-                "type": "Section",
-                "layout": "list",
-                "motion": "scene",
-                "motionPreset": "draw",
-                "source": { "collection": "approach" }
-              }
-            ]
-          },
+        
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
@@ -197,7 +179,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "special",
+            "color": "secondary",
             "blocks": [{ "ref": "studio-founders" }]
           },
           {
