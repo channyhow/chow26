@@ -2,14 +2,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
   type MotionStyle,
   type MotionValue,
 } from "motion/react";
-
-import { motionConfig } from "@/motion/config";
 
 export type ScrollScenePreset = "drift" | "parallax" | "ambient" | "draw" | "recede";
 export type ScrollSceneDirection = "forward" | "reverse";
@@ -62,14 +59,12 @@ export function ScrollScene({
   progress,
 }: ScrollSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const [responsiveScale, setResponsiveScale] = useState(1);
   const motionEnabled = enabled;
   const sign = direction === "reverse" ? -1 : 1;
   const isHomeOpening = choreography === "home-opening";
-  const reducedScale = reduceMotion ? motionConfig.reduced.sceneScale : 1;
   const attentionScale = isHomeOpening ? 2.35 : 1;
-  const scale = responsiveScale * intensityScale[intensity] * reducedScale * attentionScale;
+  const scale = responsiveScale * intensityScale[intensity] * attentionScale;
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 47.999rem)");
@@ -90,45 +85,38 @@ export function ScrollScene({
 
   const distance = (value: number) => value * sign * scale;
   const driftY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [distance(reduceMotion ? 18 : 48), distance(reduceMotion ? -18 : -48)]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [distance(48), distance(-48)]);
   const ambientY = useTransform(scrollYProgress, [0, 1], [distance(34), distance(-34)]);
   const ambientX = useTransform(scrollYProgress, [0, 1], [distance(-18), distance(18)]);
   const drawY = useTransform(scrollYProgress, [0, 1], [distance(14), distance(-14)]);
-  const recedeY = useTransform(scrollYProgress, [0, 0.3, 1], [0, 0, (reduceMotion ? 22 : 64) * scale]);
-  const recedeOpacity = useTransform(scrollYProgress, [0, 0.32, 1], [1, 1, reduceMotion ? 0.9 : 0.36]);
+  const recedeY = useTransform(scrollYProgress, [0, 0.3, 1], [0, 0, 64 * scale]);
+  const recedeOpacity = useTransform(scrollYProgress, [0, 0.32, 1], [1, 1, 0.36]);
   const slowY = useTransform(scrollYProgress, [0, 1], [distance(42), distance(-42)]);
   const mediumY = useTransform(scrollYProgress, [0, 1], [distance(68), distance(-68)]);
   const fastY = useTransform(scrollYProgress, [0, 1], [distance(104), distance(-104)]);
   const rotate = useTransform(scrollYProgress, [0, 1], [distance(-9), distance(11)]);
   const lineScale = useTransform(scrollYProgress, [0.1, 0.9], [0, 1]);
 
-  /* Home opening follows the artboard sequence: composed → separate → dissolve.
-     All layers share the panel progress but travel at different rates. */
   const layeredMediaXNumeric = useTransform(scrollYProgress, [0, 0.28, 0.62, 1], [0, 0, -20 * scale, -42 * scale]);
   const layeredMediaX = useTransform(layeredMediaXNumeric, (value) => `${value}px`);
   const layeredMediaYNumeric = useTransform(scrollYProgress, [0, 0.28, 0.62, 1], [0, 0, 52 * scale, 104 * scale]);
   const layeredMediaY = useTransform(layeredMediaYNumeric, (value) => `${value}px`);
-  const layeredMediaScale = useTransform(scrollYProgress, [0, 0.62, 1], [1, 1, reduceMotion ? 1 : 0.96]);
-  const layeredMediaOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.18, 0.34, 0.58, 0.78, 1],
-    [reduceMotion ? 0.82 : 0.62, reduceMotion ? 0.9 : 0.74, 1, 0.9, reduceMotion ? 0.82 : 0.46, reduceMotion ? 0.78 : 0.12],
-  );
+  const layeredMediaScale = useTransform(scrollYProgress, [0, 0.62, 1], [1, 1, 0.96]);
+  const layeredMediaOpacity = useTransform(scrollYProgress, [0, 0.18, 0.34, 0.58, 0.78, 1], [0.62, 0.74, 1, 0.9, 0.46, 0.12]);
 
   const layeredTitleYNumeric = useTransform(scrollYProgress, [0, 0.24, 0.5, 0.76, 1], [0, 0, -72 * scale, -184 * scale, -292 * scale]);
   const layeredTitleY = useTransform(layeredTitleYNumeric, (value) => `${value}px`);
-  const layeredTitleOpacity = useTransform(scrollYProgress, [0, 0.56, 0.78, 1], [1, 1, reduceMotion ? 0.9 : 0.55, reduceMotion ? 0.84 : 0]);
+  const layeredTitleOpacity = useTransform(scrollYProgress, [0, 0.56, 0.78, 1], [1, 1, 0.55, 0]);
   const layeredTitleColor = useTransform(scrollYProgress, [0, 1], ["#222224", "#222224"]);
 
   const layeredCopyXNumeric = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0, 0, -8 * scale, -18 * scale]);
   const layeredCopyX = useTransform(layeredCopyXNumeric, (value) => `${value}px`);
   const layeredCopyYNumeric = useTransform(scrollYProgress, [0, 0.32, 0.68, 1], [0, 0, 22 * scale, 42 * scale]);
   const layeredCopyY = useTransform(layeredCopyYNumeric, (value) => `${value}px`);
-  const layeredCopyOpacity = useTransform(scrollYProgress, [0, 0.74, 0.92, 1], [1, 1, 0.9, reduceMotion ? 0.86 : 0.72]);
+  const layeredCopyOpacity = useTransform(scrollYProgress, [0, 0.74, 0.92, 1], [1, 1, 0.9, 0.72]);
 
-  const showMovingShapes = preset === "ambient" && !reduceMotion;
+  const showMovingShapes = preset === "ambient";
   const showLine = preset === "draw" || preset === "ambient";
-  const effectivePreset = reduceMotion && preset === "ambient" ? "drift" : preset;
 
   let contentStyle: LayeredSceneStyle | undefined;
 
@@ -146,15 +134,15 @@ export function ScrollScene({
       "--scene-copy-opacity": layeredCopyOpacity,
     };
   } else if (motionEnabled) {
-    contentStyle = effectivePreset === "drift"
+    contentStyle = preset === "drift"
       ? { y: driftY }
-      : effectivePreset === "parallax"
+      : preset === "parallax"
         ? { y: contentY }
-        : effectivePreset === "ambient"
+        : preset === "ambient"
           ? { x: ambientX, y: ambientY }
-          : effectivePreset === "draw"
+          : preset === "draw"
             ? { y: drawY }
-            : effectivePreset === "recede"
+            : preset === "recede"
               ? { y: recedeY, opacity: recedeOpacity }
               : undefined;
   }
@@ -169,7 +157,6 @@ export function ScrollScene({
       data-intensity={intensity}
       data-choreography={choreography}
       data-enabled={motionEnabled ? "true" : "false"}
-      data-reduced-motion={reduceMotion ? "true" : "false"}
       data-attention-exit={isHomeOpening ? "true" : undefined}
       data-progress-source={progress ? "panel" : "self"}
     >
