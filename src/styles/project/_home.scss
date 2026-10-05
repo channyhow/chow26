@@ -150,13 +150,20 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
-/* Mobile follows the supplied artboard as one overlapping stage. Elements are
-   absolutely placed so scroll transforms change state without reflowing a
-   12-row grid. The header remains outside this scene. */
+/* Mobile is one sticky viewport composition. The service stack is the visual
+   anchor; project media travels through that anchor before the statement is
+   pulled into view at the end of the opening timeline. */
 @include tablet-down {
+  #home-opening .section__inner {
+    height: 300svh;
+  }
+
   .homeOpeningScene {
     display: block;
-    min-height: calc(100svh - #{$header-height});
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
     padding: 0;
     overflow: clip;
   }
@@ -168,46 +175,43 @@
     margin: 0;
   }
 
-  .homeOpeningScene__project {
-    align-self: auto;
-  }
+  .homeOpeningScene__project { align-self: auto; }
 
-  /* Opening state: large Kuro image near the top-left. */
+  /* Images begin on alternating sides and are moved vertically by the scroll
+     timeline. Their widths intentionally echo the supplied mobile artboards. */
   .homeOpeningScene__project--web {
-    top: 7%;
+    top: 13%;
     left: $page-gutter;
-    width: 69%;
+    width: 68%;
     aspect-ratio: $ratio-landscape;
   }
 
-  /* Mois du Kèr: narrow portrait image on the right. */
   .homeOpeningScene__project--supports {
-    top: 43%;
+    top: 48%;
     right: $page-gutter;
-    width: 31%;
+    width: 30%;
     aspect-ratio: $ratio-portrait;
   }
 
-  /* Atmosphere: lower-left landscape image. */
   .homeOpeningScene__project--web-secondary {
-    top: 67%;
+    top: 72%;
     left: $page-gutter;
-    width: 38%;
+    width: 39%;
     aspect-ratio: $ratio-landscape;
   }
 
-  /* Identity/textile: small lower-right counterweight. */
   .homeOpeningScene__project--identity {
-    top: 76%;
-    right: 14%;
-    width: 27%;
+    top: 84%;
+    right: 13%;
+    width: 28%;
     aspect-ratio: $ratio-square;
   }
 
-  /* One typographic block, not three independently centred labels. */
+  /* The three links read as one compact block and hold in the middle while
+     media crosses above and below it. */
   .homeOpeningScene__label {
-    left: 31%;
-    width: 38%;
+    left: 25%;
+    width: 50%;
     z-index: $z-floating;
     text-align: center;
     pointer-events: auto;
@@ -219,19 +223,28 @@
     line-height: 1.05;
   }
 
-  .homeOpeningScene__label--web { top: 34%; }
-  .homeOpeningScene__label--identity { top: calc(34% + 1.05em); }
-  .homeOpeningScene__label--supports { top: calc(34% + 2.1em); }
+  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
+  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
+  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
 
-  /* Final state from the artboard: copy settles in the lower half and the
-     remaining textile image can pass beside it before everything clears. */
   .homeOpeningScene__statement {
-    top: 56%;
+    top: 50%;
     left: $page-gutter;
     width: calc(100% - (#{$page-gutter} * 2));
     max-width: 22rem;
     z-index: $z-floating;
     @include type-body;
     line-height: 1.25;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @include tablet-down {
+    #home-opening .section__inner { height: auto; }
+    .homeOpeningScene {
+      position: relative;
+      height: 100svh;
+    }
   }
 }
