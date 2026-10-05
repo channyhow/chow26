@@ -100,28 +100,33 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       const viewport = window.innerHeight;
       const toPx = (svh: number) => svh * viewport / 100;
 
-      /* One continuous composition: frame zero already contains Kuro,
-         Mois du Ker and the service stack. Later media starts below the fold
-         and enters before the earlier media has completely left. */
+      /* One shared scroll field, four authored trajectories. The media keeps
+         travelling through the composition rather than starting/stopping as
+         separate parallax objects. Small x drift and restrained scale changes
+         create depth while the labels remain the visual anchor. */
       const tracks = [
-        { start: 0.24, end: 0.78, from: 0, to: -196 },
-        { start: 0.00, end: 0.55, from: 0, to: -126 },
-        { start: 0.16, end: 0.72, from: 0, to: -174 },
-        { start: 0.04, end: 0.62, from: 0, to: -142 },
+        { start: 0.06, end: 0.88, y: -190, x: 5, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.82, fadeEnd: 0.96 },
+        { start: 0.00, end: 0.82, y: -174, x: -7, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.78, fadeEnd: 0.94 },
+        { start: 0.10, end: 0.90, y: -208, x: 8, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.84, fadeEnd: 0.97 },
+        { start: 0.08, end: 0.92, y: -194, x: -5, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.86, fadeEnd: 0.98 },
       ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
         const track = tracks[index] ?? tracks[0];
         const travel = range(progress, track.start, track.end);
-        const y = lerp(toPx(track.from), toPx(track.to), travel);
-        const fade = range(progress, Math.min(track.end + 0.04, 0.82), Math.min(track.end + 0.16, 0.96));
+        const disperse = range(progress, 0.72, 0.94);
+        const fade = range(progress, track.fadeStart, track.fadeEnd);
+        const x = lerp(0, toPx(track.x), travel) + lerp(0, toPx(track.x * 0.35), disperse);
+        const y = lerp(0, toPx(track.y), travel) + lerp(0, toPx(-8 - index * 2), disperse);
+        const scale = lerp(track.scaleFrom, track.scaleTo, travel);
+
         element.style.opacity = String(1 - fade);
-        element.style.transform = `translate3d(0, ${y}px, 0)`;
+        element.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
       });
 
-      const release = range(progress, 0.70, 0.84);
-      const labelFade = range(progress, 0.82, 0.90);
+      const release = range(progress, 0.70, 0.86);
+      const labelFade = range(progress, 0.84, 0.92);
       labelRefs.current.forEach((element) => {
         if (!element) return;
         element.style.opacity = String(1 - labelFade);
@@ -129,8 +134,8 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       });
 
       if (statementRef.current) {
-        const reveal = range(progress, 0.72, 0.84);
-        const pull = range(progress, 0.72, 0.92);
+        const reveal = range(progress, 0.72, 0.86);
+        const pull = range(progress, 0.72, 0.94);
         statementRef.current.style.opacity = String(reveal);
         statementRef.current.style.transform = `translate3d(0, ${lerp(36, -8, pull)}svh, 0)`;
       }
