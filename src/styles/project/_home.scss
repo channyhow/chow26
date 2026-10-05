@@ -92,12 +92,10 @@
 }
 
 .homeOpeningScene__label {
+  @include type-body-bold;
   position: relative;
   z-index: $z-floating;
-  align-self: center;
-  // max-width: 9rem;
-  font-size: $type-lead;
-  font-weight: $font-weight-semibold;
+  align-self: center; 
   text-transform: none;
   pointer-events: none;
 }
