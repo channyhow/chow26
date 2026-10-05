@@ -153,8 +153,8 @@
 /* Mobile has two distinct layers:
    - .section__inner owns the 300svh scroll runway;
    - .homeOpeningScene is the 100svh sticky viewport inside it.
-   The previous pass put the runway on #home-opening, but the generic flex
-   .section__inner stretched to the runway height and became the moving layer. */
+   The media and label wrappers deliberately do not create stacking contexts:
+   individual projects can pass behind or in front of the fixed label plane. */
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
   #home-opening {
     height: auto;
@@ -188,13 +188,10 @@
     display: block;
     position: absolute;
     inset: 0;
+    z-index: auto;
   }
 
-  .homeOpeningScene__media { z-index: $z-raised; }
-  .homeOpeningScene__labels {
-    z-index: $z-floating;
-    pointer-events: none;
-  }
+  .homeOpeningScene__labels { pointer-events: none; }
 
   .homeOpeningScene__project,
   .homeOpeningScene__label,
@@ -206,6 +203,22 @@
   .homeOpeningScene__project {
     align-self: auto;
     pointer-events: auto;
+  }
+
+  /* Figure / ground rhythm: large web frames recede behind the service labels;
+     the smaller identity/support frames cross the type plane as foreground accents. */
+  .homeOpeningScene__project--web,
+  .homeOpeningScene__project--web-secondary {
+    z-index: $z-raised;
+  }
+
+  .homeOpeningScene__label {
+    z-index: calc(#{$z-raised} + 1);
+  }
+
+  .homeOpeningScene__project--identity,
+  .homeOpeningScene__project--supports {
+    z-index: calc(#{$z-raised} + 2);
   }
 
   .homeOpeningScene__project--web {
@@ -239,7 +252,6 @@
   .homeOpeningScene__label {
     left: 22%;
     width: 56%;
-    z-index: $z-floating;
     text-align: center;
     pointer-events: auto;
   }
@@ -256,10 +268,9 @@
 
   .homeOpeningScene__statement {
     top: 50%;
-    // left: 50%;
     width: calc(100% - (#{$page-gutter} * 2));
     max-width: 22rem;
-    z-index: calc(#{$z-floating} + 1);
+    z-index: calc(#{$z-raised} + 3);
     @include type-body;
     line-height: 1.25;
     text-align: center;
