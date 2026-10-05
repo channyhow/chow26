@@ -94,7 +94,7 @@
 }
 @mixin type-lead-bold {
   @include type-lead;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-semibold;
 }
 
 @mixin type-heading-md {
