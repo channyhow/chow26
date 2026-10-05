@@ -89,7 +89,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
-  if (layout === "split") {
+  if (isHomeOpening) {
+    body = <div className="section__opening">{media ? <Media media={media} className="section__media" sizes="(min-width: 64rem) 52vw, 100vw" /> : null}{header ? <TextBlock content={header} titleAs="h1" className="section__header" /> : null}</div>;
+  } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
@@ -131,11 +133,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
-  const mediaOverlayScene = shouldTrackScroll && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} choreography={isHomeOpening ? "home-opening" : undefined} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
+  const openingScene = shouldTrackScroll && isHomeOpening ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} choreography="home-opening" className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
+  const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
   const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
   const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
+  const renderedLayout = isHomeOpening ? "opening" : isProfileGrid ? "split" : layout;
 
-  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={isProfileGrid ? "split" : layout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={scenePreset} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
-    {shouldTrackScroll && layout === "media-overlay" ? mediaOverlayScene : shouldTrackScroll ? <div className="section__inner">{body}</div> : shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: revealDistance }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: revealDuration, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>}
+  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={renderedLayout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={scenePreset} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
+    {openingScene ?? mediaOverlayScene ?? (shouldTrackScroll ? <div className="section__inner">{body}</div> : shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: revealDistance }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: revealDuration, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>)}
   </motion.section>;
 }
