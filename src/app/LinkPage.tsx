@@ -5,7 +5,6 @@ import { TextBlock } from "@/components/content/TextBlock";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
 import { FractalNoiseCanvas } from "@/components/visual/FractalNoiseCanvas";
-import linkPageData from "@/data/linkPage.json";
 import { resolveBlock } from "@/data/resolve";
 import type { ContentItem, PageBlock, PageData, SectionBlock } from "@/types/content";
 

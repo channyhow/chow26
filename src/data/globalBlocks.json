@@ -487,26 +487,35 @@
       }
     }
   },
-   "linkpage-navigation": {
-    "title": "Appel à projets",
-    "subtitle": ["Date limite : 18.10.2026"],
-    "text": [
-      "Je recherche **3 projets** à accompagner pour créer ou faire évoluer leur **identité visuelle**, dans un périmètre défini ensemble : jusqu’à 5 éléments maximum, choisis selon les besoins du projet.", "Restaurants, lieux, studios, marques ou associations, à Paris, à La Réunion ou ailleurs."
-    ],
-    "links": [
-      "project-call",
-      "studio-service-identity",
-      "studio-service-website",
-      "case-studies",
-      "mdk-case-study"
-    ]
-  },
+"linkpage-navigation": {
+  "id": "linkpage-navigation",
+  "type": "Section",
+  "layout": "text",
+  "motion": "none",
+  "className": "linkPage__campaign",
+  "content": {
+    "header": {
+      "title": "Appel à projets",
+      "subtitle": ["Date limite : 18.10.2026"],
+      "text": [
+        "Je recherche **3 projets** à accompagner pour créer ou faire évoluer leur **identité visuelle**, dans un périmètre défini ensemble : jusqu’à 5 éléments maximum, choisis selon les besoins du projet.",
+        "Restaurants, lieux, studios, marques ou associations, à Paris, à La Réunion ou ailleurs."
+      ],
+      "links": [
+        "project-call",
+        "studio-service-identity",
+        "studio-service-website",
+        "case-studies",
+        "mdk-case-study"
+      ]
+    }
+  }
+},
   "linkpage-founder": {
     "id": "link-studio",
     "type": "Section",
     "layout": "split",
     "splitVariant": "media-lead",
-    "motion": "reveal",
     "className": "linkPage__studio",
     "content": {
       "items": [
