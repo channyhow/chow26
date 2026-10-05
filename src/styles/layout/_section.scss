@@ -111,7 +111,7 @@
   .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) { @include site-grid; }
 
   .section[data-layout="text"] .section__inner:not(:has(> .section__body)) .textBlock,
-  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock { grid-column: 3 / span 8; }
+  .section[data-layout="statement"] .section__inner:not(:has(> .section__body)) .textBlock { grid-column: 2/span 10; }
 }
 
 @include tablet-down {

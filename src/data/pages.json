@@ -457,17 +457,6 @@
       "color": "special",
       "blocks": [{ "ref": "linkpage-navigation" }]
     },
-
-    {
-      "id": "link-conditions-panel",
-      "behavior": "sticky",
-      "frame": "viewport",
-      "size": "full",
-      "align": "center",
-      "surface": "glass",
-      "color": "special",
-      "blocks": [{ "ref": "opencall-conditions" }]
-    },
     {
       "id": "link-footer-panel",
       "behavior": "overlay",
