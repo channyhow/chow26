@@ -40,20 +40,22 @@
 
 .linkPage__campaign .textBlock__title {
   @include type-display-lg;
-  color: $color-accent;
+  // color: $color-accent;
 }
 
 .linkPage__campaign .textBlock__subtitle p {
   @include type-ui-compact;
+    color: $color-accent;
+
 }
 
 .linkPage__campaign .textBlock__content p {
   @include type-body-bold;
 }
 
-.linkPage__campaign strong {
-  color: $color-accent;
-}
+// .linkPage__campaign strong {
+//   color: $color-accent;
+// }
 
 // .linkPage__campaign .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
 //   opacity: 0.8;
@@ -71,7 +73,7 @@
   padding: $space-2 $space-3;
   justify-content: space-between;
   border: 0;
-  border-radius: 0;
+  border-radius: 10px;
   background: color-mix(in srgb, var(--primary) 4%, transparent);
   color: inherit;
   box-shadow: none;
