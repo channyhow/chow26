@@ -111,8 +111,8 @@ export function ScrollScene({
   const layeredMediaScale = useTransform(scrollYProgress, [0, 0.62, 1], [1, 1, reduceMotion ? 1 : 0.96]);
   const layeredMediaOpacity = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.58, 0.78, 1],
-    [1, 1, 0.9, reduceMotion ? 0.82 : 0.46, reduceMotion ? 0.78 : 0.12],
+    [0, 0.18, 0.34, 0.58, 0.78, 1],
+    [reduceMotion ? 0.82 : 0.62, reduceMotion ? 0.9 : 0.74, 1, 0.9, reduceMotion ? 0.82 : 0.46, reduceMotion ? 0.78 : 0.12],
   );
 
   const layeredTitleYNumeric = useTransform(scrollYProgress, [0, 0.24, 0.5, 0.76, 1], [0, 0, -72 * scale, -184 * scale, -292 * scale]);
