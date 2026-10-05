@@ -78,12 +78,3 @@
   transform: translate3d(var(--scene-copy-x, 0px), var(--scene-copy-y, 0px), 0);
   will-change: transform, opacity;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .scrollScene[data-attention-exit="true"] .section__media,
-  .scrollScene[data-attention-exit="true"] .textBlock__header,
-  .scrollScene[data-attention-exit="true"] .textBlock__content {
-    transform: none;
-    opacity: 1;
-  }
-}
