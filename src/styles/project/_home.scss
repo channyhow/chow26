@@ -176,34 +176,35 @@
 
   .homeOpeningScene__project { align-self: auto; }
 
-  /* Initial frame: Kuro + Ravine only. The other two projects begin below
-     the viewport and travel upward through the held service stack. */
+  /* Artboard frame 1: Kuro sits high-left, the service stack is centred,
+     and Mois du Kèr is the second visible image at lower-right. */
   .homeOpeningScene__project--web {
-    top: 14%;
-    left: $page-gutter;
-    width: 68%;
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .homeOpeningScene__project--supports {
-    top: 60%;
-    right: $page-gutter;
-    width: 30%;
-    aspect-ratio: $ratio-portrait;
-  }
-
-  .homeOpeningScene__project--web-secondary {
-    top: 112%;
-    left: $page-gutter;
-    width: 39%;
+    top: 16%;
+    left: 8%;
+    width: 66%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--identity {
-    top: 138%;
-    right: 13%;
-    width: 28%;
+    top: 68%;
+    right: 11%;
+    width: 39%;
     aspect-ratio: $ratio-square;
+  }
+
+  /* These belong to later frames and therefore start outside the viewport. */
+  .homeOpeningScene__project--web-secondary {
+    top: 118%;
+    left: 8%;
+    width: 39%;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeOpeningScene__project--supports {
+    top: 142%;
+    right: 11%;
+    width: 31%;
+    aspect-ratio: $ratio-portrait;
   }
 
   .homeOpeningScene__label {
