@@ -35,12 +35,26 @@
    normal document flow instead of a horizontal interaction. */
 @include tablet-down {
   .carousel__track,
-  .section__offers .carousel__track,
   .section[data-source="projects"][data-featured="true"] .carousel__track {
     grid-auto-flow: row;
     grid-auto-columns: auto;
     grid-template-columns: 1fr;
     gap: $space-3;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  /* Offers are distinct decision blocks, not one dense carousel. Use the
+     shared mobile block rhythm while keeping each card internally compact. */
+  .section__offers {
+    margin-top: $mobile-gap-block;
+  }
+
+  .section__offers .carousel__track {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr;
+    gap: $mobile-gap-block;
     overflow: visible;
     scroll-snap-type: none;
   }
