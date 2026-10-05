@@ -21,126 +21,48 @@ import { resolveMedia, resolveMediaList } from "@/data/resolveMedia";
 import { resolveSplitComposition } from "@/data/splitCompositions";
 import siteData from "@/data/site.json";
 import { motionConfig } from "@/motion/config";
-import type {
-  MotionIntensity,
-  ScrollMotionPreset,
-  SectionBlock,
-} from "@/types/content";
+import type { MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
-export type SectionProps = {
-  block: SectionBlock;
-  suppressSceneMotion?: boolean;
-  visualContext?: "own" | "inherit";
-  scrollProgress?: MotionValue<number>;
-};
+export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; };
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
 
-export function Section({
-  block,
-  suppressSceneMotion = false,
-  visualContext = "own",
-  scrollProgress,
-}: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
-  const items = [
-    ...(block.content?.items ?? []),
-    ...resolveCollection(block.source),
-  ];
-  const splitItem =
-    layout === "split" && items.length === 1 ? items[0] : undefined;
+  const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
+  const splitItem = layout === "split" && items.length === 1 ? items[0] : undefined;
   const formRef = block.content?.form;
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
   const media = mediaItems[0];
-  const splitItemMediaRef = splitItem
-    ? Array.isArray(splitItem.media)
-      ? splitItem.media[0]
-      : splitItem.media
-    : undefined;
+  const splitItemMediaRef = splitItem ? (Array.isArray(splitItem.media) ? splitItem.media[0] : splitItem.media) : undefined;
   const splitItemMedia = resolveMedia(splitItemMediaRef);
-  const splitCompositionProps = resolveSplitComposition(
-    block.id,
-    block.splitComposition,
-  );
+  const splitCompositionProps = resolveSplitComposition(block.id, block.splitComposition);
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
-  const sectionMotionEnabled =
-    motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
-  const isHorizontalTimeline =
-    layout === "timeline" && block.timelineOrientation === "horizontal";
-  const ownsScrollInteraction =
-    layout === "horizontal-scroll" ||
-    layout === "content-switcher" ||
-    isHorizontalTimeline;
+  const sectionMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+  const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
+  const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher" || isHorizontalTimeline;
   const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll =
-    sectionMotionEnabled &&
-    usesScrollMotion &&
-    !ownsScrollInteraction &&
-    !isLongFormList;
-  const scenePreset: ScrollMotionPreset =
-    block.motionPreset ??
-    (layout === "split"
-      ? "recede"
-      : motionLevel === "micro"
-        ? "drift"
-        : "parallax");
+  const shouldTrackScroll = sectionMotionEnabled && usesScrollMotion && !ownsScrollInteraction && !isLongFormList;
+  const scenePreset: ScrollMotionPreset = block.motionPreset ?? (layout === "split" ? "recede" : motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
-  const sceneIntensity: MotionIntensity =
-    block.motionIntensity ??
-    (layout === "split"
-      ? "quiet"
-      : motionLevel === "micro"
-        ? "quiet"
-        : "default");
+  const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
   const isHomeOpening = block.id === "home-opening";
-  const gridOwnsReveal =
-    items.length > 0 &&
-    (layout === "grid" ||
-      layout === "text" ||
-      layout === "split" ||
-      layout === "list");
-  const shouldReveal =
-    sectionMotionEnabled &&
-    motionLevel === "reveal" &&
-    !shouldTrackScroll &&
-    !gridOwnsReveal &&
-    !isLongFormList;
-  const isFeaturedProjectGrid =
-    layout === "grid" &&
-    block.source?.collection === "projects" &&
-    block.source.query?.featured === true;
-  const isStructuredEditorialList =
-    layout === "list" && items.some((item) => Boolean(item.grid));
-  const isProfileGrid =
-    layout === "grid" &&
-    items.length === 1 &&
-    Boolean(items[0]?.media) &&
-    Boolean(items[0]?.subtitle) &&
-    !items[0]?.title;
+  const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
+  const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
+  const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
+  const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
+  const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
   const isServiceCollection = block.source?.collection === "services";
-  const cardVariant =
-    block.itemAppearance?.variant ??
-    (isServiceCollection
-      ? "service"
-      : isStructuredEditorialList
-        ? "editorial"
-        : "default");
+  const cardVariant = block.itemAppearance?.variant ?? (isServiceCollection ? "service" : isStructuredEditorialList ? "editorial" : "default");
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
-  const projectGridLead =
-    header && !useProjectCarouselOnMobile && isFeaturedProjectGrid ? (
-      <TextBlock
-        content={{ title: header.title }}
-        className="section__gridLead"
-        motionEnabled={sectionMotionEnabled}
-      />
-    ) : null;
+  const projectGridLead = header && !useProjectCarouselOnMobile && isFeaturedProjectGrid ? <TextBlock content={{ title: header.title }} className="section__gridLead" motionEnabled={sectionMotionEnabled} /> : null;
 
   useEffect(() => {
     const carouselMedia = window.matchMedia(mobileCarouselQuery);
@@ -150,422 +72,73 @@ export function Section({
     return () => carouselMedia.removeEventListener("change", updateViewport);
   }, []);
 
-  const renderCard = (item: (typeof items)[number], index?: number) => (
-    <CardItem
-      key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`}
-      item={item}
-      frame={block.itemAppearance?.frame}
-      effect={block.itemAppearance?.effect}
-      variant={cardVariant}
-    />
-  );
+  const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
-  const cardsCollection = cards.length ? (
-    useProjectCarouselOnMobile ? (
-      <Carousel>{cards}</Carousel>
-    ) : (
-      <Grid
-        progressive={Boolean(block.progressive)}
-        lead={projectGridLead}
-        motionPreset={block.motionPreset}
-        placements={items.map((item) => item.grid)}
-        motionEnabled={sectionMotionEnabled && !isLongFormList}
-        scrollLinked={sectionMotionEnabled && !isLongFormList}
-      >
-        {cards}
-      </Grid>
-    )
-  ) : null;
-  const mediaCards = mediaItems.map((item) => (
-    <Media key={item.id} media={item} />
-  ));
-  const secondary = media ? (
-    <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" />
-  ) : form ? (
-    <Form schema={form} />
-  ) : (
-    cardsCollection
-  );
+  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
+  const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
+  const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
     const id = item.id ?? `item-${index + 1}`;
-    const label =
-      item.title ??
-      (typeof item.eyebrow === "string" ? item.eyebrow : item.eyebrow?.[0]);
+    const label = item.title ?? (typeof item.eyebrow === "string" ? item.eyebrow : item.eyebrow?.[0]);
     if (!label) return [];
     return [{ id, label, content: renderCard(item, index) }];
   });
   const horizontalItems = cards.length ? cards : mediaCards;
-  const horizontalItemsWithMotion = horizontalItems.map((item, index) => (
-    <ScrollScene
-      key={`horizontal-motion-${index}`}
-      preset="drift"
-      intensity={sceneIntensity}
-      direction={index % 2 === 0 ? "forward" : "reverse"}
-      range="through"
-      className="section__horizontalScrollLayer"
-      decorative={false}
-      enabled={sectionMotionEnabled}
-    >
-      {item}
-    </ScrollScene>
-  ));
-  const motionLayer = (
-    content: ReactNode,
-    direction: "forward" | "reverse" = "forward",
-    className = "section__scrollLayer",
-    intensity: MotionIntensity = sceneIntensity,
-  ) =>
-    content ? (
-      shouldTrackScroll ? (
-        <ScrollScene
-          preset={scenePreset}
-          intensity={intensity}
-          direction={direction}
-          range={sceneRange}
-          className={className}
-          decorative={false}
-          progress={scrollProgress}
-        >
-          {content}
-        </ScrollScene>
-      ) : (
-        content
-      )
-    ) : null;
-  const region = (content: ReactNode, className?: string) =>
-    content ? (
-      <div className={clsx("section__body", className)}>{content}</div>
-    ) : null;
+  const horizontalItemsWithMotion = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={sectionMotionEnabled}>{item}</ScrollScene>);
+  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={scrollProgress}>{content}</ScrollScene> : content) : null;
+  const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
   if (isHomeOpening) {
-    body = (
-      <HomeOpeningScene
-        header={header}
-        media={mediaItems}
-        scrollProgress={scrollProgress}
-      />
-    );
+    body = <HomeOpeningScene header={header} media={mediaItems} scrollProgress={scrollProgress} />;
   } else if (layout === "split") {
-    const primaryContent = splitItem
-      ? { ...splitItem, media: undefined, offers: undefined }
-      : header;
-    const primary = primaryContent ? (
-      <TextBlock
-        content={primaryContent}
-        metaVariant={isServiceCollection ? "rows" : "default"}
-        motionEnabled={sectionMotionEnabled}
-      />
-    ) : null;
-    const splitSecondary = splitItemMedia ? (
-      <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" />
-    ) : (
-      secondary
-    );
-   const mediaLayer = splitSecondary
-  ? motionLayer(
-      <div className="section__splitMediaMotion">
-        {splitSecondary}
-      </div>,
-      "reverse",
-      "section__splitMediaScrollLayer",
-      "quiet"
-    )
-  : null;
+    const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
+    const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
+    const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
 
-const textLayer = primary
-  ? motionLayer(
-      <div className="section__splitTextMotion">
-        {primary}
-      </div>,
-      "forward",
-      "section__splitTextScrollLayer",
-      "quiet"
-    )
-  : null;
-    const splitComposition = (
-      <Split
-        variant={block.splitVariant}
-        {...splitCompositionProps}
-        primary={textLayer}
-        secondary={mediaLayer}
-        primaryRole="content"
-        secondaryRole="media"
-      />
-    );
+    // A Split owns its geometry. Keep its direct content in normal document flow;
+    // scroll-scene wrappers add viewport-sized boxes and can break mobile grid sizing.
+    const mediaLayer = splitSecondary ? <div className="section__splitMediaMotion">{splitSecondary}</div> : null;
+    const textLayer = primary ? <div className="section__splitTextMotion">{primary}</div> : null;
+    const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
-    const offerCarousel =
-      offers.length > 0 ? (
-        <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>
-          {offers.map((offer, index) => (
-            <CardItem
-              key={offer.id ?? `offer-${index + 1}`}
-              item={offer}
-              variant="service"
-            />
-          ))}
-        </Carousel>
-      ) : null;
-  body = (
-  <>
-    {splitComposition}
-    {region(offerCarousel, "section__offers")}
-  </>
-);
+    const offerCarousel = offers.length > 0 ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</Carousel> : null;
+    body = <>{splitComposition}{region(offerCarousel, "section__offers")}</>;
   } else if (isProfileGrid) {
     const profile = items[0];
-    const profileMediaRef = Array.isArray(profile.media)
-      ? profile.media[0]
-      : profile.media;
+    const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
     const profileMedia = resolveMedia(profileMediaRef);
-    const primary = profileMedia ? (
-      <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" />
-    ) : null;
+    const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    const profileMediaLayer = motionLayer(
-      primary,
-      "reverse",
-      "section__profileMediaMotion",
-      "quiet",
-    );
-    const profileTextLayer = motionLayer(
-      <TextBlock
-        content={secondaryContent}
-        className="split__content"
-        motionEnabled={sectionMotionEnabled}
-      />,
-      "forward",
-      "section__profileTextMotion",
-      "quiet",
-    );
-    body = (
-      <Split
-        variant={block.splitVariant ?? "media-lead"}
-        {...splitCompositionProps}
-        className="split--profile"
-        primary={profileMediaLayer}
-        secondary={profileTextLayer}
-        primaryRole="media"
-        secondaryRole="content"
-      />
-    );
+    const profileMediaLayer = motionLayer(primary, "reverse", "section__profileMediaMotion", "quiet");
+    const profileTextLayer = motionLayer(<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />, "forward", "section__profileTextMotion", "quiet");
+    body = <Split variant={block.splitVariant ?? "media-lead"} {...splitCompositionProps} className="split--profile" primary={profileMediaLayer} secondary={profileTextLayer} primaryRole="media" secondaryRole="content" />;
   } else if (layout === "media-overlay") {
-    body = (
-      <div className="section__mediaOverlay">
-        {media ? (
-          <Media media={media} className="section__media" sizes="100vw" />
-        ) : null}
-        {header ? (
-          <div className="section__overlayContent">
-            <TextBlock
-              content={header}
-              titleAs="h1"
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          </div>
-        ) : null}
-      </div>
-    );
+    body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" motionEnabled={sectionMotionEnabled} /></div> : null}</div>;
   } else if (layout === "gallery") {
-    const gallery = mediaItems.length ? (
-      <Gallery items={mediaItems} layout="editorial" />
-    ) : null;
-    body = (
-      <>
-        {motionLayer(
-          header ? (
-            <TextBlock
-              content={header}
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          ) : null,
-          "forward",
-        )}
-        {region(motionLayer(gallery, "reverse"))}
-      </>
-    );
+    const gallery = mediaItems.length ? <Gallery items={mediaItems} layout="editorial" /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(gallery, "reverse"))}</>;
   } else if (layout === "carousel") {
-    const carousel =
-      cards.length || mediaCards.length ? (
-        <Carousel>{cards.length ? cards : mediaCards}</Carousel>
-      ) : null;
-    body = (
-      <>
-        {motionLayer(
-          header ? (
-            <TextBlock
-              content={header}
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          ) : null,
-          "forward",
-        )}
-        {region(motionLayer(carousel, "reverse"))}
-      </>
-    );
+    const carousel = cards.length || mediaCards.length ? <Carousel>{cards.length ? cards : mediaCards}</Carousel> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(carousel, "reverse"))}</>;
   } else if (layout === "timeline") {
-    const timeline = items.length ? (
-      <Timeline items={items} orientation={block.timelineOrientation} />
-    ) : null;
-    body = (
-      <>
-        {motionLayer(
-          header ? (
-            <TextBlock
-              content={header}
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          ) : null,
-          "forward",
-        )}
-        {region(motionLayer(timeline, "reverse"))}
-      </>
-    );
+    const timeline = items.length ? <Timeline items={items} orientation={block.timelineOrientation} /> : null;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(timeline, "reverse"))}</>;
   } else if (layout === "horizontal-scroll") {
-    body = (
-      <>
-        {header ? (
-          <TextBlock
-            content={header}
-            className="section__header"
-            motionEnabled={sectionMotionEnabled}
-          />
-        ) : null}
-        {region(
-          horizontalItemsWithMotion.length ? (
-            <HorizontalScroll>{horizontalItemsWithMotion}</HorizontalScroll>
-          ) : null,
-        )}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null}{region(horizontalItemsWithMotion.length ? <HorizontalScroll>{horizontalItemsWithMotion}</HorizontalScroll> : null)}</>;
   } else if (layout === "content-switcher") {
-    body = (
-      <>
-        {header ? (
-          <TextBlock
-            content={header}
-            className="section__header"
-            motionEnabled={sectionMotionEnabled}
-          />
-        ) : null}
-        {region(
-          switcherItems.length ? (
-            <ContentSwitcher items={switcherItems} />
-          ) : null,
-        )}
-      </>
-    );
+    body = <>{header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null}{region(switcherItems.length ? <ContentSwitcher items={switcherItems} /> : null)}</>;
   } else if (layout === "media") {
-    body = (
-      <>
-        {motionLayer(
-          header ? (
-            <TextBlock
-              content={header}
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          ) : null,
-          "forward",
-        )}
-        {region(
-          motionLayer(
-            media ? <Media media={media} className="section__media" /> : null,
-            "reverse",
-          ),
-        )}
-      </>
-    );
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
-    const content = (
-      <>
-        {media ? <Media media={media} className="section__media" /> : null}
-        {form ? <Form schema={form} /> : null}
-        {cardsCollection}
-      </>
-    );
-    body = (
-      <>
-        {motionLayer(
-          header && !projectGridLead ? (
-            <TextBlock
-              content={header}
-              className="section__header"
-              motionEnabled={sectionMotionEnabled}
-            />
-          ) : null,
-          "forward",
-        )}
-        {region(
-          motionLayer(
-            media || form || cardsCollection ? content : null,
-            "reverse",
-          ),
-        )}
-      </>
-    );
+    const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
+    body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
-  const mediaOverlayScene =
-    shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? (
-      <ScrollScene
-        preset={scenePreset}
-        intensity={sceneIntensity}
-        range={sceneRange}
-        className="section__scrollScene"
-        decorative={false}
-        progress={scrollProgress}
-      >
-        <div className="section__inner">{body}</div>
-      </ScrollScene>
-    ) : null;
-  const renderedLayout = isHomeOpening
-    ? "opening"
-    : isProfileGrid
-      ? "split"
-      : layout;
+  const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
+  const renderedLayout = isHomeOpening ? "opening" : isProfileGrid ? "split" : layout;
 
-  return (
-    <motion.section
-      id={block.id}
-      className={clsx("section", block.frame && "frame", block.className)}
-      data-layout={renderedLayout}
-      data-variant={block.variant}
-      data-split-variant={block.splitVariant}
-      data-tone={block.tone}
-      data-visual-context={visualContext}
-      data-surface={ownsVisualPlane ? block.surface : undefined}
-      data-color={ownsVisualPlane ? block.color : undefined}
-      data-source={block.source?.collection}
-      data-featured={
-        block.source?.query?.featured === true ? "true" : undefined
-      }
-      data-motion={motionLevel}
-      data-motion-preset={scenePreset}
-      data-motion-range={block.motionRange}
-      data-motion-intensity={sceneIntensity}
-    >
-      {mediaOverlayScene ??
-        (shouldReveal ? (
-          <motion.div
-            className="section__inner"
-            initial={{ opacity: 0, y: motionConfig.distance.subtle }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={motionConfig.viewport}
-            transition={{
-              duration: motionConfig.duration.slow,
-              ease: motionConfig.easing.standard,
-            }}
-          >
-            {body}
-          </motion.div>
-        ) : (
-          <div className="section__inner">{body}</div>
-        ))}
-    </motion.section>
-  );
+  return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={renderedLayout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={scenePreset} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
+    {mediaOverlayScene ?? (shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: motionConfig.distance.subtle }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: motionConfig.duration.slow, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>)}
+  </motion.section>;
 }
