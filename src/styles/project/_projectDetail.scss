@@ -64,8 +64,6 @@
 .projectCta .textBlock__title {
   @include type-heading-md;
   max-width: 22ch;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
 }
 
 .projectHero .textBlock__subtitle {
@@ -124,8 +122,7 @@
 
 .projectStoryMedia .textBlock__content p,
 .projectStoryText .textBlock__content p {
-  font-size: $type-lead;
-  line-height: 1.58;
+  @include type-lead;
 }
 
 .projectStoryMedia strong,
