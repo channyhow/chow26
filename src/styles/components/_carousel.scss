@@ -14,8 +14,6 @@
 }
 .carousel__arrow { width: 1.65rem; height: 1.65rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: $opacity-muted; pointer-events: none; transition: opacity $transition-hover; }
 
-/* Offer collections read as one editorial comparison on wide screens and as
-   a swipeable sequence when space becomes constrained. */
 .section__offers { margin-top: clamp(#{$space-3}, 5vw, #{$space-5}); }
 .section__offers .carousel { gap: $space-2; }
 .section__offers .carousel__track { grid-auto-columns: minmax(0, 1fr); gap: $space-3; overflow: visible; scroll-snap-type: none; }
@@ -33,18 +31,33 @@
 .section[data-source="projects"][data-featured="true"] .carousel__control:last-child { position: absolute; top: 50%; right: clamp(#{$space-2}, 3vw, #{$space-3}); z-index: $z-raised; width: clamp(3rem, 5vw, 4rem); height: clamp(3rem, 5vw, 4rem); padding: 0; transform: translateY(-50%); }
 .section[data-source="projects"][data-featured="true"] .carousel__control:last-child:disabled { opacity: 0; pointer-events: none; }
 
+/* Mobile follows the global linear-layout contract: carousel content becomes
+   normal document flow instead of a horizontal interaction. */
 @include tablet-down {
-  .section__offers .carousel__track {
-    grid-auto-columns: min(84vw, 30rem);
-    gap: $space-2;
-    overflow-x: auto;
-    scroll-snap-type: inline mandatory;
+  .carousel__track,
+  .section__offers .carousel__track,
+  .section[data-source="projects"][data-featured="true"] .carousel__track {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr;
+    gap: $space-3;
+    overflow: visible;
+    scroll-snap-type: none;
   }
 
-  .section__offers .carousel__controls { display: flex; }
+  .carousel__item {
+    width: 100%;
+    height: auto;
+    scroll-snap-align: none;
+  }
+
+  .carousel__controls,
+  .section__offers .carousel__controls,
+  .section[data-source="projects"][data-featured="true"] .carousel__controls {
+    display: none;
+  }
 }
 
-@include mobile-down { .section[data-source="projects"][data-featured="true"] .carousel__track { grid-auto-columns: min(84vw, 24rem); } }
 @include tablet-up {
   .carousel__track { grid-auto-columns: minmax(22rem, 38%); }
   .carousel__controls { position: absolute; top: 50%; right: $space-2; z-index: $z-raised; gap: $flow-tight; transform: translateY(-50%); }
