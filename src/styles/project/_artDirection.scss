@@ -34,6 +34,13 @@
 }
 #contact-default .split { align-items: start; }
 
+/* On smaller screens the contact introduction should establish context before
+   the form. The generic split remains media-led elsewhere. */
+@include desktop-down {
+  #contact-default .split > [data-split-role="content"] { grid-row: 1; }
+  #contact-default .split > [data-split-role="media"] { grid-row: 2; }
+}
+
 /* Project browsing is intentionally tighter than narrative sections so cards
    read as one continuous family. */
 #projects-featured,
