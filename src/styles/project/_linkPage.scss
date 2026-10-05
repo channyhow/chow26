@@ -2,47 +2,35 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
-.linkPageShell { width: 100%; }
+.linkPageShell,
+.linkPagePanels {
+  width: 100%;
+}
 
 .linkPagePanel {
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
   min-height: 100svh;
   background: $color-secondary;
   color: $color-primary;
 }
 
-.linkPagePanel--campaign {
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
-  overflow: hidden;
-}
-
-.linkPage__main {
-  position: relative;
-  z-index: 1;
-  flex: 1;
+.linkPagePanel__inner {
   display: flex;
   align-items: center;
   width: min(100%, #{$container-max});
+  min-height: 100svh;
   margin-inline: auto;
-  padding: $space-4;
+  padding: calc(#{$header-height} + #{$space-4}) var(--project-gutter) $space-4;
 }
-
-.linkPage__campaign,
-.linkPage__campaignText.textBlock { width: 100%; }
 
 .linkPage__campaignText.textBlock {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
+  width: 100%;
   max-width: none;
-}
-
-.linkPage__campaignText .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
-  opacity: 0.8;
 }
 
 .linkPage__campaignText .textBlock__header,
@@ -66,6 +54,10 @@
 .linkPage__campaignText .textBlock__content p { @include type-body-bold; }
 .linkPage__campaignText strong { color: $color-accent; }
 
+.linkPage__campaignText .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
+  opacity: 0.8;
+}
+
 .linkPagePanel--founder,
 .linkPagePanel--conditions {
   display: flex;
@@ -80,20 +72,18 @@
 .linkPagePanel--conditions .section__header { max-width: $container-narrow; }
 .linkPagePanel--conditions .grid { row-gap: $space-4; }
 .linkPagePanel--conditions .card { max-width: $container-narrow; }
-
-.linkPagePanel--conditions .textBlock__title {
-  @include type-body-bold;
-}
+.linkPagePanel--conditions .textBlock__title { @include type-body-bold; }
 
 @include tablet-down {
-  .linkPagePanel--campaign {
-    padding-inline: $page-gutter;
-    overflow: visible;
+  .linkPagePanel {
+    position: relative;
+    min-height: auto;
   }
 
-  .linkPage__main {
-    align-items: stretch;
-    padding-block: $space-3 $space-4;
+  .linkPagePanel__inner {
+    align-items: flex-start;
+    min-height: 100svh;
+    padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-4;
   }
 
   .linkPage__campaignText.textBlock {
@@ -111,9 +101,4 @@
   }
 
   .linkPage__campaignText .textBlock__footer { margin-top: $space-3; }
-}
-
-@include mobile-down {
-  .linkPagePanel--campaign { padding-top: calc(#{$header-height} + #{$space-2}); }
-  .linkPage__main { padding-block: $space-3 $space-4; }
 }
