@@ -67,6 +67,7 @@ export function CardItem({
       frame={frame}
       effect={effect}
       variant={variant}
+      surface={item.surface}
       className={clsx(isProject && "projectCard", className)}
     >
       {isService && mediaNode ? (
