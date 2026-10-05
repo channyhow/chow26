@@ -1,5 +1,4 @@
-import { useRef, type ReactNode } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 import { Media } from "@/components/content/Media";
@@ -25,6 +24,16 @@ const openingServices = [
   { label: "Supports de communication", href: "/studio#studio-service-integrations-panel", className: "supports" },
 ] as const;
 
+const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
+const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
+const smoothstep = (value: number) => value * value * (3 - 2 * value);
+const range = (progress: number, start: number, end: number) => smoothstep(clamp01((progress - start) / Math.max(end - start, 0.001)));
+const hold = (progress: number, enterStart: number, enterEnd: number, exitStart: number, exitEnd: number) => {
+  const enter = range(progress, enterStart, enterEnd);
+  const exit = 1 - range(progress, exitStart, exitEnd);
+  return Math.min(enter, exit);
+};
+
 const renderInlineStrong = (value: string): ReactNode[] => value
   .split(/(\*\*[^*]+\*\*)/g)
   .filter(Boolean)
@@ -36,54 +45,96 @@ const renderInlineStrong = (value: string): ReactNode[] => value
 
 export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const p = useTransform(scrollYProgress, [0, 1], [0, 1], { clamp: true });
+  const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const statementRef = useRef<HTMLDivElement>(null);
 
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
-
-  const webLabelOpacity = useTransform(p, [0.04, 0.12, 0.66, 0.78], [0, 1, 1, 0]);
-  const identityLabelOpacity = useTransform(p, [0.1, 0.18, 0.7, 0.82], [0, 1, 1, 0]);
-  const supportsLabelOpacity = useTransform(p, [0.16, 0.24, 0.62, 0.74], [0, 1, 1, 0]);
-  const webLabelY = useTransform(p, [0.04, 0.12, 0.66, 0.8], [12, 0, 0, -30]);
-  const identityLabelY = useTransform(p, [0.1, 0.18, 0.7, 0.84], [12, 0, 0, -38]);
-  const supportsLabelY = useTransform(p, [0.16, 0.24, 0.62, 0.76], [12, 0, 0, -34]);
-  const labelOpacities = [webLabelOpacity, identityLabelOpacity, supportsLabelOpacity];
-  const labelYs = [webLabelY, identityLabelY, supportsLabelY];
-
-  const statementOpacity = useTransform(p, [0.72, 0.84, 1], [0, 1, 1]);
-  const statementY = useTransform(p, [0.72, 0.86], [22, 0]);
-
-  const mediaOpacity1 = useTransform(p, [0, 0.12, 0.64, 0.82], [0.12, 1, 1, 0]);
-  const mediaOpacity2 = useTransform(p, [0.04, 0.16, 0.72, 0.94], [0.12, 1, 1, 0]);
-  const mediaOpacity3 = useTransform(p, [0.08, 0.2, 0.68, 0.88], [0.08, 1, 1, 0]);
-  const mediaOpacity4 = useTransform(p, [0.12, 0.24, 0.6, 0.78], [0.06, 1, 1, 0]);
-  const mediaOpacities = [mediaOpacity1, mediaOpacity2, mediaOpacity3, mediaOpacity4];
-
-  const mediaY1 = useTransform(p, [0, 0.12, 0.64, 0.84], [22, 0, 0, -118]);
-  const mediaY2 = useTransform(p, [0.04, 0.16, 0.72, 0.96], [18, 0, 0, -156]);
-  const mediaY3 = useTransform(p, [0.08, 0.2, 0.68, 0.9], [24, 0, 0, -136]);
-  const mediaY4 = useTransform(p, [0.12, 0.24, 0.6, 0.8], [28, 0, 0, -176]);
-  const mediaYs = [mediaY1, mediaY2, mediaY3, mediaY4];
-
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
+
+  useEffect(() => {
+    let frame = 0;
+
+    const labelTiming = [
+      [0.04, 0.12, 0.66, 0.78, 12, -30],
+      [0.1, 0.18, 0.7, 0.82, 12, -38],
+      [0.16, 0.24, 0.62, 0.74, 12, -34],
+    ] as const;
+    const mediaTiming = [
+      [0, 0.12, 0.64, 0.82, 0.12, 22, -118],
+      [0.04, 0.16, 0.72, 0.94, 0.12, 18, -156],
+      [0.08, 0.2, 0.68, 0.88, 0.08, 24, -136],
+      [0.12, 0.24, 0.6, 0.78, 0.06, 28, -176],
+    ] as const;
+
+    const update = () => {
+      frame = 0;
+      const scene = ref.current;
+      if (!scene) return;
+
+      const rect = scene.getBoundingClientRect();
+      const viewportHeight = Math.max(window.innerHeight, 1);
+      const travel = Math.max(rect.height + viewportHeight, 1);
+      const progress = clamp01((viewportHeight - rect.top) / travel);
+
+      labelRefs.current.forEach((element, index) => {
+        const timing = labelTiming[index];
+        if (!element || !timing) return;
+        const [enterStart, enterEnd, exitStart, exitEnd, startY, exitY] = timing;
+        const enter = range(progress, enterStart, enterEnd);
+        const exit = range(progress, exitStart, exitEnd);
+        element.style.opacity = String(hold(progress, enterStart, enterEnd, exitStart, exitEnd));
+        element.style.transform = `translate3d(0, ${lerp(lerp(startY, 0, enter), exitY, exit)}px, 0)`;
+      });
+
+      projectRefs.current.forEach((element, index) => {
+        const timing = mediaTiming[index];
+        if (!element || !timing) return;
+        const [enterStart, enterEnd, exitStart, exitEnd, initialOpacity, startY, exitY] = timing;
+        const enter = range(progress, enterStart, enterEnd);
+        const exit = range(progress, exitStart, exitEnd);
+        const visibleOpacity = lerp(initialOpacity, 1, enter);
+        element.style.opacity = String(lerp(visibleOpacity, 0, exit));
+        element.style.transform = `translate3d(0, ${lerp(lerp(startY, 0, enter), exitY, exit)}px, 0)`;
+      });
+
+      const statement = statementRef.current;
+      if (statement) {
+        const reveal = range(progress, 0.72, 0.86);
+        statement.style.opacity = String(reveal);
+        statement.style.transform = `translate3d(0, ${lerp(22, 0, reveal)}px, 0)`;
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <div ref={ref} className="homeOpeningScene">
       <nav className="homeOpeningScene__labels" aria-label="Services Chow Studio">
         {openingServices.map((service, index) => (
-          <motion.div
+          <div
+            ref={(element) => { labelRefs.current[index] = element; }}
             key={service.className}
             className={`homeOpeningScene__label homeOpeningScene__label--${service.className}`}
-            style={{ opacity: labelOpacities[index], y: labelYs[index] }}
           >
             <Link to={service.href} className="homeOpeningScene__labelLink">
               {service.label}
             </Link>
-          </motion.div>
+          </div>
         ))}
       </nav>
 
@@ -94,28 +145,25 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
           const projectName = item.alt?.split("|")[0].trim() ?? "sélectionné";
 
           return (
-            <motion.a
+            <a
+              ref={(element) => { projectRefs.current[index] = element; }}
               key={`${project.mediaId}-${index}`}
               className={`homeOpeningScene__project homeOpeningScene__project--${project.className}`}
               href={project.href}
-              style={{ opacity: mediaOpacities[index], y: mediaYs[index] }}
               aria-label={`Voir le projet ${projectName}`}
             >
               <Media
                 media={item}
                 sizes={project.className === "web" ? "(min-width: 64rem) 28vw, 70vw" : "(min-width: 64rem) 12vw, 38vw"}
               />
-            </motion.a>
+            </a>
           );
         })}
       </div>
 
-      <motion.div
-        className="homeOpeningScene__statement"
-        style={{ opacity: statementOpacity, y: statementY }}
-      >
+      <div ref={statementRef} className="homeOpeningScene__statement">
         {paragraphs.map((paragraph) => <p key={paragraph}>{renderInlineStrong(paragraph)}</p>)}
-      </motion.div>
+      </div>
     </div>
   );
 }
