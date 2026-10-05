@@ -177,8 +177,8 @@
 
   .homeOpeningScene__project { align-self: auto; }
 
-  /* Images begin on alternating sides and are moved vertically by the scroll
-     timeline. Their widths intentionally echo the supplied mobile artboards. */
+  /* First frame deliberately contains only Kuro + Ravine. Atmosphere and the
+     textile project start below the viewport and enter as the scene scrolls. */
   .homeOpeningScene__project--web {
     top: 13%;
     left: $page-gutter;
@@ -194,14 +194,14 @@
   }
 
   .homeOpeningScene__project--web-secondary {
-    top: 72%;
+    top: 112%;
     left: $page-gutter;
     width: 39%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--identity {
-    top: 84%;
+    top: 138%;
     right: 13%;
     width: 28%;
     aspect-ratio: $ratio-square;
