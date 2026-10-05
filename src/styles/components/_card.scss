@@ -27,34 +27,80 @@
     padding: $flow-default;
   }
 
-  .media__asset { transition: transform $transition-reveal; }
-  .textBlock__title { max-width: 22ch; }
-  .textBlock__subtitle p { @include type-body; }
-  .textBlock__meta { @include type-body-sm; }
+  .media__asset {
+    transition: transform $transition-reveal;
+  }
+  .textBlock__title {
+    max-width: 22ch;
+  }
+  .textBlock__subtitle p {
+    @include type-body;
+  }
+  .textBlock__meta {
+    @include type-body-sm;
+  }
 
-  @include hover { .media__asset { transform: scale(1.02); } }
-  &:focus-within .media__asset { transform: scale(1.02); }
+  @include hover {
+    .media__asset {
+      transform: scale(1.02);
+    }
+  }
+  &:focus-within .media__asset {
+    transform: scale(1.02);
+  }
 }
 
 .card--service {
   overflow: visible;
   background: transparent;
 
-  .card__split { width: 100%; }
-  .card__mediaWrap { overflow: visible; }
-  .card__body { width: 100%; min-width: 0; padding: 0; }
-  .card__body.textBlock { display: flex; flex-direction: column; gap: $flow-default; max-width: none; }
-  .textBlock__eyebrow { @include type-eyebrow; }
-  .textBlock__title { @include type-heading-md; max-width: 10ch; }
-  .textBlock__content { width: 100%; max-width: 34ch; color: color-mix(in srgb, currentColor 68%, transparent); }
-  .textBlock__content p { @include type-body-sm; }
-  .textBlock__content > * + * { margin-top: $flow-default; }
-  .textBlock__footer { width: fit-content; margin-top: $flow-tight; padding-top: 0; }
+  .card__split {
+    width: 100%;
+  }
+  .card__mediaWrap {
+    overflow: visible;
+  }
+  .card__body {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+  }
+  .card__body.textBlock {
+    display: flex;
+    flex-direction: column;
+    gap: $flow-default;
+    max-width: none;
+  }
+  .textBlock__eyebrow {
+    @include type-eyebrow;
+  }
+  .textBlock__title {
+    @include type-heading-md;
+    // max-width: 10ch;
+  }
+  .textBlock__content {
+    width: 100%;
+    // max-width: 34ch;
+    color: color-mix(in srgb, currentColor 68%, transparent);
+  }
+  .textBlock__content p {
+    @include type-body-sm;
+  }
+  .textBlock__content > * + * {
+    margin-top: $flow-default;
+  }
+  .textBlock__footer {
+    width: fit-content;
+    margin-top: $flow-tight;
+    padding-top: 0;
+  }
 
   /* Service media uses a stable editorial square on desktop. Smaller layouts
      keep their responsive split/media rules instead of inheriting this ratio. */
   @include desktop-up {
-    .media__frame { aspect-ratio: $ratio-square; }
+    .media__frame {
+      aspect-ratio: $ratio-square;
+    }
   }
 }
 
@@ -63,15 +109,34 @@
   overflow: visible;
   background: transparent;
 
-  .card__body { width: 100%; max-width: none; padding: 0; }
-  .card__body.textBlock { gap: $flow-default; }
-  .textBlock__title { @include type-heading-sm; max-width: none; }
-  .textBlock__content { @include type-body-sm; max-width: 26ch; color: color-mix(in srgb, currentColor 68%, transparent); }
+  .card__body {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+  .card__body.textBlock {
+    gap: $flow-default;
+  }
+  .textBlock__title {
+    @include type-heading-sm;
+    max-width: none;
+  }
+  .textBlock__content {
+    @include type-body-sm;
+    // max-width: 26ch;
+    color: color-mix(in srgb, currentColor 68%, transparent);
+  }
 }
 
-.card[data-surface="subtle"] { background: $color-dark-subtle; }
-.card[data-surface="soft"] { background: $color-dark-soft; }
-.card[data-surface="muted"] { background: $color-dark-muted; }
+.card[data-surface="subtle"] {
+  background: $color-dark-subtle;
+}
+.card[data-surface="soft"] {
+  background: $color-dark-soft;
+}
+.card[data-surface="muted"] {
+  background: $color-dark-muted;
+}
 
 /* Nested service offers share one editorial surface language. */
 .section__offers .card--service {
@@ -91,12 +156,12 @@
   color: color-mix(in srgb, currentColor 62%, transparent);
 }
 
-.section__offers .card--service .textBlock__title {
-  max-width: 18ch;
-}
+// .section__offers .card--service .textBlock__title {
+//   // max-width: 18ch;
+// }
 
 .section__offers .card--service .textBlock__content {
-  max-width: 34ch;
+  // max-width: 34ch;
   color: color-mix(in srgb, currentColor 70%, transparent);
 }
 
@@ -111,7 +176,9 @@
 }
 
 @include mobile-down {
-  .section__offers .card--service { padding: $space-2; }
+  .section__offers .card--service {
+    padding: $space-2;
+  }
 }
 
 .card--profile {
@@ -133,35 +200,95 @@
     mix-blend-mode: multiply;
   }
 
-  .card__body.textBlock { align-self: center; grid-auto-rows: max-content; align-content: start; gap: $flow-default; width: 100%; max-width: none; padding: $space-2 0; }
-  .textBlock__title { @include type-heading-lg; max-width: 9ch; line-height: .92; letter-spacing: -.035em; }
-  .textBlock__subtitle { @include type-heading-sm; max-width: 22ch; }
-  .textBlock__header, .textBlock__content { width: 100%; max-width: none; }
-  .textBlock__content { @include type-body-sm; max-width: 36ch; color: color-mix(in srgb, currentColor 62%, transparent); }
-  .textBlock__content > :first-child { @include type-lead; max-width: 30ch; color: currentColor; }
-  .textBlock__content > * + * { margin-top: $flow-default; }
-  .textBlock__content strong { font-weight: $font-weight-semibold; }
+  .card__body.textBlock {
+    align-self: center;
+    grid-auto-rows: max-content;
+    align-content: start;
+    gap: $flow-default;
+    width: 100%;
+    max-width: none;
+    padding: $space-2 0;
+  }
+  .textBlock__title {
+    @include type-heading-lg;
+    // max-width: 9ch;
+    // line-height: 0.92;
+    // letter-spacing: -0.035em;
+  }
+  .textBlock__subtitle {
+    @include type-heading-sm;
+    // max-width: 22ch;
+  }
+  .textBlock__header,
+  .textBlock__content {
+    width: 100%;
+    max-width: none;
+  }
+  .textBlock__content {
+    @include type-body-sm;
+    // max-width: 36ch;
+    color: color-mix(in srgb, currentColor 62%, transparent);
+  }
+  .textBlock__content > :first-child {
+    @include type-lead;
+    // max-width: 30ch;
+    color: currentColor;
+  }
+  .textBlock__content > * + * {
+    margin-top: $flow-default;
+  }
+  .textBlock__content strong {
+    font-weight: $font-weight-semibold;
+  }
 
   @include mobile-down {
     row-gap: $space-3;
-    .card__body.textBlock { padding-top: 0; }
-    .textBlock__content > :first-child { @include type-body; }
+    .card__body.textBlock {
+      padding-top: 0;
+    }
+    .textBlock__content > :first-child {
+      @include type-body;
+    }
   }
 }
 
 .projectCard {
-  .card__mediaWrap { background: $color-dark-subtle; }
-  .card__body { display: grid; gap: $flow-default; padding: $flow-default; }
-  .textBlock, .textBlock__header, .textBlock__content, .textBlock__footer { gap: $flow-tight; }
-  .textBlock__content { opacity: $opacity-quiet; }
-  .textBlock__content p { opacity: 1; }
-  .textBlock__content p::first-letter { text-transform: uppercase; }
-  .textBlock__footer { padding-top: 0; margin-top: $flow-tight; }
-  .textBlock__meta { display: none; }
+  .card__mediaWrap {
+    background: $color-dark-subtle;
+  }
+  .card__body {
+    display: grid;
+    gap: $flow-default;
+    padding: $flow-default;
+  }
+  .textBlock,
+  .textBlock__header,
+  .textBlock__content,
+  .textBlock__footer {
+    gap: $flow-tight;
+  }
+  .textBlock__content {
+    opacity: $opacity-quiet;
+  }
+  .textBlock__content p {
+    opacity: 1;
+  }
+  .textBlock__content p::first-letter {
+    text-transform: uppercase;
+  }
+  .textBlock__footer {
+    padding-top: 0;
+    margin-top: $flow-tight;
+  }
+  .textBlock__meta {
+    display: none;
+  }
 }
 
 /* Featured project galleries use one predictable landscape frame regardless of source media. */
-.section[data-source="projects"][data-featured="true"] .projectCard .media__frame {
+.section[data-source="projects"][data-featured="true"]
+  .projectCard
+  .media__frame {
   aspect-ratio: $ratio-wide;
 }
 
@@ -172,6 +299,14 @@
   }
 }
 
-[data-variant="organic"] .card { border: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
-.card[href] { color: inherit; text-decoration: none; cursor: pointer; }
-.card[href]:focus-visible { @include focus-ring; }
+[data-variant="organic"] .card {
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+}
+.card[href] {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.card[href]:focus-visible {
+  @include focus-ring;
+}
