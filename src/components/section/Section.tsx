@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { motion, useReducedMotion, type MotionValue } from "motion/react";
+import { motion, type MotionValue } from "motion/react";
 
 import { CardItem } from "@/components/content/CardItem";
 import { Carousel } from "@/components/content/Carousel";
@@ -27,10 +27,11 @@ import type { FormSchema } from "@/types/forms";
 export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; };
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
+const mobileQuery = "(max-width: 47.999rem)";
 
 export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
-  const reduceMotion = useReducedMotion();
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isPhoneViewport, setIsPhoneViewport] = useState(false);
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
@@ -68,11 +69,19 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     : null;
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(mobileCarouselQuery);
-    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+    const carouselMedia = window.matchMedia(mobileCarouselQuery);
+    const phoneMedia = window.matchMedia(mobileQuery);
+    const updateViewport = () => {
+      setIsMobileViewport(carouselMedia.matches);
+      setIsPhoneViewport(phoneMedia.matches);
+    };
     updateViewport();
-    mediaQuery.addEventListener("change", updateViewport);
-    return () => mediaQuery.removeEventListener("change", updateViewport);
+    carouselMedia.addEventListener("change", updateViewport);
+    phoneMedia.addEventListener("change", updateViewport);
+    return () => {
+      carouselMedia.removeEventListener("change", updateViewport);
+      phoneMedia.removeEventListener("change", updateViewport);
+    };
   }, []);
 
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
@@ -98,11 +107,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
-    const mediaLayer = splitSecondary ? (sectionMotionEnabled
-      ? <motion.div className="section__splitMediaMotion" initial={{ opacity: 0, y: reduceMotion ? 0 : 12, scale: reduceMotion ? 1 : 0.996 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div>
+    const keepServiceMediaVisible = isServiceCollection && isPhoneViewport;
+    const mediaLayer = splitSecondary ? (sectionMotionEnabled && !keepServiceMediaVisible
+      ? <motion.div className="section__splitMediaMotion" initial={{ opacity: 0, y: 12, scale: 0.996 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={motionConfig.viewport} transition={{ duration: 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div>
       : <div className="section__splitMediaMotion">{splitSecondary}</div>) : null;
     const textLayer = primary ? (sectionMotionEnabled
-      ? <motion.div className="section__splitTextMotion" initial={{ opacity: 0, y: reduceMotion ? 0 : 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div>
+      ? <motion.div className="section__splitTextMotion" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: 0.78, delay: 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div>
       : <div className="section__splitTextMotion">{primary}</div>) : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
@@ -142,11 +152,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   }
 
   const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
-  const revealDistance = reduceMotion ? motionConfig.reduced.revealDistance : motionConfig.distance.subtle;
-  const revealDuration = reduceMotion ? motionConfig.reduced.duration : motionConfig.duration.slow;
   const renderedLayout = isHomeOpening ? "opening" : isProfileGrid ? "split" : layout;
 
   return <motion.section id={block.id} className={clsx("section", block.frame && "frame", block.className)} data-layout={renderedLayout} data-variant={block.variant} data-split-variant={block.splitVariant} data-tone={block.tone} data-visual-context={visualContext} data-surface={ownsVisualPlane ? block.surface : undefined} data-color={ownsVisualPlane ? block.color : undefined} data-source={block.source?.collection} data-featured={block.source?.query?.featured === true ? "true" : undefined} data-motion={motionLevel} data-motion-preset={scenePreset} data-motion-range={block.motionRange} data-motion-intensity={sceneIntensity}>
-    {mediaOverlayScene ?? (shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: revealDistance }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: revealDuration, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>)}
+    {mediaOverlayScene ?? (shouldReveal ? <motion.div className="section__inner" initial={{ opacity: 0, y: motionConfig.distance.subtle }} whileInView={{ opacity: 1, y: 0 }} viewport={motionConfig.viewport} transition={{ duration: motionConfig.duration.slow, ease: motionConfig.easing.standard }}>{body}</motion.div> : <div className="section__inner">{body}</div>)}
   </motion.section>;
 }
