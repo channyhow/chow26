@@ -138,7 +138,6 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-/* Tablet stays derived from the desktop composition. */
 @include between($bp-tablet, $bp-desktop) {
   .homeOpeningScene { padding-inline: $page-gutter; }
   .homeOpeningScene__project--identity { grid-column: 1 / span 2; }
@@ -151,23 +150,33 @@
   .homeOpeningScene__statement { grid-column: 5 / span 5; }
 }
 
-/* Mobile: the section itself is the scroll runway. The scene is its sticky
-   100svh child. This is essential: making .section__inner 300svh while the
-   section stays 100% high makes sticky resolve against the wrong containing
-   block, so the whole 300svh composition simply scrolls through the viewport. */
+/* Mobile has two distinct layers:
+   - .section__inner owns the 300svh scroll runway;
+   - .homeOpeningScene is the 100svh sticky viewport inside it.
+   The previous pass put the runway on #home-opening, but the generic flex
+   .section__inner stretched to the runway height and became the moving layer. */
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
   #home-opening {
-    height: 300svh;
+    height: auto;
+    min-height: 300svh;
+    overflow: visible;
   }
 
   #home-opening .section__inner {
-    height: 100%;
+    display: block;
+    flex: none;
+    width: 100%;
+    height: 300svh;
+    min-height: 300svh;
+    margin: 0;
+    overflow: visible;
   }
 
   .homeOpeningScene {
     display: block;
     position: sticky;
     top: 0;
+    width: 100%;
     height: 100svh;
     min-height: 0;
     padding: 0;
@@ -258,8 +267,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) and (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening { height: 100svh; }
-  #home-opening .section__inner { height: 100%; }
+  #home-opening {
+    min-height: 100svh;
+  }
+
+  #home-opening .section__inner {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
   .homeOpeningScene {
     position: relative;
     height: 100svh;
