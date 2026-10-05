@@ -19,6 +19,11 @@
   .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__viewport { position: static; display: block; height: auto; overflow: visible; }
   .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__progress { display: none; }
   .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__track { display: grid; width: 100%; height: auto; transform: none !important; }
-  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__item { width: 100%; height: auto; min-height: 80svh; padding-inline: $page-gutter; }
+  .horizontalScroll:not([data-preserve-small="true"]) .horizontalScroll__item {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: $space-3 $page-gutter;
+  }
   .horizontalScroll[data-preserve-small="true"] .horizontalScroll__item { padding-inline: $page-gutter; }
 }
