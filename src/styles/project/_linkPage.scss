@@ -8,13 +8,8 @@
   overflow: hidden;
 }
 
-[data-panel-id="link-campaign-panel"] .fractalNoiseCanvas {
-  z-index: 0;
-}
-
 [data-panel-id="link-campaign-panel"] .linkPage__campaign {
   position: relative;
-  z-index: 1;
   width: 100%;
   background: transparent;
 }
@@ -64,6 +59,44 @@
   opacity: 0.8;
 }
 
+.linkPage__campaign .actions {
+  display: grid;
+  width: 100%;
+  gap: $space-1;
+}
+
+.linkPage__campaign .actions__link {
+  width: 100%;
+  min-height: 4.75rem;
+  padding: $space-2 $space-3;
+  justify-content: space-between;
+  border: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--primary) 4%, transparent);
+  color: inherit;
+  box-shadow: none;
+
+  @include hover {
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+    color: var(--accent);
+    transform: translateX(0.2rem);
+
+    .actions__label { background-size: 100% 1px; }
+    .actions__arrow { transform: translate(0.22rem, -0.12rem); }
+  }
+}
+
+.linkPage__campaign .actions__link:first-child,
+.linkPage__campaign .actions__link[data-priority="primary"] {
+  border: 1px solid $color-accent;
+  background: color-mix(in srgb, #{$color-accent} 12%, transparent);
+
+  @include hover {
+    background: var(--accent);
+    color: var(--primary);
+  }
+}
+
 @include tablet-down {
   .linkPage__campaign .section__header.textBlock {
     grid-template-columns: 1fr;
@@ -81,5 +114,12 @@
 
   .linkPage__campaign .textBlock__footer {
     margin-top: $space-3;
+  }
+}
+
+@include mobile-down {
+  .linkPage__campaign .actions__link {
+    min-height: 4.25rem;
+    padding: $space-2;
   }
 }
