@@ -1,5 +1,6 @@
 import { useRef, type ReactNode } from "react";
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
+import { Link } from "react-router-dom";
 
 import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
@@ -19,6 +20,12 @@ const openingProjects = [
   { mediaId: "mdk-poster", href: "/projets/mois-du-ker", className: "supports" },
 ] as const;
 
+const openingServices = [
+  { label: "Sites internet", href: "/studio#studio-service-website-panel", className: "web" },
+  { label: "Identités visuelles", href: "/studio#studio-service-identity-panel", className: "identity" },
+  { label: "Supports de communication", href: "/studio#studio-service-integrations-panel", className: "supports" },
+] as const;
+
 const renderInlineStrong = (value: string): ReactNode[] => value
   .split(/(\*\*[^*]+\*\*)/g)
   .filter(Boolean)
@@ -36,21 +43,18 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
 
-  // Labels follow the same asynchronous rhythm as the media constellation:
-  // each one enters, holds, then rises and clears independently.
   const webLabelOpacity = useTransform(p, [0.07, 0.17, 0.5, 0.66], [0, 1, 1, 0]);
   const identityLabelOpacity = useTransform(p, [0.13, 0.23, 0.55, 0.72], [0, 1, 1, 0]);
   const supportsLabelOpacity = useTransform(p, [0.19, 0.29, 0.46, 0.62], [0, 1, 1, 0]);
   const webLabelY = useTransform(p, [0.07, 0.17, 0.5, 0.68], [10, 0, 0, -34]);
   const identityLabelY = useTransform(p, [0.13, 0.23, 0.55, 0.74], [10, 0, 0, -42]);
   const supportsLabelY = useTransform(p, [0.19, 0.29, 0.46, 0.64], [10, 0, 0, -38]);
+  const labelOpacities = [webLabelOpacity, identityLabelOpacity, supportsLabelOpacity];
+  const labelYs = [webLabelY, identityLabelY, supportsLabelY];
 
-  // The statement waits until the constellation has visibly started to clear.
   const statementOpacity = useTransform(p, [0.66, 0.8, 1], [0, 1, 1]);
   const statementY = useTransform(p, [0.66, 0.82], [24, 0]);
 
-  // Each project has its own entrance, hold and exit. Opacity loss starts with
-  // the upward movement rather than behaving as one grouped gallery fade.
   const mediaOpacity1 = useTransform(p, [0, 0.18, 0.47, 0.7], [0.16, 1, 1, 0]);
   const mediaOpacity2 = useTransform(p, [0, 0.12, 0.57, 0.9], [0.34, 1, 1, 0]);
   const mediaOpacity3 = useTransform(p, [0.05, 0.24, 0.51, 0.77], [0.1, 1, 1, 0]);
@@ -67,26 +71,22 @@ export function HomeOpeningScene({ header, media, progress }: HomeOpeningScenePr
 
   return (
     <div ref={ref} className="homeOpeningScene">
-      <div className="homeOpeningScene__labels" aria-hidden="true">
-        <motion.span
-          className="homeOpeningScene__label homeOpeningScene__label--web"
-          style={{ opacity: reduceMotion ? 1 : webLabelOpacity, y: reduceMotion ? 0 : webLabelY }}
-        >
-          Sites internet
-        </motion.span>
-        <motion.span
-          className="homeOpeningScene__label homeOpeningScene__label--identity"
-          style={{ opacity: reduceMotion ? 1 : identityLabelOpacity, y: reduceMotion ? 0 : identityLabelY }}
-        >
-          Identités visuelles
-        </motion.span>
-        <motion.span
-          className="homeOpeningScene__label homeOpeningScene__label--supports"
-          style={{ opacity: reduceMotion ? 1 : supportsLabelOpacity, y: reduceMotion ? 0 : supportsLabelY }}
-        >
-          Supports de communication
-        </motion.span>
-      </div>
+      <nav className="homeOpeningScene__labels" aria-label="Services Chow Studio">
+        {openingServices.map((service, index) => (
+          <motion.div
+            key={service.className}
+            className={`homeOpeningScene__label homeOpeningScene__label--${service.className}`}
+            style={{
+              opacity: reduceMotion ? 1 : labelOpacities[index],
+              y: reduceMotion ? 0 : labelYs[index],
+            }}
+          >
+            <Link to={service.href} className="homeOpeningScene__labelLink">
+              {service.label}
+            </Link>
+          </motion.div>
+        ))}
+      </nav>
 
       <div className="homeOpeningScene__media" aria-label="Projets sélectionnés">
         {sceneMedia.map((item, index) => {
