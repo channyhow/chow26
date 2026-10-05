@@ -48,7 +48,7 @@
 
 @include desktop-down {
   .split:not(.split--editorial) {
-    --split-gap: #{$space-5};
+    --split-gap: #{$mobile-gap-block};
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
@@ -64,7 +64,7 @@
 
 @include tablet-down {
   .split:not(.split--editorial) {
-    --split-gap: #{$space-5};
+    --split-gap: #{$mobile-gap-block};
     --split-media-ratio: #{$ratio-landscape};
   }
 
@@ -84,10 +84,10 @@
   }
 
   /* Editorial mobile is an authored 4-column composition, not a flattened split.
-     Defaults create an asymmetric poster rhythm while CSS variables let individual
-     sections choose their own spans and offsets without project-specific selectors. */
+     It gets the largest rhythm step: media and copy should read as successive beats,
+     not as two tightly coupled fields. */
   .split--editorial {
-    --split-gap: #{$space-5};
+    --split-gap: #{$mobile-gap-editorial};
     grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
@@ -118,8 +118,6 @@
     max-width: 100%;
   }
 
-  /* Authored ratios survive on editorial layouts. Without one, landscape remains
-     a neutral fallback but the media width is controlled by its grid span. */
   .split--editorial .media[data-ratio],
   .split--editorial .media[data-ratio] .media__frame {
     aspect-ratio: inherit;
