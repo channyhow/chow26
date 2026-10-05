@@ -31,12 +31,8 @@
 @include tablet-down {
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
   #studio-approach > .section__inner { display: block; }
+  #studio-approach .grid { gap: $space-3; }
   #studio-approach .grid__item:first-child .textBlock__title { @include type-heading-lg; max-width: 10ch; }
-}
-@include mobile-down {
-  #studio-approach .grid { grid-template-columns: 1fr; gap: $space-3; }
-  #studio-approach .grid--editorial > .grid__item { display: block; grid-column: auto; grid-row: auto; width: 100%; min-height: 0; }
-  #studio-approach .grid__item:first-child .textBlock__title { max-width: 9ch; }
   #studio-approach .grid__item:not(:first-child) .card--editorial { @include rule-bottom(16%); height: auto; }
   #studio-approach .grid__item:not(:first-child) .textBlock__content { max-width: 30ch; }
 }
@@ -56,7 +52,16 @@
 }
 #studio-founders .split__secondary .media__frame { max-height: 25rem; overflow: hidden; background: transparent; }
 #studio-founders .split__secondary .media__asset { mix-blend-mode: multiply; }
-@include mobile-down {
+
+@include tablet-down {
   #studio-founders { --split-gap: #{$space-4}; }
-  #studio-founders .split__secondary .media { width: min(100%, 18rem); margin-inline: auto; }
+  #studio-founders .split__secondary { place-items: stretch; }
+  #studio-founders .split__secondary .media,
+  #studio-founders .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin-inline: 0;
+    aspect-ratio: $ratio-square;
+  }
 }
