@@ -9,20 +9,18 @@
   --project-media-measure: 34rem;
 }
 
-.projectDetail {
-  .media,
-  .media__frame {
-    aspect-ratio: $ratio-portrait;
-    max-width: 40svh;
-  }
+/* Case-study media keeps its source ratio. Layout controls its measure rather
+   than cropping every asset into one editorial frame. */
+.projectDetail .media__frame {
+  aspect-ratio: auto;
+}
 
-  .media__asset,
-  img,
-  video {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+.projectDetail .media__asset,
+.projectDetail .media img,
+.projectDetail .media video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .projectHero {
@@ -55,10 +53,19 @@
   max-width: var(--project-measure);
 }
 
-/* Deliberate project-title display treatment. */
-.projectDetail .projectRelated .projectHero .textBlock__title {
+/* Project names carry the display treatment; secondary section titles remain
+   one step quieter so the case-study hierarchy stays clear. */
+.projectHero .textBlock__title {
   @include type-display-lg;
   max-width: 10ch;
+}
+
+.projectRelated .textBlock__title,
+.projectCta .textBlock__title {
+  @include type-heading-md;
+  max-width: 22ch;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .projectHero .textBlock__subtitle {
@@ -132,16 +139,8 @@
   max-width: none;
 }
 
-.projectCta .textBlock__title {
-  @include type-heading-md;
-  max-width: 22ch;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
-}
-
-/* Related projects are a compact recommendation set, not the free-ratio
-   project archive. Keep their media frames visually equal regardless of the
-   source project's preferred archive ratio. */
+/* Related projects are a compact recommendation set. Their changed ratio is
+   owned by the card wrapper; every asset fills that frame consistently. */
 .projectRelated .projectCard .card__mediaWrap {
   aspect-ratio: $ratio-wide;
 }
@@ -153,7 +152,9 @@
   aspect-ratio: auto;
 }
 
-.projectRelated .projectCard .media__asset {
+.projectRelated .projectCard .media__asset,
+.projectRelated .projectCard img,
+.projectRelated .projectCard video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -181,7 +182,6 @@
 
 @include tablet-down {
   .projectHero .section__inner { padding-top: calc(#{$space-4} + #{$header-height}); }
-  .projectHero .textBlock__title { font-size: clamp(3.4rem, 16vw, #{$space-5}); }
 
   .projectHero .textBlock__meta {
     display: grid;
