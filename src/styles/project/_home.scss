@@ -80,7 +80,6 @@
 }
 
 .homeOpeningScene__label {
-  @include type-lead-bold;
   position: relative;
   z-index: $z-floating;
   align-self: center;
@@ -89,6 +88,11 @@
   will-change: transform, opacity;
 }
 
+.homeOpeningScene__labelLink {
+  text-decoration: none; 
+   @include type-lead-bold;
+
+}
 .homeOpeningScene__label--web {
   grid-column: 2 / span 2;
   grid-row: 1;
