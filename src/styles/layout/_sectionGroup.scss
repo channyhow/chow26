@@ -80,6 +80,13 @@
   --panel-stack-level: calc(var(--panel-index) + 1);
 }
 
+/* Home opening needs a short reading beat after its final statement resolves.
+   Margin extends the sticky runway without changing the panel's measured height
+   or its sticky-top calculation. */
+.sectionGroup__panel[data-panel-id="home-opening-panel"] {
+  margin-bottom: 45svh;
+}
+
 @include desktop-up {
   .sectionGroup[data-layout="overlap"] > .section + .section { margin-top: calc($space-4 * -1); }
 }
