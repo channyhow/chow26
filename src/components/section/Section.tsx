@@ -52,7 +52,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
   const isHomeOpening = block.id === "home-opening";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
-  const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
+  const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
   const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
@@ -99,7 +99,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerCarousel = offers.length > 0
-      ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="editorial" />)}</Carousel>
+      ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</Carousel>
       : null;
     body = <>{motionLayer(splitComposition, "forward", "section__splitScrollLayer")}{region(offerCarousel, "section__offers")}</>;
   } else if (isProfileGrid) {
