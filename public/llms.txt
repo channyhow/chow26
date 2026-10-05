@@ -33,10 +33,8 @@
 ## Services represented
 
 - Création et refonte de sites internet
-- Identité et communication visuelle
+- Identité visuelle
 - Supports de communication
-- Communication digitale et UX/UI
-- Développement frontend
 
 ## Topics
 

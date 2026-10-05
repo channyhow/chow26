@@ -106,7 +106,7 @@
     "id": "studio-service-identity",
     "type": "Section",
     "layout": "split",
-    "splitVariant": "media-lead",
+    "splitVariant": "editorial",
 
     "className": "section--collection-panel",
     "source": {
@@ -138,7 +138,7 @@
     "id": "studio-service-integrations",
     "type": "Section",
     "layout": "split",
-    "splitVariant": "media-lead",
+    "splitVariant": "editorial",
 
     "className": "section--collection-panel",
     "source": {

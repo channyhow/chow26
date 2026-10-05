@@ -132,7 +132,7 @@
           {
             "id": "studio-service-identity-panel",
             "behavior": "sticky",
-            "frame": "viewport",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
