@@ -47,12 +47,7 @@
     "layout": "grid",
     "surface": "solid",
     "color": "special",
-    "source": { "collection": "projects" },
-    "content": {
-      "header": {
-        "title": "Sites internet, identités visuelles et supports de communication."
-      }
-    }
+    "source": { "collection": "projects" }
   },
   "home-services": {
     "id": "home-services",
