@@ -54,16 +54,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = motionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !ownsScrollInteraction;
   const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
-  const isProjectArchiveGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured !== true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
   const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
   const isServiceCollection = block.source?.collection === "services";
   const cardVariant = block.itemAppearance?.variant ?? (isServiceCollection ? "service" : isStructuredEditorialList ? "editorial" : "default");
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
-  const projectGridLead = header && !useProjectCarouselOnMobile && (isFeaturedProjectGrid || isProjectArchiveGrid)
-    ? isProjectArchiveGrid
-      ? <div className="projectArchiveLead"><TextBlock content={{ title: header.title }} className="section__gridLead projectArchiveLead__title" /><TextBlock content={{ text: header.text }} className="section__gridLead projectArchiveLead__description" /></div>
-      : <TextBlock content={{ title: header.title }} className="section__gridLead" />
+  const projectGridLead = header && !useProjectCarouselOnMobile && isFeaturedProjectGrid
+    ? <TextBlock content={{ title: header.title }} className="section__gridLead" />
     : null;
 
   useEffect(() => {
@@ -76,7 +73,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
-  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid className={isProjectArchiveGrid ? "projectArchiveGrid" : undefined} progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none" && !isLongFormList} scrollLinked={motionEnabled && motionLevel !== "none" && !isLongFormList}>{cards}</Grid>) : null;
+  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={motionEnabled && motionLevel !== "none" && !isLongFormList} scrollLinked={motionEnabled && motionLevel !== "none" && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
@@ -93,14 +90,18 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (layout === "split") {
-    const primaryContent = splitItem ? { ...splitItem, media: undefined } : header;
+    const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
     const splitMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
     const mediaLayer = splitSecondary ? <motion.div className="section__splitMediaMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 12, scale: reduceMotion ? 1 : 0.996 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0, scale: 1 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.82, ease: motionConfig.easing.soft }}>{splitSecondary}</motion.div> : null;
     const textLayer = primary ? <motion.div className="section__splitTextMotion" initial={splitMotionEnabled ? { opacity: 0, y: reduceMotion ? 0 : 10 } : false} whileInView={splitMotionEnabled ? { opacity: 1, y: 0 } : undefined} viewport={motionConfig.viewport} transition={{ duration: reduceMotion ? motionConfig.reduced.duration : 0.78, delay: reduceMotion ? motionConfig.reduced.stagger : 0.11, ease: motionConfig.easing.soft }}>{primary}</motion.div> : null;
     const splitComposition = <Split variant={block.splitVariant} primary={textLayer} secondary={mediaLayer} primaryRole="content" secondaryRole="media" />;
-    body = motionLayer(splitComposition, "forward", "section__splitScrollLayer");
+    const offers = splitItem?.offers ?? [];
+    const offerCarousel = offers.length > 0
+      ? <Carousel>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} frame variant="editorial" />)}</Carousel>
+      : null;
+    body = <>{motionLayer(splitComposition, "forward", "section__splitScrollLayer")}{region(offerCarousel)}</>;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;

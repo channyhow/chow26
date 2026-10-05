@@ -2,146 +2,43 @@
 @use "../foundation/mixins" as *;
 @use "../foundation/typography" as *;
 
-.site {
-  min-height: 100svh;
-  overflow-x: clip;
-  background: var(--secondary);
-  color: var(--primary);
-  font-family: var(--font-body);
-}
-
+.site { min-height: 100svh; overflow-x: clip; background: var(--secondary); color: var(--primary); font-family: var(--font-body); }
 .site__canvas { min-height: 100svh; }
 
 .skipLink {
   @include type-ui-compact;
-  position: fixed;
-  inset: $space-1 auto auto $space-1;
-  z-index: $z-loader;
-  padding: $space-1 $space-2;
-  border-radius: var(--radius-control, #{$radius-full});
-  background: var(--primary);
-  color: var(--secondary);
-  text-decoration: none;
-  transform: translateY(calc(-100% - #{$space-2}));
-  transition: transform $transition-hover;
+  position: fixed; inset: $space-1 auto auto $space-1; z-index: $z-loader;
+  padding: $space-1 $space-2; border-radius: var(--radius-control, #{$radius-full});
+  background: var(--primary); color: var(--secondary); text-decoration: none;
+  transform: translateY(calc(-100% - #{$space-2})); transition: transform $transition-hover;
 }
-
-.skipLink:focus-visible {
-  @include focus-ring;
-  transform: translateY(0);
-}
+.skipLink:focus-visible { @include focus-ring; transform: translateY(0); }
 
 .header {
   --header-gutter: clamp(#{$space-2}, 4vw, #{$space-4});
-  --header-logo-x: 0px;
-  --header-nav-x: 0px;
-  --header-menu-x: 0px;
-  --header-menu-opacity: 0;
-
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: $z-header;
-  min-height: $header-height;
-  padding-inline: var(--header-gutter);
-  background: transparent;
-  backdrop-filter: blur(0.4rem) saturate(0.92);
-  -webkit-backdrop-filter: blur(0.4rem) saturate(0.92);
-  color: var(--header-color, var(--primary));
-  pointer-events: none;
+  --header-logo-x: 0px; --header-nav-x: 0px; --header-menu-x: 0px; --header-menu-opacity: 0;
+  position: fixed; inset: 0 0 auto; z-index: $z-header; min-height: $header-height;
+  padding-inline: var(--header-gutter); background: transparent;
+  backdrop-filter: blur(0.4rem) saturate(0.92); -webkit-backdrop-filter: blur(0.4rem) saturate(0.92);
+  color: var(--header-color, var(--primary)); pointer-events: none;
   transition: color $transition-interface, background-color $transition-interface;
 }
-
 .header[data-over-color="primary"] { color: var(--secondary); }
-.header[data-over-color="secondary"],
-.header[data-over-color="accent"] { color: var(--primary); }
+.header[data-over-color="secondary"], .header[data-over-color="accent"] { color: var(--primary); }
+.header[data-over-color="special"] { background: color-mix(in srgb, var(--theme-special) 34%, transparent); color: var(--primary); }
 
-.header[data-over-color="special"] {
-  background: color-mix(in srgb, var(--theme-special) 34%, transparent);
-  color: var(--primary);
-}
-
-.header__logo,
-.header__nav,
-.header__menuSlot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  will-change: transform, opacity;
-}
-
-.header__logo {
-  @include type-ui-compact;
-  @include interactive-text;
-  pointer-events: auto;
-  transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0);
-}
-
-.header__nav {
-  display: none;
-  align-items: center;
-  gap: clamp($space-2, 2.4vw, $space-3);
-  transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0);
-}
-
-.header__nav a {
-  @include type-ui-compact;
-  @include interactive-text;
-  position: relative;
-  pointer-events: auto;
-}
-
-.header__nav a::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -0.3em;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform $transition-hover;
-}
-
-.header__nav a {
-  @include hover {
-    &::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-  }
-}
-
-.header__nav a[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.3em;
-}
-
-.header__nav a[data-nav-variant="cta"] {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45em;
-
-  span:last-child { transition: transform $transition-hover; }
-
-  @include hover {
-    span:last-child { transform: translateX(0.2em); }
-  }
-}
-
-.header__menuSlot {
-  opacity: var(--header-menu-opacity);
-  transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0);
-}
-
+.header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
+.header__logo { @include type-ui-compact; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
+.header__nav { display: none; align-items: center; gap: clamp($space-2, 2.4vw, $space-3); transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
+.header__nav a { @include type-ui-compact; @include interactive-text; @include interactive-underline; pointer-events: auto; }
+.header__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+.header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
+.header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
+.header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.2em); } } }
+.header__menuSlot { opacity: var(--header-menu-opacity); transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0); }
 .header__menuSlot .burgerButton { pointer-events: auto; }
-
-.site[data-drawer="menu"] .header,
-.site[data-drawer="contact"] .header,
-.site[data-drawer="reservation"] .header { color: var(--theme-secondary); }
-
-.site[data-drawer="menu"] .header {
-  background: color-mix(in srgb, var(--theme-primary) 82%, transparent);
-}
+.site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary); }
+.site[data-drawer="menu"] .header { background: color-mix(in srgb, var(--theme-primary) 82%, transparent); }
 
 @include desktop-up {
   .header[data-navigation="inline"] .header__nav { display: flex; }

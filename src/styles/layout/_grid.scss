@@ -39,12 +39,6 @@
   margin: 0;
 }
 
-.grid__lead .textBlock__title {
-  @include type-heading-xl;
-  max-width: 7ch;
-  line-height: 0.95;
-}
-
 .gridReveal__more {
   @include type-ui-compact;
   @include rule-top;
@@ -72,11 +66,11 @@
 .gridReveal__moreIcon {
   display: inline-grid;
   place-items: center;
-  width: clamp(3.25rem, 4vw, 3.5rem);
+  width: $control-icon-size;
   aspect-ratio: $ratio-square;
   border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
-  border-radius: 50%;
-  font-size: 1.1rem;
+  border-radius: $radius-full;
+  font-size: $type-ui;
   font-weight: $font-weight-semibold;
   line-height: 1;
 }

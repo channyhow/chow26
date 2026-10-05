@@ -11,7 +11,30 @@
       { "label": "Budget", "value": "À partir de 800 € HT" }
     ],
     "tags": ["Identité visuelle", "Logo", "Système graphique"],
-    "links": ["talk-identity"],
+    "offers": [
+      {
+        "id": "identity-essential",
+        "eyebrow": "01 · Identité essentielle",
+        "title": "Poser une base visuelle claire",
+        "text": ["Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable, sans construire un système plus large que nécessaire."],
+        "meta": [
+          { "label": "Comprend", "value": "Logo et variations · Palette · Typographies · Principes visuels · Déclinaisons essentielles" },
+          { "label": "Budget", "value": "À partir de 800 € HT" }
+        ],
+        "links": ["identity-essential-contact"]
+      },
+      {
+        "id": "identity-complete",
+        "eyebrow": "02 · Identité complète",
+        "title": "Construire un système visuel plus complet",
+        "text": ["Pour les projets qui ont besoin d’un univers plus développé, pensé pour rester cohérent sur davantage de points de contact et évoluer dans le temps."],
+        "meta": [
+          { "label": "Comprend", "value": "Identité visuelle · Variations · Système graphique · Règles d’usage · Applications prioritaires" },
+          { "label": "Budget", "value": "À partir de 1 200 € HT" }
+        ],
+        "links": ["identity-complete-contact"]
+      }
+    ],
     "featured": true,
     "order": 1
   },
