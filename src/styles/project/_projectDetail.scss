@@ -2,80 +2,200 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
 
-.projectDetail { --project-measure: 36rem; --project-media-measure: 34rem; }
-.projectDetail .split .media { aspect-ratio: $ratio-portrait; max-height: 25rem; object-fit: cover; object-position: center center; }
+/* Project detail owns composition only.
+   Split owns frame geometry; Media owns asset fitting. */
+.projectDetail {
+  --project-measure: 36rem;
+  --project-media-measure: 34rem;
+  --project-section-gap: #{$space-5};
+  --media-object-fit: cover;
+  --media-object-position: 50% 50%;
+}
 
-.projectHero { --section-space: 0; --split-primary-column: 1 / span 5; --split-secondary-column: 7 / span 6; }
-.projectHero.projectDetail--b { --split-primary-column: 8 / span 5; --split-secondary-column: 1 / span 6; }
-.projectHero .section__inner { width: 100%; max-width: none; padding-block: $space-5; }
+.projectHero {
+  --section-space: 0;
+  --split-primary-column: 1 / span 5;
+  --split-secondary-column: 7 / span 6;
+  --split-media-ratio: #{$ratio-portrait};
+}
+
+.projectHero.projectDetail--b {
+  --split-primary-column: 8 / span 5;
+  --split-secondary-column: 1 / span 6;
+}
+
+.projectHero .section__inner {
+  width: 100%;
+  max-width: none;
+  padding-block: $space-5;
+}
+
 .projectHero .split,
-.projectStoryMedia .split { align-items: center; gap: $space-3; }
+.projectStoryMedia .split {
+  align-items: center;
+  gap: $space-3;
+}
+
 .projectHero .textBlock,
 .projectStoryMedia .textBlock,
-.projectStoryText .textBlock { width: 100%; max-width: var(--project-measure); }
-.projectHero .textBlock__title { @include type-display-lg; max-width: 10ch; }
-.projectCta .textBlock__title,
-.projectRelated .section__header .textBlock__title { @include type-heading-md; max-width: 22ch; }
-.projectHero .textBlock__subtitle { max-width: var(--project-media-measure); margin-top: $space-2; }
-.projectHero .textBlock__meta { @include type-ui-compact; @include meta-chips($space-1 $space-3); width: 100%; max-width: var(--project-measure); align-items: center; margin-top: $space-1; padding-top: $space-2; }
-.projectHero .textBlock__meta > * { min-width: 0; }
+.projectStoryText .textBlock {
+  width: 100%;
+  max-width: var(--project-measure);
+}
+
+.projectHero .textBlock__title {
+  @include type-display-lg;
+  max-width: 10ch;
+}
+
+.projectHero .textBlock__subtitle {
+  max-width: var(--project-media-measure);
+  margin-top: $space-2;
+}
+
+.projectHero .textBlock__meta {
+  @include type-ui-compact;
+  @include meta-chips($space-1 $space-3);
+  width: 100%;
+  max-width: var(--project-measure);
+  align-items: center;
+  margin-top: $space-1;
+  padding-top: $space-2;
+}
+
+.projectHero .textBlock__meta > * {
+  min-width: 0;
+}
+
 .projectHero .split__secondary,
-.projectStoryMedia .split__secondary { display: grid; place-items: center; }
+.projectStoryMedia .split__secondary {
+  display: grid;
+  place-items: center;
+}
+
 .projectHero .media,
-.projectStoryMedia .media { width: min(100%, var(--project-media-measure)); margin-inline: auto; --radius-media: #{$radius-none}; }
+.projectStoryMedia .media {
+  width: min(100%, var(--project-media-measure));
+  margin-inline: auto;
+  --radius-media: #{$radius-none};
+}
 
 .projectStoryMedia,
 .projectStoryText,
-.projectCta { --section-space: $space-5; }
-.projectStoryMedia { --split-primary-column: 2 / span 4; --split-secondary-column: 7 / span 5; }
-.projectStoryMedia.projectDetail__story--alternate { --split-primary-column: 8 / span 4; --split-secondary-column: 2 / span 5; }
-.projectStoryMedia .section__inner,
-.projectStoryText .section__inner { padding-block: $space-5; }
-.projectStoryMedia .textBlock__content,
-.projectStoryText .textBlock__content { gap: $space-3; }
-.projectStoryMedia .textBlock__content p,
-.projectStoryText .textBlock__content p { @include type-lead; }
-.projectStoryMedia strong,
-.projectStoryText strong { font-weight: $font-weight-strong; color: color-mix(in srgb, currentColor 84%, var(--accent) 16%); }
-.projectCta .textBlock { width: min(100%, 48rem); max-width: none; }
+.projectCta {
+  --section-space: var(--project-section-gap);
+}
 
-.projectRelated .projectCard .card__mediaWrap { aspect-ratio: $ratio-wide; }
+.projectStoryMedia {
+  --split-primary-column: 2 / span 4;
+  --split-secondary-column: 7 / span 5;
+  --split-media-ratio: #{$ratio-portrait};
+}
+
+.projectStoryMedia.projectDetail__story--alternate {
+  --split-primary-column: 8 / span 4;
+  --split-secondary-column: 2 / span 5;
+}
+
+.projectStoryMedia .section__inner,
+.projectStoryText .section__inner {
+  padding-block: var(--project-section-gap);
+}
+
+.projectStoryMedia .textBlock__content,
+.projectStoryText .textBlock__content {
+  gap: $space-3;
+}
+
+.projectStoryMedia .textBlock__content p,
+.projectStoryText .textBlock__content p {
+  @include type-lead;
+}
+
+.projectStoryMedia strong,
+.projectStoryText strong {
+  font-weight: $font-weight-strong;
+  color: color-mix(in srgb, currentColor 84%, var(--accent) 16%);
+}
+
+.projectCta .textBlock {
+  width: min(100%, 48rem);
+  max-width: none;
+}
+
+.projectCta .textBlock__title,
+.projectRelated .section__header .textBlock__title {
+  @include type-heading-md;
+  max-width: 22ch;
+}
+
+.projectRelated .projectCard .card__mediaWrap {
+  aspect-ratio: $ratio-wide;
+}
+
 .projectRelated .projectCard .card__media,
-.projectRelated .projectCard .media__frame { width: 100%; height: 100%; aspect-ratio: auto; }
+.projectRelated .projectCard .media__frame,
 .projectRelated .projectCard .media__asset,
 .projectRelated .projectCard img,
-.projectRelated .projectCard video { width: 100%; height: 100%; object-fit: cover; }
-.projectRelated .projectCard .textBlock__title { @include type-body; color: color-mix(in srgb, currentColor 34%, transparent); }
-.projectRelated .projectCard .textBlock__content { opacity: 1; }
-.projectRelated .projectCard .textBlock__content p { @include type-heading-sm; color: currentColor; }
+.projectRelated .projectCard video {
+  width: 100%;
+  height: 100%;
+}
 
-/* Tablet project detail — one editorial rhythm:
-   full-width landscape media, full-width copy below, one shared section gap.
-   Keep media geometry on the frame and force every asset type (including Mux)
-   to fill that frame rather than carrying its intrinsic ratio into the layout. */
+.projectRelated .projectCard .card__media,
+.projectRelated .projectCard .media__frame {
+  aspect-ratio: auto;
+}
+
+.projectRelated .projectCard .media__asset,
+.projectRelated .projectCard img,
+.projectRelated .projectCard video {
+  object-fit: cover;
+}
+
+.projectRelated .projectCard .textBlock__title {
+  @include type-body;
+  color: color-mix(in srgb, currentColor 34%, transparent);
+}
+
+.projectRelated .projectCard .textBlock__content {
+  opacity: 1;
+}
+
+.projectRelated .projectCard .textBlock__content p {
+  @include type-heading-sm;
+  color: currentColor;
+}
+
+/* Tablet: one consistent editorial stack — media first, copy second.
+   The 5:4 frame is slightly deeper than landscape without becoming square. */
 @include between($bp-tablet, $bp-desktop) {
   .projectDetail {
     --project-media-measure: 100%;
     --project-measure: 100%;
-    --project-tablet-gap: #{$space-5};
+    --project-section-gap: #{$space-5};
   }
 
   .projectHero,
   .projectStoryMedia,
-  .projectStoryText { --section-space: 0; }
+  .projectStoryText {
+    --section-space: 0;
+  }
+
+  .projectHero,
+  .projectStoryMedia {
+    --split-media-ratio: #{$ratio-editorial};
+  }
 
   .projectHero .section__inner,
   .projectStoryMedia .section__inner,
   .projectStoryText .section__inner {
-    padding-block: var(--project-tablet-gap);
+    padding-block: var(--project-section-gap);
   }
 
   .projectHero .split,
   .projectStoryMedia .split {
-    display: grid;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: var(--grid-gap);
-    row-gap: var(--project-tablet-gap);
+    row-gap: var(--project-section-gap);
     align-items: start;
   }
 
@@ -83,90 +203,31 @@
   .projectStoryMedia .split > [data-split-role="media"] {
     grid-column: 1 / -1;
     grid-row: 1;
-    display: block;
-    min-width: 0;
   }
 
   .projectHero .split > [data-split-role="content"],
   .projectStoryMedia .split > [data-split-role="content"] {
     grid-column: 1 / -1;
     grid-row: 2;
-    min-width: 0;
   }
 
   .projectHero .section__splitMediaMotion,
   .projectStoryMedia .section__splitMediaMotion,
   .projectHero .media,
-  .projectStoryMedia .media,
-  .projectHero .media__frame,
-  .projectStoryMedia .media__frame {
+  .projectStoryMedia .media {
     width: 100%;
     max-width: none;
-    max-height: none;
     margin: 0;
-  }
-
-  .projectDetail .split .media {
-    aspect-ratio: $ratio-landscape;
-    overflow: hidden;
-  }
-
-  .projectDetail .split .media__frame {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: inherit;
-    overflow: hidden;
-  }
-
-  .projectDetail .split .media__asset,
-  .projectDetail .split .media__asset > img,
-  .projectDetail .split .media__asset > video,
-  .projectDetail .split .media__asset > mux-player,
-  .projectDetail .split img,
-  .projectDetail .split video,
-  .projectDetail .split mux-player {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none;
-    max-height: none;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  .projectDetail .split .media[data-media-type="mux"] .media__asset {
-    position: absolute !important;
-    inset: 0;
-    display: block;
-    overflow: hidden;
-  }
-
-  .projectDetail .split .media[data-media-type="mux"] .media__asset > img,
-  .projectDetail .split .media[data-media-type="mux"] mux-player {
-    position: absolute !important;
-    inset: 0;
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-  }
-
-  .projectDetail .split .media[data-media-type="mux"] mux-player {
-    --media-object-fit: cover;
-    --media-object-position: 50% 50%;
   }
 
   .projectHero .textBlock,
   .projectStoryMedia .textBlock,
-  .projectStoryText .textBlock {
+  .projectStoryText .textBlock,
+  .projectHero .textBlock__title,
+  .projectHero .textBlock__subtitle {
     width: 100%;
     max-width: none;
-    margin-inline: 0;
   }
-
-  .projectHero .textBlock__title,
-  .projectHero .textBlock__subtitle { max-width: none; }
 
   .projectHero .textBlock__meta {
     display: grid;
@@ -184,21 +245,46 @@
 }
 
 @include tablet-down {
-  .projectDetail { --project-media-measure: 100%; }
+  .projectDetail {
+    --project-media-measure: 100%;
+    --project-section-gap: #{$mobile-section-space};
+  }
 
-  .projectDetail .split .media,
+  .projectHero,
+  .projectStoryMedia {
+    --split-media-ratio: #{$ratio-landscape};
+  }
+
   .projectHero .media,
-  .projectStoryMedia .media { width: 100%; max-width: none; max-height: none; margin-inline: 0; aspect-ratio: $ratio-square; }
-  .projectDetail .split .media__frame { width: 100%; height: 100%; max-height: none; aspect-ratio: $ratio-square; }
+  .projectStoryMedia .media {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
 
   .projectStoryMedia,
   .projectStoryText,
   .projectCta,
-  .projectRelated { --section-space: #{$mobile-section-space}; }
+  .projectRelated {
+    --section-space: var(--project-section-gap);
+  }
+
   .projectStoryMedia .section__inner,
-  .projectStoryText .section__inner { padding-block: $mobile-section-space; }
+  .projectStoryText .section__inner {
+    padding-block: var(--project-section-gap);
+  }
+
   .projectHero .split,
-  .projectStoryMedia .split { gap: $mobile-gap-editorial; }
-  .projectHero .textBlock__meta { display: grid; grid-template-columns: 1fr; }
-  .projectHero .textBlock__meta > * { white-space: normal; }
+  .projectStoryMedia .split {
+    gap: $mobile-gap-editorial;
+  }
+
+  .projectHero .textBlock__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .projectHero .textBlock__meta > * {
+    white-space: normal;
+  }
 }
