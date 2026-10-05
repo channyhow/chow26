@@ -24,6 +24,10 @@ function resolveVariant(action: Action, index: number, actionCount: number) {
 const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
 const isInternalHref = (href: string) => href.startsWith("/") && !href.startsWith("//");
 const getInternalPathname = (href: string) => href.split(/[?#]/, 1)[0] || "/";
+const getHash = (href: string) => {
+  const hashIndex = href.indexOf("#");
+  return hashIndex >= 0 ? href.slice(hashIndex) : "";
+};
 
 export function Actions({ links = [], className, variant = "default" }: ActionsProps) {
   const { pathname } = useLocation();
@@ -49,12 +53,24 @@ export function Actions({ links = [], className, variant = "default" }: ActionsP
         if (!href) return null;
 
         const internal = !external && isInternalHref(href);
-        const isCurrentPage = internal && getInternalPathname(href) === pathname;
+        const targetPathname = internal ? getInternalPathname(href) : "";
+        const hash = internal ? getHash(href) : "";
+        const isCurrentPage = internal && targetPathname === pathname;
         const key = `${action.label}-${href}`;
         const sharedProps = { className: classNames, "data-intent": intent, "data-priority": action.priority ?? "secondary" };
 
         if (internal) {
-          return <Link key={key} to={href} viewTransition aria-current={isCurrentPage ? "page" : undefined} {...sharedProps}>{content}</Link>;
+          const handleClick = hash && isCurrentPage
+            ? (event: React.MouseEvent<HTMLAnchorElement>) => {
+                const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+                if (!target) return;
+                event.preventDefault();
+                window.history.pushState(null, "", hash);
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            : undefined;
+
+          return <Link key={key} to={href} viewTransition onClick={handleClick} {...sharedProps}>{content}</Link>;
         }
 
         return <a key={key} href={href} {...sharedProps} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a>;
