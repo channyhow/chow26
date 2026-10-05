@@ -5,20 +5,15 @@
     "title": "Créer une identité claire et reconnaissable",
     "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** au système graphique, pour que votre activité soit reconnaissable et cohérente sur les supports dont elle a réellement besoin."],
     "media": "mdk-wall-poster",
-    "meta": [
-      { "label": "Pour", "value": "Lancement · Repositionnement · Image à clarifier" },
-      { "label": "Prestations", "value": "Logo · Identité visuelle · Système graphique · Déclinaisons" },
-      { "label": "Budget", "value": "À partir de 800 € HT" }
-    ],
     "tags": ["Identité visuelle", "Logo", "Système graphique"],
     "offers": [
       {
         "id": "identity-essential",
         "eyebrow": "01 · Identité essentielle",
         "title": "Poser une base visuelle claire",
-        "text": ["Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable, sans construire un système plus large que nécessaire."],
+        "text": ["Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable."],
         "meta": [
-          { "label": "Comprend", "value": "Logo et variations · Palette · Typographies · Principes visuels · Déclinaisons essentielles" },
+          { "label": "Comprend", "value": "Logo principal · 1 variation · Palette · Typographies · Principes visuels · Jusqu’à 2 applications prioritaires" },
           { "label": "Budget", "value": "À partir de 800 € HT" }
         ],
         "links": ["identity-essential-contact"]
@@ -27,9 +22,9 @@
         "id": "identity-complete",
         "eyebrow": "02 · Identité complète",
         "title": "Construire un système visuel plus complet",
-        "text": ["Pour les projets qui ont besoin d’un univers plus développé, pensé pour rester cohérent sur davantage de points de contact et évoluer dans le temps."],
+        "text": ["Pour les projets qui ont plusieurs points de contact et ont besoin d’une identité capable de s’adapter sans perdre sa cohérence."],
         "meta": [
-          { "label": "Comprend", "value": "Identité visuelle · Variations · Système graphique · Règles d’usage · Applications prioritaires" },
+          { "label": "Comprend", "value": "Logo principal · Jusqu’à 2 variations · Palette · Système typographique · Système graphique · Règles d’usage · Jusqu’à 4 applications prioritaires" },
           { "label": "Budget", "value": "À partir de 1 200 € HT" }
         ],
         "links": ["identity-complete-contact"]
