@@ -15,6 +15,15 @@ $color-success: #4d7358;
 $color-warning: #b27a32;
 $color-danger: #9b4d45;
 
+// Reusable translucent neutrals. Prefer these semantic steps over repeating
+// ad-hoc color-mix percentages in components.
+$color-dark-subtle: rgb(34 34 36 / 0.04);
+$color-dark-soft: rgb(34 34 36 / 0.09);
+$color-dark-muted: rgb(34 34 36 / 0.16);
+$color-light-subtle: rgb(246 245 243 / 0.04);
+$color-light-soft: rgb(246 245 243 / 0.09);
+$color-light-muted: rgb(246 245 243 / 0.16);
+
 $space-1: 0.5rem;
 $space-2: 1rem;
 $space-3: 2rem;
