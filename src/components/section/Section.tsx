@@ -88,7 +88,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   });
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalItemsWithMotion = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={sectionMotionEnabled}>{item}</ScrollScene>);
-  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer") => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={scrollProgress}>{content}</ScrollScene> : content) : null;
+  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={scrollProgress}>{content}</ScrollScene> : content) : null;
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
@@ -116,7 +116,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const profileMedia = resolveMedia(profileMediaRef);
     const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    body = <Split variant={block.splitVariant ?? "media-lead"} {...splitCompositionProps} className="split--profile" primary={primary} secondary={<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />} primaryRole="media" secondaryRole="content" />;
+    const profileMediaLayer = motionLayer(primary, "reverse", "section__profileMediaMotion", "quiet");
+    const profileTextLayer = motionLayer(<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />, "forward", "section__profileTextMotion", "quiet");
+    body = <Split variant={block.splitVariant ?? "media-lead"} {...splitCompositionProps} className="split--profile" primary={profileMediaLayer} secondary={profileTextLayer} primaryRole="media" secondaryRole="content" />;
   } else if (layout === "media-overlay") {
     body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" motionEnabled={sectionMotionEnabled} /></div> : null}</div>;
   } else if (layout === "gallery") {
