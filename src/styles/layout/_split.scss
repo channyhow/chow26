@@ -80,8 +80,9 @@
   .split > [data-split-role="content"],
   .split--balanced > [data-split-role="content"],
   .split--editorial > [data-split-role="content"] {
-    grid-column: 2 / span 6;
+    grid-column: 1 / span 8;
     grid-row: 2;
+    .textBlock { max-width: none; }
   }
 
   .split .media,
@@ -97,7 +98,7 @@
 
   .split--editorial .media[data-ratio],
   .split--editorial .media[data-ratio] .media__frame {
-    aspect-ratio: inherit;
+    aspect-ratio: $ratio-landscape;
   }
 }
 
