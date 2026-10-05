@@ -64,6 +64,11 @@
   color: $color-primary;
 }
 
+.linkPage__continuation strong {
+  @include type-body-bold;
+  color: inherit;
+}
+
 .linkPage__studio {
   --section-space: #{$space-5};
 }
@@ -75,6 +80,8 @@
 .linkPage__studio .media {
   width: min(100%, 25rem);
   margin-inline: auto;
+  opacity: 1;
+  visibility: visible;
 }
 
 .linkPage__studio .media__frame {
@@ -88,6 +95,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 1;
+  visibility: visible;
 }
 
 .linkPage__conditions {
@@ -104,6 +113,11 @@
 
 .linkPage__conditions .card {
   max-width: $container-narrow;
+}
+
+.linkPage__conditions .textBlock__title {
+  @include type-body-bold;
+  color: inherit;
 }
 
 @include tablet-down {
