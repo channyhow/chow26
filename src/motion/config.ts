@@ -15,12 +15,6 @@ export const motionConfig = {
     reveal: 24,
     subtle: 12,
   },
-  reduced: {
-    duration: 0.28,
-    revealDistance: 0,
-    sceneScale: 0.22,
-    stagger: 0.05,
-  },
   easing: {
     standard: [0.16, 1, 0.3, 1] as const,
     soft: [0.22, 1, 0.36, 1] as const,
@@ -37,11 +31,6 @@ export const revealTransition = {
   ease: motionConfig.easing.soft,
 } as const;
 
-export const reducedRevealTransition = {
-  duration: motionConfig.reduced.duration,
-  ease: motionConfig.easing.standard,
-} as const;
-
 export const revealItem: Variants = {
   hidden: {
     opacity: 0,
@@ -51,18 +40,6 @@ export const revealItem: Variants = {
     opacity: 1,
     y: 0,
     transition: revealTransition,
-  },
-};
-
-export const reducedRevealItem: Variants = {
-  hidden: {
-    opacity: 0.65,
-    y: 0,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: reducedRevealTransition,
   },
 };
 
@@ -82,16 +59,6 @@ export const fastStaggerContainer: Variants = {
     transition: {
       delayChildren: motionConfig.delay.staggerFast,
       staggerChildren: motionConfig.delay.staggerFast,
-    },
-  },
-};
-
-export const reducedStaggerContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: motionConfig.reduced.stagger,
-      staggerChildren: motionConfig.reduced.stagger,
     },
   },
 };
