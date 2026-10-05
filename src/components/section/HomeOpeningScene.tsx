@@ -51,16 +51,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobile = window.matchMedia("(max-width: 47.999rem)");
-
-    const resetInlineStyles = () => {
-      [...labelRefs.current, ...projectRefs.current, statementRef.current].forEach((element) => {
-        if (!element) return;
-        element.style.removeProperty("opacity");
-        element.style.removeProperty("transform");
-      });
-    };
 
     const updateDesktop = (progress: number) => {
       const rise = range(progress, 0.34, 0.58);
@@ -100,76 +91,55 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       const viewport = window.innerHeight;
       const toPx = (svh: number) => svh * viewport / 100;
 
-      /* One shared scroll field, four authored trajectories. The media keeps
-         travelling through the composition rather than starting/stopping as
-         separate parallax objects. Small x drift and restrained scale changes
-         create depth while the labels remain the visual anchor. */
       const tracks = [
-        { start: 0.06, end: 0.88, y: -190, x: 5, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.82, fadeEnd: 0.96 },
-        { start: 0.00, end: 0.82, y: -174, x: -7, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.78, fadeEnd: 0.94 },
-        { start: 0.10, end: 0.90, y: -208, x: 8, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.84, fadeEnd: 0.97 },
-        { start: 0.08, end: 0.92, y: -194, x: -5, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.86, fadeEnd: 0.98 },
+        { start: 0.04, end: 0.78, y: -78, x: 5, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.76, fadeEnd: 0.90 },
+        { start: 0.00, end: 0.76, y: -68, x: -7, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.74, fadeEnd: 0.88 },
+        { start: 0.08, end: 0.82, y: -116, x: 8, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
+        { start: 0.06, end: 0.84, y: -126, x: -5, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.80, fadeEnd: 0.94 },
       ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
         const track = tracks[index] ?? tracks[0];
         const travel = range(progress, track.start, track.end);
-        const disperse = range(progress, 0.72, 0.94);
         const fade = range(progress, track.fadeStart, track.fadeEnd);
-        const x = lerp(0, toPx(track.x), travel) + lerp(0, toPx(track.x * 0.35), disperse);
-        const y = lerp(0, toPx(track.y), travel) + lerp(0, toPx(-8 - index * 2), disperse);
+        const x = lerp(0, toPx(track.x), travel);
+        const y = lerp(0, toPx(track.y), travel);
         const scale = lerp(track.scaleFrom, track.scaleTo, travel);
 
         element.style.opacity = String(1 - fade);
         element.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
       });
 
-      const release = range(progress, 0.70, 0.86);
-      const labelFade = range(progress, 0.84, 0.92);
+      const release = range(progress, 0.64, 0.84);
+      const labelFade = range(progress, 0.76, 0.90);
       labelRefs.current.forEach((element) => {
         if (!element) return;
         element.style.opacity = String(1 - labelFade);
-        element.style.transform = `translate3d(0, ${lerp(0, -30, release)}svh, 0)`;
+        element.style.transform = `translate3d(0, ${lerp(0, -18, release)}svh, 0)`;
       });
 
       if (statementRef.current) {
-        const reveal = range(progress, 0.72, 0.86);
-        const pull = range(progress, 0.72, 0.94);
+        const reveal = range(progress, 0.70, 0.84);
+        const settle = range(progress, 0.70, 0.90);
         statementRef.current.style.opacity = String(reveal);
-        statementRef.current.style.transform = `translate3d(0, ${lerp(36, -8, pull)}svh, 0)`;
+        statementRef.current.style.transform = `translate3d(-50%, ${lerp(16, -4, settle)}svh, 0)`;
       }
     };
 
-    /* SectionGroup's MotionValue is measured from `start end` to `end start`.
-       The opening panel is taller than the viewport, so its visual frame-zero
-       is NOT MotionValue zero. Normalise the interval where the panel itself
-       occupies the viewport: top/top => 0, bottom/bottom => 1. This avoids the
-       old global-scroll calculation being corrupted by the sticky panel. */
     const getMobileProgress = () => {
-      if (!scrollProgress) return 0;
       const scene = sceneRef.current;
       const section = scene?.closest("#home-opening");
-      const panel = scene?.closest(".sectionGroup__panel");
-      const contentHeight = Math.max(
-        section instanceof HTMLElement ? section.offsetHeight : 0,
-        panel instanceof HTMLElement ? panel.offsetHeight : 0,
-        window.innerHeight,
-      );
+      if (!(section instanceof HTMLElement)) return 0;
+
       const viewport = window.innerHeight;
-      const total = contentHeight + viewport;
-      const start = viewport / total;
-      const end = contentHeight / total;
-      return clamp01((scrollProgress.get() - start) / Math.max(end - start, 0.001));
+      const travel = Math.max(section.offsetHeight - viewport, 1);
+      return clamp01(-section.getBoundingClientRect().top / travel);
     };
 
     let frame = 0;
     const resolveOpeningState = () => {
       frame = 0;
-      if (reducedMotion.matches) {
-        resetInlineStyles();
-        return;
-      }
 
       if (!mobile.matches) {
         const desktopDistance = Math.max(window.innerHeight * 2, 1);
@@ -189,14 +159,12 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
     mobile.addEventListener("change", scheduleResolve);
-    reducedMotion.addEventListener("change", scheduleResolve);
 
     return () => {
       unsubscribeProgress?.();
       window.removeEventListener("scroll", scheduleResolve);
       window.removeEventListener("resize", scheduleResolve);
       mobile.removeEventListener("change", scheduleResolve);
-      reducedMotion.removeEventListener("change", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [scrollProgress]);
