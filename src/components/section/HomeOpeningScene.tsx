@@ -121,9 +121,9 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       });
 
       if (statementRef.current) {
-        // Compact runway is 460vh (560svh section - 100svh viewport).
-        // Reveal quickly, then hold fully visible for about two viewport scrolls.
-        const reveal = range(progress, 0.48, 0.54);
+        // Wait until every project and service label has fully cleared.
+        // Then reveal quickly and keep the statement visible through the long hold.
+        const reveal = range(progress, 0.80, 0.84);
         const panelRise = range(progress, 0.975, 1);
 
         statementRef.current.style.opacity = String(reveal * (1 - panelRise));
