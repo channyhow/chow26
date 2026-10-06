@@ -35,16 +35,20 @@
     color: currentColor;
   }
   &__content {
-    gap: $flow-default;
+    gap: $flow-group;
+
+    .textBlock__group {
+      display: grid;
+      gap: $flow-default;
+    }
+
     p {
       @include type-body;
       margin: 0;
     }
+
     .textBlock__copy {
       opacity: $opacity-muted;
-    }
-    p:last-child:not(:only-child) .textBlock__copy {
-      opacity: $opacity-soft;
     }
   }
   &__footer {
