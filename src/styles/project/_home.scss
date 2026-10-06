@@ -183,47 +183,47 @@
   }
 }
 
-/* Tablet: a wider editorial composition rather than a scaled-up phone.
-   Media occupy the corners and leave a deliberate central reading field. */
+/* Tablet: keep the same opening composition as mobile, simply with the
+   tablet viewport providing more breathing room around it. */
 @include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 220svh; }
-  #home-opening .section__inner { height: 220svh; min-height: 220svh; }
+  #home-opening { min-height: 280svh; }
+  #home-opening .section__inner { height: 280svh; min-height: 280svh; }
 
   .homeOpeningScene__project--web {
     top: 10%;
-    left: 7%;
-    width: 47%;
+    left: 8%;
+    width: 66%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--identity {
-    top: 57%;
+    top: 68%;
     right: 8%;
-    width: 27%;
+    width: 38%;
     aspect-ratio: $ratio-square;
   }
 
   .homeOpeningScene__project--web-secondary {
-    top: 67%;
-    left: 9%;
-    width: 29%;
+    top: 130%;
+    left: 8%;
+    width: 34%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--supports {
-    top: 17%;
-    right: 8%;
-    width: 21%;
+    top: 150%;
+    right: 7%;
+    width: 27%;
     aspect-ratio: $ratio-portrait;
   }
 
-  .homeOpeningScene__label { left: 29%; width: 42%; }
+  .homeOpeningScene__label { left: 18%; width: 64%; }
   .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
   .homeOpeningScene__label--identity { top: calc(50% - .525em); }
   .homeOpeningScene__label--supports { top: calc(50% + .525em); }
 
   .homeOpeningScene__statement {
-    width: min(58vw, 30rem);
-    max-width: 30rem;
+    width: calc(100% - (#{$page-gutter} * 2));
+    max-width: 22rem;
   }
 }
