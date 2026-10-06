@@ -121,10 +121,10 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       });
 
       if (statementRef.current) {
-        const reveal = range(progress, 0.79, 0.87);
-        // Hold the statement through the end of the opening scene.
-        // Only start fading once the following panel is visibly rising.
-        const panelRise = range(progress, 0.97, 1);
+        // Compact runway is 460vh (560svh section - 100svh viewport).
+        // Reveal quickly, then hold fully visible for about two viewport scrolls.
+        const reveal = range(progress, 0.48, 0.54);
+        const panelRise = range(progress, 0.975, 1);
 
         statementRef.current.style.opacity = String(reveal * (1 - panelRise));
         statementRef.current.style.transform = "translate(-50%, -50%)";
