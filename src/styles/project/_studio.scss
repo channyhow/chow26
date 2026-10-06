@@ -69,6 +69,64 @@
 }
 
 @include desktop-up {
+  /* Service panels share one editorial field, then vary scale and placement.
+     The relationship between media, copy and empty space carries the graphic
+     character; left/right reversal alone does not. */
+  #studio-services-intro .split {
+    min-height: min(76svh, 52rem);
+    align-items: start;
+  }
+
+  #studio-services-intro .split > [data-split-role="media"] {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  #studio-services-intro .split > [data-split-role="content"] {
+    grid-column: 8 / span 4;
+    grid-row: 1;
+    align-self: start;
+    margin-top: clamp(#{$space-5}, 58svh, 38rem);
+  }
+
+  #studio-service-identity .split {
+    min-height: min(78svh, 54rem);
+    align-items: start;
+  }
+
+  #studio-service-identity .split > [data-split-role="content"] {
+    grid-column: 2 / span 4;
+    grid-row: 1;
+    align-self: start;
+    margin-top: clamp(#{$space-4}, 12svh, #{$space-6});
+  }
+
+  #studio-service-identity .split > [data-split-role="media"] {
+    grid-column: 8 / span 3;
+    grid-row: 1;
+    align-self: start;
+    margin-top: clamp(#{$space-5}, 30svh, 20rem);
+  }
+
+  #studio-service-website .split {
+    min-height: min(76svh, 52rem);
+    align-items: start;
+  }
+
+  #studio-service-website .split > [data-split-role="media"] {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  #studio-service-website .split > [data-split-role="content"] {
+    grid-column: 8 / span 4;
+    grid-row: 1;
+    align-self: start;
+    margin-top: clamp(#{$space-5}, 54svh, 35rem);
+  }
+
   /* Supports keeps the shared split grammar but uses the grid as an editorial
      field: smaller media, displaced lower than the copy, with empty space doing
      the graphic work rather than an accent surface. */
