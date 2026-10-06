@@ -57,6 +57,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isServiceCollection = block.source?.collection === "services";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
+  const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
   const isProjectGrid = layout === "grid" && block.source?.collection === "projects";
   const isFeaturedProjectGrid = isProjectGrid && block.source?.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
@@ -91,6 +92,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   if (isHomeOpening) {
     body = <HomeOpeningScene header={header} media={mediaItems} scrollProgress={scrollProgress} />;
+  } else if (isProjectHero) {
+    const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
+    const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
+    const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
+    const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
+    body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
