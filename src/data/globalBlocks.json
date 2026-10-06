@@ -47,6 +47,11 @@
     "layout": "grid",
     "surface": "solid",
     "color": "special",
+    "content": {
+      "header": {
+        "title": "Des projets différents, une même attention à l’idée, au détail et à l’usage."
+      }
+    },
     "source": { "collection": "projects" }
   },
   "home-services": {
