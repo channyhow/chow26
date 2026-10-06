@@ -90,20 +90,30 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
     const updateCompact = (progress: number, isPhone: boolean) => {
       const viewport = window.innerHeight;
-      const toPx = (svh: number) => svh * viewport / 100;
+      const targetTop = viewport * 0.20;
 
+      /*
+       * Compact choreography:
+       * 1. projects travel upward through the scene;
+       * 2. service labels leave earlier and fully clear the statement;
+       * 3. every project reaches the upper 20% zone before fading out;
+       * 4. the statement only starts once the visual layer is effectively gone.
+       *
+       * Phone gets a little more runway than tablet, but both share the same
+       * narrative sequence.
+       */
       const tracks = isPhone
         ? [
-            { start: 0.04, end: 0.78, y: -70, x: 4, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.76, fadeEnd: 0.90 },
-            { start: 0.00, end: 0.76, y: -62, x: -6, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.74, fadeEnd: 0.88 },
-            { start: 0.08, end: 0.82, y: -82, x: 7, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
-            { start: 0.06, end: 0.84, y: -72, x: -4, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.80, fadeEnd: 0.94 },
+            { start: 0.02, end: 0.68, x: 4, fadeStart: 0.66, fadeEnd: 0.78 },
+            { start: 0.00, end: 0.66, x: -6, fadeStart: 0.64, fadeEnd: 0.76 },
+            { start: 0.05, end: 0.72, x: 7, fadeStart: 0.70, fadeEnd: 0.80 },
+            { start: 0.04, end: 0.74, x: -4, fadeStart: 0.72, fadeEnd: 0.82 },
           ] as const
         : [
-            { start: 0.03, end: 0.74, y: -62, x: 3, scaleFrom: 0.995, scaleTo: 1.01, fadeStart: 0.74, fadeEnd: 0.88 },
-            { start: 0.00, end: 0.72, y: -56, x: -4, scaleFrom: 1, scaleTo: 0.985, fadeStart: 0.72, fadeEnd: 0.86 },
-            { start: 0.07, end: 0.78, y: -72, x: 5, scaleFrom: 0.99, scaleTo: 1.005, fadeStart: 0.76, fadeEnd: 0.90 },
-            { start: 0.05, end: 0.80, y: -68, x: -3, scaleFrom: 0.995, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
+            { start: 0.02, end: 0.64, x: 3, fadeStart: 0.62, fadeEnd: 0.74 },
+            { start: 0.00, end: 0.62, x: -4, fadeStart: 0.60, fadeEnd: 0.72 },
+            { start: 0.04, end: 0.68, x: 5, fadeStart: 0.66, fadeEnd: 0.76 },
+            { start: 0.03, end: 0.70, x: -3, fadeStart: 0.68, fadeEnd: 0.78 },
           ] as const;
 
       projectRefs.current.forEach((element, index) => {
@@ -111,27 +121,28 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
         const track = tracks[index] ?? tracks[0];
         const travel = range(progress, track.start, track.end);
         const fade = range(progress, track.fadeStart, track.fadeEnd);
-        const x = lerp(0, toPx(track.x), travel);
-        const y = lerp(0, toPx(track.y), travel);
-        const scale = lerp(track.scaleFrom, track.scaleTo, travel);
+        const initialTop = element.offsetTop;
+        const yTarget = targetTop - initialTop;
+        const x = lerp(0, viewport * track.x / 100, travel);
+        const y = lerp(0, yTarget, travel);
 
         element.style.opacity = String(1 - fade);
-        element.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+        element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       });
 
-      const release = range(progress, 0.64, 0.84);
-      const labelFade = range(progress, 0.76, 0.90);
+      const labelTravel = range(progress, 0.38, 0.66);
+      const labelFade = range(progress, 0.52, 0.70);
       labelRefs.current.forEach((element) => {
         if (!element) return;
         element.style.opacity = String(1 - labelFade);
-        element.style.transform = `translate3d(0, ${lerp(0, -18, release)}svh, 0)`;
+        element.style.transform = `translate3d(0, ${lerp(0, -34, labelTravel)}svh, 0)`;
       });
 
       if (statementRef.current) {
-        const reveal = range(progress, 0.70, 0.84);
-        const settle = range(progress, 0.70, 0.90);
+        const reveal = range(progress, 0.80, 0.90);
+        const settle = range(progress, 0.80, 0.94);
         statementRef.current.style.opacity = String(reveal);
-        statementRef.current.style.transform = `translate3d(-50%, ${lerp(16, -4, settle)}svh, 0)`;
+        statementRef.current.style.transform = `translate3d(-50%, ${lerp(12, -4, settle)}svh, 0)`;
       }
     };
 
