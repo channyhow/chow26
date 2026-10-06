@@ -61,7 +61,9 @@
   }
 
   .section--collection-panel .section__offers .carousel__track {
-    @include site-grid;
+    display: grid;
+    grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
+    column-gap: $grid-gap;
     grid-auto-flow: row;
     width: 100%;
   }
