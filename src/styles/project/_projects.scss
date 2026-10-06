@@ -15,7 +15,7 @@
 
 #project-gallery .section__header {
   max-width: none;
-  margin-bottom: clamp(#{$space-5}, 12vh, #{$space-6});
+  margin-bottom: clamp(#{$space-5}, 16vh, #{$space-6});
 }
 
 #project-gallery .section__header .textBlock__title {
@@ -33,7 +33,7 @@
     display: grid;
     grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
     column-gap: var(--grid-gutter);
-    min-height: min(42svh, 28rem);
+    min-height: min(48svh, 34rem);
     align-items: start;
   }
 
@@ -48,7 +48,7 @@
     grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
     align-items: start;
     column-gap: var(--grid-gutter);
-    row-gap: clamp(#{$space-5}, 13vw, #{$space-6});
+    row-gap: clamp(#{$space-5}, 15vw, #{$space-6});
   }
 
   #project-gallery .grid__lead {
@@ -63,7 +63,7 @@
 
   #project-gallery .grid > .grid__item:nth-child(6n + 3) {
     grid-column: 5 / span 4;
-    margin-top: $space-4;
+    margin-top: $space-5;
   }
 
   #project-gallery .grid > .grid__item:nth-child(6n + 4) {
@@ -89,7 +89,7 @@
   /* Keep image, title and description as one object; separation belongs
      between projects, not inside the card. */
   #project-gallery .projectCard {
-    margin-bottom: clamp(#{$space-4}, 6vw, #{$space-6});
+    margin-bottom: clamp(#{$space-5}, 8vw, #{$space-6});
   }
 }
 
@@ -137,4 +137,10 @@
   #project-gallery .grid {
     row-gap: $mobile-gap-block;
   }
+}
+
+/* Secondary project copy should read as supporting information, not disabled UI. */
+#project-gallery .projectCard .textBlock__text,
+#project-gallery .projectCard .textBlock__content {
+  color: color-mix(in srgb, currentColor 58%, transparent);
 }
