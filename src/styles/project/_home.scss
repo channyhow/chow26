@@ -86,6 +86,57 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
+@include desktop-up {
+  #home-services .split {
+    min-height: min(78svh, 54rem);
+    align-items: start;
+  }
+  #home-services .split > [data-split-role="media"] {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    align-self: start;
+  }
+  #home-services .split > [data-split-role="content"] {
+    grid-column: 8 / span 4;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: clamp(#{$space-4}, 9svh, #{$space-6});
+  }
+  #home-services .split__secondary .media__frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  #approach-default .section__inner {
+    width: 100%;
+    max-width: none;
+  }
+  #approach-default .section__header,
+  #approach-default .timeline {
+    width: min(100%, 62rem);
+    margin-left: auto;
+    margin-right: 8.333%;
+  }
+
+  #final-cta .split {
+    min-height: min(78svh, 54rem);
+    align-items: start;
+  }
+  #final-cta .split > [data-split-role="content"] {
+    grid-column: 2 / span 4;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: clamp(#{$space-4}, 10svh, #{$space-6});
+  }
+  #final-cta .split > [data-split-role="media"] {
+    grid-column: 7 / span 6;
+    grid-row: 1;
+    align-self: start;
+  }
+  #final-cta .split__secondary .media__frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 /* Compact opening mechanics are shared; phone and tablet own their
    composition separately so neither relies on off-canvas positioning. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
