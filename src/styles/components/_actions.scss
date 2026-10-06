@@ -141,6 +141,8 @@
   gap: $space-1;
 
   .actions__link {
+    @include type-body;
+    font-weight: $font-weight-medium;
     width: 100%;
     min-height: 4.75rem;
     padding: $space-2 $space-3;
