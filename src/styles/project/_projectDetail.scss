@@ -68,7 +68,13 @@
   --radius-media: #{$radius-none};
 }
 
-.projectHero__media .media__frame {
+.projectHero__media {
+  --media-ratio: #{$ratio-wide};
+  --media-object-fit: cover;
+}
+
+.projectHero__media .media__frame,
+.projectHero__media .media__asset {
   width: 100%;
   aspect-ratio: $ratio-wide;
 }
