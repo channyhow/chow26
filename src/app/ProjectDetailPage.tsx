@@ -37,7 +37,6 @@ type ProjectDetailConfig = {
     withMedia: StoryTemplate;
     withoutMedia: StoryTemplate;
   };
-  cta: SectionTemplate;
   related: SectionTemplate;
   footer: PageBlock;
 };
@@ -148,14 +147,6 @@ function createProjectPage(project: ProjectRecord): PageData {
         ),
       ];
 
-  const cta = sectionFromTemplate(
-    `project-${project.id}-cta`,
-    {
-      ...projectDetail.cta,
-      className: [projectDetail.cta.className, detailClasses].filter(Boolean).join(" "),
-    },
-  );
-
   const related = sectionFromTemplate(
     `project-${project.id}-related`,
     {
@@ -176,7 +167,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     slug: project.href,
     variant: projectDetail.page.variant,
     seo: project.seo,
-    blocks: [hero, ...storyBlocks, cta, related, projectDetail.footer],
+    blocks: [hero, ...storyBlocks, related, projectDetail.footer],
   };
 }
 
