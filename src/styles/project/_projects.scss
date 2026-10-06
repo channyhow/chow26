@@ -20,7 +20,8 @@
 
 #project-gallery .section__header .textBlock__title {
   @include type-display-xl;
-  max-width: 12ch;
+  max-width: none;
+  width: 100%;
   line-height: 0.92;
   letter-spacing: -0.04em;
 }
@@ -37,7 +38,7 @@
   }
 
   #project-gallery .section__header .textBlock {
-    grid-column: 1 / span 9;
+    grid-column: 1 / -1;
     width: 100%;
     max-width: none;
   }
