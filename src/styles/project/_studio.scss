@@ -18,7 +18,7 @@
   }
 
   .section__offers {
-    margin-top: clamp(#{$space-4}, 10vh, #{$space-6});
+    margin-top: $margin-section;
   }
 }
 
@@ -48,7 +48,7 @@
   }
 
   .section--collection-panel .section__offers {
-    margin-top: $space-4;
+    margin-top: $margin-block;
   }
 
   .section--collection-panel .section__offers .carousel { width: 100%; }
@@ -114,7 +114,7 @@
   }
 
   .section--collection-panel .section__offers {
-    margin-top: $space-4;
+    margin-top: $margin-block;
   }
 
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
