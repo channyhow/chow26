@@ -33,6 +33,7 @@ export type MetaItem = { label: string; value?: string; href?: string };
 export type MediaRef = string;
 export type GridTrackPlacement = { start?: number; span?: number; row?: number; rowSpan?: number; align?: "start" | "center" | "end" | "stretch"; justify?: "start" | "center" | "end" | "stretch" };
 export type GridPlacement = { mobile?: GridTrackPlacement; tablet?: GridTrackPlacement; desktop?: GridTrackPlacement };
+export type EditorialRole = "statement" | "body" | "media-primary" | "media-accent" | "label";
 export type SplitComposition = { primaryColumn?: string; secondaryColumn?: string; primaryMobileColumn?: string; secondaryMobileColumn?: string; primaryMobileOffset?: string; secondaryMobileOffset?: string };
 
 export type Seo = {
