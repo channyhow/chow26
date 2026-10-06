@@ -181,6 +181,10 @@
   .textBlock__footer {
     width: fit-content;
     padding-top: $space-2;
+
+    .actions__link {
+      font-weight: $font-weight-medium;
+    }
   }
 }
 
