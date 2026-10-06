@@ -4,7 +4,7 @@
   "present-project": { "label": "Présenter votre projet", "href": "/contact", "intent": "contact", "variant": "cta" },
   "identity-essential-contact": { "label": "Identité essentielle", "href": "/contact", "intent": "contact", "variant": "arrow" },
   "identity-complete-contact": { "label": "Identité complète", "href": "/contact", "intent": "contact", "variant": "arrow" },
-  "project-call": { "label": "Parler de mon projet", "href": "https://tally.so/r/vGQy7v", "intent": "navigate", "variant": "cta", "priority": "primary" },
+  "project-call": { "label": "Parler de mon projet", "href": "https://tally.so/r/rjxkop", "intent": "navigate", "variant": "cta", "priority": "primary" },
   "view-project-call": { "label": "Voir l’appel à projets", "href": "/link", "intent": "navigate", "variant": "accent", "priority": "secondary" },
 
   "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
