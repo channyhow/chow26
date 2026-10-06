@@ -8,14 +8,6 @@
 
   /* Service introductions use an asymmetric editorial composition:
      the visual carries the section while copy stays concise and anchored. */
-  .split {
-    align-items: start;
-  }
-
-  .split > [data-split-role="content"] {
-    align-self: start;
-    padding-top: clamp(#{$space-4}, 10vh, #{$space-6});
-  }
 
   .section__offers {
     margin-top: $margin-section;
