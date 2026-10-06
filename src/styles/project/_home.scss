@@ -181,9 +181,9 @@
   }
 
   .homeOpeningScene__label { left: 18%; width: 64%; }
-  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
-  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
-  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
+  .homeOpeningScene__label--web { top: calc(50% - 2em); }
+  .homeOpeningScene__label--identity { top: calc(50% - .5em); }
+  .homeOpeningScene__label--supports { top: calc(50% + 1em); }
 
   .homeOpeningScene__statement {
     width: calc(100% - (#{$page-gutter} * 2));
