@@ -90,7 +90,7 @@
   font-family: var(--font-heading);
   font-size: $type-heading-sm;
   font-weight: $font-weight-medium;
-  line-height: 1.08;
+  line-height: 1.05;
   letter-spacing: -0.01em;
 }
 @mixin type-lead-bold {
@@ -102,7 +102,7 @@
   font-family: var(--font-heading);
   font-size: $type-heading-md;
   font-weight: $font-weight-medium;
-  line-height: 1.06;
+  line-height: 1.02;
   letter-spacing: -0.015em;
 }
 
@@ -110,7 +110,7 @@
   font-family: var(--font-heading);
   font-size: $type-heading-lg;
   font-weight: $font-weight-medium;
-  line-height: 1.02;
+  line-height: 0.99;
   letter-spacing: -0.018em;
 }
 
@@ -118,7 +118,7 @@
   font-family: var(--font-heading);
   font-size: $type-heading-xl;
   font-weight: $font-weight-medium;
-  line-height: 0.98;
+  line-height: 0.95;
   letter-spacing: -0.02em;
 }
 
