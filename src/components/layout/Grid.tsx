@@ -13,7 +13,7 @@ import {
   motionConfig,
   revealItem,
 } from "@/motion/config";
-import type { EditorialRole, GridPlacement, GridTrackPlacement } from "@/types/content";
+import type { GridPlacement, GridTrackPlacement } from "@/types/content";
 import { responsiveQueries } from "@/utils/responsive";
 
 export type GridProps = {
@@ -23,7 +23,6 @@ export type GridProps = {
   lead?: ReactNode;
   motionPreset?: string;
   placements?: Array<GridPlacement | undefined>;
-  editorialRoles?: Array<EditorialRole | undefined>;
   motionEnabled?: boolean;
   scrollLinked?: boolean;
 };
@@ -39,7 +38,6 @@ type GridMotionItemProps = {
   child: ReactNode;
   index: number;
   placement?: GridPlacement;
-  editorialRole?: EditorialRole;
   animateGrid: boolean;
   usesDrawMotion: boolean;
   scrollLinked: boolean;
@@ -95,7 +93,6 @@ function GridMotionItem({
   child,
   index,
   placement,
-  editorialRole,
   animateGrid,
   usesDrawMotion,
   scrollLinked,
@@ -119,7 +116,6 @@ function GridMotionItem({
       className="grid__item"
       key={(child as { key?: string | null }).key ?? `grid-item-${index}`}
       style={linkedStyle}
-      data-editorial-role={editorialRole}
       variants={animateGrid && !usesDrawMotion && !scrollLinked ? itemVariants : undefined}
       initial={animateGrid && usesDrawMotion && !scrollLinked
         ? { opacity: 0, x: drawOffset, y: baseOffset }
@@ -144,7 +140,6 @@ export function Grid({
   lead,
   motionPreset,
   placements,
-  editorialRoles,
   motionEnabled = true,
   scrollLinked = false,
 }: GridProps) {
@@ -206,7 +201,6 @@ export function Grid({
               child={child}
               index={index}
               placement={placements?.[index]}
-              editorialRole={editorialRoles?.[index]}
               animateGrid={animateGrid}
               usesDrawMotion={usesDrawMotion}
               scrollLinked={usesScrollLinkedMotion}
