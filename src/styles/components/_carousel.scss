@@ -47,14 +47,14 @@
   /* Offers are distinct decision blocks, not one dense carousel. Use the
      shared mobile block rhythm while keeping each card internally compact. */
   .section__offers {
-    margin-top: $mobile-gap-block;
+    margin-top: $flow-group;
   }
 
   .section__offers .carousel__track {
     grid-auto-flow: row;
     grid-auto-columns: auto;
     grid-template-columns: 1fr;
-    gap: $mobile-gap-block;
+    gap: $flow-group;
     overflow: visible;
     scroll-snap-type: none;
   }
