@@ -62,14 +62,15 @@
 @mixin type-body-sm {
   font-family: var(--font-body);
   font-size: $type-body-sm;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-regular;
   line-height: 1.5;
 }
 
 @mixin type-body {
   font-family: var(--font-body);
   font-size: $type-body;
-  line-height: 1.58;
+  font-weight: $font-weight-regular;
+  line-height: 1.55;
 }
 @mixin type-body-bold {
   @include type-body;
@@ -81,8 +82,8 @@
 @mixin type-lead {
   font-family: var(--font-body);
   font-size: $type-lead;
-  font-weight: $font-weight-medium;
-  line-height: 1.48;
+  font-weight: $font-weight-regular;
+  line-height: 1.42;
 }
 
 @mixin type-heading-sm {
@@ -124,9 +125,9 @@
 @mixin type-display-lg {
   font-family: var(--font-heading);
   font-size: $type-display-lg;
-  font-weight: $font-weight-semibold;
-  line-height: 1;
-  letter-spacing: -0.025em;
+  font-weight: $font-weight-medium;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
   text-transform: uppercase;
 }
 
@@ -134,8 +135,8 @@
   font-family: var(--font-heading);
   font-size: $type-display-xl;
   font-weight: $font-weight-medium;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
 }
 
 @mixin type-heading {
