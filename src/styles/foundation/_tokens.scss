@@ -39,7 +39,7 @@ $space-5: 6rem;
 // Semantic rhythm: use these in components before reaching for raw spacing values.
 $flow-tight: $space-1;
 $flow-default: $space-2;
-$flow-loose: $space-3;
+$flow-loose: $space-3;\n$flow-group: $space-3; // distinct thought within one content block
 $layout-gap: clamp(#{$space-2}, 2.5vw, #{$space-3});
 $section-content-gap: clamp(1.5rem, 2.5vw, #{$space-3});
 $section-space: clamp(3rem, 7vw, #{$space-5});
