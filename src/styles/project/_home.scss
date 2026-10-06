@@ -141,8 +141,8 @@
 /* Phone: compact, asymmetric collage with every starting element inside
    the sticky viewport. The long runway belongs to motion, not layout. */
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening { min-height: 340svh; }
-  #home-opening .section__inner { height: 340svh; min-height: 340svh; }
+  #home-opening { min-height: 560svh; }
+  #home-opening .section__inner { height: 560svh; min-height: 560svh; }
 
   .homeOpeningScene__project--web {
     top: 10%;
@@ -186,8 +186,8 @@
 /* Tablet: keep the same opening composition as mobile, simply with the
    tablet viewport providing more breathing room around it. */
 @include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 340svh; }
-  #home-opening .section__inner { height: 340svh; min-height: 340svh; }
+  #home-opening { min-height: 560svh; }
+  #home-opening .section__inner { height: 560svh; min-height: 560svh; }
 
   .homeOpeningScene__project--web {
     top: 10%;
