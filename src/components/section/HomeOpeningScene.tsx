@@ -48,7 +48,11 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
   const fallbackMedia = resolveMediaList(openingProjects.map(({ mediaId }) => mediaId));
   const sceneMedia = media.length >= openingProjects.length ? media.slice(0, openingProjects.length) : fallbackMedia;
-  const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
+  const paragraphs = header?.text
+    ? (Array.isArray(header.text) ? header.text : [header.text]).flatMap((group) =>
+        Array.isArray(group) ? group : [group],
+      )
+    : [];
 
   useEffect(() => {
     const compact = window.matchMedia("(max-width: 63.999rem)");
