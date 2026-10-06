@@ -32,7 +32,7 @@
     display: grid;
     grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
     column-gap: var(--grid-gutter);
-    min-height: min(48svh, 32rem);
+    min-height: min(42svh, 28rem);
     align-items: start;
   }
 
@@ -46,11 +46,12 @@
   #project-gallery .grid {
     align-items: start;
     column-gap: var(--grid-gutter);
-    row-gap: clamp(#{$space-4}, 9vw, #{$space-6});
+    row-gap: clamp(#{$space-5}, 13vw, #{$space-6});
   }
 
   #project-gallery .grid > :nth-child(6n + 1) {
     grid-column: 1 / span 4;
+    margin-top: 0;
   }
 
   #project-gallery .grid > :nth-child(6n + 2) {
@@ -60,19 +61,28 @@
 
   #project-gallery .grid > :nth-child(6n + 3) {
     grid-column: 9 / span 4;
+    margin-top: $space-6;
   }
 
   #project-gallery .grid > :nth-child(6n + 4) {
-    grid-column: 2 / span 5;
-  }
-
-  #project-gallery .grid > :nth-child(6n + 5) {
-    grid-column: 8 / span 4;
+    grid-column: 1 / span 4;
     margin-top: $space-5;
   }
 
+  #project-gallery .grid > :nth-child(6n + 5) {
+    grid-column: 6 / span 5;
+    margin-top: 0;
+  }
+
   #project-gallery .grid > :nth-child(6n + 6) {
-    grid-column: 1 / span 3;
+    grid-column: 10 / span 3;
+    margin-top: $space-6;
+  }
+
+  /* Keep image, title and description as one object; separation belongs
+     between projects, not inside the card. */
+  #project-gallery .projectCard {
+    margin-bottom: clamp(#{$space-4}, 6vw, #{$space-6});
   }
 }
 
