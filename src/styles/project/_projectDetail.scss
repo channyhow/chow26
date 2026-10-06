@@ -9,8 +9,6 @@
   --project-measure: 38rem;
   --project-reading-measure: 30rem;
   --project-section-gap: clamp(#{$space-5}, 12vh, #{$space-6});
-  --media-object-fit: cover;
-  --media-object-position: 50% 50%;
 }
 
 .projectHero {
@@ -68,21 +66,10 @@
 
 .projectHero__media {
   --media-ratio: #{$ratio-wide};
-  --media-object-fit: cover;
 }
 
-.projectHero__media .media__frame,
-.projectHero__media .media__asset {
-  width: 100%;
+.projectHero__media .media__frame {
   aspect-ratio: $ratio-wide;
-}
-
-.projectHero__media .media__asset,
-.projectHero__media img,
-.projectHero__media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .projectHero__meta {
