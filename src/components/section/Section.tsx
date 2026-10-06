@@ -63,7 +63,6 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
   const cardVariant = block.itemAppearance?.variant ?? (isServiceCollection ? "service" : isStructuredEditorialList ? "editorial" : "default");
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
-  const projectGridLead = header && !useProjectCarouselOnMobile && isProjectGrid ? <TextBlock content={{ title: header.title }} className="section__gridLead" motionEnabled={sectionMotionEnabled} /> : null;
 
   useEffect(() => {
     const carouselMedia = window.matchMedia(mobileCarouselQuery);
@@ -75,7 +74,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
-  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} lead={projectGridLead} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
+  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
@@ -133,7 +132,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
-    body = <>{motionLayer(header && !projectGridLead ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
   const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
