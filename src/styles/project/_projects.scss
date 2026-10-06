@@ -3,25 +3,21 @@
 @use "../foundation/typography" as *;
 
 /* Project archive owns page-level composition; cards remain component-owned. */
-#project-gallery {
-  --section-title-width: 18ch;
-  --section-title-width-mobile: 100%;
-}
-
 #project-gallery > .section__inner {
   padding-top: calc(#{$header-height} + #{$space-5});
   padding-bottom: $space-5;
 }
 
 #project-gallery .section__header {
+  width: 100%;
   max-width: none;
-  margin-bottom: clamp(#{$space-5}, 16vh, #{$space-6});
+  margin-bottom: clamp(#{$space-5}, 10vh, #{$space-6});
 }
 
 #project-gallery .section__header .textBlock__title {
   @include type-display-xl;
-  max-width: none;
   width: 100%;
+  max-width: none;
   line-height: 0.92;
   letter-spacing: -0.04em;
 }
@@ -30,17 +26,24 @@
   /* WAM-inspired editorial opening: type and whitespace establish the field;
      the projects themselves provide the graphic interest. */
   #project-gallery .section__header {
-    display: grid;
-    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
-    column-gap: var(--grid-gutter);
-    min-height: min(48svh, 34rem);
-    align-items: start;
+    display: block;
+    min-height: 0;
   }
 
   #project-gallery .section__header .textBlock {
-    grid-column: 1 / -1;
     width: 100%;
     max-width: none;
+  }
+
+  #project-gallery .section__header .textBlock__header {
+    width: 100%;
+    max-width: none;
+  }
+
+  #project-gallery .section__header .textBlock__title {
+    /* Keep the intro independent from the project grid while giving the copy
+       enough measure to read as an editorial statement rather than a column. */
+    max-width: 11ch;
   }
 
   /* Archive cards form one visual field rather than equal portfolio tiles. */
