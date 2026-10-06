@@ -76,17 +76,15 @@
   .homeOpeningScene__project:hover .media { transform: scale(.985); }
 }
 
-/* Phone + tablet share one authored opening scene. Mobile gets a longer
-   runway so the layered media choreography reads rather than rushes. */
+/* Compact opening mechanics are shared; phone and tablet own their
+   composition separately so neither relies on off-canvas positioning. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening { height: auto; min-height: 280svh; overflow: visible; }
+  #home-opening { height: auto; overflow: visible; }
 
   #home-opening .section__inner {
     display: block;
     flex: none;
     width: 100%;
-    height: 280svh;
-    min-height: 280svh;
     margin: 0;
     overflow: visible;
   }
@@ -103,7 +101,7 @@
   }
 
   .homeOpeningScene__media,
-  .homeOpeningScene__labels { display: block; position: absolute; inset: 0; z-index: auto; }
+  .homeOpeningScene__labels { display: block; position: absolute; inset: 0; }
   .homeOpeningScene__labels { pointer-events: none; }
 
   .homeOpeningScene__project,
@@ -117,22 +115,20 @@
   .homeOpeningScene__project--identity,
   .homeOpeningScene__project--supports { z-index: calc(#{$z-raised} + 2); }
 
-  .homeOpeningScene__project--web { top: 10%; left: 8%; width: 66%; aspect-ratio: $ratio-landscape; }
-  .homeOpeningScene__project--identity { top: 68%; right: 11%; width: 39%; aspect-ratio: $ratio-square; }
-  .homeOpeningScene__project--web-secondary { top: 118%; left: 8%; width: 39%; aspect-ratio: $ratio-landscape; }
-  .homeOpeningScene__project--supports { top: 142%; right: 11%; width: 31%; aspect-ratio: $ratio-portrait; }
+  .homeOpeningScene__label {
+    text-align: center;
+    pointer-events: auto;
+  }
 
-  .homeOpeningScene__label { left: 22%; width: 56%; text-align: center; pointer-events: auto; }
-  .homeOpeningScene__labelLink { display: block; @include type-body-bold; line-height: 1.05; }
-  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
-  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
-  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
+  .homeOpeningScene__labelLink {
+    display: block;
+    @include type-body-bold;
+    line-height: 1.05;
+  }
 
   .homeOpeningScene__statement {
     top: 50%;
     left: 50%;
-    width: calc(100% - (#{$page-gutter} * 2));
-    max-width: 22rem;
     z-index: calc(#{$z-raised} + 3);
     @include type-body;
     line-height: 1.25;
@@ -141,14 +137,92 @@
   }
 }
 
-@include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 180svh; }
-  #home-opening .section__inner { height: 180svh; min-height: 180svh; }
+/* Phone: compact, asymmetric collage with every starting element inside
+   the sticky viewport. The long runway belongs to motion, not layout. */
+@media (max-width: calc(#{$bp-tablet} - 1px)) {
+  #home-opening { min-height: 280svh; }
+  #home-opening .section__inner { height: 280svh; min-height: 280svh; }
 
-  .homeOpeningScene__project--web { top: 8%; left: 10%; width: 50%; }
-  .homeOpeningScene__project--identity { right: 12%; width: 31%; }
-  .homeOpeningScene__project--web-secondary { left: 10%; width: 34%; }
-  .homeOpeningScene__project--supports { right: 12%; width: 25%; }
-  .homeOpeningScene__label { left: 28%; width: 44%; }
-  .homeOpeningScene__statement { max-width: 26rem; }
+  .homeOpeningScene__project--web {
+    top: 9%;
+    left: var(--project-gutter);
+    width: 66%;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeOpeningScene__project--identity {
+    top: 60%;
+    right: 8%;
+    width: 38%;
+    aspect-ratio: $ratio-square;
+  }
+
+  .homeOpeningScene__project--web-secondary {
+    top: 70%;
+    left: 8%;
+    width: 34%;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeOpeningScene__project--supports {
+    top: 23%;
+    right: 7%;
+    width: 27%;
+    aspect-ratio: $ratio-portrait;
+  }
+
+  .homeOpeningScene__label { left: 18%; width: 64%; }
+  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
+  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
+  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
+
+  .homeOpeningScene__statement {
+    width: calc(100% - (#{$page-gutter} * 2));
+    max-width: 22rem;
+  }
+}
+
+/* Tablet: a wider editorial composition rather than a scaled-up phone.
+   Media occupy the corners and leave a deliberate central reading field. */
+@include between($bp-tablet, $bp-desktop) {
+  #home-opening { min-height: 220svh; }
+  #home-opening .section__inner { height: 220svh; min-height: 220svh; }
+
+  .homeOpeningScene__project--web {
+    top: 10%;
+    left: 7%;
+    width: 47%;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeOpeningScene__project--identity {
+    top: 57%;
+    right: 8%;
+    width: 27%;
+    aspect-ratio: $ratio-square;
+  }
+
+  .homeOpeningScene__project--web-secondary {
+    top: 67%;
+    left: 9%;
+    width: 29%;
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeOpeningScene__project--supports {
+    top: 17%;
+    right: 8%;
+    width: 21%;
+    aspect-ratio: $ratio-portrait;
+  }
+
+  .homeOpeningScene__label { left: 29%; width: 42%; }
+  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
+  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
+  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
+
+  .homeOpeningScene__statement {
+    width: min(58vw, 30rem);
+    max-width: 30rem;
+  }
 }
