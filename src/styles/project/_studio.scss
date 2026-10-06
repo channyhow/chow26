@@ -5,6 +5,21 @@
 .section--collection-panel {
   --text-width: none;
   --split-media-ratio: #{$ratio-editorial};
+
+  /* Service introductions use an asymmetric editorial composition:
+     the visual carries the section while copy stays concise and anchored. */
+  .split {
+    align-items: start;
+  }
+
+  .split > [data-split-role="content"] {
+    align-self: start;
+    padding-top: clamp(#{$space-3}, 8vh, #{$space-5});
+  }
+
+  .section__offers {
+    margin-top: clamp(#{$space-4}, 10vh, #{$space-6});
+  }
 }
 
 #studio-approach { --section-row-gap: clamp(#{$space-4}, 7vh, 6rem); min-height: 100svh; }
@@ -28,6 +43,14 @@
 #studio-founders .split__secondary .media__asset { mix-blend-mode: multiply; }
 
 @include between($bp-tablet, $bp-desktop) {
+  .section--collection-panel .split > [data-split-role="content"] {
+    padding-top: 0;
+  }
+
+  .section--collection-panel .section__offers {
+    margin-top: $space-4;
+  }
+
   .section--collection-panel .section__offers .carousel { width: 100%; }
 
   .section--collection-panel .section__offers .carousel__track {
@@ -86,6 +109,14 @@
 }
 
 @include tablet-down {
+  .section--collection-panel .split > [data-split-role="content"] {
+    padding-top: 0;
+  }
+
+  .section--collection-panel .section__offers {
+    margin-top: $space-4;
+  }
+
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-3; }
