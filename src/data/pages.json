@@ -536,15 +536,15 @@
                     {
                       "title": "2. Devis, commande et démarrage",
                       "text": [
-                        "Le contenu, les livrables, le calendrier indicatif et le prix sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.",
+                        "Le contenu, les livrables, le calendrier indicatif et le tarifs sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.",
                         "Toute demande qui modifie sensiblement le périmètre initial peut faire l’objet d’un ajustement de planning, d’un devis complémentaire ou d’une nouvelle estimation avant réalisation."
                       ]
                     },
                     {
-                      "title": "3. Prix",
+                      "title": "3. Tarifs",
                       "text": [
-                        "Les prix sont indiqués en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutées selon la situation fiscale de Chow Studio au jour de la facturation.",
-                        "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des prix de départ. Le prix contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."
+                        "Les tarifs sont indiqués en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutées selon la situation fiscale de Chow Studio au jour de la facturation.",
+                        "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des tarifs de départ. Le tarifs contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."
                       ]
                     },
                     {
