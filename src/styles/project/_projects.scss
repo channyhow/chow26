@@ -19,15 +19,12 @@
 /* The archive heading must not inherit placement from the reusable TextBlock
    grid API. Its geometry belongs to this page, outside the projects grid. */
 #project-gallery .section__header > .textBlock__header {
-  grid-column: auto !important;
+  grid-column: 1/span 12;
 }
 
 #project-gallery .section__header .textBlock__title {
-  @include type-display-xl;
-  width: 100%;
-  max-width: none;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  @include type-heading-xl;
+
 }
 
 @include desktop-up {
@@ -48,11 +45,11 @@
     max-width: none;
   }
 
-  #project-gallery .section__header .textBlock__title {
-    /* Keep the intro independent from the project grid while giving the copy
-       enough measure to read as an editorial statement rather than a column. */
-    max-width: 11ch;
-  }
+  // #project-gallery .section__header .textBlock__title {
+  //   /* Keep the intro independent from the project grid while giving the copy
+  //      enough measure to read as an editorial statement rather than a column. */
+  //   // max-width: 11ch;
+  // }
 
   /* Archive cards form one visual field rather than equal portfolio tiles. */
   #project-gallery .grid {
