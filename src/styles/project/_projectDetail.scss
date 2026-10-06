@@ -15,14 +15,6 @@
 
 .projectHero {
   --section-space: 0;
-  --split-primary-column: 7 / span 6;
-  --split-secondary-column: 1 / span 6;
-  --split-media-ratio: #{$ratio-editorial};
-}
-
-.projectHero.projectDetail--b {
-  --split-primary-column: 1 / span 6;
-  --split-secondary-column: 7 / span 6;
 }
 
 .projectHero .section__inner {
@@ -32,48 +24,75 @@
   padding-bottom: var(--project-section-gap);
 }
 
-.projectHero .split {
-  align-items: end;
-  gap: var(--grid-gutter);
+.projectHero__composition {
+  @include site-grid;
+  width: 100%;
+  align-items: start;
+  row-gap: $space-4;
 }
 
-.projectHero .textBlock {
+.projectHero__statement {
+  grid-column: 1 / -1;
   width: 100%;
   max-width: none;
 }
 
-.projectHero .textBlock__title {
+.projectHero__statement .textBlock__subtitle {
   @include type-heading-xl;
-  // max-width: 10ch;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
-}
-
-.projectHero .textBlock__subtitle {
-  @include type-lead;
-  max-width: 30ch;
-  margin-top: $space-3;
-}
-
-.projectHero .textBlock__meta {
-  @include type-ui-compact;
-  width: 100%;
-  max-width: none;
-  margin-top: $space-3;
-  padding-top: $space-2;
-}
-
-.projectHero .split__secondary,
-.projectStoryMedia .split__secondary {
-  display: grid;
-}
-
-.projectHero .section__splitMediaMotion,
-.projectHero .media {
   width: 100%;
   max-width: none;
   margin: 0;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+
+.projectHero__identity {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+}
+
+.projectHero__identity .textBlock__title {
+  @include type-heading-lg;
+  margin: 0;
+  color: color-mix(in srgb, currentColor 34%, transparent);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.projectHero__media {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: $space-2 0 0;
   --radius-media: #{$radius-none};
+}
+
+.projectHero__media .media__frame {
+  width: 100%;
+  aspect-ratio: $ratio-wide;
+}
+
+.projectHero__media .media__asset,
+.projectHero__media img,
+.projectHero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projectHero__meta {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+}
+
+.projectHero__meta .textBlock__meta {
+  @include type-ui-compact;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .projectStoryMedia,
