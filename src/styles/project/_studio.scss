@@ -20,17 +20,15 @@
 #studio-founders .split__secondary .media {
   width: min(100%, 25rem);
   max-width: 25rem;
+  max-height: 25rem;
   justify-self: center;
   background: transparent;
 }
+#studio-founders .split__secondary .media__frame { max-height: 25rem; overflow: hidden; background: transparent; }
 #studio-founders .split__secondary .media__asset { mix-blend-mode: multiply; }
 
-/* Tablet keeps Studio editorial rather than becoming a zoomed phone page.
-   Service media and copy use the full eight-column tablet grid. */
 @include between($bp-tablet, $bp-desktop) {
-  .section--collection-panel .section__offers .carousel {
-    width: 100%;
-  }
+  .section--collection-panel .section__offers .carousel { width: 100%; }
 
   .section--collection-panel .section__offers .carousel__track {
     display: grid;
@@ -40,9 +38,7 @@
     width: 100%;
   }
 
-  .section--collection-panel .section__offers .carousel__item {
-    grid-column: span 4;
-  }
+  .section--collection-panel .section__offers .carousel__item { grid-column: span 4; }
 
   #studio-approach {
     --section-row-gap: #{$space-4};
@@ -52,11 +48,83 @@
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-4 $space-2; }
 
+  #studio-founders .split {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    align-items: start;
+    align-content: center;
+    column-gap: var(--grid-gutter);
+  }
+
+  #studio-founders .split > [data-split-role="media"] {
+    grid-column: 7 / span 2;
+    grid-row: 2;
+    order: initial;
+  }
+
+  #studio-founders .split > [data-split-role="content"] {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    order: initial;
+    min-width: 0;
+  }
+
+  #studio-founders .split__secondary { place-items: start stretch; }
+
+  #studio-founders .split__secondary .media,
+  #studio-founders .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  #studio-founders .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
+  }
+}
 
 @include tablet-down {
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-3; }
 
+  #studio-founders { --split-gap: #{$space-3}; }
 
+  #studio-founders .split {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  #studio-founders .split > [data-split-role="content"] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    order: initial;
+    min-width: 0;
+  }
+
+  #studio-founders .split > [data-split-role="media"] {
+    grid-column: 4 / -1;
+    grid-row: 2;
+    order: initial;
+  }
+
+  #studio-founders .split__secondary { place-items: start stretch; }
+
+  #studio-founders .split__secondary .media,
+  #studio-founders .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  #studio-founders .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
+  }
 }
