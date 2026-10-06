@@ -43,7 +43,7 @@
 }
 
 .projectHero .textBlock__title {
-  @include type-heading-lg;
+  @include type-heading-xl;
   // max-width: 10ch;
   line-height: 0.9;
   letter-spacing: -0.045em;

@@ -89,7 +89,7 @@
     margin-top: $space-4;
 
     .textBlock__title {
-      @include type-display-lg;
+  @include type-heading-xl;
       max-width: none;
     }
 

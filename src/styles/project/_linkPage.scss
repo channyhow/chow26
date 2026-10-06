@@ -44,6 +44,7 @@
 
 .linkPage__campaign .textBlock__title {
   @include type-heading-lg;
+  font-weight: $font-weight-bold;
 text-transform: uppercase;
 }
 
