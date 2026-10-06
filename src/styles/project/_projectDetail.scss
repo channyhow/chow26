@@ -175,9 +175,37 @@
   color: currentColor;
 }
 
-/* Tablet: one consistent editorial stack — media first, copy second.
-   The 5:4 frame is slightly deeper than landscape without becoming square. */
-@media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
+/* 1024 is a laptop composition: keep the desktop split and tighten its
+   measures rather than switching to the tablet stack. */
+@media (min-width: $bp-desktop) and (max-width: 74.999rem) {
+  .projectDetail {
+    --project-measure: 32rem;
+    --project-media-measure: 30rem;
+  }
+
+  .projectHero {
+    --split-primary-column: 1 / span 6;
+    --split-secondary-column: 7 / span 6;
+  }
+
+  .projectHero.projectDetail--b {
+    --split-primary-column: 7 / span 6;
+    --split-secondary-column: 1 / span 6;
+  }
+
+  .projectStoryMedia {
+    --split-primary-column: 1 / span 5;
+    --split-secondary-column: 7 / span 6;
+  }
+
+  .projectStoryMedia.projectDetail__story--alternate {
+    --split-primary-column: 8 / span 5;
+    --split-secondary-column: 1 / span 6;
+  }
+}
+
+/* Tablet remains a linear editorial composition below the laptop breakpoint. */
+@media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 0.01rem)) {
   .projectDetail {
     --project-media-measure: 100%;
     --project-measure: 100%;
