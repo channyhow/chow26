@@ -60,6 +60,10 @@
   overflow: hidden;
   background: transparent;
 }
+#studio-founders .split__secondary .media__frame {
+  background: $color-accent;
+}
+
 #studio-founders .split__secondary .media__asset {
   mix-blend-mode: multiply;
 }
