@@ -36,6 +36,11 @@
 
   .split {
     align-items: start;
+
+    .split__primary {
+      align-self: start;
+      margin-top: clamp(#{$space-4}, 10vh, #{$space-6});
+    }
   }
 
   /* Establish context before asking for input on tablet and mobile while
