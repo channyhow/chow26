@@ -8,7 +8,7 @@
 .projectDetail {
   --project-measure: 38rem;
   --project-reading-measure: 30rem;
-  --project-section-gap: clamp(#{$space-5}, 12vh, #{$space-7});
+  --project-section-gap: clamp(#{$space-5}, 12vh, #{$space-6});
   --media-object-fit: cover;
   --media-object-position: 50% 50%;
 }
