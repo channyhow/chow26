@@ -51,7 +51,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    const mobile = window.matchMedia("(max-width: 47.999rem)");
+    const mobile = window.matchMedia("(max-width: 63.999rem)");
 
     const updateDesktop = (progress: number) => {
       const rise = range(progress, 0.34, 0.58);
