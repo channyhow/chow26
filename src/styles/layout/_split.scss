@@ -7,7 +7,7 @@
   --split-media-ratio: #{$ratio-landscape};
   --split-gap: #{$space-5};
 
-  @include site-grid(var(--split-gap));
+  @include site-grid;
   align-items: center;
   row-gap: var(--split-gap);
 
@@ -73,7 +73,7 @@
   .split > [data-split-role="media"],
   .split--balanced > [data-split-role="media"],
   .split--editorial > [data-split-role="media"] {
-    grid-column: 1 / 13;
+    grid-column: 1 / 9;
     grid-row: 1;
   }
 
@@ -99,7 +99,7 @@
 
   .split:not(.split--editorial) > .split__primary,
   .split:not(.split--editorial) > .split__secondary {
-    grid-column: 1 / 13;
+    grid-column: 1 / 2;
   }
 
   .split:not(.split--editorial) > [data-split-role="media"] {
@@ -129,7 +129,7 @@
   }
 
   .split--editorial > .split__secondary {
-    grid-column: var(--split-secondary-mobile-column, 1 / 13);
+    grid-column: var(--split-secondary-mobile-column, 1 / 5);
     translate: 0 var(--split-secondary-mobile-offset, 0);
   }
 
