@@ -4,16 +4,7 @@
 
 .section--collection-panel {
   --text-width: none;
-  // Keep service media compact and consistent; copy determines section height.
   --split-media-ratio: #{$ratio-editorial};
-  --split-media-max-height: min(78svh, 54rem);
-}
-.section--collection-panel .split { align-content: center; }
-.section--collection-panel .split__secondary { display: grid; place-items: center; }
-.section--collection-panel .split__secondary .media {
-  width: 100%;
-  max-width: var(--split-media-max-height);
-  justify-self: stretch;
 }
 
 #studio-approach { --section-row-gap: clamp(#{$space-4}, 7vh, 6rem); min-height: 100svh; }
@@ -39,21 +30,6 @@
 /* Tablet keeps Studio editorial rather than becoming a zoomed phone page.
    Service media and copy use the full eight-column tablet grid. */
 @include between($bp-tablet, $bp-desktop) {
-  .section--collection-panel {
-    --split-media-ratio: #{$ratio-editorial};
-    --split-media-max-height: none;
-  }
-
-  .section--collection-panel .split { align-content: center; align-items: center; }
-
-  .section--collection-panel .split > [data-split-role="media"] { grid-column: 1 / span 8; }
-  .section--collection-panel .split > [data-split-role="content"] { grid-column: 1 / span 8; }
-
-  .section--collection-panel .split__secondary .media {
-    width: 100%;
-    max-width: none;
-  }
-
   .section--collection-panel .section__offers .carousel {
     width: 100%;
   }
@@ -116,9 +92,6 @@
 }
 
 @include tablet-down {
-  .section--collection-panel .split { align-content: start; align-items: start; }
-  .section--collection-panel .split__secondary .media { width: 100%; max-width: none; }
-
   #studio-approach { --section-row-gap: $space-3; min-height: auto; }
   #studio-approach > .section__inner { display: block; }
   #studio-approach .grid { gap: $space-3; }
