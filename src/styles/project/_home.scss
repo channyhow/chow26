@@ -144,28 +144,28 @@
   #home-opening .section__inner { height: 280svh; min-height: 280svh; }
 
   .homeOpeningScene__project--web {
-    top: 9%;
-    left: var(--project-gutter);
+    top: 10%;
+    left: 8%;
     width: 66%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--identity {
-    top: 60%;
+    top: 68%;
     right: 8%;
     width: 38%;
     aspect-ratio: $ratio-square;
   }
 
   .homeOpeningScene__project--web-secondary {
-    top: 70%;
+    top: 130%;
     left: 8%;
     width: 34%;
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--supports {
-    top: 23%;
+    top: 150%;
     right: 7%;
     width: 27%;
     aspect-ratio: $ratio-portrait;
