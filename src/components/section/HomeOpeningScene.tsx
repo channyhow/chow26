@@ -88,61 +88,54 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       }
     };
 
-    const updateCompact = (progress: number, isPhone: boolean) => {
-      const viewport = window.innerHeight;
-      const targetTop = viewport * 0.20;
-
+    const updateCompact = (progress: number, _isPhone: boolean) => {
       /*
-       * Compact choreography:
-       * 1. projects travel upward through the scene;
-       * 2. service labels leave earlier and fully clear the statement;
-       * 3. every project reaches the upper 20% zone before fading out;
-       * 4. the statement only starts once the visual layer is effectively gone.
+       * One compact choreography for tablet + mobile:
+       * - every image only travels vertically upward;
+       * - labels leave with the third image;
+       * - the visual layer fully clears before the statement enters;
+       * - the statement then fades again at the end of the scene.
        *
-       * Phone gets a little more runway than tablet, but both share the same
-       * narrative sequence.
+       * No lateral drift, scale or breakpoint-specific choreography.
        */
-      const tracks = isPhone
-        ? [
-            { start: 0.02, end: 0.68, x: 4, fadeStart: 0.66, fadeEnd: 0.78 },
-            { start: 0.00, end: 0.66, x: -6, fadeStart: 0.64, fadeEnd: 0.76 },
-            { start: 0.05, end: 0.72, x: 7, fadeStart: 0.70, fadeEnd: 0.80 },
-            { start: 0.04, end: 0.74, x: -4, fadeStart: 0.72, fadeEnd: 0.82 },
-          ] as const
-        : [
-            { start: 0.02, end: 0.64, x: 3, fadeStart: 0.62, fadeEnd: 0.74 },
-            { start: 0.00, end: 0.62, x: -4, fadeStart: 0.60, fadeEnd: 0.72 },
-            { start: 0.04, end: 0.68, x: 5, fadeStart: 0.66, fadeEnd: 0.76 },
-            { start: 0.03, end: 0.70, x: -3, fadeStart: 0.68, fadeEnd: 0.78 },
-          ] as const;
+      const projectTracks = [
+        { start: 0.00, end: 0.48, fadeStart: 0.40, fadeEnd: 0.52 },
+        { start: 0.08, end: 0.56, fadeStart: 0.48, fadeEnd: 0.60 },
+        { start: 0.16, end: 0.64, fadeStart: 0.56, fadeEnd: 0.68 },
+        { start: 0.24, end: 0.72, fadeStart: 0.64, fadeEnd: 0.76 },
+      ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
-        const track = tracks[index] ?? tracks[0];
+        const track = projectTracks[index] ?? projectTracks[0];
         const travel = range(progress, track.start, track.end);
         const fade = range(progress, track.fadeStart, track.fadeEnd);
-        const initialTop = element.offsetTop;
-        const yTarget = targetTop - initialTop;
-        const x = lerp(0, viewport * track.x / 100, travel);
-        const y = lerp(0, yTarget, travel);
+
+        // Move each image through the same vertical destination before it disappears.
+        const targetTop = window.innerHeight * 0.12;
+        const yTarget = targetTop - element.offsetTop;
 
         element.style.opacity = String(1 - fade);
-        element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        element.style.transform = `translate3d(0, ${lerp(0, yTarget, travel)}px, 0)`;
       });
 
-      const labelTravel = range(progress, 0.38, 0.66);
-      const labelFade = range(progress, 0.52, 0.70);
+      // Labels stay still initially, then leave vertically as the third image passes.
+      const labelTravel = range(progress, 0.46, 0.66);
+      const labelFade = range(progress, 0.54, 0.68);
       labelRefs.current.forEach((element) => {
         if (!element) return;
         element.style.opacity = String(1 - labelFade);
-        element.style.transform = `translate3d(0, ${lerp(0, -34, labelTravel)}svh, 0)`;
+        element.style.transform = `translate3d(0, ${lerp(0, -22, labelTravel)}vh, 0)`;
       });
 
       if (statementRef.current) {
-        const reveal = range(progress, 0.80, 0.90);
-        const settle = range(progress, 0.80, 0.94);
-        statementRef.current.style.opacity = String(reveal);
-        statementRef.current.style.transform = `translate3d(-50%, ${lerp(12, -4, settle)}svh, 0)`;
+        // Last project is fully gone at .76: only then does the statement enter.
+        const reveal = range(progress, 0.77, 0.86);
+        const settle = range(progress, 0.77, 0.90);
+        const exit = range(progress, 0.94, 1);
+
+        statementRef.current.style.opacity = String(reveal * (1 - exit));
+        statementRef.current.style.transform = `translate3d(-50%, ${lerp(10, 0, settle)}vh, 0)`;
       }
     };
 
