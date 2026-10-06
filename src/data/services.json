@@ -64,9 +64,9 @@
   {
     "id": "website",
     "eyebrow": "Création de site internet · Refonte · SEO",
-    "title": "Créer ou refaire votre site internet",
+    "title": "Un site pensé autour de votre activité",
     "text": [
-      "Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge sa création ou sa refonte, de la structure au développement, pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."
+      "Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je vous aide à clarifier ce qu’il doit montrer, dans quel ordre et avec quels outils, puis je conçois et développe une expérience **sur mesure**, claire, identifiable et simple à utiliser."
     ],
     "media": "atmosphere-laptop",
     "tags": [
@@ -78,16 +78,16 @@
     "order": 2,
     "offers": [
       {
-        "id": "website-essential",
-        "eyebrow": "01 · Site essentiel",
+        "id": "website-showcase",
+        "eyebrow": "01 · Site vitrine",
         "title": "Présenter clairement votre activité",
         "text": [
-          "Pour lancer ou remettre à plat votre présence en ligne avec un site clair, rapide et facile à faire évoluer."
+          "Pour lancer ou remettre à plat votre présence en ligne sans avoir à arriver avec un cahier des charges. Nous définissons ensemble ce que votre site doit montrer et le parcours essentiel pour vos visiteurs."
         ],
         "meta": [
           {
             "label": "Comprend",
-            "value": "Structure · Design web · Développement responsive · SEO essentiel · Formulaire de contact"
+            "value": "Structure & parcours · Design sur mesure · Jusqu’à 4 pages · Développement responsive · SEO essentiel · Formulaire de contact"
           },
           {
             "label": "Budget",
@@ -100,16 +100,16 @@
         "surface": "subtle"
       },
       {
-        "id": "website-complete",
+        "id": "website-custom",
         "eyebrow": "02 · Site sur mesure",
         "title": "Construire une expérience plus complète",
         "text": [
-          "Pour les projets qui demandent une structure plus riche, des parcours spécifiques ou des fonctionnalités adaptées à leur activité."
+          "Pour les projets qui nécessitent davantage de contenus, un parcours spécifique ou des fonctionnalités directement liées à leur activité."
         ],
         "meta": [
           {
-            "label": "Comprend",
-            "value": "Architecture sur mesure · Design web · Développement responsive · SEO · Interactions · Intégrations selon le projet"
+            "label": "Peut inclure",
+            "value": "Architecture plus complète · CMS · Réservation · Paiement · Intégrations · Animations & interactions · SEO approfondi"
           },
           {
             "label": "Budget",
