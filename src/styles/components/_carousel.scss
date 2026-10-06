@@ -14,7 +14,7 @@
 }
 .carousel__arrow { width: 1.65rem; height: 1.65rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: $opacity-muted; pointer-events: none; transition: opacity $transition-hover; }
 
-.section__offers { margin-top: clamp(#{$space-3}, 5vw, #{$space-5}); }
+.section__offers { margin-top: $margin-section; }
 .section__offers .carousel { gap: $space-2; }
 .section__offers .carousel__track { grid-auto-columns: minmax(0, 1fr); gap: $space-3; overflow: visible; scroll-snap-type: none; }
 .section__offers .carousel__controls { display: none; }
@@ -47,7 +47,7 @@
   /* Offers are distinct decision blocks, not one dense carousel. Use the
      shared mobile block rhythm while keeping each card internally compact. */
   .section__offers {
-    margin-top: $flow-group;
+    margin-top: $margin-group;
   }
 
   .section__offers .carousel__track {
