@@ -10,7 +10,8 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--section-gap, #{$layout-gap});
+  column-gap: $layout-gap;
+  row-gap: var(--section-gap, #{$layout-gap});
 }
 
 .grid > * { min-width: 0; }
