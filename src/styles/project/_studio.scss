@@ -90,6 +90,10 @@
     margin-top: clamp(#{$space-5}, 58svh, 38rem);
   }
 
+  #studio-services-intro .split__secondary .media__frame {
+    aspect-ratio: 4 / 3;
+  }
+
   #studio-service-identity .split {
     min-height: min(78svh, 54rem);
     align-items: start;
