@@ -4,7 +4,9 @@
 
 .section--collection-panel {
   --text-width: none;
-  --split-media-ratio: #{$ratio-square};
+  // Service splits use the conservative editorial frame by default.
+  // Individual compositions can still opt into portrait or authored ratios.
+  --split-media-ratio: #{$ratio-editorial};
   --split-media-max-height: min(78svh, 54rem);
 }
 .section--collection-panel .split { align-content: center; }
@@ -40,7 +42,7 @@
    Service media and copy use the full eight-column tablet grid. */
 @media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
   .section--collection-panel {
-    --split-media-ratio: #{$ratio-landscape};
+    --split-media-ratio: #{$ratio-editorial};
     --split-media-max-height: none;
   }
 
