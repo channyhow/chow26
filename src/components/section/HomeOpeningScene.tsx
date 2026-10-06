@@ -51,7 +51,8 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    const mobile = window.matchMedia("(max-width: 63.999rem)");
+    const phone = window.matchMedia("(max-width: 47.999rem)");
+    const compact = window.matchMedia("(max-width: 63.999rem)");
 
     const updateDesktop = (progress: number) => {
       const rise = range(progress, 0.34, 0.58);
@@ -87,16 +88,23 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       }
     };
 
-    const updateMobile = (progress: number) => {
+    const updateCompact = (progress: number, isPhone: boolean) => {
       const viewport = window.innerHeight;
       const toPx = (svh: number) => svh * viewport / 100;
 
-      const tracks = [
-        { start: 0.04, end: 0.78, y: -78, x: 5, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.76, fadeEnd: 0.90 },
-        { start: 0.00, end: 0.76, y: -68, x: -7, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.74, fadeEnd: 0.88 },
-        { start: 0.08, end: 0.82, y: -116, x: 8, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
-        { start: 0.06, end: 0.84, y: -126, x: -5, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.80, fadeEnd: 0.94 },
-      ] as const;
+      const tracks = isPhone
+        ? [
+            { start: 0.04, end: 0.78, y: -70, x: 4, scaleFrom: 0.99, scaleTo: 1.015, fadeStart: 0.76, fadeEnd: 0.90 },
+            { start: 0.00, end: 0.76, y: -62, x: -6, scaleFrom: 1.00, scaleTo: 0.975, fadeStart: 0.74, fadeEnd: 0.88 },
+            { start: 0.08, end: 0.82, y: -82, x: 7, scaleFrom: 0.985, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
+            { start: 0.06, end: 0.84, y: -72, x: -4, scaleFrom: 0.995, scaleTo: 1.02, fadeStart: 0.80, fadeEnd: 0.94 },
+          ] as const
+        : [
+            { start: 0.03, end: 0.74, y: -62, x: 3, scaleFrom: 0.995, scaleTo: 1.01, fadeStart: 0.74, fadeEnd: 0.88 },
+            { start: 0.00, end: 0.72, y: -56, x: -4, scaleFrom: 1, scaleTo: 0.985, fadeStart: 0.72, fadeEnd: 0.86 },
+            { start: 0.07, end: 0.78, y: -72, x: 5, scaleFrom: 0.99, scaleTo: 1.005, fadeStart: 0.76, fadeEnd: 0.90 },
+            { start: 0.05, end: 0.80, y: -68, x: -3, scaleFrom: 0.995, scaleTo: 1.01, fadeStart: 0.78, fadeEnd: 0.92 },
+          ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
@@ -127,7 +135,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       }
     };
 
-    const getMobileProgress = () => {
+    const getCompactProgress = () => {
       const scene = sceneRef.current;
       const section = scene?.closest("#home-opening");
       if (!(section instanceof HTMLElement)) return 0;
@@ -141,13 +149,13 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
     const resolveOpeningState = () => {
       frame = 0;
 
-      if (!mobile.matches) {
+      if (!compact.matches) {
         const desktopDistance = Math.max(window.innerHeight * 2, 1);
         updateDesktop(clamp01(window.scrollY / desktopDistance));
         return;
       }
 
-      updateMobile(getMobileProgress());
+      updateCompact(getCompactProgress(), phone.matches);
     };
 
     const scheduleResolve = () => {
@@ -158,13 +166,15 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
     const unsubscribeProgress = scrollProgress?.on("change", scheduleResolve);
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
-    mobile.addEventListener("change", scheduleResolve);
+    compact.addEventListener("change", scheduleResolve);
+    phone.addEventListener("change", scheduleResolve);
 
     return () => {
       unsubscribeProgress?.();
       window.removeEventListener("scroll", scheduleResolve);
       window.removeEventListener("resize", scheduleResolve);
-      mobile.removeEventListener("change", scheduleResolve);
+      compact.removeEventListener("change", scheduleResolve);
+      phone.removeEventListener("change", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [scrollProgress]);
