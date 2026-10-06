@@ -109,6 +109,10 @@ text-transform: uppercase;
   background: transparent;
   color: inherit;
 
+  .actions__arrow {
+    color: $color-accent;
+  }
+
   @include hover {
     background: transparent;
     color: var(--accent);
