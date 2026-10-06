@@ -189,12 +189,10 @@
 .projectStoryText .textBlock__content > :first-child {
   @include type-heading-md;
   max-width: 34ch;
-  line-height: 1.12;
 }
 
 .projectStoryMedia .textBlock__content p {
   @include type-body;
-  line-height: 1.5;
 }
 
 .projectStoryMedia strong,
@@ -286,7 +284,6 @@
     --project-section-gap: #{$space-5};
   }
 
-  .projectHero,
   .projectStoryMedia {
     --split-media-ratio: #{$ratio-editorial};
   }
@@ -331,13 +328,12 @@
   }
 }
 
-@include tablet-down {
+@media (max-width: calc(#{$bp-tablet} - 0.01rem)) {
   .projectDetail {
     --project-reading-measure: 100%;
     --project-section-gap: #{$mobile-section-space};
   }
 
-  .projectHero,
   .projectStoryMedia {
     --split-media-ratio: #{$ratio-landscape};
   }
@@ -357,17 +353,12 @@
     display: block;
   }
 
-  .projectHero .textBlock__title {
-    line-height: 0.94;
-  }
-
   .projectStoryText .textBlock__content > :first-child {
     @include type-heading-sm;
-    line-height: 1.15;
   }
 
   .projectHero__meta .textBlock__meta {
     grid-template-columns: 1fr;
-    row-gap: $space-3;
+    row-gap: $space-2;
   }
 }
