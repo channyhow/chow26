@@ -8,7 +8,6 @@ import projectDetailData from "@/data/projectDetail.json";
 import { resolveActions } from "@/data/actionRegistry";
 import type {
   MetaItem,
-  PageBlock,
   PageData,
   ProjectRecord,
   SectionBlock,
@@ -39,7 +38,6 @@ type ProjectDetailConfig = {
     withoutMedia: StoryTemplate;
   };
   related: SectionTemplate;
-  footer: PageBlock;
 };
 
 const projectDetail = projectDetailData as ProjectDetailConfig;
