@@ -122,8 +122,3 @@
   }
 }
 
-/* Secondary project copy should read as supporting information, not disabled UI. */
-#project-gallery .projectCard .textBlock__text,
-#project-gallery .projectCard .textBlock__content {
-  color: color-mix(in srgb, currentColor 58%, transparent);
-}
