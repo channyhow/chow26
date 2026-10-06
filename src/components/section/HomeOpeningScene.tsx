@@ -88,7 +88,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
       }
     };
 
-    const updateCompact = (progress: number, _isPhone: boolean) => {
+    const updateCompact = (progress: number) => {
       /*
        * One compact choreography for tablet + mobile:
        * - every image only travels vertically upward;
@@ -159,7 +159,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
         return;
       }
 
-      updateCompact(getCompactProgress(), phone.matches);
+      updateCompact(getCompactProgress());
     };
 
     const scheduleResolve = () => {
