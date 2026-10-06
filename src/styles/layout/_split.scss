@@ -142,6 +142,17 @@
 }
 
 @include desktop-up {
+  .section--collection-panel .split--balanced,
+  .section--collection-panel .split--editorial {
+    --split-primary-desktop: 1 / span 4;
+    --split-secondary-desktop: 5 / 13;
+  }
+
+  .section--collection-panel .split--media-lead {
+    --split-primary-desktop: 9 / 13;
+    --split-secondary-desktop: 1 / span 8;
+  }
+
   .split__primary,
   .split__secondary {
     grid-row: 1;
@@ -159,7 +170,7 @@
 /* Compact laptops keep the desktop composition but rebalance media-led splits
    so neither side feels compressed at 1024–1439px. */
 @include between($bp-desktop, $bp-wide) {
-  .split--media-lead {
+  .split--media-lead:not(.section--collection-panel .split--media-lead) {
     --split-primary-desktop: 6 / 13;
     --split-secondary-desktop: 1 / span 5;
   }
