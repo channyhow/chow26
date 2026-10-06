@@ -40,7 +40,7 @@ $space-5: 6rem;
 $flow-tight: $space-1;
 $flow-default: $space-2;
 $flow-loose: $space-3;
-$flow-group: $space-3; // distinct thought within one content block\n$flow-group: $space-3; // distinct thought within one content block
+$flow-group: $space-3; // distinct thought within one content block
 $layout-gap: clamp(#{$space-2}, 2.5vw, #{$space-3});
 $section-content-gap: clamp(1.5rem, 2.5vw, #{$space-3});
 $section-space: clamp(3rem, 7vw, #{$space-5});
@@ -93,19 +93,20 @@ $font-weight-semibold: 600;
 $font-weight-bold: 800;
 $font-weight-strong: 680;
 
-$type-caption: 0.8125rem;
-$type-body-sm: 0.9375rem;
-$type-body: clamp(1.125rem, 0.45vw + 1rem, 1.25rem);
-$type-ui: clamp(1rem, 0.3vw + 0.95rem, 1.125rem);
-$type-ui-compact: clamp(0.8125rem, 0.3vw + 0.76rem, 0.9rem);
-$type-nav: clamp(0.72rem, 0.22vw + 0.68rem, 0.8rem);
-$type-lead: $type-body;
-$type-heading-sm: $type-body;
-$type-heading-md: clamp(1.25rem, 1vw + 1rem, 1.75rem);
-$type-heading-lg: clamp(1.75rem, 2vw, 2.5rem);
-$type-heading-xl: clamp(2.25rem, 3.5vw, 3.75rem);
-$type-display-lg: clamp(2.75rem, 5vw, 5.25rem);
-$type-display-xl: clamp(3.75rem, 7vw, 7rem);
+// Fluid type scale. Body copy stays restrained while display sizes carry hierarchy.
+$type-caption: clamp(0.75rem, 0.15vw + 0.72rem, 0.8125rem);
+$type-body-sm: clamp(0.875rem, 0.18vw + 0.84rem, 0.9375rem);
+$type-body: clamp(1rem, 0.32vw + 0.94rem, 1.125rem);
+$type-ui: clamp(0.9375rem, 0.25vw + 0.89rem, 1.0625rem);
+$type-ui-compact: clamp(0.75rem, 0.2vw + 0.71rem, 0.875rem);
+$type-nav: clamp(0.72rem, 0.16vw + 0.69rem, 0.8rem);
+$type-lead: clamp(1.125rem, 0.55vw + 1rem, 1.375rem);
+$type-heading-sm: clamp(1.25rem, 0.55vw + 1.12rem, 1.5rem);
+$type-heading-md: clamp(1.5rem, 1vw + 1.25rem, 2rem);
+$type-heading-lg: clamp(2rem, 1.8vw + 1.55rem, 3rem);
+$type-heading-xl: clamp(2.75rem, 3vw + 2rem, 4.5rem);
+$type-display-lg: clamp(3.25rem, 5vw + 2rem, 6rem);
+$type-display-xl: clamp(4rem, 7vw + 2rem, 8rem);
 $type-heading: $type-heading-xl;
 $type-display: $type-display-lg;
 $ratio-square: list.slash(1, 1);
