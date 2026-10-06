@@ -13,6 +13,7 @@ import type {
   ProjectRecord,
   SectionBlock,
   SectionContent,
+  SectionGroup,
   StyleVariant,
 } from "@/types/content";
 
@@ -162,12 +163,40 @@ function createProjectPage(project: ProjectRecord): PageData {
     },
   );
 
+  const closingGroup: SectionGroup = {
+    id: `project-${project.id}-closing`,
+    type: "Group",
+    layout: "scroll-panel",
+    panels: [
+      {
+        id: `project-${project.id}-related-panel`,
+        behavior: "sticky",
+        frame: "content",
+        size: "full",
+        align: "center",
+        surface: "solid",
+        color: "secondary",
+        blocks: [related],
+      },
+      {
+        id: `project-${project.id}-final-panel`,
+        behavior: "overlay",
+        frame: "content",
+        size: "full",
+        align: "center",
+        surface: "glass",
+        color: "primary",
+        blocks: [{ ref: "final-cta" }, { ref: "site-footer" }],
+      },
+    ],
+  };
+
   return {
     id: `project-${project.id}`,
     slug: project.href,
     variant: projectDetail.page.variant,
     seo: project.seo,
-    blocks: [hero, ...storyBlocks, related, projectDetail.footer],
+    blocks: [hero, ...storyBlocks, closingGroup],
   };
 }
 
