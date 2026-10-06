@@ -52,7 +52,7 @@
   .split,
   .split--balanced,
   .split--editorial {
-    --split-gap: #{$space-5};
+    --split-gap: #{$space-4};
     grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
