@@ -1,4 +1,10 @@
 {
-  "primary": ["home", "projects", "studio", "talk-project"],
+  "primary": [
+    "home",
+    "projects",
+    "studio",
+    "view-project-call",
+    "talk-project"
+  ],
   "review": []
 }
