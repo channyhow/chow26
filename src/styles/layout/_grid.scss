@@ -28,25 +28,6 @@
   justify-self: var(--grid-justify-mobile, auto);
 }
 
-/* Editorial field roles keep scale relationships reusable while placement
-   remains content-driven through GridPlacement. */
-.grid--editorial .grid__item[data-editorial-role="statement"] {
-  --editorial-span-desktop: #{$editorial-span-statement};
-}
-
-.grid--editorial .grid__item[data-editorial-role="body"] {
-  --editorial-span-desktop: #{$editorial-span-body};
-}
-
-.grid--editorial .grid__item[data-editorial-role="media-primary"] {
-  --editorial-span-desktop: #{$editorial-span-media-primary};
-}
-
-.grid--editorial .grid__item[data-editorial-role="media-accent"] {
-  --editorial-span-desktop: #{$editorial-span-media-accent};
-  --editorial-span-tablet: #{$editorial-span-media-accent-tablet};
-}
-
 .grid__lead {
   display: flex;
   align-items: flex-start;
@@ -120,11 +101,6 @@
 }
 
 @include tablet-up {
-  .grid--editorial .grid__item[data-editorial-role="media-accent"] {
-    width: 100%;
-    max-width: none;
-  }
-
   .grid:not(.grid--editorial) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
