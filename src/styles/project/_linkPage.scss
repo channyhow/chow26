@@ -43,8 +43,9 @@
 }
 
 .linkPage__campaign .textBlock__title {
-  @include type-display-lg;
+  @include type-heading-lg;
   // color: $color-accent;
+  text-transform: uppercase;
 }
 
 .linkPage__campaign .textBlock__subtitle p {
@@ -83,7 +84,7 @@
   @include type-body;
   width: 100%;
   min-height: 0;
-  padding: $space-3 0;
+  padding: $space-2 0;
   justify-content: space-between;
   border: 0;
   border-radius: 0;
