@@ -46,6 +46,12 @@ const formSchema = z.object({
 });
 
 const stringOrStringArraySchema = z.union([z.string(), z.array(z.string())]);
+// Text supports semantic paragraph groups: ["a", "b"] remains valid, while
+// [["a", "b"], ["c"]] creates intentional spacing between related thoughts.
+const textSchema = z.union([
+  z.string(),
+  z.array(z.union([z.string(), z.array(z.string())])),
+]);
 
 const metaItemSchema = z.object({
   label: z.string(),
@@ -84,7 +90,7 @@ const contentItemSchema: z.ZodTypeAny = z.object({
   eyebrow: stringOrStringArraySchema.optional(),
   title: z.string().optional(),
   subtitle: stringOrStringArraySchema.optional(),
-  text: stringOrStringArraySchema.optional(),
+  text: textSchema.optional(),
   media: z.union([z.string(), z.array(z.string())]).optional(),
   links: z.array(actionRefSchema).optional(),
   meta: z.array(metaItemSchema).optional(),
