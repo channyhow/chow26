@@ -21,7 +21,9 @@
 .linkPage__campaign .section__header.textBlock {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: center;
+  align-items: start;
+  column-gap: $space-5;
+  row-gap: $space-4;
   width: 100%;
   max-width: none;
 }
@@ -35,7 +37,9 @@
 .linkPage__campaign .textBlock__footer {
   grid-column: 2;
   grid-row: 1 / span 2;
+  align-self: start;
   width: 100%;
+  padding-top: $space-2;
 }
 
 .linkPage__campaign .textBlock__title {
@@ -49,8 +53,16 @@
 
 }
 
+.linkPage__campaign .textBlock__content {
+  max-width: $measure-text;
+}
+
 .linkPage__campaign .textBlock__content p {
-  @include type-body-bold;
+  @include type-body;
+}
+
+.linkPage__campaign .textBlock__content strong {
+  font-weight: $font-weight-medium;
 }
 
 // .linkPage__campaign strong {
@@ -64,24 +76,24 @@
 .linkPage__campaign .actions {
   display: grid;
   width: 100%;
-  gap: $space-1;
+  gap: 0;
 }
 
 .linkPage__campaign .actions__link {
+  @include type-body;
   width: 100%;
-  min-height: 4.75rem;
-  padding: $space-2 $space-3;
+  min-height: 0;
+  padding: $space-3 0;
   justify-content: space-between;
   border: 0;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--primary) 4%, transparent);
+  border-radius: 0;
+  background: transparent;
   color: inherit;
   box-shadow: none;
 
   @include hover {
-    background: color-mix(in srgb, var(--primary) 8%, transparent);
     color: var(--accent);
-    transform: translateX(0.2rem);
+    transform: none;
 
     .actions__label { background-size: 100% 1px; }
     .actions__arrow { transform: translate(0.22rem, -0.12rem); }
@@ -90,12 +102,16 @@
 
 .linkPage__campaign .actions__link:first-child,
 .linkPage__campaign .actions__link[data-priority="primary"] {
-  border: 1px solid $color-accent;
-  background: color-mix(in srgb, #{$color-accent} 12%, transparent);
+  margin-bottom: $margin-content;
+  padding-top: 0;
+  padding-bottom: $space-3;
+  border-bottom: 1px solid $color-accent;
+  background: transparent;
+  color: inherit;
 
   @include hover {
-    background: var(--accent);
-    color: var(--primary);
+    background: transparent;
+    color: var(--accent);
   }
 }
 
@@ -115,13 +131,19 @@
   }
 
   .linkPage__campaign .textBlock__footer {
-    margin-top: $space-3;
+    margin-top: $margin-block;
+    padding-top: 0;
   }
 }
 
 @include mobile-down {
   .linkPage__campaign .actions__link {
-    min-height: 4.25rem;
-    padding: $space-2;
+    padding-block: $space-2;
+  }
+
+  .linkPage__campaign .actions__link:first-child,
+  .linkPage__campaign .actions__link[data-priority="primary"] {
+    padding-top: 0;
+    padding-bottom: $space-2;
   }
 }
