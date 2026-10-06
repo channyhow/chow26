@@ -67,16 +67,16 @@
 @include desktop-up {
   /* Supports is the louder service beat: keep the same Split grammar, but let
      the accent become part of the composition rather than another UI detail. */
-  #integrations {
+  #studio-service-integrations {
     --split-media-ratio: #{$ratio-editorial};
   }
 
-  #integrations .split {
+  #studio-service-integrations .split {
     position: relative;
     isolation: isolate;
   }
 
-  #integrations .split::before {
+  #studio-service-integrations .split::before {
     content: "";
     grid-column: 6 / 13;
     grid-row: 1;
@@ -86,14 +86,14 @@
     z-index: 0;
   }
 
-  #integrations .split > [data-split-role="content"] {
+  #studio-service-integrations .split > [data-split-role="content"] {
     grid-column: 2 / span 4;
     grid-row: 1;
     align-self: center;
     z-index: 1;
   }
 
-  #integrations .split > [data-split-role="media"] {
+  #studio-service-integrations .split > [data-split-role="media"] {
     grid-column: 7 / 13;
     grid-row: 1;
     align-self: center;
