@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 
 import { Drawer } from "@/components/navigation/Drawer";
@@ -44,10 +44,21 @@ const themeStyle: ThemeStyle = {
 };
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const isLinkPage = pathname === "/link" || pathname === "/link/";
   const drawer = useUIStore(selectDrawerView);
   const overlayOpen = useUIStore(selectOverlayOpen);
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      target?.scrollIntoView({ block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname, hash]);
 
   return (
     <div
