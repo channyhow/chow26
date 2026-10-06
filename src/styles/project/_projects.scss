@@ -15,7 +15,7 @@
 
 #project-gallery .section__header {
   max-width: none;
-  margin-bottom: clamp(#{$space-5}, 12vh, #{$space-7});
+  margin-bottom: clamp(#{$space-5}, 12vh, #{$space-6});
 }
 
 #project-gallery .section__header .textBlock__title {
@@ -46,7 +46,7 @@
   #project-gallery .grid {
     align-items: start;
     column-gap: var(--grid-gutter);
-    row-gap: clamp(#{$space-4}, 9vw, #{$space-7});
+    row-gap: clamp(#{$space-4}, 9vw, #{$space-6});
   }
 
   #project-gallery .grid > :nth-child(6n + 1) {
