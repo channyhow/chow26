@@ -62,29 +62,32 @@
 
 .textBlock--meta-rows {
   .textBlock__meta {
-    @include rule-top(16%);
     display: grid;
-    gap: 0;
+    gap: $space-2;
     width: 100%;
     margin-top: $space-3;
   }
+
   .textBlock__meta > * {
-    @include rule-bottom(16%);
     display: grid;
     grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
     gap: $flow-default;
     width: 100%;
-    padding-block: $flow-tight;
-    color: color-mix(in srgb, currentColor 58%, transparent);
+    padding: 0;
   }
+
   .textBlock__metaLabel {
     @include type-ui-compact;
-    color: color-mix(in srgb, currentColor 72%, transparent);
+    font-weight: $font-weight-medium;
+    color: color-mix(in srgb, currentColor 58%, transparent);
   }
+
   .textBlock__metaValue {
-    @include type-caption;
+    @include type-body-sm;
     min-width: 0;
-    text-transform: uppercase;
+    color: color-mix(in srgb, currentColor 72%, transparent);
+    text-transform: none;
+    letter-spacing: normal;
   }
 }
 
