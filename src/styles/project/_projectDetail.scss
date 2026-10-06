@@ -28,7 +28,7 @@
   @include site-grid;
   width: 100%;
   align-items: start;
-  row-gap: $space-4;
+  row-gap: $space-2;
 }
 
 .projectHero__statement {
@@ -37,13 +37,12 @@
   max-width: none;
 }
 
-.projectHero__statement .textBlock__subtitle {
+.projectHero__statement .textBlock__subtitle p {
   @include type-heading-xl;
   width: 100%;
   max-width: none;
   margin: 0;
-  line-height: 0.96;
-  letter-spacing: -0.035em;
+
 }
 
 .projectHero__identity {
@@ -53,11 +52,10 @@
 }
 
 .projectHero__identity .textBlock__title {
-  @include type-heading-lg;
+  @include type-heading-xl;
   margin: 0;
   color: color-mix(in srgb, currentColor 34%, transparent);
-  line-height: 1;
-  letter-spacing: -0.025em;
+  
 }
 
 .projectHero__media {
