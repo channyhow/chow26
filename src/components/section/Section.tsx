@@ -57,12 +57,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isServiceCollection = block.source?.collection === "services";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
-  const isFeaturedProjectGrid = layout === "grid" && block.source?.collection === "projects" && block.source.query?.featured === true;
+  const isProjectGrid = layout === "grid" && block.source?.collection === "projects";
+  const isFeaturedProjectGrid = isProjectGrid && block.source?.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
   const isProfileGrid = layout === "grid" && items.length === 1 && Boolean(items[0]?.media) && Boolean(items[0]?.subtitle) && !items[0]?.title;
   const cardVariant = block.itemAppearance?.variant ?? (isServiceCollection ? "service" : isStructuredEditorialList ? "editorial" : "default");
   const useProjectCarouselOnMobile = isMobileViewport && isFeaturedProjectGrid;
-  const projectGridLead = header && !useProjectCarouselOnMobile && isFeaturedProjectGrid ? <TextBlock content={{ title: header.title }} className="section__gridLead" motionEnabled={sectionMotionEnabled} /> : null;
+  const projectGridLead = header && !useProjectCarouselOnMobile && isProjectGrid ? <TextBlock content={{ title: header.title }} className="section__gridLead" motionEnabled={sectionMotionEnabled} /> : null;
 
   useEffect(() => {
     const carouselMedia = window.matchMedia(mobileCarouselQuery);
