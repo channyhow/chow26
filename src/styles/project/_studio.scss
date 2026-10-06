@@ -65,40 +65,33 @@
 }
 
 @include desktop-up {
-  /* Supports is the louder service beat: keep the same Split grammar, but let
-     the accent become part of the composition rather than another UI detail. */
-  #studio-service-integrations {
-    --split-media-ratio: #{$ratio-editorial};
-  }
-
+  /* Supports keeps the shared split grammar but uses the grid as an editorial
+     field: smaller media, displaced lower than the copy, with empty space doing
+     the graphic work rather than an accent surface. */
   #studio-service-integrations .split {
-    position: relative;
-    isolation: isolate;
-  }
-
-  #studio-service-integrations .split::before {
-    content: "";
-    grid-column: 6 / 13;
-    grid-row: 1;
-    align-self: stretch;
-    min-height: 100%;
-    background: $color-accent;
-    z-index: 0;
+    align-items: start;
   }
 
   #studio-service-integrations .split > [data-split-role="content"] {
     grid-column: 2 / span 4;
     grid-row: 1;
-    align-self: center;
-    z-index: 1;
+    align-self: start;
+    min-width: 0;
   }
 
   #studio-service-integrations .split > [data-split-role="media"] {
-    grid-column: 7 / 13;
+    grid-column: 8 / span 4;
     grid-row: 1;
-    align-self: center;
-    margin-block: $padding-block;
-    z-index: 1;
+    align-self: end;
+    min-width: 0;
+    margin-top: clamp(#{$space-5}, 18svh, #{$space-6 + $space-4});
+  }
+
+  #studio-service-integrations .split__secondary .media,
+  #studio-service-integrations .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    margin: 0;
   }
 
   /* Treat the founder/footer as an editorial field rather than a conventional
