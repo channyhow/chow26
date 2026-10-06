@@ -214,43 +214,10 @@
   max-width: 22ch;
 }
 
-.projectRelated .projectCard .card__mediaWrap {
+.projectRelated .projectCard .media__frame {
   aspect-ratio: $ratio-wide;
 }
 
-.projectRelated .projectCard .card__media,
-.projectRelated .projectCard .media__frame,
-.projectRelated .projectCard .media__asset,
-.projectRelated .projectCard img,
-.projectRelated .projectCard video {
-  width: 100%;
-  height: 100%;
-}
-
-.projectRelated .projectCard .card__media,
-.projectRelated .projectCard .media__frame {
-  aspect-ratio: auto;
-}
-
-.projectRelated .projectCard .media__asset,
-.projectRelated .projectCard img,
-.projectRelated .projectCard video {
-  object-fit: cover;
-}
-
-.projectRelated .projectCard .textBlock__title {
-  @include type-body;
-  color: color-mix(in srgb, currentColor 34%, transparent);
-}
-
-.projectRelated .projectCard .textBlock__content {
-  opacity: 1;
-}
-
-.projectRelated .projectCard .textBlock__content p {
-  @include type-heading-sm;
-  color: currentColor;
-}
 
 @media (min-width: $bp-desktop) and (max-width: 74.999rem) {
   .projectDetail {
