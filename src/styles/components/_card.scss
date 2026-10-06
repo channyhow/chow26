@@ -282,7 +282,11 @@
   }
 }
 
+/* Project cards share one internal rhythm everywhere; page layouts own only placement. */
 .projectCard {
+  overflow: visible;
+  background: transparent;
+
   .card__mediaWrap {
     background: $color-dark-subtle;
   }
@@ -290,7 +294,7 @@
   .card__body {
     display: grid;
     gap: $flow-tight;
-    padding: $flow-default;
+    padding: $flow-default 0 0;
   }
 
   .textBlock,
@@ -300,7 +304,14 @@
     gap: $flow-tight;
   }
 
+  .textBlock__title {
+    @include type-body;
+    font-weight: $font-weight-medium;
+    max-width: none;
+  }
+
   .textBlock__content {
+    @include type-body;
     opacity: $opacity-quiet;
   }
 
