@@ -46,11 +46,9 @@
   }
 }
 
-/* Tablet portrait keeps the media-led reading order. At the 64rem desktop\n   boundary the normal desktop split takes over, so 1024px behaves like a\n   compact laptop instead of a stacked tablet. */
-@media
-  (min-width: $bp-tablet)
-  and
-  (max-width: calc(#{$bp-desktop} - 0.001rem)) {
+/* Tablet portrait keeps the media-led reading order. At 64rem the normal
+   desktop composition takes over, so 1024px behaves like a compact laptop. */
+@include between($bp-tablet, $bp-desktop) {
   .split,
   .split--balanced,
   .split--editorial {
@@ -59,12 +57,8 @@
     column-gap: $grid-gap;
     row-gap: var(--split-gap);
     align-items: start;
-   
   }
- .split--media-lead {
-    --split-primary-desktop: 6 / 12;
-    --split-secondary-desktop: 1 / span 5;
-  }
+
   .split > .split__primary,
   .split > .split__secondary,
   .split--balanced > .split__primary,
@@ -83,21 +77,16 @@
     grid-row: 1;
   }
 
-
-
   .split > [data-split-role="content"],
   .split--balanced > [data-split-role="content"],
   .split--editorial > [data-split-role="content"] {
     grid-column: 1 / span 8;
     grid-row: 2;
-    .textBlock {
-      max-width: none;
-    }
+
+    .textBlock { max-width: none; }
   }
 
-  .split--editorial {
-    --split-media-ratio: #{$ratio-landscape};
-  }
+  .split--editorial { --split-media-ratio: #{$ratio-landscape}; }
 }
 
 @include tablet-down {
@@ -152,7 +141,7 @@
   }
 }
 
-@media (min-width: $bp-desktop) {
+@include desktop-up {
   .split__primary,
   .split__secondary {
     grid-row: 1;
@@ -163,5 +152,15 @@
   }
   .split__secondary {
     grid-column: var(--split-secondary-column, var(--split-secondary-desktop));
+  }
+}
+
+
+/* Compact laptops keep the desktop composition but rebalance media-led splits
+   so neither side feels compressed at 1024–1439px. */
+@include between($bp-desktop, $bp-wide) {
+  .split--media-lead {
+    --split-primary-desktop: 6 / -1;
+    --split-secondary-desktop: 1 / span 5;
   }
 }
