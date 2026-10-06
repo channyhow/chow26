@@ -67,6 +67,8 @@
   justify-self: center;
   width: min(100%, $measure-text);
   will-change: transform, opacity;
+      text-align: center;
+
 }
 .homeOpeningScene__statement p { margin: 0; }
 .homeOpeningScene__project:focus-visible { outline: 2px solid currentColor; outline-offset: $space-1; }
@@ -131,8 +133,7 @@
     left: 50%;
     z-index: calc(#{$z-raised} + 3);
     @include type-body;
-    line-height: 1.25;
-    text-align: center;
+
     opacity: 0;
   }
 }
