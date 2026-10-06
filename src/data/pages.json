@@ -414,13 +414,13 @@
     ]
   },
   {
-    "id": "link",
-    "slug": "/link",
+    "id": "appel-a-projets",
+    "slug": "/appel-a-projets",
     "seo": {
-      "title": "Appel à projets | Chow Studio",
+      "title": "Appel à projets identité visuelle | Chow Studio",
 "description": "Chow Studio invite 3 projets à créer ou faire évoluer leur identité visuelle, à Paris, à La Réunion ou ailleurs.",      "image": "kuro-grey",
       "imageAlt": "Appel à projets de Chow Studio pour des projets d’identité visuelle.",
-      "robots": { "index": false, "follow": true }
+      "robots": { "index": true, "follow": true }
     },
     "blocks": [
      {
