@@ -51,7 +51,6 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
   const paragraphs = header?.text ? (Array.isArray(header.text) ? header.text : [header.text]) : [];
 
   useEffect(() => {
-    const phone = window.matchMedia("(max-width: 47.999rem)");
     const compact = window.matchMedia("(max-width: 63.999rem)");
 
     const updateDesktop = (progress: number) => {
@@ -90,48 +89,40 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
     const updateCompact = (progress: number) => {
       /*
-       * One compact choreography for tablet + mobile:
-       * - every image only travels vertically upward;
-       * - labels leave with the third image;
-       * - the visual layer fully clears before the statement enters;
-       * - the statement then fades again at the end of the scene.
-       *
-       * No lateral drift, scale or breakpoint-specific choreography.
+       * One compact choreography for tablet + mobile.
+       * Every project travels upward continuously with scroll.
+       * Labels keep their layout position and only fade.
+       * The statement enters only after the visual layer has cleared.
        */
-      const projectTracks = [
-        { start: 0.00, end: 0.48, fadeStart: 0.40, fadeEnd: 0.52 },
-        { start: 0.08, end: 0.56, fadeStart: 0.48, fadeEnd: 0.60 },
-        { start: 0.16, end: 0.64, fadeStart: 0.56, fadeEnd: 0.68 },
-        { start: 0.24, end: 0.72, fadeStart: 0.64, fadeEnd: 0.76 },
+      const travel = range(progress, 0, 0.78);
+      const travelDistance = window.innerHeight * 1.15;
+      const projectFadeTracks = [
+        { start: 0.42, end: 0.54 },
+        { start: 0.50, end: 0.62 },
+        { start: 0.58, end: 0.70 },
+        { start: 0.66, end: 0.78 },
       ] as const;
 
       projectRefs.current.forEach((element, index) => {
         if (!element) return;
-        const track = projectTracks[index] ?? projectTracks[0];
-        const travel = range(progress, track.start, track.end);
-        const fade = range(progress, track.fadeStart, track.fadeEnd);
-
-        // Move each image through the same vertical destination before it disappears.
-        const targetTop = window.innerHeight * 0.12;
-        const yTarget = targetTop - element.offsetTop;
+        const fadeTrack = projectFadeTracks[index] ?? projectFadeTracks[0];
+        const fade = range(progress, fadeTrack.start, fadeTrack.end);
 
         element.style.opacity = String(1 - fade);
-        element.style.transform = `translate3d(0, ${lerp(0, yTarget, travel)}px, 0)`;
+        element.style.transform = `translate3d(0, ${-travelDistance * travel}px, 0)`;
       });
 
-      // Labels stay still initially, then leave vertically as the third image passes.
-      const labelTravel = range(progress, 0.46, 0.66);
-      const labelFade = range(progress, 0.54, 0.68);
+      // Keep service labels anchored: they fade as the third image passes.
+      const labelFade = range(progress, 0.54, 0.70);
       labelRefs.current.forEach((element) => {
         if (!element) return;
         element.style.opacity = String(1 - labelFade);
-        element.style.transform = `translate3d(0, ${lerp(0, -22, labelTravel)}vh, 0)`;
+        element.style.transform = "none";
       });
 
       if (statementRef.current) {
-        // Last project is fully gone at .76: only then does the statement enter.
-        const reveal = range(progress, 0.77, 0.86);
-        const settle = range(progress, 0.77, 0.90);
+        const reveal = range(progress, 0.79, 0.87);
+        const settle = range(progress, 0.79, 0.90);
         const exit = range(progress, 0.94, 1);
 
         statementRef.current.style.opacity = String(reveal * (1 - exit));
@@ -171,14 +162,12 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
     compact.addEventListener("change", scheduleResolve);
-    phone.addEventListener("change", scheduleResolve);
 
     return () => {
       unsubscribeProgress?.();
       window.removeEventListener("scroll", scheduleResolve);
       window.removeEventListener("resize", scheduleResolve);
       compact.removeEventListener("change", scheduleResolve);
-      phone.removeEventListener("change", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [scrollProgress]);
