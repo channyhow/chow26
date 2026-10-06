@@ -48,7 +48,7 @@
 
 /* Tablet keeps the mobile media-led reading order, but uses the wider canvas
    for a more editorial text measure instead of compressing content beside media. */
-@media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
+@include between($bp-tablet, calc($bp-desktop + 0.002rem)) {
   .split,
   .split--balanced,
   .split--editorial {
