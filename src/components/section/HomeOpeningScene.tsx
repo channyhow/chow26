@@ -122,9 +122,10 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
       if (statementRef.current) {
         const reveal = range(progress, 0.79, 0.87);
-        const exit = range(progress, 0.975, 1);
 
-        statementRef.current.style.opacity = String(reveal * (1 - exit));
+        // Hold at full opacity through the end of the sticky scene.
+        // The following panel rising provides the visual exit.
+        statementRef.current.style.opacity = String(reveal);
         statementRef.current.style.transform = "translate(-50%, -50%)";
       }
     };
