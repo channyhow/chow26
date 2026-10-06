@@ -37,15 +37,14 @@
 .linkPage__campaign .textBlock__footer {
   grid-column: 2;
   grid-row: 1 / span 2;
-  align-self: start;
+  align-self: center;
   width: 100%;
-  padding-top: $space-2;
+  padding-top: 0;
 }
 
 .linkPage__campaign .textBlock__title {
-  @include type-heading-lg;
+  @include type-display-lg;
   // color: $color-accent;
-  text-transform: uppercase;
 }
 
 .linkPage__campaign .textBlock__subtitle p {
@@ -84,7 +83,7 @@
   @include type-body;
   width: 100%;
   min-height: 0;
-  padding: $space-2 0;
+  padding: $padding-group 0;
   justify-content: space-between;
   border: 0;
   border-radius: 0;
@@ -105,7 +104,7 @@
 .linkPage__campaign .actions__link[data-priority="primary"] {
   margin-bottom: $margin-content;
   padding-top: 0;
-  padding-bottom: $space-3;
+  padding-bottom: $padding-group;
   border-bottom: 1px solid $color-accent;
   background: transparent;
   color: inherit;
@@ -139,12 +138,12 @@
 
 @include mobile-down {
   .linkPage__campaign .actions__link {
-    padding-block: $space-2;
+    padding-block: $padding-content;
   }
 
   .linkPage__campaign .actions__link:first-child,
   .linkPage__campaign .actions__link[data-priority="primary"] {
     padding-top: 0;
-    padding-bottom: $space-2;
+    padding-bottom: $padding-content;
   }
 }

@@ -158,7 +158,11 @@
 .section__offers .card--service {
   display: flex;
   height: 100%;
+<<<<<<< HEAD
   padding: $space-4;
+=======
+  padding: $padding-group;
+>>>>>>> e86c8dab83b7a27aeacba126b8306a919d4ea9ca
 
   .card__body.textBlock {
     flex: 1 1 auto;
@@ -175,12 +179,12 @@
 
   .textBlock__meta {
     margin-top: auto;
-    padding-top: $space-3;
+    padding-top: $padding-group;
   }
 
   .textBlock__footer {
     width: fit-content;
-    padding-top: $space-2;
+    padding-top: $padding-content;
 
     .actions__link {
       font-weight: $font-weight-medium;
@@ -190,7 +194,7 @@
 
 @include mobile-down {
   .section__offers .card--service {
-    padding: $space-2;
+    padding: $padding-content;
   }
 }
 

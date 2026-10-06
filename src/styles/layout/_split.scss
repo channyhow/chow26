@@ -142,6 +142,10 @@
 }
 
 @include desktop-up {
+  .split > [data-split-role="content"] {
+    align-self: center;
+  }
+
   .split__primary,
   .split__secondary {
     grid-row: 1;
