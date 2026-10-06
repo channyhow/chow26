@@ -102,14 +102,6 @@ $section-columns: $grid-columns-desktop;
 $section-header-column: 1 / span 7;
 $section-body-column: 4 / span 9;
 
-// Editorial field scale: roles describe visual hierarchy, not fixed component sizes.
-// Use these through grid placement rather than one-off widths or transforms.
-$editorial-span-statement: 10;
-$editorial-span-body: 5;
-$editorial-span-media-primary: 8;
-$editorial-span-media-accent: 3;
-$editorial-span-media-accent-tablet: 2;
-
 // Typography weights: use semantic tokens instead of raw numeric values.
 $font-weight-regular: 400;
 $font-weight-medium: 500;
