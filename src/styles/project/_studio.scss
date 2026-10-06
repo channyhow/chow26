@@ -103,7 +103,7 @@
   }
 
   #studio-service-identity .split > [data-split-role="media"] {
-    grid-column: 8 / span 3;
+    grid-column: 7 / span 6;
     grid-row: 1;
     align-self: start;
     margin-top: clamp(#{$space-5}, 30svh, 20rem);
