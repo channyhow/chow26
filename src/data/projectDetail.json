@@ -28,19 +28,6 @@
       "className": "projectStoryText"
     }
   },
-  "cta": {
-    "layout": "text",
-    "variant": "editorial",
-    "motion": "reveal",
-    "className": "projectCta",
-    "content": {
-      "header": {
-        "title": "Un projet similaire en tête ?",
-        "text": ["Site, identité ou refonte : quelques lignes suffisent pour voir si le projet peut avancer ensemble."],
-        "links": ["talk-project"]
-      }
-    }
-  },
   "related": {
     "layout": "grid",
     "variant": "editorial",
@@ -64,13 +51,21 @@
     "layout": "scroll-panel",
     "panels": [
       {
-        "id": "project-footer-panel",
-        "behavior": "normal",
+        "id": "project-final-panel",
+        "behavior": "overlay",
+        "frame": "content",
         "size": "full",
         "align": "center",
-        "surface": "solid",
+        "surface": "glass",
         "color": "primary",
-        "blocks": [{ "ref": "site-footer" }]
+        "blocks": [
+          {
+            "ref": "final-cta"
+          },
+          {
+            "ref": "site-footer"
+          }
+        ]
       }
     ]
   }
