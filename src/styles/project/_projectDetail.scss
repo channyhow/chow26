@@ -129,6 +129,14 @@
   max-width: 22ch;
 }
 
+.projectRelated {
+  --section-space: #{$section-space};
+}
+
+.projectRelated .section__header {
+  margin-bottom: $section-content-gap;
+}
+
 .projectRelated .projectCard .card__mediaWrap {
   aspect-ratio: $ratio-wide;
 }
