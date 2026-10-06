@@ -4,22 +4,16 @@
 
 .section--collection-panel {
   --text-width: none;
-  // Service media is art-directed from the existing ratio system rather than
-  // sized from copy height. The section remains content-driven.
+  // Keep service media compact and consistent; copy determines section height.
   --split-media-ratio: #{$ratio-editorial};
+  --split-media-max-height: min(78svh, 54rem);
 }
 .section--collection-panel .split { align-content: center; }
 .section--collection-panel .split__secondary { display: grid; place-items: center; }
 .section--collection-panel .split__secondary .media {
   width: 100%;
-  max-width: none;
+  max-width: var(--split-media-max-height);
   justify-self: stretch;
-}
-
-/* Dense service copy benefits from a taller frame on laptop/desktop, while
-   shorter service introductions keep the more compact editorial proportion. */
-#studio-service-integrations {
-  --split-media-ratio: #{$ratio-portrait};
 }
 
 #studio-approach { --section-row-gap: clamp(#{$space-4}, 7vh, 6rem); min-height: 100svh; }
@@ -47,6 +41,7 @@
 @include between($bp-tablet, $bp-desktop) {
   .section--collection-panel {
     --split-media-ratio: #{$ratio-editorial};
+    --split-media-max-height: none;
   }
 
   .section--collection-panel .split { align-content: center; align-items: center; }
