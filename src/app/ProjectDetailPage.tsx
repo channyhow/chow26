@@ -91,7 +91,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     ...project.facts.filter((item) => !isDateMeta(item)),
     ...linkedMeta,
   ].map(toDisplayMeta);
-  const detailClasses = `projectDetail projectDetail--${detailLayout}`;
+  const detailClasses = `projectDetail projectDetail--${detailLayout} projectDetail--project-${project.id}`;
   const description = project.description.map(stripVisibleYear);
   const storyMedia = project.gallery ?? [];
 
