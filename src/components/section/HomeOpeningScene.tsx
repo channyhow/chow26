@@ -122,11 +122,10 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
       if (statementRef.current) {
         const reveal = range(progress, 0.79, 0.87);
-        const settle = range(progress, 0.79, 0.90);
         const exit = range(progress, 0.975, 1);
 
         statementRef.current.style.opacity = String(reveal * (1 - exit));
-        statementRef.current.style.transform = `translate3d(-50%, calc(-50% + ${lerp(10, 0, settle)}vh), 0)`;
+        statementRef.current.style.transform = "translate(-50%, -50%)";
       }
     };
 
