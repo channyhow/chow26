@@ -15,6 +15,7 @@ export type HorizontalScrollProps = {
   className?: string;
   labels?: string[];
   preserveOnSmallScreens?: boolean;
+  reverse?: boolean;
 };
 
 export function HorizontalScroll({
@@ -22,6 +23,7 @@ export function HorizontalScroll({
   className,
   labels,
   preserveOnSmallScreens = false,
+  reverse = false,
 }: HorizontalScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
   const count = Children.count(children);
@@ -30,7 +32,11 @@ export function HorizontalScroll({
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.3 });
   const horizontalProgress = useTransform(progress, [0, 0.06, 0.88, 1], [0, 0, 1, 1]);
   const endX = `-${Math.max(count - 1, 0) * 100}vw`;
-  const x = useTransform(horizontalProgress, [0, 1], ["0vw", endX]);
+  const x = useTransform(
+    horizontalProgress,
+    [0, 1],
+    reverse ? [endX, "0vw"] : ["0vw", endX],
+  );
   const indicatorX = useTransform(horizontalProgress, [0, 1], ["0%", `${Math.max(count - 1, 0) * 100}%`]);
 
   useMotionValueEvent(horizontalProgress, "change", (latest) => {
@@ -49,6 +55,7 @@ export function HorizontalScroll({
       className={clsx("horizontalScroll", className)}
       style={style}
       data-preserve-small={preserveOnSmallScreens || undefined}
+      data-reverse={reverse || undefined}
     >
       <div className="horizontalScroll__viewport">
         {hasLabels ? (
