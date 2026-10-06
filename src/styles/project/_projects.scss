@@ -4,6 +4,8 @@
 
 /* Project archive owns page-level composition; cards remain component-owned. */
 #project-gallery > .section__inner {
+  /* Archive is a page composition, not a vertically-centred generic section. */
+  justify-content: flex-start;
   padding-top: calc(#{$header-height} + #{$space-5});
   padding-bottom: $space-5;
 }
@@ -12,6 +14,12 @@
   width: 100%;
   max-width: none;
   margin-bottom: clamp(#{$space-5}, 10vh, #{$space-6});
+}
+
+/* The archive heading must not inherit placement from the reusable TextBlock
+   grid API. Its geometry belongs to this page, outside the projects grid. */
+#project-gallery .section__header > .textBlock__header {
+  grid-column: auto !important;
 }
 
 #project-gallery .section__header .textBlock__title {
