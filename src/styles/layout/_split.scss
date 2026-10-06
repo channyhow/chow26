@@ -46,9 +46,7 @@
   }
 }
 
-/* Tablet keeps the mobile media-led reading order, but uses the wider canvas
-   for a more editorial text measure instead of compressing content beside media. */
-@include between($bp-tablet, $bp-desktop) {
+/* Tablet portrait keeps the media-led reading order. At the 64rem desktop\n   boundary the normal desktop split takes over, so 1024px behaves like a\n   compact laptop instead of a stacked tablet. */\n@media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 0.001rem)) {
   .split,
   .split--balanced,
   .split--editorial {
@@ -134,7 +132,7 @@
   .split--editorial > [data-split-role="content"] { grid-row: 2; }
 }
 
-@include desktop-up {
+@media (min-width: $bp-desktop) {
   .split__primary,
   .split__secondary { grid-row: 1; }
 
