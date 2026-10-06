@@ -81,8 +81,7 @@
 }
 
 .projectStoryMedia,
-.projectStoryText,
-.projectCta {
+.projectStoryText {
   --section-space: var(--project-section-gap);
 }
 
@@ -118,35 +117,6 @@
   color: color-mix(in srgb, currentColor 84%, var(--accent) 16%);
 }
 
-.projectCta .textBlock {
-  width: min(100%, 48rem);
-  max-width: none;
-}
-
-@include desktop-up {
-  /* Conversion is the loud beat on project pages. The section keeps its
-     existing content and accessibility, but accent becomes spatial. */
-  .projectCta {
-    background: $color-accent;
-  }
-
-  .projectCta .section__inner {
-    min-height: min(72svh, 46rem);
-    display: grid;
-    align-items: end;
-  }
-
-  .projectCta .textBlock {
-    width: min(100%, 58rem);
-    padding-bottom: $padding-block;
-  }
-
-  .projectCta .textBlock__title {
-    @include type-heading-lg;
-  }
-}
-
-.projectCta .textBlock__title,
 .projectRelated .section__header .textBlock__title {
   @include type-heading-md;
   max-width: 22ch;
@@ -323,7 +293,6 @@
 
   .projectStoryMedia,
   .projectStoryText,
-  .projectCta,
   .projectRelated {
     --section-space: var(--project-section-gap);
   }
