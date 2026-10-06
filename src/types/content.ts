@@ -60,12 +60,14 @@ export type SiteSeo = Seo & {
 
 export type PageSeo = Seo;
 
-export type TextGroup = string | string[];\n\nexport type ContentItem = {
+export type TextGroup = string | string[];\n\nexport type TextGroup = string | string[];
+
+export type ContentItem = {
   id?: string; eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | TextGroup[]; media?: MediaRef | MediaRef[]; links?: ActionRef[]; meta?: MetaItem[]; tags?: string[]; category?: string; group?: string; href?: string; enabled?: boolean; featured?: boolean; order?: number; slug?: string; projectLayout?: ProjectLayout; grid?: GridPlacement; surface?: ContentSurface; summary?: string; description?: string[]; facts?: MetaItem[]; gallery?: MediaRef[]; seo?: PageSeo; offers?: ContentItem[];
 };
 
 export type ProjectRecord = ContentItem & { id: string; title: string; text: string[]; media: MediaRef; href: string; slug: string; summary: string; description: string[]; facts: MetaItem[]; gallery?: MediaRef[]; links?: ActionRef[]; seo: PageSeo; projectLayout?: ProjectLayout; };
-export type SectionHeader = { eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | string[]; links?: ActionRef[]; media?: MediaRef | MediaRef[]; meta?: MetaItem[]; };
+export type SectionHeader = { eyebrow?: string | string[]; title?: string; subtitle?: string | string[]; text?: string | TextGroup[]; links?: ActionRef[]; media?: MediaRef | MediaRef[]; meta?: MetaItem[]; };
 export type SectionContent = { header?: SectionHeader; items?: ContentItem[]; media?: MediaRef | MediaRef[]; form?: string | FormSchema };
 export type SourceQuery = { featured?: boolean; enabled?: boolean; category?: string; group?: string; limit?: number; excludeIds?: string[]; prioritizeIds?: string[] };
 export type SourceRef = { collection: string; query?: SourceQuery };
