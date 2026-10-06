@@ -23,6 +23,34 @@
   max-width: var(--section-title-width);
 }
 
+@include desktop-up {
+  /* Let the archive open as a graphic field before the project grid begins. */
+  #project-gallery .section__header {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    min-height: min(52svh, 34rem);
+    align-items: start;
+  }
+
+  #project-gallery .section__header .textBlock {
+    grid-column: 1 / span 7;
+    width: 100%;
+    max-width: none;
+  }
+
+  #project-gallery .section__header::after {
+    content: "";
+    grid-column: 11 / span 2;
+    grid-row: 1;
+    align-self: end;
+    justify-self: stretch;
+    aspect-ratio: 1;
+    background: $color-accent;
+  }
+}
+
 /* Tablet archive is an index: six projects read as a compact 3 x 2 field before
    progressive disclosure. Keep breathing room, but avoid the oversized mobile
    card rhythm that made the page unnecessarily long. */
