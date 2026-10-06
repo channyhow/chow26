@@ -44,29 +44,5 @@
         "title": "À découvrir aussi"
       }
     }
-  },
-  "footer": {
-    "id": "project-footer-group",
-    "type": "Group",
-    "layout": "scroll-panel",
-    "panels": [
-      {
-        "id": "project-final-panel",
-        "behavior": "overlay",
-        "frame": "content",
-        "size": "full",
-        "align": "center",
-        "surface": "glass",
-        "color": "primary",
-        "blocks": [
-          {
-            "ref": "final-cta"
-          },
-          {
-            "ref": "site-footer"
-          }
-        ]
-      }
-    ]
   }
 }
