@@ -71,14 +71,6 @@
     vertical-align: top;
   }
 
-  /* Small offsets keep the editorial irregularity without creating grid rows. */
-  #project-gallery .grid > .grid__item:nth-child(3n + 2) {
-    margin-top: $space-4;
-  }
-
-  #project-gallery .grid > .grid__item:nth-child(3n + 3) {
-    margin-top: $space-5;
-  }
 
   /* Keep image, title and description as one object; separation belongs
      between projects, not inside the card. */
