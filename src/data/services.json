@@ -3,32 +3,58 @@
     "id": "identity",
     "eyebrow": "Identité visuelle · Logo · Système graphique",
     "title": "Créer une identité claire et reconnaissable",
-    "text": ["Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** au système graphique, pour que votre activité soit reconnaissable et cohérente sur les supports dont elle a réellement besoin."],
+    "text": [
+      "Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** au système graphique, pour que votre activité soit reconnaissable et cohérente sur les supports dont elle a réellement besoin."
+    ],
     "media": "mdk-wall-poster",
-    "tags": ["Identité visuelle", "Logo", "Système graphique"],
+    "tags": [
+      "Identité visuelle",
+      "Logo",
+      "Système graphique"
+    ],
     "offers": [
       {
         "id": "identity-essential",
         "eyebrow": "01 · Identité essentielle",
         "title": "Poser une base visuelle claire",
-        "text": ["Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable."],
-        "meta": [
-          { "label": "Comprend", "value": "Logo principal · 1 variation · Palette · Typographies · Principes visuels · Jusqu’à 2 applications prioritaires" },
-          { "label": "Budget", "value": "À partir de 800 € HT" }
+        "text": [
+          "Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable."
         ],
-        "links": ["identity-essential-contact"],
+        "meta": [
+          {
+            "label": "Comprend",
+            "value": "Logo principal · 1 variation · Palette · Typographies · Principes visuels · Jusqu’à 2 applications prioritaires"
+          },
+          {
+            "label": "Budget",
+            "value": "À partir de 800 € HT"
+          }
+        ],
+        "links": [
+          "identity-essential-contact"
+        ],
         "surface": "subtle"
       },
       {
         "id": "identity-complete",
         "eyebrow": "02 · Identité complète",
         "title": "Construire un système visuel plus complet",
-        "text": ["Pour les projets qui ont plusieurs points de contact et ont besoin d’une identité capable de s’adapter sans perdre sa cohérence."],
-        "meta": [
-          { "label": "Comprend", "value": "Logo principal · Jusqu’à 2 variations · Palette · Système typographique · Système graphique · Règles d’usage · Jusqu’à 4 applications prioritaires" },
-          { "label": "Budget", "value": "À partir de 1 200 € HT" }
+        "text": [
+          "Pour les projets qui ont plusieurs points de contact et ont besoin d’une identité capable de s’adapter sans perdre sa cohérence."
         ],
-        "links": ["identity-complete-contact"],
+        "meta": [
+          {
+            "label": "Comprend",
+            "value": "Logo principal · Jusqu’à 2 variations · Palette · Système typographique · Système graphique · Règles d’usage · Jusqu’à 4 applications prioritaires"
+          },
+          {
+            "label": "Budget",
+            "value": "À partir de 1 200 € HT"
+          }
+        ],
+        "links": [
+          "identity-complete-contact"
+        ],
         "surface": "soft"
       }
     ],
@@ -39,31 +65,95 @@
     "id": "website",
     "eyebrow": "Création de site internet · Refonte · SEO",
     "title": "Créer ou refaire votre site internet",
-    "text": ["Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge sa création ou sa refonte, de la structure au développement, pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."],
-    "media": "atmosphere-laptop",
-    "meta": [
-      { "label": "Pour", "value": "Nouveau site · Refonte · Site difficile à comprendre" },
-      { "label": "Prestations", "value": "Structure · Design web · Développement · SEO · Réservation · Paiement · Formulaires" },
-      { "label": "Budget", "value": "À partir de 1 500 € HT" }
+    "text": [
+      "Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je prends en charge sa création ou sa refonte, de la structure au développement, pour présenter clairement votre offre, faciliter la navigation et aider vos clients à vous trouver et à vous contacter."
     ],
-    "tags": ["Création de site internet", "Refonte de site internet", "Design web"],
-    "links": ["talk-website"],
+    "media": "atmosphere-laptop",
+    "tags": [
+      "Création de site internet",
+      "Refonte de site internet",
+      "Design web"
+    ],
     "featured": true,
-    "order": 2
+    "order": 2,
+    "offers": [
+      {
+        "id": "website-essential",
+        "eyebrow": "01 · Site essentiel",
+        "title": "Présenter clairement votre activité",
+        "text": [
+          "Pour lancer ou remettre à plat votre présence en ligne avec un site clair, rapide et facile à faire évoluer."
+        ],
+        "meta": [
+          {
+            "label": "Comprend",
+            "value": "Structure · Design web · Développement responsive · SEO essentiel · Formulaire de contact"
+          },
+          {
+            "label": "Budget",
+            "value": "À partir de 1 500 € HT"
+          }
+        ],
+        "links": [
+          "talk-website"
+        ],
+        "surface": "subtle"
+      },
+      {
+        "id": "website-complete",
+        "eyebrow": "02 · Site sur mesure",
+        "title": "Construire une expérience plus complète",
+        "text": [
+          "Pour les projets qui demandent une structure plus riche, des parcours spécifiques ou des fonctionnalités adaptées à leur activité."
+        ],
+        "meta": [
+          {
+            "label": "Comprend",
+            "value": "Architecture sur mesure · Design web · Développement responsive · SEO · Interactions · Intégrations selon le projet"
+          },
+          {
+            "label": "Budget",
+            "value": "Sur devis"
+          }
+        ],
+        "links": [
+          "talk-website"
+        ],
+        "surface": "soft"
+      }
+    ]
   },
   {
     "id": "integrations",
     "eyebrow": "Supports de communication · Print · Digital · Motion",
     "title": "Faire vivre votre identité sur vos supports",
-    "text": ["Une identité doit fonctionner au-delà du logo. Je conçois les **supports de communication** utiles à votre activité, de l’affiche aux formats digitaux, en passant par les campagnes, les déclinaisons et le **motion**, pour garder une présence cohérente d’un support à l’autre."],
+    "text": [
+      "Une identité doit fonctionner au-delà du logo. Je conçois les **supports de communication** utiles à votre activité, de l’affiche aux formats digitaux, en passant par les campagnes, les déclinaisons et le **motion**, pour garder une présence cohérente d’un support à l’autre."
+    ],
     "media": "structure-mobile-multi",
     "meta": [
-      { "label": "Pour", "value": "Campagne · Événement · Communication régulière · Identité à déployer" },
-      { "label": "Prestations", "value": "Affiches · Print · Digital · Campagnes · Templates · Motion" },
-      { "label": "Budget", "value": "Sur devis" }
+      {
+        "label": "Pour",
+        "value": "Campagne · Événement · Communication régulière · Identité à déployer"
+      },
+      {
+        "label": "Prestations",
+        "value": "Affiches · Print · Digital · Campagnes · Templates · Motion"
+      },
+      {
+        "label": "Budget",
+        "value": "Sur devis"
+      }
     ],
-    "tags": ["Supports de communication", "Print", "Digital", "Motion"],
-    "links": ["evolve-website"],
+    "tags": [
+      "Supports de communication",
+      "Print",
+      "Digital",
+      "Motion"
+    ],
+    "links": [
+      "evolve-website"
+    ],
     "featured": true,
     "order": 3
   }
