@@ -64,6 +64,50 @@
   mix-blend-mode: multiply;
 }
 
+@include desktop-up {
+  /* Treat the founder/footer as an editorial field rather than a conventional
+     split: copy establishes the upper-left mass, portrait punctuates the
+     lower-right, and the empty diagonal is intentional. */
+  #studio-founders .split {
+    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+    grid-template-rows: auto minmax(clamp(#{$space-5}, 18svh, #{$space-6 + $space-4}), auto) auto;
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+
+  #studio-founders .split > [data-split-role="content"] {
+    grid-column: 2 / span 5;
+    grid-row: 1;
+    align-self: start;
+    min-width: 0;
+  }
+
+  #studio-founders .split > [data-split-role="media"] {
+    grid-column: 10 / span 2;
+    grid-row: 3;
+    align-self: end;
+    min-width: 0;
+  }
+
+  #studio-founders .split__secondary {
+    place-items: end stretch;
+  }
+
+  #studio-founders .split__secondary .media,
+  #studio-founders .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  #studio-founders .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 @include between($bp-tablet, $bp-desktop) {
   .section--collection-panel .split > [data-split-role="content"] {
     padding-top: 0;
