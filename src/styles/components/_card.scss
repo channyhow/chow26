@@ -158,11 +158,7 @@
 .section__offers .card--service {
   display: flex;
   height: 100%;
-<<<<<<< HEAD
-  padding: $space-4;
-=======
   padding: $padding-group;
->>>>>>> e86c8dab83b7a27aeacba126b8306a919d4ea9ca
 
   .card__body.textBlock {
     flex: 1 1 auto;
@@ -180,6 +176,14 @@
   .textBlock__meta {
     margin-top: auto;
     padding-top: $padding-group;
+  }
+
+  .textBlock__meta > * {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .textBlock__metaLabel {
+    display: none;
   }
 
   .textBlock__footer {
