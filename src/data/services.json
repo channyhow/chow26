@@ -1,24 +1,23 @@
 [
   {
     "id": "identity",
-    "eyebrow": "Identité visuelle · Logo · Système graphique",
+    "eyebrow": "Identité visuelle · Logo",
     "title": "Créer une identité claire et reconnaissable",
     "text": [
-      "Vous lancez un projet ou votre image manque de cohérence. Je crée une **identité visuelle** claire, du **logo** au système graphique, pour que votre activité soit reconnaissable et cohérente sur les supports dont elle a réellement besoin."
+      "Une identité claire pour rendre votre activité **reconnaissable et cohérente**, du logo aux supports essentiels."
     ],
     "media": "mdk-wall-poster",
     "tags": [
       "Identité visuelle",
-      "Logo",
-      "Système graphique"
+      "Logo"
     ],
     "offers": [
       {
         "id": "identity-essential",
         "eyebrow": "01 · Identité essentielle",
-        "title": "Poser une base visuelle claire",
+        "title": "Créer une base claire",
         "text": [
-          "Pour lancer ou clarifier un projet avec une identité cohérente et directement utilisable."
+          "Pour lancer ou clarifier votre projet avec l’essentiel pour communiquer."
         ],
         "meta": [
           {
@@ -38,9 +37,9 @@
       {
         "id": "identity-complete",
         "eyebrow": "02 · Identité complète",
-        "title": "Construire un système visuel plus complet",
+        "title": "Déployer une identité complète",
         "text": [
-          "Pour les projets qui ont plusieurs points de contact et ont besoin d’une identité capable de s’adapter sans perdre sa cohérence."
+          "Pour construire un système visuel capable de s’adapter à plusieurs supports."
         ],
         "meta": [
           {
@@ -63,16 +62,15 @@
   },
   {
     "id": "website",
-    "eyebrow": "Création de site internet · Refonte · SEO",
+    "eyebrow": "Site internet · Refonte",
     "title": "Un site pensé autour de votre activité",
     "text": [
-      "Vous avez besoin d’un **site internet** ou votre site actuel ne représente plus votre activité. Je vous aide à clarifier ce qu’il doit montrer, dans quel ordre et avec quels outils, puis je conçois et développe une expérience **sur mesure**, claire, identifiable et simple à utiliser."
+      "Je clarifie la structure, conçois l’interface et développe un **site sur mesure** pour présenter votre activité et guider vos visiteurs."
     ],
     "media": "atmosphere-laptop",
     "tags": [
-      "Création de site internet",
-      "Refonte de site internet",
-      "Design web"
+      "Site internet",
+      "Refonte"
     ],
     "featured": true,
     "order": 2,
@@ -82,7 +80,7 @@
         "eyebrow": "01 · Site vitrine",
         "title": "Présenter clairement votre activité",
         "text": [
-          "Pour lancer ou remettre à plat votre présence en ligne sans avoir à arriver avec un cahier des charges. Nous définissons ensemble ce que votre site doit montrer et le parcours essentiel pour vos visiteurs."
+          "Pour présenter votre activité avec un site clair, sur mesure et directement opérationnel."
         ],
         "meta": [
           {
@@ -104,7 +102,7 @@
         "eyebrow": "02 · Site sur mesure",
         "title": "Construire une expérience plus complète",
         "text": [
-          "Pour les projets qui nécessitent davantage de contenus, un parcours spécifique ou des fonctionnalités directement liées à leur activité."
+          "Pour les projets avec plus de contenus, des parcours spécifiques ou des fonctionnalités métier."
         ],
         "meta": [
           {
@@ -125,20 +123,16 @@
   },
   {
     "id": "integrations",
-    "eyebrow": "Supports de communication · Print · Digital · Motion",
+    "eyebrow": "Supports · Print · Digital · Motion",
     "title": "Faire vivre votre identité sur vos supports",
     "text": [
-      "Une identité doit fonctionner au-delà du logo. Je conçois les **supports de communication** utiles à votre activité, de l’affiche aux formats digitaux, en passant par les campagnes, les déclinaisons et le **motion**, pour garder une présence cohérente d’un support à l’autre."
+      "Je décline votre identité sur les **supports utiles à votre activité** pour garder une communication cohérente, du print au digital et au motion."
     ],
     "media": "structure-mobile-multi",
     "meta": [
       {
-        "label": "Pour",
-        "value": "Campagne · Événement · Communication régulière · Identité à déployer"
-      },
-      {
         "label": "Prestations",
-        "value": "Affiches · Print · Digital · Campagnes · Templates · Motion"
+        "value": "Affiches · Print · Digital · Templates · Motion"
       },
       {
         "label": "Budget",
@@ -146,7 +140,6 @@
       }
     ],
     "tags": [
-      "Supports de communication",
       "Print",
       "Digital",
       "Motion"
