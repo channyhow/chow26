@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /link
 Disallow: /system
 Disallow: /branding
 Disallow: /netlify-forms.html
