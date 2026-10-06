@@ -16,6 +16,22 @@
 
 .grid > * { min-width: 0; }
 
+/* Project collection: masonry-like column flow without JS positioning.
+   Cards keep their intrinsic media ratios; columns provide the continuity. */
+#project-grid {
+  display: block;
+  column-count: 1;
+  column-gap: $layout-gap;
+}
+
+#project-grid > .grid__item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 var(--section-gap, #{$layout-gap});
+  break-inside: avoid;
+  vertical-align: top;
+}
+
 .grid--editorial {
   @include site-grid;
   row-gap: var(--section-row-gap, var(--section-gap, #{$layout-gap}));
@@ -101,6 +117,10 @@
 }
 
 @include tablet-up {
+  #project-grid {
+    column-count: 2;
+  }
+
   .grid:not(.grid--editorial) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -114,6 +134,10 @@
 }
 
 @include desktop-up {
+  #project-grid {
+    column-count: 3;
+  }
+
   .grid:not(.grid--editorial) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
