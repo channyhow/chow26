@@ -176,6 +176,7 @@
   .textBlock__meta {
     margin-top: auto;
     padding-top: $padding-group;
+    gap: $margin-content;
   }
 
   .textBlock__meta > * {
@@ -184,6 +185,11 @@
 
   .textBlock__metaLabel {
     display: none;
+  }
+
+  .textBlock__meta > *:last-child .textBlock__metaValue {
+    color: currentColor;
+    font-weight: $font-weight-medium;
   }
 
   .textBlock__footer {
