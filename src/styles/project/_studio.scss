@@ -38,7 +38,7 @@
 
 /* Tablet keeps Studio editorial rather than becoming a zoomed phone page.
    Service media and copy use the full eight-column tablet grid. */
-@include between($bp-tablet, $bp-desktop) {
+@media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
   .section--collection-panel {
     --split-media-ratio: #{$ratio-landscape};
     --split-media-max-height: none;
@@ -54,10 +54,15 @@
     max-width: none;
   }
 
+  .section--collection-panel .section__offers .carousel {
+    width: 100%;
+  }
+
   .section--collection-panel .section__offers .carousel__track {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-flow: row;
-    gap: $space-3;
+    gap: $grid-gap;
+    width: 100%;
   }
 
   #studio-approach {
