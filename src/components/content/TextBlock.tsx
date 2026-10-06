@@ -22,10 +22,10 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className, acti
   const Root = motionRoots[as];
   const Title = motionTitles[titleAs];
   const subtitles = toArray(content.subtitle).filter(Boolean);
-  const paragraphs = toArray(content.text).filter(Boolean);
+  const textGroups = toArray(content.text).filter(Boolean).map((group) => Array.isArray(group) ? group.filter(Boolean) : [group]);
   const eyebrows = toArray(content.eyebrow).filter(Boolean);
   const hasHeader = Boolean(content.eyebrow || content.title || subtitles.length);
-  const hasContent = paragraphs.length > 0;
+  const hasContent = textGroups.length > 0;
   const hasFooter = Boolean(content.links?.length);
   const hasMeta = Boolean(content.meta?.length);
   const motionProps = motionEnabled ? { variants: revealContainer, initial: "hidden" as const, whileInView: "visible" as const, viewport: motionConfig.viewport } : {};
@@ -40,7 +40,7 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className, acti
         {content.title ? <Title className="textBlock__title" {...itemMotionProps}>{content.title}</Title> : null}
         {subtitles.length ? <motion.div className="textBlock__subtitle" {...containerMotionProps}>{subtitles.map((subtitle) => <motion.p key={subtitle} {...itemMotionProps}>{renderInlineStrong(subtitle)}</motion.p>)}</motion.div> : null}
       </motion.header> : null}
-      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{paragraphs.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div> : null}
+      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <motion.div className="textBlock__group" key={`group-${groupIndex}`} {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>)}</motion.div> : null}
       {hasMeta ? <motion.div className="textBlock__meta" {...containerMotionProps}>{content.meta?.map((item) => {
         const metaContent = <><span className="textBlock__metaLabel">{item.label}</span>{item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}</>;
         if (item.href) { const external = isExternalHref(item.href); return <motion.a key={`${item.label}-${item.href}`} href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} {...itemMotionProps}>{metaContent}{external ? <span aria-hidden="true"> ↗</span> : null}</motion.a>; }
