@@ -53,10 +53,6 @@ const stripVisibleYear = (value: string) =>
 const isDateMeta = (item: MetaItem) =>
   /^(année|annee|year|date)$/i.test(item.label.trim());
 
-const toDisplayMeta = (item: MetaItem): MetaItem => ({
-  label: item.value ?? item.label,
-  href: item.href,
-});
 
 function withoutAlternate(template: StoryTemplate): SectionTemplate {
   const copy: StoryTemplate = { ...template };
@@ -85,12 +81,12 @@ function createProjectPage(project: ProjectRecord): PageData {
   const detailLayout = project.projectLayout ?? "a";
   const linkedMeta: MetaItem[] = resolveActions(project.links ?? []).flatMap((link) => {
     if (!link.href) return [];
-    return [{ label: link.label, href: link.href }];
+    return [{ label: "Lien", value: link.label, href: link.href }];
   });
   const projectMeta = [
     ...project.facts.filter((item) => !isDateMeta(item)),
     ...linkedMeta,
-  ].map(toDisplayMeta);
+  ];
   const detailClasses = `projectDetail projectDetail--${detailLayout} projectDetail--project-${project.id}`;
   const description = project.description.map(stripVisibleYear);
   const storyMedia = project.gallery ?? [];
