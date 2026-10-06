@@ -40,7 +40,7 @@
 
 /* Tablet keeps Studio editorial rather than becoming a zoomed phone page.
    Service media and copy use the full eight-column tablet grid. */
-@media (min-width: $bp-tablet) and (max-width: $bp-desktop) {
+@include between($bp-tablet, $bp-desktop) {
   .section--collection-panel {
     --split-media-ratio: #{$ratio-editorial};
     --split-media-max-height: none;
