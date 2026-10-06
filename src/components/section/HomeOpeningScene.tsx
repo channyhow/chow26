@@ -122,16 +122,9 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
       if (statementRef.current) {
         const reveal = range(progress, 0.79, 0.87);
-        const section = sceneRef.current?.closest("#home-opening");
-        const nextPanel = section?.nextElementSibling;
-        let panelRise = 0;
-
-        if (nextPanel instanceof HTMLElement) {
-          const panelTop = nextPanel.getBoundingClientRect().top;
-          panelRise = smoothstep(clamp01(
-            (window.innerHeight - panelTop) / (window.innerHeight * 0.35),
-          ));
-        }
+        // Fade during the final part of the sticky travel, which is when
+        // the following scroll panel starts rising into the viewport.
+        const panelRise = range(progress, 0.92, 1);
 
         statementRef.current.style.opacity = String(reveal * (1 - panelRise));
         statementRef.current.style.transform = "translate(-50%, -50%)";
