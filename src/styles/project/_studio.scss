@@ -14,7 +14,7 @@
 
   .split > [data-split-role="content"] {
     align-self: start;
-    padding-top: clamp(#{$space-3}, 8vh, #{$space-5});
+    padding-top: clamp(#{$space-4}, 10vh, #{$space-6});
   }
 
   .section__offers {
