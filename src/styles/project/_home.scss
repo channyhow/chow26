@@ -275,16 +275,26 @@
   .homeOpenCallPreview .textBlock__content { grid-column: 2 / span 5; }
   .homeOpenCallPreview .textBlock__footer { grid-column: 9 / span 3; align-self: end; justify-self: end; }
 }
-/* Home proof is a single editorial beat. ProjectCard still owns the project
-   presentation; Home only controls scale, placement and the surrounding field. */
+/* Home proof is one editorial statement rather than a portfolio catalogue:
+   statement → project name → media → quiet exit. */
 .homeProjectsGallery {
-  --section-gap: #{$margin-section};
+  --section-gap: #{$space-3};
 }
 
 .homeProjectsGallery .section__inner {
   justify-content: center;
 }
 
+.homeProjectsGallery .section__header {
+  width: 100%;
+  max-width: none;
+  margin-bottom: $space-3;
+}
+
+.homeProjectsGallery .section__header .textBlock__title {
+  @include type-heading-xl;
+  max-width: 18ch;
+}
 
 .homeProjectsGallery .gridReveal,
 .homeProjectsGallery .grid {
@@ -301,7 +311,34 @@
 }
 
 .homeProjectsGallery .grid > .grid__item {
-  grid-column: 2 / span 7;
+  grid-column: 1 / -1;
+}
+
+.homeProjectsGallery .projectCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeProjectsGallery .projectCard .card__body {
+  order: -1;
+  margin-bottom: $space-2;
+}
+
+.homeProjectsGallery .projectCard .textBlock__title {
+  @include type-heading-lg;
+  color: color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.homeProjectsGallery .projectCard .textBlock__content {
+  display: none;
+}
+
+.homeProjectsGallery .projectCard .card__mediaWrap {
+  width: 100%;
+}
+
+.homeProjectsGallery .projectCard .media__frame {
+  aspect-ratio: $ratio-wide;
 }
 
 .homeProjectsGallery .section__footer {
@@ -310,6 +347,17 @@
 }
 
 @include desktop-up {
+  .homeProjectsGallery .section__header {
+    @include site-grid;
+  }
+
+  .homeProjectsGallery .section__header > * {
+    grid-column: 2 / span 8;
+  }
+
+  .homeProjectsGallery .grid > .grid__item {
+    grid-column: 2 / span 10;
+  }
 
   .homeProjectsGallery .section__footer {
     padding-left: calc((100% + var(--grid-gutter)) / 12 * 9);
@@ -317,15 +365,35 @@
 }
 
 @include between($bp-tablet, $bp-desktop) {
+  .homeProjectsGallery .section__header .textBlock__title {
+    max-width: 16ch;
+  }
+
   .homeProjectsGallery .grid > .grid__item {
-    grid-column: 1 / span 6;
+    grid-column: 1 / -1;
   }
 }
 
 @include mobile-down {
+  .homeProjectsGallery {
+    --section-gap: #{$space-2};
+  }
 
-  .homeProjectsGallery .grid > .grid__item {
-    grid-column: 1 / -1;
+  .homeProjectsGallery .section__header {
+    margin-bottom: $space-2;
+  }
+
+  .homeProjectsGallery .section__header .textBlock__title {
+    @include type-heading-lg;
+    max-width: none;
+  }
+
+  .homeProjectsGallery .projectCard .card__body {
+    margin-bottom: $space-2;
+  }
+
+  .homeProjectsGallery .projectCard .textBlock__title {
+    @include type-heading-md;
   }
 
   .homeProjectsGallery .section__footer {
