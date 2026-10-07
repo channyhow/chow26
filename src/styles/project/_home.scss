@@ -110,7 +110,7 @@
     row-gap: $margin-content;
   }
   #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 11;
+    grid-column: 1 / span 12;
     grid-row: 1;
     align-self: start;
   }
@@ -118,14 +118,14 @@
     aspect-ratio: $ratio-wide;
   }
   #home-services .split > [data-split-role="content"] {
-    grid-column: 1 / span 11;
+    grid-column: 1 / span 12;
     grid-row: 2;
     align-self: start;
     margin: 0;
   }
   #home-services .split > [data-split-role="content"] .textBlock {
     display: grid;
-    grid-template-columns: repeat(11, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: var(--grid-gutter);
     width: 100%;
     max-width: none;
@@ -140,13 +140,31 @@
     margin: 0;
     font-weight: $font-weight-regular;
   }
-  #home-services .split > [data-split-role="content"] .textBlock__content {
-    grid-column: 1 / span 4;
+  #home-services .split > [data-split-role="content"] 
+    .textBlock__footer {
+      grid-row: 3;
+          grid-column: 6 / span 6;
+
+
+    
+  }
+    #home-services .split > [data-split-role="content"] .textBlock__content {
+    grid-column: 1 / span 7;
     margin-top: $margin-group;
+    p {
+             @include type-heading-md;
+
+    }
+   
   }
   #home-services .split > [data-split-role="content"] .actions {
-    grid-column: 5 / span 3;
-    margin-top: $margin-group;
+               @include type-heading-md;
+
+.actions__link {
+                  @include type-heading-md;
+
+    }
+    
   }
 
   /* Final CTA is one composition, not two distant islands. */
