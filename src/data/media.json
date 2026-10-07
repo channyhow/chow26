@@ -391,6 +391,8 @@
     "id": "appel-projets",
     "type": "image",
     "src": "/assets/photos/appel_projets.jpg",
-    "alt": "Appel à projets Chow Studio pour trois projets d’identité visuelle."
+    "alt": "Appel à projets Chow Studio pour trois projets d’identité visuelle.",
+    "ratio": "portrait",
+    "fit": "cover"
   }
 }
