@@ -184,6 +184,87 @@
   }
 }
 
+/* Final contact echoes the Home index language without repeating Featured. */
+.homeContact__index,
+.homeContact__story,
+.homeContact__media {
+  grid-column: 1 / -1;
+}
+
+.homeContact__index {
+  @include type-display-xl;
+  color: $color-light-soft;
+  font-weight: $font-weight-medium;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.homeContact__story {
+  --text-width: none;
+
+  .textBlock__title {
+    @include type-heading-lg;
+    max-width: 14ch;
+    line-height: 1;
+  }
+
+  .textBlock__content {
+    max-width: 34rem;
+  }
+
+  .actions {
+    @include type-heading-sm;
+  }
+}
+
+.homeContact__media .media__frame {
+  aspect-ratio: $ratio-landscape;
+}
+
+@include desktop-up {
+  .homeContact__index {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .homeContact__story {
+    grid-column: 5 / span 6;
+    grid-row: 1;
+  }
+
+  .homeContact__media {
+    grid-column: 5 / span 7;
+    grid-row: 2;
+  }
+}
+
+@include between($bp-tablet, $bp-desktop) {
+  .homeContact__index {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .homeContact__story,
+  .homeContact__media {
+    grid-column: 3 / -1;
+  }
+}
+
+@include mobile-down {
+  .homeContact__index {
+    @include type-display-lg;
+  }
+
+  .homeContact__story .textBlock__title {
+    @include type-heading-md;
+  }
+}
+
 /* Compact opening: phone and tablet share one stable viewport composition.
    Motion may transform these elements, but layout never starts off-canvas. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
