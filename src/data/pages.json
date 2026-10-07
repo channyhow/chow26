@@ -1,64 +1,63 @@
 [
-
-{
-  "id": "home",
-  "slug": "/",
-  "seo": {
-    "title": "Chow Studio | Design web, identité visuelle & frontend",
-    "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
-    "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
-  },
-  "blocks": [
-
-    {
-      "id": "home-final-group",
-      "type": "Group",
-      "layout": "scroll-panel",
-      "panels": [{
-          "id": "home-main-panel",
-          "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-          "align": "center",
-          "surface": "solid",
-          "color": "secondary",
-          "blocks": [
+  {
+    "id": "home",
+    "slug": "/",
+    "seo": {
+      "title": "Chow Studio | Design web, identité visuelle & frontend",
+      "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
+      "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
+    },
+    "blocks": [
+      {
+        "id": "home-final-group",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
           {
-      "ref": "home-opening"
-    },
-    {
-      "ref": "home-services"
-    },
-    {
-      "ref": "projects-featured-gallery"
-    },
-    {
-      "ref": "home-opencall-preview"
-    } ]
-           
-      },
-        {
-          "id": "home-final-panel",
-          "behavior": "overlay",
+            "id": "home-main-panel",
+            "behavior": "sticky",
             "frame": "content",
             "size": "full",
-          "align": "center",
-          "surface": "glass",
-          "color": "primary",
-          "blocks": [
-            {
-              "ref": "final-cta"
-            },
-            {
-              "ref": "site-footer"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-,
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "home-opening"
+              },
+              {
+                "ref": "home-services"
+              },
+              {
+                "ref": "projects-featured-gallery"
+              },
+              {
+                "ref": "home-opencall-preview"
+              }
+            ],
+            "parallax": true
+          },
+          {
+            "id": "home-final-panel",
+            "behavior": "overlay",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   {
     "id": "projects",
     "slug": "/projets",
@@ -178,7 +177,7 @@
               }
             ]
           },
-                {
+          {
             "id": "studio-approach-panel",
             "behavior": "sticky",
             "frame": "content",
