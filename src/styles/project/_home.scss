@@ -105,12 +105,16 @@ align-items: flex-start;
 
 @include mobile-down {
   .homeOpeningScene__mediaGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: var(--grid-gutter);
+    grid-template-columns: 1fr;
   }
 
   .homeOpeningScene__mediaPanel {
-    grid-column: auto;
+    grid-column: 1;
+  }
+
+  .homeOpeningScene__mediaPanel--2,
+  .homeOpeningScene__mediaPanel--3 {
+    display: none;
   }
 
   .homeOpeningScene {
