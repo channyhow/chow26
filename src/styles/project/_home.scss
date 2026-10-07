@@ -6,14 +6,15 @@
    Panel mechanics and shared interaction stay foundation-owned. */
 
 #home-opening {
-  min-height: 0;
+  min-height: 100svh;
 }
 
 #home-opening .section__inner {
   width: 100%;
   max-width: none;
   min-height: 0;
-  padding: calc(#{$header-height} + #{$padding-content}) var(--project-gutter) $padding-block;
+padding-block: $padding-block;
+align-items: flex-start;
 }
 
 .homeOpeningScene {
@@ -37,9 +38,9 @@
 
 .homeOpeningScene__media {
   width: 100%;
+    aspect-ratio: 3 / 1;
 
   .media__frame {
-    aspect-ratio: 2.75 / 1;
     overflow: hidden;
   }
 
@@ -56,12 +57,25 @@
 
   .textBlock__title {
     @include type-heading-xl;
-    max-width: 18ch;
-    margin: 0;
+    font-weight: $font-weight-medium;
+    margin-top:15svh;
   }
 
   .textBlock__content {
+        margin-top:$space-4;
+
     max-width: $measure-text;
+  }
+  .textBlock__copy{
+    @include type-heading-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  .actions {
+        @include type-heading-sm;
+
+    margin-top: $space-4;
+    color: $color-primary;
   }
 }
 
