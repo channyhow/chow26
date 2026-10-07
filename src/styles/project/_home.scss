@@ -571,8 +571,10 @@
 
 @include desktop-up {
   .homeFeaturedProject__index { grid-column: 1 / span 4; grid-row: 1 / span 2; padding-top: $padding-content; }
-  .homeFeaturedProject__media { grid-column: 9 / 13; grid-row: 2; }
-  .homeFeaturedProject__story { grid-column: 9 / 13; grid-row: 3; }
+  .homeFeaturedProject__media { grid-column: 8 / 13; grid-row: 2; 
+  
+    aspect-ratio: $ratio-landscape; }
+  .homeFeaturedProject__story { grid-column: 8 / 13; grid-row: 3; }
 }
 @include between($bp-tablet, $bp-desktop) {
   .homeFeaturedProject__index { grid-column: 1 / span 3; }
