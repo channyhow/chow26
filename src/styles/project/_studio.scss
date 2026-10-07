@@ -346,3 +346,74 @@
     max-width: none;
   }
 }
+
+
+/* Contact uses a quieter founder note: enough presence to make the studio
+   personal without turning the conversion page into an About page. */
+.founderLight {
+  --media-background: transparent;
+  --split-media-ratio: #{$ratio-square};
+}
+
+.founderLight .split {
+  align-items: center;
+}
+
+.founderLight .split__secondary {
+  display: grid;
+  place-items: center;
+}
+
+.founderLight .split__secondary .media {
+  width: min(100%, 12rem);
+  background: transparent;
+}
+
+.founderLight .split__secondary .media__frame {
+  aspect-ratio: $ratio-square;
+  overflow: hidden;
+  background: $color-accent;
+}
+
+.founderLight .split__secondary .media__asset {
+  mix-blend-mode: multiply;
+}
+
+@include desktop-up {
+  .founderLight .split > [data-split-role="content"] {
+    grid-column: 3 / span 4;
+  }
+
+  .founderLight .split > [data-split-role="media"] {
+    grid-column: 9 / span 2;
+  }
+}
+
+@include between($bp-tablet, $bp-desktop) {
+  .founderLight .split > [data-split-role="content"] {
+    grid-column: 1 / span 5;
+  }
+
+  .founderLight .split > [data-split-role="media"] {
+    grid-column: 7 / span 2;
+  }
+}
+
+@include mobile-down {
+  .founderLight {
+    --split-gap: #{$margin-group};
+  }
+
+  .founderLight .split > [data-split-role="content"] {
+    grid-column: 1 / -1;
+  }
+
+  .founderLight .split > [data-split-role="media"] {
+    grid-column: 4 / -1;
+    justify-self: end;
+  }
+
+  .founderLight .split__secondary .media {
+    width: 100%;
+  }
+}
