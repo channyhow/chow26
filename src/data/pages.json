@@ -239,7 +239,7 @@
             "align": "center",
             "surface": "glass",
             "color": "accent",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [{ "ref": "founder-light" }]
           },
           {
             "id": "approach-final-panel",
