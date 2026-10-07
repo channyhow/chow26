@@ -25,11 +25,11 @@ import { motionConfig } from "@/motion/config";
 import type { MotionIntensity, ScrollMotionPreset, SectionBlock } from "@/types/content";
 import type { FormSchema } from "@/types/forms";
 
-export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; };
+export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; parallaxEnabled?: boolean; };
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
 
-export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress }: SectionProps) {
+export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress, parallaxEnabled = false }: SectionProps) {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
@@ -97,7 +97,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (isHomeOpening) {
-    body = <HomeOpeningScene header={header} media={mediaItems} scrollProgress={scrollProgress} />;
+    body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
   } else if (isProjectHero) {
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
