@@ -661,7 +661,7 @@
     "id": "home-opencall-preview",
     "type": "Section",
     "layout": "split",
-    "splitVariant": "editorial",
+    "splitVariant": "media-lead",
     "className": "home-preview home-preview--opencall",
     "content": {
       "header": {
