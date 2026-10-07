@@ -1,4 +1,4 @@
-import { motion, useTransform, type MotionValue } from "motion/react";
+import { motion, useMotionValue, useTransform, type MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -13,9 +13,11 @@ type HomeOpeningSceneProps = {
 
 export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
   const openingMedia = media[0];
-  const mediaY1 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-3svh"]);
-  const mediaY2 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-6svh"]);
-  const mediaY3 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-4svh"]);
+  const fallbackProgress = useMotionValue(0);
+  const progress = scrollProgress ?? fallbackProgress;
+  const mediaY1 = useTransform(progress, [0, 1], ["0svh", "-3svh"]);
+  const mediaY2 = useTransform(progress, [0, 1], ["0svh", "-6svh"]);
+  const mediaY3 = useTransform(progress, [0, 1], ["0svh", "-4svh"]);
   const mediaMotion = [mediaY1, mediaY2, mediaY3];
 
   return (
