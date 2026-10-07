@@ -283,7 +283,7 @@
 /* Home has two structural moments: the immersive opening and one continuous
    editorial field. Individual previews own their composition; this field owns
    only the long-form rhythm between them. */
-[data-page-id="home"] .sectionGroup[data-layout="flow"] {
+[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) {
   display: grid;
   gap: clamp(#{$space-6}, 18svh, 14rem);
   margin-top: clamp(-6rem, -8svh, -3rem);
@@ -291,11 +291,11 @@
   overflow: clip;
 }
 
-[data-page-id="home"] .sectionGroup[data-layout="flow"] .section {
+[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) .section {
   min-height: 0;
 }
 
-[data-page-id="home"] .sectionGroup[data-layout="flow"] .home-preview {
+[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) .home-preview {
   --section-gap: #{$margin-block};
 }
 
@@ -320,7 +320,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-page-id="home"] .sectionGroup[data-layout="flow"] * {
+  [data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) * {
     scroll-behavior: auto;
   }
 }
