@@ -46,9 +46,22 @@ align-items: flex-start;
 }
 
 .homeOpeningScene__mediaPanel {
+  position: relative;
+  isolation: isolate;
   grid-column: 1 / -1;
   width: 100%;
   will-change: transform;
+
+  // A stationary offset plane within each moving panel makes the depth legible.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $color-special;
+    transform: translate($space-3, $space-3);
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 
 .homeOpeningScene__media {
