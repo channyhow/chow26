@@ -32,14 +32,17 @@
     "id": "projects-featured-gallery",
     "type": "Section",
     "layout": "grid",
-    "motion": "scene",
-    "motionPreset": "recede",
     "className": "homeProjectsGallery",
     "source": {
       "collection": "projects",
-      "query": { "featured": true, "limit": 3 }
+      "query": { "prioritizeIds": ["mois-du-ker"], "limit": 1 }
     },
-    "content": { "links": ["all-projects"] }
+    "content": {
+      "header": {
+        "title": "Un projet prend forme quand l’idée devient claire."
+      },
+      "links": ["all-projects"]
+    }
   },
   "project-gallery": {
     "id": "project-gallery",
@@ -228,7 +231,7 @@
       "header": {
         "title": "Quelque chose doit évoluer ?",
         "text": [
-          "Un **site internet** à créer ou refaire, une **identité visuelle** à clarifier, des **supports de communication** à concevoir ou des **outils digitaux** à ajouter. Parlez-moi de ce dont votre activité a besoin."
+          "Pas besoin d’avoir un brief précis pour commencer. Parlez-moi de ce qui existe, de ce qui doit évoluer et de ce dont votre activité a besoin."
         ],
         "links": ["talk-project"]
       },
