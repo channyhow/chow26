@@ -289,7 +289,7 @@
 }
 
 [data-page-id="home"] #home-services,
-[data-page-id="home"] #projects-featured-gallery,
+[data-page-id="home"] #home-featured-project,
 [data-page-id="home"] #home-opencall-preview,
 [data-page-id="home"] #final-cta {
   min-height: 0;
@@ -305,7 +305,7 @@
   margin-top: clamp(-9rem, -12svh, -5rem);
 }
 
-[data-page-id="home"] #projects-featured-gallery {
+[data-page-id="home"] #home-featured-project {
   margin-top: clamp(#{$space-4}, 8svh, #{$space-6});
 }
 
@@ -324,7 +324,7 @@
 /* Preview sections should read as content islands in the same field, not as
    individually centred screens. */
 [data-page-id="home"] #home-services .section__inner,
-[data-page-id="home"] #projects-featured-gallery .section__inner,
+[data-page-id="home"] #home-featured-project .section__inner,
 [data-page-id="home"] #home-opencall-preview .section__inner,
 [data-page-id="home"] #final-cta .section__inner {
   justify-content: flex-start;
@@ -346,7 +346,7 @@
     margin-top: calc(#{$space-4} * -1);
   }
 
-  [data-page-id="home"] #projects-featured-gallery,
+  [data-page-id="home"] #home-featured-project,
   [data-page-id="home"] #final-cta {
     margin-top: $margin-block;
   }
@@ -364,87 +364,109 @@
 
 /* Featured work is proof, not an archive. Keep the shared ProjectCard intact
    and let Home own only scale, placement and whitespace. */
-.homeProjectsGallery {
+.homeFeaturedProject {
   --section-gap: #{$margin-section};
 }
 
-.homeProjectsGallery .section__inner {
+.homeFeaturedProject .section__inner {
   justify-content: center;
 }
 
-.homeProjectsGallery .gridReveal {
+.homeFeaturedProject .gridReveal {
   width: 100%;
 }
 
-.homeProjectsGallery .grid {
+.homeFeaturedProject .grid {
   @include site-grid;
   align-items: start;
   row-gap: $margin-section;
 }
 
-.homeProjectsGallery .grid__lead {
+.homeFeaturedProject .grid__lead {
   grid-column: 1 / -1;
 }
 
-.homeProjectsGallery .section__footer {
+.homeFeaturedProject .section__footer {
   margin-top: $margin-block;
 }
 
 @include desktop-up {
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(1) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(1) {
     grid-column: 1 / span 6;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(2) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(2) {
     grid-column: 8 / span 4;
     margin-top: clamp(#{$space-4}, 12svh, #{$space-6});
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(3) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(3) {
     grid-column: 3 / span 4;
     margin-top: clamp(#{$space-3}, 5svh, #{$space-5});
   }
 
-  .homeProjectsGallery .section__footer {
+  .homeFeaturedProject .section__footer {
     width: 100%;
     padding-left: calc((100% + var(--grid-gutter)) / 12 * 7);
   }
 }
 
 @include between($bp-tablet, $bp-desktop) {
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(1) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(1) {
     grid-column: 1 / span 5;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(2) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(2) {
     grid-column: 6 / span 3;
     margin-top: $margin-block;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(3) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(3) {
     grid-column: 2 / span 4;
   }
 }
 
 @include mobile-down {
-  .homeProjectsGallery .grid {
+  .homeFeaturedProject .grid {
     row-gap: $margin-block;
   }
 
-  .homeProjectsGallery .grid > .grid__item {
+  .homeFeaturedProject .grid > .grid__item {
     grid-column: 1 / -1;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(even) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(even) {
     width: 82%;
     justify-self: end;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(odd):not(:first-child) {
+  .homeFeaturedProject .grid > .grid__item:nth-of-type(odd):not(:first-child) {
     width: 86%;
   }
 
-  .homeProjectsGallery .section__footer {
+  .homeFeaturedProject .section__footer {
     margin-top: $margin-group;
+  }
+}
+
+
+/* Featured project: one current piece gets enough room to tell a story. */
+.homeFeaturedProject {
+  --split-media-ratio: #{$ratio-editorial};
+
+  .split__content {
+    max-width: 34rem;
+  }
+
+  .textBlock__eyebrow {
+    margin-bottom: $margin-content;
+  }
+}
+
+@include desktop-up {
+  .homeFeaturedProject .split {
+    --split-primary-desktop: 8 / 12;
+    --split-secondary-desktop: 1 / span 6;
+    align-items: end;
   }
 }
