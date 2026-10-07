@@ -150,13 +150,14 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
     const resolveOpeningState = () => {
       frame = 0;
 
+      const progress = getCompactProgress();
+
       if (!compact.matches) {
-        const desktopDistance = Math.max(window.innerHeight * 2, 1);
-        updateDesktop(clamp01(window.scrollY / desktopDistance));
+        updateDesktop(progress);
         return;
       }
 
-      updateCompact(getCompactProgress());
+      updateCompact(progress);
     };
 
     const scheduleResolve = () => {
