@@ -56,7 +56,7 @@
           },
           {
             "id": "home-approach-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
