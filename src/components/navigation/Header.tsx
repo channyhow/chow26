@@ -22,7 +22,7 @@ export function Header() {
   const currentPath = normalizePath(pathname);
   const items = resolveActions(navigationData.primary as ActionRef[]);
   const home = items.find((item) => item.href === "/");
-  const primaryItems = items.filter((item) => item.href !== "/" && item.id !== "view-project-call");
+  const primaryItems = items.filter((item) => item.href !== "/" && item.href !== "/link");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
   const headerRef = useRef<HTMLElement>(null);
