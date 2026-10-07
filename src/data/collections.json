@@ -54,7 +54,8 @@
         "title": "Atmosphere | Site d’architecture intérieure | Chow Studio",
         "description": "Étude de cas web pour un studio d’architecture intérieure : direction artistique éditoriale, hiérarchie des projets et expérience responsive par Chow Studio.",
         "image": "atmosphere-laptop"
-      }
+      },
+      "subtitle": "Une présence digitale qui laisse l’architecture prendre la parole."
     },
     {
       "id": "mois-du-ker",
@@ -116,7 +117,8 @@
         "description": "Le Kèr, imaginé autour du lien à La Réunion, devient le point de départ de l’identité visuelle d’une campagne de prévention cardiovasculaire.",
         "image": "mdk-seo",
         "imageAlt": "Mois du Kèr | identité visuelle de la campagne de prévention cardiovasculaire."
-      }
+      },
+      "subtitle": "Un signe commun pour parler du cœur."
     },
     {
       "id": "kuro",
@@ -174,7 +176,8 @@
         "description": "Étude de cas d’un site de restaurant japonais à Paris : direction visuelle, UX de réservation et intégration frontend par Chow Studio.",
         "image": "kuro-seo",
         "imageAlt": "Kuro | web design et expérience de réservation pour un restaurant japonais."
-      }
+      },
+      "subtitle": "Faire ressentir le lieu avant même d’y entrer."
     },
     {
       "id": "sashayogaflow",
@@ -231,7 +234,8 @@
         "title": "Sasha Yoga Flow | Site yoga & réservation | Chow Studio",
         "description": "Étude de cas web pour Sasha Yoga Flow : expérience mobile-first, présentation des cours et parcours vers la réservation conçus par Chow Studio.",
         "image": "sasha-laptop"
-      }
+      },
+      "subtitle": "Un parcours plus simple, du premier cours à la réservation."
     },
     {
       "id": "maloya",
@@ -288,7 +292,8 @@
         "title": "Maloya | Concept de site pour groupe de musique | Chow Studio",
         "description": "Concept de plateforme musicale immersive : vidéo, dates, contenus et expérience mobile réunis dans une direction digitale par Chow Studio.",
         "image": "maloya-tablet"
-      }
+      },
+      "subtitle": "Une scène digitale pour réunir musique, images et mouvement."
     },
     {
       "id": "ravine-branding",
@@ -342,7 +347,8 @@
         "title": "Ravine | Identité visuelle | Chow Studio",
         "description": "Étude de cas d’identité visuelle : logo, typographie, palette et déclinaisons print et digitales conçues comme un système cohérent.",
         "image": "ravine-business-card"
-      }
+      },
+      "subtitle": "Une identité pensée comme un système, du papier à l’écran."
     },
     {
       "id": "ravine-web",
@@ -395,7 +401,8 @@
         "title": "Ravine | Web design éditorial | Chow Studio",
         "description": "Exploration web éditoriale autour de La Réunion : storytelling, direction artistique et développement frontend par Chow Studio.",
         "image": "ravine-laptop"
-      }
+      },
+      "subtitle": "Un paysage réunionnais traduit en expérience digitale."
     },
     {
       "id": "randorunoi",
@@ -455,7 +462,8 @@
         "title": "RandoRunOi | Direction visuelle trail | Chow Studio",
         "description": "Série de cinq affiches pour des événements de trail à La Réunion : direction visuelle, territoire et cohérence de campagne par Chow Studio.",
         "image": "randorun-poster"
-      }
+      },
+      "subtitle": "Une série d’affiches portée par les reliefs de La Réunion."
     },
     {
       "id": "structure",
@@ -507,7 +515,8 @@
         "title": "Structure | Concept de site d’architecture | Chow Studio",
         "description": "Concept web pour studio d’architecture : grille, hiérarchie et navigation directe explorées par Chow Studio.",
         "image": "structure-laptop"
-      }
+      },
+      "subtitle": "Une grille claire pour laisser parler l’architecture."
     },
     {
       "id": "contraste",
@@ -559,7 +568,8 @@
         "title": "Contraste | Concept web architecture | Chow Studio",
         "description": "Concept de site pour cabinet d’architecture : espaces blancs, hiérarchie des projets et direction visuelle sobre par Chow Studio.",
         "image": "contraste-laptop"
-      }
+      },
+      "subtitle": "L’espace et le contraste au service des projets."
     }
   ],
   "journal": [
