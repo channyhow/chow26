@@ -22,11 +22,16 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
           href="#home-services"
           aria-label="Découvrir les services de Chow Studio"
         >
-          <Media
-            media={openingMedia}
-            className="homeOpeningScene__media"
-            sizes="(min-width: 64rem) calc(100vw - (2 * var(--project-gutter))), 100vw"
-          />
+          <div className="homeOpeningScene__mediaGrid">
+            {[0, 1, 2].map((index) => (
+              <Media
+                key={index}
+                media={openingMedia}
+                className={`homeOpeningScene__media homeOpeningScene__media--${index + 1}`}
+                sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 100vw"
+              />
+            ))}
+          </div>
         </a>
       ) : null}
 
