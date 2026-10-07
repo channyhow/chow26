@@ -45,15 +45,12 @@ align-items: flex-start;
   margin-top: auto;
 }
 
-.homeOpeningScene__mediaPanel {
+// Shared offset backing plane for Home media. Keep it behind the media itself,
+// not behind the section or its scroll-motion wrapper.
+@mixin home-media-backing {
   position: relative;
   isolation: isolate;
-  grid-column: 1 / -1;
-  width: 100%;
-  will-change: transform;
 
-  // Keep the colored backing plane in front of the panel background,
-  // but below the media. A negative z-index can disappear behind its parent.
   &::before {
     content: "";
     position: absolute;
@@ -64,10 +61,18 @@ align-items: flex-start;
     pointer-events: none;
   }
 
-  > .homeOpeningScene__media {
+  > .media,
+  > .scrollScene__content {
     position: relative;
     z-index: 1;
   }
+}
+
+.homeOpeningScene__mediaPanel {
+  @include home-media-backing;
+  grid-column: 1 / -1;
+  width: 100%;
+  will-change: transform;
 }
 
 .homeOpeningScene__media {
@@ -587,4 +592,12 @@ color: $color-primary;
 @include mobile-down {
   .homeFeaturedProject__index { margin-bottom: $margin-group; }
   .homeFeaturedProject__index > span { max-width: none; }
+}
+
+// The same offset plane follows Home's other editorial media.
+#home-services .section__splitMediaMotion,
+.homeFeaturedProject__media,
+.homeOpenCall__media,
+#final-cta .section__splitMediaMotion {
+  @include home-media-backing;
 }
