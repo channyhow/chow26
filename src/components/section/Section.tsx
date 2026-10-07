@@ -117,7 +117,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} motionEnabled={false} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
-    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default")}</div> : null;
+    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default")}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
       title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
