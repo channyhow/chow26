@@ -34,9 +34,13 @@
 .siteFooter__name,
 .siteFooter__baseline,
 .siteFooter__meta,
-.siteFooter__nav .actions__link,
 .siteFooter__social .actions__link,
 .siteFooter__legal .actions__link { @include type-ui-compact; }
+
+.siteFooter__nav .actions__link {
+  @include type-ui-compact;
+  font-weight: $font-weight-semibold;
+}
 
 .siteFooter__name,
 .siteFooter__baseline { margin: 0; }
