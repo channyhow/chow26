@@ -108,7 +108,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       eyebrow: header.eyebrow,
       text: header.text,
     };
-    body = <article className="homeOpenCall__composition"><TextBlock content={{ title: header.title }} className="homeOpenCall__statement" motionEnabled={sectionMotionEnabled} />{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
+    body = <article className="homeEditorialComposition homeOpenCall__composition"><TextBlock content={{ title: header.title }} className="homeOpenCall__statement" motionEnabled={sectionMotionEnabled} />{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
     const featuredMedia = splitItemMedia ? <Media media={splitItemMedia} className="homeFeaturedProject__media" sizes="(min-width: 64rem) 66vw, 100vw" /> : null;
     const featuredStory = {
@@ -118,7 +118,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       meta: splitItem.meta,
       links: header?.projectLinks,
     };
-    body = <article className="homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
+    body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
