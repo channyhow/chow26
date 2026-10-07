@@ -277,6 +277,22 @@
 }
 
 
+/* Lightweight Home campaign preview; /link keeps the full campaign treatment. */
+.homeOpenCallPreview .section__header.textBlock { width: 100%; max-width: none; }
+.homeOpenCallPreview .textBlock__header,
+.homeOpenCallPreview .textBlock__content,
+.homeOpenCallPreview .textBlock__footer { width: min(100%, #{$container-narrow}); }
+.homeOpenCallPreview .textBlock__title { @include type-heading-lg; }
+.homeOpenCallPreview .textBlock__subtitle p { @include type-ui-compact; color: $color-accent; }
+.homeOpenCallPreview .textBlock__content strong { font-weight: $font-weight-medium; }
+.homeOpenCallPreview .actions__link { @include type-body; }
+
+@include desktop-up {
+  .homeOpenCallPreview .section__header.textBlock { @include site-grid; align-items: end; }
+  .homeOpenCallPreview .textBlock__header,
+  .homeOpenCallPreview .textBlock__content { grid-column: 2 / span 5; }
+  .homeOpenCallPreview .textBlock__footer { grid-column: 9 / span 3; align-self: end; justify-self: end; }
+}
 /* Home proof is a single editorial beat. ProjectCard still owns the project
    presentation; Home only controls scale, placement and the surrounding field. */
 .homeProjectsGallery {
