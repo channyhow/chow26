@@ -1,40 +1,53 @@
 [
-  {
-    "id": "home",
-    "slug": "/",
-    "seo": {
-      "title": "Chow Studio | Design web, identité visuelle & frontend",
-      "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
-      "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
-    },
-    "blocks": [
-      {
-        "id": "home-opening-group",
-        "type": "Group",
-        "layout": "flow",
-        "blocks": [
-          {
-            "ref": "home-opening"
-          }
-        ]
-      },
-      {
-        "ref": "home-services"
-      },
-      {
-        "ref": "projects-featured-gallery"
-      },
-      {
-        "ref": "home-opencall-preview"
-      },
-      {
-        "ref": "final-cta"
-      },
-      {
-        "ref": "site-footer"
-      }
-    ]
+
+{
+  "id": "home",
+  "slug": "/",
+  "seo": {
+    "title": "Chow Studio | Design web, identité visuelle & frontend",
+    "description": "Chow Studio conçoit des sites web, identités visuelles et expériences digitales sur mesure entre Paris et La Réunion.",
+    "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
   },
+  "blocks": [
+    {
+      "ref": "home-opening"
+    },
+    {
+      "ref": "home-services"
+    },
+    {
+      "ref": "projects-featured-gallery"
+    },
+    {
+      "ref": "home-opencall-preview"
+    },
+    {
+      "id": "home-final-group",
+      "type": "Group",
+      "layout": "scroll-panel",
+      "panels": [
+        {
+          "id": "home-final-panel",
+          "behavior": "sticky",
+          "frame": "content",
+          "size": "full",
+          "align": "center",
+          "surface": "glass",
+          "color": "primary",
+          "blocks": [
+            {
+              "ref": "final-cta"
+            },
+            {
+              "ref": "site-footer"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+,
   {
     "id": "projects",
     "slug": "/projets",
