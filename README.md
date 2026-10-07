@@ -1,4 +1,4 @@
-# Atmosphere Studio — architecture template
+# Atmosphere Studio - architecture template
 
 Chow Studio architecture/interior case study built on the common React system but art-directed as a spatial editorial experience rather than a card-based portfolio.
 
@@ -20,7 +20,7 @@ Chow Studio architecture/interior case study built on the common React system bu
 ## Conversion rules
 
 1. Projects are the primary proof and appear before service marketing.
-2. Each project has context, constraint, intention, intervention and result — not only a title and thumbnail.
+2. Each project has context, constraint, intention, intervention and result - not only a title and thumbnail.
 3. Details and captions demonstrate attention without slowing the page with long prose.
 4. Approach/services explain the thinking only after the visual proof exists.
 5. Contact is a qualified project brief: place, typology, calendar and need.
@@ -31,7 +31,7 @@ Precise and restrained. Describe spatial decisions, constraints, circulation, li
 
 Avoid generic architecture/luxury language such as “soulful spaces”, “timeless interiors”, “spaces that tell your story”, “elevated living” or “unique experience” unless a concrete fact follows it. A project does not need to sound poetic to be interesting.
 
-Primary reference principle: WAM for project-first storytelling, scale, whitespace and architectural asymmetry — not for copying its interface or identity.
+Primary reference principle: WAM for project-first storytelling, scale, whitespace and architectural asymmetry - not for copying its interface or identity.
 
 See [`docs/CONTENT_STYLE.md`](docs/CONTENT_STYLE.md).
 

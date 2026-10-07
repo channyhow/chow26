@@ -334,10 +334,13 @@
   .home-preview--opencall .split {
     align-items: start;
   }
-
+  .home-preview--opencall .split > [data-split-role="media"] {
+    grid-column: 2 / span 4;
+  }
   .home-preview--opencall .split > [data-split-role="content"] {
-    grid-column: 2 / span 6;
-    align-self: start;
+    grid-column: 8 / span 4;
+    align-self: center;
+    .textBlock__title { @include type-heading-lg; }
   }
 }
 
@@ -450,7 +453,7 @@
 }
 
 
-/* Featured project — image and statement form one editorial group. */
+/* Featured project - image and statement form one editorial group. */
 .homeFeaturedProject {
   .section__inner {
     justify-content: flex-start;
