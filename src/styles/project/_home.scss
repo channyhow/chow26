@@ -126,8 +126,8 @@
   }
 }
 
-/* Compact opening mechanics are shared; phone and tablet own their
-   composition separately so neither relies on off-canvas positioning. */
+/* Compact opening: phone and tablet share one stable viewport composition.
+   Motion may transform these elements, but layout never starts off-canvas. */
 @media (max-width: calc(#{$bp-desktop} - 1px)) {
   #home-opening { height: auto; overflow: visible; }
 
@@ -186,96 +186,82 @@
   }
 }
 
-/* Phone: compact, asymmetric collage with every starting element inside
-   the sticky viewport. The long runway belongs to motion, not layout. */
-@media (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening { min-height: 760svh; }
-  #home-opening .section__inner { height: 760svh; min-height: 760svh; }
+/* Phone + tablet: one-screen editorial preview.
+   Keep every initial asset visible and let motion create the progression. */
+@media (max-width: calc(#{$bp-desktop} - 1px)) {
+  #home-opening,
+  #home-opening .section__inner {
+    height: 100svh;
+    min-height: 100svh;
+  }
 
   .homeOpeningScene__project--web {
-    top: 10%;
-    left: 8%;
-    width: 66%;
+    top: 11%;
+    left: var(--project-gutter);
+    width: min(62vw, 30rem);
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--identity {
-    top: 68%;
-    right: 8%;
-    width: 38%;
+    right: var(--project-gutter);
+    bottom: 9%;
+    width: min(34vw, 17rem);
     aspect-ratio: $ratio-square;
   }
 
   .homeOpeningScene__project--web-secondary {
-    top: 130%;
-    left: 8%;
-    width: 34%;
+    top: 23%;
+    right: 8%;
+    width: min(27vw, 13rem);
     aspect-ratio: $ratio-landscape;
   }
 
   .homeOpeningScene__project--supports {
-    top: 150%;
-    right: 7%;
-    width: 27%;
+    right: 11%;
+    bottom: 31%;
+    width: min(22vw, 10rem);
     aspect-ratio: $ratio-portrait;
   }
 
-  .homeOpeningScene__label { left: 18%; width: 64%; }
-  .homeOpeningScene__label--web { top: calc(50% - 2em); }
-  .homeOpeningScene__label--identity { top: calc(50% - .5em); }
-  .homeOpeningScene__label--supports { top: calc(50% + 1em); }
+  .homeOpeningScene__label {
+    left: 18%;
+    width: 64%;
+  }
+
+  .homeOpeningScene__label--web { top: calc(50% - 1.5em); }
+  .homeOpeningScene__label--identity { top: 50%; }
+  .homeOpeningScene__label--supports { top: calc(50% + 1.5em); }
 
   .homeOpeningScene__statement {
     width: calc(100% - (#{$page-gutter} * 2));
-    max-width: 22rem;
+    max-width: $measure-text;
   }
 }
 
-/* Tablet: keep the same opening composition as mobile, simply with the
-   tablet viewport providing more breathing room around it. */
-@include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 760svh; }
-  #home-opening .section__inner { height: 760svh; min-height: 760svh; }
-
+@include mobile-down {
   .homeOpeningScene__project--web {
-    top: 10%;
-    left: 8%;
-    width: 40%;
-    aspect-ratio: $ratio-landscape;
+    width: 66vw;
   }
 
   .homeOpeningScene__project--identity {
-    top: 68%;
-    right: 8%;
-    width: 35%;
-    aspect-ratio: $ratio-square;
+    width: 38vw;
   }
 
   .homeOpeningScene__project--web-secondary {
-    top: 130%;
-    left: 8%;
-    width: 30%;
-    aspect-ratio: $ratio-landscape;
+    top: 25%;
+    width: 31vw;
   }
 
   .homeOpeningScene__project--supports {
-    top: 150%;
-    right: 7%;
-    width: 25%;
-    aspect-ratio: $ratio-portrait;
+    bottom: 29%;
+    width: 25vw;
   }
 
-  .homeOpeningScene__label { left: 18%; width: 64%; }
-  .homeOpeningScene__label--web { top: calc(50% - 1.575em); }
-  .homeOpeningScene__label--identity { top: calc(50% - .525em); }
-  .homeOpeningScene__label--supports { top: calc(50% + .525em); }
-
-  .homeOpeningScene__statement {
-    width: calc(100% - (#{$page-gutter} * 2));
-    max-width: 22rem;
+  .homeOpeningScene__label {
+    left: 12%;
+    width: 76%;
   }
 }
-
 
 /* Featured work is proof, not an archive. Keep the shared ProjectCard intact
    and let Home own only scale, placement and whitespace. */
