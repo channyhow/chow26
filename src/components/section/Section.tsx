@@ -92,7 +92,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   });
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalItemsWithMotion = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={sectionMotionEnabled}>{item}</ScrollScene>);
-  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => content ? (shouldTrackScroll ? <ScrollScene preset={scenePreset} intensity={intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={isHomeOpenCall ? undefined : scrollProgress}>{content}</ScrollScene> : content) : null;
+  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => content ? (shouldTrackScroll ? <ScrollScene preset={parallaxEnabled && className.toLowerCase().includes("media") ? "parallax" : scenePreset} intensity={intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene> : content) : null;
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
@@ -109,7 +109,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const contactStory = motionLayer(<TextBlock content={header} motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet");
     body = <article className="homeEditorialComposition homeContact__composition"><div className="homeContact__index" aria-hidden="true">Contact</div>{contactStory}{contactMedia}</article>;
   } else if (isHomeOpenCall && header) {
-    const openCallMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" />, "reverse", "homeOpenCall__media", "quiet") : null;
+    const openCallMedia = media ? <div className="homeOpenCall__media">{motionLayer(<Media media={media} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" />, "reverse", "homeOpenCall__mediaMotion", "default")}</div> : null;
     const openCallIntro = {
       eyebrow: header.eyebrow,
       text: header.text,
@@ -117,7 +117,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} motionEnabled={false} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
-    const featuredMedia = splitItemMedia ? motionLayer(<Media media={splitItemMedia} sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__media", "quiet") : null;
+    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default")}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
       title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
