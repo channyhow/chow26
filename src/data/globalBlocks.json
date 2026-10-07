@@ -3,10 +3,7 @@
     "id": "home-opening",
     "type": "Section",
     "layout": "media-overlay",
-    "motion": "scene",
-    "motionPreset": "drift",
-    "motionRange": "exit",
-    "motionIntensity": "quiet",
+    "motion": "none",
     "content": {
       "header": {
         "title": "Sites internet, identités visuelles et supports de communication, pensés avec clarté.",
@@ -14,7 +11,7 @@
           "Chow Studio accompagne les entreprises, marques, lieux et projets pour créer ou faire évoluer leur **site internet**, leur **identité visuelle** et leurs **supports de communication**, à **la Réunion et Paris**."
         ]
       },
-      "media": "kuro-grey"
+      "media": "appel-projets-opening"
     }
   },
   "projects-featured-carousel": {
