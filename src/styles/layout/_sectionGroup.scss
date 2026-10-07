@@ -80,11 +80,11 @@
   --panel-stack-level: calc(var(--panel-index) + 1);
 }
 
-/* Home opening needs a short reading beat after its final statement resolves.
-   Margin extends the sticky runway without changing the panel's measured height
-   or its sticky-top calculation. */
+/* The cinematic opening owns its internal scroll progression.
+   Do not add an external runway here: it would delay the editorial field that
+   follows and make the homepage appear to contain only the opening. */
 .sectionGroup__panel[data-panel-id="home-opening-panel"] {
-  margin-bottom: 200svh;
+  margin-bottom: 0;
 }
 
 /* Mobile panels follow their content instead of forcing every authored viewport
