@@ -6,100 +6,73 @@
    Panel mechanics and shared interaction stay foundation-owned. */
 
 #home-opening {
-  /* The runway is carried by the section while the inner viewport stays
-     sticky. Avoid stretching .section__inner to the full runway: that moves
-     the sticky scene below the first viewport. */
-  height: 300svh;
-  display: block;
+  min-height: 0;
 }
 
 #home-opening .section__inner {
-  position: sticky;
-  top: 0;
   width: 100%;
   max-width: none;
-  height: 100svh;
-  min-height: 100svh;
-  padding: 0;
-}
-
-#home-opening .homeOpeningScene {
-  position: relative;
-  height: 100%;
+  min-height: 0;
+  padding: calc(#{$header-height} + #{$padding-content}) var(--project-gutter) $padding-block;
 }
 
 .homeOpeningScene {
-  @include site-grid;
-  position: relative;
+  display: grid;
   width: 100%;
-  min-height: 100svh;
-  padding: calc(#{$header-height} + #{$space-2}) var(--project-gutter) $space-3;
-  align-items: center;
-  overflow: clip;
+  gap: $margin-content;
 }
 
-.homeOpeningScene__media,
-.homeOpeningScene__labels { display: contents; }
-
-.homeOpeningScene__project {
-  position: relative;
-  z-index: $z-raised;
+.homeOpeningScene__mediaLink {
   display: block;
-  min-width: 0;
+  width: 100%;
   color: inherit;
   text-decoration: none;
-  will-change: transform, opacity;
-}
-
-.homeOpeningScene__project .media,
-.homeOpeningScene__project .media__frame,
-.homeOpeningScene__project .media__asset { width: 100%; height: 100%; }
-
-.homeOpeningScene__project--identity { grid-column: 2 / span 2; grid-row: 1; width: 76%; aspect-ratio: $ratio-square; align-self: end; margin-bottom: 10svh; }
-.homeOpeningScene__project--web { grid-column: 4 / span 4; grid-row: 1; width: 100%; aspect-ratio: $ratio-landscape; align-self: center; }
-.homeOpeningScene__project--web-secondary { grid-column: 9 / span 2; grid-row: 1; width: 88%; aspect-ratio: $ratio-landscape; align-self: end; margin-bottom: 11svh; }
-.homeOpeningScene__project--supports { grid-column: 11 / span 2; grid-row: 1; width: 76%; aspect-ratio: $ratio-portrait; align-self: center; margin-top: 2svh; }
-
-.homeOpeningScene__label {
-  position: relative;
-  z-index: $z-floating;
-  align-self: center;
-  text-transform: none;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-.homeOpeningScene__labelLink {
-  text-decoration: none;
-  @include type-lead;
+  cursor: pointer;
 
   &:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: $space-1;
   }
 }
-.homeOpeningScene__label--web { grid-column: 2 / span 2; grid-row: 1; align-self: center; margin-top: -22svh; }
-.homeOpeningScene__label--identity { grid-column: 5 / span 3; grid-row: 1; z-index: $z-floating; align-self: center; margin-top: 60svh; text-align: center; }
-.homeOpeningScene__label--supports { grid-column: 9 / span 2; grid-row: 1; align-self: center; margin-top: -5svh; }
+
+.homeOpeningScene__media {
+  width: 100%;
+
+  .media__frame {
+    aspect-ratio: $ratio-wide;
+    overflow: hidden;
+  }
+
+  .media__asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 
 .homeOpeningScene__statement {
-  @include type-lead;
-  grid-column: 5 / span 4;
-  grid-row: 1;
-  position: relative;
-  z-index: $z-floating;
-  align-self: center;
-  justify-self: center;
-  width: min(100%, $measure-text);
-  will-change: transform, opacity;
-      text-align: center;
+  --text-width: none;
+  width: 100%;
 
+  .textBlock__title {
+    @include type-heading-xl;
+    max-width: 18ch;
+    margin: 0;
+  }
+
+  .textBlock__content {
+    max-width: $measure-text;
+  }
 }
-.homeOpeningScene__statement p { margin: 0; }
-.homeOpeningScene__project:focus-visible { outline: 2px solid currentColor; outline-offset: $space-1; }
 
 @include hover {
-  .homeOpeningScene__project .media { transition: transform $transition-hover; }
-  .homeOpeningScene__project:hover .media { transform: scale(.985); }
+  .homeOpeningScene__mediaLink .media {
+    transition: transform $transition-hover;
+  }
+
+  .homeOpeningScene__mediaLink:hover .media {
+    transform: scale(.995);
+  }
 }
 
 @include desktop-up {
@@ -264,145 +237,6 @@
     @include type-heading-md;
   }
 }
-
-/* Compact opening: phone and tablet share one stable viewport composition.
-   Motion may transform these elements, but layout never starts off-canvas. */
-@media (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening { height: 300svh; min-height: 0; overflow: visible; }
-
-  #home-opening .section__inner {
-    display: block;
-    flex: none;
-    width: 100%;
-    margin: 0;
-    overflow: visible;
-  }
-
-  .homeOpeningScene {
-    display: block;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100svh;
-    min-height: 0;
-    padding: 0;
-    overflow: clip;
-  }
-
-  .homeOpeningScene__media,
-  .homeOpeningScene__labels { display: block; position: absolute; inset: 0; }
-  .homeOpeningScene__labels { pointer-events: none; }
-
-  .homeOpeningScene__project,
-  .homeOpeningScene__label,
-  .homeOpeningScene__statement { position: absolute; margin: 0; }
-
-  .homeOpeningScene__project { align-self: auto; pointer-events: auto; }
-  .homeOpeningScene__project--web,
-  .homeOpeningScene__project--web-secondary { z-index: $z-raised; }
-  .homeOpeningScene__label { z-index: calc(#{$z-raised} + 1); }
-  .homeOpeningScene__project--identity,
-  .homeOpeningScene__project--supports { z-index: calc(#{$z-raised} + 2); }
-
-  .homeOpeningScene__label {
-    text-align: center;
-    pointer-events: auto;
-  }
-
-  .homeOpeningScene__labelLink {
-    display: block;
-    @include type-body-bold;
-    line-height: 1.05;
-  }
-
-  .homeOpeningScene__statement {
-    top: 50%;
-    left: 50%;
-    z-index: calc(#{$z-raised} + 3);
-    @include type-body;
-
-    opacity: 0;
-  }
-}
-
-/* Phone + tablet: one-screen editorial preview.
-   Keep every initial asset visible and let motion create the progression. */
-@media (max-width: calc(#{$bp-desktop} - 1px)) {
-  #home-opening,
-  #home-opening .section__inner {
-    height: 100%;
-    min-height: 0;
-  }
-
-  .homeOpeningScene__project--web {
-    top: 11%;
-    left: var(--project-gutter);
-    width: min(62vw, 30rem);
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .homeOpeningScene__project--identity {
-    right: var(--project-gutter);
-    bottom: 9%;
-    width: min(34vw, 17rem);
-    aspect-ratio: $ratio-square;
-  }
-
-  .homeOpeningScene__project--web-secondary {
-    top: 23%;
-    right: 8%;
-    width: min(27vw, 13rem);
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .homeOpeningScene__project--supports {
-    right: 11%;
-    bottom: 31%;
-    width: min(22vw, 10rem);
-    aspect-ratio: $ratio-portrait;
-  }
-
-  .homeOpeningScene__label {
-    left: 18%;
-    width: 64%;
-  }
-
-  .homeOpeningScene__label--web { top: calc(50% - 1.5em); }
-  .homeOpeningScene__label--identity { top: 50%; }
-  .homeOpeningScene__label--supports { top: calc(50% + 1.5em); }
-
-  .homeOpeningScene__statement {
-    width: calc(100% - (#{$page-gutter} * 2));
-    max-width: $measure-text;
-  }
-}
-
-@include mobile-down {
-  .homeOpeningScene__project--web {
-    width: 66vw;
-  }
-
-  .homeOpeningScene__project--identity {
-    width: 38vw;
-  }
-
-  .homeOpeningScene__project--web-secondary {
-    top: 25%;
-    width: 31vw;
-  }
-
-  .homeOpeningScene__project--supports {
-    bottom: 29%;
-    width: 25vw;
-  }
-
-  .homeOpeningScene__label {
-    left: 12%;
-    width: 76%;
-  }
-}
-
-
 
 /* Home has two structural moments: the immersive opening and one continuous
    editorial field. Normal-flow previews use block rhythm; exceptional
