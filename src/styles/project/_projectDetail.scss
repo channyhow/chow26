@@ -242,9 +242,13 @@
     --split-media-ratio: #{$ratio-editorial};
   }
 
-  .projectHero .split,
-  .projectStoryMedia .split {
+  .projectHero .split {
     row-gap: $space-4;
+    align-items: start;
+  }
+
+  .projectStoryMedia .split {
+    row-gap: $space-3;
     align-items: start;
   }
 
@@ -290,6 +294,10 @@
 
   .projectStoryMedia {
     --split-media-ratio: #{$ratio-landscape};
+  }
+
+  .projectStoryMedia .split {
+    --split-gap: #{$space-2};
   }
 
   .projectHero .section__inner {
