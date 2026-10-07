@@ -36,7 +36,7 @@
     "type": "Section",
     "layout": "grid",
     "motion": "scene",
-    "motionPreset": "recede",
+    "motionPreset": "parallax",
     "className": "homeProjectsGallery",
     "source": {
       "collection": "projects",
@@ -49,7 +49,8 @@
       "links": [
         "all-projects"
       ]
-    }
+    },
+    "motionIntensity": "quiet"
   },
   "project-gallery": {
     "id": "project-gallery",
@@ -83,7 +84,10 @@
         ]
       },
       "media": "atmosphere_mobile-vid"
-    }
+    },
+    "motion": "scene",
+    "motionPreset": "parallax",
+    "motionIntensity": "quiet"
   },
   "studio-services-intro": {
     "id": "studio-services-intro",
