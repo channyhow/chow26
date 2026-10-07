@@ -176,7 +176,7 @@
     margin: 0;
   }
   #final-cta .split > [data-split-role="media"] {
-    grid-column: 7 / span 6;
+    grid-column: 7 / span 4;
     align-self: center;
   }
   #final-cta .split__secondary .media__frame {
@@ -193,8 +193,8 @@
 
 .homeContact__index {
   @include type-display-xl;
-  color: $color-accent;
-  font-weight: $font-weight-medium;
+  color: $color-special;
+  font-weight: $font-weight-bold;
   line-height: 0.9;
   text-transform: uppercase;
 }
@@ -204,7 +204,7 @@
 
   .textBlock__title {
     @include type-heading-lg;
-    max-width: 14ch;
+    // max-width: 14ch;
     line-height: 1;
   }
 
@@ -231,12 +231,12 @@
   }
 
   .homeContact__story {
-    grid-column: 5 / span 6;
+    grid-column: 8 / span 5;
     grid-row: 1;
   }
 
   .homeContact__media {
-    grid-column: 5 / span 7;
+    grid-column: 8 / span 5;
     grid-row: 2;
   }
 }

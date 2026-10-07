@@ -21,7 +21,7 @@
   display: grid;
   gap: $section-content-gap;
   align-items: start;
-  opacity: $opacity-muted;
+  // opacity: $opacity-muted;
 }
 
 .siteFooter__identity {
@@ -39,6 +39,8 @@
 
 .siteFooter__name {
   @include type-heading-lg;
+  text-transform: uppercase;
+  font-weight: $font-weight-bold;
   margin: 0;
   line-height: 0.95;
 }
@@ -46,6 +48,7 @@
 .siteFooter__baseline { margin: 0; }
 
 .siteFooter__baselines {
+  
   display: grid;
   gap: $flow-tight;
   max-width: 28rem;
@@ -53,8 +56,12 @@
 
 .siteFooter__nav,
 .siteFooter__social,
-.siteFooter__legal { min-width: 0; }
-.siteFooter__legal { opacity: $opacity-muted; }
+.siteFooter__legal { min-width: 0; 
+  padding-top: $space-3;
+  .actions {color: $color-primary;}
+
+}
+
 
 .siteFooter__meta {
   display: flex;
@@ -76,7 +83,7 @@
 
 @include desktop-up {
   .siteFooter__main {
-    grid-template-columns: repeat(3, minmax(0, 0.75fr)) minmax(0, 2fr);
+    grid-template-columns: repeat(3, minmax(0, 0.75fr)) minmax(0, 1fr);
     column-gap: clamp(#{$space-3}, 3vw, #{$space-5});
   }
 

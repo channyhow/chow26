@@ -89,7 +89,7 @@ text-transform: uppercase;
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: inherit;
+  color: $color-primary;
   box-shadow: none;
 
   @include hover {
@@ -108,7 +108,7 @@ text-transform: uppercase;
   padding-bottom: $padding-group;
   border-bottom: 1px solid $color-special;
   background: transparent;
-  color: inherit;
+  color: $color-primary;
 font-weight: $font-weight-semibold;
   .actions__arrow {
     color: $color-special;
