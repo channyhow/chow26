@@ -9,10 +9,10 @@
   align-items: flex-start;
   gap: 0;
    color: $surface-muted;
-}
+@include type-heading-sm;}
 
 .actions__link {
-  @include type-body-bold;
+  // @include type-body-bold;
   display: inline-flex;
   align-items: center;
   justify-content: center;

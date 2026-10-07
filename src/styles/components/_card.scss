@@ -31,9 +31,9 @@
     transition: transform $transition-reveal;
   }
 
-  .textBlock__title {
-    max-width: 22ch;
-  }
+  // .textBlock__title {
+  //   max-width: 22ch;
+  // }
 
   .textBlock__subtitle p {
     @include type-body;
@@ -305,14 +305,14 @@
   }
 
   .textBlock__title {
-    @include type-body;
-    font-weight: $font-weight-medium;
+    // @include type-body;
+    // font-weight: $font-weight-medium;
     max-width: none;
   }
 
   .textBlock__content {
-    @include type-body;
-    opacity: $opacity-quiet;
+    // @include type-body;
+    opacity: $opacity-muted;
   }
 
   .textBlock__content p {

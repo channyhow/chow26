@@ -20,8 +20,7 @@
     margin: 0;
   }
   &__title {
-    @include type-body-bold;
-    margin: 0;
+@include type-heading-sm;    margin: 0;
     // text-wrap: balance;
   }
   &__subtitle p {
