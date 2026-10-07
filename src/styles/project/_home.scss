@@ -284,8 +284,7 @@
    editorial field. Individual previews own their composition; this field owns
    only the long-form rhythm between them. */
 [data-page-id="home"] .page__content {
-  display: grid;
-  gap: 0;
+  display: block;
 }
 
 [data-page-id="home"] #home-services,
@@ -303,7 +302,6 @@
 
 @include desktop-up {
   .home-preview--opencall .split {
-    min-height: min(72svh, 48rem);
     align-items: start;
   }
 
@@ -314,10 +312,12 @@
 }
 
 @include tablet-down {
-  .sectionGroup[data-layout="flow"] {
-    gap: clamp(#{$space-5}, 12svh, #{$space-6});
-    margin-top: calc(#{$space-4} * -1);
-    padding-block: $margin-block $margin-section;
+  [data-page-id="home"] #home-services,
+  [data-page-id="home"] #projects-featured-gallery,
+  [data-page-id="home"] #approach-default,
+  [data-page-id="home"] #home-opencall-preview,
+  [data-page-id="home"] #final-cta {
+    margin-top: clamp(#{$space-5}, 12svh, #{$space-6});
   }
 }
 
