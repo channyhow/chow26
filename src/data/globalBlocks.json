@@ -152,6 +152,25 @@
       }
     }
   },
+  "founder-light": {
+    "id": "founder-light",
+    "type": "Section",
+    "layout": "split",
+    "splitVariant": "media-lead",
+    "className": "founderLight",
+    "content": {
+      "items": [
+        {
+          "subtitle": "Channy How",
+          "text": [
+            "Designer et développeuse frontend, je travaille entre **Paris et La Réunion**.",
+            "Mon parcours entre création et développement produit nourrit une approche attentive au **détail**, à la **cohérence** et à ce qui doit réellement fonctionner une fois livré."
+          ],
+          "media": ["studio-founder-1"]
+        }
+      ]
+    }
+  },
   "studio-founders": {
     "id": "studio-founders",
     "type": "Section",
