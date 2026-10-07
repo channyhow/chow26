@@ -33,6 +33,17 @@
           },
 
           {
+            "id": "home-projects-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "projects-featured-gallery" }]
+          },
+
+          {
             "id": "home-approach-panel",
            "behavior": "sticky",
 "frame": "content",
