@@ -263,6 +263,53 @@
   }
 }
 
+
+
+/* Home has two structural moments: the immersive opening and one continuous
+   editorial field. Individual previews own their composition; this field owns
+   only the long-form rhythm between them. */
+[data-panel-id="home-editorial-panel"] .sectionGroup__surface {
+  display: grid;
+  gap: clamp(#{$space-6}, 18svh, 14rem);
+  padding-block: clamp(#{$space-5}, 12svh, #{$space-6}) $margin-section;
+  overflow: clip;
+}
+
+[data-panel-id="home-editorial-panel"] .section {
+  min-height: 0;
+}
+
+[data-panel-id="home-editorial-panel"] .home-preview {
+  --section-gap: #{$margin-block};
+}
+
+@include desktop-up {
+  .home-preview--opencall .split {
+    min-height: min(72svh, 48rem);
+    align-items: start;
+  }
+
+  .home-preview--opencall .split > [data-split-role="content"] {
+    grid-column: 2 / span 6;
+    align-self: start;
+  }
+}
+
+@include tablet-down {
+  [data-panel-id="home-editorial-panel"] .sectionGroup__surface {
+    gap: clamp(#{$space-5}, 12svh, #{$space-6});
+    padding-block: $margin-section;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-panel-id="home-editorial-panel"] *,
+  [data-panel-id="home-editorial-panel"] *::before,
+  [data-panel-id="home-editorial-panel"] *::after {
+    scroll-behavior: auto;
+  }
+}
+
 /* Featured work is proof, not an archive. Keep the shared ProjectCard intact
    and let Home own only scale, placement and whitespace. */
 .homeProjectsGallery {
