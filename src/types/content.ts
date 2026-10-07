@@ -77,7 +77,7 @@ export type SectionBlock = {
 };
 export type BlockRef = { ref: string };
 export type PanelBlock = BlockRef | SectionBlock;
-export type PanelLane = { id: string; behavior?: PanelBehavior; frame?: PanelFrame; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor; blocks: PanelBlock[] };
+export type PanelLane = { id: string; behavior?: PanelBehavior; frame?: PanelFrame; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor; parallax?: boolean; blocks: PanelBlock[] };
 export type SectionGroup = { id: string; type: "Group"; layout?: GroupLayout; panel?: { frame?: PanelFrame; size?: PanelSize; align?: PanelAlign; surface?: PanelSurface; color?: SectionColor }; panels?: PanelLane[]; motion?: { level: MotionLevel; preset?: "panel" | "media-reveal" | "sticky-story" | "horizontal-rail" }; blocks?: PanelBlock[] };
 export type PageBlock = SectionBlock | SectionGroup | BlockRef;
 export type PageData = { id: string; slug: string; variant?: StyleVariant; seo?: PageSeo; blocks: PageBlock[] };
