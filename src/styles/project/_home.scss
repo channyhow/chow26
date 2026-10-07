@@ -189,8 +189,8 @@
 /* Phone: compact, asymmetric collage with every starting element inside
    the sticky viewport. The long runway belongs to motion, not layout. */
 @media (max-width: calc(#{$bp-tablet} - 1px)) {
-  #home-opening { min-height: 760svh; }
-  #home-opening .section__inner { height: 760svh; min-height: 760svh; }
+  #home-opening { min-height: 430svh; }
+  #home-opening .section__inner { height: 430svh; min-height: 430svh; }
 
   .homeOpeningScene__project--web {
     top: 10%;
@@ -234,8 +234,8 @@
 /* Tablet: keep the same opening composition as mobile, simply with the
    tablet viewport providing more breathing room around it. */
 @include between($bp-tablet, $bp-desktop) {
-  #home-opening { min-height: 760svh; }
-  #home-opening .section__inner { height: 760svh; min-height: 760svh; }
+  #home-opening { min-height: 520svh; }
+  #home-opening .section__inner { height: 520svh; min-height: 520svh; }
 
   .homeOpeningScene__project--web {
     top: 10%;
@@ -277,8 +277,8 @@
 }
 
 
-/* Featured work is proof, not an archive. Keep the shared ProjectCard intact
-   and let Home own only scale, placement and whitespace. */
+/* Home proof is a single editorial beat. ProjectCard still owns the project
+   presentation; Home only controls scale, placement and the surrounding field. */
 .homeProjectsGallery {
   --section-gap: #{$margin-section};
 }
@@ -287,76 +287,71 @@
   justify-content: center;
 }
 
-.homeProjectsGallery .gridReveal {
+.homeProjectsGallery .section__header {
+  width: 100%;
+  margin-bottom: $margin-section;
+}
+
+.homeProjectsGallery .section__header .textBlock__title {
+  @include type-heading-xl;
+  max-width: 12ch;
+}
+
+.homeProjectsGallery .gridReveal,
+.homeProjectsGallery .grid {
   width: 100%;
 }
 
 .homeProjectsGallery .grid {
   @include site-grid;
   align-items: start;
-  row-gap: $margin-section;
 }
 
 .homeProjectsGallery .grid__lead {
-  grid-column: 1 / -1;
+  display: none;
+}
+
+.homeProjectsGallery .grid > .grid__item {
+  grid-column: 2 / span 7;
 }
 
 .homeProjectsGallery .section__footer {
+  width: 100%;
   margin-top: $margin-block;
 }
 
 @include desktop-up {
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(1) {
-    grid-column: 1 / span 6;
+  .homeProjectsGallery {
+    padding-top: $padding-section;
+    padding-bottom: $padding-section;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(2) {
-    grid-column: 8 / span 4;
-    margin-top: clamp(#{$space-4}, 12svh, #{$space-6});
+  .homeProjectsGallery .section__header {
+    @include site-grid;
   }
 
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(3) {
-    grid-column: 3 / span 4;
-    margin-top: clamp(#{$space-3}, 5svh, #{$space-5});
+  .homeProjectsGallery .section__header > * {
+    grid-column: 2 / span 6;
   }
 
   .homeProjectsGallery .section__footer {
-    width: 100%;
-    padding-left: calc((100% + var(--grid-gutter)) / 12 * 7);
+    padding-left: calc((100% + var(--grid-gutter)) / 12 * 9);
   }
 }
 
 @include between($bp-tablet, $bp-desktop) {
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(1) {
-    grid-column: 1 / span 5;
-  }
-
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(2) {
-    grid-column: 6 / span 3;
-    margin-top: $margin-block;
-  }
-
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(3) {
-    grid-column: 2 / span 4;
+  .homeProjectsGallery .grid > .grid__item {
+    grid-column: 1 / span 6;
   }
 }
 
 @include mobile-down {
-  .homeProjectsGallery .grid {
-    row-gap: $margin-block;
+  .homeProjectsGallery .section__header {
+    margin-bottom: $margin-block;
   }
 
   .homeProjectsGallery .grid > .grid__item {
     grid-column: 1 / -1;
-  }
-
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(even) {
-    width: 82%;
-    justify-self: end;
-  }
-
-  .homeProjectsGallery .grid > .grid__item:nth-of-type(odd):not(:first-child) {
-    width: 86%;
   }
 
   .homeProjectsGallery .section__footer {
