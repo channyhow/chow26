@@ -321,6 +321,15 @@
   margin-top: clamp(#{$space-5}, 10svh, #{$space-6});
 }
 
+/* Preview sections should read as content islands in the same field, not as
+   individually centred screens. */
+[data-page-id="home"] #home-services .section__inner,
+[data-page-id="home"] #projects-featured-gallery .section__inner,
+[data-page-id="home"] #home-opencall-preview .section__inner,
+[data-page-id="home"] #final-cta .section__inner {
+  justify-content: flex-start;
+}
+
 @include desktop-up {
   .home-preview--opencall .split {
     align-items: start;
