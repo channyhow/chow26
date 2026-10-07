@@ -9,6 +9,7 @@ import { Gallery } from "@/components/content/Gallery";
 import { HorizontalScroll } from "@/components/content/HorizontalScroll";
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
+import { Actions } from "@/components/navigation/Actions";
 import { Timeline } from "@/components/content/Timeline";
 import { Form } from "@/components/forms/Form";
 import { Grid } from "@/components/layout/Grid";
@@ -109,7 +110,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       meta: splitItem.meta,
       links: header?.links,
     };
-    body = <article className="homeFeaturedProject__composition">{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
+    body = <article className="homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
