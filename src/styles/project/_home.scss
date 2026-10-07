@@ -317,6 +317,26 @@ align-items: flex-start;
 }
 
 @include mobile-down {
+  #home-services .split > [data-split-role="content"] .textBlock__footer {
+    width: 100%;
+  }
+
+  #home-services .split > [data-split-role="content"] .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    > :nth-child(2) {
+      margin-left: 10%;
+    }
+
+    > :nth-child(3) {
+      margin-left: 20%;
+    }
+  }
+}
+
+@include mobile-down {
   .homeContact__index {
     @include type-display-lg;
   }
