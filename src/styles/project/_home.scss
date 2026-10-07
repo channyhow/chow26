@@ -121,6 +121,10 @@ align-items: flex-start;
     min-height: calc(100svh - (2 * #{$padding-content}));
   }
 
+  .homeOpeningScene__statement {
+    padding-bottom: max(#{$padding-content}, env(safe-area-inset-bottom));
+  }
+
   .homeOpeningScene__statement .textBlock__title {
     max-width: 13ch;
   }
