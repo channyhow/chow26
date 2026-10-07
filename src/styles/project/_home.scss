@@ -283,19 +283,21 @@
 /* Home has two structural moments: the immersive opening and one continuous
    editorial field. Individual previews own their composition; this field owns
    only the long-form rhythm between them. */
-[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) {
+[data-page-id="home"] .page__content {
   display: grid;
-  gap: clamp(#{$space-6}, 18svh, 14rem);
-  margin-top: clamp(-6rem, -8svh, -3rem);
-  padding-block: clamp(#{$space-4}, 7svh, #{$space-5}) $margin-section;
-  overflow: clip;
+  gap: 0;
 }
 
-[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) .section {
+[data-page-id="home"] #home-services,
+[data-page-id="home"] #projects-featured-gallery,
+[data-page-id="home"] #approach-default,
+[data-page-id="home"] #home-opencall-preview,
+[data-page-id="home"] #final-cta {
   min-height: 0;
+  margin-top: clamp(#{$space-6}, 18svh, 14rem);
 }
 
-[data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) .home-preview {
+[data-page-id="home"] .home-preview {
   --section-gap: #{$margin-block};
 }
 
@@ -320,7 +322,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-page-id="home"] > .sectionGroup[data-layout="flow"]:has(#home-services) * {
+  [data-page-id="home"] .page__content * {
     scroll-behavior: auto;
   }
 }
