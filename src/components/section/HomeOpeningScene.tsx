@@ -34,18 +34,19 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
         >
           <div className="homeOpeningScene__mediaGrid">
             {[0, 1, 2].map((index) => (
-              <motion.div
+              <div
                 key={index}
                 className={`homeOpeningScene__mediaPanel homeOpeningScene__mediaPanel--${index + 1}`}
-                style={parallaxEnabled && !reduceMotion ? { y: mediaMotion[index] } : undefined}
               >
+                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled && !reduceMotion ? { y: mediaMotion[index] } : undefined}>
                 <Media
                   media={openingMedia}
                   className="homeOpeningScene__media"
                   sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 31vw"
                   ratio="square"
                 />
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </a>
