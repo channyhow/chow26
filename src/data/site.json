@@ -53,7 +53,7 @@
   "theme": {
     "variant": "editorial",
     "tone": "default",
-    "colors": { "primary": "#161616", "secondary": "#F6F5F3", "special": "#D8D4CC", "accent": "#D85234" },
+    "colors": { "primary": "#161616", "secondary": "#F6F5F3", "special": "#eeeeed", "accent": "#D85234" },
     "fonts": { "classicHeading": "Flor de Ruina Semilla", "editorialHeading": "DM Sans", "organicHeading": "Flor de Ruina Semilla", "body": "DM Sans" }
   },
   "integrations": { "hosting": "netlify", "forms": "tally", "cms": false, "calendar": false, "newsletter": false, "commerce": false, "maps": false, "reviews": false, "weather": false, "analytics": false }
