@@ -11,20 +11,10 @@
       {
         "id": "home-opening-group",
         "type": "Group",
-        "layout": "scroll-panel",
-        "panels": [
+        "layout": "flow",
+        "blocks": [
           {
-            "id": "home-opening-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "blocks": [
-              {
-                "ref": "home-opening"
-              }
-            ]
+            "ref": "home-opening"
           }
         ]
       },
