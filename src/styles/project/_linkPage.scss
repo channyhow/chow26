@@ -81,7 +81,7 @@ text-transform: uppercase;
 }
 
 .linkPage__campaign .actions__link {
-  @include type-body;
+  @include type-body-bold;
   width: 100%;
   min-height: 0;
   padding: $space-2 0;
