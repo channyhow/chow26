@@ -52,15 +52,21 @@ align-items: flex-start;
   width: 100%;
   will-change: transform;
 
-  // A stationary offset plane within each moving panel makes the depth legible.
+  // Keep the colored backing plane in front of the panel background,
+  // but below the media. A negative z-index can disappear behind its parent.
   &::before {
     content: "";
     position: absolute;
     inset: 0;
     background: $color-special;
     transform: translate($space-3, $space-3);
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
+  }
+
+  > .homeOpeningScene__media {
+    position: relative;
+    z-index: 1;
   }
 }
 
