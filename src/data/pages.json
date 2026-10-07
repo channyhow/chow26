@@ -9,7 +9,7 @@
     },
     "blocks": [
       {
-        "id": "home-story",
+        "id": "home-opening-group",
         "type": "Group",
         "layout": "scroll-panel",
         "panels": [
@@ -25,37 +25,33 @@
                 "ref": "home-opening"
               }
             ]
-          },
-          {
-            "id": "home-editorial-panel",
-            "behavior": "normal",
-            "frame": "content",
-            "size": "full",
-            "align": "start",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [
-              {
-                "ref": "home-services"
-              },
-              {
-                "ref": "projects-featured-gallery"
-              },
-              {
-                "ref": "approach-default"
-              },
-              {
-                "ref": "home-opencall-preview"
-              },
-              {
-                "ref": "final-cta"
-              },
-              {
-                "ref": "site-footer"
-              }
-            ]
           }
         ]
+      },
+      {
+        "id": "home-editorial-field",
+        "type": "Group",
+        "layout": "flow",
+        "blocks": [
+          {
+            "ref": "home-services"
+          },
+          {
+            "ref": "projects-featured-gallery"
+          },
+          {
+            "ref": "approach-default"
+          },
+          {
+            "ref": "home-opencall-preview"
+          },
+          {
+            "ref": "final-cta"
+          }
+        ]
+      },
+      {
+        "ref": "site-footer"
       }
     ]
   },
