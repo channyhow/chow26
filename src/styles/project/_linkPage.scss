@@ -108,10 +108,11 @@ text-transform: uppercase;
   padding-bottom: $padding-group;
   border-bottom: 1px solid $color-special;
   background: transparent;
-  color: inherit;
-font-weight: $font-weight-semibold;
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+
   .actions__arrow {
-    color: $color-special;
+    color: $color-primary;
   }
 
   @include hover {
