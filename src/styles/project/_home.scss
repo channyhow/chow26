@@ -62,7 +62,8 @@ align-items: flex-start;
   }
 
   > .media,
-  > .scrollScene__content {
+  > .scrollScene,
+  > .homeOpeningScene__mediaMotion {
     position: relative;
     z-index: 1;
   }
@@ -72,7 +73,10 @@ align-items: flex-start;
   @include home-media-backing;
   grid-column: 1 / -1;
   width: 100%;
-  will-change: transform;
+}
+
+.homeOpeningScene__mediaMotion {
+  width: 100%;
 }
 
 .homeOpeningScene__media {
@@ -497,9 +501,8 @@ color: $color-primary;
     scroll-behavior: auto;
   }
 
-  .homeOpeningScene__mediaPanel {
+  .homeOpeningScene__mediaMotion {
     transform: none !important;
-    will-change: auto;
   }
 }
 
