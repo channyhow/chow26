@@ -20,8 +20,13 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "blocks": [{ "ref": "home-opening" }]
-          },     {
+            "blocks": [
+              {
+                "ref": "home-opening"
+              }
+            ]
+          },
+          {
             "id": "home-services-panel",
             "behavior": "sticky",
             "frame": "content",
@@ -29,9 +34,12 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
-
           {
             "id": "home-projects-panel",
             "behavior": "sticky",
@@ -40,39 +48,56 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "projects-featured-gallery" }]
+            "blocks": [
+              {
+                "ref": "projects-featured-gallery"
+              }
+            ]
           },
-
           {
             "id": "home-approach-panel",
-           "behavior": "sticky",
-"frame": "content",
+            "behavior": "sticky",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
-          },       {
-  "id": "home-opencall-panel",
-  "behavior": "sticky",
-  "frame": "content",
-  "size": "full",
-  "align": "center",
-  "surface": "solid",
-  "color": "special",
-  "blocks": [{ "ref": "linkpage-navigation" }]
-},
-     
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
+          },
+          {
+            "id": "home-opencall-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [
+              {
+                "ref": "home-opencall-preview"
+              }
+            ]
+          },
           {
             "id": "home-final-panel",
             "behavior": "overlay",
             "frame": "content",
-
             "size": "full",
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -92,26 +117,37 @@
         "type": "Group",
         "layout": "scroll-panel",
         "panels": [
-  {
-  "id": "projects-gallery-panel",
-  "behavior": "sticky",
-  "frame": "content",
-  "size": "full",
-  "align": "center",
-  "surface": "solid",
-  "color": "secondary",
-  "blocks": [{ "ref": "project-gallery" }]
-},
-{
-  "id": "projects-final-panel",
-  "behavior": "overlay",
-  "frame": "content",
-  "size": "full",
-  "align": "center",
-  "surface": "glass",
-  "color": "primary",
-  "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
-}
+          {
+            "id": "projects-gallery-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "project-gallery"
+              }
+            ]
+          },
+          {
+            "id": "projects-final-panel",
+            "behavior": "overlay",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -138,7 +174,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "studio-services-intro" }]
+            "blocks": [
+              {
+                "ref": "studio-services-intro"
+              }
+            ]
           },
           {
             "id": "studio-service-identity-panel",
@@ -182,7 +222,6 @@
               }
             ]
           },
-        
           {
             "id": "studio-founders-panel",
             "behavior": "sticky",
@@ -191,7 +230,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "studio-final-panel",
@@ -201,7 +244,14 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -213,7 +263,10 @@
     "seo": {
       "title": "Studio | Chow Studio",
       "description": "Services, approche et studio Chow Studio.",
-      "robots": { "index": false, "follow": true }
+      "robots": {
+        "index": false,
+        "follow": true
+      }
     },
     "blocks": [
       {
@@ -229,17 +282,25 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
           {
             "id": "approach-process-panel",
-         "behavior": "normal",
-  "frame": "content",
-  "size": "full",
+            "behavior": "normal",
+            "frame": "content",
+            "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
           },
           {
             "id": "studio-founders-panel",
@@ -249,7 +310,11 @@
             "align": "center",
             "surface": "glass",
             "color": "accent",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "approach-final-panel",
@@ -259,7 +324,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -271,7 +343,10 @@
     "seo": {
       "title": "Journal | Chow Studio",
       "description": "Archives éditoriales de Chow Studio.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -287,7 +362,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "journal-default" }]
+            "blocks": [
+              {
+                "ref": "journal-default"
+              }
+            ]
           },
           {
             "id": "journal-archive-final-panel",
@@ -297,7 +376,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -309,7 +395,10 @@
     "seo": {
       "title": "Rendre un site web plus clair avant de le redesign | Chow Studio",
       "description": "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -325,7 +414,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -337,7 +433,10 @@
     "seo": {
       "title": "Une identité visuelle doit fonctionner comme un système | Chow Studio",
       "description": "Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -353,7 +452,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -365,7 +471,10 @@
     "seo": {
       "title": "Pourquoi rapprocher design et développement frontend | Chow Studio",
       "description": "Design, UX et développement frontend pensés ensemble.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -381,7 +490,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -402,14 +518,19 @@
         "panels": [
           {
             "id": "contact-content-panel",
- "behavior": "sticky",
-"frame": "content",
+            "behavior": "sticky",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "contact-default" }]
-          }, {
+            "blocks": [
+              {
+                "ref": "contact-default"
+              }
+            ]
+          },
+          {
             "id": "contact-final-panel",
             "behavior": "overlay",
             "frame": "content",
@@ -417,11 +538,17 @@
             "align": "center",
             "surface": "glass",
             "color": "primary",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
-      
     ]
   },
   {
@@ -429,38 +556,53 @@
     "slug": "/link",
     "seo": {
       "title": "Appel à projets identité visuelle | Chow Studio",
-"description": "Chow Studio invite 3 projets à créer ou faire évoluer leur identité visuelle, à Paris, à La Réunion ou ailleurs.",      "image": "kuro-grey",
+      "description": "Chow Studio invite 3 projets à créer ou faire évoluer leur identité visuelle, à Paris, à La Réunion ou ailleurs.",
+      "image": "kuro-grey",
       "imageAlt": "Appel à projets de Chow Studio pour des projets d’identité visuelle.",
-      "robots": { "index": true, "follow": true }
+      "robots": {
+        "index": true,
+        "follow": true
+      }
     },
     "blocks": [
-     {
-  "id": "link-story",
-  "type": "Group",
-  "layout": "scroll-panel",
-  "panels": [
-    {
-      "id": "link-campaign-panel",
-      "behavior": "sticky",
-      "frame": "content",
-      "size": "full",
-      "align": "center",
-      "surface": "solid",
-      "color": "special",
-      "blocks": [{ "ref": "linkpage-navigation" }]
-    },
-    {
-      "id": "link-footer-panel",
-      "behavior": "overlay",
-      "frame": "content",
-      "size": "full",
-      "align": "center",
-      "surface": "glass",
-      "color": "primary",
-      "blocks": [{"ref":"studio-founders"},{ "ref": "site-footer" }]
-    }
-  ]
-}
+      {
+        "id": "link-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "link-campaign-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "special",
+            "blocks": [
+              {
+                "ref": "linkpage-navigation"
+              }
+            ]
+          },
+          {
+            "id": "link-footer-panel",
+            "behavior": "overlay",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
@@ -485,9 +627,12 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "legal-notice-default" }]
+            "blocks": [
+              {
+                "ref": "legal-notice-default"
+              }
+            ]
           },
-        
           {
             "id": "legal-final-panel",
             "behavior": "overlay",
@@ -496,7 +641,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -518,8 +670,8 @@
         "panels": [
           {
             "id": "cgv-content-panel",
-         "behavior": "sticky",
-"frame": "content",
+            "behavior": "sticky",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
@@ -651,7 +803,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -673,13 +832,17 @@
         "panels": [
           {
             "id": "privacy-content-panel",
-    "behavior": "sticky",
-"frame": "content",
+            "behavior": "sticky",
+            "frame": "content",
             "size": "full",
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "privacy-default" }]
+            "blocks": [
+              {
+                "ref": "privacy-default"
+              }
+            ]
           },
           {
             "id": "privacy-final-panel",
@@ -689,7 +852,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -702,7 +872,10 @@
     "seo": {
       "title": "Page introuvable | Chow Studio",
       "description": "Cette page Chow Studio est introuvable.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -718,7 +891,11 @@
             "align": "center",
             "surface": "solid",
             "color": "accent",
-            "blocks": [{ "ref": "not-found-default" }]
+            "blocks": [
+              {
+                "ref": "not-found-default"
+              }
+            ]
           },
           {
             "id": "not-found-final-panel",
@@ -728,7 +905,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
