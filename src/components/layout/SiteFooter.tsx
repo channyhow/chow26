@@ -23,13 +23,13 @@ export function SiteFooter({ block }: SiteFooterProps) {
   return <footer id={block.id} className="siteFooter" data-surface={block.surface} data-color={block.color} aria-label="Pied de page">
     <motion.div className="siteFooter__inner" variants={revealContainer} initial="hidden" whileInView="visible" viewport={motionConfig.viewport}>
       <motion.div className="siteFooter__main" variants={revealContainer}>
+        {primaryLinks.length ? <motion.nav className="siteFooter__nav" aria-label="Navigation du pied de page" variants={revealContainer}><Actions links={primaryLinks} variant="nav" /></motion.nav> : null}
+        {socialLinks.length ? <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={revealItem}><Actions links={socialLinks} variant="social" /></motion.nav> : null}
+        {legalLinks.length ? <motion.nav className="siteFooter__legal" aria-label="Informations légales" variants={revealItem}><Actions links={legalLinks} variant="nav" /></motion.nav> : null}
         <motion.div className="siteFooter__identity" variants={revealContainer}>
           {eyebrows[0] ? <motion.p className="siteFooter__name" variants={revealItem}>{eyebrows[0]}</motion.p> : null}
           {eyebrows.length > 1 ? <motion.div className="siteFooter__baselines" variants={revealContainer}>{eyebrows.slice(1).map((eyebrow) => <motion.p key={eyebrow} className="siteFooter__baseline" variants={revealItem}>{eyebrow}</motion.p>)}</motion.div> : null}
         </motion.div>
-        {primaryLinks.length ? <motion.nav className="siteFooter__nav" aria-label="Navigation du pied de page" variants={revealContainer}><Actions links={primaryLinks} variant="nav" /></motion.nav> : null}
-        {socialLinks.length ? <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={revealItem}><Actions links={socialLinks} variant="social" /></motion.nav> : null}
-        {legalLinks.length ? <motion.nav className="siteFooter__legal" aria-label="Informations légales" variants={revealItem}><Actions links={legalLinks} variant="nav" /></motion.nav> : null}
       </motion.div>
       {meta.length ? <motion.div className="siteFooter__meta" variants={revealContainer}>{meta.map((item) => <motion.span key={`${item.label}-${item.value ?? ""}`} variants={revealItem}>{item.value ? `${item.label}: ${item.value}` : item.label}</motion.span>)}</motion.div> : null}
     </motion.div>
