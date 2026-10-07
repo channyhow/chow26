@@ -155,20 +155,6 @@
             ]
           },
           {
-            "id": "studio-approach-panel",
-            "behavior": "normal",
-            "frame": "content",
-            "size": "auto",
-            "align": "start",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [
-              {
-                "ref": "approach-default"
-              }
-            ]
-          },
-          {
             "id": "studio-final-panel",
             "behavior": "overlay",
             "frame": "content",
@@ -186,6 +172,9 @@
             ]
           }
         ]
+      },
+      {
+        "ref": "approach-default"
       }
     ]
   },
