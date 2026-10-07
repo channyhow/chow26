@@ -122,7 +122,7 @@ align-items: flex-start;
   }
 
   .homeOpeningScene__statement {
-    padding-bottom: max(#{$padding-content}, env(safe-area-inset-bottom));
+    padding-bottom: $space-4;
   }
 
   .homeOpeningScene__statement .textBlock__title {
@@ -166,6 +166,13 @@ align-items: flex-start;
     transform: scale(.995);
   }
 }
+
+  #home-services .split > [data-split-role="content"] .actions {
+  
+color: $color-primary;
+
+    
+  }
 
 @include desktop-up {
   /* Services follows the same editorial sequence as the reference:
@@ -221,15 +228,7 @@ align-items: flex-start;
     }
    
   }
-  #home-services .split > [data-split-role="content"] .actions {
-               @include type-heading-md;
 
-// .actions__link {
-//                   @include type-heading-md;
-
-//     }
-    
-  }
 
   /* Final CTA is one composition, not two distant islands. */
   #final-cta .split {
@@ -396,6 +395,12 @@ align-items: flex-start;
     @include type-heading-sm;
   }
 }
+
+#home-opencall-preview {
+  .textBlock__eyebrow {
+  font-weight: $font-weight-bold;
+  }
+  }
 
 .homeOpenCall__statement {
   --text-width: none;
