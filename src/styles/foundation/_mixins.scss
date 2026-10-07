@@ -4,6 +4,11 @@
 @mixin desktop-up { @media (min-width: $bp-desktop) { @content; } }
 @mixin wide-up { @media (min-width: $bp-wide) { @content; } }
 @mixin mobile-down { @media (max-width: calc(#{$bp-mobile} - 0.001rem)) { @content; } }
+@mixin tablet-only {
+  @media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 1px)) {
+    @content;
+  }
+}
 @mixin tablet-down { @media (max-width: calc(#{$bp-tablet} - 0.001rem)) { @content; } }
 @mixin desktop-down { @media (max-width: calc(#{$bp-desktop} - 0.001rem)) { @content; } }
 @mixin between($min, $max) { @media (min-width: $min) and (max-width: calc(#{$max} - 0.001rem)) { @content; } }

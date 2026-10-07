@@ -32,7 +32,7 @@
     }
   },
   "projects-featured-gallery": {
-    "id": "home-featured-project",
+    "id": "projects-featured-gallery",
     "type": "Section",
     "layout": "split",
     "splitVariant": "media-lead",
