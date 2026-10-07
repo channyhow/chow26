@@ -268,7 +268,7 @@
 /* Home has two structural moments: the immersive opening and one continuous
    editorial field. Individual previews own their composition; this field owns
    only the long-form rhythm between them. */
-[data-panel-id="home-editorial-panel"] .sectionGroup__surface {
+.sectionGroup[data-layout="flow"] {
   display: grid;
   gap: clamp(#{$space-6}, 18svh, 14rem);
   margin-top: clamp(-6rem, -8svh, -3rem);
@@ -276,11 +276,11 @@
   overflow: clip;
 }
 
-[data-panel-id="home-editorial-panel"] .section {
+.sectionGroup[data-layout="flow"] .section {
   min-height: 0;
 }
 
-[data-panel-id="home-editorial-panel"] .home-preview {
+.sectionGroup[data-layout="flow"] .home-preview {
   --section-gap: #{$margin-block};
 }
 
@@ -297,7 +297,7 @@
 }
 
 @include tablet-down {
-  [data-panel-id="home-editorial-panel"] .sectionGroup__surface {
+  .sectionGroup[data-layout="flow"] {
     gap: clamp(#{$space-5}, 12svh, #{$space-6});
     margin-top: calc(#{$space-4} * -1);
     padding-block: $margin-block $margin-section;
