@@ -348,15 +348,11 @@
 }
 
 
-/* Contact uses a quieter founder note: enough presence to make the studio
-   personal without turning the conversion page into an About page. */
+/* Founder light deliberately inherits the existing founder composition.
+   The lighter role comes from its shorter content, not a second visual system. */
 .founderLight {
   --media-background: transparent;
   --split-media-ratio: #{$ratio-square};
-}
-
-.founderLight .split {
-  align-items: center;
 }
 
 .founderLight .split__secondary {
@@ -365,12 +361,15 @@
 }
 
 .founderLight .split__secondary .media {
-  width: min(100%, 12rem);
+  width: min(100%, 25rem);
+  max-width: 25rem;
+  max-height: 25rem;
+  justify-self: center;
   background: transparent;
 }
 
 .founderLight .split__secondary .media__frame {
-  aspect-ratio: $ratio-square;
+  max-height: 25rem;
   overflow: hidden;
   background: $color-accent;
 }
@@ -380,40 +379,126 @@
 }
 
 @include desktop-up {
+  .founderLight .split {
+    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+    grid-template-rows: auto minmax(clamp(#{$space-5}, 18svh, #{$space-6 + $space-4}), auto) auto;
+    column-gap: var(--grid-gutter);
+    align-items: start;
+  }
+
   .founderLight .split > [data-split-role="content"] {
-    grid-column: 3 / span 4;
+    grid-column: 2 / span 5;
+    grid-row: 1;
+    align-self: start;
+    min-width: 0;
   }
 
   .founderLight .split > [data-split-role="media"] {
-    grid-column: 9 / span 2;
+    grid-column: 10 / span 2;
+    grid-row: 3;
+    align-self: end;
+    min-width: 0;
+  }
+
+  .founderLight .split__secondary {
+    place-items: end stretch;
+  }
+
+  .founderLight .split__secondary .media,
+  .founderLight .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  .founderLight .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
   }
 }
 
 @include between($bp-tablet, $bp-desktop) {
-  .founderLight .split > [data-split-role="content"] {
-    grid-column: 1 / span 5;
+  .founderLight .split {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    align-items: start;
+    align-content: center;
+    column-gap: var(--grid-gutter);
   }
 
   .founderLight .split > [data-split-role="media"] {
     grid-column: 7 / span 2;
+    grid-row: 2;
+    order: initial;
+  }
+
+  .founderLight .split > [data-split-role="content"] {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    order: initial;
+    min-width: 0;
+  }
+
+  .founderLight .split__secondary {
+    place-items: start stretch;
+  }
+
+  .founderLight .split__secondary .media,
+  .founderLight .split__secondary .media__frame {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  .founderLight .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
   }
 }
 
-@include mobile-down {
+@include tablet-down {
   .founderLight {
-    --split-gap: #{$margin-group};
+    --split-gap: #{$space-3};
+  }
+
+  .founderLight .split {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    align-items: start;
   }
 
   .founderLight .split > [data-split-role="content"] {
     grid-column: 1 / -1;
+    grid-row: 1;
+    order: initial;
+    min-width: 0;
   }
 
   .founderLight .split > [data-split-role="media"] {
     grid-column: 4 / -1;
-    justify-self: end;
+    grid-row: 2;
+    order: initial;
   }
 
-  .founderLight .split__secondary .media {
+  .founderLight .split__secondary {
+    place-items: start stretch;
+  }
+
+  .founderLight .split__secondary .media,
+  .founderLight .split__secondary .media__frame {
     width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: $ratio-square;
+  }
+
+  .founderLight .split__primary .textBlock {
+    width: 100%;
+    max-width: none;
   }
 }
