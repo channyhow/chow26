@@ -271,7 +271,8 @@
 [data-panel-id="home-editorial-panel"] .sectionGroup__surface {
   display: grid;
   gap: clamp(#{$space-6}, 18svh, 14rem);
-  padding-block: clamp(#{$space-5}, 12svh, #{$space-6}) $margin-section;
+  margin-top: clamp(-6rem, -8svh, -3rem);
+  padding-block: clamp(#{$space-4}, 7svh, #{$space-5}) $margin-section;
   overflow: clip;
 }
 
@@ -298,7 +299,8 @@
 @include tablet-down {
   [data-panel-id="home-editorial-panel"] .sectionGroup__surface {
     gap: clamp(#{$space-5}, 12svh, #{$space-6});
-    padding-block: $margin-section;
+    margin-top: calc(#{$space-4} * -1);
+    padding-block: $margin-block $margin-section;
   }
 }
 
