@@ -108,7 +108,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
       text: header?.text,
       meta: splitItem.meta,
-      links: (header as typeof header & { projectLinks?: typeof header.links })?.projectLinks,
+      links: header?.projectLinks,
     };
     body = <article className="homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
   } else if (layout === "split") {
