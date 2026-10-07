@@ -1,4 +1,4 @@
-import type { MotionValue } from "motion/react";
+import { motion, useTransform, type MotionValue } from "motion/react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -11,8 +11,12 @@ type HomeOpeningSceneProps = {
   scrollProgress?: MotionValue<number>;
 };
 
-export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
   const openingMedia = media[0];
+  const mediaY1 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-3svh"]);
+  const mediaY2 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-6svh"]);
+  const mediaY3 = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0svh", "-4svh"]);
+  const mediaMotion = [mediaY1, mediaY2, mediaY3];
 
   return (
     <div className="homeOpeningScene">
@@ -24,13 +28,18 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         >
           <div className="homeOpeningScene__mediaGrid">
             {[0, 1, 2].map((index) => (
-              <Media
+              <motion.div
                 key={index}
-                media={openingMedia}
-                className={`homeOpeningScene__media homeOpeningScene__media--${index + 1}`}
-                sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 100vw"
-                ratio="square"
-              />
+                className={`homeOpeningScene__mediaPanel homeOpeningScene__mediaPanel--${index + 1}`}
+                style={scrollProgress ? { y: mediaMotion[index] } : undefined}
+              >
+                <Media
+                  media={openingMedia}
+                  className="homeOpeningScene__media"
+                  sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 31vw"
+                  ratio="square"
+                />
+              </motion.div>
             ))}
           </div>
         </a>
