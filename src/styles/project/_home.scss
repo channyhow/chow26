@@ -293,11 +293,32 @@
 [data-page-id="home"] #home-opencall-preview,
 [data-page-id="home"] #final-cta {
   min-height: 0;
-  margin-top: clamp(#{$space-6}, 18svh, 14rem);
 }
 
 [data-page-id="home"] .home-preview {
   --section-gap: #{$margin-block};
+}
+
+/* One continuous editorial field: spacing belongs to the composition rather
+   than being repeated as a large top margin on every preview. */
+[data-page-id="home"] #home-services {
+  margin-top: clamp(-9rem, -12svh, -5rem);
+}
+
+[data-page-id="home"] #projects-featured-gallery {
+  margin-top: clamp(#{$space-4}, 8svh, #{$space-6});
+}
+
+[data-page-id="home"] #approach-default {
+  margin-top: clamp(#{$space-5}, 10svh, #{$space-6});
+}
+
+[data-page-id="home"] #home-opencall-preview {
+  margin-top: clamp(#{$space-6}, 16svh, 11rem);
+}
+
+[data-page-id="home"] #final-cta {
+  margin-top: clamp(#{$space-5}, 10svh, #{$space-6});
 }
 
 @include desktop-up {
@@ -312,12 +333,18 @@
 }
 
 @include tablet-down {
-  [data-page-id="home"] #home-services,
+  [data-page-id="home"] #home-services {
+    margin-top: calc(#{$space-4} * -1);
+  }
+
   [data-page-id="home"] #projects-featured-gallery,
   [data-page-id="home"] #approach-default,
-  [data-page-id="home"] #home-opencall-preview,
   [data-page-id="home"] #final-cta {
-    margin-top: clamp(#{$space-5}, 12svh, #{$space-6});
+    margin-top: $margin-block;
+  }
+
+  [data-page-id="home"] #home-opencall-preview {
+    margin-top: $margin-section;
   }
 }
 
