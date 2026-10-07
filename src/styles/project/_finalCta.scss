@@ -1,0 +1,32 @@
+@use "../foundation/mixins" as *;
+@use "../foundation/tokens" as *;
+
+/* Shared page ending. Final CTA owns one editorial composition everywhere;
+   pages only decide when the ending enters the story. */
+#final-cta {
+  --section-gap: #{$margin-block};
+}
+
+@include desktop-up {
+  #final-cta .split {
+    min-height: min(78svh, 54rem);
+    align-items: start;
+  }
+
+  #final-cta .split > [data-split-role="content"] {
+    grid-column: 2 / span 4;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: clamp(#{$space-4}, 10svh, #{$space-6});
+  }
+
+  #final-cta .split > [data-split-role="media"] {
+    grid-column: 7 / span 6;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  #final-cta .split__secondary .media__frame {
+    aspect-ratio: 4 / 3;
+  }
+}
