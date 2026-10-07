@@ -18,9 +18,9 @@ align-items: flex-start;
 }
 
 .homeOpeningScene {
-  display: grid;
-  width: 100%;
-  gap: $margin-content;
+  display: flex;
+  flex-direction: column;
+  min-height: 90svh;
 }
 
 .homeOpeningScene__mediaLink {
@@ -39,6 +39,10 @@ align-items: flex-start;
 .homeOpeningScene__mediaGrid {
   @include site-grid;
   width: 100%;
+}
+
+.homeOpeningScene__statement {
+  margin-top: auto;
 }
 
 .homeOpeningScene__media {
@@ -107,7 +111,6 @@ align-items: flex-start;
   .textBlock__title {
     @include type-heading-xl;
     font-weight: $font-weight-medium;
-    margin-top:15svh;
   }
 
   .textBlock__content {
@@ -146,16 +149,16 @@ align-items: flex-start;
     row-gap: $margin-content;
   }
   #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 12;
-    grid-row: 1;
+    grid-column: 1 / span 4;
+    grid-row: 2;
     align-self: start;
   }
   #home-services .split__secondary .media__frame {
-    aspect-ratio: $ratio-wide;
+    aspect-ratio: $ratio-landscape;
   }
   #home-services .split > [data-split-role="content"] {
     grid-column: 1 / span 12;
-    grid-row: 2;
+    grid-row: 1;
     align-self: start;
     margin: 0;
   }
