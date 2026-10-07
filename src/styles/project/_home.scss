@@ -450,23 +450,59 @@
 }
 
 
-/* Featured project: one current piece gets enough room to tell a story. */
+/* Featured project — image and statement form one editorial group. */
 .homeFeaturedProject {
-  --split-media-ratio: #{$ratio-editorial};
+  .section__inner {
+    justify-content: flex-start;
+  }
+}
 
-  .split__content {
-    max-width: 34rem;
+.homeFeaturedProject__composition {
+  @include site-grid;
+  align-items: start;
+  row-gap: $margin-content;
+  width: 100%;
+}
+
+.homeFeaturedProject__media,
+.homeFeaturedProject__story {
+  grid-column: 1 / -1;
+}
+
+.homeFeaturedProject__story {
+  max-width: 46rem;
+
+  .textBlock__header {
+    gap: $flow-default;
   }
 
-  .textBlock__eyebrow {
-    margin-bottom: $margin-content;
+  .textBlock__title {
+    @include type-heading-lg;
+    font-weight: $font-weight-regular;
+  }
+
+  .textBlock__content {
+    @include type-lead;
+  }
+
+  .textBlock__meta {
+    margin-top: $margin-content;
   }
 }
 
 @include desktop-up {
-  .homeFeaturedProject .split {
-    --split-primary-desktop: 8 / 12;
-    --split-secondary-desktop: 1 / span 6;
-    align-items: end;
+  .homeFeaturedProject__media {
+    grid-column: 2 / span 8;
+  }
+
+  .homeFeaturedProject__story {
+    grid-column: 2 / span 7;
+  }
+}
+
+@include tablet-only {
+  .homeFeaturedProject__media,
+  .homeFeaturedProject__story {
+    grid-column: 1 / span 7;
   }
 }
