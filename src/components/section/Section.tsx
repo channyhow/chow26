@@ -62,6 +62,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
   const isHomeFeaturedProject = block.className?.split(/\s+/).includes("homeFeaturedProject") ?? false;
   const isHomeOpenCall = block.className?.split(/\s+/).includes("home-preview--opencall") ?? false;
+  const isHomeContact = block.className?.split(/\s+/).includes("home-preview--contact") ?? false;
   const isProjectGrid = layout === "grid" && block.source?.collection === "projects";
   const isFeaturedProjectGrid = isProjectGrid && block.source?.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
@@ -102,6 +103,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
+  } else if (isHomeContact && header) {
+    const contactMedia = media ? <Media media={media} className="homeContact__media" sizes="(min-width: 64rem) 42vw, 100vw" /> : null;
+    body = <article className="homeEditorialComposition homeContact__composition"><div className="homeContact__index" aria-hidden="true">Contact</div><TextBlock content={header} className="homeContact__story" motionEnabled={sectionMotionEnabled} />{contactMedia}</article>;
   } else if (isHomeOpenCall && header) {
     const openCallMedia = media ? <Media media={media} className="homeOpenCall__media" sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" /> : null;
     const openCallIntro = {
