@@ -103,39 +103,65 @@
 }
 
 @include desktop-up {
+  /* Services opens like a project statement: one loud proposition followed by
+     proof and quieter supporting copy. */
   #home-services .split {
-    min-height: min(78svh, 54rem);
     align-items: start;
-  }
-  #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 6;
-    grid-row: 1;
-    align-self: start;
+    row-gap: $margin-group;
   }
   #home-services .split > [data-split-role="content"] {
-    grid-column: 8 / span 4;
+    grid-column: 1 / -1;
     grid-row: 1;
-    align-self: end;
-    margin-bottom: clamp(#{$space-4}, 9svh, #{$space-6});
+    align-self: start;
+    margin: 0;
+  }
+  #home-services .split > [data-split-role="content"] .textBlock {
+    display: grid;
+    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+    column-gap: var(--grid-gutter);
+    width: 100%;
+    max-width: none;
+  }
+  #home-services .split > [data-split-role="content"] .textBlock__header {
+    display: contents;
+  }
+  #home-services .split > [data-split-role="content"] .textBlock__title {
+    @include type-heading-xl;
+    grid-column: 1 / span 9;
+    max-width: none;
+    font-weight: $font-weight-regular;
+  }
+  #home-services .split > [data-split-role="content"] .textBlock__content,
+  #home-services .split > [data-split-role="content"] .actions {
+    grid-column: 9 / span 4;
+  }
+  #home-services .split > [data-split-role="content"] .textBlock__content {
+    margin-top: $margin-group;
+  }
+  #home-services .split > [data-split-role="content"] .actions {
+    margin-top: $margin-content;
+  }
+  #home-services .split > [data-split-role="media"] {
+    grid-column: 1 / span 8;
+    grid-row: 2;
+    align-self: start;
   }
   #home-services .split__secondary .media__frame {
     aspect-ratio: 4 / 3;
   }
 
+  /* Final CTA is one composition, not two distant islands. */
   #final-cta .split {
-    min-height: min(78svh, 54rem);
-    align-items: start;
+    align-items: center;
   }
   #final-cta .split > [data-split-role="content"] {
     grid-column: 2 / span 4;
-    grid-row: 1;
-    align-self: end;
-    margin-bottom: clamp(#{$space-4}, 10svh, #{$space-6});
+    align-self: center;
+    margin: 0;
   }
   #final-cta .split > [data-split-role="media"] {
     grid-column: 7 / span 6;
-    grid-row: 1;
-    align-self: start;
+    align-self: center;
   }
   #final-cta .split__secondary .media__frame {
     aspect-ratio: 4 / 3;
@@ -314,11 +340,11 @@
 }
 
 [data-page-id="home"] #home-opencall-preview {
-  margin-top: clamp(#{$space-6}, 16svh, 11rem);
+  margin-top: clamp(#{$space-4}, 8svh, #{$space-6});
 }
 
 [data-page-id="home"] #final-cta {
-  margin-top: clamp(#{$space-5}, 10svh, #{$space-6});
+  margin-top: $margin-block;
 }
 
 /* Preview sections should read as content islands in the same field, not as
