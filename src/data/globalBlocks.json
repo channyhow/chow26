@@ -60,12 +60,11 @@
     "layout": "split",
     "splitVariant": "media-lead",
     "className": "home-preview home-preview--services",
-  
     "content": {
       "header": {
-        "title": "Créer, clarifier ou faire évoluer votre présence.",
+        "title": "Créer, clarifier ou faire évoluer ce qui existe.",
         "text": [
-          "**Sites internet**, **identités visuelles** et **supports de communication**, pensés autour de votre activité."
+          "Un nouveau projet, une identité qui ne correspond plus, un site à repenser ou des supports à mettre en cohérence."
         ],
         "links": ["studio-services"]
       },
