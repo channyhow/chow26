@@ -38,6 +38,9 @@
       "query": { "prioritizeIds": ["mois-du-ker"], "limit": 1 }
     },
     "content": {
+      "header": {
+        "title": "Une identité peut partir d’une idée simple et devenir un langage capable de vivre sur plusieurs supports."
+      },
       "links": ["all-projects"]
     }
   },
