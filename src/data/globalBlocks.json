@@ -38,9 +38,6 @@
       "query": { "prioritizeIds": ["mois-du-ker"], "limit": 1 }
     },
     "content": {
-      "header": {
-        "title": "Un projet prend forme quand l’idée devient claire."
-      },
       "links": ["all-projects"]
     }
   },
@@ -68,7 +65,7 @@
       "header": {
         "title": "Créer, clarifier ou faire évoluer votre présence.",
         "text": [
-          "Selon votre besoin, je peux créer ou faire évoluer votre **site internet**, votre **identité visuelle**, vos **supports de communication** et les **outils digitaux** utiles à votre activité."
+          "**Sites internet**, **identités visuelles** et **supports de communication**, pensés autour de votre activité."
         ],
         "links": ["studio-services"]
       },
