@@ -29,6 +29,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
                 media={openingMedia}
                 className={`homeOpeningScene__media homeOpeningScene__media--${index + 1}`}
                 sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 100vw"
+                ratio="square"
               />
             ))}
           </div>
