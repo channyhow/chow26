@@ -180,7 +180,7 @@
     align-self: center;
   }
   #final-cta .split__secondary .media__frame {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: $ratio-landscape;
   }
 }
 
@@ -347,7 +347,9 @@
   padding-block: $padding-block;
 }
 
-.homeOpenCall__composition {
+/* Repeated Home editorial compositions share one grid and rhythm.
+   Individual stories only define placement, scale and art direction. */
+.homeEditorialComposition {
   @include site-grid;
   align-items: start;
   row-gap: $margin-content;
@@ -362,31 +364,23 @@
 }
 
 #home-opencall-preview {
-   .textBlock__eyebrow { @include type-heading-sm; }
-.textBlock__copy{ @include type-heading-sm;  }
+  .textBlock__eyebrow,
+  .textBlock__copy {
+    @include type-heading-sm;
+  }
 }
-
-.homeOpenCall__statement .textBlock__title {
-  @include type-heading-xl;
-
-}
-
-
-//  .textBlock{
-// max-width: none;
-// }
 
 .homeOpenCall__statement {
   --text-width: none;
 
   .textBlock__title {
+    @include type-heading-xl;
     max-width: none;
   }
 }
 
 .homeOpenCall__media {
   --media-ratio: #{$ratio-portrait};
-  // width: min(100%, 18rem);
 
   .media__frame {
     aspect-ratio: $ratio-portrait;
@@ -421,10 +415,6 @@
   .homeOpenCall__action {
     grid-column: 8 / span 4;
     grid-row: 2;
-
-    // .actions {
-    //   @include type-heading-sm;
-    // }
   }
 }
 
@@ -457,13 +447,6 @@
   .section__inner {
     justify-content: flex-start;
   }
-}
-
-.homeFeaturedProject__composition {
-  @include site-grid;
-  align-items: start;
-  row-gap: $margin-content;
-  width: 100%;
 }
 
 .homeFeaturedProject__media,
@@ -516,15 +499,12 @@
   align-content: start;
   justify-items: start;
   gap: $flow-default;
-  // color: $color-special;
 }
 .homeFeaturedProject__index > span {
   @include type-display-xl;
   max-width: 6ch;
   text-transform: uppercase;
 }
-// .homeFeaturedProject__index .actions { color: $surface-muted; }
-
 @include desktop-up {
   .homeFeaturedProject__index { grid-column: 1 / span 4; grid-row: 1 / span 2; padding-top: $padding-content; }
   .homeFeaturedProject__media { grid-column: 8 / 13; grid-row: 2; 
