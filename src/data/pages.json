@@ -27,70 +27,26 @@
             ]
           },
           {
-            "id": "home-services-panel",
-            "behavior": "sticky",
+            "id": "home-editorial-panel",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "special",
-            "blocks": [
-              {
-                "ref": "home-services"
-              }
-            ]
-          },
-          {
-            "id": "home-projects-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
+            "align": "start",
             "surface": "solid",
             "color": "secondary",
             "blocks": [
               {
+                "ref": "home-services"
+              },
+              {
                 "ref": "projects-featured-gallery"
-              }
-            ]
-          },
-          {
-            "id": "home-approach-panel",
-            "behavior": "normal",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "primary",
-            "blocks": [
+              },
               {
                 "ref": "approach-default"
-              }
-            ]
-          },
-          {
-            "id": "home-opencall-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "special",
-            "blocks": [
+              },
               {
                 "ref": "home-opencall-preview"
-              }
-            ]
-          },
-          {
-            "id": "home-final-panel",
-            "behavior": "overlay",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "glass",
-            "color": "primary",
-            "blocks": [
+              },
               {
                 "ref": "final-cta"
               },
