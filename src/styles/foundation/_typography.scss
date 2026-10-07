@@ -135,7 +135,7 @@
 @mixin type-display-xl {
   font-family: var(--font-heading);
   font-size: $type-display-xl;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-bold;
   line-height: 0.94;
   letter-spacing: -0.035em;
 }

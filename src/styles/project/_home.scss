@@ -514,22 +514,19 @@
   align-content: start;
   justify-items: start;
   gap: $flow-default;
-  color: $color-accent;
+  // color: $color-special;
 }
 .homeFeaturedProject__index > span {
   @include type-display-xl;
   max-width: 6ch;
-  font-weight: $font-weight-bold;
-  line-height: 0.82;
-  letter-spacing: -0.055em;
   text-transform: uppercase;
 }
-.homeFeaturedProject__index .actions { color: $color-primary; }
+// .homeFeaturedProject__index .actions { color: $surface-muted; }
 
 @include desktop-up {
   .homeFeaturedProject__index { grid-column: 1 / span 4; grid-row: 1 / span 2; padding-top: $padding-content; }
-  .homeFeaturedProject__media { grid-column: 7 / 13; grid-row: 1; }
-  .homeFeaturedProject__story { grid-column: 7 / span 5; grid-row: 2; }
+  .homeFeaturedProject__media { grid-column: 9 / 13; grid-row: 2; }
+  .homeFeaturedProject__story { grid-column: 9 / 13; grid-row: 3; }
 }
 @include between($bp-tablet, $bp-desktop) {
   .homeFeaturedProject__index { grid-column: 1 / span 3; }
