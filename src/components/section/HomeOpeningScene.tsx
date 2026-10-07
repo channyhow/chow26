@@ -1,4 +1,6 @@
-import { motion, useMotionValue, useTransform, type MotionValue } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+
+import { useRef } from "react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -8,20 +10,22 @@ import type { MediaItem } from "@/types/media";
 type HomeOpeningSceneProps = {
   header?: ContentItem;
   media: MediaItem[];
-  scrollProgress?: MotionValue<number>;
+  parallaxEnabled?: boolean;
 };
 
-export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: sceneRef, offset: ["start start", "end start"] });
   const openingMedia = media[0];
-  const fallbackProgress = useMotionValue(0);
-  const progress = scrollProgress ?? fallbackProgress;
+  const progress = scrollYProgress;
   const mediaY1 = useTransform(progress, [0, 1], ["0svh", "-3svh"]);
   const mediaY2 = useTransform(progress, [0, 1], ["0svh", "-6svh"]);
   const mediaY3 = useTransform(progress, [0, 1], ["0svh", "-4svh"]);
   const mediaMotion = [mediaY1, mediaY2, mediaY3];
 
   return (
-    <div className="homeOpeningScene">
+    <div ref={sceneRef} className="homeOpeningScene">
       {openingMedia ? (
         <a
           className="homeOpeningScene__mediaLink"
@@ -33,7 +37,7 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
               <motion.div
                 key={index}
                 className={`homeOpeningScene__mediaPanel homeOpeningScene__mediaPanel--${index + 1}`}
-                style={scrollProgress ? { y: mediaMotion[index] } : undefined}
+                style={parallaxEnabled && !reduceMotion ? { y: mediaMotion[index] } : undefined}
               >
                 <Media
                   media={openingMedia}
