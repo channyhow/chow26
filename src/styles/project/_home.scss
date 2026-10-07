@@ -287,15 +287,6 @@
   justify-content: center;
 }
 
-.homeProjectsGallery .section__header {
-  width: 100%;
-  margin-bottom: $margin-section;
-}
-
-.homeProjectsGallery .section__header .textBlock__title {
-  @include type-heading-xl;
-  max-width: 12ch;
-}
 
 .homeProjectsGallery .gridReveal,
 .homeProjectsGallery .grid {
@@ -321,18 +312,6 @@
 }
 
 @include desktop-up {
-  .homeProjectsGallery {
-    padding-top: $padding-section;
-    padding-bottom: $padding-section;
-  }
-
-  .homeProjectsGallery .section__header {
-    @include site-grid;
-  }
-
-  .homeProjectsGallery .section__header > * {
-    grid-column: 2 / span 6;
-  }
 
   .homeProjectsGallery .section__footer {
     padding-left: calc((100% + var(--grid-gutter)) / 12 * 9);
@@ -346,9 +325,6 @@
 }
 
 @include mobile-down {
-  .homeProjectsGallery .section__header {
-    margin-bottom: $margin-block;
-  }
 
   .homeProjectsGallery .grid > .grid__item {
     grid-column: 1 / -1;
