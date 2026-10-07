@@ -109,9 +109,10 @@ text-transform: uppercase;
   border-bottom: 1px solid $color-special;
   background: transparent;
   color: $color-primary;
-font-weight: $font-weight-semibold;
+  font-weight: $font-weight-semibold;
+
   .actions__arrow {
-    color: $color-special;
+    color: $color-primary;
   }
 
   @include hover {

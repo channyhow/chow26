@@ -82,12 +82,30 @@
 }
 
 @include desktop-up {
+  .siteFooter {
+    /* The contact composition above owns the expressive vertical field.
+       Keep the footer as one compact, bottom-anchored information band. */
+    padding-top: $padding-block;
+  }
+
+  .siteFooter__inner,
+  #site-footer.section__inner {
+    gap: $padding-block;
+  }
+
   .siteFooter__main {
     grid-template-columns: repeat(3, minmax(0, 0.75fr)) minmax(0, 1fr);
     column-gap: clamp(#{$space-3}, 3vw, #{$space-5});
   }
 
-  .siteFooter__identity { grid-column: auto; }
+  .siteFooter__identity {
+    grid-column: 5;
+    max-width: 32rem;
+  }
+
+  .siteFooter__meta {
+    margin-top: $padding-group;
+  }
 }
 
 @include tablet-down {
