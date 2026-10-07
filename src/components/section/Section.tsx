@@ -59,6 +59,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
+  const isHomeFeaturedProject = block.className?.split(/\s+/).includes("homeFeaturedProject") ?? false;
   const isProjectGrid = layout === "grid" && block.source?.collection === "projects";
   const isFeaturedProjectGrid = isProjectGrid && block.source?.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
@@ -99,6 +100,16 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
+  } else if (isHomeFeaturedProject && splitItem) {
+    const featuredMedia = splitItemMedia ? <Media media={splitItemMedia} className="homeFeaturedProject__media" sizes="(min-width: 64rem) 66vw, 100vw" /> : null;
+    const featuredStory = {
+      eyebrow: header?.eyebrow,
+      title: header?.title,
+      text: header?.text,
+      meta: splitItem.meta,
+      links: header?.links,
+    };
+    body = <article className="homeFeaturedProject__composition">{featuredMedia}<TextBlock content={featuredStory} className="homeFeaturedProject__story" motionEnabled={sectionMotionEnabled} /></article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
