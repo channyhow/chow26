@@ -45,8 +45,17 @@
   text-transform: uppercase;
 }
 
+@mixin type-ui-lg {
+  @include type-ui-compact-base;
+  text-transform: uppercase;
+      font-size: $type-body-sm;
+
+}
+
 @mixin type-ui-compact-lower {
   @include type-ui-compact-base;
+    font-size: $type-heading-sm;
+
   text-transform: none;
 }
 
