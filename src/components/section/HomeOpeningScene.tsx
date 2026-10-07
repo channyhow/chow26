@@ -85,9 +85,9 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
 
       if (statementRef.current) {
         const reveal = range(progress, 0.38, 0.58);
-        const fade = range(progress, 0.88, 0.98);
-        statementRef.current.style.opacity = String(reveal * (1 - fade));
-        statementRef.current.style.transform = `translate3d(0, ${lerp(52, 0, reveal)}px, 0)`;
+        const handoff = range(progress, 0.82, 1);
+        statementRef.current.style.opacity = String(reveal);
+        statementRef.current.style.transform = `translate3d(0, ${lerp(52, -96, handoff)}px, 0)`;
       }
     };
 
@@ -128,10 +128,11 @@ export function HomeOpeningScene({ header, media, scrollProgress }: HomeOpeningS
         // Wait until every project and service label has fully cleared.
         // Then reveal quickly and keep the statement visible through the long hold.
         const reveal = range(progress, 0.80, 0.84);
-        const panelRise = range(progress, 0.975, 1);
+        const handoff = range(progress, 0.94, 1);
+        const lift = lerp(0, -72, handoff);
 
-        statementRef.current.style.opacity = String(reveal * (1 - panelRise));
-        statementRef.current.style.transform = "translate(-50%, -50%)";
+        statementRef.current.style.opacity = String(reveal);
+        statementRef.current.style.transform = `translate(-50%, calc(-50% + ${lift}px))`;
       }
     };
 
