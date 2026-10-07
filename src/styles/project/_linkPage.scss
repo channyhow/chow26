@@ -50,7 +50,7 @@ text-transform: uppercase;
 
 .linkPage__campaign .textBlock__subtitle p {
   @include type-ui-compact;
-    color: $color-accent;
+    color: $color-special;
 
 }
 
@@ -106,12 +106,12 @@ text-transform: uppercase;
   margin-bottom: $margin-content;
   padding-top: 0;
   padding-bottom: $padding-group;
-  border-bottom: 1px solid $color-accent;
+  border-bottom: 1px solid $color-special;
   background: transparent;
   color: inherit;
-
+font-weight: $font-weight-semibold;
   .actions__arrow {
-    color: $color-accent;
+    color: $color-special;
   }
 
   @include hover {

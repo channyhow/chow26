@@ -28,9 +28,9 @@
 .header[data-over-color="special"] { background: color-mix(in srgb, var(--theme-special) 34%, transparent); color: var(--primary); }
 
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
-.header__logo { @include type-ui-compact; font-weight: $font-weight-semibold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
+.header__logo { @include type-ui-compact; font-weight: $font-weight-bold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
 .header__nav { display: none; align-items: center; gap: clamp($space-2, 2.4vw, $space-3); transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
-.header__nav a { @include type-ui-compact; font-weight: $font-weight-medium; @include interactive-text; @include interactive-underline; pointer-events: auto; }
+.header__nav a { @include type-ui-compact; font-weight: $font-weight-semibold; @include interactive-text; @include interactive-underline; pointer-events: auto; }
 .header__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
