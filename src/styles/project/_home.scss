@@ -462,12 +462,15 @@
   }
 
   .textBlock__title {
-    @include type-heading-md;
-    font-weight: $font-weight-regular;
+    @include type-heading-lg;
+    max-width: 16ch;
+    font-weight: $font-weight-medium;
+    line-height: 1;
   }
 
   .textBlock__content {
-    @include type-lead;
+    @include type-body;
+    max-width: 34rem;
   }
 
   .textBlock__meta {
