@@ -38,7 +38,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const formRef = block.content?.form;
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
-  const media = mediaItems[0];
+  const headerMediaItems = resolveMediaList(header?.media);
+  const media = mediaItems[0] ?? headerMediaItems[0];
   const splitItemMediaRef = splitItem ? (Array.isArray(splitItem.media) ? splitItem.media[0] : splitItem.media) : undefined;
   const splitItemMedia = resolveMedia(splitItemMediaRef);
   const splitCompositionProps = resolveSplitComposition(block.id, block.splitComposition);
