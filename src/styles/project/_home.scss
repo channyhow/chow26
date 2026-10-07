@@ -290,7 +290,6 @@
 
 [data-page-id="home"] #home-services,
 [data-page-id="home"] #projects-featured-gallery,
-[data-page-id="home"] #approach-default,
 [data-page-id="home"] #home-opencall-preview,
 [data-page-id="home"] #final-cta {
   min-height: 0;
@@ -348,7 +347,6 @@
   }
 
   [data-page-id="home"] #projects-featured-gallery,
-  [data-page-id="home"] #approach-default,
   [data-page-id="home"] #final-cta {
     margin-top: $margin-block;
   }
