@@ -457,7 +457,7 @@
       "align": "center",
       "surface": "glass",
       "color": "primary",
-      "blocks": [{"ref":"studio-founders"},{ "ref": "site-footer" }]
+      "blocks": [{ "ref": "site-footer" }]
     }
   ]
 }
