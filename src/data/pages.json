@@ -9,7 +9,21 @@
     "image": "/assets/photos/work/atmosphere/atmosphere__laptop.jpg"
   },
   "blocks": [
+
     {
+      "id": "home-final-group",
+      "type": "Group",
+      "layout": "scroll-panel",
+      "panels": [{
+          "id": "home-main-panel",
+          "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+          "align": "center",
+          "surface": "solid",
+          "color": "secondary",
+          "blocks": [
+          {
       "ref": "home-opening"
     },
     {
@@ -20,17 +34,14 @@
     },
     {
       "ref": "home-opencall-preview"
-    },
-    {
-      "id": "home-final-group",
-      "type": "Group",
-      "layout": "scroll-panel",
-      "panels": [
+    } ]
+           
+      },
         {
           "id": "home-final-panel",
-          "behavior": "sticky",
-          "frame": "content",
-          "size": "full",
+          "behavior": "overlay",
+            "frame": "content",
+            "size": "full",
           "align": "center",
           "surface": "glass",
           "color": "primary",
