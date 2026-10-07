@@ -103,21 +103,29 @@
 }
 
 @include desktop-up {
-  /* Services opens like a project statement: one loud proposition followed by
-     proof and quieter supporting copy. */
+  /* Services follows the same editorial sequence as the reference:
+     wide proof first, statement below, then compact supporting information. */
   #home-services .split {
     align-items: start;
-    row-gap: $margin-group;
+    row-gap: $margin-content;
+  }
+  #home-services .split > [data-split-role="media"] {
+    grid-column: 1 / span 11;
+    grid-row: 1;
+    align-self: start;
+  }
+  #home-services .split__secondary .media__frame {
+    aspect-ratio: $ratio-wide;
   }
   #home-services .split > [data-split-role="content"] {
-    grid-column: 1 / -1;
-    grid-row: 1;
+    grid-column: 1 / span 11;
+    grid-row: 2;
     align-self: start;
     margin: 0;
   }
   #home-services .split > [data-split-role="content"] .textBlock {
     display: grid;
-    grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+    grid-template-columns: repeat(11, minmax(0, 1fr));
     column-gap: var(--grid-gutter);
     width: 100%;
     max-width: none;
@@ -127,27 +135,18 @@
   }
   #home-services .split > [data-split-role="content"] .textBlock__title {
     @include type-heading-xl;
-    grid-column: 1 / span 9;
+    grid-column: 1 / -1;
     max-width: none;
+    margin: 0;
     font-weight: $font-weight-regular;
   }
-  #home-services .split > [data-split-role="content"] .textBlock__content,
-  #home-services .split > [data-split-role="content"] .actions {
-    grid-column: 9 / span 4;
-  }
   #home-services .split > [data-split-role="content"] .textBlock__content {
+    grid-column: 1 / span 4;
     margin-top: $margin-group;
   }
   #home-services .split > [data-split-role="content"] .actions {
-    margin-top: $margin-content;
-  }
-  #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 8;
-    grid-row: 2;
-    align-self: start;
-  }
-  #home-services .split__secondary .media__frame {
-    aspect-ratio: $ratio-wide;
+    grid-column: 5 / span 3;
+    margin-top: $margin-group;
   }
 
   /* Final CTA is one composition, not two distant islands. */
