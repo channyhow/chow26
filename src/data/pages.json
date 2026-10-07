@@ -59,7 +59,7 @@
 
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
@@ -97,7 +97,7 @@
   "frame": "content",
   "size": "full",
   "align": "center",
-  "surface": "glass",
+  "surface": "solid",
   "color": "primary",
   "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
 }
@@ -178,7 +178,7 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
@@ -404,7 +404,7 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
@@ -483,8 +483,8 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
-            "color": "special",
+            "surface": "solid",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -638,8 +638,8 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
-            "color": "special",
+            "surface": "solid",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
@@ -676,8 +676,8 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
-            "color": "special",
+            "surface": "solid",
+            "color": "primary",
             "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
           }
         ]
