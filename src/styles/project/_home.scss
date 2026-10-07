@@ -500,9 +500,42 @@
   }
 }
 
-@include tablet-only {
+@include between($bp-tablet, $bp-desktop) {
   .homeFeaturedProject__media,
   .homeFeaturedProject__story {
     grid-column: 1 / span 7;
   }
+}
+
+
+.homeFeaturedProject__index {
+  grid-column: 1 / -1;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: $flow-default;
+  color: $color-accent;
+}
+.homeFeaturedProject__index > span {
+  @include type-display-xl;
+  max-width: 6ch;
+  font-weight: $font-weight-bold;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+.homeFeaturedProject__index .actions { color: $color-primary; }
+
+@include desktop-up {
+  .homeFeaturedProject__index { grid-column: 1 / span 4; grid-row: 1 / span 2; padding-top: $padding-content; }
+  .homeFeaturedProject__media { grid-column: 7 / 13; grid-row: 1; }
+  .homeFeaturedProject__story { grid-column: 7 / span 5; grid-row: 2; }
+}
+@include between($bp-tablet, $bp-desktop) {
+  .homeFeaturedProject__index { grid-column: 1 / span 3; }
+  .homeFeaturedProject__media, .homeFeaturedProject__story { grid-column: 4 / -1; }
+}
+@include mobile-down {
+  .homeFeaturedProject__index { margin-bottom: $margin-group; }
+  .homeFeaturedProject__index > span { max-width: none; }
 }
