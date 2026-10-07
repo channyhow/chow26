@@ -49,7 +49,7 @@
   "align": "center",
   "surface": "solid",
   "color": "special",
-  "blocks": [{ "ref": "linkpage-navigation" }]
+  "blocks": [{ "ref": "home-opencall-preview" }]
 },
      
           {
