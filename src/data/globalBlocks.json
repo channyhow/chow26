@@ -32,25 +32,35 @@
     }
   },
   "projects-featured-gallery": {
-    "id": "projects-featured-gallery",
+    "id": "home-featured-project",
     "type": "Section",
-    "layout": "grid",
+    "layout": "split",
+    "splitVariant": "media-lead",
+    "className": "homeFeaturedProject",
     "motion": "scene",
     "motionPreset": "parallax",
-    "className": "homeProjectsGallery",
+    "motionIntensity": "quiet",
     "source": {
       "collection": "projects",
       "query": {
-        "featured": true,
-        "limit": 3
+        "prioritizeIds": [
+          "mois-du-ker"
+        ],
+        "limit": 1
       }
     },
     "content": {
-      "links": [
-        "all-projects"
-      ]
-    },
-    "motionIntensity": "quiet"
+      "header": {
+        "eyebrow": "À la une ce mois-ci",
+        "title": "Mois du Kèr",
+        "text": [
+          "Une identité visuelle pour une campagne de prévention cardiovasculaire à La Réunion, construite autour de la double lecture du kèr : le territoire que l’on porte avec soi et le cœur dont il faut prendre soin."
+        ],
+        "links": [
+          "all-projects"
+        ]
+      }
+    }
   },
   "project-gallery": {
     "id": "project-gallery",
