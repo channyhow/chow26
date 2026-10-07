@@ -51,13 +51,15 @@
     },
     "content": {
       "header": {
-        "eyebrow": "À la une ce mois-ci",
         "title": "Mois du Kèr",
         "text": [
           "Une identité visuelle pour une campagne de prévention cardiovasculaire à La Réunion, construite autour de la double lecture du kèr : le territoire que l’on porte avec soi et le cœur dont il faut prendre soin."
         ],
         "links": [
           "all-projects"
+        ],
+        "projectLinks": [
+          "mdk-case-study"
         ]
       }
     }
