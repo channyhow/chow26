@@ -25,9 +25,6 @@
         "ref": "projects-featured-gallery"
       },
       {
-        "ref": "approach-default"
-      },
-      {
         "ref": "home-opencall-preview"
       },
       {
@@ -154,6 +151,20 @@
             "blocks": [
               {
                 "ref": "studio-service-integrations"
+              }
+            ]
+          },
+          {
+            "id": "studio-approach-panel",
+            "behavior": "normal",
+            "frame": "content",
+            "size": "auto",
+            "align": "start",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "approach-default"
               }
             ]
           },
