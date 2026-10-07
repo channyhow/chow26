@@ -61,6 +61,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
   const isHomeFeaturedProject = block.className?.split(/\s+/).includes("homeFeaturedProject") ?? false;
+  const isHomeOpenCall = block.className?.split(/\s+/).includes("home-preview--opencall") ?? false;
   const isProjectGrid = layout === "grid" && block.source?.collection === "projects";
   const isFeaturedProjectGrid = isProjectGrid && block.source?.query?.featured === true;
   const isStructuredEditorialList = layout === "list" && items.some((item) => Boolean(item.grid));
@@ -101,6 +102,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
+  } else if (isHomeOpenCall && header) {
+    const openCallMedia = media ? <Media media={media} className="homeOpenCall__media" sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" /> : null;
+    const openCallIntro = {
+      eyebrow: header.eyebrow,
+      text: header.text,
+    };
+    body = <article className="homeOpenCall__composition"><TextBlock content={{ title: header.title }} className="homeOpenCall__statement" motionEnabled={sectionMotionEnabled} />{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
     const featuredMedia = splitItemMedia ? <Media media={splitItemMedia} className="homeFeaturedProject__media" sizes="(min-width: 64rem) 66vw, 100vw" /> : null;
     const featuredStory = {
