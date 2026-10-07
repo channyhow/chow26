@@ -41,17 +41,6 @@
             "surface": "solid",
             "color": "secondary",
             "blocks": [{ "ref": "projects-featured-gallery" }]
-          },
-
-          {
-            "id": "home-approach-panel",
-           "behavior": "normal",
-"frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
           },       {
   "id": "home-opencall-panel",
   "behavior": "sticky",
