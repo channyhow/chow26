@@ -154,6 +154,20 @@
               }
             ]
           },
+                {
+            "id": "studio-approach-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
+          },
           {
             "id": "studio-final-panel",
             "behavior": "overlay",
@@ -161,7 +175,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "primary",
+            "color": "special",
             "blocks": [
               {
                 "ref": "final-cta"
@@ -172,9 +186,6 @@
             ]
           }
         ]
-      },
-      {
-        "ref": "approach-default"
       }
     ]
   },
