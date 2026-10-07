@@ -43,7 +43,7 @@
             "frame": "content",
             "size": "full",
             "align": "center",
-            "surface": "glass",
+            "surface": "solid",
             "color": "primary",
             "blocks": [
               {
