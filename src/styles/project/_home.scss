@@ -324,8 +324,8 @@
 
 
 /* Home has two structural moments: the immersive opening and one continuous
-   editorial field. Individual previews own their composition; this field owns
-   only the long-form rhythm between them. */
+   editorial field. Normal-flow previews use block rhythm; exceptional
+   whitespace belongs inside the composition that needs it. */
 [data-page-id="home"] .page__content {
   display: block;
 }
@@ -341,35 +341,10 @@
   --section-gap: #{$margin-block};
 }
 
-/* One continuous editorial field: spacing belongs to the composition rather
-   than being repeated as a large top margin on every preview. */
-[data-page-id="home"] #home-services {
-  margin-top: clamp(-9rem, -12svh, -5rem);
-}
-
-[data-page-id="home"] #home-featured-project {
-  margin-top: clamp(#{$space-4}, 8svh, #{$space-6});
-}
-
-[data-page-id="home"] #approach-default {
-  margin-top: clamp(#{$space-5}, 10svh, #{$space-6});
-}
-
-[data-page-id="home"] #home-opencall-preview {
-  margin-top: clamp(#{$space-4}, 8svh, #{$space-6});
-}
-
-[data-page-id="home"] #final-cta {
-  margin-top: $margin-block;
-}
-
-/* Preview sections should read as content islands in the same field, not as
-   individually centred screens. */
-[data-page-id="home"] #home-services .section__inner,
-[data-page-id="home"] #home-featured-project .section__inner,
-[data-page-id="home"] #home-opencall-preview .section__inner,
+[data-page-id="home"] .home-preview .section__inner,
 [data-page-id="home"] #final-cta .section__inner {
   justify-content: flex-start;
+  padding-block: $padding-block;
 }
 
 @include desktop-up {
@@ -382,22 +357,8 @@
   .home-preview--opencall .split > [data-split-role="content"] {
     grid-column: 8 / span 4;
     align-self: center;
+
     .textBlock__title { @include type-heading-lg; }
-  }
-}
-
-@include tablet-down {
-  [data-page-id="home"] #home-services {
-    margin-top: calc(#{$space-4} * -1);
-  }
-
-  [data-page-id="home"] #home-featured-project,
-  [data-page-id="home"] #final-cta {
-    margin-top: $margin-block;
-  }
-
-  [data-page-id="home"] #home-opencall-preview {
-    margin-top: $margin-section;
   }
 }
 
@@ -406,94 +367,6 @@
     scroll-behavior: auto;
   }
 }
-
-/* Featured work is proof, not an archive. Keep the shared ProjectCard intact
-   and let Home own only scale, placement and whitespace. */
-.homeFeaturedProject {
-  --section-gap: #{$margin-section};
-}
-
-.homeFeaturedProject .section__inner {
-  justify-content: center;
-}
-
-.homeFeaturedProject .gridReveal {
-  width: 100%;
-}
-
-.homeFeaturedProject .grid {
-  @include site-grid;
-  align-items: start;
-  row-gap: $margin-section;
-}
-
-.homeFeaturedProject .grid__lead {
-  grid-column: 1 / -1;
-}
-
-.homeFeaturedProject .section__footer {
-  margin-top: $margin-block;
-}
-
-@include desktop-up {
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(1) {
-    grid-column: 1 / span 6;
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(2) {
-    grid-column: 8 / span 4;
-    margin-top: clamp(#{$space-4}, 12svh, #{$space-6});
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(3) {
-    grid-column: 3 / span 4;
-    margin-top: clamp(#{$space-3}, 5svh, #{$space-5});
-  }
-
-  .homeFeaturedProject .section__footer {
-    width: 100%;
-    padding-left: calc((100% + var(--grid-gutter)) / 12 * 7);
-  }
-}
-
-@include between($bp-tablet, $bp-desktop) {
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(1) {
-    grid-column: 1 / span 5;
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(2) {
-    grid-column: 6 / span 3;
-    margin-top: $margin-block;
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(3) {
-    grid-column: 2 / span 4;
-  }
-}
-
-@include mobile-down {
-  .homeFeaturedProject .grid {
-    row-gap: $margin-block;
-  }
-
-  .homeFeaturedProject .grid > .grid__item {
-    grid-column: 1 / -1;
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(even) {
-    width: 82%;
-    justify-self: end;
-  }
-
-  .homeFeaturedProject .grid > .grid__item:nth-of-type(odd):not(:first-child) {
-    width: 86%;
-  }
-
-  .homeFeaturedProject .section__footer {
-    margin-top: $margin-group;
-  }
-}
-
 
 /* Featured project - image and statement form one editorial group. */
 .homeFeaturedProject {
