@@ -45,17 +45,23 @@
 .linkPage__campaign .textBlock__title {
   @include type-heading-lg;
   font-weight: $font-weight-bold;
-text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .linkPage__campaign .textBlock__subtitle p {
   @include type-ui-compact;
-    color: $color-accent;
-
+  color: $color-accent;
 }
 
 .linkPage__campaign .textBlock__content {
   max-width: $measure-text;
+}
+
+/* Keep the information easy to scan, but stop every paragraph from resolving
+   into the same column. The second thought steps inward as a quiet grid break. */
+.linkPage__campaign .textBlock__content > :nth-child(2) {
+  width: 86%;
+  margin-left: 8%;
 }
 
 .linkPage__campaign .textBlock__content p {
@@ -139,9 +145,27 @@ text-transform: uppercase;
     margin-top: $margin-block;
     padding-top: 0;
   }
+
+  .linkPage__campaign .textBlock__content > :nth-child(2) {
+    width: 88%;
+    margin-left: 12%;
+  }
 }
 
 @include mobile-down {
+  .linkPage__campaign .section__header.textBlock {
+    row-gap: $space-3;
+  }
+
+  .linkPage__campaign .textBlock__content > :nth-child(2) {
+    width: 92%;
+    margin-left: 8%;
+  }
+
+  .linkPage__campaign .textBlock__footer {
+    margin-top: clamp(#{$space-5}, 18svh, #{$space-6});
+  }
+
   .linkPage__campaign .actions__link {
     padding-block: $padding-content;
   }
