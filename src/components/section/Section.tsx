@@ -105,7 +105,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const featuredMedia = splitItemMedia ? <Media media={splitItemMedia} className="homeFeaturedProject__media" sizes="(min-width: 64rem) 66vw, 100vw" /> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
-      title: header?.title,
+      title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
       text: header?.text,
       meta: splitItem.meta,
       links: (header as typeof header & { projectLinks?: typeof header.links })?.projectLinks,
