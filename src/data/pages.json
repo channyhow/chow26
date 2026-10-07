@@ -184,16 +184,6 @@
           },
         
           {
-            "id": "studio-founders-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [{ "ref": "studio-founders" }]
-          },
-          {
             "id": "studio-final-panel",
             "behavior": "overlay",
             "frame": "content",
@@ -409,6 +399,16 @@
             "surface": "solid",
             "color": "special",
             "blocks": [{ "ref": "contact-default" }]
+          },
+          {
+            "id": "contact-founder-panel",
+            "behavior": "normal",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [{ "ref": "studio-founders" }]
           }, {
             "id": "contact-final-panel",
             "behavior": "overlay",
