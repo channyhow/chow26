@@ -6,30 +6,7 @@
     "motion": "none",
     "content": {
       "header": {
-        "title": "Une présence claire, cohérente et singulière.",
-        "text": [
-          "Chow Studio accompagne les entreprises, marques, lieux et projets pour créer ou faire évoluer leur **site internet**, leur **identité visuelle** et leurs **supports de communication**, à **la Réunion et Paris**."
-        ],
-        "links": [
-          {
-            "label": "Site internet",
-            "href": "/studio#studio-service-website",
-            "intent": "navigate",
-            "variant": "arrow"
-          },
-          {
-            "label": "Identité visuelle",
-            "href": "/studio#studio-service-identity",
-            "intent": "navigate",
-            "variant": "arrow"
-          },
-          {
-            "label": "Supports de communication",
-            "href": "/studio#studio-service-integrations",
-            "intent": "navigate",
-            "variant": "arrow"
-          }
-        ]
+        "title": "Une présence claire, cohérente et singulière."
       },
       "media": "appel-projets-opening"
     }
@@ -106,10 +83,27 @@
       "header": {
         "title": "Créer, clarifier ou faire évoluer votre présence.",
         "text": [
-          "Selon votre besoin, je peux créer ou faire évoluer votre **site internet**, votre **identité visuelle**, vos **supports de communication** et les **outils digitaux** utiles à votre activité."
+          "Chow Studio accompagne les entreprises, marques, lieux et projets pour créer ou faire évoluer leur **site internet**, leur **identité visuelle** et leurs **supports de communication**, à **la Réunion et Paris**."
         ],
         "links": [
-          "studio-services"
+          {
+            "label": "Site internet",
+            "href": "/studio#studio-service-website",
+            "intent": "navigate",
+            "variant": "arrow"
+          },
+          {
+            "label": "Identité visuelle",
+            "href": "/studio#studio-service-identity",
+            "intent": "navigate",
+            "variant": "arrow"
+          },
+          {
+            "label": "Supports de communication",
+            "href": "/studio#studio-service-integrations",
+            "intent": "navigate",
+            "variant": "arrow"
+          }
         ]
       },
       "media": "atmosphere_mobile-vid"
