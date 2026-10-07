@@ -394,5 +394,14 @@
     "alt": "Appel à projets Chow Studio pour trois projets d’identité visuelle.",
     "ratio": "portrait",
     "fit": "cover"
+  },
+  "appel-projets-opening": {
+    "id": "appel-projets-opening",
+    "type": "video",
+    "src": "/assets/videos/appel_projets.mp4",
+    "alt": "Animation graphique Chow Studio pour l’appel à projets d’identité visuelle.",
+    "width": 1920,
+    "height": 1080,
+    "fit": "cover"
   }
 }
