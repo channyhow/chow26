@@ -9,15 +9,15 @@ import type { PanelAlign, PanelBehavior, PanelBlock, PanelFrame, PanelLane, Pane
 const glassBackdrop = "blur(1.1rem) saturate(1.05)";
 const collectionPanelColors: SectionColor[] = ["secondary", "special", "accent"];
 
-function renderBlocks(blocks: PanelBlock[], inPanel = false, scrollProgress?: MotionValue<number>) {
+function renderBlocks(blocks: PanelBlock[], inPanel = false, scrollProgress?: MotionValue<number>, parallaxEnabled = false) {
   return blocks.map((entry, index) => {
     if ("ref" in entry) {
       const block = resolveBlock(entry.ref);
       if (!block) return null;
       if (entry.ref === "site-footer") return <SiteFooter key={entry.ref} block={block} />;
-      return <Section key={entry.ref} block={block} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} />;
+      return <Section key={entry.ref} block={block} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} parallaxEnabled={parallaxEnabled} />;
     }
-    return <Section key={entry.id || `panel-section-${index + 1}`} block={entry} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} />;
+    return <Section key={entry.id || `panel-section-${index + 1}`} block={entry} visualContext={inPanel ? "inherit" : "own"} scrollProgress={scrollProgress} parallaxEnabled={parallaxEnabled} />;
   });
 }
 
@@ -40,7 +40,7 @@ function expandCollectionPanels(panels: PanelLane[] = []) {
 function resolvePanelLanes(group: SectionGroupData): PanelLane[] { return group.layout === "scroll-panel" ? expandCollectionPanels(group.panels) : []; }
 function getViewportHeight() { return window.visualViewport?.height ?? window.innerHeight; }
 
-function Panel({ id, behavior, frame, size, align, surface, color, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; blocks: PanelBlock[]; index: number; }) {
+function Panel({ id, behavior, frame, size, align, surface, color, parallax, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; parallax?: boolean; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
 
@@ -60,7 +60,7 @@ function Panel({ id, behavior, frame, size, align, surface, color, blocks, index
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
   return <div id={id} ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
-    <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollYProgress)}</div>
+    <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollYProgress, parallax)}</div>
   </div>;
 }
 
@@ -75,6 +75,6 @@ export function SectionGroup({ group }: { group: SectionGroupData }) {
   const blocks = group.blocks ?? [];
   const panelLanes = resolvePanelLanes(group);
   return <div className="sectionGroup" data-layout={layout} data-motion={group.motion?.level ?? "none"} data-preset={group.motion?.preset}>
-    {isPanel ? panelLanes.map((panel, index) => <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} blocks={panel.blocks} index={index} />) : renderBlocks(blocks)}
+    {isPanel ? panelLanes.map((panel, index) => <Panel key={panel.id} id={panel.id} behavior={panel.behavior ?? "normal"} frame={panel.frame ?? defaultFrame} size={panel.size ?? defaultSize} align={panel.align ?? defaultAlign} surface={panel.surface ?? defaultSurface} color={panel.color ?? defaultColor} parallax={panel.parallax} blocks={panel.blocks} index={index} />) : renderBlocks(blocks)}
   </div>;
 }
