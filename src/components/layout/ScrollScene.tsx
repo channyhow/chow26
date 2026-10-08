@@ -4,6 +4,7 @@ import {
   motion,
   useScroll,
   useTransform,
+  useReducedMotion,
   type MotionStyle,
   type MotionValue,
 } from "motion/react";
@@ -60,7 +61,8 @@ export function ScrollScene({
 }: ScrollSceneProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [responsiveScale, setResponsiveScale] = useState(1);
-  const motionEnabled = enabled;
+  const reduceMotion = useReducedMotion();
+  const motionEnabled = enabled && !reduceMotion;
   const sign = direction === "reverse" ? -1 : 1;
   const isHomeOpening = choreography === "home-opening";
   const attentionScale = isHomeOpening ? 2.35 : 1;
