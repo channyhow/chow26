@@ -97,8 +97,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const isMediaLayer = className.toLowerCase().includes("media");
     // Media needs independent travel against its stationary orange backing.
     // Split sections otherwise default to the recede preset, which fades rather than parallaxing.
-    const preset = isMediaLayer ? "parallax" : scenePreset;
-    return <ScrollScene preset={preset} intensity={isMediaLayer ? "expressive" : intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={isMediaLayer || parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene>;
+    const isEditorialText = /(?:TextMotion|__story$|__context$)/.test(className);
+    const preset = isMediaLayer || isEditorialText ? "parallax" : scenePreset;
+    // Pair a slower opposing text layer with expressive media to create
+    // changing visual separation without modifying the document grid gaps.
+    const layerIntensity = isMediaLayer ? "expressive" : isEditorialText ? "quiet" : intensity;
+    return <ScrollScene preset={preset} intensity={layerIntensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={isMediaLayer || isEditorialText || parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene>;
   };
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
