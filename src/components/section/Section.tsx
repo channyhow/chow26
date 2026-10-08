@@ -92,7 +92,14 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   });
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalItemsWithMotion = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={sectionMotionEnabled}>{item}</ScrollScene>);
-  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => content ? (shouldTrackScroll ? <ScrollScene preset={parallaxEnabled && className.toLowerCase().includes("media") ? "parallax" : scenePreset} intensity={intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene> : content) : null;
+  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => {
+    if (!content || !shouldTrackScroll) return content ?? null;
+    const isMediaLayer = className.toLowerCase().includes("media");
+    // Media needs independent travel against its stationary orange backing.
+    // Split sections otherwise default to the recede preset, which fades rather than parallaxing.
+    const preset = isMediaLayer ? "parallax" : scenePreset;
+    return <ScrollScene preset={preset} intensity={isMediaLayer ? "expressive" : intensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={isMediaLayer || parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene>;
+  };
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
 
