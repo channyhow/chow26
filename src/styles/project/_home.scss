@@ -285,7 +285,7 @@ color: $color-primary;
 
 .homeContact__index {
   @include type-display-xl;
-  color: $color-special;
+  // color: $color-special;
   font-weight: $font-weight-bold;
   line-height: 0.9;
   text-transform: uppercase;
