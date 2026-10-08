@@ -5,14 +5,42 @@
 .media {
   width: 100%;
   margin: 0;
-  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  // The backing must extend outside the figure; clipping belongs to the frame.
+  overflow: visible;
   border-radius: var(--radius-media, #{$radius-default});
-  background: var(--media-background, color-mix(in srgb, var(--primary) 5%, var(--secondary)));
+  background: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate($space-1, $space-1);
+    background: $color-special;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Home's animated compositions already own a stationary backing plane.
+  // Avoid doubling the accent when the image moves independently.
+  .homeOpeningScene__mediaPanel &::before,
+  .homeFeaturedProject__media &::before,
+  .homeOpenCall__media &::before,
+  #home-services .section__splitMediaMotion &::before,
+  #final-cta .section__splitMediaMotion &::before {
+    content: none;
+  }
 }
 
 .media__frame {
+  position: relative;
+  z-index: 1;
   width: 100%;
   overflow: hidden;
+  border-radius: inherit;
+  background: var(--media-background, color-mix(in srgb, var(--primary) 5%, var(--secondary)));
 }
 
 .media[data-ratio="square"] .media__frame { aspect-ratio: $ratio-square; }
