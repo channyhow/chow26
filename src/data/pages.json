@@ -434,10 +434,24 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "secondary",
+            "color": "special",
             "blocks": [
               {
                 "ref": "contact-default"
+              }
+            ]
+          },
+          {
+            "id": "contact-founder-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "studio-founders"
               }
             ]
           },
@@ -450,6 +464,9 @@
             "surface": "glass",
             "color": "primary",
             "blocks": [
+              {
+                "ref": "final-cta"
+              },
               {
                 "ref": "site-footer"
               }
