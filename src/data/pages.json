@@ -122,7 +122,7 @@
         "layout": "scroll-panel",
         "panels": [
           {
-            "id": "studio-services-intro-panel",
+            "id": "studio-editorial-panel",
             "behavior": "sticky",
             "frame": "content",
             "size": "full",
@@ -132,60 +132,16 @@
             "blocks": [
               {
                 "ref": "studio-services-intro"
-              }
-            ]
-          },
-          {
-            "id": "studio-service-identity-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "special",
-            "blocks": [
+              },
               {
                 "ref": "studio-service-identity"
-              }
-            ]
-          },
-          {
-            "id": "studio-service-website-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [
+              },
               {
                 "ref": "studio-service-website"
-              }
-            ]
-          },
-          {
-            "id": "studio-service-integrations-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "special",
-            "blocks": [
+              },
               {
                 "ref": "studio-service-integrations"
-              }
-            ]
-          },
-          {
-            "id": "studio-approach-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "primary",
-            "blocks": [
+              },
               {
                 "ref": "approach-default"
               }
@@ -198,7 +154,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [
               {
                 "ref": "final-cta"
