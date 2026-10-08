@@ -2,36 +2,37 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-// Studio follows the same continuous editorial field as Home.
-// Service content and offers stay in normal document flow.
-[data-page-id="studio"] .page__content {
-  display: block;
-}
+// One editorial grid, varied proportions. The existing split component keeps
+// its semantics, content, links and responsive stacking.
+[data-page-id="studio"] {
+  .page__content { display: block; }
 
-[data-page-id="studio"] #studio-services-intro,
-[data-page-id="studio"] #studio-service-identity,
-[data-page-id="studio"] #studio-service-website,
-[data-page-id="studio"] #studio-service-integrations,
-[data-page-id="studio"] #studio-approach {
-  min-height: 0;
-}
+  #studio-services-intro,
+  #studio-service-identity,
+  #studio-service-website,
+  #studio-service-integrations,
+  #studio-approach { min-height: 0; }
 
-[data-page-id="studio"] .section__inner {
-  justify-content: flex-start;
-  padding-block: $padding-block;
+  .section__inner {
+    justify-content: flex-start;
+    padding-block: $padding-block;
+  }
+
+  .split { align-items: start; }
+
+  .split > [data-split-role] { min-width: 0; }
 }
 
 #studio-services-intro {
-  min-height: 80svh;
-
-  .split {
-    align-items: start;
-  }
-
   .textBlock__title {
     @include type-heading-xl;
     font-weight: $font-weight-medium;
     max-width: 16ch;
+  }
+
+  // Wide, architectural framing instead of the original tall portrait.
+  .section__splitMediaMotion .media__frame {
+    aspect-ratio: $ratio-landscape;
   }
 }
 
@@ -39,21 +40,7 @@
   --text-width: none;
   --split-media-ratio: #{$ratio-editorial};
 
-  .split {
-    align-items: start;
-  }
-
-  .section__offers {
-    margin-top: $margin-block;
-  }
-
-  .split > [data-split-role="media"] {
-    min-width: 0;
-  }
-
-  .split > [data-split-role="content"] {
-    min-width: 0;
-  }
+  .section__offers { margin-top: $margin-block; }
 }
 
 #studio-approach {
@@ -65,37 +52,63 @@
 }
 
 @include desktop-up {
-  #studio-services-intro .split > [data-split-role="media"],
-  #studio-service-website .split > [data-split-role="media"] {
-    grid-column: 1 / span 6;
+  // Intro: headline and media occupy different rows of the same grid.
+  #studio-services-intro {
+    .split > [data-split-role="content"] {
+      grid-column: 1 / span 9;
+      grid-row: 1;
+    }
+
+    .split > [data-split-role="media"] {
+      grid-column: 3 / span 8;
+      grid-row: 2;
+    }
   }
 
-  #studio-services-intro .split > [data-split-role="content"],
-  #studio-service-website .split > [data-split-role="content"] {
-    grid-column: 8 / span 5;
-    align-self: end;
+  // Identity: text starts the composition; smaller image sits to the right.
+  #studio-service-identity {
+    .split > [data-split-role="content"] {
+      grid-column: 1 / span 6;
+      grid-row: 1;
+    }
+
+    .split > [data-split-role="media"] {
+      grid-column: 9 / span 4;
+      grid-row: 1;
+      align-self: end;
+    }
   }
 
-  #studio-service-identity .split > [data-split-role="content"],
-  #studio-service-integrations .split > [data-split-role="content"] {
-    grid-column: 2 / span 5;
+  // Website: image leads, text follows lower and further right.
+  #studio-service-website {
+    .split > [data-split-role="media"] {
+      grid-column: 1 / span 7;
+      grid-row: 1;
+    }
+
+    .split > [data-split-role="content"] {
+      grid-column: 8 / span 5;
+      grid-row: 1;
+      align-self: end;
+    }
   }
 
-  #studio-service-identity .split > [data-split-role="media"],
-  #studio-service-integrations .split > [data-split-role="media"] {
-    grid-column: 8 / span 5;
-  }
+  // Integrations: an intentionally smaller image, generous whitespace.
+  #studio-service-integrations {
+    .split > [data-split-role="content"] {
+      grid-column: 2 / span 6;
+      grid-row: 1;
+    }
 
-  #studio-services-intro .split {
-    min-height: 70svh;
+    .split > [data-split-role="media"] {
+      grid-column: 9 / span 3;
+      grid-row: 1;
+      align-self: center;
+    }
   }
 }
 
 @include tablet-down {
-  #studio-services-intro {
-    min-height: 0;
-  }
-
   .section--collection-panel .section__offers {
     margin-top: $margin-content;
   }
