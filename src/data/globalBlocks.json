@@ -257,13 +257,13 @@
     "layout": "split",
     "splitVariant": "balanced",
     "surface": "solid",
-    "color": "accent",
+    "color": "secondary",
     "content": {
       "header": {
-        "eyebrow": "Parler d’un projet",
-        "title": "Quelques lignes suffisent pour commencer.",
+        "title": "Parlons de votre projet.",
         "text": [
-          "Vous n’avez pas besoin de savoir exactement quelle prestation choisir. Dites-moi simplement **ce qui existe**, **ce qui ne fonctionne plus** et **ce qui doit changer**. Nous définirons ensuite la bonne réponse, qu’il s’agisse d’un **site internet**, d’une **identité visuelle**, de **supports de communication** ou d’**outils digitaux**."
+          "Un site internet, une identité visuelle ou des supports à créer ou à faire évoluer ? Racontez-moi votre projet, même s’il n’est pas encore complètement défini.",
+          "Quelques informations suffisent pour commencer. Je prendrai connaissance de votre demande et reviendrai vers vous pour discuter de la suite."
         ]
       },
       "form": "contact"
