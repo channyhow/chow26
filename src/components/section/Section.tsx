@@ -92,17 +92,30 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   });
   const horizontalItems = cards.length ? cards : mediaCards;
   const horizontalItemsWithMotion = horizontalItems.map((item, index) => <ScrollScene key={`horizontal-motion-${index}`} preset="drift" intensity={sceneIntensity} direction={index % 2 === 0 ? "forward" : "reverse"} range="through" className="section__horizontalScrollLayer" decorative={false} enabled={sectionMotionEnabled}>{item}</ScrollScene>);
-  const motionLayer = (content: ReactNode, direction: "forward" | "reverse" = "forward", className = "section__scrollLayer", intensity: MotionIntensity = sceneIntensity) => {
+  // Explicit layer roles keep motion independent of CSS class naming.
+  const motionLayer = (
+    content: ReactNode,
+    direction: "forward" | "reverse" = "forward",
+    className = "section__scrollLayer",
+    intensity: MotionIntensity = sceneIntensity,
+    role: "content" | "media" | "editorial-text" = "content",
+  ) => {
     if (!content || !shouldTrackScroll) return content ?? null;
-    const isMediaLayer = className.toLowerCase().includes("media");
-    // Media needs independent travel against its stationary orange backing.
-    // Split sections otherwise default to the recede preset, which fades rather than parallaxing.
-    const isEditorialText = /(?:TextMotion|__story$|__context$)/.test(className);
-    const preset = isMediaLayer || isEditorialText ? "parallax" : scenePreset;
-    // Pair a slower opposing text layer with expressive media to create
-    // changing visual separation without modifying the document grid gaps.
-    const layerIntensity = isMediaLayer ? "expressive" : isEditorialText ? "quiet" : intensity;
-    return <ScrollScene preset={preset} intensity={layerIntensity} direction={direction} range={sceneRange} className={className} decorative={false} progress={isMediaLayer || isEditorialText || parallaxEnabled ? undefined : scrollProgress}>{content}</ScrollScene>;
+    const isMedia = role === "media";
+    const isEditorialText = role === "editorial-text";
+    return (
+      <ScrollScene
+        preset={isMedia || isEditorialText ? "parallax" : scenePreset}
+        intensity={isMedia ? "expressive" : isEditorialText ? "quiet" : intensity}
+        direction={direction}
+        range={sceneRange}
+        className={className}
+        decorative={false}
+        progress={isMedia || isEditorialText || parallaxEnabled ? undefined : scrollProgress}
+      >
+        {content}
+      </ScrollScene>
+    );
   };
   const region = (content: ReactNode, className?: string) => content ? <div className={clsx("section__body", className)}>{content}</div> : null;
   let body: ReactNode;
@@ -116,11 +129,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
   } else if (isHomeContact && header) {
-    const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet") : null;
-    const contactStory = motionLayer(<TextBlock content={header} motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet");
+    const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet", "media") : null;
+    const contactStory = motionLayer(<TextBlock content={header} motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet", "editorial-text");
     body = <article className="homeEditorialComposition homeContact__composition"><div className="homeContact__index" aria-hidden="true">Contact</div>{contactStory}{contactMedia}</article>;
   } else if (isHomeOpenCall && header) {
-    const openCallMedia = media ? <div className="homeOpenCall__media">{motionLayer(<Media media={media} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" />, "reverse", "homeOpenCall__mediaMotion", "default")}</div> : null;
+    const openCallMedia = media ? <div className="homeOpenCall__media">{motionLayer(<Media media={media} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" />, "reverse", "homeOpenCall__mediaMotion", "default", "media")}</div> : null;
     const openCallIntro = {
       eyebrow: header.eyebrow,
       text: header.text,
@@ -128,7 +141,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} motionEnabled={false} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
-    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default")}</div> : null;
+    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
       title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
@@ -136,7 +149,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       meta: splitItem.meta,
       links: header?.projectLinks,
     };
-    const featuredStoryLayer = motionLayer(<TextBlock content={featuredStory} motionEnabled={sectionMotionEnabled} />, "forward", "homeFeaturedProject__story", "quiet");
+    const featuredStoryLayer = motionLayer(<TextBlock content={featuredStory} motionEnabled={sectionMotionEnabled} />, "forward", "homeFeaturedProject__story", "quiet", "editorial-text");
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
@@ -145,8 +158,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
     // Keep split media in normal flow so lazy-loaded assets have stable
     // viewport geometry. Text keeps its existing reveal through TextBlock.
-    const mediaLayer = isHomePreview ? motionLayer(splitSecondary, "reverse", "section__homePreviewMediaMotion", "quiet") : splitSecondary;
-    const textLayer = isHomePreview ? motionLayer(primary, "forward", "section__homePreviewTextMotion", "quiet") : primary;
+    const mediaLayer = isHomePreview ? motionLayer(splitSecondary, "reverse", "section__homePreviewMediaMotion", "quiet", "media") : splitSecondary;
+    const textLayer = isHomePreview ? motionLayer(primary, "forward", "section__homePreviewTextMotion", "quiet", "editorial-text") : primary;
     const mediaContent = mediaLayer ? <div className="section__splitMediaMotion">{mediaLayer}</div> : null;
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
@@ -159,8 +172,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const profileMedia = resolveMedia(profileMediaRef);
     const primary = profileMedia ? <Media media={profileMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : null;
     const secondaryContent = { ...profile, media: undefined };
-    const profileMediaLayer = motionLayer(primary, "reverse", "section__profileMediaMotion", "quiet");
-    const profileTextLayer = motionLayer(<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />, "forward", "section__profileTextMotion", "quiet");
+    const profileMediaLayer = motionLayer(primary, "reverse", "section__profileMediaMotion", "quiet", "media");
+    const profileTextLayer = motionLayer(<TextBlock content={secondaryContent} className="split__content" motionEnabled={sectionMotionEnabled} />, "forward", "section__profileTextMotion", "quiet", "editorial-text");
     body = <Split variant={block.splitVariant ?? "media-lead"} {...splitCompositionProps} className="split--profile" primary={profileMediaLayer} secondary={profileTextLayer} primaryRole="media" secondaryRole="content" />;
   } else if (layout === "media-overlay") {
     body = <div className="section__mediaOverlay">{media ? <Media media={media} className="section__media" sizes="100vw" /> : null}{header ? <div className="section__overlayContent"><TextBlock content={header} titleAs="h1" className="section__header" motionEnabled={sectionMotionEnabled} /></div> : null}</div>;
