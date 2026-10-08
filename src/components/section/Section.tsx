@@ -164,8 +164,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
-    const offerCarousel = offers.length > 0 ? <Carousel label={`${splitItem?.title ?? "Service"} — offres`}>{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</Carousel> : null;
-    body = <>{splitComposition}{region(offerCarousel, "section__offers")}</>;
+    const offerGrid = offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
+    body = <>{splitComposition}{region(offerGrid, "section__offers")}</>;
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
