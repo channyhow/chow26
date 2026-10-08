@@ -67,26 +67,22 @@
   --radius-media: 54% 46% 43% 57% / 46% 58% 42% 54%;
 }
 
-// Shared stationary backing for split media in the Studio introduction and
-// final CTA. The media frame can move without taking the orange plane with it.
+// A physical orange backing plane for the Studio intro and final CTA.
+// Reserve the offset inside the wrapper so it remains visible even when the
+// scroll scene creates its own stacking context or translates the media.
 #studio-services-intro .section__splitMediaMotion,
 #final-cta .section__splitMediaMotion {
   position: relative;
   isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translate($space-1, $space-1);
-    background: $color-special;
-    z-index: 0;
-    pointer-events: none;
-  }
+  box-sizing: border-box;
+  padding-inline-end: $space-2;
+  padding-bottom: $space-2;
+  background: $color-special;
 
   > .media,
   > .scrollScene {
     position: relative;
     z-index: 1;
+    width: 100%;
   }
 }
