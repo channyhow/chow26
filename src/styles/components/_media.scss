@@ -29,6 +29,7 @@
   .homeFeaturedProject__media &::before,
   .homeOpenCall__media &::before,
   #home-services .section__splitMediaMotion &::before,
+  #studio-services-intro .section__splitMediaMotion &::before,
   #final-cta .section__splitMediaMotion &::before {
     content: none;
   }
@@ -64,4 +65,28 @@
 
 [data-variant="organic"] .media:nth-of-type(even) {
   --radius-media: 54% 46% 43% 57% / 46% 58% 42% 54%;
+}
+
+// Shared stationary backing for split media in the Studio introduction and
+// final CTA. The media frame can move without taking the orange plane with it.
+#studio-services-intro .section__splitMediaMotion,
+#final-cta .section__splitMediaMotion {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate($space-1, $space-1);
+    background: $color-special;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  > .media,
+  > .scrollScene {
+    position: relative;
+    z-index: 1;
+  }
 }
