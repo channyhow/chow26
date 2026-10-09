@@ -39,9 +39,15 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  max-height: 80svh;
   overflow: hidden;
   border-radius: inherit;
   background: var(--media-background, color-mix(in srgb, var(--primary) 5%, var(--secondary)));
+}
+
+.media[data-fullscreen="true"] .media__frame,
+.media--fullscreen .media__frame {
+  max-height: none;
 }
 
 .media[data-ratio="square"] .media__frame { aspect-ratio: $ratio-square; }
