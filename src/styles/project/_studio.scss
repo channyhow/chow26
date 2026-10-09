@@ -94,17 +94,29 @@
       grid-row: 2;
     }
     .section__splitTextMotion .textBlock {
+      width: 100%;
+      max-width: none;
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: $grid-gap;
       align-items: start;
     }
-    .section__splitTextMotion .textBlock__header { grid-column: 1 / -1; }
+    .section__splitTextMotion .textBlock__header {
+      grid-column: 1 / -1;
+      min-width: 0;
+    }
     .section__splitTextMotion .textBlock__content {
       grid-column: 9 / -1;
+      grid-row: 2;
+      min-width: 0;
       max-width: none;
     }
-    .section__splitTextMotion .textBlock__meta { grid-column: 2 / span 6; }
+    .section__splitTextMotion .textBlock__footer,
+    .section__splitTextMotion .textBlock__meta {
+      grid-column: 2 / span 6;
+      grid-row: 2;
+      min-width: 0;
+    }
   }
 
   #studio-service-identity {
