@@ -174,22 +174,24 @@
       min-width: 0;
     }
     .section__splitTextMotion .textBlock__content {
-      grid-column: 9 / -1;
+      grid-column: 8 / span 3;
       grid-row: 2;
       min-width: 0;
       max-width: none;
     }
     .section__splitTextMotion .textBlock__footer,
     .section__splitTextMotion .textBlock__meta {
-      grid-column: 2 / span 6;
-      grid-row: 2;
+      grid-column: 2 / span 4;
+      grid-row: 3;
       min-width: 0;
     }
   }
 
   // Home Open Call composition: oversized statement above a compact media
   // and a single right-hand narrative (description, offer and CTA).
-  #studio-service-identity {
+    #studio-service-identity,
+  #studio-service-website,
+  #studio-service-integrations {
     .split > [data-split-role="content"] {
       grid-column: 1 / -1;
       grid-row: 1;
@@ -215,23 +217,23 @@
     }
 
     .section__splitTextMotion .textBlock__content {
-      grid-column: 8 / span 5;
+      grid-column: 8 / span 3;
       grid-row: 2;
       min-width: 0;
       align-self: start;
     }
 
     .split > [data-split-role="media"] {
-      grid-column: 1 / span 4;
-      grid-row: 2 / span 2;
+      grid-column: 2 / span 4;
+      grid-row: 2 / span 3;
       width: 100%;
-      align-self: start;
+      align-self: center;
     }
 
     .section__inner > .section__offers {
-      grid-column: 8 / span 5;
-      grid-row: 3;
-      align-self: start;
+      grid-column: 8 / span 3;
+      grid-row:  4 / span 3;
+      align-self: center;
       margin-top: 0;
     }
 
@@ -243,14 +245,14 @@
     .section__offers .card--service .textBlock__footer { margin-top: $flow-tight; }
   }
 
-  #studio-service-website {
-    .split > [data-split-role="media"] { grid-column: 1 / span 7; grid-row: 1; }
-    .split > [data-split-role="content"] { grid-column: 9 / span 4; grid-row: 1; align-self: end; }
-  }
-  #studio-service-integrations {
-    .split > [data-split-role="content"] { grid-column: 2 / span 6; grid-row: 1; }
-    .split > [data-split-role="media"] { grid-column: 9 / span 3; grid-row: 1; align-self: center; }
-  }
+  // #studio-service-website {
+  //   .split > [data-split-role="media"] { grid-column: 1 / span 7; grid-row: 1; }
+  //   .split > [data-split-role="content"] { grid-column: 9 / span 4; grid-row: 1; align-self: end; }
+  // }
+  // #studio-service-integrations {
+  //   .split > [data-split-role="content"] { grid-column: 2 / span 6; grid-row: 1; }
+  //   .split > [data-split-role="media"] { grid-column: 9 / span 3; grid-row: 1; align-self: center; }
+  // }
 
   #studio-service-website .section__offerGrid,
   #studio-service-integrations .section__offerGrid {
