@@ -197,7 +197,7 @@
 
     .section__splitTextMotion .textBlock {
       @include editorial-text-grid;
-      row-gap: $margin-content;
+      row-gap: $margin-group;
       width: 100%;
       max-width: none;
     }
