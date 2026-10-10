@@ -27,6 +27,38 @@
   @include desktop-up { grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr)); }
 }
 
+// Shared inner grid for editorial copy; placement remains page-specific.
+@mixin editorial-text-grid($columns: $grid-columns-desktop, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  column-gap: $gap;
+  width: 100%;
+  max-width: none;
+}
+
+// Keep the offset plane fixed behind scroll-transformed media.
+@mixin offset-media-backing($offset: $space-1, $color: $color-special) {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: $color;
+    transform: translate($offset, $offset);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  > .media,
+  > .scrollScene,
+  > .homeOpeningScene__mediaMotion {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 @mixin focus-ring {
   outline: 2px solid currentColor;
   outline-offset: 3px;
