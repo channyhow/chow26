@@ -198,6 +198,7 @@
     .section__splitTextMotion .textBlock {
       @include editorial-text-grid;
       row-gap: $margin-group;
+      align-items: start;
       width: 100%;
       max-width: none;
     }
@@ -213,24 +214,24 @@
     }
 
     .section__splitTextMotion .textBlock__content {
-      grid-column: 9 / span 3;
-      grid-row: 2 /span 4;
+      grid-column: 8 / span 4;
+      grid-row: 2;
       min-width: 0;
-      align-self: center;
+      align-self: start;
     }
 
     .split > [data-split-role="media"] {
-      grid-column: 2 / span 4;
-      grid-row: 2 / span 3;
+      grid-column: 1 / span 4;
+      grid-row: 2;
       width: 100%;
-      align-self: center;
+      align-self: start;
     }
 
     .section__inner > .section__offers {
-      grid-column: 9 / span 3;
-      grid-row:  4 / span 3;
-      align-self: center;
-      margin-top: 0;
+      grid-column: 8 / span 4;
+      grid-row: 2;
+      align-self: end;
+      margin-top: $margin-group;
     }
 
     .section__offerSwitcherControls { margin-bottom: $flow-tight; }
