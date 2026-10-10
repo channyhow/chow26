@@ -52,7 +52,7 @@ function OfferSwitcher({ offers }: { offers: NonNullable<SectionBlock["content"]
   }, []);
 
   useEffect(() => {
-    if (!visible || paused || reducedMotion || offers?.length !== 2) return;
+    if (!visible || paused || reducedMotion || offers.length < 2) return;
     const timer = window.setInterval(() => setActive((index) => (index + 1) % offers.length), 7000);
     return () => window.clearInterval(timer);
   }, [visible, paused, reducedMotion, offers?.length]);
@@ -215,7 +215,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
-    const offerGrid = ["studio-service-identity", "studio-service-website", "studio-service-integrations"].includes(block.id) && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
+    const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
     body = <>{splitComposition}{region(offerGrid, "section__offers")}</>;
   } else if (isProfileGrid) {
     const profile = items[0];
