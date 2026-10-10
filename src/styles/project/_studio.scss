@@ -39,7 +39,39 @@
   --text-width: none;
   --split-media-ratio: #{$ratio-editorial};
 
-  .section__offers { margin-top: $margin-block; }
+  .section__offers { margin-top: $margin-content; }
+}
+
+// Offers are one typographic comparison, not separate surface cards.
+[data-page-id="studio"] .section--collection-panel {
+  .section__offerGrid { gap: $margin-content; }
+
+  .section__offers .card--service {
+    height: auto;
+    min-width: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .section__offers .card--service[data-surface] {
+    background: transparent;
+  }
+
+  .section__offers .card--service + .card--service {
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    padding-top: $margin-content;
+  }
+
+  .section__offers .card--service .textBlock__meta {
+    margin-top: $margin-related;
+    padding-top: 0;
+  }
+
+  .section__offers .card--service .textBlock__footer {
+    padding-top: $flow-tight;
+  }
 }
 
 #studio-approach {
