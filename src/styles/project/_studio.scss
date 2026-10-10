@@ -55,7 +55,8 @@
     box-shadow: none;
   }
 
-  .section__offers .card--service[data-surface] {
+  .section__offers .card--service[data-surface],
+  .section__offers .card--service .card__body {
     background: transparent;
   }
 
@@ -104,6 +105,7 @@
 
   .section__offerSwitcherPanel {
     min-width: 0;
+    background: transparent;
   }
 }
 
@@ -185,21 +187,38 @@
     }
   }
 
-  // Identity: text introduces the service on the right; the visual anchors
-  // the left and the two offers stack on the right, as in the editorial grid.
+  // Identity: one headline across the grid, followed by a paired
+  // image and offer; copy remains in the right-hand reading column.
   #studio-service-identity {
     .split > [data-split-role="content"] {
-      grid-column: 9 / -1;
+      grid-column: 1 / -1;
       grid-row: 1;
     }
+    .section__splitTextMotion .textBlock {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: $grid-gap;
+      width: 100%;
+      max-width: none;
+    }
+    .section__splitTextMotion .textBlock__header {
+      grid-column: 1 / span 8;
+      min-width: 0;
+    }
+    .section__splitTextMotion .textBlock__content {
+      grid-column: 9 / -1;
+      min-width: 0;
+      align-self: end;
+    }
     .split > [data-split-role="media"] {
-      grid-column: 1 / span 7;
+      grid-column: 2 / span 7;
       grid-row: 2;
     }
     .section__inner > .section__offers {
       grid-column: 9 / -1;
       grid-row: 2;
       margin-top: 0;
+      align-self: start;
     }
     .section__offerGrid {
       display: grid;
