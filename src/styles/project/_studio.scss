@@ -72,6 +72,39 @@
   .section__offers .card--service .textBlock__footer {
     padding-top: $flow-tight;
   }
+
+  // A single editorial offer window, with compact numbered navigation.
+  .section__offerSwitcher {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .section__offerSwitcherControls {
+    display: flex;
+    gap: $space-2;
+    margin-bottom: $margin-content;
+
+    button {
+      cursor: pointer;
+      padding: $space-1 $space-2;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      color: inherit;
+      opacity: 0.55;
+
+      &[aria-pressed="true"] {
+        opacity: 1;
+        border-bottom-color: currentColor;
+      }
+
+      &:focus-visible { @include focus-ring; }
+    }
+  }
+
+  .section__offerSwitcherPanel {
+    min-width: 0;
+  }
 }
 
 #studio-approach {
