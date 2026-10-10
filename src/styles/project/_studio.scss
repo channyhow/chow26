@@ -174,7 +174,7 @@
       min-width: 0;
     }
     .section__splitTextMotion .textBlock__content {
-      grid-column: 8 / span 3;
+      grid-column: 9 / span 3;
       grid-row: 2;
       min-width: 0;
       max-width: none;
@@ -217,10 +217,10 @@
     }
 
     .section__splitTextMotion .textBlock__content {
-      grid-column: 8 / span 3;
-      grid-row: 2;
+      grid-column: 9 / span 3;
+      grid-row: 2 /span 4;
       min-width: 0;
-      align-self: start;
+      align-self: center;
     }
 
     .split > [data-split-role="media"] {
@@ -231,7 +231,7 @@
     }
 
     .section__inner > .section__offers {
-      grid-column: 8 / span 3;
+      grid-column: 9 / span 3;
       grid-row:  4 / span 3;
       align-self: center;
       margin-top: 0;
