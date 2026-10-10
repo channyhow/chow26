@@ -126,28 +126,61 @@
     "eyebrow": "Supports · Print · Digital · Motion",
     "title": "Faire vivre votre identité sur vos supports",
     "text": [
-      "Je décline votre identité sur les **supports utiles à votre activité** pour garder une communication cohérente, du print au digital et au motion."
+      "Je décline votre identité sur les **supports qui comptent pour votre activité**, pour une communication cohérente à chaque point de contact."
     ],
     "media": "ravine-flyer",
-    "meta": [
-      {
-        "label": "Prestations",
-        "value": "Affiches · Print · Digital · Templates · Motion"
-      },
-      {
-        "label": "Budget",
-        "value": "Sur devis"
-      }
-    ],
     "tags": [
       "Print",
       "Digital",
       "Motion"
     ],
-    "links": [
-      "evolve-website"
-    ],
     "featured": true,
-    "order": 3
+    "order": 3,
+    "offers": [
+      {
+        "id": "integrations-supports",
+        "eyebrow": "01 · Supports de communication",
+        "title": "Décliner votre identité",
+        "text": [
+          "Des supports imprimés et digitaux cohérents, pensés pour vos usages et votre public."
+        ],
+        "meta": [
+          {
+            "label": "Peut inclure",
+            "value": "Affiches · Flyers · Cartes · Visuels pour les réseaux sociaux · Supports digitaux"
+          },
+          {
+            "label": "Budget",
+            "value": "Sur devis"
+          }
+        ],
+        "links": [
+          "evolve-website"
+        ],
+        "surface": "subtle"
+      },
+      {
+        "id": "integrations-motion",
+        "eyebrow": "02 · Templates & motion",
+        "title": "Faire évoluer vos contenus",
+        "text": [
+          "Des formats réutilisables ou animés pour faire vivre votre identité au fil de vos communications."
+        ],
+        "meta": [
+          {
+            "label": "Peut inclure",
+            "value": "Templates · Déclinaisons de formats · Animations typographiques · Motion design"
+          },
+          {
+            "label": "Budget",
+            "value": "Sur devis"
+          }
+        ],
+        "links": [
+          "evolve-website"
+        ],
+        "surface": "soft"
+      }
+    ]
   }
 ]
