@@ -47,30 +47,9 @@ align-items: flex-start;
 
 // Shared offset backing plane for Home media. Keep it behind the media itself,
 // not behind the section or its scroll-motion wrapper.
-@mixin home-media-backing {
-  position: relative;
-  isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: $color-special;
-    transform: translate($space-1, $space-1);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  > .media,
-  > .scrollScene,
-  > .homeOpeningScene__mediaMotion {
-    position: relative;
-    z-index: 1;
-  }
-}
 
 .homeOpeningScene__mediaPanel {
-  @include home-media-backing;
+  @include offset-media-backing;
   grid-column: 1 / -1;
   width: 100%;
 }
@@ -603,5 +582,5 @@ margin-bottom: $margin-content;
 #home-services .section__splitMediaMotion,
 .homeFeaturedProject__media,
 .homeOpenCall__media {
-  @include home-media-backing;
+  @include offset-media-backing;
 }
