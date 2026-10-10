@@ -164,9 +164,7 @@
     .section__splitTextMotion .textBlock {
       width: 100%;
       max-width: none;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: $grid-gap;
+      @include editorial-text-grid;
       align-items: start;
     }
     .section__splitTextMotion .textBlock__header {
@@ -198,9 +196,7 @@
     }
 
     .section__splitTextMotion .textBlock {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: $grid-gap;
+      @include editorial-text-grid;
       row-gap: $margin-content;
       width: 100%;
       max-width: none;
