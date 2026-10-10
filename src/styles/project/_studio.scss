@@ -208,17 +208,37 @@
     .section__splitTextMotion .textBlock__content {
       grid-column: 9 / -1;
       min-width: 0;
-      align-self: end;
+      align-self: start;
     }
     .split > [data-split-role="media"] {
-      grid-column: 2 / span 7;
+      grid-column: 2 / span 5;
       grid-row: 2;
+      width: 100%;
+      align-self: start;
     }
     .section__inner > .section__offers {
       grid-column: 9 / -1;
       grid-row: 2;
       margin-top: 0;
       align-self: start;
+    }
+    .section__offerSwitcherControls {
+      margin-bottom: $flow-tight;
+    }
+    .section__offers .card--service .card__body.textBlock {
+      gap: $flow-tight;
+    }
+    .section__offers .card--service .textBlock__title {
+      @include type-heading-sm;
+    }
+    .section__offers .card--service .textBlock__content > * + * {
+      margin-top: $flow-tight;
+    }
+    .section__offers .card--service .textBlock__meta {
+      margin-top: $flow-tight;
+    }
+    .section__offers .card--service .textBlock__footer {
+      margin-top: $flow-tight;
     }
     .section__offerGrid {
       display: grid;
