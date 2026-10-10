@@ -432,11 +432,13 @@ color: $color-primary;
 
 .homeOpenCall__statement {
   --text-width: none;
-
+margin-bottom: $margin-content;
   .textBlock__title {
     @include type-heading-xl;
     max-width: none;
+
   }
+
 }
 
 .homeOpenCall__media {

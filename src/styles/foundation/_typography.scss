@@ -126,12 +126,29 @@
 @mixin type-heading-xl {
   font-family: var(--font-heading);
   font-size: $type-heading-xl;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-medium;
   line-height: 0.95;
   letter-spacing: -0.02em;
   
 }
 
+@mixin type-heading-xl-semibold {
+  font-family: var(--font-heading);
+  font-size: $type-heading-xl;
+  font-weight: $font-weight-semibold;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  
+}
+
+@mixin type-heading-xl-bold {
+  font-family: var(--font-heading);
+  font-size: $type-heading-xl;
+  font-weight: $font-weight-bold;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  
+}
 @mixin type-display-lg {
   font-family: var(--font-heading);
   font-size: $type-display-lg;
