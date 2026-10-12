@@ -57,6 +57,18 @@
   &__meta {
     @include type-meta;
   }
+  &__metaList {
+    display: grid;
+    gap: $flow-tight;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__metaListItem {
+    @include type-body-sm;
+    min-width: 0;
+  }
 }
 
 .textBlock--meta-rows {
