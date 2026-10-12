@@ -609,55 +609,22 @@
   }
 }
 
-// Stationary offset planes: the image moves inside ScrollScene, not its backing.
-// Shared across intro thumbnails and both service mockups.
+// One offset plane per media. The shared Media component owns the backing;
+// ScrollScene only owns motion. Avoid additional planes on motion wrappers.
 [data-page-id="studio"] {
   .studioIntro__mediaMotion,
   .studioServiceGrid__mediaMotion {
-    position: relative;
-    isolation: isolate;
-    overflow: visible;
-    padding-inline-end: $space-2;
-    padding-bottom: $space-2;
-  }
-
-  .studioIntro__mediaMotion::before,
-  .studioServiceGrid__mediaMotion::before {
-    content: "";
-    position: absolute;
-    inset: $space-2 0 0 $space-2;
-    background: $color-accent;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .studioIntro__mediaMotion > .scrollScene__content,
-  .studioServiceGrid__mediaMotion > .scrollScene__content {
-    position: relative;
-    z-index: 1;
+    min-width: 0;
   }
 
   .studioIntro__mediaMotion .media::before,
   .studioServiceGrid__mediaMotion .media::before {
-    content: none;
+    background: $color-accent;
   }
 
-  [data-surface="special"] .studioIntro__mediaMotion::before,
-  [data-surface="special"] .studioServiceGrid__mediaMotion::before {
+  [data-surface="special"] .studioIntro__mediaMotion .media::before,
+  [data-surface="special"] .studioServiceGrid__mediaMotion .media::before {
     background: $color-secondary;
-  }
-}
-
-// Studio-only media offset: reuse the shared pseudo-element geometry.
-// Other pages keep the default Media styling.
-[data-page-id="studio"] {
-  .media::before {
-    background-color: $color-accent;
-  }
-
-  [data-surface="special"] .media::before,
-  [data-theme="special"] .media::before {
-    background-color: $color-secondary;
   }
 }
 
