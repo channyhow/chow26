@@ -72,9 +72,9 @@
       @include type-body;
     }
 
-    .textBlock__metaValue {
-      @include type-body;
-    }
+    // .textBlock__metaValue {
+    //   @include type-body;
+    // }
 
     .textBlock__metaList {
       gap: $flow-tight;
@@ -309,9 +309,9 @@
     .section__offers .card--service .textBlock__content p {
       @include type-lead;
     }
-    .section__offers .card--service .textBlock__metaValue {
-      @include type-body;
-    }
+    // .section__offers .card--service .textBlock__metaValue {
+    //   @include type-body;
+    // }
     // .section__offers .card--service .textBlock__footer .actions__link {
     //   @include type-body;
     // }

@@ -17,12 +17,13 @@
 }
 
 @mixin type-meta {
-  font-family: var(--font-body);
-  font-size: $type-ui-compact;
-  font-weight: $font-weight-medium;
-  line-height: 1.35;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  // font-family: var(--font-body);
+  // font-size: $type-ui-compact;
+  // font-weight: $font-weight-medium;
+  // line-height: 1.35;
+  // letter-spacing: 0.08em;
+  // text-transform: uppercase;
+  @include type-body;
 }
 
 @mixin type-ui {
@@ -78,7 +79,6 @@
 @mixin type-body {
   font-family: var(--font-body);
   font-size: $type-body;
-  font-weight: $font-weight-regular;
   line-height: 1.55;
 }
 @mixin type-body-bold {

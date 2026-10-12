@@ -99,15 +99,13 @@
 }
 
 .projectHero__meta .textBlock__metaLabel {
-  @include type-caption;
+  // @include type-meta;
   display: block;
   opacity: 0.45;
 }
 
 .projectHero__meta .textBlock__metaValue {
-  @include type-ui-compact;
   display: block;
-  font-weight: $font-weight-medium;
 }
 
 .projectHero__meta a:hover .textBlock__metaValue,

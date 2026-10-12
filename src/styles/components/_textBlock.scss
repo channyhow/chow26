@@ -90,17 +90,16 @@
   }
 
   .textBlock__metaLabel {
-    @include type-ui-compact;
-    font-weight: $font-weight-medium;
+    @include type-meta;
+    font-weight: $font-weight-semibold;
     color: color-mix(in srgb, currentColor 58%, transparent);
   }
 
   .textBlock__metaValue {
-    @include type-body-sm;
+    @include type-meta;
     min-width: 0;
     color: color-mix(in srgb, currentColor 72%, transparent);
-    text-transform: none;
-    letter-spacing: normal;
+ 
   }
 }
 
