@@ -126,3 +126,13 @@
     }
   }
 }
+
+// Muted text on primary surfaces follows the light foreground rather than
+// using a fixed gray that becomes unreadable against a dark background.
+.section[data-color="primary"] {
+  .textBlock__content .textBlock__copy,
+  .textBlock__metaLabel {
+    color: inherit;
+    opacity: $opacity-muted;
+  }
+}
