@@ -42,9 +42,9 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className, acti
       </motion.header> : null}
       {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <motion.div className="textBlock__group" key={`group-${groupIndex}`} {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>)}</motion.div> : null}
       {hasMeta ? <motion.div className="textBlock__meta" {...containerMotionProps}>{content.meta?.map((item) => {
-        const metaContent = <><span className="textBlock__metaLabel">{item.label}</span>{item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}</>;
+        const metaContent = <><span className="textBlock__metaLabel">{item.label}</span>{Array.isArray(item.value) ? <ul className="textBlock__metaList">{item.value.map((value, index) => <li className="textBlock__metaListItem" key={`${value}-${index}`}>{value}</li>)}</ul> : item.value ? <span className="textBlock__metaValue">{item.value}</span> : null}</>;
         if (item.href) { const external = isExternalHref(item.href); return <motion.a key={`${item.label}-${item.href}`} href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} {...itemMotionProps}>{metaContent}{external ? <span aria-hidden="true"> ↗</span> : null}</motion.a>; }
-        return <motion.span key={`${item.label}-${item.value ?? ""}`} {...itemMotionProps}>{metaContent}</motion.span>;
+        return <motion.span key={`${item.label}-${Array.isArray(item.value) ? item.value.join("|") : item.value ?? ""}`} {...itemMotionProps}>{metaContent}</motion.span>;
       })}</motion.div> : null}
       {hasFooter ? <motion.footer className="textBlock__footer" {...itemMotionProps}><Actions links={content.links} variant={actionsVariant} /></motion.footer> : null}
     </Root>
