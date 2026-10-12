@@ -433,5 +433,11 @@
     "type": "image",
     "src": "/assets/photos/work/flo/flo_laptop.jpg",
     "alt": "Flo | identité visuelle présentée sur un ordinateur portable."
+  },
+  "flo-mobile": {
+    "id": "flo-mobile",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_mobile.jpg",
+    "alt": "Flo | aperçu du site sur mobile."
   }
 }
