@@ -211,7 +211,7 @@
       }
 
       .section__inner > .section__offers {
-        grid-column: 1 / -1;
+        grid-column: 7 / -1;
         width: 100%;
         margin-top: $space-6;
       }
@@ -306,7 +306,7 @@
     }
 
     .section__inner > .section__offers {
-      grid-column: 1 / -1;
+      grid-column: 6 / -1;
       grid-row: 4;
       align-self: start;
     }
