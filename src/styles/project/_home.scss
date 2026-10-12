@@ -416,6 +416,37 @@
   align-self: end;
 }
 
+// Mobile editorial rhythm: keep the poster supportive, not full-screen.
+@include tablet-down {
+  .homeOpenCall__composition {
+    row-gap: $margin-content;
+  }
+
+  .homeOpenCall__statement {
+    margin-bottom: 0;
+  }
+
+  .homeOpenCall__media {
+    width: min(100%, 26rem);
+    justify-self: center;
+    --media-ratio: #{$ratio-landscape};
+
+    .media__frame {
+      aspect-ratio: $ratio-landscape;
+    }
+  }
+
+  .homeOpenCall__context {
+    align-self: start;
+  }
+
+  .homeOpenCall__action {
+    align-self: start;
+    margin-top: $flow-default;
+    padding-bottom: $space-4;
+  }
+}
+
 @include desktop-up {
   .homeOpenCall__statement {
     grid-column: 1 / span 12;
