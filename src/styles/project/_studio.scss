@@ -40,9 +40,7 @@
     font-weight: $font-weight-medium;
     max-width: none;
   }
-
 }
-
 
 // Offers are one typographic comparison, not separate surface cards.
 [data-page-id="studio"] .section--collection-panel {
@@ -97,16 +95,7 @@
     padding-top: $margin-content;
   }
 
-  // Shared editorial comparison: compact navigation beside the selected offer.
-  .section__offerSwitcher {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
-    gap: $margin-group;
-    width: 100%;
-    min-width: 0;
-  }
-
+  // OfferSwitcher renders .offerComposition; controls remain styled here.
   .section__offerSwitcherControls {
     display: grid;
     align-content: start;
@@ -149,11 +138,6 @@
     min-width: 0;
     overflow-wrap: normal;
     hyphens: none;
-  }
-
-  .section__offerSwitcherPanel {
-    min-width: 0;
-    background: transparent;
   }
 
   // Shared specification rows: clear labels, one quiet separator per group.
@@ -265,14 +249,7 @@
   }
 }
 
-// Wider layouts give offer navigation a dedicated column.
-@include desktop-up {
-  [data-page-id="studio"] .section--collection-panel .section__offerSwitcher {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
-  }
-}
-
-// Stack navigation above the offer when two readable columns no longer fit.
+// Stack specification rows when two readable columns no longer fit.
 @include tablet-down {
   [data-page-id="studio"] .section--collection-panel {
     .section__offers .card--service .textBlock__meta > * {
