@@ -176,7 +176,7 @@
       min-width: 0;
     }
     .section__splitTextMotion .textBlock__content {
-      grid-column: 7 / span 5;
+      grid-column: 7 / span 6;
       grid-row: 2;
       min-width: 0;
       max-width: none;
@@ -186,7 +186,7 @@
     }
     .section__splitTextMotion .textBlock__footer,
     .section__splitTextMotion .textBlock__meta {
-      grid-column: 7 / span 5;
+      grid-column: 7 / span 6;
       grid-row: 3;
       min-width: 0;
             margin-top: $space-5;
@@ -223,7 +223,7 @@
     }
 
     .section__splitTextMotion .textBlock__content {
-      grid-column: 7 / span 5;
+      grid-column: 7 / span 6;
       grid-row: 2;
       min-width: 0;
       align-self: start;
@@ -244,17 +244,19 @@ p { @include type-heading-md; }
     }
 
     .section__inner > .section__offers {
-      grid-column: 7 / span 5;
+      grid-column: 7 / span 6;
       grid-row: 4;
       align-self: start;
                 // margin-top: $space-6;
 
     }
 
-    .section__offerSwitcherControls { margin-bottom: $margin-group; }
+    .section__offerSwitcherControls { margin-bottom: $margin-group; button { @include type-body; } }
     .section__offers .card--service .card__body.textBlock { gap: $flow-default; }
     .section__offers .card--service .textBlock__title { @include type-heading-md; }
-    .section__offers .card--service .textBlock__content { @include type-body; }
+    .section__offers .card--service .textBlock__content { @include type-lead; }
+    .section__offers .card--service .textBlock__meta { @include type-body; }
+    .section__offers .card--service .textBlock__footer { @include type-lead; }
     .section__offers .card--service .textBlock__content > * + * { margin-top: $flow-default; }
     .section__offers .card--service .textBlock__meta { margin-top: $flow-default; }
     .section__offers .card--service .textBlock__footer { margin-top: $flow-default; }
