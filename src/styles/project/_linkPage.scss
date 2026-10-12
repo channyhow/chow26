@@ -22,8 +22,8 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
-  column-gap: $space-5;
-  row-gap: $space-4;
+  column-gap: $layout-gap;
+  row-gap: $margin-block;
   width: 100%;
   max-width: none;
 }
