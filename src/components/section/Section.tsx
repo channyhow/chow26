@@ -180,7 +180,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
     // Keep split media in normal flow so lazy-loaded assets have stable
     // viewport geometry. Text keeps its existing reveal through TextBlock.
-    const mediaLayer = isHomePreview ? motionLayer(splitSecondary, "reverse", "section__homePreviewMediaMotion", "quiet", "media") : splitSecondary;
+    const isStudioService = isServiceCollection && block.className?.split(/\s+/).includes("section--collection-panel");
+    const mediaLayer = isHomePreview
+      ? motionLayer(splitSecondary, "reverse", "section__homePreviewMediaMotion", "quiet", "media")
+      : isStudioService
+        ? motionLayer(splitSecondary, "reverse", "section__studioServiceMediaMotion", "default", "media")
+        : splitSecondary;
     const textLayer = isHomePreview ? motionLayer(primary, "forward", "section__homePreviewTextMotion", "quiet", "editorial-text") : primary;
     const mediaContent = mediaLayer ? <div className="section__splitMediaMotion">{mediaLayer}</div> : null;
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
