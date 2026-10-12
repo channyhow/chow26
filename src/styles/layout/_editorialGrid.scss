@@ -53,6 +53,21 @@
   }
 }
 
+// A paired service has one stable media slot on smaller screens.
+// The second mockup rotates into the first one's place without pushing copy.
+@include tablet-down {
+  [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
+    > [data-editorial-area="title"] { grid-row: 1; }
+    > .studioServiceGrid__rotatingMedia {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      &--inactive { display: none; }
+    }
+    > [data-editorial-area="description"] { grid-row: 3; }
+    > [data-editorial-area="offers"] { grid-row: 4; }
+  }
+}
+
 /* Independent offer regions: no card or TextBlock wrappers control placement. */
 .offerComposition {
   row-gap: $margin-content;
