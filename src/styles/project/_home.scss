@@ -101,7 +101,11 @@
 
 @include between($bp-tablet, $bp-desktop) {
   .homeOpeningScene__mediaPanel {
-    grid-column: span 8;
+    grid-column: 1 / -1;
+  }
+
+  .homeOpeningScene__media .media__frame {
+    aspect-ratio: $ratio-wide;
   }
 
   .homeOpeningScene__mediaPanel--2,
@@ -185,6 +189,13 @@
 
 #home-services .split > [data-split-role="content"] .actions {
   color: $color-primary;
+}
+
+@include between($bp-tablet, $bp-desktop) {
+  #home-services .homeServices__mediaList .media__frame,
+  #home-services .split__secondary .media__frame {
+    aspect-ratio: $ratio-wide;
+  }
 }
 
 @include desktop-up {
