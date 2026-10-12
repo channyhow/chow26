@@ -31,45 +31,16 @@ const mobileCarouselQuery = "(max-width: 29.999rem)";
 
 function OfferSwitcher({ offers }: { offers: NonNullable<SectionBlock["content"]>["items"] }) {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    if (!root.current) return;
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.35 });
-    observer.observe(root.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!visible || paused || reducedMotion || offers.length < 2) return;
-    const timer = window.setInterval(() => setActive((index) => (index + 1) % offers.length), 7000);
-    return () => window.clearInterval(timer);
-  }, [visible, paused, reducedMotion, offers?.length]);
-
   if (!offers?.length) return null;
   return (
-    <div ref={root} className="section__offerSwitcher"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+    <div className="section__offerSwitcher">
       <div className="section__offerSwitcherControls" role="group" aria-label="Choisir une formule">
         {offers.map((offer, index) => (
           <button key={offer.id ?? index} type="button" aria-pressed={index === active}
-            onClick={() => { setActive(index); setPaused(true); }}
+            onClick={() => setActive(index)}
             aria-label={offer.title ?? `Formule ${index + 1}`}>
-            {String(index + 1).padStart(2, "0")}
+            <span className="section__offerSwitcherNumber">{String(index + 1).padStart(2, "0")}</span>
+            <span className="section__offerSwitcherLabel">{typeof offer.eyebrow === "string" ? offer.eyebrow.replace(/^\d+\s*·\s*/, "") : offer.title}</span>
           </button>
         ))}
       </div>
