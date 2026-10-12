@@ -23,6 +23,12 @@
   align-items: start;
 }
 
+// Each footer group explicitly occupies the shared grid at every breakpoint.
+.siteFooter__nav,
+.siteFooter__social,
+.siteFooter__legal { grid-column: span 2; }
+.siteFooter__identity { grid-column: 1 / -1; }
+
 .siteFooter__identity {
   display: grid;
   align-content: start;
@@ -43,6 +49,7 @@
   margin: 0;
   line-height: 0.95;
   letter-spacing: 0.1em;
+  overflow-wrap: anywhere;
 }
 
 .siteFooter__baseline { margin: 0; }
@@ -79,7 +86,9 @@
 
 @include tablet-up {
   .siteFooter__main { row-gap: $layout-gap; }
-
+  .siteFooter__nav,
+  .siteFooter__social { grid-column: span 2; }
+  .siteFooter__legal { grid-column: span 4; }
   .siteFooter__identity { grid-column: 1 / -1; }
 }
 
@@ -119,7 +128,10 @@
 
   .siteFooter__main { row-gap: $space-3; }
 
+  .siteFooter__legal { grid-column: 1 / -1; }
   .siteFooter__identity { grid-column: 1 / -1; }
+  .siteFooter__name { font-size: clamp(2rem, 9vw, 4rem); letter-spacing: 0.045em; }
+  .siteFooter__baseline { overflow-wrap: anywhere; }
   .siteFooter__legal { opacity: $opacity-quiet; }
 
   .siteFooter__meta {
