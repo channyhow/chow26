@@ -403,5 +403,29 @@
     "width": 1920,
     "height": 1080,
     "fit": "cover"
+  },
+  "flo-business-card": {
+    "id": "flo-business-card",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_business-card.jpg",
+    "alt": "Flo | carte de visite et application de l’identité visuelle."
+  },
+  "flo-logo": {
+    "id": "flo-logo",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_logo.webp",
+    "alt": "Flo | création du logo."
+  },
+  "flo-wall": {
+    "id": "flo-wall",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_wall.jpg",
+    "alt": "Flo | identité visuelle présentée sur un mur."
+  },
+  "flo-wordmark": {
+    "id": "flo-wordmark",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_wordmark.webp",
+    "alt": "Flo | recherche typographique et logotype."
   }
 }
