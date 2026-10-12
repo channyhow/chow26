@@ -164,10 +164,10 @@
   }
 
   .textBlock__eyebrow {
-    opacity: $opacity-muted;
+    color: $gray-500;
   }
 
-  // Muting belongs to .textBlock__copy, not the parent: avoid compounded opacity.
+  // Muting belongs to individual text elements, not the card container.
   .textBlock__meta {
     margin-top: auto;
     padding-top: $padding-group;
@@ -183,7 +183,7 @@
   }
 
   .textBlock__meta > *:last-child .textBlock__metaValue {
-    opacity: $opacity-muted;
+    color: $gray-500;
   }
 
   .textBlock__footer {
