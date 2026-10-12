@@ -1,6 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
 import { motion, type MotionValue } from "motion/react";
 
 import { CardItem } from "@/components/content/CardItem";
