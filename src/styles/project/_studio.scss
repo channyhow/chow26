@@ -542,7 +542,7 @@
   .studioIntro__mediaGrid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: $layout-gap;
+    gap: $space-3;
     min-width: 0;
   }
 
@@ -580,7 +580,7 @@
     .studioIntro__mediaGrid {
       grid-column: 1 / span 4;
       grid-template-columns: minmax(0, 1fr);
-      gap: $space-5;
+      gap: $space-3;
       width: min(100%, 15rem);
     }
     .studioIntro__story {

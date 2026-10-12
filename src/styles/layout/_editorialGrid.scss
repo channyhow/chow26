@@ -60,7 +60,9 @@
 
   .textBlock__eyebrow { display: none; }
   .textBlock__title { @include type-heading-md; }
-  .textBlock__content p { @include type-lead; }
+  .textBlock__content p {
+        @include type-heading-md;
+      }
 
   &__spec {
     display: grid;
@@ -70,7 +72,7 @@
     padding-block: $space-2;
   }
 
-  &__specLabel { color: $gray-700; }
+  &__specLabel { @include type-heading-sm; opacity: $opacity-muted; }
   &__specList {
     display: grid;
     gap: $space-1;
