@@ -8,8 +8,9 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   gap: 0;
-   color: $surface-muted;
-@include type-heading-sm;}
+  color: inherit;
+  @include type-heading-sm;
+}
 
 .actions__link {
   // @include type-body-bold;
