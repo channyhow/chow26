@@ -413,36 +413,44 @@
   }
 }
 
-// Founder: text first, small square portrait at the lower right on every viewport.
-// Override the shared media-lead grid ordering at its source.
-[data-page-id="studio"] #studio-founders {
-  .split {
+// Founder is an editorial text-first composition, not a media-led split.
+// Scope to its explicit block class so the layout survives section wrappers.
+.section.section--founder {
+  .section__inner > .split {
     --split-media-ratio: #{$ratio-square};
     display: grid;
-    align-items: start;
     grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     row-gap: $space-6;
   }
 
-  .split > [data-split-role="content"] {
+  .section__inner > .split > [data-split-role="content"] {
     grid-column: 1 / -1;
     grid-row: 1;
     min-width: 0;
+    width: 100%;
     align-self: start;
   }
 
-  .split > [data-split-role="media"] {
+  .section__inner > .split > [data-split-role="media"] {
     grid-column: 1 / -1;
     grid-row: 2;
     width: min(100%, 12rem);
     min-width: 0;
+    max-width: 12rem;
     justify-self: end;
     align-self: end;
+    translate: none;
   }
 
   .section__splitMediaMotion,
   .section__splitMediaMotion .media,
   .section__splitMediaMotion .media__frame {
     width: 100%;
+    max-width: 100%;
+  }
+
+  .section__splitMediaMotion .media__frame {
+    aspect-ratio: $ratio-square;
   }
 }
