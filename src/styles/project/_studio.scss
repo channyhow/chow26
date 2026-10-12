@@ -585,3 +585,23 @@
     background-color: $color-secondary;
   }
 }
+
+[data-page-id="studio"] #studio-services-intro .studioIntro__details {
+  .actions { display: grid; gap: 0; width: 100%; }
+  .actions__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $space-2;
+    min-height: $control-min-height;
+    padding: $space-1 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    text-decoration: none;
+    @include type-body;
+    &:hover { color: $color-special; }
+    &:focus-visible { @include focus-ring; }
+  }
+  .actions__arrow { flex: 0 0 auto; }
+}
