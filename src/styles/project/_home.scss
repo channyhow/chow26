@@ -104,8 +104,11 @@
     grid-column: 1 / -1;
   }
 
-  .homeOpeningScene__media .media__frame {
+  // Media is declared square for desktop; override the shared data-ratio
+  // selector at equal specificity for the tablet composition.
+  .homeOpeningScene__media[data-ratio="square"] .media__frame {
     aspect-ratio: $ratio-wide;
+    max-height: none;
   }
 
   .homeOpeningScene__mediaPanel--2,
