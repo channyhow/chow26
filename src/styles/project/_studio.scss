@@ -341,10 +341,27 @@
   #studio-service-identity,
   #studio-service-website,
   #studio-service-integrations {
-    // Unwrap presentation-only layers so heading, media and copy can
-    // occupy independent tracks of the same twelve-column grid.
-    .split > [data-split-role="content"],
-    .section__splitTextMotion,
+    // Preserve the motion wrapper: display: contents on it removes its
+    // animation box and can make the entire heading/copy disappear.
+    // Subgrid aligns its descendants with the media without unwrapping it.
+    .split > [data-split-role="content"] {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 1 / 3;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+      min-width: 0;
+    }
+
+    .section__splitTextMotion {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 1 / 3;
+      grid-template-columns: subgrid;
+      grid-template-rows: subgrid;
+      min-width: 0;
+    }
+
     .section__splitTextMotion .textBlock {
       display: contents;
     }
