@@ -129,7 +129,7 @@
 
 // Muted text on primary surfaces follows the light foreground rather than
 // using a fixed gray that becomes unreadable against a dark background.
-.section[data-color="primary"] {
+:is(.section[data-color="primary"], [data-color="primary"] .section, #studio-founders) {
   .textBlock__content .textBlock__copy,
   .textBlock__metaLabel {
     color: inherit;
