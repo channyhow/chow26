@@ -84,9 +84,9 @@
       @include type-body;
     }
 
-    .textBlock__footer .actions__link {
-      @include type-body;
-    }
+    // .textBlock__footer .actions__link {
+    //   @include type-body;
+    // }
   }
 
   .section__offers .card--service {
@@ -312,9 +312,9 @@
     .section__offers .card--service .textBlock__metaValue {
       @include type-body;
     }
-    .section__offers .card--service .textBlock__footer .actions__link {
-      @include type-body;
-    }
+    // .section__offers .card--service .textBlock__footer .actions__link {
+    //   @include type-body;
+    // }
     .section__offers .card--service .textBlock__content > * + * {
       margin-top: $flow-default;
     }
