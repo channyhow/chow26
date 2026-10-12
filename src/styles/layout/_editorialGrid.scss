@@ -57,8 +57,14 @@
       --studio-media-ratio: #{$ratio-square};
       aspect-ratio: var(--studio-media-ratio);
 
-      .studioServiceGrid__rotatingFrame[data-active="false"] {
-        visibility: hidden;
+      .studioServiceGrid__rotatingFrame {
+        opacity: 1;
+        transition: opacity 650ms ease-in-out;
+
+        &[data-active="false"] {
+          opacity: 0;
+          pointer-events: none;
+        }
       }
 
       .studioServiceGrid__rotatingFrame,
@@ -202,5 +208,11 @@
         grid-row: 8;
       }
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page-id="studio"] .section--collection-panel .studioServiceGrid__rotatingFrame {
+    transition: none;
   }
 }
