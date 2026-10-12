@@ -106,24 +106,21 @@
 }
 
 
-// With two mockups, the offer choices sit beside the second image.
-// Keep the offer details below, full width; mobile retains document order.
+// Paired media stay in separate editorial cells, beside a contained offer grid.
 @include desktop-up {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
-    > [data-editorial-area="media"]:not(.studioServiceGrid__secondMedia) { grid-row: 2; }
-    > [data-editorial-area="description"] { grid-row: 2; }
-    > [data-editorial-area="media"].studioServiceGrid__secondMedia { grid-row: 3; }
-    > [data-editorial-area="offers"],
-    > [data-editorial-area="offers"] > .offerComposition {
-      display: contents;
+    > [data-editorial-area="media"].studioServiceGrid__secondMedia {
+      grid-column: 1 / span 5;
+      grid-row: 3;
+    }
+    > [data-editorial-area="offers"] {
+      grid-column: 7 / span 6;
+      grid-row: 3;
+      min-width: 0;
     }
     > [data-editorial-area="offers"] > .offerComposition {
-      > [data-editorial-area="navigation"] { grid-column: 7 / span 6; grid-row: 3; }
-      > [data-editorial-area="heading"] { grid-column: 7 / span 6; grid-row: 4; }
-      > [data-editorial-area="description"] { grid-column: 7 / span 6; grid-row: 5; }
-      > [data-editorial-area="deliverables"] { grid-column: 1 / -1; grid-row: 6; }
-      > [data-editorial-area="price"] { grid-column: 1 / -1; grid-row: 7; }
-      > [data-editorial-area="action"] { grid-column: 7 / span 6; grid-row: 8; }
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      > .editorialGrid__item { grid-column: 1 / -1; grid-row: auto; }
     }
   }
 }
