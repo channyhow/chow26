@@ -90,7 +90,6 @@
   }
 
   .textBlock__content {
-    opacity: $opacity-muted;
 
     p {
       @include type-body-sm;
@@ -138,7 +137,6 @@
 
   .textBlock__content {
     @include type-body-sm;
-    opacity: $opacity-muted;
   }
 }
 
@@ -169,10 +167,7 @@
     opacity: $opacity-muted;
   }
 
-  .textBlock__content {
-    opacity: $opacity-muted;
-  }
-
+  // Muting belongs to .textBlock__copy, not the parent: avoid compounded opacity.
   .textBlock__meta {
     margin-top: auto;
     padding-top: $padding-group;
@@ -252,7 +247,6 @@
 
   .textBlock__content {
     @include type-body-sm;
-    opacity: $opacity-muted;
   }
 
   .textBlock__content > :first-child {
@@ -307,15 +301,6 @@
     // @include type-body;
     // font-weight: $font-weight-medium;
     max-width: none;
-  }
-
-  .textBlock__content {
-    // @include type-body;
-    opacity: $opacity-muted;
-  }
-
-  .textBlock__content p {
-    opacity: 1;
   }
 
   .textBlock__content p::first-letter {
