@@ -126,13 +126,12 @@
       border: 0;
       border-bottom: 1px solid transparent;
       background: transparent;
-      color: inherit;
-      opacity: $opacity-muted;
+      color: $gray-500;
 
       @include type-body;
 
       &[aria-pressed="true"] {
-        opacity: 1;
+        color: inherit;
         border-bottom-color: currentColor;
       }
 
