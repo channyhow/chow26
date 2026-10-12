@@ -393,10 +393,6 @@
     @include type-heading-sm;
   }
 
-  // Muted copy must follow the section foreground on dark surfaces.
-  .textBlock__copy {
-    color: color-mix(in srgb, currentColor 75%, transparent);
-  }
 }
 
 #home-opencall-preview {
