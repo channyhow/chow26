@@ -357,7 +357,7 @@
 
 
     .section__offers .card--service .card__body.textBlock {
-      gap: $space-6;
+      gap: $margin-content;
     }
     .section__offers .card--service .textBlock__title {
       @include type-heading-md;
