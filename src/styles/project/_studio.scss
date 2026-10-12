@@ -550,19 +550,15 @@
 }
 
 
-// Studio uses the shared Media offset pseudo-element, not a second shadow.
-// Inverse contrast is scoped to special-coloured surfaces.
+// Studio-only media offset: reuse the shared pseudo-element geometry.
+// Other pages keep the default Media styling.
 [data-page-id="studio"] {
-  .studioIntro__media .media,
-  .studioServiceGrid > [data-editorial-area="media"] .media {
-    &::before { background: $color-special; }
+  .media::before {
+    background-color: $color-special;
   }
 
-  [data-surface="special"],
-  [data-theme="special"] {
-    .studioIntro__media .media::before,
-    .studioServiceGrid > [data-editorial-area="media"] .media::before {
-      background: $color-secondary;
-    }
+  [data-surface="special"] .media::before,
+  [data-theme="special"] .media::before {
+    background-color: $color-secondary;
   }
 }
