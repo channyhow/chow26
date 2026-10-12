@@ -597,6 +597,58 @@
   .homeFeaturedProject__story .textBlock__header { gap: $flow-default; }
 }
 
+// Tablet is a reading layout, not a compressed desktop composition.
+@include between($bp-tablet, $bp-desktop) {
+  .homeOpenCall__statement,
+  .homeOpenCall__media,
+  .homeOpenCall__context,
+  .homeOpenCall__action,
+  .homeFeaturedProject__index,
+  .homeFeaturedProject__media,
+  .homeFeaturedProject__story {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .homeOpenCall__media {
+    width: min(100%, 26rem);
+    justify-self: start;
+  }
+
+  .homeOpenCall__action { margin-top: 0; }
+
+  .homeFeaturedProject__media {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+// Smaller viewports use a bounded square media before the story.
+@include tablet-down {
+  #home-services .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $margin-group;
+    align-items: start;
+  }
+
+  #home-services .split > [data-split-role] {
+    min-width: 0;
+    width: 100%;
+    grid-column: 1;
+  }
+
+  #home-services .split > [data-split-role="media"] {
+    width: min(100%, 26rem);
+    justify-self: start;
+  }
+
+  #home-services .split__secondary .media__frame {
+    aspect-ratio: $ratio-square;
+    max-height: none;
+  }
+}
+
 // The same offset plane follows Home's other editorial media.
 #home-services .section__splitMediaMotion,
 .homeFeaturedProject__media,
