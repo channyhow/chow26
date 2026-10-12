@@ -526,52 +526,67 @@
   }
 }
 
-// Studio introduction echoes the homepage's three-image editorial rhythm.
+// Studio introduction: service-like media / story composition.
+// Keep three assets, but avoid the full-width gallery treatment.
 [data-page-id="studio"] #studio-services-intro {
   > .section__inner { display: block; width: 100%; }
-  .studioIntro__composition { display: grid; grid-template-columns: minmax(0, 1fr); gap: $space-6; min-width: 0; width: 100%; }
-  .studioIntro__mediaGrid, .studioIntro__story { grid-column: 1 / -1; width: 100%; }
-  .studioIntro__media .media__frame { overflow: hidden; }
-  .studioIntro__story .textBlock { width: 100%; max-width: none; }
-  .studioIntro__mediaGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: $layout-gap; }
-  .studioIntro__media { min-width: 0; width: 100%; aspect-ratio: 1; }
-  .studioIntro__media .media, .studioIntro__media .media__frame { width: 100%; height: 100%; aspect-ratio: 1; }
-  .studioIntro__media .media__asset { width: 100%; height: 100%; object-fit: cover; }
-  .studioIntro__story { min-width: 0; }
-  .studioIntro__headline .textBlock__title { @include type-heading-xl; max-width: none; }
-  .studioIntro__details .textBlock__footer { margin-top: $margin-content; }
+
+  .studioIntro__composition {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $margin-group;
+    align-items: start;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .studioIntro__mediaGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $layout-gap;
+    min-width: 0;
+  }
+
+  .studioIntro__media {
+    min-width: 0;
+    width: 100%;
+    aspect-ratio: $ratio-square;
+    &:first-child { grid-column: 1 / -1; }
+    .media, .media__frame { width: 100%; height: 100%; aspect-ratio: $ratio-square; }
+    .media__frame { overflow: hidden; }
+    .media__asset { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  .studioIntro__story {
+    display: grid;
+    align-content: start;
+    gap: $margin-group;
+    min-width: 0;
+    .textBlock { width: 100%; max-width: none; }
+  }
+
+  .studioIntro__headline .textBlock__title {
+    @include type-heading-xl;
+    max-width: none;
+  }
+
+  .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
-// The introduction shares the same twelve-column rhythm as the services.
 @include desktop-up {
   [data-page-id="studio"] #studio-services-intro {
-    .studioIntro__story {
+    .studioIntro__composition {
       @include site-grid;
       align-items: start;
       row-gap: $margin-group;
     }
-
-    .studioIntro__headline {
-      grid-column: 1 / span 7;
-      min-width: 0;
-    }
-
-    .studioIntro__details {
-      grid-column: 8 / span 5;
-      min-width: 0;
-      padding-top: $space-1;
+    .studioIntro__mediaGrid { grid-column: 1 / span 5; }
+    .studioIntro__story {
+      grid-column: 7 / span 6;
+      gap: $margin-block;
     }
   }
 }
-
-@include tablet-down {
-  [data-page-id="studio"] #studio-services-intro .studioIntro__mediaGrid {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding-bottom: $space-2;
-    .studioIntro__media { flex: 0 0 min(78vw, 22rem); scroll-snap-align: start; }
-  }
-}
-
 
 // Studio-only media offset: reuse the shared pseudo-element geometry.
 // Other pages keep the default Media styling.
