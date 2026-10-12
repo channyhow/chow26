@@ -13,6 +13,7 @@ import { Actions } from "@/components/navigation/Actions";
 import { Timeline } from "@/components/content/Timeline";
 import { Form } from "@/components/forms/Form";
 import { Grid } from "@/components/layout/Grid";
+import { EditorialGrid, EditorialGridItem } from "@/components/layout/EditorialGrid";
 import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { HomeOpeningScene } from "@/components/section/HomeOpeningScene";
@@ -194,7 +195,22 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
-    body = <>{splitComposition}{region(offerGrid, "section__offers")}</>;
+    if (isStudioService && splitItem) {
+      // Distinct semantic grid items keep text visible and independent of
+      // split/motion wrappers. DOM order matches the mobile reading order.
+      const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={false} />;
+      const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={false} />;
+      body = (
+        <EditorialGrid className="studioServiceGrid">
+          <EditorialGridItem area="title">{title}</EditorialGridItem>
+          <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{splitSecondary}</EditorialGridItem>
+          <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
+          {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
+        </EditorialGrid>
+      );
+    } else {
+      body = <>{splitComposition}{region(offerGrid, "section__offers")}</>;
+    }
   } else if (isProfileGrid) {
     const profile = items[0];
     const profileMediaRef = Array.isArray(profile.media) ? profile.media[0] : profile.media;
