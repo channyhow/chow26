@@ -91,6 +91,20 @@
   }
 }
 
+// Tablet retains autoplay but gives both mockups the same landscape crop.
+// Mobile stays square; desktop displays the two independent media.
+@include between($bp-tablet, $bp-desktop) {
+  [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
+    > .studioServiceGrid__rotatingMedia {
+      aspect-ratio: $ratio-wide;
+
+      .media__frame {
+        aspect-ratio: $ratio-wide;
+      }
+    }
+  }
+}
+
 /* Independent offer regions: no card or TextBlock wrappers control placement. */
 .offerComposition {
   row-gap: $margin-content;
