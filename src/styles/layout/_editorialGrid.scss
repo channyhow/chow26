@@ -1,13 +1,15 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+@use "../foundation/typography" as *;
+
 
 // Reusable editorial placement. DOM order is always semantic; mobile stacks.
 // Motion wrappers remain children of the grid items, never display: contents.
 .editorialGrid {
   @include site-grid;
   align-items: start;
-  row-gap: $margin-group;
+  row-gap: $space-5;
   width: 100%;
 
   &__item {
@@ -30,7 +32,7 @@
     > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
     > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
     > [data-editorial-area="description"] .textBlock__content p { @include type-heading-md; }
-    > [data-editorial-area="media"] .media__frame { aspect-ratio: $ratio-editorial; }
+    // > [data-editorial-area="media"] .media__frame { aspect-ratio: $ratio-editorial; }
     > [data-editorial-area="offers"] {
       .section__offerSwitcher { grid-template-columns: minmax(0, 1fr); }
       .card--service { padding: 0; background: transparent; box-shadow: none; }
