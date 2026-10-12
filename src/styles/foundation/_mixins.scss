@@ -209,6 +209,25 @@
 @mixin rule-top($strength: 18%) { border-top: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 @mixin rule-bottom($strength: 18%) { border-bottom: 1px solid color-mix(in srgb, currentColor $strength, transparent); }
 
+// Quiet full-width navigation rows used by service selectors and editorial links.
+@mixin editorial-control-row($rule: 22%) {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-2;
+  width: 100%;
+  min-height: $control-min-height;
+  padding: $space-1 0;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor $rule, transparent);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  &:focus-visible { @include focus-ring; }
+}
+
 @mixin glass($surface: var(--surface, #{$color-secondary}), $alpha: 1.5%) {
   background: color-mix(in srgb, $surface $alpha, transparent);
   backdrop-filter: blur(4px) saturate(0.95);
