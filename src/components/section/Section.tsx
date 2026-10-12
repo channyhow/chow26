@@ -189,10 +189,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={false} />;
       const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={false} />;
       body = (
-        <EditorialGrid className="studioServiceGrid">
+        <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
-          <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMedia}</EditorialGridItem>
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}><Media media={studioMediaItems[0]} sizes="(min-width: 64rem) 42vw, 100vw" /></EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMedia}</EditorialGridItem>}
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}><Media media={studioMediaItems[1]} sizes="(min-width: 64rem) 42vw, 100vw" /></EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
       );
