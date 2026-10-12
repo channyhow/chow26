@@ -50,7 +50,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const splitCompositionProps = resolveSplitComposition(block.id, block.splitComposition);
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
-  const sectionMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+  const isStudioMotionSection = block.id === "studio-services-intro" || (block.id.startsWith("studio-service-") && block.id !== "studio-services-intro");
+  // Sticky panels suppress section-level scene motion, not independent media/text reveals.
+  const sectionMotionEnabled = motionEnabled && motionLevel !== "none" && (!suppressSceneMotion || isStudioMotionSection);
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher" || isHorizontalTimeline;
   const isLongFormList = layout === "list";
@@ -89,7 +91,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const cards = items.map(renderCard);
   const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => block.id === "studio-services-intro"
-    ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}><Media media={item} /></ScrollScene>
+    ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled}><Media media={item} /></ScrollScene>
     : <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
@@ -201,7 +203,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
     const studioParallaxMedia = (item: NonNullable<typeof media>, direction: "forward" | "reverse" = "reverse") => (
-      <ScrollScene preset="parallax" intensity="quiet" direction={direction} className="studioServiceGrid__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}>
+      <ScrollScene preset="parallax" intensity="quiet" direction={direction} className="studioServiceGrid__mediaMotion" enabled={sectionMotionEnabled}>
         <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
       </ScrollScene>
     );
