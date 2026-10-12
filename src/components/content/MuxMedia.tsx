@@ -1,4 +1,4 @@
-import { createElement, useEffect, useMemo, useRef, useState } from "react";
+import { createElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type MuxTokenResponse = {
   playbackId: string;
@@ -76,11 +76,7 @@ export function MuxMedia({
     const anchor = containerRef.current;
     if (!anchor) return;
 
-    if (priority || typeof IntersectionObserver === "undefined") {
-      setIsNearViewport(true);
-      setIsVisible(true);
-      return;
-    }
+    if (priority || typeof IntersectionObserver === "undefined") return;
 
     const loadObserver = new IntersectionObserver(
       ([entry]) => setIsNearViewport(Boolean(entry?.isIntersecting)),
@@ -100,8 +96,11 @@ export function MuxMedia({
     };
   }, [priority]);
 
+  const shouldLoad = priority || isNearViewport || typeof IntersectionObserver === "undefined";
+  const shouldPlay = priority || isVisible || typeof IntersectionObserver === "undefined";
+
   useEffect(() => {
-    if (!isNearViewport || tokens) return;
+    if (!shouldLoad || tokens) return;
 
     const controller = new AbortController();
 
@@ -120,7 +119,7 @@ export function MuxMedia({
       });
 
     return () => controller.abort();
-  }, [isNearViewport, mediaKey, tokens]);
+  }, [shouldLoad, mediaKey, tokens]);
 
   useEffect(() => {
     if (!tokens) return;
@@ -144,12 +143,12 @@ export function MuxMedia({
       return;
     }
 
-    if (isVisible) {
+    if (shouldPlay) {
       void player.play?.().catch(() => undefined);
     } else {
       player.pause?.();
     }
-  }, [autoPlay, isVisible, playerReady]);
+  }, [autoPlay, shouldPlay, playerReady]);
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
@@ -159,12 +158,14 @@ export function MuxMedia({
       : base;
   }, [tokens]);
 
+  const attachPlayer = useCallback((node: MuxPlayerElement | null) => {
+    playerRef.current = node;
+  }, []);
+
   const player =
     tokens && playerReady
       ? createElement("mux-player", {
-          ref: (node: MuxPlayerElement | null) => {
-            playerRef.current = node;
-          },
+          ref: attachPlayer,
           "playback-id": tokens.playbackId,
           ...(tokens.playbackPolicy === "signed" && tokens.playbackToken
             ? { "playback-token": tokens.playbackToken }
@@ -176,8 +177,8 @@ export function MuxMedia({
           muted: true,
           loop: true,
           controls: false,
-          autoplay: autoPlay && isVisible,
-          preload: priority || isNearViewport ? "metadata" : "none",
+          autoplay: autoPlay && shouldPlay,
+          preload: shouldLoad ? "metadata" : "none",
           tabindex: -1,
           "aria-hidden": "true",
           style: {
