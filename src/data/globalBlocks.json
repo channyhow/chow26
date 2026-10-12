@@ -129,7 +129,11 @@
           "studio-service-integrations"
         ]
       },
-      "media": ["flo-logo", "flo-laptop", "flo-business-card"]
+      "media": [
+        "flo-logo",
+        "flo-laptop",
+        "flo-business-card"
+      ]
     }
   },
   "approach-default": {
@@ -157,7 +161,8 @@
         ],
         "limit": 1
       }
-    }
+    },
+    "motion": "none"
   },
   "studio-service-website": {
     "id": "studio-service-website",
@@ -173,7 +178,8 @@
         ],
         "limit": 1
       }
-    }
+    },
+    "motion": "none"
   },
   "studio-service-integrations": {
     "id": "studio-service-integrations",
@@ -189,7 +195,8 @@
         ],
         "limit": 1
       }
-    }
+    },
+    "motion": "none"
   },
   "studio-founders": {
     "id": "studio-founders",
