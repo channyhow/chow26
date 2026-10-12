@@ -30,13 +30,6 @@
     > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
     > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
     > [data-editorial-area="description"] .textBlock__content p { @include type-heading-md; }
-    > [data-editorial-area="offers"] {
-      .section__offerSwitcher { grid-template-columns: minmax(0, 1fr); }
-      .card--service { padding: 0; background: transparent; box-shadow: none; }
-      .card--service .card__body { padding: 0; background: transparent; }
-      .card--service .textBlock__metaLabel { display: block; }
-      .card--service .textBlock__meta > * { border-top: 1px solid currentColor; padding-block: $space-2; }
-    }
   }
 
   @include desktop-up {
@@ -46,7 +39,6 @@
       > [data-editorial-area="description"] { grid-row: 2; }
       > [data-editorial-area="offers"] {
         grid-row: 3;
-        .section__offerSwitcher { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
       }
     }
   }
