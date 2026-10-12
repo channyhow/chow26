@@ -105,7 +105,7 @@
           }
         ]
       },
-      "media": "flo-business-card"
+      "media": ["flo-mobile1","flo-business-card"]
     },
     "motion": "scene",
     "motionPreset": "parallax",
@@ -294,7 +294,7 @@
           "talk-project"
         ]
       },
-      "media": "maloya-menu"
+      "media": "flo-laptop"
     }
   },
   "links-profile": {
