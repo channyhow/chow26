@@ -127,11 +127,11 @@
         grid-row: 3;
       }
       > [data-editorial-area="heading"] {
-        grid-column: 1 / -1;
+        grid-column: 7 / span 6;
         grid-row: 4;
       }
       > [data-editorial-area="description"] {
-        grid-column: 1 / -1;
+        grid-column: 7 / span 6;
         grid-row: 5;
       }
       > [data-editorial-area="deliverables"] {
