@@ -90,7 +90,7 @@
   }
 
   .textBlock__content {
-    color: color-mix(in srgb, currentColor 68%, transparent);
+    opacity: $opacity-muted;
 
     p {
       @include type-body-sm;
@@ -138,7 +138,7 @@
 
   .textBlock__content {
     @include type-body-sm;
-    color: color-mix(in srgb, currentColor 68%, transparent);
+    opacity: $opacity-muted;
   }
 }
 
@@ -166,11 +166,11 @@
   }
 
   .textBlock__eyebrow {
-    color: color-mix(in srgb, currentColor 62%, transparent);
+    opacity: $opacity-muted;
   }
 
   .textBlock__content {
-    color: color-mix(in srgb, currentColor 70%, transparent);
+    opacity: $opacity-muted;
   }
 
   .textBlock__meta {
@@ -253,7 +253,7 @@
 
   .textBlock__content {
     @include type-body-sm;
-    color: color-mix(in srgb, currentColor 62%, transparent);
+    opacity: $opacity-muted;
   }
 
   .textBlock__content > :first-child {
