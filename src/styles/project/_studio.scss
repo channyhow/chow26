@@ -341,34 +341,21 @@
   #studio-service-identity,
   #studio-service-website,
   #studio-service-integrations {
-    // Preserve the motion wrapper: display: contents on it removes its
-    // animation box and can make the entire heading/copy disappear.
-    // Subgrid aligns its descendants with the media without unwrapping it.
     .split > [data-split-role="content"] {
-      display: grid;
       grid-column: 1 / -1;
-      grid-row: 1 / 3;
-      grid-template-columns: subgrid;
-      grid-template-rows: subgrid;
-      min-width: 0;
-    }
-
-    .section__splitTextMotion {
-      display: grid;
-      grid-column: 1 / -1;
-      grid-row: 1 / 3;
-      grid-template-columns: subgrid;
-      grid-template-rows: subgrid;
-      min-width: 0;
+      grid-row: 1;
     }
 
     .section__splitTextMotion .textBlock {
-      display: contents;
+      @include editorial-text-grid;
+      row-gap: $margin-group;
+      align-items: start;
+      width: 100%;
+      max-width: none;
     }
 
     .section__splitTextMotion .textBlock__header {
       grid-column: 1 / -1;
-      grid-row: 1;
       min-width: 0;
     }
 
@@ -378,12 +365,12 @@
     }
 
     .section__splitTextMotion .textBlock__content {
-      grid-column: 7 / -1;
+      grid-column: 8 / span 4;
       grid-row: 2;
       min-width: 0;
       align-self: start;
       max-width: $measure-header-copy;
-      margin-top: 0;
+      margin-top: $margin-content;
       p {
         @include type-heading-md;
       }
@@ -398,16 +385,12 @@
     }
 
     .section__inner > .section__offers {
-      grid-column: 1 / -1;
-      grid-row: 3;
+      grid-column: 7 / -1;
+      grid-row: 2;
       align-self: start;
-      margin-top: 0;
+      margin-top: $space-6;
     }
 
-
-    .section__offerSwitcher {
-      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
-    }
 
     .section__offers .card--service .card__body.textBlock {
       gap: $margin-content;
