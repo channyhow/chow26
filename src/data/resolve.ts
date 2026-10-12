@@ -4,14 +4,8 @@ import globalBlocksData from "@/data/globalBlocks.json";
 import servicesData from "@/data/services.json";
 import type { ContentItem, SectionBlock, SourceRef } from "@/types/content";
 
-const {
-  services: _legacyServices,
-  approach: _legacyApproach,
-  ...baseCollections
-} = collectionsData as Record<string, ContentItem[]>;
-
 const collections: Record<string, ContentItem[]> = {
-  ...baseCollections,
+  ...collectionsData as Record<string, ContentItem[]>,
   approach: approachData as ContentItem[],
   services: servicesData as ContentItem[],
 };
