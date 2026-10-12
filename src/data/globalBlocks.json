@@ -140,7 +140,7 @@
     "id": "approach-default",
     "type": "Section",
     "layout": "timeline",
-    "timelineOrientation": "vertical",
+    "timelineOrientation": "horizontal",
     "motion": "scene",
     "motionPreset": "ambient",
     "source": {

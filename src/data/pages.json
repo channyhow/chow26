@@ -177,20 +177,7 @@
               }
             ]
           },
-          {
-            "id": "studio-approach-panel",
-            "behavior": "normal",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "secondary",
-            "blocks": [
-              {
-                "ref": "approach-default"
-              }
-            ]
-          },
+    
           {
             "id": "studio-final-panel",
             "behavior": "overlay",
@@ -482,6 +469,19 @@
             "blocks": [
               {
                 "ref": "contact-default"
+              }
+            ]
+          },      {
+            "id": "contact-approach-panel",
+            "behavior": "sticky",
+            "frame": "content",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "primary",
+            "blocks": [
+              {
+                "ref": "approach-default"
               }
             ]
           },
