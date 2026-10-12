@@ -322,27 +322,6 @@
   }
 }
 
-@include between($bp-tablet, $bp-desktop) {
-  .homeContact__index {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-
-  .homeContact__story,
-  .homeContact__media {
-    grid-column: 3 / -1;
-  }
-
-  .homeContact__media {
-    grid-row: 1;
-  }
-
-  .homeContact__story {
-    grid-row: 2;
-  }
-}
 
 @include mobile-down {
   .homeContact__index {
@@ -678,6 +657,36 @@
   .homeContact__index {
     writing-mode: horizontal-tb;
     transform: none;
+  }
+
+  // Tablet sections read as one column; desktop alone uses split compositions.
+  #home-services .split,
+  #final-cta .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: $margin-group;
+    align-items: start;
+  }
+
+  #home-services .split > [data-split-role],
+  #final-cta .split > [data-split-role] {
+    grid-column: 1;
+    grid-row: auto;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  #final-cta .split__secondary .media__frame {
+    aspect-ratio: $ratio-wide;
+    max-height: none;
+  }
+
+  // The poster and its heading occupy separate rows without overlap.
+  .homeOpenCall__media {
+    min-height: 0;
+    margin-bottom: $space-2;
   }
 }
 
