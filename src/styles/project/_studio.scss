@@ -554,7 +554,7 @@
 // Other pages keep the default Media styling.
 [data-page-id="studio"] {
   .media::before {
-    background-color: $color-special;
+    background-color: $color-accent;
   }
 
   [data-surface="special"] .media::before,
