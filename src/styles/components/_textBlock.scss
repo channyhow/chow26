@@ -92,13 +92,14 @@
   .textBlock__metaLabel {
     @include type-meta;
     font-weight: $font-weight-semibold;
-    color: color-mix(in srgb, currentColor 58%, transparent);
+    opacity: $opacity-muted;
   }
 
   .textBlock__metaValue {
     @include type-meta;
     min-width: 0;
-    color: color-mix(in srgb, currentColor 72%, transparent);
+    color: inherit;
+    opacity: 1;
  
   }
 }
