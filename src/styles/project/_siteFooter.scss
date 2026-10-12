@@ -59,7 +59,12 @@
 .siteFooter__social,
 .siteFooter__legal { min-width: 0; 
   padding-top: $space-3;
-  .actions {color: inherit;}
+  .actions { color: inherit; }
+
+  .actions__link {
+    color: inherit;
+    opacity: 1;
+  }
 
 }
 
