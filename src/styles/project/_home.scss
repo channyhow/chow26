@@ -455,7 +455,8 @@ margin-bottom: $margin-content;
 
   .homeOpenCall__action {
     grid-column: 8 / span 4;
-    grid-row: 2;
+    grid-row: 3;
+    align-self: start;
   }
 }
 
@@ -474,6 +475,8 @@ margin-bottom: $margin-content;
 
   .homeOpenCall__action {
     grid-column: 4 / -1;
+    grid-row: 3;
+    align-self: start;
   }
 }
 
