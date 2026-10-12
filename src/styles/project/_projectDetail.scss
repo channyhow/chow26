@@ -107,6 +107,16 @@
   display: block;
 }
 
+.projectHero__meta .textBlock__metaValue {
+  overflow-wrap: anywhere;
+}
+
+.projectHero__meta .textBlock__externalArrow {
+  display: inline;
+  white-space: nowrap;
+  margin-inline-start: 0.4em;
+}
+
 .projectHero__meta a:hover .textBlock__metaValue,
 .projectHero__meta a:focus-visible .textBlock__metaValue {
   text-decoration: underline;
