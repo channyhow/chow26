@@ -361,6 +361,7 @@
    Individual stories only define placement, scale and art direction. */
 .homeEditorialComposition {
   @include site-grid($margin-content);
+  row-gap: $margin-group;
   align-items: start;
   width: 100%;
 }
@@ -607,7 +608,6 @@
     width: 100%;
     max-width: 100%;
     justify-self: stretch;
-    margin-bottom: $space-3;
 
     .media__frame {
       aspect-ratio: $ratio-wide;
@@ -683,10 +683,9 @@
     max-height: none;
   }
 
-  // The poster and its heading occupy separate rows without overlap.
+  // Keep each media item within its grid row; spacing comes from row-gap.
   .homeOpenCall__media {
     min-height: 0;
-    margin-bottom: $space-2;
   }
 }
 
