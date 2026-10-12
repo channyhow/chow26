@@ -13,8 +13,8 @@
   width: 100%;
   max-width: none;
   min-height: 0;
-padding-block: $padding-block;
-align-items: flex-start;
+  padding-block: $padding-block;
+  align-items: flex-start;
 }
 
 .homeOpeningScene {
@@ -147,18 +147,16 @@ align-items: flex-start;
   }
 
   .textBlock__content {
-        margin-top: $margin-block;
-
+    margin-top: $margin-block;
     max-width: $measure-text;
   }
-  .textBlock__copy{
+  .textBlock__copy {
     @include type-heading-sm;
     font-weight: $font-weight-medium;
   }
 
   .actions {
-        @include type-heading-sm;
-
+    @include type-heading-sm;
     margin-top: $margin-block;
     color: $color-primary;
   }
@@ -174,19 +172,16 @@ align-items: flex-start;
   }
 }
 
-  #home-services .split > [data-split-role="content"] .actions {
-  
-color: $color-primary;
-
-    
-  }
+#home-services .split > [data-split-role="content"] .actions {
+  color: $color-primary;
+}
 
 @include desktop-up {
   /* Services follows the same editorial sequence as the reference:
      wide proof first, statement below, then compact supporting information. */
   #home-services .split {
     align-items: start;
-    row-gap: $margin-content;
+    row-gap: $margin-block;
   }
   #home-services .split > [data-split-role="media"] {
     grid-column: 1 / span 4;
@@ -221,14 +216,10 @@ color: $color-primary;
   #home-services .split > [data-split-role="content"] 
     .textBlock__footer {
       grid-row: 2;
-          grid-column: 8 / span 4;
-
-
-    
+    grid-column: 8 / span 4;
   }
     #home-services .split > [data-split-role="content"] .textBlock__content {
     grid-column: 1 / span 7;
-    // margin-top: $margin-group;
     p {
              @include type-heading-md;
 
@@ -411,7 +402,7 @@ color: $color-primary;
 
 .homeOpenCall__statement {
   --text-width: none;
-margin-bottom: $margin-content;
+  margin-bottom: $margin-block;
   .textBlock__title {
     @include type-heading-xl;
     max-width: none;
@@ -457,6 +448,7 @@ margin-bottom: $margin-content;
     grid-column: 8 / span 4;
     grid-row: 3;
     align-self: start;
+    margin-top: $margin-content;
   }
 }
 
@@ -477,6 +469,7 @@ margin-bottom: $margin-content;
     grid-column: 4 / -1;
     grid-row: 3;
     align-self: start;
+    margin-top: $margin-content;
   }
 }
 
