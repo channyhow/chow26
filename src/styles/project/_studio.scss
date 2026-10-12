@@ -390,12 +390,7 @@
     }
     .studioIntro__media {
       grid-area: 1 / 1;
-      aspect-ratio: $ratio-wide;
-
-      .media,
-      .media__frame {
-        aspect-ratio: $ratio-wide;
-      }
+  
 
       opacity: 1;
       transition: opacity 650ms ease-in-out;
