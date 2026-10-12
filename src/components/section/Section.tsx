@@ -86,7 +86,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
   const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
-  const mediaCards = mediaItems.map((item) => <Media key={item.id} media={item} />);
+  const mediaCards = mediaItems.map((item) => block.id === "studio-services-intro"
+    ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled}><Media media={item} /></ScrollScene>
+    : <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
     const id = item.id ?? `item-${index + 1}`;
@@ -191,6 +193,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
+    const studioParallaxMedia = (item: NonNullable<typeof media>, direction: "forward" | "reverse" = "reverse") => (
+      <ScrollScene preset="parallax" intensity="quiet" direction={direction} className="studioServiceGrid__mediaMotion" enabled={sectionMotionEnabled}>
+        <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
+      </ScrollScene>
+    );
     if (isStudioService && splitItem) {
       // Distinct semantic grid items keep text visible and independent of
       // split/motion wrappers. DOM order matches the mobile reading order.
@@ -199,9 +206,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       body = (
         <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}><Media media={studioMediaItems[0]} sizes="(min-width: 64rem) 42vw, 100vw" /></EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMedia}</EditorialGridItem>}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>studioParallaxMedia(studioMediaItems[0])</EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioParallaxMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}><Media media={studioMediaItems[1]} sizes="(min-width: 64rem) 42vw, 100vw" /></EditorialGridItem> : null}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>studioParallaxMedia(studioMediaItems[1], "forward")</EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
       );
