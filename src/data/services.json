@@ -6,7 +6,7 @@
     "text": [
       "Une identité claire pour rendre votre activité **reconnaissable et cohérente**, du logo aux supports essentiels."
     ],
-    "media": "flo-wall",
+    "media": [" flo-logo", " flo-wordmark"],
     "tags": [
       "Identité visuelle",
       "Logo"
@@ -158,7 +158,7 @@
     "text": [
       "Je décline votre identité sur les **supports qui comptent pour votre activité**, pour une communication cohérente à chaque point de contact."
     ],
-    "media": ["flo-business-card","flo-totebag"],
+    "media": ["flo-business-card","flo-wall"],
     "tags": [
       "Print",
       "Digital",
