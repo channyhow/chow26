@@ -160,7 +160,13 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
-    const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
+    const isHomeServices = block.id === "home-services";
+    const homeServiceMedia = isHomeServices && mediaItems.length > 1
+      ? <div className="homeServices__mediaList">
+          {mediaItems.map((item) => <Media key={item.id} media={item} sizes="(min-width: 64rem) 42vw, 100vw" />)}
+        </div>
+      : null;
+    const splitSecondary = homeServiceMedia ?? (splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary);
     // Multiple media share the same media region; a single image remains unchanged.
     const studioMediaItems = resolveMediaList(splitItem?.media);
     const studioMedia = studioMediaItems.length > 1
