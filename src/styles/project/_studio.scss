@@ -379,9 +379,9 @@
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
-// On smaller screens one square mockup is visible at a time.
-// Desktop retains the three-image editorial column.
-@include tablet-down {
+// Below desktop, mockups crossfade in one landscape slot.
+// Desktop retains all three images.
+@include desktop-down {
   [data-page-id="studio"] #studio-services-intro {
     .studioIntro__mediaGrid {
       grid-template-columns: minmax(0, 1fr);
@@ -397,7 +397,12 @@
         aspect-ratio: $ratio-wide;
       }
 
-      &[data-active="false"] { display: none; }
+      opacity: 1;
+      transition: opacity 650ms ease-in-out;
+      &[data-active="false"] {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
   }
 }
@@ -432,8 +437,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-page-id="studio"] #studio-services-intro .studioIntro__media:hover .media__asset {
-    transform: none;
+  [data-page-id="studio"] #studio-services-intro .studioIntro__media {
+    transition: none;
+
+    &:hover .media__asset {
+      transform: none;
+    }
   }
 }
 
