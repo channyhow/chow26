@@ -87,6 +87,6 @@
     > [data-editorial-area="deliverables"] { grid-row: 3; }
     > [data-editorial-area="price"] { grid-row: 4; }
     > [data-editorial-area="action"] { grid-row: 5; }
-    &__spec { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
+    &__spec { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   }
 }
