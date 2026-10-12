@@ -603,8 +603,8 @@
   }
 
   .homeOpenCall__media {
-    width: min(100%, 26rem);
-    justify-self: start;
+    width: 100%;
+    justify-self: stretch;
   }
 
   .homeOpenCall__action { margin-top: 0; }
@@ -622,13 +622,13 @@
 
   .homeFeaturedProject__media {
     grid-row: 2;
-    width: min(100%, 26rem);
+    width: 100%;
     max-width: 100%;
-    justify-self: center;
+    justify-self: stretch;
     margin-bottom: $space-3;
 
     .media__frame {
-      aspect-ratio: $ratio-landscape;
+      aspect-ratio: $ratio-wide;
     }
 
     .media__asset {
@@ -640,6 +640,41 @@
 
   .homeFeaturedProject__story {
     grid-row: 3;
+  }
+
+  // Tablet media uses one full-column landscape rhythm across Home.
+  .homeOpenCall__media,
+  .homeFeaturedProject__media,
+  .homeContact__media,
+  #home-services .split > [data-split-role="media"] {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .homeOpenCall__media {
+    --media-ratio: #{$ratio-wide};
+  }
+
+  .homeOpenCall__media .media__frame,
+  .homeFeaturedProject__media .media__frame,
+  .homeContact__media .media__frame,
+  #home-services .homeServices__mediaList .media__frame,
+  #home-services .split__secondary .media__frame {
+    aspect-ratio: $ratio-wide;
+  }
+
+  .homeContact__index,
+  .homeContact__story,
+  .homeContact__media {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .homeContact__index {
+    writing-mode: horizontal-tb;
+    transform: none;
   }
 }
 
