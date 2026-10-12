@@ -195,7 +195,8 @@
     "id": "studio-founders",
     "type": "Section",
     "layout": "split",
-    "splitVariant": "media-lead",
+    "splitVariant": "editorial",
+    "className": "section--founder",
     "content": {
       "items": [
         {
