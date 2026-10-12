@@ -550,20 +550,19 @@
 }
 
 
-// Studio media share one graphic offset, using the special brand colour.
-// On a special-coloured surface, reverse the offset for contrast.
+// Studio uses the shared Media offset pseudo-element, not a second shadow.
+// Inverse contrast is scoped to special-coloured surfaces.
 [data-page-id="studio"] {
-  --studio-media-offset-color: #{$color-special};
-  --studio-media-offset-size: 0.55rem;
-
-  .studioIntro__media .media__frame,
-  .studioServiceGrid > [data-editorial-area="media"] .media__frame {
-    box-shadow: var(--studio-media-offset-size) var(--studio-media-offset-size) 0
-      var(--studio-media-offset-color);
+  .studioIntro__media .media,
+  .studioServiceGrid > [data-editorial-area="media"] .media {
+    &::before { background: $color-special; }
   }
 
   [data-surface="special"],
   [data-theme="special"] {
-    --studio-media-offset-color: #{$color-secondary};
+    .studioIntro__media .media::before,
+    .studioServiceGrid > [data-editorial-area="media"] .media::before {
+      background: $color-secondary;
+    }
   }
 }
