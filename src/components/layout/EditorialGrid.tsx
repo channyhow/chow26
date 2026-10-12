@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 
-export type EditorialArea = "title" | "media" | "description" | "offers";
+export type EditorialArea = "title" | "media" | "description" | "offers" | "navigation" | "heading" | "deliverables" | "price" | "action";
 export type EditorialSpan = 3 | 4 | 5 | 6 | 7 | 8 | 9 | 12;
 export type EditorialStart = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
