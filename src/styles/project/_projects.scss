@@ -11,6 +11,7 @@
 }
 
 #project-gallery .section__header {
+  @include site-grid;
   width: 100%;
   max-width: none;
   margin-bottom: $margin-block;
@@ -19,7 +20,7 @@
 /* The archive heading must not inherit placement from the reusable TextBlock
    grid API. Its geometry belongs to this page, outside the projects grid. */
 #project-gallery .section__header > .textBlock__header {
-  grid-column: 1/span 12;
+  grid-column: 1 / -1;
 }
 
 #project-gallery .section__header .textBlock__title {
@@ -31,7 +32,6 @@
   /* WAM-inspired editorial opening: type and whitespace establish the field;
      the projects themselves provide the graphic interest. */
   #project-gallery .section__header {
-    display: block;
     min-height: 0;
   }
 
