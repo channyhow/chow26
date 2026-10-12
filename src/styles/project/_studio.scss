@@ -298,7 +298,7 @@
     }
 
     .split > [data-split-role="media"] {
-      grid-column: 2 / span 7;
+      grid-column: 1 / span 6;
       grid-row: 3;
       width: 100%;
       align-self: start;
@@ -306,7 +306,7 @@
     }
 
     .section__inner > .section__offers {
-      grid-column: 6 / -1;
+      grid-column: 7 / -1;
       grid-row: 3;
       align-self: start;
       margin-top: $margin-content;
