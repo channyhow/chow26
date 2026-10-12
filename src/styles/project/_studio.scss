@@ -62,8 +62,23 @@
     gap: $margin-content;
   }
 
-  .section__offers .card--service .textBlock__eyebrow {
+  .section__offers .card--service .textBlock__eyebrow,
+  .section__splitTextMotion .textBlock__eyebrow {
     display: none;
+  }
+
+  .section__offers .card--service {
+    .textBlock__content p {
+      @include type-body;
+    }
+
+    .textBlock__metaValue {
+      @include type-body;
+    }
+
+    .textBlock__footer .actions__link {
+      @include type-body;
+    }
   }
 
   .section__offers .card--service {
@@ -214,7 +229,7 @@
     }
     .section__splitTextMotion .textBlock__footer,
     .section__splitTextMotion .textBlock__meta {
-      grid-column: 8 / span 4;
+      grid-column: 7 / span 6;
       grid-row: 3;
       min-width: 0;
       margin-top: $space-5;
