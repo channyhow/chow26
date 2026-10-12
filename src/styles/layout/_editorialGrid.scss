@@ -52,3 +52,41 @@
     }
   }
 }
+
+/* Independent offer regions: no card or TextBlock wrappers control placement. */
+.offerComposition {
+  row-gap: $margin-content;
+  align-items: start;
+
+  .textBlock__eyebrow { display: none; }
+  .textBlock__title { @include type-heading-md; }
+  .textBlock__content p { @include type-lead; }
+
+  &__spec {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-1;
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    padding-block: $space-2;
+  }
+
+  &__specLabel { color: $gray-700; }
+  &__specList {
+    display: grid;
+    gap: $space-1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__specList li { padding: 0; border: 0; background: transparent; }
+
+  @include desktop-up {
+    > [data-editorial-area="navigation"] { grid-row: 1 / span 5; }
+    > [data-editorial-area="heading"] { grid-row: 1; }
+    > [data-editorial-area="description"] { grid-row: 2; }
+    > [data-editorial-area="deliverables"] { grid-row: 3; }
+    > [data-editorial-area="price"] { grid-row: 4; }
+    > [data-editorial-area="action"] { grid-row: 5; }
+    &__spec { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
+  }
+}
