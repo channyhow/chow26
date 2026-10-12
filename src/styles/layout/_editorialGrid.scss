@@ -132,7 +132,9 @@
     padding: 0;
     list-style: none;
   }
-  &__specList li { padding: 0; border: 0; background: transparent; }
+  &__specList li { 
+    @include type-body;
+    padding: 0; border: 0; background: transparent; }
 
   @include desktop-up {
     > [data-editorial-area="navigation"] { grid-row: 1 / span 5; }
