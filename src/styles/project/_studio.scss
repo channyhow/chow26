@@ -413,41 +413,33 @@
   }
 }
 
-// Keep the portrait as a small square editorial accent rather than a hero image.
+// Founder: full-width editorial copy followed by a small square portrait.
+// Preserve the existing orange media offset and avoid a competing hero image.
 [data-page-id="studio"] #studio-founders {
   .split {
     --split-media-ratio: #{$ratio-square};
     align-items: start;
   }
 
+  .split > [data-split-role="content"] {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
   .split > [data-split-role="media"] {
-    width: min(100%, 18rem);
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: min(100%, 12rem);
+    min-width: 0;
     justify-self: end;
+    align-self: end;
   }
 
-  .media__frame {
+  .section__splitMediaMotion,
+  .section__splitMediaMotion .media,
+  .section__splitMediaMotion .media__frame {
+    width: 100%;
     aspect-ratio: $ratio-square;
-  }
-}
-
-@include desktop-up {
-  [data-page-id="studio"] #studio-founders .split {
-    > [data-split-role="content"] {
-      grid-column: 1 / span 7;
-      grid-row: 1;
-    }
-
-    > [data-split-role="media"] {
-      grid-column: 10 / -1;
-      grid-row: 1;
-      align-self: end;
-    }
-  }
-}
-
-@include tablet-down {
-  [data-page-id="studio"] #studio-founders .split {
-    > [data-split-role="content"] { grid-row: 1; }
-    > [data-split-role="media"] { grid-row: 2; }
   }
 }
