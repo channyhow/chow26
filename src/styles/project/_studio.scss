@@ -574,6 +574,22 @@
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
+// On smaller screens one square mockup is visible at a time.
+// Desktop retains the three-image editorial column.
+@include tablet-down {
+  [data-page-id="studio"] #studio-services-intro {
+    .studioIntro__mediaGrid {
+      grid-template-columns: minmax(0, 1fr);
+      width: min(100%, 26rem);
+      justify-self: center;
+    }
+    .studioIntro__media {
+      grid-area: 1 / 1;
+      &[data-active="false"] { display: none; }
+    }
+  }
+}
+
 @include desktop-up {
   [data-page-id="studio"] #studio-services-intro {
     .studioIntro__composition {
