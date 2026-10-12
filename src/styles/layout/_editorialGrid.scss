@@ -2,7 +2,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-
 // Reusable editorial placement. DOM order is always semantic; mobile stacks.
 // Motion wrappers remain children of the grid items, never display: contents.
 .editorialGrid {
@@ -113,8 +112,8 @@
   .textBlock__eyebrow { display: none; }
   .textBlock__title { @include type-heading-md; }
   .textBlock__content p {
-        @include type-heading-md;
-      }
+    @include type-heading-md;
+  }
 
   &__spec {
     display: grid;
@@ -132,9 +131,12 @@
     padding: 0;
     list-style: none;
   }
-  &__specList li { 
+  &__specList li {
     @include type-body;
-    padding: 0; border: 0; background: transparent; }
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
 
   @include desktop-up {
     > [data-editorial-area="navigation"] { grid-row: 1 / span 5; }
@@ -158,7 +160,6 @@
   > * { min-width: 0; }
   .media__frame { width: 100%; }
 }
-
 
 // Paired service composition: second mockup beside offer controls,
 // then the selected offer details across the full twelve-column grid.
