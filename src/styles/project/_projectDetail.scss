@@ -123,6 +123,47 @@
   padding-block: var(--project-section-gap);
 }
 
+/* The same editorial placement system drives every project story.
+   Keep DOM order as copy then media; placement changes only visually. */
+.projectStoryMedia__composition {
+  align-items: center;
+  row-gap: $margin-block;
+}
+
+.projectStoryMedia__composition [data-editorial-area="media"] {
+  min-width: 0;
+  --radius-media: #{$radius-none};
+}
+
+.projectStoryMedia__composition .media {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.projectStoryMedia__composition .media__frame {
+  aspect-ratio: $ratio-editorial;
+}
+
+@include desktop-up {
+  .projectStoryMedia__composition > [data-editorial-area="description"],
+  .projectStoryMedia__composition > [data-editorial-area="media"] {
+    grid-row: 1;
+  }
+}
+
+@include tablet-down {
+  .projectStoryMedia__composition > [data-editorial-area="media"] {
+    grid-row: 1;
+  }
+  .projectStoryMedia__composition > [data-editorial-area="description"] {
+    grid-row: 2;
+  }
+  .projectStoryMedia__composition .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+}
+
 /* Story beats alternate between image-led and text-led compositions. */
 .projectStoryMedia {
   --split-primary-column: 8 / span 4;
