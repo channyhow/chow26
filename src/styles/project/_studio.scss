@@ -617,13 +617,14 @@
     min-width: 0;
   }
 
-  .studioIntro__mediaMotion .media::before,
-  .studioServiceGrid__mediaMotion .media::before {
+  // Studio's media offset uses the same shared pseudo-element,
+  // including when the media is rendered without a motion wrapper.
+  #studio-services-intro .media::before,
+  .section--collection-panel .media::before {
     background: $color-accent;
   }
 
-  [data-surface="special"] .studioIntro__mediaMotion .media::before,
-  [data-surface="special"] .studioServiceGrid__mediaMotion .media::before {
+  [data-surface="special"] .media::before {
     background: $color-secondary;
   }
 }
