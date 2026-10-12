@@ -68,6 +68,8 @@
   &__metaListItem {
     @include type-body-sm;
     min-width: 0;
+    text-transform: none;
+    letter-spacing: normal;
   }
 }
 
