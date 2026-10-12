@@ -147,7 +147,7 @@ align-items: flex-start;
   }
 
   .textBlock__content {
-        margin-top:$space-4;
+        margin-top: $margin-block;
 
     max-width: $measure-text;
   }
@@ -159,7 +159,7 @@ align-items: flex-start;
   .actions {
         @include type-heading-sm;
 
-    margin-top: $space-4;
+    margin-top: $margin-block;
     color: $color-primary;
   }
 }
