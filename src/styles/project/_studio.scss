@@ -374,7 +374,6 @@
       p {
         @include type-heading-sm;
       }
-
     }
 
     .split > [data-split-role="media"] {
@@ -390,7 +389,6 @@
       align-self: start;
       margin-top: $space-6;
     }
-
 
     .section__offers .card--service .card__body.textBlock {
       gap: $margin-content;
@@ -566,10 +564,14 @@
     align-content: start;
     gap: $margin-group;
     min-width: 0;
-    .textBlock { width: 100%; max-width: none;
-    &__content p {
-      @include type-heading-sm;
-    } }
+    .textBlock {
+      width: 100%;
+      max-width: none;
+
+      &__content p {
+        @include type-heading-sm;
+      }
+    }
   }
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
