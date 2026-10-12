@@ -76,6 +76,14 @@
       @include type-body;
     }
 
+    .textBlock__metaList {
+      gap: $flow-tight;
+    }
+
+    .textBlock__metaListItem {
+      @include type-body;
+    }
+
     .textBlock__footer .actions__link {
       @include type-body;
     }
