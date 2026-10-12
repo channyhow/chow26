@@ -10,11 +10,11 @@ export type OfferComposition = Partial<Record<OfferRegion, EditorialPlacement>>;
 
 const defaultComposition: OfferComposition = {
   navigation: { start: 1, span: 3 },
-  heading: { start: 5, span: 8 },
-  description: { start: 5, span: 8 },
-  deliverables: { start: 5, span: 8 },
-  price: { start: 5, span: 4 },
-  action: { start: 10, span: 3 },
+  heading: { start: 7, span: 6 },
+  description: { start: 7, span: 6 },
+  deliverables: { start: 1, span: 12 },
+  price: { start: 1, span: 12 },
+  action: { start: 7, span: 6 },
 };
 
 export interface OfferSwitcherProps {
