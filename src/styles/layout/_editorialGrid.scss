@@ -52,18 +52,21 @@
   }
 }
 
-// A paired service has one stable media slot on smaller screens.
-// The second mockup rotates into the first one's place without pushing copy.
-@include tablet-down {
+// Below desktop, both media occupy one stable grid cell. Rotation changes
+// visibility only, so the copy and offer never move between frames.
+@include desktop-down {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > [data-editorial-area="title"] { grid-row: 1; }
+
     > .studioServiceGrid__rotatingMedia {
       grid-column: 1 / -1;
       grid-row: 2;
       min-width: 0;
       aspect-ratio: $ratio-square;
 
-      .studioServiceGrid__rotatingFrame[data-active="false"] { visibility: hidden; }
+      .studioServiceGrid__rotatingFrame[data-active="false"] {
+        visibility: hidden;
+      }
 
       .studioServiceGrid__rotatingFrame,
       .studioServiceGrid__mediaMotion,
@@ -75,7 +78,7 @@
       }
 
       .media__frame {
-        aspect-ratio: $ratio-square;
+        aspect-ratio: inherit;
         max-height: none;
       }
 
@@ -85,21 +88,17 @@
         object-fit: cover;
       }
     }
+
     > [data-editorial-area="description"] { grid-row: 3; }
     > [data-editorial-area="offers"] { grid-row: 4; }
   }
 }
 
-// Tablet retains autoplay but gives both mockups the same landscape crop.
-// Mobile stays square; desktop displays the two independent media.
+// Tablet retains the same rotating slot with a wider editorial crop.
 @include between($bp-tablet, $bp-desktop) {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > .studioServiceGrid__rotatingMedia {
       aspect-ratio: $ratio-wide;
-
-      .media__frame {
-        aspect-ratio: $ratio-wide;
-      }
     }
   }
 }
