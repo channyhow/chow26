@@ -50,19 +50,22 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const splitCompositionProps = resolveSplitComposition(block.id, block.splitComposition);
   const motionEnabled = siteData.ui.experience.sectionReveal;
   const motionLevel = block.motion ?? (layout === "split" ? "scene" : "micro");
-  const sectionMotionEnabled = motionEnabled && motionLevel !== "none" && !suppressSceneMotion;
+  // Section scene motion and component-level reveals are independent.
+  // A block with motion: "none" disables its outer scene, not TextBlock or media motion.
+  const sectionMotionEnabled = motionEnabled && !suppressSceneMotion;
+  const sceneMotionEnabled = sectionMotionEnabled && motionLevel !== "none";
   const isHorizontalTimeline = layout === "timeline" && block.timelineOrientation === "horizontal";
   const ownsScrollInteraction = layout === "horizontal-scroll" || layout === "content-switcher" || isHorizontalTimeline;
   const isLongFormList = layout === "list";
   const usesScrollMotion = motionLevel === "micro" || motionLevel === "scene";
-  const shouldTrackScroll = sectionMotionEnabled && usesScrollMotion && !ownsScrollInteraction && !isLongFormList;
+  const shouldTrackScroll = sceneMotionEnabled && usesScrollMotion && !ownsScrollInteraction && !isLongFormList;
   const scenePreset: ScrollMotionPreset = block.motionPreset ?? (layout === "split" ? "recede" : motionLevel === "micro" ? "drift" : "parallax");
   const sceneRange = block.motionRange ?? "through";
   const sceneIntensity: MotionIntensity = block.motionIntensity ?? (layout === "split" ? "quiet" : motionLevel === "micro" ? "quiet" : "default");
   const isHomeOpening = block.id === "home-opening";
   const isServiceCollection = block.source?.collection === "services";
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
-  const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
+  const shouldReveal = sceneMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
   const isProjectStoryMedia = block.className?.split(/\s+/).includes("projectStoryMedia") ?? false;
   const isProjectStoryAlternate = block.className?.split(/\s+/).includes("projectDetail__story--alternate") ?? false;
@@ -87,7 +90,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   const renderCard = (item: (typeof items)[number], index?: number) => <CardItem key={item.id ?? `${item.title ?? "item"}-${index ?? 0}`} item={item} frame={block.itemAppearance?.frame} effect={block.itemAppearance?.effect} variant={cardVariant} />;
   const cards = items.map(renderCard);
-  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
+  const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sceneMotionEnabled && !isLongFormList} scrollLinked={sceneMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => block.id === "studio-services-intro"
     ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}><Media media={item} /></ScrollScene>
     : <Media key={item.id} media={item} />);
