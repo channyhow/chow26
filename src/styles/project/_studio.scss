@@ -413,19 +413,8 @@
   }
 }
 
-// Founder: readable muted copy on glass/primary surfaces, with emphasis intact.
 // Keep the portrait as a small square editorial accent rather than a hero image.
 [data-page-id="studio"] #studio-founders {
-  .textBlock__content .textBlock__copy {
-    color: color-mix(in srgb, var(--section-fg) 68%, transparent);
-    opacity: 1;
-
-    strong {
-      color: var(--section-fg);
-      opacity: 1;
-    }
-  }
-
   .split {
     --split-media-ratio: #{$ratio-square};
     align-items: start;
