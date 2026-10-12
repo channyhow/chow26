@@ -2,8 +2,8 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-// Studio: a disciplined twelve-column editorial composition.
-// Split remains semantic and responsive; only placement changes on desktop.
+// Studio-specific presentation. Service grid placement belongs to _editorialGrid.scss;
+// Split rules below are reserved for sections that still render Split.
 [data-page-id="studio"] {
   .page__content {
     display: block;
@@ -41,20 +41,8 @@
     max-width: none;
   }
 
-  .section__splitMediaMotion .media__frame {
-    aspect-ratio: 3 / 1;
-    max-height: 24rem;
-  }
 }
 
-.section--collection-panel {
-  --text-width: none;
-  --split-media-ratio: #{$ratio-editorial};
-
-  .section__offers {
-    margin-top: $margin-content;
-  }
-}
 
 // Offers are one typographic comparison, not separate surface cards.
 [data-page-id="studio"] .section--collection-panel {
@@ -62,8 +50,7 @@
     gap: $margin-content;
   }
 
-  .section__offers .card--service .textBlock__eyebrow,
-  .section__splitTextMotion .textBlock__eyebrow {
+  .section__offers .card--service .textBlock__eyebrow {
     display: none;
   }
 
