@@ -548,3 +548,22 @@
     .studioIntro__media { flex: 0 0 min(78vw, 22rem); scroll-snap-align: start; }
   }
 }
+
+
+// Studio media share one graphic offset, using the special brand colour.
+// On a special-coloured surface, reverse the offset for contrast.
+[data-page-id="studio"] {
+  --studio-media-offset-color: #{$color-special};
+  --studio-media-offset-size: 0.55rem;
+
+  .studioIntro__media .media__frame,
+  .studioServiceGrid > [data-editorial-area="media"] .media__frame {
+    box-shadow: var(--studio-media-offset-size) var(--studio-media-offset-size) 0
+      var(--studio-media-offset-color);
+  }
+
+  [data-surface="special"],
+  [data-theme="special"] {
+    --studio-media-offset-color: #{$color-secondary};
+  }
+}
