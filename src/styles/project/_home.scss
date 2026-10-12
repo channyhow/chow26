@@ -172,6 +172,17 @@
   }
 }
 
+// One or several Home service mockups share the same editorial media column.
+#home-services .homeServices__mediaList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $space-3;
+  min-width: 0;
+
+  > .media { min-width: 0; width: 100%; }
+  .media__frame { width: 100%; aspect-ratio: $ratio-square; }
+}
+
 #home-services .split > [data-split-role="content"] .actions {
   color: $color-primary;
 }
