@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
 import { motion, type MotionValue } from "motion/react";
 
