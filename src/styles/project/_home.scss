@@ -262,7 +262,6 @@
 
 .homeContact__index {
   @include type-display-xl;
-  // color: $color-special;
   font-weight: $font-weight-bold;
   line-height: 0.9;
   text-transform: uppercase;
@@ -273,7 +272,6 @@
 
   .textBlock__title {
     @include type-heading-lg;
-    // max-width: 14ch;
     line-height: 1;
   }
 
@@ -415,7 +413,6 @@
 }
 
 .homeOpenCall__context {
-  // max-width: 28rem;
   align-self: center;
 }
 
@@ -539,23 +536,6 @@
   }
 }
 
-@include desktop-up {
-  .homeFeaturedProject__media {
-    grid-column: 2 / span 8;
-  }
-
-  .homeFeaturedProject__story {
-    grid-column: 2 / span 7;
-  }
-}
-
-@include between($bp-tablet, $bp-desktop) {
-  .homeFeaturedProject__media,
-  .homeFeaturedProject__story {
-    grid-column: 1 / span 7;
-  }
-}
-
 
 .homeFeaturedProject__index {
   grid-column: 1 / -1;
@@ -574,9 +554,6 @@
   .homeFeaturedProject__media { grid-column: 8 / 13; grid-row: 2; 
     
   
-  //   .media__frame {
-  //   aspect-ratio: $ratio-landscape;
-  // }
 
   .media__asset {
     width: 100%;
@@ -584,10 +561,6 @@
     object-fit: cover;
   }}
   .homeFeaturedProject__story { grid-column: 8 / 13; grid-row: 3; }
-}
-@include between($bp-tablet, $bp-desktop) {
-  .homeFeaturedProject__index { grid-column: 1 / span 3; }
-  .homeFeaturedProject__media, .homeFeaturedProject__story { grid-column: 4 / -1; }
 }
 // One-column compositions use the same spacing scale. The media offset
 // needs its own clearance so the following text never touches the backing.
