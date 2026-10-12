@@ -454,3 +454,29 @@
     aspect-ratio: $ratio-square;
   }
 }
+
+// Depth only where Studio's successive service panels overlap.
+// Keep the shadow static: no scroll-linked paint animation.
+[data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+  > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-identity-panel"],
+[data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+  > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-website-panel"],
+[data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+  > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-integrations-panel"] {
+  > .sectionGroup__surface {
+    box-shadow: 0 -0.5rem 2rem rgb(0 0 0 / 0.06);
+  }
+}
+
+@include tablet-down {
+  [data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+    > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-identity-panel"],
+  [data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+    > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-website-panel"],
+  [data-page-id="studio"] .sectionGroup[data-layout="scroll-panel"]
+    > .sectionGroup__panel[data-panel-behavior="sticky"][data-panel-id="studio-integrations-panel"] {
+    > .sectionGroup__surface {
+      box-shadow: 0 -0.25rem 1rem rgb(0 0 0 / 0.04);
+    }
+  }
+}
