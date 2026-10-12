@@ -47,7 +47,7 @@
     }
 
     .textBlock__copy {
-      opacity: $opacity-muted;
+      color: $gray-500;
     }
   }
   &__footer {
@@ -92,7 +92,7 @@
   .textBlock__metaLabel {
     @include type-meta;
     font-weight: $font-weight-semibold;
-    opacity: $opacity-muted;
+    color: $gray-500;
   }
 
   .textBlock__metaValue {
