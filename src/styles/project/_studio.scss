@@ -62,6 +62,10 @@
     gap: $margin-content;
   }
 
+  .section__offers .card--service .textBlock__eyebrow {
+    display: none;
+  }
+
   .section__offers .card--service {
     height: auto;
     min-width: 0;
@@ -81,15 +85,6 @@
     padding-top: $margin-content;
   }
 
-  .section__offers .card--service .textBlock__meta {
-    margin-top: $margin-related;
-    padding-top: 0;
-  }
-
-  .section__offers .card--service .textBlock__footer {
-    padding-top: $flow-default;
-  }
-
   // A single editorial offer window, with compact numbered navigation.
   .section__offerSwitcher {
     min-width: 0;
@@ -98,17 +93,24 @@
 
   .section__offerSwitcherControls {
     display: flex;
-    gap: $space-2;
-    margin-bottom: $margin-content;
+    flex-wrap: wrap;
+    gap: $space-3;
+    margin-bottom: $margin-group;
 
     button {
       cursor: pointer;
-      padding: $space-1 $space-2;
+      display: inline-flex;
+      align-items: baseline;
+      gap: $space-2;
+      min-height: $control-min-height;
+      padding: $space-2 0;
       border: 0;
       border-bottom: 1px solid transparent;
       background: transparent;
       color: inherit;
-      opacity: 0.55;
+      opacity: $opacity-muted;
+
+      @include type-body-sm;
 
       &[aria-pressed="true"] {
         opacity: 1;
@@ -119,6 +121,10 @@
         @include focus-ring;
       }
     }
+  }
+
+  .section__offerSwitcherNumber {
+    font-weight: $font-weight-semibold;
   }
 
   .section__offerSwitcherPanel {
@@ -135,8 +141,8 @@
   }
 }
 
-// All offers remain accessible and comparable without carousel behavior.
-.section__offerGrid {
+// Shared static comparison grid (other pages retain their own card styles).
+[data-page-id="studio"] .section__offerGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: $margin-content;
@@ -197,7 +203,7 @@
       min-width: 0;
     }
     .section__splitTextMotion .textBlock__content {
-      grid-column: 8 / span 4;
+      grid-column: 7 / span 6;
       grid-row: 2;
       min-width: 0;
       max-width: none;
@@ -248,13 +254,12 @@
       grid-row: 2;
       min-width: 0;
       align-self: start;
-      max-width: 48ch;
+      max-width: $measure-header-copy;
       margin-top: $space-6;
       p {
         @include type-heading-md;
       }
 
-      // p { @include type-lead; }
     }
 
     .split > [data-split-role="media"] {
@@ -269,38 +274,34 @@
       grid-column: 8 / span 4;
       grid-row: 4;
       align-self: start;
-      // margin-top: $space-6;
     }
 
-    .section__offerSwitcherControls {
-      margin-bottom: $margin-group;
-      button {
-        @include type-body;
-      }
-    }
+
     .section__offers .card--service .card__body.textBlock {
       gap: $flow-default;
     }
     .section__offers .card--service .textBlock__title {
       @include type-heading-md;
     }
-    .section__offers .card--service .textBlock__content {
+    .section__offers .card--service .textBlock__content p {
       @include type-lead;
     }
-    .section__offers .card--service .textBlock__meta {
+    .section__offers .card--service .textBlock__metaValue {
       @include type-body;
     }
-    .section__offers .card--service .textBlock__footer {
-      @include type-lead;
+    .section__offers .card--service .textBlock__footer .actions__link {
+      @include type-body;
     }
     .section__offers .card--service .textBlock__content > * + * {
       margin-top: $flow-default;
     }
     .section__offers .card--service .textBlock__meta {
-      margin-top: $flow-default;
+      margin-top: $margin-content;
+      padding-top: 0;
     }
     .section__offers .card--service .textBlock__footer {
-      margin-top: $flow-default;
+      margin-top: $margin-related;
+      padding-top: 0;
     }
   }
 }
@@ -325,7 +326,7 @@
   .section--collection-panel .section__offers {
     margin-top: $margin-content;
   }
-  .section__offerGrid {
+  [data-page-id="studio"] .section__offerGrid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
