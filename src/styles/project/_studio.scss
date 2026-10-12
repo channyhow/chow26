@@ -13,7 +13,7 @@
   #studio-service-identity,
   #studio-service-website,
   #studio-service-integrations,
-  #studio-approach {
+  [data-page-id="studio"] #approach-default {
     min-height: 0;
   }
 
@@ -111,7 +111,7 @@
   // Shared editorial comparison: compact navigation beside the selected offer.
   .section__offerSwitcher {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
     align-items: start;
     gap: $layout-gap;
     width: 100%;
@@ -130,7 +130,7 @@
       align-items: baseline;
       justify-items: start;
       text-align: left;
-      gap: $space-2;
+      gap: $space-1;
       width: 100%;
       min-height: $control-min-height;
       padding: $space-1 0;
@@ -168,7 +168,9 @@
   }
 }
 
-#studio-approach {
+[data-page-id="studio"] #approach-default {
+  .section__inner { padding-block: $padding-block; }
+
   .timeline__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: $layout-gap;
@@ -198,16 +200,20 @@
   .timeline__content .textBlock__content {
     max-width: $measure-header-copy;
   }
+
+  .timeline__content .textBlock__content p {
+    @include type-body;
+  }
 }
 
 @include desktop-up {
-  #studio-approach .timeline__list {
+  [data-page-id="studio"] #approach-default .timeline__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @include tablet-down {
-  #studio-approach .timeline__list {
+  [data-page-id="studio"] #approach-default .timeline__list {
     grid-template-columns: minmax(0, 1fr);
     gap: $margin-group;
   }
@@ -327,7 +333,7 @@
       min-width: 0;
       align-self: start;
       max-width: $measure-header-copy;
-      margin-top: $space-6;
+      margin-top: $margin-content;
       p {
         @include type-heading-md;
       }
@@ -335,7 +341,7 @@
     }
 
     .split > [data-split-role="media"] {
-      grid-column: 1 / span 6;
+      grid-column: 1 / span 5;
       grid-row: 3;
       width: 100%;
       align-self: start;
