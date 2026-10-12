@@ -206,9 +206,9 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       body = (
         <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>studioParallaxMedia(studioMediaItems[0])</EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioParallaxMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioParallaxMedia(studioMediaItems[0])}</EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioParallaxMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>studioParallaxMedia(studioMediaItems[1], "forward")</EditorialGridItem> : null}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>{studioParallaxMedia(studioMediaItems[1], "forward")}</EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
       );
