@@ -258,8 +258,8 @@
     margin: 0;
   }
 
-  .projectStoryText .section__inner {
-    display: block;
+  .projectStoryText .textBlock {
+    grid-column: 1 / -1;
   }
 
   .projectHero__meta .textBlock__meta {
@@ -289,8 +289,8 @@
     margin: 0;
   }
 
-  .projectStoryText .section__inner {
-    display: block;
+  .projectStoryText .textBlock {
+    grid-column: 1 / -1;
   }
 
   .projectStoryText .textBlock__content > :first-child {
