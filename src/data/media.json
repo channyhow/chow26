@@ -427,5 +427,11 @@
     "type": "image",
     "src": "/assets/photos/work/flo/flo_wordmark.webp",
     "alt": "Flo | recherche typographique et logotype."
+  },
+  "flo-laptop": {
+    "id": "flo-laptop",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_laptop.jpg",
+    "alt": "Flo | identité visuelle présentée sur un ordinateur portable."
   }
 }
