@@ -159,7 +159,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
-      title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" — "),
+      title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" > "),
       text: header?.text,
       meta: splitItem.meta,
       links: header?.projectLinks,
