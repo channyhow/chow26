@@ -232,7 +232,7 @@
   }
 
   .timeline__content .textBlock__title {
-    @include type-heading-md;
+    @include type-heading-sm;
   }
 
   .timeline__content .textBlock__content {
@@ -325,7 +325,7 @@
       max-width: none;
       margin-top: $margin-content;
       p {
-        @include type-heading-md;
+        @include type-heading-sm;
       }
     }
     .section__splitTextMotion .textBlock__footer,
@@ -372,7 +372,7 @@
       max-width: $measure-header-copy;
       margin-top: $margin-content;
       p {
-        @include type-heading-md;
+        @include type-heading-sm;
       }
 
     }
@@ -397,7 +397,7 @@
       margin-top: 0;
     }
     .section__offers .card--service .textBlock__title {
-      @include type-heading-md;
+      @include type-heading-sm;
     }
     .section__offers .card--service .textBlock__content p {
       @include type-lead;
@@ -534,7 +534,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: $margin-group;
-    align-items: start;
+    align-items: center;
     width: 100%;
     min-width: 0;
   }
@@ -566,7 +566,10 @@
     align-content: start;
     gap: $margin-group;
     min-width: 0;
-    .textBlock { width: 100%; max-width: none; }
+    .textBlock { width: 100%; max-width: none;
+    &__content p {
+      @include type-heading-sm;
+    } }
   }
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
