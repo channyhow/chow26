@@ -418,10 +418,6 @@
 
 // Mobile editorial rhythm: keep the poster supportive, not full-screen.
 @include tablet-down {
-  .homeOpenCall__composition {
-    row-gap: $margin-content;
-  }
-
   .homeOpenCall__statement {
     margin-bottom: 0;
   }
@@ -442,8 +438,6 @@
 
   .homeOpenCall__action {
     align-self: start;
-    margin-top: $flow-default;
-    padding-bottom: $space-4;
   }
 }
 
@@ -588,17 +582,19 @@
   .homeFeaturedProject__index { grid-column: 1 / span 3; }
   .homeFeaturedProject__media, .homeFeaturedProject__story { grid-column: 4 / -1; }
 }
-// All single-column Home editorial compositions share one vertical rhythm.
-// Grid gap owns spacing; individual items must not add competing margins.
+// One-column compositions use the same spacing scale. The media offset
+// needs its own clearance so the following text never touches the backing.
 @include mobile-down {
   .homeEditorialComposition {
-    row-gap: $margin-content;
+    row-gap: $margin-group;
+  }
+
+  .homeEditorialComposition > :is(.homeFeaturedProject__media, .homeOpenCall__media) {
+    margin-bottom: $space-3;
   }
 
   .homeFeaturedProject__index > span { max-width: none; }
-  .homeFeaturedProject__story {
-    .textBlock__header { gap: $flow-default; }
-  }
+  .homeFeaturedProject__story .textBlock__header { gap: $flow-default; }
 }
 
 // The same offset plane follows Home's other editorial media.
