@@ -64,7 +64,7 @@
       min-width: 0;
       aspect-ratio: $ratio-square;
 
-      &--inactive { display: none; }
+      .studioServiceGrid__rotatingFrame[data-active="false"] { visibility: hidden; }
 
       .studioServiceGrid__rotatingFrame,
       .studioServiceGrid__mediaMotion,
@@ -150,8 +150,16 @@
 @include desktop-up {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > .studioServiceGrid__secondMedia {
+      display: block;
       grid-column: 1 / span 5;
       grid-row: 3;
+      align-self: start;
+    }
+
+    // Mobile rotation state must never suppress either desktop mockup.
+    > .studioServiceGrid__rotatingMedia .studioServiceGrid__rotatingFrame {
+      display: block;
+      visibility: visible;
     }
 
     > [data-editorial-area="offers"],
