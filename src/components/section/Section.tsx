@@ -64,6 +64,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const gridOwnsReveal = items.length > 0 && (layout === "grid" || layout === "text" || layout === "split" || layout === "list");
   const shouldReveal = sectionMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
+  const isProjectStoryMedia = block.className?.split(/\s+/).includes("projectStoryMedia") ?? false;
+  const isProjectStoryAlternate = block.className?.split(/\s+/).includes("projectDetail__story--alternate") ?? false;
   const isHomeFeaturedProject = block.className?.split(/\s+/).includes("homeFeaturedProject") ?? false;
   const isHomeOpenCall = block.className?.split(/\s+/).includes("home-preview--opencall") ?? false;
   const isHomeContact = block.className?.split(/\s+/).includes("home-preview--contact") ?? false;
@@ -135,7 +137,12 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
-    body = <div className="projectHero__composition">{projectStatement}{projectIdentity}{projectMedia}{projectMeta}</div>;
+    body = <EditorialGrid className="projectHero__composition">
+      {projectStatement ? <EditorialGridItem area="heading" className="projectHero__statement">{projectStatement}</EditorialGridItem> : null}
+      {projectIdentity ? <EditorialGridItem area="title" className="projectHero__identity">{projectIdentity}</EditorialGridItem> : null}
+      {projectMedia ? <EditorialGridItem area="media" className="projectHero__media"><ScrollScene preset="parallax" intensity="quiet" direction="reverse" enabled={sectionMotionEnabled}>{projectMedia}</ScrollScene></EditorialGridItem> : null}
+      {projectMeta ? <EditorialGridItem area="description" className="projectHero__meta">{projectMeta}</EditorialGridItem> : null}
+    </EditorialGrid>;
   } else if (isHomeContact && header) {
     const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet", "media") : null;
     const contactStory = motionLayer(<TextBlock content={header} motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet", "editorial-text");
@@ -198,7 +205,18 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
       </ScrollScene>
     );
-    if (isStudioService && splitItem) {
+    if (isProjectStoryMedia) {
+      // Editorial placement is independent of media motion and DOM reading order.
+      const storyMedia = splitSecondary ? (
+        <ScrollScene preset="parallax" intensity="quiet" direction={isProjectStoryAlternate ? "forward" : "reverse"} enabled={sectionMotionEnabled} className="projectStoryMedia__motion">
+          {splitSecondary}
+        </ScrollScene>
+      ) : null;
+      body = <EditorialGrid className={clsx("projectStoryMedia__composition", isProjectStoryAlternate && "projectStoryMedia__composition--alternate")}>
+        {primary ? <EditorialGridItem area="description" placement={{ start: isProjectStoryAlternate ? 2 : 8, span: 4 }}>{primary}</EditorialGridItem> : null}
+        {storyMedia ? <EditorialGridItem area="media" placement={{ start: isProjectStoryAlternate ? 7 : 2, span: 5 }}>{storyMedia}</EditorialGridItem> : null}
+      </EditorialGrid>;
+    } else if (isStudioService && splitItem) {
       // Distinct semantic grid items keep text visible and independent of
       // split/motion wrappers. DOM order matches the mobile reading order.
       const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={false} />;
