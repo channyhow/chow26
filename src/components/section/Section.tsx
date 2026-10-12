@@ -159,6 +159,15 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
     const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
     const splitSecondary = splitItemMedia ? <Media media={splitItemMedia} sizes="(min-width: 64rem) 50vw, 100vw" /> : secondary;
+    // Multiple media share the same media region; a single image remains unchanged.
+    const studioMediaItems = resolveMediaList(splitItem?.media);
+    const studioMedia = studioMediaItems.length > 1
+      ? <div className="studioServiceGrid__mediaList">
+          {studioMediaItems.map((item, index) => (
+            <Media key={index} media={item} sizes="(min-width: 64rem) 25vw, 100vw" />
+          ))}
+        </div>
+      : splitSecondary;
 
     // Keep split media in normal flow so lazy-loaded assets have stable
     // viewport geometry. Text keeps its existing reveal through TextBlock.
@@ -182,7 +191,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       body = (
         <EditorialGrid className="studioServiceGrid">
           <EditorialGridItem area="title">{title}</EditorialGridItem>
-          <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{splitSecondary}</EditorialGridItem>
+          <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMedia}</EditorialGridItem>
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
