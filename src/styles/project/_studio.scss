@@ -413,29 +413,36 @@
   }
 }
 
-// Founder: editorial copy first, with a tiny square portrait anchored bottom-right.
-// Keep the media treatment and color system shared with other sections.
+// Founder: text first, small square portrait at the lower right on every viewport.
+// Override the shared media-lead grid ordering at its source.
 [data-page-id="studio"] #studio-founders {
   .split {
     --split-media-ratio: #{$ratio-square};
+    display: grid;
     align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: $space-6;
   }
 
   .split > [data-split-role="content"] {
     grid-column: 1 / -1;
     grid-row: 1;
     min-width: 0;
+    align-self: start;
   }
 
   .split > [data-split-role="media"] {
     grid-column: 1 / -1;
     grid-row: 2;
     width: min(100%, 12rem);
+    min-width: 0;
     justify-self: end;
     align-self: end;
   }
 
-  .media__frame {
-    aspect-ratio: $ratio-square;
+  .section__splitMediaMotion,
+  .section__splitMediaMotion .media,
+  .section__splitMediaMotion .media__frame {
+    width: 100%;
   }
 }
