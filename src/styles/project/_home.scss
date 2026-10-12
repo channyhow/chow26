@@ -322,6 +322,14 @@
   .homeContact__media {
     grid-column: 3 / -1;
   }
+
+  .homeContact__media {
+    grid-row: 1;
+  }
+
+  .homeContact__story {
+    grid-row: 2;
+  }
 }
 
 @include mobile-down {
