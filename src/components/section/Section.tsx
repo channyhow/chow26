@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 import { motion, type MotionValue } from "motion/react";
 
 import { CardItem } from "@/components/content/CardItem";
@@ -19,6 +20,7 @@ import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { HomeOpeningScene } from "@/components/section/HomeOpeningScene";
 import { forms } from "@/data";
+import { getActionHref } from "@/data/actionRegistry";
 import { resolveCollection } from "@/data/resolve";
 import { resolveMedia, resolveMediaList } from "@/data/resolveMedia";
 import { resolveSplitComposition } from "@/data/splitCompositions";
@@ -125,7 +127,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   if (isHomeOpening) {
     body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
   } else if (block.id === "studio-services-intro") {
-    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => <div className="studioIntro__media" key={index}>{card}</div>)}</div>{header ? <div className="studioIntro__story"><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={false} /></div> : null}</div>;
+    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => { const ref = header?.links?.[index]; const href = typeof ref === "string" ? getActionHref(ref) : ref?.href; return href ? <Link className="studioIntro__media" to={href} key={index} aria-label={typeof ref === "string" ? ["Créer une identité visuelle", "Concevoir un site web", "Supports de communication"][index] ?? "Voir le service" : ref?.label ?? "Voir le service"}>{card}</Link> : <div className="studioIntro__media" key={index}>{card}</div>; })}</div>{header ? <div className="studioIntro__story"><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={false} /></div> : null}</div>;
   } else if (isProjectHero) {
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
