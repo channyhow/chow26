@@ -379,15 +379,6 @@
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
-// Tablet media uses the available editorial width, with a landscape crop.
-@include between($bp-tablet, $bp-desktop) {
-  [data-page-id="studio"] #studio-services-intro {
-    .studioIntro__mediaGrid {
-      width: 100%;
-    }
-  }
-}
-
 // Below desktop, mockups crossfade in one landscape slot.
 // Desktop retains all three images.
 @include desktop-down {
