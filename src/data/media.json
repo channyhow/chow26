@@ -441,9 +441,15 @@
     "alt": "Flo | aperçu du site sur mobile."
   },
     "flo-mobile1": {
-    "id": "flo-mobile",
+    "id": "flo-mobile1",
     "type": "image",
     "src": "/assets/photos/work/flo/flo_mobile1.jpg",
     "alt": "Flo | aperçu du site sur mobile."
+  },
+    "flo-totebag": {
+    "id": "flo-totebag",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_totebag.jpg",
+    "alt": "Flo | sac à main de l'identité visuelle."
   }
 }
