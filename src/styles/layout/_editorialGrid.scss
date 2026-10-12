@@ -1,0 +1,22 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// Reusable editorial placement. DOM order is always semantic; mobile stacks.
+// Motion wrappers remain children of the grid items, never display: contents.
+.editorialGrid {
+  @include site-grid;
+  align-items: start;
+  row-gap: $margin-group;
+  width: 100%;
+
+  &__item {
+    min-width: 0;
+    grid-column: 1 / -1;
+  }
+
+  @include desktop-up {
+    &__item {
+      grid-column: var(--editorial-start, 1) / span var(--editorial-span, 12);
+    }
+  }
+}
