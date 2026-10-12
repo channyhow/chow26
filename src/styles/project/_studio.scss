@@ -573,7 +573,10 @@
 
 @include desktop-up {
   [data-page-id="studio"] #studio-services-intro {
-    .studioIntro__composition { @include site-grid; }
+    .studioIntro__composition {
+      @include site-grid;
+      align-items: center;
+    }
     .studioIntro__mediaGrid {
       grid-column: 1 / span 4;
       grid-template-columns: minmax(0, 1fr);
@@ -581,8 +584,18 @@
       width: min(100%, 15rem);
     }
     .studioIntro__story {
-      grid-column: 6 / span 7;
-      padding-block: $margin-group;
+      grid-column: 6 / span 6;
+      align-self: center;
+      padding-block: 0;
+    }
+    .studioIntro__details {
+      width: 100%;
+      max-width: none;
+      .textBlock__content,
+      .textBlock__footer {
+        width: 100%;
+        max-width: none;
+      }
     }
   }
 }
