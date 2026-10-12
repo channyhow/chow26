@@ -53,7 +53,6 @@ const stripVisibleYear = (value: string) =>
 const isDateMeta = (item: MetaItem) =>
   /^(année|annee|year|date)$/i.test(item.label.trim());
 
-
 function withoutAlternate(template: StoryTemplate): SectionTemplate {
   const copy: StoryTemplate = { ...template };
   delete copy.alternate;
@@ -88,8 +87,12 @@ function createProjectPage(project: ProjectRecord): PageData {
     ...linkedMeta,
   ];
   const detailClasses = `projectDetail projectDetail--${detailLayout} projectDetail--project-${project.id}`;
-  const description = project.description.map(stripVisibleYear);
+  const description = project.description.map(stripVisibleYear).filter(Boolean);
   const storyMedia = project.gallery ?? [];
+  // Divide copy into contiguous, non-overlapping groups. Image-only beats
+  // are intentional when a gallery contains more images than paragraphs.
+  const paragraphCount = description.length;
+  const mediaCount = storyMedia.length;
 
   const hero = sectionFromTemplate(
     `project-${project.id}-hero`,
@@ -109,9 +112,9 @@ function createProjectPage(project: ProjectRecord): PageData {
 
   const storyBlocks: SectionBlock[] = storyMedia.length
     ? storyMedia.map((media, index) => {
-        const start = Math.floor((index * description.length) / storyMedia.length);
-        const end = Math.floor(((index + 1) * description.length) / storyMedia.length);
-        const text = description.slice(start, Math.max(start + 1, end));
+        const start = Math.floor((index * paragraphCount) / mediaCount);
+        const end = Math.floor(((index + 1) * paragraphCount) / mediaCount);
+        const text = description.slice(start, end);
         const template = projectDetail.story.withMedia;
         const alternate = template.alternate !== false && index % 2 === 1;
 
@@ -126,7 +129,7 @@ function createProjectPage(project: ProjectRecord): PageData {
             ].filter(Boolean).join(" "),
           },
           {
-            header: { text },
+            ...(text.length ? { header: { text } } : {}),
             media,
           },
         );
