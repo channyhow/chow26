@@ -22,7 +22,14 @@
         "meta": [
           {
             "label": "Comprend",
-            "value": "Logo principal · 1 variation · Palette · Typographies · Principes visuels · Jusqu’à 2 applications prioritaires"
+            "value": [
+              "Logo principal",
+              "1 variation",
+              "Palette",
+              "Typographies",
+              "Principes visuels",
+              "Jusqu’à 2 applications prioritaires"
+            ]
           },
           {
             "label": "Budget",
@@ -44,7 +51,15 @@
         "meta": [
           {
             "label": "Comprend",
-            "value": "Logo principal · Jusqu’à 2 variations · Palette · Système typographique · Système graphique · Règles d’usage · Jusqu’à 4 applications prioritaires"
+            "value": [
+              "Logo principal",
+              "Jusqu’à 2 variations",
+              "Palette",
+              "Système typographique",
+              "Système graphique",
+              "Règles d’usage",
+              "Jusqu’à 4 applications prioritaires"
+            ]
           },
           {
             "label": "Budget",
@@ -85,7 +100,14 @@
         "meta": [
           {
             "label": "Comprend",
-            "value": "Structure & parcours · Design sur mesure · Jusqu’à 4 pages · Développement responsive · SEO essentiel · Formulaire de contact"
+            "value": [
+              "Structure & parcours",
+              "Design sur mesure",
+              "Jusqu’à 4 pages",
+              "Développement responsive",
+              "SEO essentiel",
+              "Formulaire de contact"
+            ]
           },
           {
             "label": "Budget",
@@ -107,7 +129,15 @@
         "meta": [
           {
             "label": "Peut inclure",
-            "value": "Architecture plus complète · CMS · Réservation · Paiement · Intégrations · Animations & interactions · SEO approfondi"
+            "value": [
+              "Architecture plus complète",
+              "CMS",
+              "Réservation",
+              "Paiement",
+              "Intégrations",
+              "Animations & interactions",
+              "SEO approfondi"
+            ]
           },
           {
             "label": "Budget",
@@ -147,7 +177,13 @@
         "meta": [
           {
             "label": "Peut inclure",
-            "value": "Affiches · Flyers · Cartes · Visuels pour les réseaux sociaux · Supports digitaux"
+            "value": [
+              "Affiches",
+              "Flyers",
+              "Cartes",
+              "Visuels pour les réseaux sociaux",
+              "Supports digitaux"
+            ]
           },
           {
             "label": "Budget",
@@ -169,7 +205,12 @@
         "meta": [
           {
             "label": "Peut inclure",
-            "value": "Templates · Déclinaisons de formats · Animations typographiques · Motion design"
+            "value": [
+              "Templates",
+              "Déclinaisons de formats",
+              "Animations typographiques",
+              "Motion design"
+            ]
           },
           {
             "label": "Budget",
