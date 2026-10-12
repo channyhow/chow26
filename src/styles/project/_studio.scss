@@ -117,7 +117,7 @@
   .section__offerSwitcherControls {
     display: flex;
     flex-wrap: wrap;
-    gap: $space-3;
+    // gap: $space-3;
     margin-bottom: $margin-group;
 
     button {
@@ -126,14 +126,14 @@
       align-items: baseline;
       gap: $space-2;
       min-height: $control-min-height;
-      padding: $space-2 0;
+      padding: $space-1 0;
       border: 0;
       border-bottom: 1px solid transparent;
       background: transparent;
       color: inherit;
       opacity: $opacity-muted;
 
-      @include type-body-sm;
+      @include type-body;
 
       &[aria-pressed="true"] {
         opacity: 1;
