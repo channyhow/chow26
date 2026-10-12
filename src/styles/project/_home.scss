@@ -625,10 +625,27 @@
 
   .homeOpenCall__action { margin-top: 0; }
 
+  // Give the campaign poster its own row; the large index must never
+  // share a grid cell with the media at tablet widths.
+  .homeFeaturedProject__index {
+    grid-row: 1;
+  }
+
+  .homeFeaturedProject__index > span {
+    max-width: none;
+    @include type-heading-lg;
+  }
+
   .homeFeaturedProject__media {
-    width: 100%;
+    grid-row: 2;
+    width: min(100%, 26rem);
     max-width: 100%;
+    justify-self: start;
     margin-bottom: $space-3;
+  }
+
+  .homeFeaturedProject__story {
+    grid-row: 3;
   }
 }
 
