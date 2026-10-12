@@ -588,9 +588,17 @@
   .homeFeaturedProject__index { grid-column: 1 / span 3; }
   .homeFeaturedProject__media, .homeFeaturedProject__story { grid-column: 4 / -1; }
 }
+// All single-column Home editorial compositions share one vertical rhythm.
+// Grid gap owns spacing; individual items must not add competing margins.
 @include mobile-down {
-  .homeFeaturedProject__index { margin-bottom: $margin-group; }
+  .homeEditorialComposition {
+    row-gap: $margin-content;
+  }
+
   .homeFeaturedProject__index > span { max-width: none; }
+  .homeFeaturedProject__story {
+    .textBlock__header { gap: $flow-default; }
+  }
 }
 
 // The same offset plane follows Home's other editorial media.
