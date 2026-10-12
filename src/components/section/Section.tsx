@@ -20,6 +20,7 @@ import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { HomeOpeningScene } from "@/components/section/HomeOpeningScene";
 import { StudioIntroMedia } from "@/components/section/StudioIntroMedia";
+import { useMobileMediaRotation } from "@/hooks/useMobileMediaRotation";
 import { forms } from "@/data";
 import { getActionHref } from "@/data/actionRegistry";
 import { resolveCollection } from "@/data/resolve";
@@ -41,6 +42,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const header = block.content?.header;
   const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
   const splitItem = layout === "split" && items.length === 1 ? items[0] : undefined;
+  const serviceMediaCount = splitItem ? resolveMediaList(splitItem.media).length : 0;
+  const serviceRotation = useMobileMediaRotation(serviceMediaCount);
   const formRef = block.content?.form;
   const form = typeof formRef === "string" ? formRegistry[formRef] : formRef;
   const mediaItems = resolveMediaList(block.content?.media);
@@ -245,11 +248,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={sectionMotionEnabled} />;
       const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={sectionMotionEnabled} />;
       body = (
-        <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
+        <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")} >
           <EditorialGridItem area="title">{title}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioServiceMedia(studioMediaItems[0])}</EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioServiceMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__rotatingMedia" placement={{ start: 1, span: 5 }}><div className="studioServiceGrid__rotatingFrame" data-active={serviceRotation.active === 0 ? "true" : "false"}>{studioServiceMedia(studioMediaItems[0])}</div></EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioServiceMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>{studioServiceMedia(studioMediaItems[1], "forward")}</EditorialGridItem> : null}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia studioServiceGrid__rotatingMedia" placement={{ start: 1, span: 5 }}><div className="studioServiceGrid__rotatingFrame" data-active={serviceRotation.active === 1 ? "true" : "false"}>{studioServiceMedia(studioMediaItems[1], "forward")}</div></EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
       );
