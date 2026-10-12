@@ -203,10 +203,18 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
-    // Keep service mockups in normal document flow. A sticky panel may cover
-    // the media while scrolling; don't transform the images out of their cells.
-    const studioServiceMedia = (item: NonNullable<typeof media>) => (
-      <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
+    // Parallax stays inside each grid cell; placement belongs to EditorialGrid.
+    const studioServiceMedia = (item: NonNullable<typeof media>, direction: "forward" | "reverse" = "reverse") => (
+      <ScrollScene
+        preset="parallax"
+        intensity="quiet"
+        direction={direction}
+        className="studioServiceGrid__mediaMotion"
+        enabled={sectionMotionEnabled}
+        progress={scrollProgress}
+      >
+        <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
+      </ScrollScene>
     );
     if (isProjectStoryMedia) {
       // Editorial placement is independent of media motion and DOM reading order.
@@ -229,7 +237,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
           <EditorialGridItem area="title">{title}</EditorialGridItem>
           {studioMediaItems.length > 1 ? <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioServiceMedia(studioMediaItems[0])}</EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioServiceMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
           <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
-          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>{studioServiceMedia(studioMediaItems[1])}</EditorialGridItem> : null}
+          {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia" placement={{ start: 1, span: 5 }}>{studioServiceMedia(studioMediaItems[1], "forward")}</EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
       );
