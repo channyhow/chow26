@@ -118,6 +118,7 @@
     display: flex;
     flex-wrap: wrap;
     // gap: $space-3;
+    flex-direction: column;
     margin-bottom: $margin-group;
 
     button {
