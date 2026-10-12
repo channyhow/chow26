@@ -578,7 +578,7 @@
       align-items: center;
     }
     .studioIntro__mediaGrid {
-      grid-column: 1 / span 4;
+      grid-column: 1 / span 2;
       grid-template-columns: minmax(0, 1fr);
       gap: $space-3;
       width: min(100%, 15rem);
