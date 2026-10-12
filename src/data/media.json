@@ -439,5 +439,11 @@
     "type": "image",
     "src": "/assets/photos/work/flo/flo_mobile.jpg",
     "alt": "Flo | aperçu du site sur mobile."
+  },
+    "flo-mobile1": {
+    "id": "flo-mobile",
+    "type": "image",
+    "src": "/assets/photos/work/flo/flo_mobile1.jpg",
+    "alt": "Flo | aperçu du site sur mobile."
   }
 }
