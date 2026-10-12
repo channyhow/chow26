@@ -129,7 +129,7 @@
           "studio-service-integrations"
         ]
       },
-      "media": ["flo-logo", "atmosphere-laptop", "flo-business-card"]
+      "media": ["flo-logo", "flo-laptop", "flo-business-card"]
     }
   },
   "approach-default": {
