@@ -361,9 +361,8 @@
 /* Repeated Home editorial compositions share one grid and rhythm.
    Individual stories only define placement, scale and art direction. */
 .homeEditorialComposition {
-  @include site-grid;
+  @include site-grid($margin-content);
   align-items: start;
-  row-gap: $margin-content;
   width: 100%;
 }
 
@@ -586,6 +585,7 @@
 // needs its own clearance so the following text never touches the backing.
 @include mobile-down {
   .homeEditorialComposition {
+    column-gap: $margin-group;
     row-gap: $margin-group;
   }
 
