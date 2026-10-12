@@ -526,8 +526,7 @@
   }
 }
 
-// Studio introduction: service-like media / story composition.
-// Keep three assets, but avoid the full-width gallery treatment.
+// Studio introduction: compact visual navigation beside the service overview.
 [data-page-id="studio"] #studio-services-intro {
   > .section__inner { display: block; width: 100%; }
 
@@ -542,19 +541,24 @@
 
   .studioIntro__mediaGrid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: $layout-gap;
     min-width: 0;
   }
 
   .studioIntro__media {
+    display: block;
     min-width: 0;
-    width: 100%;
     aspect-ratio: $ratio-square;
-    &:first-child { grid-column: 1 / -1; }
+    text-decoration: none;
+    color: inherit;
     .media, .media__frame { width: 100%; height: 100%; aspect-ratio: $ratio-square; }
     .media__frame { overflow: hidden; }
     .media__asset { width: 100%; height: 100%; object-fit: cover; }
+    &:focus-visible { outline: 2px solid $color-special; outline-offset: $space-2; }
+    @media (hover: hover) {
+      &:hover .media__asset { transform: scale(1.025); }
+    }
   }
 
   .studioIntro__story {
@@ -564,23 +568,28 @@
     min-width: 0;
     .textBlock { width: 100%; max-width: none; }
   }
-
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
 @include desktop-up {
   [data-page-id="studio"] #studio-services-intro {
-    .studioIntro__composition {
-      @include site-grid;
-      align-items: start;
-      row-gap: $margin-group;
+    .studioIntro__composition { @include site-grid; }
+    .studioIntro__mediaGrid {
+      grid-column: 1 / span 4;
+      grid-template-columns: minmax(0, 1fr);
+      gap: $space-5;
+      width: min(100%, 15rem);
     }
-    .studioIntro__mediaGrid { grid-column: 1 / span 5; }
     .studioIntro__story {
-      grid-column: 7 / span 6;
-      gap: $margin-block;
+      grid-column: 6 / span 7;
       padding-block: $margin-group;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page-id="studio"] #studio-services-intro .studioIntro__media:hover .media__asset {
+    transform: none;
   }
 }
 
