@@ -17,12 +17,7 @@
 }
 
 @mixin type-meta {
-  // font-family: var(--font-body);
-  // font-size: $type-ui-compact;
   font-weight: $font-weight-semibold;
-  // line-height: 1.35;
-  // letter-spacing: 0.08em;
-  // text-transform: uppercase;
   @include type-body;
 }
 
@@ -64,14 +59,12 @@
 @mixin type-ui-lg {
   @include type-ui-compact-base;
   text-transform: uppercase;
-      font-size: $type-body-sm;
-
+  font-size: $type-body-sm;
 }
 
 @mixin type-ui-compact-lower {
   @include type-ui-compact-base;
-    font-size: $type-heading-sm;
-
+  font-size: $type-heading-sm;
   text-transform: none;
 }
 
@@ -144,7 +137,6 @@
   font-weight: $font-weight-medium;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  
 }
 
 @mixin type-heading-xl-semibold {
@@ -153,7 +145,6 @@
   font-weight: $font-weight-semibold;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  
 }
 
 @mixin type-heading-xl-bold {
@@ -162,7 +153,6 @@
   font-weight: $font-weight-bold;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  
 }
 @mixin type-display-lg {
   font-family: var(--font-heading);
