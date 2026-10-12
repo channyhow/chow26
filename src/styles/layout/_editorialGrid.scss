@@ -104,3 +104,26 @@
   > * { min-width: 0; }
   .media__frame { width: 100%; }
 }
+
+
+// With two mockups, the offer choices sit beside the second image.
+// Keep the offer details below, full width; mobile retains document order.
+@include desktop-up {
+  [data-page-id="studio"] .studioServiceGrid--paired {
+    > [data-editorial-area="media"]:not(.studioServiceGrid__secondMedia) { grid-row: 2; }
+    > [data-editorial-area="description"] { grid-row: 2; }
+    > .studioServiceGrid__secondMedia { grid-row: 3; }
+    > [data-editorial-area="offers"],
+    > [data-editorial-area="offers"] > .offerComposition {
+      display: contents;
+    }
+    > [data-editorial-area="offers"] > .offerComposition {
+      > [data-editorial-area="navigation"] { grid-column: 7 / span 6; grid-row: 3; }
+      > [data-editorial-area="heading"] { grid-column: 7 / span 6; grid-row: 4; }
+      > [data-editorial-area="description"] { grid-column: 7 / span 6; grid-row: 5; }
+      > [data-editorial-area="deliverables"] { grid-column: 1 / -1; grid-row: 6; }
+      > [data-editorial-area="price"] { grid-column: 1 / -1; grid-row: 7; }
+      > [data-editorial-area="action"] { grid-column: 7 / span 6; grid-row: 8; }
+    }
+  }
+}
