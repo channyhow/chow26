@@ -125,7 +125,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   if (isHomeOpening) {
     body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
   } else if (block.id === "studio-services-intro") {
-    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => <div className="studioIntro__media" key={index}>{card}</div>)}</div>{header ? <TextBlock content={header} className="studioIntro__story" /> : null}</div>;
+    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => <div className="studioIntro__media" key={index}>{card}</div>)}</div>{header ? <div className="studioIntro__story"><TextBlock content={{ title: header.title }} className="studioIntro__headline" motionEnabled={false} /><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={false} /></div> : null}</div>;
   } else if (isProjectHero) {
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
