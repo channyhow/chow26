@@ -13,7 +13,7 @@
   #studio-service-identity,
   #studio-service-website,
   #studio-service-integrations,
-  [data-page-id="studio"] #approach-default {
+  #approach-default {
     min-height: 0;
   }
 
@@ -72,21 +72,10 @@
       @include type-body;
     }
 
-    // .textBlock__metaValue {
-    //   @include type-body;
-    // }
-
     .textBlock__metaList {
       gap: $flow-tight;
     }
 
-    // .textBlock__metaListItem {
-    //   @include type-body;
-    // }
-
-    // .textBlock__footer .actions__link {
-    //   @include type-body;
-    // }
   }
 
   .section__offers .card--service {
@@ -299,8 +288,7 @@
     }
   }
 
-  // Home Open Call composition: oversized statement above a compact media
-  // and a single right-hand narrative (description, offer and CTA).
+  // Service composition: statement first, then aligned media and offer.
   #studio-service-identity,
   #studio-service-website,
   #studio-service-integrations {
@@ -357,8 +345,7 @@
 
     .section__offers .card--service .card__body.textBlock {
       gap: $margin-content;
-            margin-top: $space-6;
-
+      margin-top: $space-6;
     }
     .section__offers .card--service .textBlock__title {
       @include type-heading-md;
@@ -369,9 +356,6 @@
     .section__offers .card--service .textBlock__metaValue {
       @include type-lead;
     }
-    // .section__offers .card--service .textBlock__footer .actions__link {
-    //   @include type-body;
-    // }
     .section__offers .card--service .textBlock__content > * + * {
       margin-top: $margin-content;
     }
