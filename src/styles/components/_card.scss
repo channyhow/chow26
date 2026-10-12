@@ -188,9 +188,9 @@
   }
 
   .textBlock__meta > *:last-child .textBlock__metaValue {
-    color: currentColor;
+    // color: currentColor;
     opacity: $opacity-muted;
-    font-weight: $font-weight-medium;
+    // font-weight: $font-weight-medium;
   }
 
   .textBlock__footer {

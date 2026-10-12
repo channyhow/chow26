@@ -91,7 +91,7 @@
 @mixin type-lead {
   font-family: var(--font-body);
   font-size: $type-lead;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-medium;
   line-height: 1.42;
 }
 
