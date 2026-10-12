@@ -45,12 +45,6 @@
     max-width: none;
   }
 
-  // #project-gallery .section__header .textBlock__title {
-  //   /* Keep the intro independent from the project grid while giving the copy
-  //      enough measure to read as an editorial statement rather than a column. */
-  //   // max-width: 11ch;
-  // }
-
   /* Masonry-like archive: three independent column stacks prevent the CSS-grid
      row track from forcing the next card below the tallest item in its row. */
   #project-gallery .grid {
@@ -94,8 +88,13 @@
   }
 
   #project-gallery .grid {
-    column-gap: $space-2;
-    row-gap: $margin-block;
+    column-gap: $margin-content;
+    row-gap: $margin-group;
+  }
+
+  #project-gallery .projectCard .media__frame {
+    aspect-ratio: $ratio-wide;
+    max-height: none;
   }
 }
 
