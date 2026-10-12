@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { motion, type MotionValue } from "motion/react";
 
 import { CardItem } from "@/components/content/CardItem";
+import { OfferSwitcher } from "@/components/section/OfferSwitcher";
 import { Carousel } from "@/components/content/Carousel";
 import { ContentSwitcher } from "@/components/content/ContentSwitcher";
 import { Gallery } from "@/components/content/Gallery";
@@ -29,28 +30,6 @@ import type { FormSchema } from "@/types/forms";
 export type SectionProps = { block: SectionBlock; suppressSceneMotion?: boolean; visualContext?: "own" | "inherit"; scrollProgress?: MotionValue<number>; parallaxEnabled?: boolean; };
 const formRegistry = forms as Record<string, FormSchema>;
 const mobileCarouselQuery = "(max-width: 29.999rem)";
-
-function OfferSwitcher({ offers }: { offers: NonNullable<SectionBlock["content"]>["items"] }) {
-  const [active, setActive] = useState(0);
-  if (!offers?.length) return null;
-  return (
-    <div className="section__offerSwitcher">
-      <div className="section__offerSwitcherControls" role="group" aria-label="Choisir une formule">
-        {offers.map((offer, index) => (
-          <button key={offer.id ?? index} type="button" aria-pressed={index === active}
-            onClick={() => setActive(index)}
-            aria-label={offer.title ?? `Formule ${index + 1}`}>
-            <span className="section__offerSwitcherNumber">{String(index + 1).padStart(2, "0")}</span>
-            <span className="section__offerSwitcherLabel">{typeof offer.eyebrow === "string" ? offer.eyebrow.replace(/^\d+\s*·\s*/, "") : offer.title}</span>
-          </button>
-        ))}
-      </div>
-      <div className="section__offerSwitcherPanel" role="group" aria-label={offers[active]?.title ?? "Formule"}>
-        <CardItem key={offers[active]?.id ?? active} item={offers[active]} variant="service" />
-      </div>
-    </div>
-  );
-}
 
 export function Section({ block, suppressSceneMotion = false, visualContext = "own", scrollProgress, parallaxEnabled = false }: SectionProps) {
   const [isMobileViewport, setIsMobileViewport] = useState(false);
