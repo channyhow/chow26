@@ -177,56 +177,42 @@
 }
 
 @include desktop-up {
-  /* Services follows the same editorial sequence as the reference:
-     wide proof first, statement below, then compact supporting information. */
+  /* Home services follows the same twelve-column rhythm as Studio.
+     Media and story share the row; semantic DOM order stays unchanged. */
   #home-services .split {
-    align-items: start;
-    row-gap: $margin-block;
+    @include site-grid;
+    align-items: center;
+    row-gap: $margin-group;
   }
   #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 4;
-    grid-row: 2;
-    align-self: start;
+    grid-column: 1 / span 5;
+    grid-row: 1;
+    min-width: 0;
+    align-self: center;
   }
   #home-services .split__secondary .media__frame {
-    aspect-ratio: $ratio-landscape;
+    aspect-ratio: $ratio-square;
   }
   #home-services .split > [data-split-role="content"] {
-    grid-column: 1 / span 12;
+    grid-column: 7 / span 6;
     grid-row: 1;
-    align-self: start;
+    min-width: 0;
+    align-self: center;
     margin: 0;
   }
   #home-services .split > [data-split-role="content"] .textBlock {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--grid-gutter);
     width: 100%;
     max-width: none;
   }
-  #home-services .split > [data-split-role="content"] .textBlock__header {
-    display: contents;
-  }
-  #home-services .split > [data-split-role="content"] .textBlock__title {
-    @include type-heading-xl;
-    grid-column: 1 / -1;
+  #home-services .split > [data-split-role="content"] .textBlock__content {
+    width: 100%;
     max-width: none;
-    margin: 0;
+    p { @include type-heading-md; }
   }
-  #home-services .split > [data-split-role="content"] 
-    .textBlock__footer {
-      grid-row: 2;
-    grid-column: 8 / span 4;
+  #home-services .split > [data-split-role="content"] .textBlock__footer {
+    width: 100%;
+    margin-top: $margin-group;
   }
-    #home-services .split > [data-split-role="content"] .textBlock__content {
-    grid-column: 1 / span 7;
-    p {
-             @include type-heading-md;
-
-    }
-   
-  }
-
 
   /* Final CTA is one composition, not two distant islands. */
   #final-cta .split {
@@ -243,6 +229,16 @@
   }
   #final-cta .split__secondary .media__frame {
     aspect-ratio: $ratio-landscape;
+  }
+}
+
+/* Reuse Studio's quiet editorial navigation treatment on Home services. */
+[data-page-id="home"] #home-services .textBlock__footer {
+  .actions { display: grid; gap: 0; width: 100%; }
+  .actions__link {
+    @include editorial-control-row;
+    @include type-body;
+    @include hover { color: var(--accent); }
   }
 }
 
@@ -314,26 +310,6 @@
   .homeContact__story,
   .homeContact__media {
     grid-column: 3 / -1;
-  }
-}
-
-@include mobile-down {
-  #home-services .split > [data-split-role="content"] .textBlock__footer {
-    width: 100%;
-  }
-
-  #home-services .split > [data-split-role="content"] .actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    > :nth-child(2) {
-      margin-left: 10%;
-    }
-
-    > :nth-child(3) {
-      margin-left: 20%;
-    }
   }
 }
 
