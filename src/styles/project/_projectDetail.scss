@@ -52,7 +52,7 @@
 .projectHero__identity .textBlock__title {
   @include type-heading-xl;
   margin: 0;
-  color: color-mix(in srgb, currentColor 34%, transparent);
+  opacity: $opacity-muted;
   
 }
 
@@ -101,7 +101,7 @@
 .projectHero__meta .textBlock__metaLabel {
   // @include type-meta;
   display: block;
-  opacity: 0.45;
+  opacity: $opacity-muted;
 }
 
 .projectHero__meta .textBlock__metaValue {
