@@ -109,10 +109,10 @@
 // With two mockups, the offer choices sit beside the second image.
 // Keep the offer details below, full width; mobile retains document order.
 @include desktop-up {
-  [data-page-id="studio"] .studioServiceGrid--paired {
+  [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > [data-editorial-area="media"]:not(.studioServiceGrid__secondMedia) { grid-row: 2; }
     > [data-editorial-area="description"] { grid-row: 2; }
-    > .studioServiceGrid__secondMedia { grid-row: 3; }
+    > [data-editorial-area="media"].studioServiceGrid__secondMedia { grid-row: 3; }
     > [data-editorial-area="offers"],
     > [data-editorial-area="offers"] > .offerComposition {
       display: contents;
