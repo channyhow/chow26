@@ -26,6 +26,21 @@
   @include type-body;
 }
 
+@mixin type-meta-tags {
+  @include type-body;
+  font-weight: $font-weight-medium;
+  line-height: 1.3;
+
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: $space-1 $space-2;
+
+  border: 1px solid $gray-300;
+  border-radius: $radius-none;
+}
+
+
 @mixin type-ui {
   font-family: var(--font-heading);
   font-size: $type-ui;

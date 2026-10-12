@@ -66,10 +66,10 @@
     list-style: none;
   }
   &__metaListItem {
-    @include type-meta;
+    @include type-meta-tags;
     min-width: 0;
     text-transform: none;
-    letter-spacing: normal;
+
   }
 }
 
