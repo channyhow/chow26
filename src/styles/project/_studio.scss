@@ -73,7 +73,15 @@
     }
 
     .textBlock__metaList {
-      gap: $flow-tight;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: $space-1;
+    }
+
+    .textBlock__metaListItem {
+      flex: 0 1 auto;
+      width: fit-content;
     }
 
   }
@@ -119,7 +127,7 @@
       align-items: baseline;
       justify-items: start;
       text-align: left;
-      gap: $space-1;
+      gap: $space-2;
       width: 100%;
       min-height: $control-min-height;
       padding: $space-1 0;
@@ -147,7 +155,8 @@
 
   .section__offerSwitcherLabel {
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    hyphens: none;
   }
 
   .section__offerSwitcherPanel {
@@ -359,7 +368,7 @@
       margin-top: $margin-content;
     }
     .section__offers .card--service .textBlock__metaList {
-      gap: $flow-default;
+      gap: $space-1;
     }
     .section__offers .card--service .textBlock__meta {
       margin-top: $margin-group;
