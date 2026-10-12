@@ -413,7 +413,7 @@
   "flo-logo": {
     "id": "flo-logo",
     "type": "image",
-    "src": "/assets/photos/work/flo/flo_logo.webp",
+    "src": "/assets/photos/work/flo/flo_logo.jpg",
     "alt": "Flo | création du logo."
   },
   "flo-wall": {
@@ -425,7 +425,7 @@
   "flo-wordmark": {
     "id": "flo-wordmark",
     "type": "image",
-    "src": "/assets/photos/work/flo/flo_wordmark.webp",
+    "src": "/assets/photos/work/flo/flo_wordmark.jpg",
     "alt": "Flo | recherche typographique et logotype."
   },
   "flo-laptop": {
