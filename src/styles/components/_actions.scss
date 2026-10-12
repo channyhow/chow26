@@ -107,6 +107,12 @@
   }
 }
 
+// Primary (dark) sections keep actionable links fully legible.
+// Disabled links retain their intentional subdued state.
+.section[data-color="primary"] .actions__link:not(:disabled, [aria-disabled="true"]) {
+  opacity: 1;
+}
+
 /* Quiet text navigation. Typography stays contextual so surfaces such as the
    footer can opt into their own baseline without changing nav site-wide. */
 .actions--nav,
