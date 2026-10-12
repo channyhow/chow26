@@ -1,5 +1,5 @@
 import { useEffect, useRef, type CSSProperties } from "react";
-import { useScroll, type MotionValue } from "motion/react";
+import { useMotionValue, useMotionValueEvent, useScroll, type MotionValue } from "motion/react";
 
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Section } from "@/components/section/Section";
@@ -40,9 +40,56 @@ function expandCollectionPanels(panels: PanelLane[] = []) {
 function resolvePanelLanes(group: SectionGroupData): PanelLane[] { return group.layout === "scroll-panel" ? expandCollectionPanels(group.panels) : []; }
 function getViewportHeight() { return window.visualViewport?.height ?? window.innerHeight; }
 
+// Track document scroll over the panel's normal-flow interval. A sticky
+// element's viewport position stops changing while pinned, so targeting the
+// sticky element with useScroll cannot drive continuous panel motion.
+function usePanelProgress(ref: React.RefObject<HTMLDivElement | null>) {
+  const { scrollY } = useScroll();
+  const progress = useMotionValue(0);
+  const bounds = useRef({ start: 0, distance: 1 });
+
+  const syncProgress = (position: number) => {
+    const { start, distance } = bounds.current;
+    progress.set(Math.max(0, Math.min(1, (position - start) / distance)));
+  };
+
+  useMotionValueEvent(scrollY, "change", syncProgress);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const next = element.nextElementSibling;
+    const measure = () => {
+      const viewport = getViewportHeight();
+      const top = element.getBoundingClientRect().top + window.scrollY;
+      const bottom = next
+        ? next.getBoundingClientRect().top + window.scrollY
+        : top + Math.max(element.offsetHeight, viewport);
+      const start = top - viewport * 0.8;
+      const end = Math.max(start + 1, bottom - viewport * 0.2);
+      bounds.current = { start, distance: end - start };
+      syncProgress(window.scrollY);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    if (next) observer.observe(next);
+    window.addEventListener("resize", measure);
+    window.visualViewport?.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+      window.visualViewport?.removeEventListener("resize", measure);
+    };
+  }, [ref, progress]);
+
+  return progress;
+}
+
 function Panel({ id, behavior, frame, size, align, surface, color, parallax, blocks, index }: { id: string; behavior: PanelBehavior; frame: PanelFrame; size: PanelSize; align: PanelAlign; surface: PanelSurface; color?: SectionColor; parallax?: boolean; blocks: PanelBlock[]; index: number; }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const scrollProgress = usePanelProgress(ref);
 
   useEffect(() => {
     if (behavior !== "sticky" || frame !== "content") return;
@@ -60,7 +107,7 @@ function Panel({ id, behavior, frame, size, align, surface, color, parallax, blo
   const style = { "--panel-index": index } as CSSProperties;
   const surfaceStyle = surface === "glass" ? ({ backdropFilter: glassBackdrop, WebkitBackdropFilter: glassBackdrop } as CSSProperties) : undefined;
   return <div id={id} ref={ref} className="sectionGroup__panel" data-panel-id={id} data-panel-behavior={behavior} data-panel-frame={frame} data-panel-size={size} data-panel-align={align} data-panel-surface={surface} data-panel-color={color} style={style}>
-    <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollYProgress, parallax)}</div>
+    <div className="sectionGroup__surface" style={surfaceStyle}>{renderBlocks(blocks, true, scrollProgress, parallax)}</div>
   </div>;
 }
 
