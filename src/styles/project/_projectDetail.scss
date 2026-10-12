@@ -52,7 +52,7 @@
 .projectHero__identity .textBlock__title {
   @include type-heading-xl;
   margin: 0;
-  color: $gray-700;
+  color: $gray-500;
 }
 
 .projectHero__media {
@@ -100,7 +100,7 @@
 .projectHero__meta .textBlock__metaLabel {
   // @include type-meta;
   display: block;
-  color: $gray-700;
+  color: $gray-500;
 }
 
 .projectHero__meta .textBlock__metaValue {
