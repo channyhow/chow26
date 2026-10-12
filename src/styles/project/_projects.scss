@@ -66,7 +66,7 @@
   #project-gallery .grid > .grid__item {
     display: inline-block;
     width: 100%;
-    margin: 0 0 clamp(#{$space-5}, 8vw, #{$space-6});
+    margin: 0 0 $margin-block;
     break-inside: avoid;
     vertical-align: top;
   }
