@@ -8,7 +8,7 @@
 .projectDetail {
   --project-measure: 38rem;
   --project-reading-measure: 30rem;
-  --project-section-gap: clamp(#{$space-5}, 12vh, #{$space-6});
+  --project-section-gap: #{$padding-block};
 }
 
 .projectHero {
@@ -233,7 +233,7 @@
 @media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 0.01rem)) {
   .projectDetail {
     --project-reading-measure: 100%;
-    --project-section-gap: #{$space-5};
+    --project-section-gap: #{$padding-block};
   }
 
   .projectStoryMedia {
@@ -242,7 +242,7 @@
 
   .projectHero .split,
   .projectStoryMedia .split {
-    row-gap: $space-4;
+    row-gap: $margin-block;
     align-items: start;
   }
 
