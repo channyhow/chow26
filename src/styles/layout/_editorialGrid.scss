@@ -20,3 +20,34 @@
     }
   }
 }
+
+/* Studio service: title / media + copy / full-width offers. */
+[data-page-id="studio"] .section--collection-panel {
+  > .section__inner > .studioServiceGrid { grid-column: 1 / -1; width: 100%; }
+
+  .studioServiceGrid {
+    > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
+    > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
+    > [data-editorial-area="description"] .textBlock__content p { @include type-heading-md; }
+    > [data-editorial-area="media"] .media__frame { aspect-ratio: $ratio-editorial; }
+    > [data-editorial-area="offers"] {
+      .section__offerSwitcher { grid-template-columns: minmax(0, 1fr); }
+      .card--service { padding: 0; background: transparent; box-shadow: none; }
+      .card--service .card__body { padding: 0; background: transparent; }
+      .card--service .textBlock__metaLabel { display: block; }
+      .card--service .textBlock__meta > * { border-top: 1px solid currentColor; padding-block: $space-2; }
+    }
+  }
+
+  @include desktop-up {
+    .studioServiceGrid {
+      > [data-editorial-area="title"] { grid-row: 1; }
+      > [data-editorial-area="media"],
+      > [data-editorial-area="description"] { grid-row: 2; }
+      > [data-editorial-area="offers"] {
+        grid-row: 3;
+        .section__offerSwitcher { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
+      }
+    }
+  }
+}
