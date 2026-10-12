@@ -89,7 +89,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const cards = items.map(renderCard);
   const cardsCollection = cards.length ? (useProjectCarouselOnMobile ? <Carousel>{cards}</Carousel> : <Grid progressive={Boolean(block.progressive)} motionPreset={block.motionPreset} placements={items.map((item) => item.grid)} motionEnabled={sectionMotionEnabled && !isLongFormList} scrollLinked={sectionMotionEnabled && !isLongFormList}>{cards}</Grid>) : null;
   const mediaCards = mediaItems.map((item) => block.id === "studio-services-intro"
-    ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled}><Media media={item} /></ScrollScene>
+    ? <ScrollScene key={item.id} preset="parallax" intensity="quiet" direction="reverse" className="studioIntro__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}><Media media={item} /></ScrollScene>
     : <Media key={item.id} media={item} />);
   const secondary = media ? <Media media={media} sizes="(min-width: 64rem) 50vw, 100vw" /> : form ? <Form schema={form} /> : cardsCollection;
   const switcherItems = items.flatMap((item, index) => {
@@ -131,7 +131,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   if (isHomeOpening) {
     body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
   } else if (block.id === "studio-services-intro") {
-    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => { const ref = header?.links?.[index]; const href = typeof ref === "string" ? getActionHref(ref) : ref?.href; return href ? <Link className="studioIntro__media" to={href} key={index} aria-label={typeof ref === "string" ? ["Créer une identité visuelle", "Concevoir un site web", "Supports de communication"][index] ?? "Voir le service" : ref?.label ?? "Voir le service"}>{card}</Link> : <div className="studioIntro__media" key={index}>{card}</div>; })}</div>{header ? <div className="studioIntro__story"><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={false} /></div> : null}</div>;
+    body = <div className="studioIntro__composition"><div className="studioIntro__mediaGrid">{mediaCards.map((card, index) => { const ref = header?.links?.[index]; const href = typeof ref === "string" ? getActionHref(ref) : ref?.href; return href ? <Link className="studioIntro__media" to={href} key={index} aria-label={typeof ref === "string" ? ["Créer une identité visuelle", "Concevoir un site web", "Supports de communication"][index] ?? "Voir le service" : ref?.label ?? "Voir le service"}>{card}</Link> : <div className="studioIntro__media" key={index}>{card}</div>; })}</div>{header ? <div className="studioIntro__story"><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={sectionMotionEnabled} /></div> : null}</div>;
   } else if (isProjectHero) {
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
@@ -201,7 +201,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
     const studioParallaxMedia = (item: NonNullable<typeof media>, direction: "forward" | "reverse" = "reverse") => (
-      <ScrollScene preset="parallax" intensity="quiet" direction={direction} className="studioServiceGrid__mediaMotion" enabled={sectionMotionEnabled}>
+      <ScrollScene preset="parallax" intensity="quiet" direction={direction} className="studioServiceGrid__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}>
         <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
       </ScrollScene>
     );
@@ -219,8 +219,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     } else if (isStudioService && splitItem) {
       // Distinct semantic grid items keep text visible and independent of
       // split/motion wrappers. DOM order matches the mobile reading order.
-      const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={false} />;
-      const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={false} />;
+      const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={sectionMotionEnabled} />;
+      const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={sectionMotionEnabled} />;
       body = (
         <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
