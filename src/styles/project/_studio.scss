@@ -100,7 +100,7 @@
   // Shared editorial comparison: compact navigation beside the selected offer.
   .section__offerSwitcher {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: $margin-group;
     width: 100%;
@@ -265,10 +265,16 @@
   }
 }
 
+// Wider layouts give offer navigation a dedicated column.
+@include desktop-up {
+  [data-page-id="studio"] .section--collection-panel .section__offerSwitcher {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  }
+}
+
 // Stack navigation above the offer when two readable columns no longer fit.
 @include tablet-down {
   [data-page-id="studio"] .section--collection-panel {
-    .section__offerSwitcher { grid-template-columns: minmax(0, 1fr); }
     .section__offers .card--service .textBlock__meta > * {
       grid-template-columns: minmax(0, 1fr);
       gap: $space-1;
