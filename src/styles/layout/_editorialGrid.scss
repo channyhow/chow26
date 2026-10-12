@@ -62,7 +62,8 @@
       grid-column: 1 / -1;
       grid-row: 2;
       min-width: 0;
-      aspect-ratio: $ratio-square;
+      --studio-media-ratio: #{$ratio-square};
+      aspect-ratio: var(--studio-media-ratio);
 
       .studioServiceGrid__rotatingFrame[data-active="false"] {
         visibility: hidden;
@@ -78,7 +79,7 @@
       }
 
       .media__frame {
-        aspect-ratio: inherit;
+        aspect-ratio: var(--studio-media-ratio);
         max-height: none;
       }
 
@@ -98,7 +99,7 @@
 @include between($bp-tablet, $bp-desktop) {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > .studioServiceGrid__rotatingMedia {
-      aspect-ratio: $ratio-wide;
+      --studio-media-ratio: #{$ratio-wide};
     }
   }
 }
