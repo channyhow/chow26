@@ -108,24 +108,30 @@
     padding-top: $margin-content;
   }
 
-  // A single editorial offer window, with compact numbered navigation.
+  // Shared editorial comparison: compact navigation beside the selected offer.
   .section__offerSwitcher {
-    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    align-items: start;
+    gap: $layout-gap;
     width: 100%;
+    min-width: 0;
   }
 
   .section__offerSwitcherControls {
-    display: flex;
-    flex-wrap: wrap;
-    // gap: $space-3;
-    flex-direction: column;
-    margin-bottom: $margin-group;
+    display: grid;
+    align-content: start;
+    min-width: 0;
 
     button {
       cursor: pointer;
-      display: inline-flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: baseline;
+      justify-items: start;
+      text-align: left;
       gap: $space-2;
+      width: 100%;
       min-height: $control-min-height;
       padding: $space-1 0;
       border: 0;
@@ -149,6 +155,11 @@
 
   .section__offerSwitcherNumber {
     font-weight: $font-weight-semibold;
+  }
+
+  .section__offerSwitcherLabel {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .section__offerSwitcherPanel {
@@ -295,7 +306,7 @@
     }
 
     .section__inner > .section__offers {
-      grid-column: 8 / span 4;
+      grid-column: 1 / -1;
       grid-row: 4;
       align-self: start;
     }
@@ -351,6 +362,13 @@
     margin-top: $margin-content;
   }
   [data-page-id="studio"] .section__offerGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// Stack navigation above the offer when two readable columns no longer fit.
+@include tablet-down {
+  [data-page-id="studio"] .section--collection-panel .section__offerSwitcher {
     grid-template-columns: minmax(0, 1fr);
   }
 }
