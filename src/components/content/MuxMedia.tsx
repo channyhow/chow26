@@ -1,4 +1,4 @@
-import { createElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createElement, useEffect, useMemo, useRef, useState } from "react";
 
 type MuxTokenResponse = {
   playbackId: string;
@@ -137,18 +137,18 @@ export function MuxMedia({
   }, [tokens]);
 
   useEffect(() => {
-    const player = playerRef.current;
-    if (!player || !playerReady || !autoPlay) {
-      player?.pause?.();
+    const player = containerRef.current?.querySelector<MuxPlayerElement>("mux-player");
+    playerRef.current = player ?? null;
+    if (!player) return;
+
+    if (!playerReady || !autoPlay || !shouldPlay) {
+      player.pause?.();
       return;
     }
 
-    if (shouldPlay) {
-      void player.play?.().catch(() => undefined);
-    } else {
-      player.pause?.();
-    }
-  }, [autoPlay, shouldPlay, playerReady]);
+    void player.play?.().catch(() => undefined);
+  }, [autoPlay, shouldPlay, playerReady, tokens]);
+
 
   const thumbnailSrc = useMemo(() => {
     if (!tokens) return undefined;
@@ -158,14 +158,9 @@ export function MuxMedia({
       : base;
   }, [tokens]);
 
-  const attachPlayer = useCallback((node: MuxPlayerElement | null) => {
-    playerRef.current = node;
-  }, []);
-
   const player =
     tokens && playerReady
       ? createElement("mux-player", {
-          ref: attachPlayer,
           "playback-id": tokens.playbackId,
           ...(tokens.playbackPolicy === "signed" && tokens.playbackToken
             ? { "playback-token": tokens.playbackToken }
