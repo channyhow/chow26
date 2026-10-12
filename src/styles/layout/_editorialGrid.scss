@@ -106,21 +106,46 @@
 }
 
 
-// Paired media stay in separate editorial cells, beside a contained offer grid.
+// Paired service composition: second mockup beside offer controls,
+// then the selected offer details across the full twelve-column grid.
+// Flatten only layout wrappers; interactive content keeps its DOM order.
 @include desktop-up {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
-    > [data-editorial-area="media"].studioServiceGrid__secondMedia {
+    > .studioServiceGrid__secondMedia {
       grid-column: 1 / span 5;
       grid-row: 3;
     }
-    > [data-editorial-area="offers"] {
-      grid-column: 1 / -1;
-      grid-row: 4;
-      min-width: 0;
-    }
+
+    > [data-editorial-area="offers"],
     > [data-editorial-area="offers"] > .offerComposition {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      > .editorialGrid__item { grid-column: 1 / -1; grid-row: auto; }
+      display: contents;
+    }
+
+    > [data-editorial-area="offers"] > .offerComposition {
+      > [data-editorial-area="navigation"] {
+        grid-column: 7 / span 6;
+        grid-row: 3;
+      }
+      > [data-editorial-area="heading"] {
+        grid-column: 1 / -1;
+        grid-row: 4;
+      }
+      > [data-editorial-area="description"] {
+        grid-column: 1 / -1;
+        grid-row: 5;
+      }
+      > [data-editorial-area="deliverables"] {
+        grid-column: 1 / -1;
+        grid-row: 6;
+      }
+      > [data-editorial-area="price"] {
+        grid-column: 1 / -1;
+        grid-row: 7;
+      }
+      > [data-editorial-area="action"] {
+        grid-column: 1 / -1;
+        grid-row: 8;
+      }
     }
   }
 }
