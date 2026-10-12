@@ -565,11 +565,6 @@
     .textBlock { width: 100%; max-width: none; }
   }
 
-  .studioIntro__headline .textBlock__title {
-    @include type-heading-xl;
-    max-width: none;
-  }
-
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
 }
 
@@ -584,6 +579,7 @@
     .studioIntro__story {
       grid-column: 7 / span 6;
       gap: $margin-block;
+      padding-block: $margin-group;
     }
   }
 }
