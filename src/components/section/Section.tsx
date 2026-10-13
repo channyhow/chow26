@@ -150,8 +150,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       {header ? <div className="studioIntro__story"><TextBlock content={{ subtitle: header.subtitle, text: header.text, links: header.links }} subtitleVariant="editorial" className="studioIntro__details" motionEnabled={sectionMotionEnabled} /></div> : null}
     </div>;
   } else if (isProjectHero) {
-    const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
-    const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
+    const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} subtitleVariant="hero" className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
+    const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" titleVariant="hero" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
     const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <EditorialGrid className="projectHero__composition">
