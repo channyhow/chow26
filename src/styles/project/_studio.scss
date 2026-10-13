@@ -184,45 +184,27 @@
   }
 }
 
-// Founder is an editorial text-first composition, not a media-led split.
-// Scope to its explicit block class so the layout survives section wrappers.
+// Founder: full-width editorial copy followed by a small image at the grid edge.
 .section.section--founder {
-  .section__inner > .split {
-    --split-media-ratio: #{$ratio-square};
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
+  .sectionEditorialGrid {
     row-gap: $space-6;
   }
 
-  .section__inner > .split > [data-split-role="content"] {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    min-width: 0;
-    width: 100%;
-    align-self: start;
-  }
-
-  .section__inner > .split > [data-split-role="media"] {
-    grid-column: 1 / -1;
+  .sectionEditorialGrid > [data-editorial-area="media"] {
     grid-row: 2;
-    width: min(100%, 12rem);
-    min-width: 0;
-    max-width: 12rem;
     justify-self: end;
-    align-self: end;
-    translate: none;
+    width: min(100%, 12rem);
+    --media-ratio: #{$ratio-square};
   }
 
-  .section__splitMediaMotion,
-  .section__splitMediaMotion .media,
-  .section__splitMediaMotion .media__frame {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .section__splitMediaMotion .media__frame {
+  .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-square;
+  }
+
+  @include desktop-up {
+    .sectionEditorialGrid > [data-editorial-area="media"] {
+      grid-column: 10 / span 3;
+    }
   }
 }
 
