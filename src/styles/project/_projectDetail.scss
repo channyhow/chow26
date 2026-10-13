@@ -31,12 +31,11 @@
 
 .projectHero__statement,
 .projectHero__identity,
-.projectHero__statement .textBlock__subtitle p {
-  @include type-heading-xl;
+.projectHero__meta {
+  grid-column: 1 / -1;
 }
 
 .projectHero__identity .textBlock__title {
-  @include type-heading-xl;
   color: $gray-500;
 }
 
