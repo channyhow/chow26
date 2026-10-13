@@ -137,28 +137,16 @@
   }
 }
 
-/* The campaign keeps its navigation in the right column; the project
-   rotation follows the left-hand story without changing link placement. */
+// Project media belongs between the two copy groups.
+.linkPage__rotation { display: none; }
+
 @include desktop-up {
-  .linkPage__campaign .section__inner {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: $layout-gap;
-  }
-
-  .linkPage__campaign .section__header.textBlock {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
   .linkPage__rotation {
-    grid-column: 1;
-    grid-row: 2;
+    display: block;
     position: relative;
     width: 100%;
     aspect-ratio: $ratio-wide;
     overflow: hidden;
-    margin-top: $space-3;
   }
 
   .linkPage__rotationFrame {
@@ -168,26 +156,13 @@
     transition: opacity 900ms ease-in-out;
     pointer-events: none;
 
-    &[data-active="true"] {
-      opacity: 1;
-    }
+    &[data-active="true"] { opacity: 1; }
 
-    .media,
-    .media__frame,
-    .media__asset {
+    .media, .media__frame, .media__asset {
       width: 100%;
       height: 100%;
     }
-
-    .media__frame {
-      aspect-ratio: $ratio-wide;
-    }
-  }
-}
-
-@include tablet-down {
-  .linkPage__rotation {
-    display: none;
+    .media__frame { aspect-ratio: $ratio-wide; }
   }
 }
 
