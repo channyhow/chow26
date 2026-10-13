@@ -6,7 +6,10 @@
     "text": [
       "Une identité claire pour rendre votre activité **reconnaissable et cohérente**, du logo aux supports essentiels."
     ],
-    "media": ["flo-logo", "flo-wordmark"],
+    "media": [
+      "flo-logo",
+      "flo-wordmark"
+    ],
     "tags": [
       "Identité visuelle",
       "Logo"
@@ -16,9 +19,6 @@
         "id": "identity-essential",
         "eyebrow": "01 · Identité essentielle",
         "title": "Créer une base claire",
-        "text": [
-          "Pour lancer ou clarifier votre projet avec l’essentiel pour communiquer."
-        ],
         "meta": [
           {
             "label": "Comprend",
@@ -39,15 +39,13 @@
         "links": [
           "identity-essential-contact"
         ],
-        "surface": "subtle"
+        "surface": "subtle",
+        "subtitle": "Pour lancer ou clarifier votre projet avec l’essentiel pour communiquer."
       },
       {
         "id": "identity-complete",
         "eyebrow": "02 · Identité complète",
         "title": "Déployer une identité complète",
-        "text": [
-          "Pour construire un système visuel capable de s’adapter à plusieurs supports."
-        ],
         "meta": [
           {
             "label": "Comprend",
@@ -69,7 +67,8 @@
         "links": [
           "identity-complete-contact"
         ],
-        "surface": "soft"
+        "surface": "soft",
+        "subtitle": "Pour construire un système visuel capable de s’adapter à plusieurs supports."
       }
     ],
     "featured": true,
@@ -79,10 +78,10 @@
     "id": "website",
     "eyebrow": "Site internet · Refonte",
     "title": "Un site pensé autour de votre activité",
-    "text": [
-      "Je clarifie la structure, conçois l’interface et développe un **site sur mesure** pour présenter votre activité et guider vos visiteurs."
+    "media": [
+      "flo-laptop",
+      "flo-mobile1"
     ],
-    "media": ["flo-laptop", "flo-mobile1"],
     "tags": [
       "Site internet",
       "Refonte"
@@ -94,9 +93,6 @@
         "id": "website-showcase",
         "eyebrow": "01 · Site vitrine",
         "title": "Présenter clairement votre activité",
-        "text": [
-          "Pour présenter votre activité avec un site clair, sur mesure et directement opérationnel."
-        ],
         "meta": [
           {
             "label": "Comprend",
@@ -104,8 +100,8 @@
               "Structure & parcours",
               "Design sur mesure",
               "Développement responsive",
-              "SEO essentiel",              "Jusqu’à 4 pages",
-
+              "SEO essentiel",
+              "Jusqu’à 4 pages",
               "Formulaire de contact"
             ]
           },
@@ -117,15 +113,13 @@
         "links": [
           "talk-website"
         ],
-        "surface": "subtle"
+        "surface": "subtle",
+        "subtitle": "Pour présenter votre activité avec un site clair, sur mesure et directement opérationnel."
       },
       {
         "id": "website-custom",
         "eyebrow": "02 · Site sur mesure",
         "title": "Construire une expérience plus complète",
-        "text": [
-          "Pour les projets avec plus de contenus, des parcours spécifiques ou des fonctionnalités métier."
-        ],
         "meta": [
           {
             "label": "Peut inclure",
@@ -147,18 +141,20 @@
         "links": [
           "talk-website"
         ],
-        "surface": "soft"
+        "surface": "soft",
+        "subtitle": "Pour les projets avec plus de contenus, des parcours spécifiques ou des fonctionnalités métier."
       }
-    ]
+    ],
+    "subtitle": "Je clarifie la structure, conçois l’interface et développe un **site sur mesure** pour présenter votre activité et guider vos visiteurs."
   },
   {
     "id": "integrations",
     "eyebrow": "Supports · Print · Digital · Motion",
     "title": "Faire vivre votre identité sur vos supports",
-    "text": [
-      "Je décline votre identité sur les **supports qui comptent pour votre activité**, pour une communication cohérente à chaque point de contact."
+    "media": [
+      "flo-business-card",
+      "flo-wall"
     ],
-    "media": ["flo-business-card","flo-wall"],
     "tags": [
       "Print",
       "Digital",
@@ -171,9 +167,6 @@
         "id": "integrations-supports",
         "eyebrow": "01 · Supports de communication",
         "title": "Décliner votre identité",
-        "text": [
-          "Des supports imprimés et digitaux cohérents, pensés pour vos usages et votre public."
-        ],
         "meta": [
           {
             "label": "Peut inclure",
@@ -193,15 +186,13 @@
         "links": [
           "evolve-website"
         ],
-        "surface": "subtle"
+        "surface": "subtle",
+        "subtitle": "Des supports imprimés et digitaux cohérents, pensés pour vos usages et votre public."
       },
       {
         "id": "integrations-motion",
         "eyebrow": "02 · Templates & motion",
         "title": "Faire évoluer vos contenus",
-        "text": [
-          "Des formats réutilisables ou animés pour faire vivre votre identité au fil de vos communications."
-        ],
         "meta": [
           {
             "label": "Peut inclure",
@@ -220,8 +211,10 @@
         "links": [
           "evolve-website"
         ],
-        "surface": "soft"
+        "surface": "soft",
+        "subtitle": "Des formats réutilisables ou animés pour faire vivre votre identité au fil de vos communications."
       }
-    ]
+    ],
+    "subtitle": "Je décline votre identité sur les **supports qui comptent pour votre activité**, pour une communication cohérente à chaque point de contact."
   }
 ]
