@@ -27,6 +27,23 @@
     @include type-lead;
     margin: 0;
   }
+  // Shared editorial introductions; variants control type, not page layouts.
+  &--subtitle-editorial,
+  &--subtitle-editorial-responsive {
+    .textBlock__subtitle p {
+      @include type-heading-md;
+    }
+    .textBlock__subtitle .textBlock__copy {
+      opacity: $opacity-muted;
+    }
+  }
+
+  @include desktop-down {
+    &--subtitle-editorial-responsive .textBlock__subtitle p {
+      @include type-body;
+    }
+  }
+
   &__subtitle strong,
   &__content strong {
     font: inherit;
