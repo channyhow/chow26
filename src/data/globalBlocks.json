@@ -565,20 +565,22 @@
     "content": {
       "header": {
         "eyebrow": "404 | Page introuvable",
-        "title": "Cette page n’est plus ici.",
+        "title": "Cette page n’existe pas.",
         "text": [
-          "Revenez à l’accueil ou poursuivez avec les projets du studio."
+          "Le lien a peut-être changé. Vous pouvez revenir à l’accueil ou découvrir mes projets."
         ],
         "links": [
           {
             "label": "Retour à l’accueil",
             "href": "/",
-            "intent": "navigate"
+            "intent": "navigate",
+            "variant": "arrow"
           },
           {
             "label": "Voir les projets",
             "href": "/projets",
-            "intent": "navigate"
+            "intent": "navigate",
+            "variant": "arrow"
           }
         ]
       }
