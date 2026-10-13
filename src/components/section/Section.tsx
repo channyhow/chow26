@@ -227,7 +227,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         enabled={sectionMotionEnabled}
         progress={scrollProgress}
       >
-        <Media media={item} sizes="(min-width: 64rem) 42vw, 100vw" />
+        <Media media={item} priority sizes="(min-width: 64rem) 42vw, 100vw" />
       </ScrollScene>
     );
     if (isProjectStoryMedia) {
