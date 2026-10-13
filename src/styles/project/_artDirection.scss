@@ -63,17 +63,6 @@
   --section-space: var(--project-section-space-compact);
 }
 
-@include mobile-down {
-  /* Non-featured project headings intentionally use the full mobile measure
-     instead of Section's generic heading measure. */
-  .section[data-source="projects"]:not([data-featured="true"])
-    .section__header.textBlock
-    .textBlock__title,
-  #project-gallery .textBlock__header .textBlock__title {
-    max-width: none;
-  }
-}
-
 /* Legal documents share one editorial hierarchy: generous title scale,
    unrestricted measure and no card inset. This remains a project-level
    exception because it describes a content family rather than a component. */
@@ -89,21 +78,12 @@
     margin-top: $space-4;
 
     .textBlock__title {
-  @include type-heading-xl;
-      max-width: none;
-    }
-
-    .textBlock__content {
-      max-width: none;
+      @include type-heading-xl;
     }
   }
 
   .grid {
     grid-template-columns: 1fr;
-
-    .textBlock {
-      max-width: none;
-    }
   }
 
   .card__body {
