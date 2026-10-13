@@ -31,14 +31,6 @@
     transition: transform $transition-reveal;
   }
 
-  .textBlock__subtitle p {
-    @include type-body;
-  }
-
-  .textBlock__meta {
-    @include type-body-sm;
-  }
-
   @include hover {
     .media__asset {
       transform: scale(1.02);
