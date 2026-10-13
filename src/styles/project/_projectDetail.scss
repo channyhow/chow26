@@ -72,38 +72,6 @@
   }
 }
 
-.projectHero__meta .textBlock__meta > * {
-  display: grid;
-  min-width: 0;
-  grid-template-columns: minmax(0, 1fr);
-  gap: $space-1;
-  align-content: start;
-  color: inherit;
-  text-decoration: none;
-}
-
-.projectHero__meta .textBlock__metaLabel {
-  display: block;
-  color: $gray-500;
-}
-
-.projectHero__meta .textBlock__metaValue {
-  display: block;
-  overflow-wrap: anywhere;
-}
-
-.projectHero__meta .textBlock__externalArrow {
-  display: inline;
-  white-space: nowrap;
-  margin-inline-start: 0.4em;
-}
-
-.projectHero__meta a:hover .textBlock__metaValue,
-.projectHero__meta a:focus-visible .textBlock__metaValue {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
 .projectStoryMedia,
 .projectStoryText {
   --section-space: 0;
