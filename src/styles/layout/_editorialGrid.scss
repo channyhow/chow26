@@ -27,9 +27,9 @@
   > .section__inner > .studioServiceGrid { grid-column: 1 / -1; width: 100%; }
 
   .studioServiceGrid {
+    > [data-editorial-area="description"] .textBlock__subtitle p { @include type-body; }
     > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
     > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
-    > [data-editorial-area="description"] .textBlock__subtitle p { @include type-heading-md; }
     > [data-editorial-area="description"] .textBlock__subtitle .textBlock__copy { opacity: $opacity-muted; }
   }
 
