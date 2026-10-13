@@ -172,9 +172,8 @@
 }
 
 /* Story alternation is handled by EditorialGrid placements in Section.tsx. */
-.projectStoryMedia .textBlock,
-.projectStoryText .textBlock {
-  width: 100%;
+.projectStoryMedia__composition > [data-editorial-area="description"],
+.projectStoryText .section__inner > .textBlock {
   max-width: var(--project-reading-measure);
 }
 
