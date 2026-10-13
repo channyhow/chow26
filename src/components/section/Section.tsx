@@ -153,7 +153,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} subtitleVariant="hero" className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
     const projectIdentity = header?.title ? <TextBlock content={{ title: header.title }} titleAs="h1" titleVariant="hero" className="projectHero__identity" motionEnabled={sectionMotionEnabled} /> : null;
     const projectMedia = media ? <Media media={media} className="projectHero__media" sizes="(min-width: 64rem) 100vw, 100vw" /> : null;
-    const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
+    const projectMeta = header?.meta ? <TextBlock content={{ meta: header.meta }} metaVariant="project" className="projectHero__meta" motionEnabled={sectionMotionEnabled} /> : null;
     body = <EditorialGrid className="projectHero__composition">
       {projectStatement ? <EditorialGridItem area="heading" className="projectHero__statement">{projectStatement}</EditorialGridItem> : null}
       {projectIdentity ? <EditorialGridItem area="title" className="projectHero__identity">{projectIdentity}</EditorialGridItem> : null}
