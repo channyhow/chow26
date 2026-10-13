@@ -90,12 +90,18 @@
   }
 
   #project-gallery > .section__inner {
-    padding-top: calc(#{$header-height} + #{$mobile-section-space});
+    padding-top: calc(#{$header-height} + #{$space-3});
     padding-bottom: $mobile-section-space;
   }
 
   #project-gallery .section__header {
-    margin-bottom: $mobile-section-space;
+    margin-bottom: $margin-group;
+  }
+
+  // On narrow screens the archive introduction should lead into the work,
+  // rather than occupying nearly the whole first viewport.
+  #project-gallery .section__header .textBlock__title {
+    @include type-heading-md;
   }
 
   #project-gallery .gridReveal {
