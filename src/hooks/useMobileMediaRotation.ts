@@ -7,7 +7,7 @@ export function useMobileMediaRotation(count: number, interval = 4500) {
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const viewport = window.matchMedia("(max-width: 63.99rem)");
+    const viewport = window.matchMedia("(max-width: 47.99rem)");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setEnabled(viewport.matches && !reduced.matches);
     update();
