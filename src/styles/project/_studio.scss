@@ -184,20 +184,10 @@
   }
 }
 
-// Founder: full-width editorial copy followed by a small image at the grid edge.
+// Founder: five-column copy followed by a small image at the grid edge.
 .section.section--founder {
   .sectionEditorialGrid {
     row-gap: $space-6;
-  }
-
-  // The editorial column, not the former Split wrapper, sets copy width.
-  .sectionEditorialGrid > [data-editorial-area="description"] {
-    .section__splitTextMotion,
-    .textBlock,
-    .textBlock__content {
-      width: 100%;
-      max-width: none;
-    }
   }
 
   .sectionEditorialGrid > [data-editorial-area="media"] {
@@ -211,11 +201,6 @@
     aspect-ratio: $ratio-square;
   }
 
-  @include desktop-up {
-    .sectionEditorialGrid > [data-editorial-area="media"] {
-      grid-column: 10 / span 3;
-    }
-  }
 }
 
 // Depth only where Studio's successive service panels overlap.
