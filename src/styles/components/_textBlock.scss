@@ -49,6 +49,14 @@
     }
   }
 
+  &--title-hero .textBlock__title {
+    @include type-heading-xl;
+  }
+
+  &--subtitle-hero .textBlock__subtitle p {
+    @include type-heading-xl;
+  }
+
   &__subtitle p {
     @include type-lead;
     margin: 0;
