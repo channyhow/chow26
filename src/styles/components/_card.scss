@@ -31,6 +31,17 @@
     transition: transform $transition-reveal;
   }
 
+  // Card-specific type scale stays scoped to cards, not every TextBlock.
+  > .card__body.textBlock .textBlock__subtitle p,
+  > .card__split .card__body.textBlock .textBlock__subtitle p {
+    @include type-body;
+  }
+
+  > .card__body.textBlock .textBlock__meta,
+  > .card__split .card__body.textBlock .textBlock__meta {
+    @include type-body-sm;
+  }
+
   @include hover {
     .media__asset {
       transform: scale(1.02);
