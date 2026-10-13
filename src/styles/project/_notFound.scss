@@ -30,14 +30,11 @@
 
 #not-found-default .textBlock {
   width: min(100%, 56rem);
-  max-width: none;
   margin-inline: auto;
   justify-items: center;
   gap: clamp(#{$space-3}, 4vw, #{$space-4});
   text-align: center;
 }
-
-#not-found-default .textBlock__header { width: 100%; }
 
 #not-found-default .textBlock__title {
   max-width: 16ch;
@@ -50,7 +47,6 @@
 }
 
 #not-found-default .textBlock__footer {
-  width: 100%;
   padding-top: 0;
   justify-items: center;
 }
