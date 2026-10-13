@@ -249,7 +249,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       </EditorialGrid>;
     } else if (block.className?.split(/\s+/).includes("section--founder") || block.id === "contact-default") {
       body = <EditorialGrid className={clsx("sectionEditorialGrid", block.id === "contact-default" ? "sectionEditorialGrid--contact" : "sectionEditorialGrid--founder")}>
-        {primary ? <EditorialGridItem area="description" preset={block.id === "contact-default" ? "left" : "full"}>{textContent}</EditorialGridItem> : null}
+        {primary ? <EditorialGridItem area="description" preset="left">{textContent}</EditorialGridItem> : null}
         {mediaContent ? <EditorialGridItem area="media" preset={block.id === "contact-default" ? "right" : undefined} placement={block.id === "contact-default" ? undefined : { start: 10, span: 3 }}>{mediaContent}</EditorialGridItem> : null}
       </EditorialGrid>;
     } else if (isStudioService && splitItem) {
