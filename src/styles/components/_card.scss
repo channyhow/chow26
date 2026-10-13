@@ -152,24 +152,11 @@
     color: $gray-500;
   }
 
-  // Muting belongs to individual text elements, not the card container.
-  .textBlock:not(.textBlock--meta-specs) {
+  // Service offer metadata is an explicit TextBlock variant.
+  .textBlock--meta-offer {
     .textBlock__meta {
       margin-top: auto;
       padding-top: $padding-group;
-      gap: $margin-content;
-    }
-
-    .textBlock__meta > * {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .textBlock__metaLabel {
-      display: none;
-    }
-
-    .textBlock__meta > *:last-child .textBlock__metaValue {
-      color: $gray-500;
     }
   }
 
