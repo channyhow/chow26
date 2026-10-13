@@ -155,9 +155,8 @@
   .media__frame { width: 100%; }
 }
 
-// Paired service composition: second mockup beside offer controls,
-// then the selected offer details across the full twelve-column grid.
-// Flatten only layout wrappers; interactive content keeps its DOM order.
+// Paired service: the offer remains a real grid container. Subgrid aligns
+// its regions with the parent twelve columns without flattening DOM wrappers.
 @include desktop-up {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > .studioServiceGrid__secondMedia {
@@ -165,44 +164,39 @@
       grid-column: 1 / span 5;
       grid-row: 3;
       align-self: start;
+      z-index: 1;
     }
 
-    // Mobile rotation state must never suppress either desktop mockup.
     > .studioServiceGrid__rotatingMedia .studioServiceGrid__rotatingFrame {
       display: block;
       visibility: visible;
     }
 
-    > [data-editorial-area="offers"],
-    > [data-editorial-area="offers"] > .offerComposition {
-      display: contents;
+    > [data-editorial-area="offers"] {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 3;
+      grid-template-columns: subgrid;
+      min-width: 0;
     }
 
     > [data-editorial-area="offers"] > .offerComposition {
-      > [data-editorial-area="navigation"] {
-        grid-column: 7 / span 5;
-        grid-row: 3;
-      }
-      > [data-editorial-area="heading"] {
-        grid-column: 7 / span 5;
-        grid-row: 4;
-      }
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: subgrid;
+
+      > [data-editorial-area="navigation"],
+      > [data-editorial-area="heading"],
       > [data-editorial-area="description"] {
         grid-column: 7 / span 5;
-        grid-row: 5;
       }
-      > [data-editorial-area="deliverables"] {
-        grid-column: 1 / -1;
-        grid-row: 6;
-      }
-      > [data-editorial-area="price"] {
-        grid-column: 1 / -1;
-        grid-row: 7;
-      }
-      > [data-editorial-area="action"] {
-        grid-column: 1 / -1;
-        grid-row: 8;
-      }
+
+      > [data-editorial-area="navigation"] { grid-row: 1; }
+      > [data-editorial-area="heading"] { grid-row: 2; }
+      > [data-editorial-area="description"] { grid-row: 3; }
+      > [data-editorial-area="deliverables"] { grid-column: 1 / -1; grid-row: 4; }
+      > [data-editorial-area="price"] { grid-column: 1 / -1; grid-row: 5; }
+      > [data-editorial-area="action"] { grid-column: 1 / -1; grid-row: 6; }
     }
   }
 }
