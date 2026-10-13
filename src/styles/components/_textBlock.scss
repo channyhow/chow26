@@ -21,6 +21,8 @@
   }
   &__title {
     @include type-heading-sm;
+    width: 100%;
+    max-width: none;
     margin: 0;
   }
   &__subtitle p {
