@@ -52,10 +52,6 @@
   aspect-ratio: $ratio-wide;
 }
 
-.projectHero__meta {
-  grid-column: 1 / -1;
-}
-
 .projectHero__meta .textBlock__meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
