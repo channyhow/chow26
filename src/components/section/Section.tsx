@@ -162,7 +162,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     </EditorialGrid>;
   } else if (isHomeContact && header) {
     const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet", "media") : null;
-    const contactStory = motionLayer(<TextBlock content={header} motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet", "editorial-text");
+    const contactStory = motionLayer(<TextBlock content={header} titleVariant="contact" motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet", "editorial-text");
     body = <article className="homeEditorialComposition homeContact__composition"><div className="homeContact__index" aria-hidden="true">Contact</div>{contactStory}{contactMedia}</article>;
   } else if (isHomeOpenCall && header) {
     const openCallMedia = media ? <div className="homeOpenCall__media">{motionLayer(<Media media={media} sizes="(min-width: 64rem) 22vw, (min-width: 48rem) 30vw, 100vw" />, "reverse", "homeOpenCall__mediaMotion", "default", "media")}</div> : null;
@@ -170,7 +170,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       eyebrow: header.eyebrow,
       text: header.text,
     };
-    const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} motionEnabled={false} /></div>;
+    const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} titleVariant="display" motionEnabled={false} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" copyVariant="prominent" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
     const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
@@ -181,7 +181,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       meta: splitItem.meta,
       links: header?.projectLinks,
     };
-    const featuredStoryLayer = motionLayer(<TextBlock content={featuredStory} motionEnabled={sectionMotionEnabled} />, "forward", "homeFeaturedProject__story", "quiet", "editorial-text");
+    const featuredStoryLayer = motionLayer(<TextBlock content={featuredStory} titleVariant="feature" motionEnabled={sectionMotionEnabled} />, "forward", "homeFeaturedProject__story", "quiet", "editorial-text");
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
