@@ -244,7 +244,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     } else if (block.className?.split(/\s+/).includes("section--founder") || block.id === "contact-default") {
       body = <EditorialGrid className={clsx("sectionEditorialGrid", block.id === "contact-default" ? "sectionEditorialGrid--contact" : "sectionEditorialGrid--founder")}>
         {primary ? <EditorialGridItem area="description" placement={{ start: 1, span: block.id === "contact-default" ? 5 : 12 }}>{textContent}</EditorialGridItem> : null}
-        {mediaContent ? <EditorialGridItem area="media" placement={{ start: block.id === "contact-default" ? 8 : 10, span: block.id === "contact-default" ? 5 : 3 }}>{mediaContent}</EditorialGridItem> : null}
+        {mediaContent ? <EditorialGridItem area="media" placement={{ start: block.id === "contact-default" ? 7 : 10, span: block.id === "contact-default" ? 5 : 3 }}>{mediaContent}</EditorialGridItem> : null}
       </EditorialGrid>;
     } else if (isStudioService && splitItem) {
       // Distinct semantic grid items keep text visible and independent of
@@ -255,7 +255,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
           {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__rotatingMedia" placement={{ start: 1, span: 5 }}><div className="studioServiceGrid__rotatingFrame" data-active={serviceRotation.active === 0 ? "true" : "false"}>{studioServiceMedia(studioMediaItems[0])}</div></EditorialGridItem> : <EditorialGridItem area="media" placement={{ start: 1, span: 5 }}>{studioMediaItems[0] ? studioServiceMedia(studioMediaItems[0]) : studioMedia}</EditorialGridItem>}
-          <EditorialGridItem area="description" placement={{ start: 7, span: 6 }}>{description}</EditorialGridItem>
+          <EditorialGridItem area="description" placement={{ start: 7, span: 5 }}>{description}</EditorialGridItem>
           {studioMediaItems.length > 1 ? <EditorialGridItem area="media" className="studioServiceGrid__secondMedia studioServiceGrid__rotatingMedia" placement={{ start: 1, span: 5 }}><div className="studioServiceGrid__rotatingFrame" data-active={serviceRotation.active === 1 ? "true" : "false"}>{studioServiceMedia(studioMediaItems[1], "forward")}</div></EditorialGridItem> : null}
           {offerGrid ? <EditorialGridItem area="offers">{offerGrid}</EditorialGridItem> : null}
         </EditorialGrid>
