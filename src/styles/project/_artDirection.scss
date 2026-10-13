@@ -27,31 +27,25 @@
   --carousel-media-ratio: #{$ratio-landscape};
 }
 
-/* Conversion section: asymmetry creates hierarchy without adding containers
-   or decorative separation. */
+/* Contact: editorial grid controls copy and media columns.
+   DOM order remains text first, then media on narrow screens. */
 #contact-default {
   min-height: 100svh;
-  --split-primary-column: 1 / span 5;
-  --split-secondary-column: 8 / -1;
 
-  .split {
+  .sectionEditorialGrid {
     align-items: start;
+  }
 
-    .split__primary {
-      align-self: start;
+  @include desktop-up {
+    .sectionEditorialGrid > [data-editorial-area="media"] {
       margin-top: clamp(#{$space-4}, 10vh, #{$space-6});
     }
   }
 
-  /* Establish context before asking for input on tablet and mobile while
-     leaving the shared Split reading order untouched. */
   @include desktop-down {
-    .split > [data-split-role="content"] {
-      grid-row: 1;
-    }
-
-    .split > [data-split-role="media"] {
-      grid-row: 2;
+    .sectionEditorialGrid > [data-editorial-area="description"],
+    .sectionEditorialGrid > [data-editorial-area="media"] {
+      grid-column: 1 / -1;
     }
   }
 }
