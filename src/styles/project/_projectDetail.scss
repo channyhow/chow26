@@ -61,9 +61,6 @@
   max-width: none;
   margin: $space-2 0 0;
   --radius-media: #{$radius-none};
-}
-
-.projectHero__media {
   --media-ratio: #{$ratio-wide};
 }
 
@@ -83,7 +80,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
   column-gap: var(--grid-gutter);
   align-items: start;
 }
@@ -98,16 +95,12 @@
 }
 
 .projectHero__meta .textBlock__metaLabel {
-  // @include type-meta;
   display: block;
   color: $gray-500;
 }
 
 .projectHero__meta .textBlock__metaValue {
   display: block;
-}
-
-.projectHero__meta .textBlock__metaValue {
   overflow-wrap: anywhere;
 }
 
@@ -241,8 +234,6 @@
   .projectDetail {
     --project-reading-measure: 27rem;
   }
-
-
 }
 
 @media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 0.01rem)) {
@@ -276,13 +267,10 @@
   }
 
   .projectStoryText .textBlock {
+    grid-column: 1 / -1;
     width: 100%;
     max-width: none;
     margin: 0;
-  }
-
-  .projectStoryText .textBlock {
-    grid-column: 1 / -1;
   }
 
   .projectHero__meta .textBlock__meta {
