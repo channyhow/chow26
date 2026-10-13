@@ -138,22 +138,6 @@
   grid-column: 2 / span 7;
 }
 
-.projectStoryMedia .textBlock__content,
-.projectStoryText .textBlock__content {
-  gap: $space-3;
-}
-
-/* A text-only beat can act as the article's editorial statement. */
-.projectStoryText .textBlock__content > :first-child {
-  @include type-heading-md;
-  max-width: 34ch;
-}
-
-.projectStoryMedia strong,
-.projectStoryText strong {
-  font-weight: $font-weight-strong;
-}
-
 .projectRelated {
   --section-space: #{$section-space};
 }
@@ -225,10 +209,6 @@
 
   .projectStoryText .textBlock {
     grid-column: 1 / -1;
-  }
-
-  .projectStoryText .textBlock__content > :first-child {
-    @include type-heading-sm;
   }
 
   .projectHero__meta .textBlock__meta {
