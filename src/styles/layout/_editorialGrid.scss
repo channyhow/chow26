@@ -30,6 +30,7 @@
     > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
     > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
     > [data-editorial-area="description"] .textBlock__subtitle p { @include type-heading-md; }
+    > [data-editorial-area="description"] .textBlock__subtitle .textBlock__copy { opacity: $opacity-muted; }
   }
 
   @include desktop-up {
@@ -111,6 +112,9 @@
   .textBlock__title { @include type-heading-md; }
   > [data-editorial-area="description"] .textBlock__subtitle p {
     @include type-heading-md;
+  }
+  > [data-editorial-area="description"] .textBlock__subtitle .textBlock__copy {
+    opacity: $opacity-muted;
   }
 
   &__spec {
