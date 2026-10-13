@@ -35,8 +35,6 @@
 
 .projectHero__statement .textBlock__subtitle p {
   @include type-heading-xl;
-  margin: 0;
-
 }
 
 .projectHero__identity {
@@ -45,7 +43,6 @@
 
 .projectHero__identity .textBlock__title {
   @include type-heading-xl;
-  margin: 0;
   color: $gray-500;
 }
 
@@ -175,13 +172,6 @@
 .projectStoryMedia__composition > [data-editorial-area="description"],
 .projectStoryText .section__inner > .textBlock {
   max-width: var(--project-reading-measure);
-}
-
-.projectStoryMedia .media {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  --radius-media: #{$radius-none};
 }
 
 .projectStoryText .section__inner {
