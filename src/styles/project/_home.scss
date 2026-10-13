@@ -145,13 +145,7 @@
 }
 
 .homeOpeningScene__statement {
-  --text-width: none;
   width: 100%;
-
-  .textBlock__title {
-    @include type-heading-xl;
-    font-weight: $font-weight-medium;
-  }
 
   .textBlock__content {
     margin-top: $margin-block;
@@ -249,13 +243,6 @@
 }
 
 .homeContact__story {
-  --text-width: none;
-
-  .textBlock__title {
-    @include type-heading-lg;
-    line-height: 1;
-  }
-
   .textBlock__content {
     max-width: 34rem;
   }
@@ -295,9 +282,6 @@
     @include type-display-lg;
   }
 
-  .homeContact__story .textBlock__title {
-    @include type-heading-md;
-  }
 }
 
 /* Home has two structural moments: the immersive opening and one continuous
@@ -346,13 +330,7 @@
 }
 
 .homeOpenCall__statement {
-  --text-width: none;
   margin-bottom: $margin-block;
-  .textBlock__title {
-    @include type-heading-xl;
-
-  }
-
 }
 
 .homeOpenCall__media {
@@ -471,10 +449,7 @@
   }
 
   .textBlock__title {
-    @include type-heading-lg;
     max-width: 16ch;
-    font-weight: $font-weight-medium;
-    line-height: 1;
   }
 
   .textBlock__content {
