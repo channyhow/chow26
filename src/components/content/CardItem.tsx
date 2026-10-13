@@ -14,6 +14,7 @@ export type CardItemProps = {
   effect?: CardEffect;
   className?: string;
   variant?: CardVariant;
+  metaVariant?: "default" | "rows" | "specs";
 };
 
 function getProjectMission(item: ContentItem) {
@@ -35,6 +36,7 @@ export function CardItem({
   effect = "none",
   className,
   variant = "default",
+  metaVariant,
 }: CardItemProps) {
   const mediaRef = Array.isArray(item.media) ? item.media[0] : item.media;
   const media = resolveMedia(mediaRef);
@@ -61,7 +63,7 @@ export function CardItem({
       content={visibleItem}
       titleAs="h3"
       className="card__body"
-      metaVariant={isService ? "rows" : "default"}
+      metaVariant={metaVariant ?? (isService ? "rows" : "default")}
     />
   );
 
