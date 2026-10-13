@@ -16,6 +16,8 @@
 
 .linkPage__campaign .section__inner {
   width: min(100%, #{$container-max});
+  align-content: start;
+  padding-block: $space-4;
 }
 
 .linkPage__campaign .section__header.textBlock {
@@ -110,6 +112,7 @@
     grid-template-columns: 1fr;
     align-content: start;
     align-items: start;
+    row-gap: $space-3;
   }
 
   .linkPage__campaign .textBlock__header,
@@ -120,12 +123,16 @@
   }
 
   .linkPage__campaign .textBlock__footer {
-    margin-top: $margin-block;
+    margin-top: 0;
     padding-top: 0;
   }
 }
 
 @include mobile-down {
+  .linkPage__campaign .section__inner {
+    padding-block: $space-3;
+  }
+
   .linkPage__campaign .actions__link {
     padding-block: $padding-content;
   }
