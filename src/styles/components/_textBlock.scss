@@ -20,8 +20,8 @@
     margin: 0;
   }
   &__title {
-@include type-heading-sm;    margin: 0;
-    // text-wrap: balance;
+    @include type-heading-sm;
+    margin: 0;
   }
   &__subtitle p {
     @include type-lead;
@@ -47,7 +47,7 @@
     }
 
     .textBlock__copy {
-      opacity:$opacity-muted;
+      opacity: $opacity-muted;
     }
   }
   &__footer {
