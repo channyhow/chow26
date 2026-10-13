@@ -68,9 +68,10 @@
       margin: 0;
     }
 
-    .textBlock__copy {
-      opacity: $opacity-muted;
-    }
+  }
+  &--copy-muted .textBlock__content .textBlock__copy,
+  &--copy-prominent .textBlock__content .textBlock__copy {
+    opacity: $opacity-muted;
   }
   &__footer {
     gap: $flow-default;
