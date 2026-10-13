@@ -298,7 +298,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
-    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" copyVariant={isProjectStoryText ? "story-lead" : "default"} motionEnabled={sectionMotionEnabled} /> : null, "forward")}{block.id === "linkpage-navigation" ? <LinkProjectRotation /> : null}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" copyVariant={isProjectStoryText ? "story-lead" : "default"} betweenGroups={block.id === "linkpage-navigation" ? <LinkProjectRotation /> : undefined} motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
   const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
