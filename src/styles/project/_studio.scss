@@ -53,26 +53,6 @@
   }
 
   .section__offers .card--service {
-    // Deliverables read as editorial information, not bordered chips.
-    .textBlock__metaList {
-      display: grid;
-      gap: $space-1;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .textBlock__metaListItem {
-      width: auto;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      font: inherit;
-    }
-
-  }
-
-  .section__offers .card--service {
     height: auto;
     min-width: 0;
     padding: 0;
@@ -136,41 +116,7 @@
     hyphens: none;
   }
 
-  // Shared specification rows: clear labels, one quiet separator per group.
-  .section__offers .card--service {
-    .textBlock__meta {
-      display: grid;
-      gap: 0;
-      width: 100%;
-      margin-top: $margin-content;
-      padding-top: 0;
-    }
 
-    .textBlock__meta > * {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
-      align-items: start;
-      gap: $margin-content;
-      padding-block: $space-2;
-      border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
-    }
-
-    .textBlock__metaLabel {
-      display: block;
-      color: $gray-700;
-      font-weight: $font-weight-regular;
-    }
-
-    .textBlock__metaValue,
-    .textBlock__meta > *:last-child .textBlock__metaValue {
-      color: inherit;
-      opacity: 1;
-    }
-
-    .textBlock__metaListItem {
-      line-height: inherit;
-    }
-  }
 }
 
 [data-page-id="studio"] #approach-default {
@@ -235,16 +181,6 @@
   }
   [data-page-id="studio"] .section__offerGrid {
     grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-// Stack specification rows when two readable columns no longer fit.
-@include tablet-down {
-  [data-page-id="studio"] .section--collection-panel {
-    .section__offers .card--service .textBlock__meta > * {
-      grid-template-columns: minmax(0, 1fr);
-      gap: $space-1;
-    }
   }
 }
 
