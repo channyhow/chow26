@@ -17,7 +17,7 @@
 .linkPage__campaign .section__inner {
   width: min(100%, #{$container-max});
   align-content: start;
-  padding-block: $space-4;
+  padding-block: calc(#{$header-height} + #{$space-3}) $space-4;
 }
 
 .linkPage__campaign .section__header.textBlock {
@@ -130,7 +130,7 @@
 
 @include mobile-down {
   .linkPage__campaign .section__inner {
-    padding-block: $space-3;
+    padding-block: calc(#{$header-height} + #{$space-2}) $space-3;
   }
 
   .linkPage__campaign .actions__link {
@@ -145,10 +145,7 @@
 }
 
 // Project media belongs between the two copy groups.
-.linkPage__rotation { display: none; }
-
-@include desktop-up {
-  .linkPage__rotation {
+.linkPage__rotation {
     display: block;
     position: relative;
     width: 100%;
@@ -170,7 +167,6 @@
       height: 100%;
     }
     .media__frame { aspect-ratio: $ratio-wide; }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
