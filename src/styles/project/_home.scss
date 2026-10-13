@@ -419,16 +419,6 @@
   }
 }
 
-@include reduced-motion {
-  [data-page-id="home"] .page__content * {
-    scroll-behavior: auto;
-  }
-
-  .homeOpeningScene__mediaMotion {
-    transform: none !important;
-  }
-}
-
 /* Featured project - image and statement form one editorial group. */
 .homeFeaturedProject {
   .section__inner {
