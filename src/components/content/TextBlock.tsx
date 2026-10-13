@@ -6,7 +6,7 @@ import { Actions, type ActionsProps } from "@/components/navigation/Actions";
 import { motionConfig, revealContainer, revealItem } from "@/motion/config";
 import type { ContentItem } from "@/types/content";
 
-export type TextBlockProps = { content: ContentItem; as?: "article" | "div"; titleAs?: "h1" | "h2" | "h3" | "h4"; className?: string; actionsVariant?: ActionsProps["variant"]; metaVariant?: "default" | "rows" | "specs" | "offer" | "project"; subtitleVariant?: "default" | "editorial" | "editorial-responsive" | "hero"; copyVariant?: "default" | "muted" | "prominent" | "story" | "story-lead"; titleVariant?: "default" | "display" | "feature" | "contact" | "hero"; motionEnabled?: boolean; };
+export type TextBlockProps = { content: ContentItem; as?: "article" | "div"; titleAs?: "h1" | "h2" | "h3" | "h4"; className?: string; actionsVariant?: ActionsProps["variant"]; metaVariant?: "default" | "rows" | "specs" | "offer" | "project"; subtitleVariant?: "default" | "editorial" | "editorial-responsive" | "hero"; copyVariant?: "default" | "muted" | "prominent" | "story" | "story-lead"; titleVariant?: "default" | "display" | "feature" | "contact" | "hero"; motionEnabled?: boolean; betweenGroups?: ReactNode; };
 
 const toArray = <T,>(value?: T | T[]): T[] => !value ? [] : Array.isArray(value) ? value : [value];
 const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
@@ -18,7 +18,7 @@ const renderInlineStrong = (value: string): ReactNode[] => value.split(/(\*\*[^*
 const motionRoots = { article: motion.article, div: motion.div };
 const motionTitles = { h1: motion.h1, h2: motion.h2, h3: motion.h3, h4: motion.h4 };
 
-export function TextBlock({ content, as = "div", titleAs = "h2", className, actionsVariant = "default", metaVariant = "default", subtitleVariant = "default", copyVariant = "default", titleVariant = "default", motionEnabled = true }: TextBlockProps) {
+export function TextBlock({ content, as = "div", titleAs = "h2", className, actionsVariant = "default", metaVariant = "default", subtitleVariant = "default", copyVariant = "default", titleVariant = "default", motionEnabled = true, betweenGroups }: TextBlockProps) {
   const Root = motionRoots[as];
   const Title = motionTitles[titleAs];
   const subtitles = toArray(content.subtitle).filter(Boolean);
@@ -40,7 +40,7 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className, acti
         {content.title ? <Title className="textBlock__title" {...itemMotionProps}>{content.title}</Title> : null}
         {subtitles.length ? <motion.div className="textBlock__subtitle" {...containerMotionProps}>{subtitles.map((subtitle) => <motion.p key={subtitle} {...itemMotionProps}>{renderInlineStrong(subtitle)}</motion.p>)}</motion.div> : null}
       </motion.header> : null}
-      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <motion.div className="textBlock__group" key={`group-${groupIndex}`} {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>)}</motion.div> : null}
+      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <div className="textBlock__groupSlot" key={`group-${groupIndex}`}><motion.div className="textBlock__group" {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>{groupIndex === 0 ? betweenGroups : null}</div>)}</motion.div> : null}
       {hasMeta ? <motion.div className="textBlock__meta" {...containerMotionProps}>{content.meta?.map((item) => {
         const metaContent = <><span className="textBlock__metaLabel">{item.label}</span>{Array.isArray(item.value) ? <ul className="textBlock__metaList">{item.value.map((value, index) => <li className="textBlock__metaListItem" key={`${value}-${index}`}>{value}</li>)}</ul> : item.value ? <span className="textBlock__metaValue">{item.value}{item.href && isExternalHref(item.href) ? <span className="textBlock__externalArrow" aria-hidden="true">↗</span> : null}</span> : null}</>;
         if (item.href) { const external = isExternalHref(item.href); return <motion.a key={`${item.label}-${item.href}`} href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} {...itemMotionProps}>{metaContent}</motion.a>; }
