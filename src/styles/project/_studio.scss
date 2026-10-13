@@ -77,30 +77,35 @@
     min-width: 0;
 
     button {
-      cursor: pointer;
+      @include editorial-control-row(0%);
+      @include type-body;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       align-items: baseline;
       justify-items: start;
-      text-align: left;
       gap: $space-2;
-      width: 100%;
-      min-height: $control-min-height;
-      padding: $space-1 0;
-      border: 0;
-      border-bottom: 1px solid transparent;
-      background: transparent;
+      border-bottom-color: transparent;
       color: $gray-500;
-
-      @include type-body;
+      cursor: pointer;
+      transition: color $transition-hover, border-color $transition-hover;
 
       &[aria-pressed="true"] {
         color: inherit;
         border-bottom-color: currentColor;
       }
 
+      @include hover {
+        color: $color-special;
+        border-bottom-color: currentColor;
+      }
+
       &:focus-visible {
-        @include focus-ring;
+        color: $color-special;
+        border-bottom-color: currentColor;
+      }
+
+      &:active {
+        color: $color-primary;
       }
     }
   }
