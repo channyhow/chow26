@@ -464,7 +464,7 @@
 }
 
 .homeFeaturedProject__story {
-  max-width: 46rem;
+  min-width: 0;
 
   .textBlock__header {
     gap: $flow-default;
