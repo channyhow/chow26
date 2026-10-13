@@ -147,7 +147,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     });
     body = <div className="studioIntro__composition">
       <StudioIntroMedia items={introItems} />
-      {header ? <div className="studioIntro__story"><TextBlock content={{ text: header.text, links: header.links }} className="studioIntro__details" motionEnabled={sectionMotionEnabled} /></div> : null}
+      {header ? <div className="studioIntro__story"><TextBlock content={{ subtitle: header.subtitle, text: header.text, links: header.links }} subtitleVariant="editorial" className="studioIntro__details" motionEnabled={sectionMotionEnabled} /></div> : null}
     </div>;
   } else if (isProjectHero) {
     const projectStatement = header?.subtitle ? <TextBlock content={{ subtitle: header.subtitle }} className="projectHero__statement" motionEnabled={sectionMotionEnabled} /> : null;
