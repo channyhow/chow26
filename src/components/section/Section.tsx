@@ -214,7 +214,6 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const textLayer = isHomePreview ? motionLayer(primary, "forward", "section__homePreviewTextMotion", "quiet", "editorial-text") : primary;
     const mediaContent = mediaLayer ? <div className="section__splitMediaMotion">{mediaLayer}</div> : null;
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
-    const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
     const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" metaVariant="specs" />)}</div> : null;
     // Parallax stays inside each grid cell; placement belongs to EditorialGrid.
@@ -267,7 +266,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         </EditorialGrid>
       );
     } else {
-      body = <>{splitComposition}{region(offerGrid, "section__offers")}</>;
+      body = <><Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />{region(offerGrid, "section__offers")}</>;
     }
   } else if (isProfileGrid) {
     const profile = items[0];
