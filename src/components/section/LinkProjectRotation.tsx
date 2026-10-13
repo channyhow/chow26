@@ -11,13 +11,12 @@ export function LinkProjectRotation() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 64rem)");
     let timer: number | undefined;
 
     const sync = () => {
       window.clearInterval(timer);
       timer = undefined;
-      if (reducedMotion.matches || !desktop.matches || document.hidden) {
+      if (reducedMotion.matches || document.hidden) {
         setActive(0);
         return;
       }
@@ -28,12 +27,10 @@ export function LinkProjectRotation() {
 
     sync();
     reducedMotion.addEventListener("change", sync);
-    desktop.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);
     return () => {
       window.clearInterval(timer);
       reducedMotion.removeEventListener("change", sync);
-      desktop.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
   }, []);
@@ -41,7 +38,7 @@ export function LinkProjectRotation() {
   return <div className="linkPage__rotation" aria-hidden="true">
     {frames.map((frame, index) => (
       <div className="linkPage__rotationFrame" key={frame.id} data-active={index === active}>
-        <Media media={frame} priority={index === 0} sizes="(min-width: 64rem) 32vw, 1px" />
+        <Media media={frame} priority={index === 0} sizes="(min-width: 64rem) 32vw, 90vw" />
       </div>
     ))}
   </div>;
