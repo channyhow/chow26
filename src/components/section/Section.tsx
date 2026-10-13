@@ -216,7 +216,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const textContent = textLayer ? <div className="section__splitTextMotion">{textLayer}</div> : null;
     const splitComposition = <Split variant={block.splitVariant} {...splitCompositionProps} primary={textContent} secondary={mediaContent} primaryRole="content" secondaryRole="media" />;
     const offers = splitItem?.offers ?? [];
-    const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" />)}</div> : null;
+    const offerGrid = isServiceCollection && offers.length > 1 ? <OfferSwitcher offers={offers} /> : offers.length > 0 ? <div className="section__offerGrid">{offers.map((offer, index) => <CardItem key={offer.id ?? `offer-${index + 1}`} item={offer} variant="service" metaVariant="specs" />)}</div> : null;
     // Parallax stays inside each grid cell; placement belongs to EditorialGrid.
     const studioServiceMedia = (item: NonNullable<typeof media>, direction: "forward" | "reverse" = "reverse") => (
       <ScrollScene
