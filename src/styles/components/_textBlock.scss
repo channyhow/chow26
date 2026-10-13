@@ -215,9 +215,21 @@
   }
 }
 
+// Offer cards use a compact, label-free presentation; specs keep their own rows.
 .textBlock--meta-offer {
-  .textBlock__meta { gap: $margin-content; }
-  .textBlock__meta > * { grid-template-columns: minmax(0, 1fr); }
-  .textBlock__metaLabel { display: none; }
-  .textBlock__meta > *:last-child .textBlock__metaValue { color: $gray-500; }
+  .textBlock__meta {
+    gap: $margin-content;
+  }
+
+  .textBlock__meta > * {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .textBlock__metaLabel {
+    display: none;
+  }
+
+  .textBlock__meta > *:last-child .textBlock__metaValue {
+    color: $gray-500;
+  }
 }
