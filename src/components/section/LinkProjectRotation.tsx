@@ -4,7 +4,7 @@ import { Media } from "@/components/content/Media";
 import { resolveMediaList } from "@/data/resolveMedia";
 
 const frames = resolveMediaList(["flo-logo", "flo-wordmark", "flo-business-card", "flo-mobile1"]);
-const intervalMs = 6000;
+const intervalMs = 3500;
 
 export function LinkProjectRotation() {
   const [active, setActive] = useState(0);
