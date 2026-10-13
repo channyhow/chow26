@@ -216,10 +216,6 @@
   max-width: 34ch;
 }
 
-.projectStoryMedia .textBlock__content p {
-  @include type-body;
-}
-
 .projectStoryMedia strong,
 .projectStoryText strong {
   font-weight: $font-weight-strong;
