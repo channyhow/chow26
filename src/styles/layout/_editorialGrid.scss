@@ -58,12 +58,6 @@
 
       .studioServiceGrid__rotatingFrame {
         opacity: 1;
-        transition: opacity 650ms ease-in-out;
-
-        &[data-active="false"] {
-          opacity: 0;
-          pointer-events: none;
-        }
       }
 
       .studioServiceGrid__rotatingFrame,
@@ -89,6 +83,20 @@
 
     > [data-editorial-area="description"] { grid-row: 3; }
     > [data-editorial-area="offers"] { grid-row: 4; }
+  }
+}
+
+// Only mobile crossfades the two images.
+@include mobile-down {
+  [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
+    > .studioServiceGrid__rotatingMedia .studioServiceGrid__rotatingFrame {
+      transition: opacity 650ms ease-in-out;
+
+      &[data-active="false"] {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
   }
 }
 
