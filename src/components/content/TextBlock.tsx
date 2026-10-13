@@ -6,7 +6,7 @@ import { Actions, type ActionsProps } from "@/components/navigation/Actions";
 import { motionConfig, revealContainer, revealItem } from "@/motion/config";
 import type { ContentItem } from "@/types/content";
 
-export type TextBlockProps = { content: ContentItem; as?: "article" | "div"; titleAs?: "h1" | "h2" | "h3" | "h4"; className?: string; actionsVariant?: ActionsProps["variant"]; metaVariant?: "default" | "rows"; subtitleVariant?: "default" | "editorial" | "editorial-responsive"; copyVariant?: "default" | "muted" | "prominent"; motionEnabled?: boolean; };
+export type TextBlockProps = { content: ContentItem; as?: "article" | "div"; titleAs?: "h1" | "h2" | "h3" | "h4"; className?: string; actionsVariant?: ActionsProps["variant"]; metaVariant?: "default" | "rows" | "specs"; subtitleVariant?: "default" | "editorial" | "editorial-responsive"; copyVariant?: "default" | "muted" | "prominent"; motionEnabled?: boolean; };
 
 const toArray = <T,>(value?: T | T[]): T[] => !value ? [] : Array.isArray(value) ? value : [value];
 const isExternalHref = (href: string) => /^https?:\/\//i.test(href);
