@@ -6,7 +6,8 @@
   display: grid;
   gap: $flow-default;
   width: 100%;
-  max-width: var(--text-width, #{$measure-text});
+  min-width: 0;
+  max-width: none;
   &__header,
   &__content,
   &__footer,
