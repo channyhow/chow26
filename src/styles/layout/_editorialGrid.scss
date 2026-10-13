@@ -35,6 +35,7 @@
 
   @include desktop-up {
     .studioServiceGrid {
+      > [data-editorial-area="description"] .textBlock__subtitle p { @include type-heading-md; }
       > [data-editorial-area="title"] { grid-row: 1; }
       > [data-editorial-area="media"],
       > [data-editorial-area="description"] { grid-row: 2; }
