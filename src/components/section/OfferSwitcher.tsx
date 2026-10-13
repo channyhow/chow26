@@ -56,7 +56,7 @@ export function OfferSwitcher({ offers, composition = defaultComposition }: Offe
         </div>
       </EditorialGridItem>
       <EditorialGridItem area="description" placement={place("description")}>
-        <TextBlock content={{ subtitle: selected.subtitle, text: selected.text }} motionEnabled={false} />
+        <TextBlock content={{ subtitle: selected.subtitle, text: selected.text }} subtitleVariant="editorial" motionEnabled={false} />
       </EditorialGridItem>
       <EditorialGridItem area="deliverables" placement={place("deliverables")}>
         {deliverables.map((entry, index) => (
