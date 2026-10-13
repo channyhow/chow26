@@ -8,14 +8,11 @@ export function useMobileMediaRotation(count: number, interval = 4500) {
 
   useEffect(() => {
     const viewport = window.matchMedia("(max-width: 47.99rem)");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setEnabled(viewport.matches && !reduced.matches);
+    const update = () => setEnabled(viewport.matches);
     update();
     viewport.addEventListener("change", update);
-    reduced.addEventListener("change", update);
     return () => {
       viewport.removeEventListener("change", update);
-      reduced.removeEventListener("change", update);
     };
   }, []);
 
