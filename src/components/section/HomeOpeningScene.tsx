@@ -56,6 +56,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
         <TextBlock
           content={header}
           titleAs="h1"
+          copyVariant="prominent"
           className="homeOpeningScene__statement"
           motionEnabled={false}
         />
