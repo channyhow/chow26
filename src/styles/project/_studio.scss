@@ -53,10 +53,6 @@
   }
 
   .section__offers .card--service {
-    .textBlock__content p {
-      @include type-body;
-    }
-
     // Deliverables read as editorial information, not bordered chips.
     .textBlock__metaList {
       display: grid;
@@ -210,9 +206,6 @@
     max-width: $measure-header-copy;
   }
 
-  .timeline__content .textBlock__content p {
-    @include type-body;
-  }
 }
 
 @include desktop-up {
