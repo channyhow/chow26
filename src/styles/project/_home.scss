@@ -157,11 +157,6 @@
     margin-top: $margin-block;
     max-width: $measure-text;
   }
-  .textBlock__copy {
-    @include type-heading-sm;
-    font-weight: $font-weight-medium;
-  }
-
   .actions {
     @include type-heading-sm;
     margin-top: $margin-block;
@@ -372,19 +367,10 @@
   grid-column: 1 / -1;
 }
 
-#home-opencall-preview {
-  .textBlock__eyebrow,
-  .textBlock__copy {
-    @include type-heading-sm;
-  }
-
-}
-
-#home-opencall-preview {
-  .textBlock__eyebrow {
+#home-opencall-preview .textBlock__eyebrow {
+  @include type-heading-sm;
   font-weight: $font-weight-bold;
-  }
-  }
+}
 
 .homeOpenCall__statement {
   --text-width: none;
