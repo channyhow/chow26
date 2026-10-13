@@ -64,10 +64,6 @@
     break-inside: avoid;
     vertical-align: top;
   }
-
-
-  /* Keep image, title and description as one object; separation belongs
-     between projects, not inside the card. */
 }
 
 /* Tablet archive is an index: six projects read as a compact 3 x 2 field before
@@ -83,13 +79,14 @@
     margin-bottom: $margin-block;
   }
 
-  #project-gallery .gridReveal {
-    gap: $margin-block;
-  }
-
   #project-gallery .grid {
     column-gap: $margin-content;
-    row-gap: $margin-group;
+  }
+
+  // The archive uses CSS columns, so vertical rhythm belongs to each item,
+  // not row-gap (which does not space column-flow items).
+  #project-gallery .grid > .grid__item {
+    margin-bottom: $margin-group;
   }
 
   #project-gallery .projectCard .media__frame {
@@ -116,8 +113,8 @@
     gap: $mobile-gap-block;
   }
 
-  #project-gallery .grid {
-    row-gap: $mobile-gap-block;
+  #project-gallery .grid > .grid__item {
+    margin-bottom: $mobile-gap-block;
   }
 }
 
