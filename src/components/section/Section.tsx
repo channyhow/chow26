@@ -185,7 +185,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
-    const primary = primaryContent ? <TextBlock content={primaryContent} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
+    const primary = primaryContent ? <TextBlock content={primaryContent} subtitleVariant={block.id === "home-services" ? "editorial" : "default"} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
     const isHomeServices = block.id === "home-services";
     const homeServiceMedia = isHomeServices && mediaItems.length > 1
       ? <div className="homeServices__mediaList">
@@ -245,7 +245,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       // Distinct semantic grid items keep text visible and independent of
       // split/motion wrappers. DOM order matches the mobile reading order.
       const title = <TextBlock content={{ eyebrow: splitItem.eyebrow, title: splitItem.title }} motionEnabled={sectionMotionEnabled} />;
-      const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} motionEnabled={sectionMotionEnabled} />;
+      const description = <TextBlock content={{ subtitle: splitItem.subtitle, text: splitItem.text }} subtitleVariant="editorial-responsive" motionEnabled={sectionMotionEnabled} />;
       body = (
         <EditorialGrid className={clsx("studioServiceGrid", studioMediaItems.length > 1 && "studioServiceGrid--paired")}>
           <EditorialGridItem area="title">{title}</EditorialGridItem>
