@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 import { useRef } from "react";
 
@@ -15,7 +15,6 @@ type HomeOpeningSceneProps = {
 
 export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ["start start", "end start"] });
   const openingMedia = media[0];
   const progress = scrollYProgress;
@@ -38,7 +37,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
                 key={index}
                 className={`homeOpeningScene__mediaPanel homeOpeningScene__mediaPanel--${index + 1}`}
               >
-                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled && !reduceMotion ? { y: mediaMotion[index] } : undefined}>
+                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled ? { y: mediaMotion[index] } : undefined}>
                 <Media
                   media={openingMedia}
                   className="homeOpeningScene__media"
