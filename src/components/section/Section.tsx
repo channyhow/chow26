@@ -241,6 +241,11 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
         {primary ? <EditorialGridItem area="description" placement={{ start: isProjectStoryAlternate ? 2 : 8, span: 4 }}>{primary}</EditorialGridItem> : null}
         {storyMedia ? <EditorialGridItem area="media" placement={{ start: isProjectStoryAlternate ? 7 : 2, span: 5 }}>{storyMedia}</EditorialGridItem> : null}
       </EditorialGrid>;
+    } else if (block.className?.split(/\s+/).includes("section--founder") || block.id === "contact-default") {
+      body = <EditorialGrid className={clsx("sectionEditorialGrid", block.id === "contact-default" ? "sectionEditorialGrid--contact" : "sectionEditorialGrid--founder")}>
+        {primary ? <EditorialGridItem area="description" placement={{ start: 1, span: block.id === "contact-default" ? 5 : 12 }}>{textContent}</EditorialGridItem> : null}
+        {mediaContent ? <EditorialGridItem area="media" placement={{ start: block.id === "contact-default" ? 8 : 10, span: block.id === "contact-default" ? 5 : 3 }}>{mediaContent}</EditorialGridItem> : null}
+      </EditorialGrid>;
     } else if (isStudioService && splitItem) {
       // Distinct semantic grid items keep text visible and independent of
       // split/motion wrappers. DOM order matches the mobile reading order.
