@@ -10,13 +10,12 @@ export function LinkProjectRotation() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let timer: number | undefined;
 
     const sync = () => {
       window.clearInterval(timer);
       timer = undefined;
-      if (reducedMotion.matches || document.hidden) {
+      if (document.hidden) {
         setActive(0);
         return;
       }
@@ -26,11 +25,9 @@ export function LinkProjectRotation() {
     };
 
     sync();
-    reducedMotion.addEventListener("change", sync);
     document.addEventListener("visibilitychange", sync);
     return () => {
       window.clearInterval(timer);
-      reducedMotion.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
   }, []);
