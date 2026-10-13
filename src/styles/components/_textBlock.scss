@@ -264,3 +264,36 @@
     color: $gray-500;
   }
 }
+
+.textBlock--meta-project {
+  .textBlock__meta > * {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-1;
+    align-content: start;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .textBlock__metaLabel {
+    display: block;
+    color: $gray-500;
+  }
+
+  .textBlock__metaValue {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+
+  .textBlock__externalArrow {
+    display: inline;
+    white-space: nowrap;
+    margin-inline-start: 0.4em;
+  }
+
+  .textBlock__meta a:is(:hover, :focus-visible) .textBlock__metaValue {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+}
