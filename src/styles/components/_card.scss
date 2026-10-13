@@ -31,10 +31,6 @@
     transition: transform $transition-reveal;
   }
 
-  // .textBlock__title {
-  //   max-width: 22ch;
-  // }
-
   .textBlock__subtitle p {
     @include type-body;
   }
@@ -78,10 +74,6 @@
     flex-direction: column;
     gap: $flow-default;
     max-width: none;
-  }
-
-  .textBlock__eyebrow {
-    @include type-eyebrow;
   }
 
   .textBlock__title {
@@ -131,7 +123,6 @@
   }
 
   .textBlock__title {
-    @include type-heading-sm;
     max-width: none;
   }
 
@@ -258,10 +249,6 @@
     margin-top: $margin-content;
   }
 
-  .textBlock__content strong {
-    font-weight: $font-weight-semibold;
-  }
-
   @include mobile-down {
     row-gap: $space-3;
 
@@ -298,8 +285,6 @@
   }
 
   .textBlock__title {
-    // @include type-body;
-    // font-weight: $font-weight-medium;
     max-width: none;
   }
 
