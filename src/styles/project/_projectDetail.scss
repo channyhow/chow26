@@ -73,8 +73,6 @@
 }
 
 .projectHero__meta .textBlock__meta {
-  width: 100%;
-  max-width: none;
   margin: 0;
   padding: 0;
   display: grid;
@@ -200,7 +198,6 @@
 
 .projectStoryText .textBlock {
   grid-column: 2 / span 7;
-  max-width: none;
 }
 
 .projectStoryMedia .textBlock__content,
