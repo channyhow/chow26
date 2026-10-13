@@ -44,6 +44,11 @@
     }
   }
 
+  &--copy-prominent .textBlock__content .textBlock__copy {
+    @include type-heading-sm;
+    font-weight: $font-weight-medium;
+  }
+
   &__subtitle strong,
   &__content strong {
     font: inherit;
