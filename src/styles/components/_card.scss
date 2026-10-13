@@ -108,7 +108,6 @@
 }
 
 .card--editorial {
-  min-width: 0;
   overflow: visible;
   background: transparent;
 
@@ -259,10 +258,6 @@
   .textBlock__content,
   .textBlock__footer {
     gap: $flow-tight;
-  }
-
-  .textBlock__title {
-    max-width: none;
   }
 
   .textBlock__content p::first-letter {
