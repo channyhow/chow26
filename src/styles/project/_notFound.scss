@@ -1,85 +1,52 @@
 @use "../foundation/mixins" as *;
 @use "../foundation/tokens" as *;
 
-/* 404 owns composition only. Section, TextBlock and Actions retain their
-   component presentation and interaction. */
+// The 404 page owns composition; TextBlock and Actions own typography and links.
 #not-found-default {
-  --section-space: clamp(#{$space-3}, 7svh, #{$space-5});
+  --section-space: #{$space-4};
   min-height: 100svh;
   display: grid;
   align-items: center;
   background: var(--theme-special);
   color: var(--theme-primary);
-}
 
-#not-found-default .section__inner,
-#not-found-default .section__scrollScene,
-#not-found-default .section__scrollLayer,
-#not-found-default .scrollScene__content {
-  width: min(100%, 72rem);
-  margin-inline: auto;
-}
-
-#not-found-default .section__scrollScene,
-#not-found-default .section__scrollLayer,
-#not-found-default .scrollScene__content {
-  grid-column: 1 / -1;
-  justify-self: stretch;
-}
-
-#not-found-default .textBlock {
-  width: min(100%, 56rem);
-  margin-inline: auto;
-  justify-items: center;
-  gap: clamp(#{$space-3}, 4vw, #{$space-4});
-  text-align: center;
-}
-
-#not-found-default .textBlock__title {
-  max-width: 16ch;
-  margin-inline: auto;
-}
-
-#not-found-default .textBlock__content {
-  width: min(100%, 34rem);
-  margin-inline: auto;
-}
-
-#not-found-default .textBlock__footer {
-  padding-top: 0;
-  justify-items: center;
-}
-
-#not-found-default .actions {
-  justify-content: center;
-  gap: $space-3;
-}
-
-@include tablet-up {
-  #not-found-default .textBlock__header {
-    max-width: 42rem;
-    margin-inline: auto;
-  }
-}
-
-@include tablet-down {
-  #not-found-default .section__inner,
-  #not-found-default .section__scrollScene,
-  #not-found-default .section__scrollLayer,
-  #not-found-default .scrollScene__content { width: 100%; }
-
-  #not-found-default .textBlock {
-    width: min(100%, 34rem);
-    gap: $section-content-gap;
-  }
-
-  #not-found-default .textBlock__title { max-width: 14ch; }
-
-  #not-found-default .actions {
+  .section__inner {
     width: 100%;
-    flex-direction: column;
-    align-items: stretch;
   }
 
-  #not-found-default .actions__link { width: 100%; }
+  .textBlock {
+    width: 100%;
+    max-width: $measure-header-copy;
+    margin-inline: auto;
+    gap: $margin-group;
+    text-align: left;
+  }
+
+  .textBlock__title {
+    max-width: 18ch;
+  }
+
+  .textBlock__content {
+    max-width: $measure-header-copy;
+  }
+
+  .textBlock__footer {
+    padding-top: 0;
+  }
+
+  .actions {
+    justify-content: flex-start;
+    gap: $space-3;
+  }
+
+  @include mobile-down {
+    .textBlock {
+      gap: $section-content-gap;
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 }
