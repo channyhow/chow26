@@ -71,6 +71,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const shouldReveal = sceneMotionEnabled && motionLevel === "reveal" && !shouldTrackScroll && !gridOwnsReveal && !isLongFormList;
   const isProjectHero = block.className?.split(/\s+/).includes("projectHero") ?? false;
   const isProjectStoryMedia = block.className?.split(/\s+/).includes("projectStoryMedia") ?? false;
+  const isProjectStoryText = block.className?.split(/\s+/).includes("projectStoryText") ?? false;
   const isProjectStoryAlternate = block.className?.split(/\s+/).includes("projectDetail__story--alternate") ?? false;
   const isHomeFeaturedProject = block.className?.split(/\s+/).includes("homeFeaturedProject") ?? false;
   const isHomeOpenCall = block.className?.split(/\s+/).includes("home-preview--opencall") ?? false;
@@ -185,7 +186,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
-    const primary = primaryContent ? <TextBlock content={primaryContent} subtitleVariant={block.id === "home-services" ? "editorial" : "default"} metaVariant={isServiceCollection ? "rows" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
+    const primary = primaryContent ? <TextBlock content={primaryContent} subtitleVariant={block.id === "home-services" ? "editorial" : "default"} metaVariant={isServiceCollection ? "rows" : "default"} copyVariant={isProjectStoryMedia ? "story" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
     const isHomeServices = block.id === "home-services";
     const homeServiceMedia = isHomeServices && mediaItems.length > 1
       ? <div className="homeServices__mediaList">
@@ -296,7 +297,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
-    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" copyVariant={isProjectStoryText ? "story-lead" : "default"} motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
   const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
