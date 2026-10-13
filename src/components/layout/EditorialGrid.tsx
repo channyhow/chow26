@@ -4,6 +4,14 @@ export type EditorialArea = "title" | "media" | "description" | "offers" | "navi
 export type EditorialSpan = 3 | 4 | 5 | 6 | 7 | 8 | 9 | 12;
 export type EditorialStart = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
+export type EditorialPreset = "full" | "left" | "right";
+
+const editorialPresets: Record<EditorialPreset, EditorialPlacement> = {
+  full: { start: 1, span: 12 },
+  left: { start: 1, span: 5 },
+  right: { start: 7, span: 5 },
+};
+
 export interface EditorialPlacement {
   start?: EditorialStart;
   span?: EditorialSpan;
@@ -25,6 +33,7 @@ export function EditorialGrid({ children, className = "" }: EditorialGridProps) 
 export interface EditorialGridItemProps {
   area: EditorialArea;
   placement?: EditorialPlacement;
+  preset?: EditorialPreset;
   children: ReactNode;
   className?: string;
 }
@@ -32,12 +41,14 @@ export interface EditorialGridItemProps {
 export function EditorialGridItem({
   area,
   placement,
+  preset,
   children,
   className = "",
 }: EditorialGridItemProps) {
+  const resolvedPlacement = placement ?? (preset ? editorialPresets[preset] : editorialPresets.full);
   const style = {
-    "--editorial-start": placement?.start ?? 1,
-    "--editorial-span": placement?.span ?? 12,
+    "--editorial-start": resolvedPlacement.start ?? 1,
+    "--editorial-span": resolvedPlacement.span ?? 12,
   } as CSSProperties;
 
   return (
