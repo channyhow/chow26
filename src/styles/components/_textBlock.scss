@@ -214,3 +214,10 @@
     opacity: $opacity-muted;
   }
 }
+
+.textBlock--meta-offer {
+  .textBlock__meta { gap: $margin-content; }
+  .textBlock__meta > * { grid-template-columns: minmax(0, 1fr); }
+  .textBlock__metaLabel { display: none; }
+  .textBlock__meta > *:last-child .textBlock__metaValue { color: $gray-500; }
+}
