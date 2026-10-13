@@ -560,8 +560,6 @@
     "type": "Section",
     "layout": "statement",
     "variant": "editorial",
-    "surface": "solid",
-    "color": "accent",
     "content": {
       "header": {
         "eyebrow": "404 | Page introuvable",

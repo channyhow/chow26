@@ -859,7 +859,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "accent",
+            "color": "primary",
             "blocks": [
               {
                 "ref": "not-found-default"
@@ -873,7 +873,7 @@
             "size": "full",
             "align": "center",
             "surface": "glass",
-            "color": "special",
+            "color": "primary",
             "blocks": [
               {
                 "ref": "final-cta"

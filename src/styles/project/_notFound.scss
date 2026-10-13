@@ -7,8 +7,8 @@
   min-height: 100svh;
   display: grid;
   align-items: center;
-  background: var(--theme-special);
-  color: var(--theme-primary);
+  // background: var(--theme-special);
+  // color: var(--theme-primary);
 
   // The statement layout uses a twelve-column grid on desktop.
   // Span the content across it instead of inheriting a single narrow track.
@@ -50,6 +50,7 @@
   }
 
   .actions {
+    flex-direction: unset;
     justify-content: center;
     gap: $space-3;
     font-size: $type-body;
