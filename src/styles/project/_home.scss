@@ -233,6 +233,7 @@
     width: 100%;
     max-width: none;
     p { @include type-heading-md; }
+    .textBlock__copy { opacity: $opacity-muted; }
   }
   #home-services .split > [data-split-role="content"] .textBlock__footer {
     width: 100%;
