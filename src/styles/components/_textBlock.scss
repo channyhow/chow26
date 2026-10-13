@@ -130,6 +130,29 @@
   }
 }
 
+// Project story copy: shared emphasis and an optional editorial opening beat.
+.textBlock--copy-story,
+.textBlock--copy-story-lead {
+  .textBlock__content {
+    gap: $space-3;
+  }
+
+  .textBlock__content strong {
+    font-weight: $font-weight-strong;
+  }
+}
+
+.textBlock--copy-story-lead .textBlock__content > :first-child {
+  @include type-heading-md;
+  max-width: 34ch;
+}
+
+@include mobile-down {
+  .textBlock--copy-story-lead .textBlock__content > :first-child {
+    @include type-heading-sm;
+  }
+}
+
 // Editorial specification rows share one component-owned presentation.
 .textBlock--meta-specs {
   .textBlock__meta {
