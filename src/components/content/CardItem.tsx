@@ -14,7 +14,7 @@ export type CardItemProps = {
   effect?: CardEffect;
   className?: string;
   variant?: CardVariant;
-  metaVariant?: "default" | "rows" | "specs";
+  metaVariant?: "default" | "rows" | "specs" | "offer";
 };
 
 function getProjectMission(item: ContentItem) {
@@ -63,7 +63,7 @@ export function CardItem({
       content={visibleItem}
       titleAs="h3"
       className="card__body"
-      metaVariant={metaVariant ?? (isService ? "rows" : "default")}
+      metaVariant={metaVariant ?? (isService ? "offer" : "default")}
     />
   );
 
