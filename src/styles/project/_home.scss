@@ -139,24 +139,24 @@
     padding-bottom: $space-4;
   }
 
-  .homeOpeningScene__statement .textBlock__title {
-    max-width: 13ch;
-  }
+  // .homeOpeningScene__statement .textBlock__title {
+  //   max-width: 13ch;
+  // }
 }
 
-.homeOpeningScene__statement {
-  width: 100%;
+// .homeOpeningScene__statement {
+//   width: 100%;
 
-  .textBlock__content {
-    margin-top: $margin-block;
-    max-width: $measure-text;
-  }
-  .actions {
-    @include type-heading-sm;
-    margin-top: $margin-block;
-    color: $color-primary;
-  }
-}
+//   // .textBlock__content {
+//   //   margin-top: $margin-block;
+//   //   max-width: $measure-text;
+//   // }
+//   // .actions {
+//   //   @include type-heading-sm;
+//   //   margin-top: $margin-block;
+//   //   color: $color-primary;
+//   // }
+// }
 
 @include hover {
   .homeOpeningScene__mediaLink .media {
@@ -242,15 +242,15 @@
   text-transform: uppercase;
 }
 
-.homeContact__story {
-  .textBlock__content {
-    max-width: 34rem;
-  }
+// .homeContact__story {
+//   // .textBlock__content {
+//   //   max-width: 34rem;
+//   // }
 
-  .actions {
-    @include type-heading-sm;
-  }
-}
+//   // .actions {
+//   //   @include type-heading-sm;
+//   // }
+// }
 
 .homeContact__media .media__frame {
   aspect-ratio: $ratio-landscape;

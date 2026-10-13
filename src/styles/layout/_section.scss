@@ -28,10 +28,10 @@
     margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
-  &__header.textBlock .textBlock__subtitle,
-  &__header.textBlock .textBlock__content {
-    max-width: var(--section-copy-width, #{$measure-header-copy});
-  }
+  // &__header.textBlock .textBlock__subtitle,
+  // &__header.textBlock .textBlock__content {
+  //   max-width: var(--section-copy-width, #{$measure-header-copy});
+  // }
 
   &__body {
     width: 100%;
