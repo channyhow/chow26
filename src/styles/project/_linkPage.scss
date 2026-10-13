@@ -169,8 +169,3 @@
     .media__frame { aspect-ratio: $ratio-wide; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .linkPage__rotationFrame {
-    transition: none;
-  }
-}
