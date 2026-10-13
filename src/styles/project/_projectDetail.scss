@@ -29,16 +29,10 @@
   row-gap: $space-2;
 }
 
-.projectHero__statement {
-  grid-column: 1 / -1;
-}
-
+.projectHero__statement,
+.projectHero__identity,
 .projectHero__statement .textBlock__subtitle p {
   @include type-heading-xl;
-}
-
-.projectHero__identity {
-  grid-column: 1 / -1;
 }
 
 .projectHero__identity .textBlock__title {
@@ -64,8 +58,6 @@
 }
 
 .projectHero__meta .textBlock__meta {
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: $margin-content;
@@ -227,7 +219,6 @@
 @media (min-width: $bp-tablet) and (max-width: calc(#{$bp-desktop} - 0.01rem)) {
   .projectDetail {
     --project-reading-measure: 100%;
-    --project-section-gap: #{$padding-block};
   }
 
   .projectStoryMedia__composition {
@@ -237,7 +228,6 @@
   .projectStoryMedia__composition > [data-editorial-area="media"],
   .projectStoryMedia__composition > [data-editorial-area="description"] {
     grid-column: 1 / -1;
-    min-width: 0;
     width: 100%;
   }
 
@@ -256,7 +246,6 @@
 
   .projectStoryText .textBlock {
     grid-column: 1 / -1;
-    margin: 0;
   }
 
   .projectHero__meta .textBlock__meta {
