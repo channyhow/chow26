@@ -26,6 +26,29 @@
     max-width: none;
     margin: 0;
   }
+  // Reusable heading treatments; the surrounding layout owns reading width.
+  &--title-display .textBlock__title {
+    @include type-heading-xl;
+    font-weight: $font-weight-medium;
+  }
+
+  &--title-feature .textBlock__title {
+    @include type-heading-lg;
+    font-weight: $font-weight-medium;
+    line-height: 1;
+  }
+
+  &--title-contact .textBlock__title {
+    @include type-heading-lg;
+    line-height: 1;
+  }
+
+  @include mobile-down {
+    &--title-contact .textBlock__title {
+      @include type-heading-md;
+    }
+  }
+
   &__subtitle p {
     @include type-lead;
     margin: 0;
