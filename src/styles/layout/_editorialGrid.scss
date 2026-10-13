@@ -92,12 +92,36 @@
   }
 }
 
-// Tablet retains the same rotating slot with a wider editorial crop.
+// Tablet displays both media as independent editorial beats, never as a
+// cross-fading stack. The mobile-only rotation remains unchanged.
 @include between($bp-tablet, $bp-desktop) {
   [data-page-id="studio"] .section--collection-panel .studioServiceGrid--paired {
     > .studioServiceGrid__rotatingMedia {
       --studio-media-ratio: #{$ratio-wide};
+      aspect-ratio: auto;
+      grid-column: 1 / -1;
+
+      .studioServiceGrid__rotatingFrame {
+        opacity: 1;
+        pointer-events: auto;
+        transition: none;
+        height: auto;
+      }
+
+      .studioServiceGrid__mediaMotion,
+      .media,
+      .media__frame {
+        height: auto;
+      }
     }
+
+    > .studioServiceGrid__rotatingMedia:not(.studioServiceGrid__secondMedia) {
+      grid-row: 2;
+    }
+
+    > [data-editorial-area="description"] { grid-row: 3; }
+    > .studioServiceGrid__secondMedia { grid-row: 4; }
+    > [data-editorial-area="offers"] { grid-row: 5; }
   }
 }
 
