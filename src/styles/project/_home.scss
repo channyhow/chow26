@@ -197,48 +197,29 @@
 }
 
 @include desktop-up {
-  /* Home services follows the same twelve-column rhythm as Studio.
-     Media and story share the row; semantic DOM order stays unchanged. */
-  #home-services .split {
-    @include site-grid;
+  // Grid items own the columns; text and media wrappers only fill them.
+  #home-services .sectionEditorialGrid,
+  #final-cta .sectionEditorialGrid {
     align-items: center;
     row-gap: $margin-group;
   }
-  #home-services .split > [data-split-role="media"] {
-    grid-column: 1 / span 5;
+
+  #home-services .sectionEditorialGrid > [data-editorial-area="description"],
+  #home-services .sectionEditorialGrid > [data-editorial-area="media"],
+  #final-cta .sectionEditorialGrid > [data-editorial-area="description"],
+  #final-cta .sectionEditorialGrid > [data-editorial-area="media"] {
     grid-row: 1;
-    min-width: 0;
-    align-self: center;
   }
-  #home-services .split__secondary .media__frame {
+
+  #home-services .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-square;
   }
-  #home-services .split > [data-split-role="content"] {
-    grid-column: 7 / span 5;
-    grid-row: 1;
-    min-width: 0;
-    align-self: center;
-    margin: 0;
-  }
-  #home-services .split > [data-split-role="content"] .textBlock__footer {
-    width: 100%;
+
+  #home-services .sectionEditorialGrid .textBlock__footer {
     margin-top: $margin-group;
   }
 
-  /* Final CTA is one composition, not two distant islands. */
-  #final-cta .split {
-    align-items: center;
-  }
-  #final-cta .split > [data-split-role="content"] {
-    grid-column: 2 / span 4;
-    align-self: center;
-    margin: 0;
-  }
-  #final-cta .split > [data-split-role="media"] {
-    grid-column: 7 / span 5;
-    align-self: center;
-  }
-  #final-cta .split__secondary .media__frame {
+  #final-cta .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-landscape;
   }
 }
@@ -695,4 +676,13 @@
 .homeFeaturedProject__media,
 .homeOpenCall__media {
   @include offset-media-backing;
+}
+
+// Preserve media-first mobile composition independently of DOM reading order.
+@include desktop-down {
+  #home-services .sectionEditorialGrid > [data-editorial-area="media"],
+  #final-cta .sectionEditorialGrid > [data-editorial-area="media"] { grid-row: 1; }
+
+  #home-services .sectionEditorialGrid > [data-editorial-area="description"],
+  #final-cta .sectionEditorialGrid > [data-editorial-area="description"] { grid-row: 2; }
 }
