@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { Actions, type ActionsProps } from "@/components/navigation/Actions";
 import { motionConfig, revealContainer, revealItem } from "@/motion/config";
@@ -40,7 +40,7 @@ export function TextBlock({ content, as = "div", titleAs = "h2", className, acti
         {content.title ? <Title className="textBlock__title" {...itemMotionProps}>{content.title}</Title> : null}
         {subtitles.length ? <motion.div className="textBlock__subtitle" {...containerMotionProps}>{subtitles.map((subtitle) => <motion.p key={subtitle} {...itemMotionProps}>{renderInlineStrong(subtitle)}</motion.p>)}</motion.div> : null}
       </motion.header> : null}
-      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <div className="textBlock__groupSlot" key={`group-${groupIndex}`}><motion.div className="textBlock__group" {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>{groupIndex === 0 ? betweenGroups : null}</div>)}</motion.div> : null}
+      {hasContent ? <motion.div className="textBlock__content" {...containerMotionProps}>{textGroups.map((group, groupIndex) => <Fragment key={`group-${groupIndex}`}><motion.div className="textBlock__group" {...containerMotionProps}>{group.map((paragraph) => <motion.p key={paragraph} {...itemMotionProps}>{renderInlineStrong(paragraph)}</motion.p>)}</motion.div>{groupIndex === 0 ? betweenGroups : null}</Fragment>)}</motion.div> : null}
       {hasMeta ? <motion.div className="textBlock__meta" {...containerMotionProps}>{content.meta?.map((item) => {
         const metaContent = <><span className="textBlock__metaLabel">{item.label}</span>{Array.isArray(item.value) ? <ul className="textBlock__metaList">{item.value.map((value, index) => <li className="textBlock__metaListItem" key={`${value}-${index}`}>{value}</li>)}</ul> : item.value ? <span className="textBlock__metaValue">{item.value}{item.href && isExternalHref(item.href) ? <span className="textBlock__externalArrow" aria-hidden="true">↗</span> : null}</span> : null}</>;
         if (item.href) { const external = isExternalHref(item.href); return <motion.a key={`${item.label}-${item.href}`} href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} {...itemMotionProps}>{metaContent}</motion.a>; }
