@@ -30,25 +30,29 @@
     width: 100%;
     max-width: $measure-header-copy;
     margin-inline: auto;
-    gap: $margin-group;
-    text-align: left;
+    gap: $space-3;
+    text-align: center;
   }
 
   .textBlock__title {
     max-width: 18ch;
+    margin-inline: auto;
   }
 
   .textBlock__content {
-    max-width: $measure-header-copy;
+    max-width: 44ch;
+    margin-inline: auto;
   }
 
   .textBlock__footer {
     padding-top: 0;
+    justify-items: center;
   }
 
   .actions {
-    justify-content: flex-start;
+    justify-content: center;
     gap: $space-3;
+    font-size: $type-body;
   }
 
   @include mobile-down {
@@ -58,7 +62,7 @@
 
     .actions {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
     }
   }
 }
