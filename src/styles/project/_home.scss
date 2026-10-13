@@ -220,14 +220,6 @@
     align-self: center;
     margin: 0;
   }
-  #home-services .split > [data-split-role="content"] .textBlock {
-    width: 100%;
-    max-width: none;
-  }
-  #home-services .split > [data-split-role="content"] .textBlock__subtitle {
-    width: 100%;
-    max-width: none;
-  }
   #home-services .split > [data-split-role="content"] .textBlock__footer {
     width: 100%;
     margin-top: $margin-group;
@@ -377,7 +369,6 @@
   margin-bottom: $margin-block;
   .textBlock__title {
     @include type-heading-xl;
-    max-width: none;
 
   }
 
