@@ -35,16 +35,6 @@
     min-height: 0;
   }
 
-  #project-gallery .section__header .textBlock {
-    width: 100%;
-    max-width: none;
-  }
-
-  #project-gallery .section__header .textBlock__header {
-    width: 100%;
-    max-width: none;
-  }
-
   /* Masonry-like archive: three independent column stacks prevent the CSS-grid
      row track from forcing the next card below the tallest item in its row. */
   #project-gallery .grid {
