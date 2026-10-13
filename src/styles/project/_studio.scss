@@ -198,10 +198,6 @@
     gap: $flow-default;
   }
 
-  .timeline__content .textBlock__title {
-    @include type-heading-sm;
-  }
-
   .timeline__content .textBlock__content {
     max-width: $measure-header-copy;
   }
