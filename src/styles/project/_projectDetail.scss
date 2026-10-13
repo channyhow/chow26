@@ -152,7 +152,6 @@
 .projectStoryMedia strong,
 .projectStoryText strong {
   font-weight: $font-weight-strong;
-  color: currentColor;
 }
 
 .projectRelated {
@@ -191,7 +190,6 @@
   .projectStoryMedia__composition > [data-editorial-area="media"],
   .projectStoryMedia__composition > [data-editorial-area="description"] {
     grid-column: 1 / -1;
-    width: 100%;
   }
 
   .projectStoryMedia__composition .media__frame {
