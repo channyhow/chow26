@@ -80,13 +80,15 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
-  column-gap: var(--grid-gutter);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(0, 1.5fr) minmax(0, 0.8fr);
+  column-gap: $margin-content;
+  row-gap: $space-3;
   align-items: start;
 }
 
 .projectHero__meta .textBlock__meta > * {
   display: grid;
+  min-width: 0;
   grid-template-columns: minmax(0, 1fr);
   gap: $space-1;
   align-content: start;
@@ -275,7 +277,6 @@
 
   .projectHero__meta .textBlock__meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: $space-3;
   }
 }
 
