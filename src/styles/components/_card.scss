@@ -159,22 +159,24 @@
   }
 
   // Muting belongs to individual text elements, not the card container.
-  .textBlock__meta {
-    margin-top: auto;
-    padding-top: $padding-group;
-    gap: $margin-content;
-  }
+  .textBlock:not(.textBlock--meta-specs) {
+    .textBlock__meta {
+      margin-top: auto;
+      padding-top: $padding-group;
+      gap: $margin-content;
+    }
 
-  .textBlock__meta > * {
-    grid-template-columns: minmax(0, 1fr);
-  }
+    .textBlock__meta > * {
+      grid-template-columns: minmax(0, 1fr);
+    }
 
-  .textBlock__metaLabel {
-    display: none;
-  }
+    .textBlock__metaLabel {
+      display: none;
+    }
 
-  .textBlock__meta > *:last-child .textBlock__metaValue {
-    color: $gray-500;
+    .textBlock__meta > *:last-child .textBlock__metaValue {
+      color: $gray-500;
+    }
   }
 
   .textBlock__footer {
