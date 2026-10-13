@@ -172,7 +172,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       eyebrow: header.eyebrow,
       text: header.text,
     };
-    const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} titleVariant="display" motionEnabled={false} /></div>;
+    const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} titleVariant="display" motionEnabled={sectionMotionEnabled} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" copyVariant="prominent" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
   } else if (isHomeFeaturedProject && splitItem) {
     const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
@@ -187,7 +187,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
-    const primary = primaryContent ? <TextBlock content={primaryContent} subtitleVariant={block.id === "home-services" ? "editorial" : "default"} metaVariant={isServiceCollection ? "rows" : "default"} copyVariant={isProjectStoryMedia ? "story" : "default"} motionEnabled={sectionMotionEnabled && visualContext !== "own"} /> : null;
+    const primary = primaryContent ? <TextBlock content={primaryContent} subtitleVariant={block.id === "home-services" ? "editorial" : "default"} metaVariant={isServiceCollection ? "rows" : "default"} copyVariant={isProjectStoryMedia ? "story" : "default"} motionEnabled={sectionMotionEnabled} /> : null;
     const isHomeServices = block.id === "home-services";
     const homeServiceMedia = isHomeServices && mediaItems.length > 1
       ? <div className="homeServices__mediaList">
