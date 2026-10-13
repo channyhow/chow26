@@ -408,12 +408,12 @@
   }
 
   .homeOpenCall__context {
-    grid-column: 8 / span 4;
+    grid-column: 7 / span 5;
     grid-row: 2;
   }
 
   .homeOpenCall__action {
-    grid-column: 8 / span 4;
+    grid-column: 7 / span 5;
     grid-row: 3;
     align-self: start;
     margin-top: $margin-content;
@@ -501,16 +501,17 @@
 }
 @include desktop-up {
   .homeFeaturedProject__index { grid-column: 1 / span 5; grid-row: 1 / span 2; padding-top: $padding-content; }
-  .homeFeaturedProject__media { grid-column: 8 / 13; grid-row: 2; 
-    
-  
+  .homeFeaturedProject__media {
+    grid-column: 7 / span 5;
+    grid-row: 2;
 
-  .media__asset {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }}
-  .homeFeaturedProject__story { grid-column: 8 / 13; grid-row: 3; }
+    .media__asset {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .homeFeaturedProject__story { grid-column: 7 / span 5; grid-row: 3; }
 }
 // One-column compositions use the same spacing scale. The media offset
 // needs its own clearance so the following text never touches the backing.
@@ -615,26 +616,8 @@
     transform: none;
   }
 
-  // Tablet sections read as one column; desktop alone uses split compositions.
-  #home-services .split,
-  #final-cta .split {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: $margin-group;
-    align-items: start;
-  }
-
-  #home-services .split > [data-split-role],
-  #final-cta .split > [data-split-role] {
-    grid-column: 1;
-    grid-row: auto;
-    min-width: 0;
-    width: 100%;
-    max-width: none;
-    justify-self: stretch;
-  }
-
-  #final-cta .split__secondary .media__frame {
+  // EditorialGrid already stacks its items below desktop.
+  #final-cta .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-wide;
     max-height: none;
   }
@@ -645,27 +628,14 @@
   }
 }
 
-// Smaller viewports use a bounded square media before the story.
+// Keep the media bounded on small screens without reviving Split layout rules.
 @include tablet-down {
-  #home-services .split {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: $margin-group;
-    align-items: start;
-  }
-
-  #home-services .split > [data-split-role] {
-    min-width: 0;
-    width: 100%;
-    grid-column: 1;
-  }
-
-  #home-services .split > [data-split-role="media"] {
+  #home-services .sectionEditorialGrid > [data-editorial-area="media"] {
     width: min(100%, 26rem);
     justify-self: start;
   }
 
-  #home-services .split__secondary .media__frame {
+  #home-services .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-square;
     max-height: none;
   }
