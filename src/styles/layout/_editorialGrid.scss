@@ -29,7 +29,7 @@
   .studioServiceGrid {
     > [data-editorial-area="title"] .textBlock__title { @include type-heading-xl; max-width: none; }
     > [data-editorial-area="title"] .textBlock__eyebrow { display: none; }
-    > [data-editorial-area="description"] .textBlock__content p { @include type-heading-md; }
+    > [data-editorial-area="description"] .textBlock__subtitle p { @include type-heading-md; }
   }
 
   @include desktop-up {
@@ -109,7 +109,7 @@
 
   .textBlock__eyebrow { display: none; }
   .textBlock__title { @include type-heading-md; }
-  .textBlock__content p {
+  > [data-editorial-area="description"] .textBlock__subtitle p {
     @include type-heading-md;
   }
 
