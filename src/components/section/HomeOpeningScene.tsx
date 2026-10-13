@@ -57,6 +57,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           content={header}
           titleAs="h1"
           copyVariant="prominent"
+          titleVariant="display"
           className="homeOpeningScene__statement"
           motionEnabled={false}
         />
