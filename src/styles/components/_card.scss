@@ -55,8 +55,7 @@
   background: transparent;
 
   .card__split,
-  .card__body,
-  .textBlock__content {
+  .card__body {
     width: 100%;
   }
 
@@ -78,7 +77,6 @@
 
   .textBlock__title {
     @include type-heading-md;
-    max-width: none;
   }
 
   .textBlock__content {
@@ -120,10 +118,6 @@
 
   .card__body.textBlock {
     gap: $flow-default;
-  }
-
-  .textBlock__title {
-    max-width: none;
   }
 
   .textBlock__content {
@@ -230,12 +224,6 @@
 
   .textBlock__subtitle {
     @include type-heading-sm;
-  }
-
-  .textBlock__header,
-  .textBlock__content {
-    width: 100%;
-    max-width: none;
   }
 
   .textBlock__content {
