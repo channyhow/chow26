@@ -24,7 +24,6 @@
   align-items: start;
   column-gap: $layout-gap;
   row-gap: $margin-block;
-  width: 100%;
 }
 
 .linkPage__campaign .textBlock__header,
@@ -43,13 +42,12 @@
 .linkPage__campaign .textBlock__title {
   @include type-heading-lg;
   font-weight: $font-weight-bold;
-text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .linkPage__campaign .textBlock__subtitle p {
   @include type-ui-compact;
-    color: $color-special;
-
+  color: $color-special;
 }
 
 .linkPage__campaign .textBlock__content {
@@ -59,10 +57,6 @@ text-transform: uppercase;
 .linkPage__campaign .textBlock__content strong {
   font-weight: $font-weight-medium;
 }
-
-// .linkPage__campaign .textBlock__content p:last-child:not(:only-child) .textBlock__copy {
-//   opacity: 0.8;
-// }
 
 .linkPage__campaign .actions {
   display: grid;
