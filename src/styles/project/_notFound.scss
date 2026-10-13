@@ -10,8 +10,20 @@
   background: var(--theme-special);
   color: var(--theme-primary);
 
-  .section__inner {
+  // The statement layout uses a twelve-column grid on desktop.
+  // Span the content across it instead of inheriting a single narrow track.
+  .section__inner > .textBlock,
+  .section__inner > .section__scrollScene,
+  .section__inner > .section__scrollLayer {
+    grid-column: 1 / -1;
     width: 100%;
+  }
+
+  .section__scrollScene,
+  .section__scrollLayer,
+  .scrollScene__content {
+    width: 100%;
+    min-width: 0;
   }
 
   .textBlock {
