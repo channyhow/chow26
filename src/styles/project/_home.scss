@@ -330,10 +330,67 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeServicesStory__digitalMedia .mediaRotation__slide { transition: none; transform: none; }
 }
 
+// Below the desktop split, each story becomes a deliberately spaced
+// text-then-image composition rather than a full-viewport grid.
 @include tablet-down {
-  .homeServicesStory__row--reverse .homeServicesStory__copy { order: -1; }
-  .homeServicesStory__media .media__frame { aspect-ratio: $ratio-landscape; }
-  .homeServicesStory__digitalMedia { aspect-ratio: $ratio-landscape; }
+  .homeServicesStory__row {
+    min-height: 0;
+    align-content: start;
+    row-gap: $space-4;
+    padding-block: $space-4;
+  }
+
+  .homeServicesStory__row > .homeServicesStory__copy {
+    order: -1;
+  }
+
+  .homeServicesStory__copy {
+    gap: $space-3;
+
+    .textBlock__title {
+      @include type-heading-sm;
+      max-width: 24ch;
+    }
+
+    .textBlock__content {
+      max-width: 36rem;
+
+      .textBlock__group > p {
+        @include type-body;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  .homeServicesStory__media,
+  .homeServicesStory__digitalMedia {
+    width: 100%;
+    max-width: 42rem;
+    justify-self: center;
+  }
+
+  .homeServicesStory__media .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeServicesStory__digitalMedia {
+    aspect-ratio: $ratio-landscape;
+  }
+}
+
+@include mobile-down {
+  .homeServicesStory__row {
+    row-gap: $space-3;
+    padding-block: $space-3;
+  }
+
+  .homeServicesStory__copy {
+    gap: $space-2;
+
+    .textBlock__title {
+      @include type-heading-sm;
+    }
+  }
 }
 
 /* Final contact echoes the Home index language without repeating Featured. */
