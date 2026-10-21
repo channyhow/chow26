@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -16,14 +16,6 @@ type HomeOpeningSceneProps = {
 export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const [expanded, setExpanded] = useState(false);
   const openingMedia = media[0];
-
-  // The opening is intentionally gated until tapped. CSS owns that initial
-  // state; avoid global touch/wheel listeners, which can strand mobile scrolling.
-  useEffect(() => {
-    if (!expanded) return;
-    document.documentElement.style.removeProperty("overflow");
-    document.body.style.removeProperty("overflow");
-  }, [expanded]);
 
   return (
     <div className="homeOpeningScene" data-expanded={expanded}>
