@@ -70,6 +70,18 @@
   object-fit: cover;
 }
 
+// Individual panel feedback keeps the opening interactive without adding JS.
+@media (hover: hover) and (pointer: fine) {
+  .homeOpeningScene__mediaPanel .media__asset {
+    transition: transform 650ms cubic-bezier(.22, 1, .36, 1);
+    will-change: auto;
+  }
+
+  .homeOpeningScene__mediaPanel:hover .media__asset {
+    transform: scale(1.045);
+  }
+}
+
 .homeOpeningScene__statementReveal {
   margin-top: auto;
   padding-top: $margin-content;
@@ -123,6 +135,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .homeOpeningScene__mediaGrid { transition: none; }
+  .homeOpeningScene__mediaPanel .media__asset { transition: none; }
 }
 
 // One or several Home service mockups share the same editorial media column.
