@@ -248,9 +248,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   min-width: 0;
   aspect-ratio: $ratio-landscape;
 
-  // The rotation stage is the media surface, in front of the offset plane.
+  // Match Media's fixed frame geometry so the offset is never covered
+  // by an intrinsically sized image or a changing slide.
   .mediaRotation__stage {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 1;
     display: grid;
     width: 100%;
