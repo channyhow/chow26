@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -14,18 +14,11 @@ type HomeOpeningSceneProps = {
 };
 
 export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
-  const sceneRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
-  const { scrollYProgress } = useScroll({ target: sceneRef, offset: ["start start", "end start"] });
   const openingMedia = media[0];
-  const progress = scrollYProgress;
-  const mediaY1 = useTransform(progress, [0, 1], ["0svh", "-3svh"]);
-  const mediaY2 = useTransform(progress, [0, 1], ["0svh", "-6svh"]);
-  const mediaY3 = useTransform(progress, [0, 1], ["0svh", "-4svh"]);
-  const mediaMotion = [mediaY1, mediaY2, mediaY3];
 
   return (
-    <div ref={sceneRef} className="homeOpeningScene" data-expanded={expanded}>
+    <div className="homeOpeningScene" data-expanded={expanded}>
       {openingMedia ? (
         <button
           type="button"
@@ -35,22 +28,18 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           aria-label={expanded ? "Revenir aux images en plein écran" : "Découvrir le message de Chow Studio"}
           onClick={() => setExpanded((current) => !current)}
         >
-          <div className="homeOpeningScene__mediaGrid">
-            {Array.from({ length: 12 }, (_, index) => index).map((index) => (
-              <div
-                key={index}
-                className="homeOpeningScene__mediaPanel"
-              >
-                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled ? { y: mediaMotion[index % mediaMotion.length] } : undefined}>
-                <Media
-                  media={openingMedia}
-                  className="homeOpeningScene__media"
-                  sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 31vw, 31vw"
-                  ratio="square"
-                />
-                </motion.div>
-              </div>
-            ))}
+          <div className="homeOpeningScene__mediaStage">
+            <Media
+              media={openingMedia}
+              className="homeOpeningScene__media"
+              sizes="100vw"
+              ratio="square"
+            />
+            <div className="homeOpeningScene__mediaGrid" aria-hidden="true">
+              {Array.from({ length: 12 }, (_, index) => (
+                <span key={index} className="homeOpeningScene__mediaPanel" />
+              ))}
+            </div>
           </div>
         </button>
       ) : null}
