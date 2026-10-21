@@ -73,46 +73,39 @@
   background: transparent;
   transition: background-color 450ms ease;
 }
-// Make the whole opening visibly interactive, including in device emulation
-// where the browser may not report a fine hover pointer.
-.homeOpeningScene[data-expanded="false"]  .homeOpeningScene__mediaLink {
+// The same accent is shared by hover feedback and the expanded squares.
+$opening-tile-color: #FF88FC;
+
+.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaLink {
   &:hover,
   &:focus-visible {
-    .homeOpeningScene__media {
-      opacity: 0.7;
-    }
-    .homeOpeningScene__mediaPanel {
-      background-color: #FF88FC;
-    }
+    .homeOpeningScene__media { opacity: 0.7; }
+    .homeOpeningScene__mediaPanel { background-color: $opening-tile-color; }
   }
 }
-.homeOpeningScene__mediaPanel:hover {
-       background-color: #FF88FC !important;
+
+.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaPanel:hover {
+  background-color: $opening-tile-color;
 }
+
 .homeOpeningScene__statementReveal {
   margin-top: auto;
   padding-top: $margin-content;
 }
 
-.homeOpeningScene[data-expanded="true"]  .homeOpeningScene__mediaLink {
- 
-    .homeOpeningScene__media {
-      opacity: 0;
-    }
-    .homeOpeningScene__mediaPanel {
-      background-color: #FF88FC;
-    }
-}
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
-  height: calc((100cqw - 11 * #{$space-3}) / 12);
-}
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__media { opacity: 0.5; }
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 1fr;
-}
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaPanel {
-  aspect-ratio: 1;
+.homeOpeningScene[data-expanded="true"] {
+  .homeOpeningScene__mediaStage {
+    height: calc((100cqw - 11 * #{$space-3}) / 12);
+  }
+  .homeOpeningScene__media { opacity: 0; }
+  .homeOpeningScene__mediaGrid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+  }
+  .homeOpeningScene__mediaPanel {
+    aspect-ratio: 1;
+    background-color: $opening-tile-color;
+  }
 }
 @include mobile-down {
   .homeOpeningScene__media {
