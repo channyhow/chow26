@@ -110,8 +110,9 @@
         ]
       },
       "media": [
-        "flo-mobile1",
-        "flo-business-card"
+           
+        "flo-business-card", "flo-wordmark",
+        "flo-mobile"
       ]
     },
     "motion": "scene",
