@@ -18,7 +18,6 @@ import { EditorialGrid, EditorialGridItem } from "@/components/layout/EditorialG
 import { ScrollScene } from "@/components/layout/ScrollScene";
 import { Split } from "@/components/layout/Split";
 import { HomeOpeningScene } from "@/components/section/HomeOpeningScene";
-import { HomeDigitalRotation } from "@/components/section/HomeDigitalRotation";
 import { StudioIntroMedia } from "@/components/section/StudioIntroMedia";
 import { LinkProjectRotation } from "@/components/section/LinkProjectRotation";
 import { useMobileMediaRotation } from "@/hooks/useMobileMediaRotation";
@@ -173,6 +172,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     };
     const identityMedia = resolveMedia("flo-wordmark");
     const applicationMedia = resolveMedia("flo-business-card");
+    const websiteMedia = resolveMedia("flo-laptop");
+    const mobileMedia = resolveMedia("flo-mobile");
     const storyMedia = (item: typeof identityMedia) => item
       ? <div className="homeServicesStory__media"><Media media={item} sizes="(min-width: 64rem) 36vw, 100vw" /></div>
       : null;
@@ -190,9 +191,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
           <TextBlock content={web} motionEnabled={sectionMotionEnabled} />
           <Actions links={header.links} />
         </div>
-        <HomeDigitalRotation />
+        <div className="homeServicesStory__digitalMedia">{storyMedia(websiteMedia)}{storyMedia(mobileMedia)}</div>
       </div>
-      {resolveMedia("flo-wall") && <div className="homeServicesStory__fullBleed"><Media media={resolveMedia("flo-wall")!} sizes="100vw" /></div>}
     </article>;
   } else if (isHomeContact && header) {
     const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet", "media") : null;
