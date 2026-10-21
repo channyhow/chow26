@@ -36,12 +36,12 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           onClick={() => setExpanded((current) => !current)}
         >
           <div className="homeOpeningScene__mediaGrid">
-            {[0, 1, 2].map((index) => (
+            {Array.from({ length: 12 }, (_, index) => index).map((index) => (
               <div
                 key={index}
-                className={`homeOpeningScene__mediaPanel homeOpeningScene__mediaPanel--${index + 1}`}
+                className="homeOpeningScene__mediaPanel"
               >
-                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled ? { y: mediaMotion[index] } : undefined}>
+                <motion.div className="homeOpeningScene__mediaMotion" style={parallaxEnabled ? { y: mediaMotion[index % mediaMotion.length] } : undefined}>
                 <Media
                   media={openingMedia}
                   className="homeOpeningScene__media"
