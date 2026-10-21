@@ -101,17 +101,17 @@
             "variant": "arrow"
           }
         ],
-        "title": "Bien plus qu’un logo.",
+        "title": "Une identité qui vous ressemble.",
         "text": [
-          "Une **identité visuelle**, c’est l’ensemble des éléments qui permettent de reconnaître votre activité : logo, couleurs, typographies et compositions.",
-          "Elle donne une personnalité à votre projet, crée une cohérence entre vos supports et aide vos clients à vous identifier et à se souvenir de vous.",
-          "Sur une carte de visite, une affiche ou vos réseaux sociaux, ce même langage visuel se décline pour accompagner votre activité.",
-          "Un **site internet** qui prolonge votre univers visuel, raconte votre histoire et met en valeur votre activité. Une expérience claire, accessible et pensée pour guider vos visiteurs vers vous."
+          "Logo, couleurs, typographies : une **identité visuelle** claire pour que l’on vous reconnaisse.",
+          "Des éléments cohérents, faciles à utiliser au quotidien.",
+          "Cartes de visite, affiches, réseaux sociaux : votre identité s’adapte à tous vos supports.",
+          "Un **site internet** à votre image, simple à parcourir et pensé pour donner envie de vous contacter."
         ]
       },
       "media": [
-           
-        "flo-business-card", "flo-wordmark",
+        "flo-business-card",
+        "flo-wordmark",
         "flo-mobile"
       ]
     },
