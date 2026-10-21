@@ -162,6 +162,28 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       {projectMedia ? <EditorialGridItem area="media" className="projectHero__media"><ScrollScene preset="parallax" intensity="quiet" direction="reverse" enabled={sectionMotionEnabled} progress={scrollProgress}>{projectMedia}</ScrollScene></EditorialGridItem> : null}
       {projectMeta ? <EditorialGridItem area="description" className="projectHero__meta">{projectMeta}</EditorialGridItem> : null}
     </EditorialGrid>;
+  } else if (block.id === "home-services" && header) {
+    const paragraphs = Array.isArray(header.text) ? header.text : header.text ? [header.text] : [];
+    const story = (index: number, title?: string) => (
+      <TextBlock
+        content={{ title, text: paragraphs[index] ? [paragraphs[index]] : undefined }}
+        motionEnabled={sectionMotionEnabled}
+      />
+    );
+    const visual = (index: number) => mediaItems[index]
+      ? <Media media={mediaItems[index]} sizes="(min-width: 64rem) 45vw, 100vw" />
+      : null;
+    const websiteMedia = resolveMedia("flo-laptop");
+    body = <article className="homeServicesStory homeEditorialComposition">
+      <div className="homeServicesStory__intro">{story(0, header.title)}</div>
+      <div className="homeServicesStory__identity">{visual(1)}</div>
+      <div className="homeServicesStory__benefit">{story(1)}</div>
+      <div className="homeServicesStory__application">{visual(0)}</div>
+      <div className="homeServicesStory__applicationText">{story(2)}</div>
+      <div className="homeServicesStory__web">{story(3, "Et sur le web ?")}</div>
+      {websiteMedia ? <div className="homeServicesStory__websiteMedia"><Media media={websiteMedia} sizes="(min-width: 64rem) 45vw, 100vw" /></div> : null}
+      <div className="homeServicesStory__links"><Actions links={header.links} /></div>
+    </article>;
   } else if (isHomeContact && header) {
     const contactMedia = media ? motionLayer(<Media media={media} sizes="(min-width: 64rem) 42vw, 100vw" />, "reverse", "homeContact__media", "quiet", "media") : null;
     const contactStory = motionLayer(<TextBlock content={header} titleVariant="contact" motionEnabled={sectionMotionEnabled} />, "forward", "homeContact__story", "quiet", "editorial-text");
