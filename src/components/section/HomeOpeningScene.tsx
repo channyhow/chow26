@@ -20,30 +20,50 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
   useEffect(() => {
     if (expanded || !openingMedia) return;
     const root = document.documentElement;
-    const previousRootOverflow = root.style.overflow;
-    const previousBodyOverflow = document.body.style.overflow;
-    root.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const previous = {
+      rootOverflow: root.style.overflow,
+      bodyOverflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+    };
 
-    // Intercept input as well: some layouts scroll inside a nested container.
+    // Fix the document in place as well as blocking input: overflow alone
+    // doesn't reliably lock touch scrolling or custom scroll containers.
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+
     const blockScroll = (event: Event) => {
       if (event.cancelable) event.preventDefault();
     };
     const blockScrollKeys = (event: KeyboardEvent) => {
-      if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)
-        && !(event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true']"))) {
+      if (
+        ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key) &&
+        !(event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true']"))
+      ) {
         event.preventDefault();
       }
     };
+
     window.addEventListener("wheel", blockScroll, { passive: false, capture: true });
     window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
     window.addEventListener("keydown", blockScrollKeys, { capture: true });
+
     return () => {
       window.removeEventListener("wheel", blockScroll, true);
       window.removeEventListener("touchmove", blockScroll, true);
       window.removeEventListener("keydown", blockScrollKeys, true);
-      root.style.overflow = previousRootOverflow;
-      document.body.style.overflow = previousBodyOverflow;
+      root.style.overflow = previous.rootOverflow;
+      body.style.overflow = previous.bodyOverflow;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.width = previous.width;
+      window.scrollTo(0, scrollY);
     };
   }, [expanded, openingMedia]);
 
