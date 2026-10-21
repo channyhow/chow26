@@ -562,7 +562,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 
   .homeFeaturedProject__media {
-    grid-column: 7 / span 5;
+    grid-column: 8 / span 5;
     grid-row: 1;
 
     .media__asset {
@@ -573,7 +573,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 
   .homeFeaturedProject__story {
-    grid-column: 7 / span 5;
+    grid-column: 8 / span 5;
     grid-row: 2;
   }
 }
