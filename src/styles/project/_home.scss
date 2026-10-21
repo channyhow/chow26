@@ -199,80 +199,57 @@
 .homeServicesStory__copy,
 .homeServicesStory__media,
 .homeServicesStory__digitalMedia {
-  grid-column: 1 / -1;
-  min-width: 0;
-}
-
-.homeServicesStory__copy {
   display: grid;
-  gap: $margin-content;
-
-  .textBlock__content { max-width: $measure-text; }
-  .actions { display: grid; gap: 0; width: 100%; }
-  .actions__link {
-    @include editorial-control-row;
-    @include type-body;
-    @include hover { color: var(--accent); }
-  }
-}
-
-.homeServicesStory__media {
-  .media { width: 100%; }
-  .media__frame { aspect-ratio: $ratio-square; }
-}
-
-@include desktop-up {
-  .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
-    .homeServicesStory__copy { grid-column: 2 / span 3; grid-row: 1; padding-top: $margin-group; }
-    > .homeServicesStory__media { grid-column: 8 / span 5; grid-row: 1; }
-    > .homeServicesStory__digitalMedia { grid-column: 6 / -1; grid-row: 1; }
-  }
-  .homeServicesStory__row--reverse {
-    > .homeServicesStory__media { grid-column: 1 / span 5; grid-row: 1; }
-    > .homeServicesStory__digitalMedia { grid-column: 1 / span 8; grid-row: 1; }
-    .homeServicesStory__copy { grid-column: 9 / span 3; grid-row: 1; padding-top: $padding-block; }
-  }
-}
-
-.homeServicesStory__digitalMedia {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: end;
-  position: relative;
   width: 100%;
-  padding-bottom: $space-6;
+  min-width: 0;
+  aspect-ratio: $ratio-landscape;
+  overflow: hidden;
+  position: relative;
+}
 
-  > .homeServicesStory__media {
-    min-width: 0;
-    grid-column: 1;
-    grid-row: 1;
+.homeServicesStory__rotationFrame {
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  transform: scale(1.025);
+  transition: opacity 900ms ease, transform 1100ms ease;
+  pointer-events: none;
+
+  &[data-active="true"] {
+    opacity: 1;
+    transform: scale(1);
   }
 
-  > .homeServicesStory__media:first-child {
-    // Keep the laptop substantial without letting it exceed the viewport.
-    width: min(86%, 78svh);
-    align-self: start;
-    .media__frame { aspect-ratio: $ratio-landscape; }
+  .media,
+  .media__frame,
+  .media__asset {
+    width: 100%;
+    height: 100%;
   }
 
-  > .homeServicesStory__media:last-child {
-    width: min(34%, 30svh);
-    justify-self: end;
-    align-self: end;
-    position: relative;
-    z-index: 1;
-    transform: translateY($space-6);
-    .media__frame { aspect-ratio: $ratio-portrait; }
+  .media__frame {
+    aspect-ratio: auto;
+    max-height: none;
   }
+
+  .media__asset { object-fit: contain; }
+}
+
+.homeServicesStory__fullBleed {
+  width: 100%;
+  margin-block: $margin-block;
+  overflow: hidden;
+
+  .media,
+  .media__frame { width: 100%; }
+  .media__frame { aspect-ratio: $ratio-wide; max-height: none; }
+  .media__asset { width: 100%; height: 100%; object-fit: cover; }
 }
 
 @include tablet-down {
   .homeServicesStory__row--reverse .homeServicesStory__copy { order: -1; }
   .homeServicesStory__media .media__frame { aspect-ratio: $ratio-landscape; }
-  .homeServicesStory__digitalMedia {
-    padding-bottom: $space-4;
-    > .homeServicesStory__media:last-child { transform: translateY($space-4); }
-  }
+  .homeServicesStory__digitalMedia { aspect-ratio: $ratio-landscape; }
 }
 
 /* Final contact echoes the Home index language without repeating Featured. */
