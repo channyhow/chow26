@@ -228,17 +228,17 @@
   }
 }
 
-/* Compact editorial pairings: text and media stay together as a story. */
+/* Three compact editorial pairings, with a subtle offset rather than centered symmetry. */
 .homeServicesStory {
   display: grid;
   width: 100%;
-  gap: $padding-block;
+  gap: $margin-group;
 }
 
 .homeServicesStory__row {
   @include site-grid;
-  align-items: center;
-  row-gap: $margin-group;
+  align-items: start;
+  row-gap: $margin-content;
 }
 
 .homeServicesStory__copy,
@@ -267,17 +267,16 @@
 
 @include desktop-up {
   .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
-    .homeServicesStory__copy { grid-column: 1 / span 5; grid-row: 1; }
+    .homeServicesStory__copy { grid-column: 1 / span 5; grid-row: 1; padding-top: $margin-group; }
     .homeServicesStory__media { grid-column: 8 / span 5; grid-row: 1; }
   }
   .homeServicesStory__row--reverse {
-    .homeServicesStory__media { grid-column: 1 / span 5; grid-row: 1; }
-    .homeServicesStory__copy { grid-column: 8 / span 5; grid-row: 1; }
+    .homeServicesStory__media { grid-column: 2 / span 5; grid-row: 1; }
+    .homeServicesStory__copy { grid-column: 8 / span 5; grid-row: 1; padding-top: $padding-block; }
   }
 }
 
 @include tablet-down {
-  .homeServicesStory { gap: $margin-group; }
   .homeServicesStory__row--reverse .homeServicesStory__copy { order: -1; }
   .homeServicesStory__media .media__frame { aspect-ratio: $ratio-landscape; }
 }
