@@ -38,99 +38,67 @@
   }
 }
 
-.homeOpeningScene__mediaGrid {
-  @include site-grid;
+.homeOpeningScene__mediaStage {
+  position: relative;
   width: 100%;
-  align-items: stretch;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: minmax(0, 1fr);
+  height: calc(100svh - (2 * #{$padding-block}));
+  overflow: hidden;
   transition: height 700ms ease;
 }
-
-.homeOpeningScene__mediaPanel {
-  grid-column: auto;
-  min-width: 0;
-  min-height: 0;
-  height: 100%;
-}
-
-.homeOpeningScene__mediaMotion,
 .homeOpeningScene__media {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  .media__frame { width: 100%; height: 100%; max-height: none; aspect-ratio: auto; overflow: hidden; }
+  .media__asset { width: 100%; height: 100%; object-fit: cover; }
 }
-
-.homeOpeningScene__media .media__frame {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: auto;
-  max-height: none;
-  overflow: hidden;
+.homeOpeningScene__mediaGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  pointer-events: none;
 }
-
-.homeOpeningScene__media .media__asset {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.homeOpeningScene__mediaPanel {
+  min-width: 0;
+  border-right: $space-3 solid $color-secondary;
+  &:last-child { border-right: 0; }
 }
-
-// Individual panel feedback keeps the opening interactive without adding JS.
 @media (hover: hover) and (pointer: fine) {
-  .homeOpeningScene__mediaPanel .media__asset {
-    transition: transform 650ms cubic-bezier(.22, 1, .36, 1);
-    will-change: auto;
-  }
-
-  .homeOpeningScene__mediaPanel:hover .media__asset {
-    transform: scale(1.045);
-  }
+  .homeOpeningScene__media .media__asset { transition: transform 650ms cubic-bezier(.22, 1, .36, 1); }
+  .homeOpeningScene__mediaLink:hover .media__asset { transform: scale(1.045); }
 }
-
 .homeOpeningScene__statementReveal {
   margin-top: auto;
   padding-top: $margin-content;
 }
 
-.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaGrid {
-  height: calc(100svh - (2 * #{$padding-block}));
-}
-
+.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage { height: min(70svh, 48rem); }
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
-  height: auto;
-  grid-template-rows: auto;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: $space-3;
 }
-
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaPanel {
-  aspect-ratio: 1;
+  border: 0;
+  box-shadow: 0 0 0 $space-2 $color-secondary;
 }
-
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaMotion,
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__media {
-  aspect-ratio: 1;
-}
-
 @include tablet-down {
   .homeOpeningScene__mediaGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .homeOpeningScene__mediaPanel:nth-child(n + 5) { display: none; }
-
-  .homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaGrid {
-    height: calc(100svh - (2 * #{$padding-block}));
-  }
   .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 }
-
 @include mobile-down {
   .homeOpeningScene__statementReveal { padding-bottom: $space-4; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .homeOpeningScene__mediaGrid { transition: none; }
-  .homeOpeningScene__mediaPanel .media__asset { transition: none; }
+  .homeOpeningScene__mediaStage,
+  .homeOpeningScene__media .media__asset { transition: none; }
 }
-
 // One or several Home service mockups share the same editorial media column.
 #home-services .homeServices__mediaList {
   display: grid;
