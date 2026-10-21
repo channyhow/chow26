@@ -13,7 +13,7 @@ type HomeOpeningSceneProps = {
   parallaxEnabled?: boolean;
 };
 
-export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const [expanded, setExpanded] = useState(false);
   const openingMedia = media[0];
 
