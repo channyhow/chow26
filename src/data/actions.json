@@ -1,45 +1,228 @@
 {
-  "contact": { "label": "Contact", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "talk-project": { "label": "Parler d’un projet", "href": "/contact", "intent": "contact", "variant": "cta", "priority": "primary" },
-  "present-project": { "label": "Présenter votre projet", "href": "/contact", "intent": "contact", "variant": "cta" },
-  "identity-essential-contact": { "label": "Identité essentielle", "href": "/contact", "intent": "contact", "variant": "arrow" },
-  "identity-complete-contact": { "label": "Identité complète", "href": "/contact", "intent": "contact", "variant": "arrow" },
-  "project-call": { "label": "Parler de mon projet", "href": "https://tally.so/r/rjxkop", "intent": "navigate", "variant": "cta", "priority": "primary" },
-  "view-project-call": { "label": "Voir l’appel à projets", "href": "/link", "intent": "navigate", "variant": "accent", "priority": "secondary" },
-
-  "home": { "label": "Accueil", "href": "/", "intent": "navigate" },
-  "return-home": { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
-  "projects": { "label": "Projets", "href": "/projets", "intent": "navigate" },
-  "case-studies": { "label": "Voir les études de cas", "href": "/projets", "intent": "navigate", "variant": "arrow" },
-  "view-projects": { "label": "Voir les projets", "href": "/projets", "intent": "navigate" },
-  "all-projects": { "label": "Voir tous les projets", "href": "/projets", "intent": "navigate", "variant": "arrow", "priority": "secondary" },
-  "discover-projects": { "label": "Découvrir les projets", "href": "/projets", "intent": "navigate" },
-  "studio": { "label": "Studio", "href": "/studio", "intent": "navigate" },
-  "about-studio": { "label": "À propos de Chow Studio", "href": "/studio", "intent": "navigate", "variant": "arrow" },
-  "studio-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate", "variant": "cta", "priority": "secondary" },
-  "studio-service-identity": { "label": "Créer une identité visuelle", "href": "/studio#studio-service-identity", "intent": "navigate", "variant": "arrow" },
-  "studio-service-website": { "label": "Concevoir un site web", "href": "/studio#studio-service-website", "intent": "navigate", "variant": "arrow" },
-  "studio-service-integrations": { "label": "Supports de communication", "href": "/studio#studio-service-integrations", "intent": "navigate", "variant": "arrow" },
-  "talk-website": { "label": "Parler d’un site internet", "href": "/contact", "intent": "contact", "variant": "arrow" },
-  "evolve-website": { "label": "Parler de mes supports", "href": "/contact", "intent": "contact", "variant": "arrow" },
-  "approach-services": { "label": "Voir les accompagnements", "href": "/studio", "intent": "navigate" },
-  "mdk-case-study": { "label": "Étude de cas | Le Mois du Kèr", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
-   "read-more": { "label": "En savoir plus", "href": "/projets/mois-du-ker", "intent": "navigate", "variant": "arrow" },
-
- 
-  "privacy-data": { "label": "Comment vos données sont utilisées", "href": "/confidentialite", "intent": "navigate", "priority": "secondary" },
-"linkpage-founder": { "label": "À propos de Chow Studio", "href": "/link#studio-founders", "intent": "navigate","variant": "arrow" },
-  "atmosphere-site": { "label": "Voir le site", "href": "https://atmosphere-studio.netlify.app", "intent": "navigate" },
-  "mdk-dossier": { "label": "Voir plus", "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf", "intent": "navigate" },
-  "kuro-site": { "label": "Voir le site", "href": "https://omakase-kuro.netlify.app", "intent": "navigate" },
-  "sasha-site": { "label": "Voir le site", "href": "https://sashayogaflow.com", "intent": "navigate" },
-  "maloya-site": { "label": "Voir le site", "href": "https://maloya-concept.netlify.app", "intent": "navigate" },
-  "randorun-site": { "label": "Voir le site", "href": "https://www.randorunoi.com/", "intent": "navigate" },
-
-  "instagram": { "label": "Instagram", "href": "https://www.instagram.com/hellochowstudio/", "intent": "navigate", "group": "social" },
-  "linkedin": { "label": "LinkedIn", "href": "https://www.linkedin.com/in/channyhow", "intent": "navigate", "group": "social" },
-  "facebook": { "label": "Facebook", "href": "https://www.facebook.com/hellochowstudio/", "intent": "navigate", "group": "social" },
-  "terms": { "label": "CGV", "href": "/cgv", "intent": "navigate", "group": "legal" },
-  "privacy": { "label": "Confidentialité", "href": "/confidentialite", "intent": "navigate", "group": "legal" },
-  "legal": { "label": "Mentions légales", "href": "/mentions-legales", "intent": "navigate", "group": "legal" }
+  "contact": {
+    "label": "Contact",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "cta"
+  },
+  "talk-project": {
+    "label": "Parler d’un projet",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "cta",
+    "priority": "primary"
+  },
+  "present-project": {
+    "label": "Présenter votre projet",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "cta"
+  },
+  "identity-essential-contact": {
+    "label": "Identité essentielle",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "arrow"
+  },
+  "identity-complete-contact": {
+    "label": "Identité complète",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "arrow"
+  },
+  "project-call": {
+    "label": "Parler d’un autre projet",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "cta",
+    "priority": "primary"
+  },
+  "view-project-call": {
+    "label": "Suivre l’appel à projets",
+    "href": "/link",
+    "intent": "navigate",
+    "variant": "accent",
+    "priority": "secondary"
+  },
+  "home": {
+    "label": "Accueil",
+    "href": "/",
+    "intent": "navigate"
+  },
+  "return-home": {
+    "label": "Retour à l’accueil",
+    "href": "/",
+    "intent": "navigate"
+  },
+  "projects": {
+    "label": "Projets",
+    "href": "/projets",
+    "intent": "navigate"
+  },
+  "case-studies": {
+    "label": "Voir les études de cas",
+    "href": "/projets",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "view-projects": {
+    "label": "Voir les projets",
+    "href": "/projets",
+    "intent": "navigate"
+  },
+  "all-projects": {
+    "label": "Voir tous les projets",
+    "href": "/projets",
+    "intent": "navigate",
+    "variant": "arrow",
+    "priority": "secondary"
+  },
+  "discover-projects": {
+    "label": "Découvrir les projets",
+    "href": "/projets",
+    "intent": "navigate"
+  },
+  "studio": {
+    "label": "Studio",
+    "href": "/studio",
+    "intent": "navigate"
+  },
+  "about-studio": {
+    "label": "À propos de Chow Studio",
+    "href": "/studio",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "studio-services": {
+    "label": "Voir les accompagnements",
+    "href": "/studio",
+    "intent": "navigate",
+    "variant": "cta",
+    "priority": "secondary"
+  },
+  "studio-service-identity": {
+    "label": "Créer une identité visuelle",
+    "href": "/studio#studio-service-identity",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "studio-service-website": {
+    "label": "Concevoir un site web",
+    "href": "/studio#studio-service-website",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "studio-service-integrations": {
+    "label": "Supports de communication",
+    "href": "/studio#studio-service-integrations",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "talk-website": {
+    "label": "Parler d’un site internet",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "arrow"
+  },
+  "evolve-website": {
+    "label": "Parler de mes supports",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "arrow"
+  },
+  "approach-services": {
+    "label": "Voir les accompagnements",
+    "href": "/studio",
+    "intent": "navigate"
+  },
+  "mdk-case-study": {
+    "label": "Étude de cas | Le Mois du Kèr",
+    "href": "/projets/mois-du-ker",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "read-more": {
+    "label": "En savoir plus",
+    "href": "/projets/mois-du-ker",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "privacy-data": {
+    "label": "Comment vos données sont utilisées",
+    "href": "/confidentialite",
+    "intent": "navigate",
+    "priority": "secondary"
+  },
+  "linkpage-founder": {
+    "label": "À propos de Chow Studio",
+    "href": "/link#studio-founders",
+    "intent": "navigate",
+    "variant": "arrow"
+  },
+  "atmosphere-site": {
+    "label": "Voir le site",
+    "href": "https://atmosphere-studio.netlify.app",
+    "intent": "navigate"
+  },
+  "mdk-dossier": {
+    "label": "Voir plus",
+    "href": "https://urml-oi.re/ZS/Prevention/Dossier-Mois-du-Ker.pdf",
+    "intent": "navigate"
+  },
+  "kuro-site": {
+    "label": "Voir le site",
+    "href": "https://omakase-kuro.netlify.app",
+    "intent": "navigate"
+  },
+  "sasha-site": {
+    "label": "Voir le site",
+    "href": "https://sashayogaflow.com",
+    "intent": "navigate"
+  },
+  "maloya-site": {
+    "label": "Voir le site",
+    "href": "https://maloya-concept.netlify.app",
+    "intent": "navigate"
+  },
+  "randorun-site": {
+    "label": "Voir le site",
+    "href": "https://www.randorunoi.com/",
+    "intent": "navigate"
+  },
+  "instagram": {
+    "label": "Instagram",
+    "href": "https://www.instagram.com/hellochowstudio/",
+    "intent": "navigate",
+    "group": "social"
+  },
+  "linkedin": {
+    "label": "LinkedIn",
+    "href": "https://www.linkedin.com/in/channyhow",
+    "intent": "navigate",
+    "group": "social"
+  },
+  "facebook": {
+    "label": "Facebook",
+    "href": "https://www.facebook.com/hellochowstudio/",
+    "intent": "navigate",
+    "group": "social"
+  },
+  "terms": {
+    "label": "CGV",
+    "href": "/cgv",
+    "intent": "navigate",
+    "group": "legal"
+  },
+  "privacy": {
+    "label": "Confidentialité",
+    "href": "/confidentialite",
+    "intent": "navigate",
+    "group": "legal"
+  },
+  "legal": {
+    "label": "Mentions légales",
+    "href": "/mentions-legales",
+    "intent": "navigate",
+    "group": "legal"
+  }
 }
