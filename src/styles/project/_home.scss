@@ -338,12 +338,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 
   .homeServicesStory__row {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: $margin-group;
-    min-height: 0;
-    padding-block: $padding-block;
+    @include editorial-stacked-rhythm;
   }
 
   .homeServicesStory__copy {
@@ -372,21 +367,21 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeServicesStory__digitalMedia {
     order: 1;
     flex: 0 0 auto;
-    align-self: center;
-    width: min(100%, 36rem);
+    align-self: stretch;
     max-width: 100%;
+    @include editorial-stacked-media;
   }
 
-  .homeServicesStory__media .media__frame,
+  // The crossfade stage and its slides must use Studio's exact media ratio.
   .homeServicesStory__digitalMedia {
-    aspect-ratio: $ratio-landscape;
+    .mediaRotation__slide .media__frame { aspect-ratio: $ratio-wide; }
   }
 }
 
 // Tablet retains a more expressive type scale without inheriting desktop columns.
 @include tablet-only {
   .homeServicesStory__row {
-    gap: $space-4;
+    gap: $margin-group;
   }
 
   .homeServicesStory__copy {
