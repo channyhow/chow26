@@ -31,9 +31,9 @@
     "variant": "arrow"
   },
   "project-call": {
-    "label": "Parler d’un autre projet",
-    "href": "/contact",
-    "intent": "contact",
+    "label": "Parler de mon projet",
+    "href": "https://tally.so/r/7RpgvA",
+    "intent": "navigate",
     "variant": "cta",
     "priority": "primary"
   },
