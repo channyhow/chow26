@@ -272,7 +272,8 @@
         "eyebrow": "Parler d’un projet",
         "title": "Quelques lignes suffisent pour commencer.",
         "text": [
-          "Vous n’avez pas besoin de savoir exactement quelle prestation choisir. Dites-moi simplement **ce qui existe**, **ce qui ne fonctionne plus** et **ce qui doit changer**. Nous définirons ensuite la bonne réponse, qu’il s’agisse d’un **site internet**, d’une **identité visuelle**, de **supports de communication** ou d’**outils digitaux**."
+          "Vous avez un projet de **site internet**, d’**identité visuelle** ou de **supports de communication** ? Que votre idée soit déjà précise ou encore en réflexion, vous n’avez pas besoin de tout définir avant de me contacter.",
+          "Racontez-moi **ce que vous avez en tête**, votre univers, ce qui existe déjà et ce que vous aimeriez créer ou faire évoluer. Ces premières informations me permettront de mieux comprendre **votre vision**, vos besoins et de préparer notre premier échange."
         ]
       },
       "form": "contact"
