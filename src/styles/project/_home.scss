@@ -378,6 +378,32 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 }
 
+// Shared responsive editorial typography across the homepage.
+// Keep campaign titles and display indexes distinct from supporting copy.
+@include desktop-down {
+  .homeServicesStory__copy,
+  .homeFeaturedProject__story,
+  .homeOpenCall__details,
+  .homeContact__story {
+    .textBlock__content .textBlock__group > p {
+      @include type-heading-sm;
+      line-height: 1.3;
+    }
+  }
+}
+
+@include tablet-only {
+  .homeServicesStory__copy,
+  .homeFeaturedProject__story,
+  .homeOpenCall__details,
+  .homeContact__story {
+    .textBlock__content .textBlock__group > p {
+      @include type-heading-md;
+      line-height: 1.3;
+    }
+  }
+}
+
 // Tablet retains a more expressive type scale without inheriting desktop columns.
 @include tablet-only {
   .homeServicesStory__row {
