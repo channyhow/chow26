@@ -73,16 +73,21 @@
   background: transparent;
   transition: background-color 450ms ease;
 }
-// A restrained preview of the click transition: the video softens on hover.
-.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaLink:focus-visible .homeOpeningScene__media {
-  opacity: 0.65;
-}
-@media (hover: hover) and (pointer: fine) {
-  .homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaLink:hover .homeOpeningScene__media {
-    opacity: 0.65;
+// Make the whole opening visibly interactive, including in device emulation
+// where the browser may not report a fine hover pointer.
+.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaLink {
+  &:hover,
+  &:focus-visible {
+    .homeOpeningScene__media {
+      opacity: 0.45;
+    }
+    .homeOpeningScene__mediaPanel {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
   }
-  .homeOpeningScene__mediaGrid { pointer-events: auto; }
-  .homeOpeningScene__mediaPanel:hover { background-color: rgba(255, 255, 255, 0.16); }
+}
+.homeOpeningScene__mediaPanel:hover {
+  background-color: rgba(255, 255, 255, 0.22) !important;
 }
 .homeOpeningScene__statementReveal {
   margin-top: auto;
