@@ -41,7 +41,7 @@
     "navigation": { "desktop": "inline" },
     "copy": {
       "navigation": { "mainLabel": "Navigation principale", "openMenuLabel": "Ouvrir le menu", "closeLabel": "Fermer", "drawerLabels": { "menu": "Menu", "contact": "Projet", "reservation": "Échanger" } },
-      "forms": { "selectPlaceholder": "Sélectionner", "defaultSubmitLabel": "Envoyer", "responseNote": "Je réponds généralement sous 1 à 2 jours ouvrés. Le premier échange sert simplement à voir si le projet et le périmètre correspondent.", "requiredError": "Ce champ est requis.", "emailError": "Saisissez une adresse e-mail valide.", "numberError": "Saisissez une valeur valide.", "genericError": "Vérifiez la valeur saisie." },
+      "forms": { "selectPlaceholder": "Sélectionner", "defaultSubmitLabel": "Envoyer", "responseNote": "Réponse généralement sous 1 à 2 jours ouvrés. Le premier échange permet de préciser le projet et son périmètre.", "requiredError": "Ce champ est requis.", "emailError": "Saisissez une adresse e-mail valide.", "numberError": "Saisissez une valeur valide.", "genericError": "Vérifiez la valeur saisie." },
       "carousel": { "defaultLabel": "Projets", "navigationLabel": "Navigation du carrousel", "previousLabel": "Précédent", "nextLabel": "Suivant", "positionSeparator": "sur" },
       "contentSwitcher": { "controlsLabel": "Choisir un besoin" },
       "schedule": { "bookingLabel": "Échanger" }
