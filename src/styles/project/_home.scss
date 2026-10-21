@@ -49,7 +49,7 @@
 // not behind the section or its scroll-motion wrapper.
 
 .homeOpeningScene__mediaPanel {
-  @include offset-media-backing;
+  // @include offset-media-backing;
   grid-column: 1 / -1;
   width: 100%;
 }
