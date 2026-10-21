@@ -58,7 +58,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
       ) : null}
 
       {header && expanded ? (
-        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
         <TextBlock
           content={header}
           titleAs="h1"
