@@ -36,11 +36,29 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
     root.style.overscrollBehavior = "none";
     body.style.overscrollBehavior = "none";
     body.style.touchAction = "none";
+    // Some page layouts scroll within an element instead of the window.
+    // Snapshot those positions and immediately restore any attempted scroll.
+    const scrollPositions = new Map<Element, { top: number; left: number }>();
+    for (const element of document.querySelectorAll("*")) {
+      if (element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1) {
+        scrollPositions.set(element, { top: element.scrollTop, left: element.scrollLeft });
+      }
+    }
+    const lockedX = window.scrollX;
     const lockedY = window.scrollY;
-    const restoreScroll = () => {
-      if (window.scrollY !== lockedY) window.scrollTo(0, lockedY);
+    const restoreScroll = (event: Event) => {
+      const target = event.target;
+      if (target instanceof Element) {
+        const saved = scrollPositions.get(target);
+        if (saved) {
+          if (target.scrollTop !== saved.top) target.scrollTop = saved.top;
+          if (target.scrollLeft !== saved.left) target.scrollLeft = saved.left;
+        }
+      }
+      if (window.scrollX !== lockedX || window.scrollY !== lockedY) {
+        window.scrollTo(lockedX, lockedY);
+      }
     };
-
     const blockScroll = (event: Event) => {
       if (event.cancelable) event.preventDefault();
     };
