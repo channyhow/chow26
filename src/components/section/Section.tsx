@@ -169,7 +169,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const applications = { title: "Une identité qui vous accompagne.", text: paragraphs.slice(2, 3) };
     const web = {
       title: "Votre identité prend vie en ligne.",
-      text: paragraphs.slice(3).map((paragraph) => paragraph.replace(/^Et sur le web\s*\?\s*/i, "")),
+      text: paragraphs.slice(3).map((paragraph) => typeof paragraph === "string" ? paragraph.replace(/^Et sur le web\s*\?\s*/i, "") : paragraph),
     };
     const identityMedia = resolveMedia("flo-wordmark");
     const applicationMedia = resolveMedia("flo-business-card");
