@@ -275,31 +275,31 @@
   }
   .homeServicesStory__row--reverse {
     > .homeServicesStory__media { grid-column: 1 / span 5; grid-row: 1; }
-    > .homeServicesStory__digitalMedia { grid-column: 1 / span 7; grid-row: 1; }
+    > .homeServicesStory__digitalMedia { grid-column: 1 / span 8; grid-row: 1; }
     .homeServicesStory__copy { grid-column: 9 / span 3; grid-row: 1; padding-top: $padding-block; }
   }
 }
 
 .homeServicesStory__digitalMedia {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr);
-  align-items: end;
-  gap: 0;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.72fr);
+  align-items: center;
+  gap: $space-3;
 
-  .homeServicesStory__media { grid-column: auto; min-width: 0; }
-  .homeServicesStory__media:first-child {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    width: 82%;
-    .media__frame { aspect-ratio: $ratio-landscape; }
+  .homeServicesStory__media {
+    grid-column: auto;
+    grid-row: auto;
+    min-width: 0;
+    width: 100%;
+    transform: none;
   }
-  .homeServicesStory__media:last-child {
-    grid-column: 2;
-    grid-row: 1;
-    position: relative;
-    z-index: 1;
-    transform: translateY($space-4);
-    .media__frame { aspect-ratio: $ratio-portrait; }
+
+  .homeServicesStory__media:first-child .media__frame {
+    aspect-ratio: $ratio-landscape;
+  }
+
+  .homeServicesStory__media:last-child .media__frame {
+    aspect-ratio: $ratio-portrait;
   }
 }
 
