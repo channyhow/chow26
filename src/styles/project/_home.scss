@@ -268,12 +268,12 @@
 
 @include desktop-up {
   .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
-    .homeServicesStory__copy { grid-column: 1 / span 5; grid-row: 1; padding-top: $margin-group; }
-    .homeServicesStory__media { grid-column: 8 / span 3; grid-row: 1; }
+    .homeServicesStory__copy { grid-column: 2 / span 4; grid-row: 1; padding-top: $margin-group; }
+    .homeServicesStory__media { grid-column: 7 / span 4; grid-row: 1; }
   }
   .homeServicesStory__row--reverse {
-    .homeServicesStory__media { grid-column: 2 / span 3; grid-row: 1; }
-    .homeServicesStory__copy { grid-column: 8 / span 5; grid-row: 1; padding-top: $padding-block; }
+    .homeServicesStory__media { grid-column: 2 / span 4; grid-row: 1; }
+    .homeServicesStory__copy { grid-column: 7 / span 4; grid-row: 1; padding-top: $padding-block; }
   }
 }
 
