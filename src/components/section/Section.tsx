@@ -206,7 +206,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} titleVariant="display" motionEnabled={sectionMotionEnabled} /></div>;
     body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<div className="homeOpenCall__details"><TextBlock content={openCallIntro} className="homeOpenCall__context" copyVariant="prominent" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></div></article>;
   } else if (isHomeFeaturedProject && splitItem) {
-    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
+    const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{<ScrollScene preset="parallax" intensity="quiet" direction="reverse" className="homeFeaturedProject__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}><Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" /></ScrollScene>}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
       title: [splitItem.title, splitItem.subtitle].filter(Boolean).join(" > "),
@@ -214,7 +214,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       meta: splitItem.meta,
       links: header?.projectLinks,
     };
-    const featuredStoryLayer = motionLayer(<TextBlock content={featuredStory} titleVariant="feature" motionEnabled={sectionMotionEnabled} />, "forward", "homeFeaturedProject__story", "quiet", "editorial-text");
+    const featuredStoryLayer = <div className="homeFeaturedProject__story"><TextBlock content={featuredStory} titleVariant="feature" motionEnabled={sectionMotionEnabled} /></div>;
     body = <article className="homeEditorialComposition homeFeaturedProject__composition"><div className="homeFeaturedProject__index" aria-label="Projet à la une"><span>Ce mois-ci</span><Actions links={header?.links} className="homeFeaturedProject__archive" /></div>{featuredMedia}{featuredStoryLayer}</article>;
   } else if (layout === "split") {
     const primaryContent = splitItem ? { ...splitItem, media: undefined, offers: undefined } : header;
