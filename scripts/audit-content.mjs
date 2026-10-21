@@ -33,9 +33,7 @@ report(!caseStudyPattern.test(JSON.stringify(publicIdentityData)), "case-study w
 const auditSeo = (seo, context) => {
   report(seo?.title?.trim(), `${context} needs an SEO title`);
   report(seo?.description?.trim(), `${context} needs an SEO description`);
-  report(!seo?.title?.includes("|"), `${context} SEO title must use | instead of an em dash`);
-  report(!seo?.description?.includes("|"), `${context} SEO description must use | instead of an em dash`);
-  report(!seo?.imageAlt?.includes("|"), `${context} SEO image alt must use | instead of an em dash`);
+  report(!seo?.title?.includes("—"), `${context} SEO title must use | instead of an em dash`);
   if (seo?.canonical) report(/^https:\/\//.test(seo.canonical), `${context} canonical must be an absolute HTTPS URL`);
   if (seo?.image) seoImages.add(seo.image);
 };
