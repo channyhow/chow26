@@ -330,57 +330,9 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeServicesStory__digitalMedia .mediaRotation__slide { transition: none; transform: none; }
 }
 
-// Below the desktop split, each story becomes a deliberately spaced
-// text-then-image composition rather than a full-viewport grid.
-@include tablet-down {
-  .homeServicesStory__row {
-    min-height: 0;
-    align-content: start;
-    row-gap: $space-4;
-    padding-block: $space-4;
-  }
-
-  .homeServicesStory__row > .homeServicesStory__copy {
-    order: -1;
-  }
-
-  .homeServicesStory__copy {
-    gap: $space-3;
-
-    .textBlock__title {
-      @include type-heading-sm;
-      max-width: 24ch;
-    }
-
-    .textBlock__content {
-      max-width: 36rem;
-
-      .textBlock__group > p {
-        @include type-body;
-        line-height: 1.4;
-      }
-    }
-  }
-
-  .homeServicesStory__media,
-  .homeServicesStory__digitalMedia {
-    width: 100%;
-    max-width: 42rem;
-    justify-self: center;
-  }
-
-  .homeServicesStory__media .media__frame {
-    aspect-ratio: $ratio-landscape;
-  }
-
-  .homeServicesStory__digitalMedia {
-    aspect-ratio: $ratio-landscape;
-  }
-}
-
-// Match Studio's stacked editorial panels: one readable text block,
-// then one bounded visual, with an intentional gap between each story.
-@include tablet-down {
+// Home and Studio share a stacked editorial rhythm until the full desktop grid.
+// One breakpoint owns the structure; tablet and phone only tune the scale.
+@include desktop-down {
   .homeServicesStory {
     gap: $margin-group;
   }
@@ -389,7 +341,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    justify-content: flex-start;
     gap: $margin-group;
     min-height: 0;
     padding-block: $padding-block;
@@ -401,6 +352,20 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     max-width: $measure-header-copy;
     align-self: start;
     gap: $margin-content;
+
+    .textBlock__title {
+      @include type-heading-sm;
+      max-width: 24ch;
+    }
+
+    .textBlock__content {
+      max-width: $measure-header-copy;
+
+      .textBlock__group > p {
+        @include type-body;
+        line-height: 1.4;
+      }
+    }
   }
 
   .homeServicesStory__media,
@@ -412,23 +377,31 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     max-width: 100%;
   }
 
-  .homeServicesStory__copy .textBlock__content {
-    max-width: $measure-header-copy;
+  .homeServicesStory__media .media__frame,
+  .homeServicesStory__digitalMedia {
+    aspect-ratio: $ratio-landscape;
+  }
+}
+
+// Tablet retains a more expressive type scale without inheriting desktop columns.
+@include tablet-only {
+  .homeServicesStory__row {
+    gap: $space-4;
+  }
+
+  .homeServicesStory__copy {
+    .textBlock__title { @include type-heading-md; }
+    .textBlock__content .textBlock__group > p { @include type-heading-sm; line-height: 1.3; }
   }
 }
 
 @include mobile-down {
   .homeServicesStory__row {
     gap: $margin-content;
-    padding-block: $padding-block;
   }
 
   .homeServicesStory__copy {
     gap: $space-2;
-
-    .textBlock__title {
-      @include type-heading-sm;
-    }
   }
 }
 
