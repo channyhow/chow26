@@ -235,13 +235,15 @@
 }
 
 .homeServicesStory__digitalMedia {
+  @include offset-media-backing;
   display: grid;
-  position: relative;
   width: 100%;
   min-width: 0;
   // Stable frame: changing mockups never shifts the text or section height.
   aspect-ratio: $ratio-landscape;
-  overflow: hidden;
+
+  // Keep the offset backing visible outside the media frame.
+  > .homeServicesStory__rotationFrame { z-index: 1; }
 }
 
 .homeServicesStory__rotationFrame {
