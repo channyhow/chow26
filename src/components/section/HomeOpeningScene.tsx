@@ -24,7 +24,24 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
     const previousBodyOverflow = document.body.style.overflow;
     root.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+
+    // Intercept input as well: some layouts scroll inside a nested container.
+    const blockScroll = (event: Event) => {
+      if (event.cancelable) event.preventDefault();
+    };
+    const blockScrollKeys = (event: KeyboardEvent) => {
+      if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)
+        && !(event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true']"))) {
+        event.preventDefault();
+      }
+    };
+    window.addEventListener("wheel", blockScroll, { passive: false, capture: true });
+    window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
+    window.addEventListener("keydown", blockScrollKeys, { capture: true });
     return () => {
+      window.removeEventListener("wheel", blockScroll, true);
+      window.removeEventListener("touchmove", blockScroll, true);
+      window.removeEventListener("keydown", blockScrollKeys, true);
       root.style.overflow = previousRootOverflow;
       document.body.style.overflow = previousBodyOverflow;
     };
