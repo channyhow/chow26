@@ -17,44 +17,13 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
   const [expanded, setExpanded] = useState(false);
   const openingMedia = media[0];
 
+  // The opening is intentionally gated until tapped. CSS owns that initial
+  // state; avoid global touch/wheel listeners, which can strand mobile scrolling.
   useEffect(() => {
-    if (expanded || !openingMedia) return;
-    const root = document.documentElement;
-    const body = document.body;
-    const previous = {
-      rootOverflow: root.style.overflow,
-      bodyOverflow: body.style.overflow,
-    };
-
-    // Fix the document in place as well as blocking input: overflow alone
-    // doesn't reliably lock touch scrolling or custom scroll containers.
-    root.style.overflow = "hidden";
-    body.style.overflow = "hidden";
-
-    const blockScroll = (event: Event) => {
-      if (event.cancelable) event.preventDefault();
-    };
-    const blockScrollKeys = (event: KeyboardEvent) => {
-      if (
-        ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key) &&
-        !(event.target instanceof HTMLElement && event.target.closest("input, textarea, select, [contenteditable='true']"))
-      ) {
-        event.preventDefault();
-      }
-    };
-
-    window.addEventListener("wheel", blockScroll, { passive: false, capture: true });
-    window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
-    window.addEventListener("keydown", blockScrollKeys, { capture: true });
-
-    return () => {
-      window.removeEventListener("wheel", blockScroll, true);
-      window.removeEventListener("touchmove", blockScroll, true);
-      window.removeEventListener("keydown", blockScrollKeys, true);
-      root.style.overflow = previous.rootOverflow;
-      body.style.overflow = previous.bodyOverflow;
-    };
-  }, [expanded, openingMedia]);
+    if (!expanded) return;
+    document.documentElement.style.removeProperty("overflow");
+    document.body.style.removeProperty("overflow");
+  }, [expanded]);
 
   return (
     <div className="homeOpeningScene" data-expanded={expanded}>
