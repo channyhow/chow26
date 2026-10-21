@@ -58,13 +58,13 @@
   inset: 0;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: $space-3;
   pointer-events: none;
   transition: grid-template-columns 900ms cubic-bezier(.22, 1, .36, 1), grid-template-rows 900ms cubic-bezier(.22, 1, .36, 1), gap 900ms cubic-bezier(.22, 1, .36, 1);
 }
 .homeOpeningScene__mediaPanel {
   min-width: 0;
-  border-right: $space-3 solid $color-secondary;
-  &:last-child { border-right: 0; }
+  box-shadow: inset 0 0 0 0 $color-secondary;
 }
 @media (hover: hover) and (pointer: fine) {
   .homeOpeningScene__media .media__asset { transition: transform 650ms cubic-bezier(.22, 1, .36, 1); }
@@ -82,12 +82,10 @@
   gap: $space-3;
 }
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaPanel {
-  border: 0;
-  box-shadow: 0 0 0 $space-2 $color-secondary;
-  transition: box-shadow 900ms cubic-bezier(.22, 1, .36, 1);
+  box-shadow: none;
 }
 @include tablet-down {
-  .homeOpeningScene__mediaGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .homeOpeningScene__mediaGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
 
   .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
