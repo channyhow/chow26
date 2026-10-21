@@ -249,13 +249,14 @@
   }
 
   > .homeServicesStory__media:first-child {
-    width: 86%;
+    // Keep the laptop substantial without letting it exceed the viewport.
+    width: min(86%, 78svh);
     align-self: start;
     .media__frame { aspect-ratio: $ratio-landscape; }
   }
 
   > .homeServicesStory__media:last-child {
-    width: 34%;
+    width: min(34%, 30svh);
     justify-self: end;
     align-self: end;
     position: relative;
