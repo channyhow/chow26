@@ -170,9 +170,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       title: "Et sur le web ?",
       text: paragraphs.slice(3).map((paragraph) => paragraph.replace(/^Et sur le web\s*\?\s*/i, "")),
     };
-    const identityMedia = mediaItems[1] ?? mediaItems[0];
-    const applicationMedia = mediaItems[0];
+    const identityMedia = resolveMedia("flo-wordmark");
+    const applicationMedia = resolveMedia("flo-business-card");
     const websiteMedia = resolveMedia("flo-laptop");
+    const mobileMedia = resolveMedia("flo-mobile");
     const storyMedia = (item: typeof identityMedia) => item
       ? <div className="homeServicesStory__media"><Media media={item} sizes="(min-width: 64rem) 36vw, 100vw" /></div>
       : null;
@@ -190,7 +191,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
           <TextBlock content={web} motionEnabled={sectionMotionEnabled} />
           <Actions links={header.links} />
         </div>
-        {storyMedia(websiteMedia)}
+        <div className="homeServicesStory__digitalMedia">{storyMedia(websiteMedia)}{storyMedia(mobileMedia)}</div>
       </div>
     </article>;
   } else if (isHomeContact && header) {
