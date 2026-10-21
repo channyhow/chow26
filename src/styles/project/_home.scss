@@ -130,8 +130,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 @media (prefers-reduced-motion: reduce) {
   .homeOpeningScene__mediaStage,
-  .homeOpeningScene__media,
-  .homeOpeningScene__mediaPanel,
   .homeOpeningScene__media .media__asset { transition: none; }
 }
 // One or several Home service mockups share the same editorial media column.
