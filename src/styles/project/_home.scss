@@ -378,10 +378,49 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 }
 
+// Match Studio's stacked editorial panels: one readable text block,
+// then one bounded visual, with an intentional gap between each story.
+@include tablet-down {
+  .homeServicesStory {
+    gap: $margin-group;
+  }
+
+  .homeServicesStory__row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: $margin-group;
+    min-height: 0;
+    padding-block: $padding-block;
+  }
+
+  .homeServicesStory__copy {
+    order: 0;
+    width: 100%;
+    max-width: $measure-header-copy;
+    align-self: start;
+    gap: $margin-content;
+  }
+
+  .homeServicesStory__media,
+  .homeServicesStory__digitalMedia {
+    order: 1;
+    flex: 0 0 auto;
+    align-self: center;
+    width: min(100%, 36rem);
+    max-width: 100%;
+  }
+
+  .homeServicesStory__copy .textBlock__content {
+    max-width: $measure-header-copy;
+  }
+}
+
 @include mobile-down {
   .homeServicesStory__row {
-    row-gap: $space-3;
-    padding-block: $space-3;
+    gap: $margin-content;
+    padding-block: $padding-block;
   }
 
   .homeServicesStory__copy {
