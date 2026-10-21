@@ -15,6 +15,14 @@ export function MediaRotation({ items, className, interval = 4500, sizes = "100v
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const [reduceMotion, setReduceMotion] = useState(() => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(preference.matches);
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const node = ref.current;
@@ -28,10 +36,10 @@ export function MediaRotation({ items, className, interval = 4500, sizes = "100v
   }, []);
 
   useEffect(() => {
-    if (paused || !visible || items.length < 2) return;
+    if (paused || !visible || reduceMotion || items.length < 2) return;
     const timer = window.setInterval(() => setActive((index) => (index + 1) % items.length), interval);
     return () => window.clearInterval(timer);
-  }, [paused, visible, items.length, interval]);
+  }, [paused, visible, reduceMotion, items.length, interval]);
 
   if (!items.length) return null;
   return (
