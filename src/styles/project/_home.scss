@@ -319,8 +319,7 @@
 
 .homeOpenCall__statement,
 .homeOpenCall__media,
-.homeOpenCall__context,
-.homeOpenCall__action {
+.homeOpenCall__details {
   grid-column: 1 / -1;
 }
 
@@ -341,13 +340,13 @@
   }
 }
 
-.homeOpenCall__context {
-  align-self: center;
+.homeOpenCall__details {
+  display: grid;
+  align-content: center;
+  gap: $margin-content;
+  min-width: 0;
 }
 
-.homeOpenCall__action {
-  align-self: end;
-}
 
 // Mobile editorial rhythm: keep the poster supportive, not full-screen.
 @include tablet-down {
@@ -365,12 +364,8 @@
     }
   }
 
-  .homeOpenCall__context {
-    align-self: start;
-  }
-
-  .homeOpenCall__action {
-    align-self: start;
+  .homeOpenCall__details {
+    align-content: start;
   }
 }
 
@@ -385,16 +380,9 @@
     grid-row: 2;
   }
 
-  .homeOpenCall__context {
+  .homeOpenCall__details {
     grid-column: 7 / span 5;
     grid-row: 2;
-  }
-
-  .homeOpenCall__action {
-    grid-column: 7 / span 5;
-    grid-row: 3;
-    align-self: start;
-    margin-top: $margin-content;
   }
 }
 
@@ -407,15 +395,8 @@
     grid-column: 1 / span 3;
   }
 
-  .homeOpenCall__context {
+  .homeOpenCall__details {
     grid-column: 4 / -1;
-  }
-
-  .homeOpenCall__action {
-    grid-column: 4 / -1;
-    grid-row: 3;
-    align-self: start;
-    margin-top: $margin-content;
   }
 }
 
@@ -497,8 +478,7 @@
 @include between($bp-tablet, $bp-desktop) {
   .homeOpenCall__statement,
   .homeOpenCall__media,
-  .homeOpenCall__context,
-  .homeOpenCall__action,
+  .homeOpenCall__details,
   .homeFeaturedProject__index,
   .homeFeaturedProject__media,
   .homeFeaturedProject__story {
@@ -511,7 +491,6 @@
     justify-self: stretch;
   }
 
-  .homeOpenCall__action { margin-top: 0; }
 
   // Give the campaign poster its own row; the large index must never
   // share a grid cell with the media at tablet widths.
