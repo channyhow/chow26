@@ -224,5 +224,12 @@
     "href": "/mentions-legales",
     "intent": "navigate",
     "group": "legal"
+  },
+  "home-opencall-contact": {
+    "label": "Parler de votre projet",
+    "href": "/contact",
+    "intent": "contact",
+    "variant": "arrow",
+    "priority": "secondary"
   }
 }
