@@ -43,6 +43,7 @@
   width: 100%;
   height: calc(100svh - (2 * #{$padding-block}));
   overflow: hidden;
+  interpolate-size: allow-keywords;
   transition: height 900ms cubic-bezier(.22, 1, .36, 1), aspect-ratio 900ms cubic-bezier(.22, 1, .36, 1);
 }
 .homeOpeningScene__media {
@@ -83,31 +84,16 @@
 }
 
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
-  width: min(100%, 720px);
   height: auto;
-  aspect-ratio: 4 / 3;
-}
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__media {
-  mask-image:
-    repeating-linear-gradient(to right, #000 0 calc(25% - #{$space-3} * 3 / 4), transparent calc(25% - #{$space-3} * 3 / 4) 25%),
-    repeating-linear-gradient(to bottom, #000 0 calc(100% / 3 - #{$space-3} * 2 / 3), transparent calc(100% / 3 - #{$space-3} * 2 / 3) calc(100% / 3));
-  mask-composite: intersect;
 }
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  position: relative;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto;
   gap: $space-3;
 }
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaPanel {
-  box-shadow: none;
-}
-@include tablet-down {
-  .homeOpeningScene__mediaGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-
-  .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-  }
+  aspect-ratio: 1;
 }
 @include mobile-down {
   .homeOpeningScene__statementReveal { padding-bottom: $space-4; }
