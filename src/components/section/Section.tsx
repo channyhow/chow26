@@ -178,15 +178,15 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       ? <div className="homeServicesStory__media"><Media media={item} sizes="(min-width: 64rem) 36vw, 100vw" /></div>
       : null;
     body = <article className="homeServicesStory">
-      <div className="homeServicesStory__row">
+      <div className="homeServicesStory__row homeServicesStory__row--reverse">
         <div className="homeServicesStory__copy"><TextBlock content={identity} motionEnabled={sectionMotionEnabled} /></div>
         {storyMedia(identityMedia)}
       </div>
-      <div className="homeServicesStory__row homeServicesStory__row--reverse">
+      <div className="homeServicesStory__row">
         {storyMedia(applicationMedia)}
         <div className="homeServicesStory__copy"><TextBlock content={applications} motionEnabled={sectionMotionEnabled} /></div>
       </div>
-      <div className="homeServicesStory__row">
+      <div className="homeServicesStory__row homeServicesStory__row--reverse">
         <div className="homeServicesStory__copy">
           <TextBlock content={web} motionEnabled={sectionMotionEnabled} />
           <Actions links={header.links} />
