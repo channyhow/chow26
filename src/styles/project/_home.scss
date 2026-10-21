@@ -215,10 +215,16 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   display: grid;
   gap: $margin-content;
 
-  // Mirror Studio's larger, muted editorial statement.
+  // Give each story a real editorial heading, consistent with Studio.
   .textBlock__title {
-    @include type-heading-sm;
+    @include type-heading-md;
     font-weight: $font-weight-medium;
+  }
+
+  @include desktop-up {
+    .textBlock__title {
+      @include type-heading-lg;
+    }
   }
 
   .textBlock__content {
