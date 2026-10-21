@@ -84,7 +84,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
       ) : null}
 
       {header && expanded ? (
-        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ opacity: { duration: 1.1, delay: 1.35, ease: [0.22, 1, 0.36, 1] }, y: { type: "spring", stiffness: 75, damping: 22, mass: 1.3, delay: 1.35 } }}>
         <TextBlock
           content={header}
           titleAs="h1"
