@@ -21,22 +21,15 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
     if (expanded || !openingMedia) return;
     const root = document.documentElement;
     const body = document.body;
-    const scrollY = window.scrollY;
     const previous = {
       rootOverflow: root.style.overflow,
       bodyOverflow: body.style.overflow,
-      position: body.style.position,
-      top: body.style.top,
-      width: body.style.width,
     };
 
     // Fix the document in place as well as blocking input: overflow alone
     // doesn't reliably lock touch scrolling or custom scroll containers.
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.width = "100%";
 
     const blockScroll = (event: Event) => {
       if (event.cancelable) event.preventDefault();
@@ -60,10 +53,6 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
       window.removeEventListener("keydown", blockScrollKeys, true);
       root.style.overflow = previous.rootOverflow;
       body.style.overflow = previous.bodyOverflow;
-      body.style.position = previous.position;
-      body.style.top = previous.top;
-      body.style.width = previous.width;
-      window.scrollTo(0, scrollY);
     };
   }, [expanded, openingMedia]);
 
