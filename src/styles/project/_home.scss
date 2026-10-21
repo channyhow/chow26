@@ -228,17 +228,31 @@
   }
 }
 
-/* One continuous editorial narrative: the grid sets the reading order and width. */
+/* Compact editorial pairings: text and media stay together as a story. */
 .homeServicesStory {
-  align-items: center;
-  row-gap: $padding-block;
+  display: grid;
+  width: 100%;
+  gap: $padding-block;
+}
 
-  > * { min-width: 0; }
+.homeServicesStory__row {
+  @include site-grid;
+  align-items: center;
+  row-gap: $margin-group;
+}
+
+.homeServicesStory__copy,
+.homeServicesStory__media {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.homeServicesStory__copy {
+  display: grid;
+  gap: $margin-content;
 
   .textBlock__content { max-width: $measure-text; }
-  .media { width: 100%; }
-  .media__frame { aspect-ratio: $ratio-square; }
-  .actions { display: grid; gap: 0; }
+  .actions { display: grid; gap: 0; width: 100%; }
   .actions__link {
     @include editorial-control-row;
     @include type-body;
@@ -246,39 +260,26 @@
   }
 }
 
-.homeServicesStory__intro,
-.homeServicesStory__identity,
-.homeServicesStory__benefit,
-.homeServicesStory__application,
-.homeServicesStory__applicationText,
-.homeServicesStory__web,
-.homeServicesStory__websiteMedia,
-.homeServicesStory__links {
-  grid-column: 1 / -1;
+.homeServicesStory__media {
+  .media { width: 100%; }
+  .media__frame { aspect-ratio: $ratio-square; }
 }
 
 @include desktop-up {
-  .homeServicesStory__intro { grid-column: 1 / span 6; grid-row: 1; }
-  .homeServicesStory__identity { grid-column: 8 / span 5; grid-row: 1 / span 2; }
-  .homeServicesStory__benefit { grid-column: 2 / span 5; grid-row: 2; }
-  .homeServicesStory__application { grid-column: 1 / span 5; grid-row: 3 / span 2; }
-  .homeServicesStory__applicationText { grid-column: 7 / span 5; grid-row: 3; }
-  .homeServicesStory__web { grid-column: 7 / span 6; grid-row: 4; }
-  .homeServicesStory__websiteMedia { grid-column: 7 / span 5; grid-row: 5; }
-  .homeServicesStory__links { grid-column: 1 / span 5; grid-row: 5; align-self: center; }
+  .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
+    .homeServicesStory__copy { grid-column: 1 / span 5; grid-row: 1; }
+    .homeServicesStory__media { grid-column: 7 / span 6; grid-row: 1; }
+  }
+  .homeServicesStory__row--reverse {
+    .homeServicesStory__media { grid-column: 1 / span 6; grid-row: 1; }
+    .homeServicesStory__copy { grid-column: 8 / span 5; grid-row: 1; }
+  }
 }
 
 @include tablet-down {
-  .homeServicesStory { row-gap: $margin-group; }
-  .homeServicesStory__intro { order: 1; }
-  .homeServicesStory__identity { order: 2; }
-  .homeServicesStory__benefit { order: 3; }
-  .homeServicesStory__application { order: 4; }
-  .homeServicesStory__applicationText { order: 5; }
-  .homeServicesStory__web { order: 6; }
-  .homeServicesStory__websiteMedia { order: 7; }
-  .homeServicesStory__links { order: 8; }
-  .homeServicesStory .media__frame { aspect-ratio: $ratio-landscape; }
+  .homeServicesStory { gap: $margin-group; }
+  .homeServicesStory__row--reverse .homeServicesStory__copy { order: -1; }
+  .homeServicesStory__media .media__frame { aspect-ratio: $ratio-landscape; }
 }
 
 /* Final contact echoes the Home index language without repeating Featured. */
