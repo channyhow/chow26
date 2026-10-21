@@ -21,44 +21,23 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
     if (expanded || !openingMedia) return;
     const root = document.documentElement;
     const body = document.body;
+    const scrollY = window.scrollY;
     const previous = {
       rootOverflow: root.style.overflow,
       bodyOverflow: body.style.overflow,
-      rootOverscroll: root.style.overscrollBehavior,
-      bodyOverscroll: body.style.overscrollBehavior,
-      bodyTouchAction: body.style.touchAction,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
     };
 
     // Fix the document in place as well as blocking input: overflow alone
     // doesn't reliably lock touch scrolling or custom scroll containers.
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
-    root.style.overscrollBehavior = "none";
-    body.style.overscrollBehavior = "none";
-    body.style.touchAction = "none";
-    // Some page layouts scroll within an element instead of the window.
-    // Snapshot those positions and immediately restore any attempted scroll.
-    const scrollPositions = new Map<Element, { top: number; left: number }>();
-    for (const element of document.querySelectorAll("*")) {
-      if (element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1) {
-        scrollPositions.set(element, { top: element.scrollTop, left: element.scrollLeft });
-      }
-    }
-    const lockedX = window.scrollX;
-    const lockedY = window.scrollY;
-    const restoreScroll = (event: Event) => {
-      const target = event.target;
-      if (target instanceof Element) {
-        const saved = scrollPositions.get(target);
-        if (saved) {
-          if (target.scrollTop !== saved.top) target.scrollTop = saved.top;
-          if (target.scrollLeft !== saved.left) target.scrollLeft = saved.left;
-        }
-      }
-      if (window.scrollX !== lockedX || window.scrollY !== lockedY) {
-        window.scrollTo(lockedX, lockedY);
-      }
-    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+
     const blockScroll = (event: Event) => {
       if (event.cancelable) event.preventDefault();
     };
@@ -71,21 +50,20 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
       }
     };
 
-    window.addEventListener("scroll", restoreScroll, { passive: true, capture: true });
     window.addEventListener("wheel", blockScroll, { passive: false, capture: true });
     window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
     window.addEventListener("keydown", blockScrollKeys, { capture: true });
 
     return () => {
-      window.removeEventListener("scroll", restoreScroll, true);
       window.removeEventListener("wheel", blockScroll, true);
       window.removeEventListener("touchmove", blockScroll, true);
       window.removeEventListener("keydown", blockScrollKeys, true);
       root.style.overflow = previous.rootOverflow;
       body.style.overflow = previous.bodyOverflow;
-      root.style.overscrollBehavior = previous.rootOverscroll;
-      body.style.overscrollBehavior = previous.bodyOverscroll;
-      body.style.touchAction = previous.bodyTouchAction;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.width = previous.width;
+      window.scrollTo(0, scrollY);
     };
   }, [expanded, openingMedia]);
 
