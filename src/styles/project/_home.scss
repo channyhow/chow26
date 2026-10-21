@@ -392,11 +392,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
 @include mobile-down {
   .homeServicesStory__row {
-    gap: $margin-content;
+    gap: $margin-group;
   }
 
   .homeServicesStory__copy {
-    gap: $space-2;
+    gap: $margin-content;
   }
 }
 
@@ -572,6 +572,19 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 }
 
+// Match Studio's stacked image-to-copy rhythm on tablet and mobile.
+// A single grid gap owns spacing; avoid additional media margins.
+@include desktop-down {
+  .homeFeaturedProject__composition {
+    row-gap: $margin-group;
+  }
+
+  .homeFeaturedProject__story {
+    .textBlock__header { gap: $margin-content; }
+    .textBlock__meta { margin-top: $margin-content; }
+  }
+}
+
 /* Featured project - image and statement form one editorial group. */
 .homeFeaturedProject {
   .section__inner {
@@ -649,9 +662,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     row-gap: $margin-group;
   }
 
-  .homeEditorialComposition > :is(.homeFeaturedProject__media, .homeOpenCall__media) {
-    margin-bottom: $space-3;
-  }
 
   .homeFeaturedProject__index > span { max-width: none; }
 }
