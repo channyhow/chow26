@@ -1,4 +1,4 @@
-# Chow Studio — droits, licences & livrables
+# Chow Studio | droits, licences & livrables
 
 > Cadre interne de travail. À faire relire par un professionnel du droit avant intégration définitive aux CGV, contrats ou devis.
 
@@ -6,10 +6,10 @@
 
 Séparer clairement, pour chaque mission :
 
-1. **Création / production** — ce que Chow Studio conçoit.
-2. **Livrables** — les fichiers finaux effectivement remis au client.
-3. **Droits d’utilisation / cession** — les usages autorisés et leur périmètre.
-4. **Fichiers sources** — inclus uniquement lorsqu’ils sont expressément prévus au devis.
+1. **Création / production** | ce que Chow Studio conçoit.
+2. **Livrables** | les fichiers finaux effectivement remis au client.
+3. **Droits d’utilisation / cession** | les usages autorisés et leur périmètre.
+4. **Fichiers sources** | inclus uniquement lorsqu’ils sont expressément prévus au devis.
 
 Le paiement d’une création ne doit pas être présenté comme emportant automatiquement la remise de tous les fichiers de travail ou un droit d’exploitation sans limite. Le devis précise le périmètre applicable au projet.
 
@@ -29,7 +29,7 @@ Pour les créations concernées, documenter explicitement :
 - fichiers sources inclus ou non ;
 - droit de présentation du projet par Chow Studio.
 
-## Niveaux d’usage — grille interne
+## Niveaux d’usage | grille interne
 
 ### Usage standard
 
@@ -63,9 +63,9 @@ Le partage d’une publication Chow Studio via les fonctionnalités natives d’
 
 Si un client souhaite utiliser un élément de documentation comme support de communication autonome, le traiter comme un **nouveau livrable** avec formats, adaptations et droits d’utilisation définis au devis.
 
-## Motion — exemple de périmètre
+## Motion | exemple de périmètre
 
-### Cœur animé / boucle — exemple
+### Cœur animé / boucle | exemple
 
 **Création**  
 Animation courte en boucle à partir d’un symbole existant.
@@ -108,7 +108,7 @@ Le passage de l’un à l’autre peut nécessiter adaptation, préparation de p
 
 Cette clause est une **base rédactionnelle interne**, pas un substitut à des CGV / clauses de cession adaptées au projet et validées juridiquement.
 
-## Réponse client — demande de visuels de documentation
+## Réponse client | demande de visuels de documentation
 
 Version simple :
 

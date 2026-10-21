@@ -209,7 +209,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{<ScrollScene preset="parallax" intensity="quiet" direction="reverse" className="homeFeaturedProject__mediaMotion" enabled={sectionMotionEnabled} progress={scrollProgress}><Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" /></ScrollScene>}</div> : null;
     const featuredStory = {
       eyebrow: header?.eyebrow,
-      title: `${splitItem.title} — Une identité pour rassembler.`,
+      title: `${splitItem.title} | Une identité pour rassembler.`,
       text: header?.text,
       meta: splitItem.meta,
       links: header?.projectLinks,

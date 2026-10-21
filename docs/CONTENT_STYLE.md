@@ -4,7 +4,7 @@ The visual system can be expressive. The copy stays clean.
 
 ## Core rule
 
-Write like the client speaks when they know exactly what they mean. Precision over poetry. Concrete over promotional. Beauty should come from the idea, imagery, typography and composition — not from copy trying to sound beautiful.
+Write like the client speaks when they know exactly what they mean. Precision over poetry. Concrete over promotional. Beauty should come from the idea, imagery, typography and composition | not from copy trying to sound beautiful.
 
 ## Default voice
 
