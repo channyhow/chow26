@@ -675,7 +675,9 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   .homeFeaturedProject__index > span {
     max-width: none;
-    @include type-heading-lg;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
   }
 
   .homeFeaturedProject__media {
@@ -685,7 +687,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     justify-self: stretch;
 
     .media__frame {
-      aspect-ratio: $ratio-wide;
+      aspect-ratio: $ratio-portrait;
     }
 
     .media__asset {
@@ -715,7 +717,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 
   .homeOpenCall__media .media__frame,
-  .homeFeaturedProject__media .media__frame,
   .homeContact__media .media__frame,
   #home-services .homeServices__mediaList .media__frame,
   #home-services .split__secondary .media__frame {
@@ -743,6 +744,23 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   // Keep each media item within its grid row; spacing comes from row-gap.
   .homeOpenCall__media {
     min-height: 0;
+  }
+}
+
+// The featured campaign is portrait-led at every stacked breakpoint.
+// Avoid the shared tablet landscape override cropping the artwork.
+@include tablet-down {
+  .homeFeaturedProject__media {
+    width: min(100%, 36rem);
+    justify-self: center;
+  }
+
+  .homeFeaturedProject__media .media__frame {
+    aspect-ratio: $ratio-portrait;
+  }
+
+  .homeFeaturedProject__index {
+    font-weight: $font-weight-bold;
   }
 }
 
