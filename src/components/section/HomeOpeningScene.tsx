@@ -19,9 +19,15 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
 
   useEffect(() => {
     if (expanded || !openingMedia) return;
-    const previousOverflow = document.body.style.overflow;
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = previousOverflow; };
+    return () => {
+      root.style.overflow = previousRootOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
   }, [expanded, openingMedia]);
 
   return (
