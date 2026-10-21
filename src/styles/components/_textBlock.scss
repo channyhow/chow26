@@ -130,6 +130,11 @@
   }
 }
 
+// Contact introduction: use the existing brand orange only for deliberate emphasis.
+.sectionEditorialGrid--contact .textBlock__content strong {
+  color: $color-special;
+}
+
 // Project story copy: shared emphasis and an optional editorial opening beat.
 .textBlock--copy-story,
 .textBlock--copy-story-lead {
