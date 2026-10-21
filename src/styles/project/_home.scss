@@ -342,7 +342,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 
   .homeServicesStory__copy {
-    order: 0;
+    order: 1;
     width: 100%;
     max-width: $measure-header-copy;
     align-self: start;
@@ -365,7 +365,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   .homeServicesStory__media,
   .homeServicesStory__digitalMedia {
-    order: 1;
+    order: 0;
     flex: 0 0 auto;
     align-self: stretch;
     max-width: 100%;
