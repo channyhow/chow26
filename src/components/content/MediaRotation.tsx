@@ -14,7 +14,7 @@ export function MediaRotation({ items, className, interval = 4500, sizes = "100v
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const node = ref.current;
@@ -35,7 +35,7 @@ export function MediaRotation({ items, className, interval = 4500, sizes = "100v
 
   if (!items.length) return null;
   return (
-    <figure
+    <div
       ref={ref}
       className={clsx("mediaRotation", className)}
       onMouseEnter={() => setPaused(true)}
@@ -48,6 +48,6 @@ export function MediaRotation({ items, className, interval = 4500, sizes = "100v
           </div>
         ))}
       </div>
-    </figure>
+    </div>
   );
 }
