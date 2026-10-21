@@ -43,7 +43,7 @@
   width: 100%;
   height: calc(100svh - (2 * #{$padding-block}));
   overflow: hidden;
-  transition: height 700ms ease;
+  transition: height 900ms cubic-bezier(.22, 1, .36, 1), aspect-ratio 900ms cubic-bezier(.22, 1, .36, 1);
 }
 .homeOpeningScene__media {
   position: absolute;
@@ -59,6 +59,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   pointer-events: none;
+  transition: grid-template-columns 900ms cubic-bezier(.22, 1, .36, 1), grid-template-rows 900ms cubic-bezier(.22, 1, .36, 1), gap 900ms cubic-bezier(.22, 1, .36, 1);
 }
 .homeOpeningScene__mediaPanel {
   min-width: 0;
@@ -74,7 +75,7 @@
   padding-top: $margin-content;
 }
 
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage { height: min(70svh, 48rem); }
+.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage { height: auto; aspect-ratio: 4 / 3; }
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -83,13 +84,14 @@
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaPanel {
   border: 0;
   box-shadow: 0 0 0 $space-2 $color-secondary;
+  transition: box-shadow 900ms cubic-bezier(.22, 1, .36, 1);
 }
 @include tablet-down {
   .homeOpeningScene__mediaGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .homeOpeningScene__mediaPanel:nth-child(n + 5) { display: none; }
+
   .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
   }
 }
 @include mobile-down {
