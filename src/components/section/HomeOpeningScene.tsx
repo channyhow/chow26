@@ -24,12 +24,22 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
     const previous = {
       rootOverflow: root.style.overflow,
       bodyOverflow: body.style.overflow,
+      rootOverscroll: root.style.overscrollBehavior,
+      bodyOverscroll: body.style.overscrollBehavior,
+      bodyTouchAction: body.style.touchAction,
     };
 
     // Fix the document in place as well as blocking input: overflow alone
     // doesn't reliably lock touch scrolling or custom scroll containers.
     root.style.overflow = "hidden";
     body.style.overflow = "hidden";
+    root.style.overscrollBehavior = "none";
+    body.style.overscrollBehavior = "none";
+    body.style.touchAction = "none";
+    const lockedY = window.scrollY;
+    const restoreScroll = () => {
+      if (window.scrollY !== lockedY) window.scrollTo(0, lockedY);
+    };
 
     const blockScroll = (event: Event) => {
       if (event.cancelable) event.preventDefault();
@@ -43,16 +53,21 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
       }
     };
 
+    window.addEventListener("scroll", restoreScroll, { passive: true, capture: true });
     window.addEventListener("wheel", blockScroll, { passive: false, capture: true });
     window.addEventListener("touchmove", blockScroll, { passive: false, capture: true });
     window.addEventListener("keydown", blockScrollKeys, { capture: true });
 
     return () => {
+      window.removeEventListener("scroll", restoreScroll, true);
       window.removeEventListener("wheel", blockScroll, true);
       window.removeEventListener("touchmove", blockScroll, true);
       window.removeEventListener("keydown", blockScrollKeys, true);
       root.style.overflow = previous.rootOverflow;
       body.style.overflow = previous.bodyOverflow;
+      root.style.overscrollBehavior = previous.rootOverscroll;
+      body.style.overscrollBehavior = previous.bodyOverscroll;
+      body.style.touchAction = previous.bodyTouchAction;
     };
   }, [expanded, openingMedia]);
 
@@ -64,8 +79,8 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           className="homeOpeningScene__mediaLink"
           aria-expanded={expanded}
           aria-controls="home-opening-statement"
-          aria-label={expanded ? "Revenir aux images en plein écran" : "Découvrir le message de Chow Studio"}
-          onClick={() => setExpanded((current) => !current)}
+          aria-label="Découvrir le message de Chow Studio"
+          onClick={() => setExpanded(true)}
         >
           <div className="homeOpeningScene__mediaStage">
             <Media
