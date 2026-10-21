@@ -270,8 +270,8 @@
 @include desktop-up {
   .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
     .homeServicesStory__copy { grid-column: 2 / span 3; grid-row: 1; padding-top: $margin-group; }
-    > .homeServicesStory__media,
-    > .homeServicesStory__digitalMedia { grid-column: 8 / span 5; grid-row: 1; }
+    > .homeServicesStory__media { grid-column: 8 / span 5; grid-row: 1; }
+    > .homeServicesStory__digitalMedia { grid-column: 6 / -1; grid-row: 1; }
   }
   .homeServicesStory__row--reverse {
     > .homeServicesStory__media { grid-column: 1 / span 5; grid-row: 1; }
@@ -281,13 +281,25 @@
 
 .homeServicesStory__digitalMedia {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.46fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr);
   align-items: end;
-  gap: $space-2;
+  gap: 0;
 
   .homeServicesStory__media { grid-column: auto; min-width: 0; }
-  .homeServicesStory__media:first-child .media__frame { aspect-ratio: $ratio-landscape; }
-  .homeServicesStory__media:last-child .media__frame { aspect-ratio: $ratio-portrait; }
+  .homeServicesStory__media:first-child {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: 82%;
+    .media__frame { aspect-ratio: $ratio-landscape; }
+  }
+  .homeServicesStory__media:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    z-index: 1;
+    transform: translateY($space-4);
+    .media__frame { aspect-ratio: $ratio-portrait; }
+  }
 }
 
 @include tablet-down {
