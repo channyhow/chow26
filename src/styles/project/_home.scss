@@ -215,21 +215,19 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   display: grid;
   gap: $margin-content;
 
-  // Echo Studio's services introduction: expressive type, muted narrative,
-  // and clear emphasis rather than additional decorative elements.
+  // Mirror Studio's larger, muted editorial statement.
   .textBlock__title {
-    @include type-heading-md;
+    @include type-heading-sm;
     font-weight: $font-weight-medium;
   }
 
   .textBlock__content {
-    max-width: $measure-text;
+    max-width: none;
 
-    // TextBlock renders regular text as spans and emphasis as sibling
-    // <strong> elements inside each paragraph, not nested within spans.
-    p {
-      @include type-heading-sm;
+    .textBlock__group p {
+      @include type-heading-md;
       color: $gray-500;
+      font-weight: $font-weight-medium;
     }
 
     .textBlock__copy {
@@ -237,7 +235,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
       opacity: 1;
     }
 
-    strong {
+    .textBlock__group p strong {
       color: $color-primary;
       font-weight: $font-weight-semibold;
     }
