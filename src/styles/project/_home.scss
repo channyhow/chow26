@@ -554,10 +554,19 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   text-transform: uppercase;
 }
 @include desktop-up {
-  .homeFeaturedProject__index { grid-column: 1 / span 5; grid-row: 1 / span 2; padding-top: $padding-content; }
+  .homeFeaturedProject__composition {
+    row-gap: $margin-content;
+  }
+
+  .homeFeaturedProject__index {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 2;
+    padding-top: 0;
+  }
+
   .homeFeaturedProject__media {
     grid-column: 7 / span 5;
-    grid-row: 2;
+    grid-row: 1;
 
     .media__asset {
       width: 100%;
@@ -565,7 +574,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
       object-fit: cover;
     }
   }
-  .homeFeaturedProject__story { grid-column: 7 / span 5; grid-row: 3; }
+
+  .homeFeaturedProject__story {
+    grid-column: 7 / span 5;
+    grid-row: 2;
+  }
 }
 // One-column compositions use the same spacing scale. The media offset
 // needs its own clearance so the following text never touches the backing.
