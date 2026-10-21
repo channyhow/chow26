@@ -225,15 +225,21 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .textBlock__content {
     max-width: $measure-text;
 
-    .textBlock__copy {
+    // TextBlock renders regular text as spans and emphasis as sibling
+    // <strong> elements inside each paragraph, not nested within spans.
+    p {
       @include type-heading-sm;
       color: $gray-500;
-      opacity: 1;
+    }
 
-      strong {
-        color: $color-primary;
-        font-weight: $font-weight-semibold;
-      }
+    .textBlock__copy {
+      color: inherit;
+      opacity: 1;
+    }
+
+    strong {
+      color: $color-primary;
+      font-weight: $font-weight-semibold;
     }
   }
 
