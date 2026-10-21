@@ -2,6 +2,14 @@
 @use "../foundation/typography" as *;
 @use "../foundation/tokens" as *;
 
+// Keep the document locked before the opening interaction, including
+// before React's effect runs. This rule disappears as soon as it expands.
+html:has(.homeOpeningScene[data-expanded="false"]),
+html:has(.homeOpeningScene[data-expanded="false"]) body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
 /* Home owns composition and deliberate art direction only.
    Panel mechanics and shared interaction stay foundation-owned. */
 
