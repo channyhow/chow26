@@ -228,6 +228,59 @@
   }
 }
 
+/* One continuous editorial narrative: the grid sets the reading order and width. */
+.homeServicesStory {
+  align-items: center;
+  row-gap: $padding-block;
+
+  > * { min-width: 0; }
+
+  .textBlock__content { max-width: $measure-text; }
+  .media { width: 100%; }
+  .media__frame { aspect-ratio: $ratio-square; }
+  .actions { display: grid; gap: 0; }
+  .actions__link {
+    @include editorial-control-row;
+    @include type-body;
+    @include hover { color: var(--accent); }
+  }
+}
+
+.homeServicesStory__intro,
+.homeServicesStory__identity,
+.homeServicesStory__benefit,
+.homeServicesStory__application,
+.homeServicesStory__applicationText,
+.homeServicesStory__web,
+.homeServicesStory__websiteMedia,
+.homeServicesStory__links {
+  grid-column: 1 / -1;
+}
+
+@include desktop-up {
+  .homeServicesStory__intro { grid-column: 1 / span 6; grid-row: 1; }
+  .homeServicesStory__identity { grid-column: 8 / span 5; grid-row: 1 / span 2; }
+  .homeServicesStory__benefit { grid-column: 2 / span 5; grid-row: 2; }
+  .homeServicesStory__application { grid-column: 1 / span 5; grid-row: 3 / span 2; }
+  .homeServicesStory__applicationText { grid-column: 7 / span 5; grid-row: 3; }
+  .homeServicesStory__web { grid-column: 7 / span 6; grid-row: 4; }
+  .homeServicesStory__websiteMedia { grid-column: 7 / span 5; grid-row: 5; }
+  .homeServicesStory__links { grid-column: 1 / span 5; grid-row: 5; align-self: center; }
+}
+
+@include tablet-down {
+  .homeServicesStory { row-gap: $margin-group; }
+  .homeServicesStory__intro { order: 1; }
+  .homeServicesStory__identity { order: 2; }
+  .homeServicesStory__benefit { order: 3; }
+  .homeServicesStory__application { order: 4; }
+  .homeServicesStory__applicationText { order: 5; }
+  .homeServicesStory__web { order: 6; }
+  .homeServicesStory__websiteMedia { order: 7; }
+  .homeServicesStory__links { order: 8; }
+  .homeServicesStory .media__frame { aspect-ratio: $ratio-landscape; }
+}
+
 /* Final contact echoes the Home index language without repeating Featured. */
 .homeContact__index,
 .homeContact__story,
