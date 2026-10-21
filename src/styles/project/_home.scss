@@ -97,6 +97,21 @@
   aspect-ratio: 1;
 }
 @include mobile-down {
+  .homeOpeningScene__media {
+    mask-image: repeating-linear-gradient(
+      to right,
+      #000 0 calc(100% / 6 - #{$space-3} * 5 / 6),
+      transparent calc(100% / 6 - #{$space-3} * 5 / 6) calc(100% / 6)
+    );
+  }
+  .homeOpeningScene__mediaGrid,
+  .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .homeOpeningScene__mediaPanel:nth-child(n + 7) { display: none; }
+  .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
+    height: calc((100cqw - 5 * #{$space-3}) / 6);
+  }
   .homeOpeningScene__statementReveal { padding-bottom: $space-4; }
 }
 @media (prefers-reduced-motion: reduce) {
