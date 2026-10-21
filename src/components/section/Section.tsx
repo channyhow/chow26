@@ -167,7 +167,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     const identity = { title: header.title, text: paragraphs.slice(0, 2) };
     const applications = { title: "Une identité qui vous accompagne.", text: paragraphs.slice(2, 3) };
     const web = {
-      title: "Et sur le web ?",
+      title: "Prolonger cet univers en ligne.",
       text: paragraphs.slice(3).map((paragraph) => paragraph.replace(/^Et sur le web\s*\?\s*/i, "")),
     };
     const identityMedia = resolveMedia("flo-wordmark");
