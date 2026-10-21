@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -15,6 +15,7 @@ type HomeOpeningSceneProps = {
 
 export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
   const { scrollYProgress } = useScroll({ target: sceneRef, offset: ["start start", "end start"] });
   const openingMedia = media[0];
   const progress = scrollYProgress;
@@ -24,12 +25,15 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
   const mediaMotion = [mediaY1, mediaY2, mediaY3];
 
   return (
-    <div ref={sceneRef} className="homeOpeningScene">
+    <div ref={sceneRef} className="homeOpeningScene" data-expanded={expanded}>
       {openingMedia ? (
-        <a
+        <button
+          type="button"
           className="homeOpeningScene__mediaLink"
-          href="#home-services"
-          aria-label="Découvrir les services de Chow Studio"
+          aria-expanded={expanded}
+          aria-controls={expanded ? "home-opening-statement" : undefined}
+          aria-label={expanded ? "Revenir aux images en plein écran" : "Découvrir le message de Chow Studio"}
+          onClick={() => setExpanded((current) => !current)}
         >
           <div className="homeOpeningScene__mediaGrid">
             {[0, 1, 2].map((index) => (
@@ -48,10 +52,11 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
               </div>
             ))}
           </div>
-        </a>
+        </button>
       ) : null}
 
-      {header ? (
+      {header && expanded ? (
+        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <TextBlock
           content={header}
           titleAs="h1"
@@ -60,6 +65,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           className="homeOpeningScene__statement"
           motionEnabled={false}
         />
+        </motion.div>
       ) : null}
     </div>
   );
