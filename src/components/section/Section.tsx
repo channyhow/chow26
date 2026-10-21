@@ -164,29 +164,33 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     </EditorialGrid>;
   } else if (block.id === "home-services" && header) {
     const paragraphs = Array.isArray(header.text) ? header.text : header.text ? [header.text] : [];
-    const identity = {
-      title: header.title,
-      text: paragraphs.slice(0, 3),
-    };
+    const identity = { title: header.title, text: paragraphs.slice(0, 2) };
+    const applications = { title: "Une identité qui vous accompagne.", text: paragraphs.slice(2, 3) };
     const web = {
       title: "Et sur le web ?",
       text: paragraphs.slice(3).map((paragraph) => paragraph.replace(/^Et sur le web\s*\?\s*/i, "")),
     };
     const identityMedia = mediaItems[1] ?? mediaItems[0];
+    const applicationMedia = mediaItems[0];
     const websiteMedia = resolveMedia("flo-laptop");
+    const storyMedia = (item: typeof identityMedia) => item
+      ? <div className="homeServicesStory__media"><Media media={item} sizes="(min-width: 64rem) 36vw, 100vw" /></div>
+      : null;
     body = <article className="homeServicesStory">
       <div className="homeServicesStory__row">
-        <div className="homeServicesStory__copy">
-          <TextBlock content={identity} motionEnabled={sectionMotionEnabled} />
-        </div>
-        {identityMedia ? <div className="homeServicesStory__media"><Media media={identityMedia} sizes="(min-width: 64rem) 45vw, 100vw" /></div> : null}
+        <div className="homeServicesStory__copy"><TextBlock content={identity} motionEnabled={sectionMotionEnabled} /></div>
+        {storyMedia(identityMedia)}
       </div>
       <div className="homeServicesStory__row homeServicesStory__row--reverse">
-        {websiteMedia ? <div className="homeServicesStory__media"><Media media={websiteMedia} sizes="(min-width: 64rem) 45vw, 100vw" /></div> : null}
+        {storyMedia(applicationMedia)}
+        <div className="homeServicesStory__copy"><TextBlock content={applications} motionEnabled={sectionMotionEnabled} /></div>
+      </div>
+      <div className="homeServicesStory__row">
         <div className="homeServicesStory__copy">
           <TextBlock content={web} motionEnabled={sectionMotionEnabled} />
           <Actions links={header.links} />
         </div>
+        {storyMedia(websiteMedia)}
       </div>
     </article>;
   } else if (isHomeContact && header) {
