@@ -236,42 +236,48 @@
 
 .homeServicesStory__digitalMedia {
   @include offset-media-backing;
-  display: grid;
   width: 100%;
   min-width: 0;
-  // Stable frame: changing mockups never shifts the text or section height.
   aspect-ratio: $ratio-landscape;
 
-  // Keep the offset backing visible outside the media frame.
-  > .homeServicesStory__rotationFrame { z-index: 1; }
-}
-
-.homeServicesStory__rotationFrame {
-  grid-area: 1 / 1;
-  display: grid;
-  place-items: center;
-  min-width: 0;
-  opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 900ms $ease-soft, transform 900ms $ease-soft;
-  pointer-events: none;
-
-  &[data-active="true"] {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .media { width: 100%; min-width: 0; }
-  .media__frame {
+  // The rotation stage is the media surface, in front of the offset plane.
+  .mediaRotation__stage {
+    position: relative;
+    z-index: 1;
+    display: grid;
     width: 100%;
-    max-height: none;
-    aspect-ratio: $ratio-landscape;
+    height: 100%;
+    overflow: hidden;
+    background: $color-secondary;
   }
-  .media__asset { width: 100%; height: 100%; object-fit: contain; }
+
+  .mediaRotation__slide {
+    grid-area: 1 / 1;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 900ms $ease-soft, transform 900ms $ease-soft;
+    pointer-events: none;
+
+    &[data-active="true"] {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .media { width: 100%; min-width: 0; }
+    .media__frame {
+      width: 100%;
+      max-height: none;
+      aspect-ratio: $ratio-landscape;
+    }
+    .media__asset { width: 100%; height: 100%; object-fit: contain; }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homeServicesStory__rotationFrame { transition: none; transform: none; }
+  .homeServicesStory__digitalMedia .mediaRotation__slide { transition: none; transform: none; }
 }
 
 @include tablet-down {
