@@ -224,10 +224,13 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .textBlock__content {
     max-width: none;
 
-    .textBlock__group p {
-      @include type-heading-md;
+    // Same editorial scale as Studio's services introduction.
+    // Apply type to the actual paragraph, not only its inline spans.
+    .textBlock__group > p {
+      @include type-heading-sm;
       color: $gray-500;
       font-weight: $font-weight-medium;
+      line-height: 1.25;
     }
 
     .textBlock__copy {
@@ -235,9 +238,15 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
       opacity: 1;
     }
 
-    .textBlock__group p strong {
+    .textBlock__group > p > strong {
       color: $color-primary;
       font-weight: $font-weight-semibold;
+    }
+  }
+
+  @include desktop-up {
+    .textBlock__content .textBlock__group > p {
+      @include type-heading-md;
     }
   }
 
