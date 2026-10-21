@@ -173,7 +173,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       text: header.text,
     };
     const openCallStatement = <div className="homeOpenCall__statement"><TextBlock content={{ title: header.title }} titleVariant="display" motionEnabled={sectionMotionEnabled} /></div>;
-    body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<TextBlock content={openCallIntro} className="homeOpenCall__context" copyVariant="prominent" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></article>;
+    body = <article className="homeEditorialComposition homeOpenCall__composition">{openCallStatement}{openCallMedia}<div className="homeOpenCall__details"><TextBlock content={openCallIntro} className="homeOpenCall__context" copyVariant="prominent" motionEnabled={sectionMotionEnabled} /><Actions links={header.links} className="homeOpenCall__action" /></div></article>;
   } else if (isHomeFeaturedProject && splitItem) {
     const featuredMedia = splitItemMedia ? <div className="homeFeaturedProject__media">{motionLayer(<Media media={splitItemMedia} priority sizes="(min-width: 64rem) 66vw, 100vw" />, "reverse", "homeFeaturedProject__mediaMotion", "default", "media")}</div> : null;
     const featuredStory = {
