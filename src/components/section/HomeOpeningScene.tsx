@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -17,6 +17,13 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
   const [expanded, setExpanded] = useState(false);
   const openingMedia = media[0];
 
+  useEffect(() => {
+    if (expanded || !openingMedia) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [expanded, openingMedia]);
+
   return (
     <div className="homeOpeningScene" data-expanded={expanded}>
       {openingMedia ? (
@@ -24,7 +31,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
           type="button"
           className="homeOpeningScene__mediaLink"
           aria-expanded={expanded}
-          aria-controls={expanded ? "home-opening-statement" : undefined}
+          aria-controls="home-opening-statement"
           aria-label={expanded ? "Revenir aux images en plein écran" : "Découvrir le message de Chow Studio"}
           onClick={() => setExpanded((current) => !current)}
         >
