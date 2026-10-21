@@ -215,7 +215,28 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   display: grid;
   gap: $margin-content;
 
-  .textBlock__content { max-width: $measure-text; }
+  // Echo Studio's services introduction: expressive type, muted narrative,
+  // and clear emphasis rather than additional decorative elements.
+  .textBlock__title {
+    @include type-heading-md;
+    font-weight: $font-weight-medium;
+  }
+
+  .textBlock__content {
+    max-width: $measure-text;
+
+    .textBlock__copy {
+      @include type-heading-sm;
+      color: $gray-500;
+      opacity: 1;
+
+      strong {
+        color: $color-primary;
+        font-weight: $font-weight-semibold;
+      }
+    }
+  }
+
   .actions { display: grid; gap: 0; width: 100%; }
   .actions__link {
     @include editorial-control-row;
