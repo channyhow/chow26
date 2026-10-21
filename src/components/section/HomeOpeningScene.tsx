@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { useEffect, useState } from "react";
 
@@ -15,6 +15,7 @@ type HomeOpeningSceneProps = {
 
 export function HomeOpeningScene({ header, media, parallaxEnabled = false }: HomeOpeningSceneProps) {
   const [expanded, setExpanded] = useState(false);
+  const reduceMotion = useReducedMotion();
   const openingMedia = media[0];
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export function HomeOpeningScene({ header, media, parallaxEnabled = false }: Hom
       ) : null}
 
       {header && expanded ? (
-        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={reduceMotion ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={reduceMotion ? { duration: 0 } : { duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}>
         <TextBlock
           content={header}
           titleAs="h1"
