@@ -75,7 +75,7 @@
 }
 // Make the whole opening visibly interactive, including in device emulation
 // where the browser may not report a fine hover pointer.
-.homeOpeningScene[data-expanded="false"] .homeOpeningScene__mediaLink {
+.homeOpeningScene[data-expanded="false"]  .homeOpeningScene__mediaLink {
   &:hover,
   &:focus-visible {
     .homeOpeningScene__media {
@@ -87,13 +87,22 @@
   }
 }
 .homeOpeningScene__mediaPanel:hover {
-  background-color: rgba(255, 255, 255, 0.22) !important;
+       background-color: #FF88FC !important;
 }
 .homeOpeningScene__statementReveal {
   margin-top: auto;
   padding-top: $margin-content;
 }
 
+.homeOpeningScene[data-expanded="true"]  .homeOpeningScene__mediaLink {
+ 
+    .homeOpeningScene__media {
+      opacity: 0;
+    }
+    .homeOpeningScene__mediaPanel {
+      background-color: #FF88FC;
+    }
+}
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
   height: calc((100cqw - 11 * #{$space-3}) / 12);
 }
