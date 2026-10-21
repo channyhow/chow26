@@ -71,11 +71,15 @@
   .homeOpeningScene__mediaLink:hover .media__asset { transform: scale(1.045); }
 }
 .homeOpeningScene__statementReveal {
-  margin-top: auto;
+  margin-top: 0;
   padding-top: $margin-content;
 }
 
-.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage { height: auto; aspect-ratio: 4 / 3; }
+.homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
+  width: min(100%, 720px);
+  height: auto;
+  aspect-ratio: 4 / 3;
+}
 .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
