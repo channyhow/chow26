@@ -187,10 +187,10 @@
 
   .actions__link--primary,
   .actions__link[data-priority="primary"] {
-    border: 1px solid $color-accent;
-    background: color-mix(in srgb, #{$color-accent} 14%, transparent);
+    border: 1px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
     color: var(--primary);
-    @include glass($color-accent, 0.5%);
+    @include glass(var(--accent), 0.5%);
 
     @include hover {
       background: color-mix(in srgb, var(--accent) 14%, transparent);
