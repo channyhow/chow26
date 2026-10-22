@@ -201,7 +201,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeServicesStory {
   display: grid;
   width: 100%;
-  row-gap: $space-6;
+  row-gap: $space-6 + $space-4;
 }
 
 .homeServicesStory__row {
@@ -340,7 +340,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 // One breakpoint owns the structure; tablet and phone only tune the scale.
 @include desktop-down {
   .homeServicesStory {
-    row-gap: $space-5;
+    row-gap: $space-4;
   }
 
   .homeServicesStory__row {
@@ -385,7 +385,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 @include mobile-down {
-  .homeServicesStory { row-gap: $space-4; }
+  .homeServicesStory { row-gap: $space-3 + $space-2; }
 }
 
 // Shared responsive editorial typography across the homepage.
