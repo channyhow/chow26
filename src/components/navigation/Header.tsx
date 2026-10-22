@@ -130,9 +130,9 @@ export function Header() {
               </Link>
               {submenu ? (
                 <>
-                  <button type="button" className="header__submenuToggle" aria-label={`Afficher les liens ${item.href === "/studio" ? "Studio" : "Contact"}`} aria-expanded={openSubmenu === item.href} aria-controls={`header-submenu-${item.href.slice(1)}`} onClick={() => setOpenSubmenu(current => current === item.href ? null : item.href)}>
+                  {/* <button type="button" className="header__submenuToggle" aria-label={`Afficher les liens ${item.href === "/studio" ? "Studio" : "Contact"}`} aria-expanded={openSubmenu === item.href} aria-controls={`header-submenu-${item.href.slice(1)}`} onClick={() => setOpenSubmenu(current => current === item.href ? null : item.href)}>
                     <span aria-hidden="true">⌄</span>
-                  </button>
+                  </button> */}
                   <div id={`header-submenu-${item.href.slice(1)}`} className="header__submenu">
                     {submenu.map(link => <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link>)}
                   </div>
