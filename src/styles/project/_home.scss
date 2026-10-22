@@ -96,7 +96,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 .homeOpeningScene__statementReveal {
-  padding-top: $margin-group;
+  padding-top: $margin-section;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 900ms $ease-soft, transform 900ms $ease-soft;
@@ -845,5 +845,5 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 [data-page-id="home"] #home-services,
 [data-page-id="home"] #home-featured-project,
 [data-page-id="home"] #home-opencall-preview {
-  margin-block-start: $margin-block;
+  margin-block-start: $margin-section;
 }
