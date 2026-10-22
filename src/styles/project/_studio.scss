@@ -66,6 +66,12 @@
     padding-top: $margin-content;
   }
 
+  // Reveal newly mounted offer details without moving the selector.
+  // The content component must remount or change its animation key on selection.
+  .offerComposition {
+    animation: studio-offer-reveal 360ms $ease-soft both;
+  }
+
   // OfferSwitcher renders .offerComposition; controls remain styled here.
   .section__offerSwitcherControls {
     display: grid;
@@ -352,4 +358,10 @@
     @include type-body;
   }
   .actions__arrow { flex: 0 0 auto; }
+}
+
+// A small editorial entrance, with no scale or layout shift.
+@keyframes studio-offer-reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
