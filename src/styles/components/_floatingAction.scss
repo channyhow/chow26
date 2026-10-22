@@ -26,6 +26,7 @@
 
 .floatingAction__trigger {
   @include standard-control;
+  @include interactive-floating;
   @include type-ui-compact;
 
   display: flex;
@@ -40,8 +41,8 @@
 
   @include hover {
     background: var(--primary);
-    color: var(--secondary);
-    border-color: var(--primary);
+    color: var(--accent);
+    border-color: var(--accent);
   }
 }
 
@@ -67,19 +68,10 @@
   padding: $space-2;
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
-  transition: opacity $transition-hover;
-
-  @include hover {
-    opacity: $opacity-muted;
-  }
-
-  &:focus-visible { @include focus-ring; }
+  @include interactive-text;
 }
 
 .floatingAction__link:last-child {
   border-bottom: 0;
 }
 
-.floatingAction__trigger:focus-visible {
-  @include focus-ring;
-}
