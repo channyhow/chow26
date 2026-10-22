@@ -222,7 +222,7 @@
           ],
           "links": [
             {
-              "label": "Dire bonjour",
+              "label": "M’écrire",
               "href": "mailto:channy@chow-studio.com",
               "intent": "contact",
               "variant": "arrow"
