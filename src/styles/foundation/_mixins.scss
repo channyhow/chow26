@@ -63,19 +63,26 @@
   .media__asset { width: 100%; height: 100%; object-fit: cover; }
 }
 
+// Shared offset geometry for media figures and editorial media wrappers.
+// The owner chooses the backing surface; the geometry stays consistent.
+@mixin media-backdrop-plane($offset: $space-1, $surface: var(--media-backdrop, #{$color-surface-beige})) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: $surface;
+  transform: translate($offset, $offset);
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
 // Keep the offset plane fixed behind scroll-transformed media.
 @mixin offset-media-backing($offset: $space-1, $color: $color-special) {
   position: relative;
   isolation: isolate;
 
   &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: $color;
-    transform: translate($offset, $offset);
-    z-index: 0;
-    pointer-events: none;
+    @include media-backdrop-plane($offset, $color);
   }
 
   > .media,
