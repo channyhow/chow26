@@ -83,7 +83,7 @@
 /* The cinematic opening owns its internal scroll progression.
    Do not add an external runway here: it would delay the editorial field that
    follows and make the homepage appear to contain only the opening. */
-.sectionGroup__panel[data-panel-id="home-opening-panel"] {
+.sectionGroup__panel[data-panel-id="home-main-panel"] {
   margin-bottom: 0;
 }
 
@@ -104,8 +104,8 @@
   }
 
   /* Keep the initial cinematic frame; after expansion, follow content height. */
-  .sectionGroup__panel[data-panel-id="home-opening-panel"]:has(.homeOpeningScene[data-expanded="true"]),
-  .sectionGroup__panel[data-panel-id="home-opening-panel"]:has(.homeOpeningScene[data-expanded="true"]) > .sectionGroup__surface {
+  .sectionGroup__panel[data-panel-id="home-main-panel"]:has(.homeOpeningScene[data-expanded="true"]),
+  .sectionGroup__panel[data-panel-id="home-main-panel"]:has(.homeOpeningScene[data-expanded="true"]) > .sectionGroup__surface {
     min-height: 0;
   }
 }
