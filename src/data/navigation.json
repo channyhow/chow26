@@ -3,6 +3,11 @@
     "home",
     "projects",
     "studio",
+    {
+      "label": "À propos",
+      "href": "/contact#studio-founders",
+      "intent": "navigate"
+    },
     "talk-project"
   ],
   "review": []
