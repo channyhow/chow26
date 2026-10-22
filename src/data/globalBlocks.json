@@ -224,7 +224,7 @@
             {
               "label": "Dire bonjour",
               "href": "mailto:channy@chow-studio.com",
-              "intent": "external",
+              "intent": "contact",
               "variant": "arrow"
             }
           ],
