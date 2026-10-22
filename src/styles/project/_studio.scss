@@ -86,8 +86,7 @@
       transition: color $transition-hover, border-color $transition-hover;
 
       &[aria-pressed="true"] {
-        color: var(--primary);
-        @include accent-interaction;
+        color: var(--accent);
       }
 
     }
