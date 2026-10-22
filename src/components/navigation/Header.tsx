@@ -24,11 +24,36 @@ export function Header() {
   const home = items.find((item) => item.href === "/");
   const primaryItems = items.filter((item) => item.href !== "/" && item.href !== "/link");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
+  const submenus: Record<string, { label: string; href: string }[]> = {
+    "/studio": [
+      { label: "Identité visuelle", href: "/studio#studio-service-identity" },
+      { label: "Site web", href: "/studio#studio-service-website" },
+      { label: "Supports de communication", href: "/studio#studio-service-integrations" },
+    ],
+    "/contact": [
+      { label: "Parler d’un projet", href: "/contact" },
+      { label: "À propos", href: "/contact#studio-founders" },
+    ],
+  };
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const menuSlotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { setOpenSubmenu(null); }, [pathname]);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenSubmenu(null);
+        (document.activeElement as HTMLElement | null)?.blur();
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -97,11 +122,27 @@ export function Header() {
     <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface}>
       <Link ref={logoRef} className="header__logo" to={home?.href ?? "/"} viewTransition aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`} aria-current={currentPath === "/" ? "page" : undefined}>{siteData.site.name}</Link>
       <nav ref={navRef} className="header__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
-        {primaryItems.map((item) => item.href ? (
-          <Link key={`${item.label}-${item.href}`} to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined}>
-            <span>{item.label}</span>{item.variant === "cta" ? <span aria-hidden="true">→</span> : null}
-          </Link>
-        ) : null)}
+        {primaryItems.map((item) => {
+          if (!item.href) return null;
+          const submenu = submenus[item.href];
+          return (
+            <div key={`${item.label}-${item.href}`} className="header__navItem" data-open={openSubmenu === item.href}>
+              <Link to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={() => setOpenSubmenu(null)}>
+                <span>{item.href === "/contact" ? "Contact" : item.label}</span>
+              </Link>
+              {submenu ? (
+                <>
+                  <button type="button" className="header__submenuToggle" aria-label={`Afficher les liens ${item.href === "/studio" ? "Studio" : "Contact"}`} aria-expanded={openSubmenu === item.href} aria-controls={`header-submenu-${item.href.slice(1)}`} onClick={() => setOpenSubmenu(current => current === item.href ? null : item.href)}>
+                    <span aria-hidden="true">⌄</span>
+                  </button>
+                  <div id={`header-submenu-${item.href.slice(1)}`} className="header__submenu">
+                    {submenu.map(link => <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link>)}
+                  </div>
+                </>
+              ) : null}
+            </div>
+          );
+        })}
       </nav>
       <div ref={menuSlotRef} className="header__menuSlot"><BurgerButton /></div>
     </header>
