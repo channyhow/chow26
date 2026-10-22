@@ -30,55 +30,45 @@
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
 .header__logo { @include type-ui-lg; font-weight: $font-weight-bold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
 .header__nav { display: none; align-items: center; gap: clamp($space-2, 2.4vw, $space-3); transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
-.header__nav a { @include type-ui-lg; font-weight: $font-weight-semibold; @include interactive-text; @include interactive-underline; pointer-events: auto; }
-.header__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; }
+.header__nav a { @include type-ui-lg; font-weight: $font-weight-semibold; @include interactive-text; pointer-events: auto; }
+.header__nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.1em); } } }
 .header__navItem { position: relative; display: inline-flex; align-items: center; gap: 0.1em; pointer-events: auto; }
-.header__submenuToggle {
-  @include interactive-text;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  min-height: 2.75rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  transition: color $transition-hover;
-}
 .header__submenu {
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 0;
   display: grid;
   gap: $space-1;
   width: max-content;
   max-width: min(22rem, 80vw);
-  padding: $space-2 0;
+  padding: $space-2 $space-2 $space-2 0;
   text-align: left;
   color: var(--primary);
+  background: var(--secondary);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translate(-50%, -0.35rem);
-  transition: opacity $transition-hover, transform $transition-hover, visibility $transition-hover;
+  transform: translateY(-0.3rem);
+  transition: opacity 220ms ease, transform 240ms ease, visibility 220ms;
 }
-
+.header__navItem:last-child .header__submenu {
+  left: auto;
+  right: 0;
+  padding: $space-2 0 $space-2 $space-2;
+}
 .header__submenu a {
   @include type-caption;
   @include interactive-text;
   display: block;
   width: fit-content;
-  text-transform: uppercase;
-}
-.header__submenu a {
+  text-transform: none;
+  letter-spacing: normal;
   opacity: 0;
-  transform: translateY(0.45rem);
-  transition: opacity 260ms ease, transform 320ms ease, color $transition-hover;
+  transform: translateY(0.3rem);
+  transition: opacity 220ms ease, transform 240ms ease, color $transition-hover;
 }
 .header__navItem:is(:hover, :focus-within) .header__submenu a,
 .header__navItem[data-open="true"] .header__submenu a {
@@ -86,12 +76,9 @@
   transform: translateY(0);
 }
 @for $i from 1 through 3 {
-  .header__submenu a:nth-child(#{$i}) {
-    transition-delay: 0ms;
-  }
   .header__navItem:is(:hover, :focus-within) .header__submenu a:nth-child(#{$i}),
   .header__navItem[data-open="true"] .header__submenu a:nth-child(#{$i}) {
-    transition-delay: #{($i - 1) * 65}ms;
+    transition-delay: #{($i - 1) * 35}ms;
   }
 }
 .header__navItem:is(:hover, :focus-within) .header__submenu,
@@ -99,7 +86,7 @@
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
 .header__navItem:has(.header__submenu):hover > a,
 .header__navItem:has(.header__submenu):focus-within > a { color: var(--accent); }
