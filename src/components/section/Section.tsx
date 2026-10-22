@@ -138,7 +138,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (isHomeOpening) {
-    body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
+    body = <HomeOpeningScene media={mediaItems} />;
   } else if (block.id === "studio-services-intro") {
     const introItems = mediaCards.map((card, index) => {
       const ref = header?.links?.[index];
