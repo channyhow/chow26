@@ -20,7 +20,7 @@
   -webkit-tap-highlight-color: transparent;
   transition: color $transition-hover, opacity $transition-hover, transform $transition-interface;
 
-  &:focus-visible { @include focus-ring; }
+  @include accent-interaction;
 }
 
 .burgerButton__label {
