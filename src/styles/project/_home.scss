@@ -14,7 +14,31 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
    Panel mechanics and shared interaction stay foundation-owned. */
 
 #home-opening {
-  min-height: 100svh;
+  height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+  transition: height 1500ms cubic-bezier(.76, 0, .18, 1) 260ms;
+}
+
+#home-opening:has(.homeOpeningScene[data-expanded="true"]) {
+  height: calc((100vw - 11 * #{$space-3}) / 12 + 2 * #{$padding-block});
+}
+
+// The statement is its own section; it enters as the opening contracts.
+#home-opening-statement {
+  padding-block: $padding-block $space-6;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1000ms cubic-bezier(.22, 1, .36, 1) 900ms,
+              transform 1100ms cubic-bezier(.22, 1, .36, 1) 900ms;
+
+  .section__inner { width: 100%; }
+  .homeOpeningStatement__title { max-width: 18ch; }
+}
+
+#home-opening:has(.homeOpeningScene[data-expanded="true"]) + #home-opening-statement {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #home-opening .section__inner {
@@ -27,7 +51,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeOpeningScene {
   display: flex;
   flex-direction: column;
-  min-height: calc(100svh - (2 * #{$padding-block}));
+  min-height: 0;
 }
 
 .homeOpeningScene__mediaLink {
@@ -95,10 +119,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   background-color: $color-accent-pink;
 }
 
-.homeOpeningScene__statementReveal {
-  margin-top: auto;
-  padding-top: $margin-content;
-}
 
 .homeOpeningScene[data-expanded="true"] {
   .homeOpeningScene__mediaStage {
@@ -126,7 +146,9 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
     height: calc((100cqw - 5 * #{$space-3}) / 6);
   }
-  .homeOpeningScene__statementReveal { padding-bottom: $space-4; }
+  #home-opening:has(.homeOpeningScene[data-expanded="true"]) {
+    height: calc((100vw - 5 * #{$space-3}) / 6 + 2 * #{$padding-block});
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .homeOpeningScene__mediaStage,
