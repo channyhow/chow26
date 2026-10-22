@@ -8,10 +8,11 @@ import navigationData from "@/data/navigation.json";
 import siteData from "@/data/site.json";
 import { selectDrawerView, useUIStore } from "@/state/uiStore";
 import type { FormSchema } from "@/types/forms";
+import type { ActionRef } from "@/types/content";
 
 const labels = siteData.ui.copy.navigation.drawerLabels;
 const forms = formsData as Record<"contact" | "reservation", FormSchema>;
-const navigationItems = resolveActions([...navigationData.primary, ...navigationData.review])
+const navigationItems = resolveActions([...navigationData.primary, ...navigationData.review] as ActionRef[])
   .filter((item) => item.href);
 const normalizePath = (path: string) => (path === "/" ? path : path.replace(/\/+$/, ""));
 
