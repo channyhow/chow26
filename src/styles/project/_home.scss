@@ -96,10 +96,10 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 .homeOpeningScene__statementReveal {
-  padding-top: $margin-block;
+  padding-top: $margin-group;
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 900ms ease, transform 900ms ease;
+  transition: opacity 900ms $ease-soft, transform 900ms $ease-soft;
 }
 
 .homeOpeningScene[data-expanded="true"] {
@@ -113,7 +113,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
   .homeOpeningScene__media { opacity: 0; transition-delay: 0ms; }
   .homeOpeningScene__mediaGrid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-template-rows: 1fr;
   }
   .homeOpeningScene__mediaPanel {
@@ -125,8 +124,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpeningScene__media {
     mask-size: calc((100% + #{$space-3}) / 6) 100%;
   }
-  .homeOpeningScene__mediaGrid,
-  .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaGrid {
+  .homeOpeningScene__mediaGrid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
   .homeOpeningScene__mediaPanel:nth-child(n + 7) { display: none; }
@@ -841,4 +839,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   #home-services .sectionEditorialGrid > [data-editorial-area="description"],
   #final-cta .sectionEditorialGrid > [data-editorial-area="description"] { grid-row: 2; }
+}
+
+// Distinct editorial chapters breathe without forcing viewport-height panels.
+[data-page-id="home"] #home-services,
+[data-page-id="home"] #home-featured-project,
+[data-page-id="home"] #home-opencall-preview {
+  margin-block-start: $margin-block;
 }
