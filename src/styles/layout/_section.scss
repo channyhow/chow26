@@ -28,11 +28,6 @@
     margin-bottom: var(--section-gap, #{$section-content-gap});
   }
 
-  // &__header.textBlock .textBlock__subtitle,
-  // &__header.textBlock .textBlock__content {
-  //   max-width: var(--section-copy-width, #{$measure-header-copy});
-  // }
-
   &__body {
     width: 100%;
     min-width: 0;
@@ -115,10 +110,6 @@
 }
 
 @include tablet-down {
-  // .section:not([data-layout="media-overlay"]):not([data-layout="horizontal-scroll"]) {
-  //   padding-block: max(var(--section-space, #{$section-space}), #{$space-3});
-  // }
-
   .section__header,
   .section__body {
     width: 100%;
