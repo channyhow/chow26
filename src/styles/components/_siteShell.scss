@@ -25,7 +25,7 @@
 }
 .header[data-over-color="primary"] { color: var(--secondary); }
 .header[data-over-color="secondary"], .header[data-over-color="accent"] { color: var(--primary); }
-.header[data-over-color="special"] { background: color-mix(in srgb, var(--theme-special) 34%, transparent); color: var(--primary); }
+.header[data-over-color="special"] { background: color-mix(in srgb, var(--theme-special, var(--accent)) 34%, transparent); color: var(--primary); }
 
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
 .header__logo { @include type-ui-lg; font-weight: $font-weight-bold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
@@ -37,8 +37,8 @@
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.2em); } } }
 .header__menuSlot { opacity: var(--header-menu-opacity); transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0); }
 .header__menuSlot .burgerButton { pointer-events: auto; }
-.site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary); }
-.site[data-drawer="menu"] .header { background: color-mix(in srgb, var(--theme-primary) 82%, transparent); }
+.site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary, var(--secondary)); }
+.site[data-drawer="menu"] .header { background: color-mix(in srgb, var(--theme-primary, var(--primary)) 82%, transparent); }
 
 @include desktop-up {
   .header[data-navigation="inline"] .header__nav { display: flex; }
