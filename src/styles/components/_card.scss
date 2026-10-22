@@ -42,15 +42,7 @@
     @include type-body-sm;
   }
 
-  @include hover {
-    .media__asset {
-      transform: scale(1.02);
-    }
-  }
 
-  &:focus-within .media__asset {
-    transform: scale(1.02);
-  }
 }
 
 .card--service {
@@ -289,9 +281,5 @@
 .card[href] {
   color: inherit;
   text-decoration: none;
-  cursor: pointer;
-}
-
-.card[href]:focus-visible {
-  @include focus-ring;
+  @include interactive-card;
 }
