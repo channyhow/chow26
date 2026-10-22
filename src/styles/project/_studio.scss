@@ -101,7 +101,8 @@
       }
 
       &:active {
-        color: $color-primary;
+        color: var(--accent);
+        border-bottom-color: currentColor;
       }
     }
   }
