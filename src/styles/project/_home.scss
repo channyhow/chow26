@@ -273,6 +273,27 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .media__frame { aspect-ratio: $ratio-square; }
 }
 
+// Scroll-linked media depth: move the image inside its fixed frame so
+// the grid and offset backing shapes remain stationary.
+@keyframes home-services-media-parallax {
+  from { transform: translate3d(0, -3%, 0) scale(1.08); }
+  to { transform: translate3d(0, 3%, 0) scale(1.08); }
+}
+
+@supports (animation-timeline: view()) {
+  @include desktop-up {
+    .homeServicesStory__media .media__frame {
+      overflow: hidden;
+    }
+
+    .homeServicesStory__media .media__asset {
+      animation: home-services-media-parallax linear both;
+      animation-timeline: view(block);
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
 @include desktop-up {
   .homeServicesStory__row:not(.homeServicesStory__row--reverse) {
     .homeServicesStory__copy { grid-column: 2 / span 3; grid-row: 1; padding-top: $margin-group; }
