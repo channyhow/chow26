@@ -96,7 +96,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 .homeOpeningScene__statementReveal {
-  padding-top: $margin-section;
+  padding-top: $margin-group;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 900ms $ease-soft, transform 900ms $ease-soft;
@@ -512,7 +512,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 [data-page-id="home"] .home-preview .section__inner,
 [data-page-id="home"] #final-cta .section__inner {
   justify-content: flex-start;
-  padding-block: $padding-block;
+  padding-block: $padding-section;
 }
 
 /* Repeated Home editorial compositions share one grid and rhythm.
@@ -856,6 +856,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 // and section padding before the first service image on smaller screens.
 @include desktop-down {
   [data-page-id="home"] #home-services .section__inner {
-    padding-block-start: $margin-group;
+    padding-block-start: $margin-content;
   }
 }
