@@ -130,9 +130,10 @@
   }
 }
 
-// Contact introduction: use the existing brand orange only for deliberate emphasis.
+// Contact introduction: highlighted phrases use the canonical accent,
+// not the neutral special surface token.
 .sectionEditorialGrid--contact .textBlock__content strong {
-  color: $color-special;
+  color: var(--accent);
 }
 
 // Project story copy: shared emphasis and an optional editorial opening beat.
