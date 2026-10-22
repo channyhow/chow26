@@ -220,6 +220,14 @@
             "Originaire de **la Réunion**, où elle a grandi à **Saint-Denis**, **Channy How** a travaillé dans le développement produit et la création entre **la Chine, Hong Kong, Sydney et la France**, avant de se tourner vers les **sites internet**, les **identités visuelles** et les **supports de communication**.",
             "Cette expérience nourrit une manière de travailler attentive à **l’idée, au détail, aux contraintes de production** et surtout à ce qui doit réellement fonctionner une fois livré."
           ],
+          "links": [
+            {
+              "label": "Dire bonjour",
+              "href": "mailto:channy@chow-studio.com",
+              "intent": "external",
+              "variant": "arrow"
+            }
+          ],
           "media": [
             "studio-founder-1"
           ]
