@@ -125,14 +125,15 @@ export function Header() {
       <nav ref={navRef} className="header__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
         {primaryItems.map((item) => {
           if (!item.href) return null;
-          const submenu = submenus[item.href];
+          const href = item.href;
+          const submenu = submenus[href];
           return (
-            <div key={`${item.label}-${item.href}`} ref={(node) => { navItemRefs.current[item.href!] = node; }} className="header__navItem" data-open={openSubmenu === item.href} onPointerEnter={(event) => { if (event.pointerType !== "mouse") return; if (submenu) positionSubmenu(item.href!); setOpenSubmenu(submenu ? item.href : null); }} onFocus={() => { if (submenu && window.matchMedia("(hover: hover)").matches) { positionSubmenu(item.href!); setOpenSubmenu(item.href!); } }}>
+            <div key={`${item.label}-${href}`} ref={(node) => { navItemRefs.current[href] = node; }} className="header__navItem" data-open={openSubmenu === href} onPointerEnter={(event) => { if (event.pointerType !== "mouse") return; if (submenu) positionSubmenu(href); setOpenSubmenu(submenu ? href : null); }} onFocus={() => { if (submenu && window.matchMedia("(hover: hover)").matches) { positionSubmenu(href); setOpenSubmenu(href); } }}>
               <Link to={item.href} viewTransition aria-expanded={submenu ? openSubmenu === item.href : undefined} aria-controls={submenu ? "header-expanded" : undefined} data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={(event) => {
                 if (submenu && window.matchMedia("(hover: none)").matches && openSubmenu !== item.href) {
                   event.preventDefault();
-                  positionSubmenu(item.href);
-                  setOpenSubmenu(item.href);
+                  positionSubmenu(href);
+                  setOpenSubmenu(href);
                   return;
                 }
                 setOpenSubmenu(null);
