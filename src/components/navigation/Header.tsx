@@ -127,7 +127,7 @@ export function Header() {
           if (!item.href) return null;
           const submenu = submenus[item.href];
           return (
-            <div key={`${item.label}-${item.href}`} ref={(node) => { navItemRefs.current[item.href!] = node; }} className="header__navItem" data-open={openSubmenu === item.href} onMouseEnter={() => { if (submenu) positionSubmenu(item.href!); setOpenSubmenu(submenu ? item.href : null); }} onFocus={() => { if (submenu && window.matchMedia("(hover: hover)").matches) { positionSubmenu(item.href!); setOpenSubmenu(item.href!); } }}>
+            <div key={`${item.label}-${item.href}`} ref={(node) => { navItemRefs.current[item.href!] = node; }} className="header__navItem" data-open={openSubmenu === item.href} onPointerEnter={(event) => { if (event.pointerType !== "mouse") return; if (submenu) positionSubmenu(item.href!); setOpenSubmenu(submenu ? item.href : null); }} onFocus={() => { if (submenu && window.matchMedia("(hover: hover)").matches) { positionSubmenu(item.href!); setOpenSubmenu(item.href!); } }}>
               <Link to={item.href} viewTransition aria-expanded={submenu ? openSubmenu === item.href : undefined} aria-controls={submenu ? "header-expanded" : undefined} data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={(event) => {
                 if (submenu && window.matchMedia("(hover: none)").matches && openSubmenu !== item.href) {
                   event.preventDefault();
