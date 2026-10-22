@@ -203,6 +203,11 @@
     --media-ratio: #{$ratio-square};
   }
 
+  // Founder portrait always uses the brand accent backing, regardless of theme.
+  .sectionEditorialGrid > [data-editorial-area="media"] .media {
+    --media-backdrop: var(--accent);
+  }
+
   .sectionEditorialGrid .media__frame {
     aspect-ratio: $ratio-square;
   }
