@@ -310,7 +310,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 .homeServicesStory__digitalMedia {
-  @include offset-media-backing($surface: $color-surface-beige);
+  @include offset-media-backing($color: $color-surface-beige);
   width: 100%;
   min-width: 0;
   aspect-ratio: $ratio-landscape;
@@ -854,7 +854,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 #home-services .section__splitMediaMotion,
 .homeFeaturedProject__media,
 .homeOpenCall__media {
-  @include offset-media-backing($surface: $color-surface-beige);
+  @include offset-media-backing($color: $color-surface-beige);
 }
 
 // Preserve media-first mobile composition independently of DOM reading order.
