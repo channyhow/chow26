@@ -11,8 +11,28 @@
     "talk-project"
   ],
   "submenus": {
-    "/studio": ["studio-service-identity", "studio-service-website", "studio-service-integrations"],
-    "/contact": ["talk-project", { "label": "À propos", "href": "/contact#studio-founders", "intent": "navigate" }]
+    "/studio": [
+      {
+        "label": "Identité visuelle",
+        "href": "/studio#studio-service-identity"
+      },
+      {
+        "label": "Site web",
+        "href": "/studio#studio-service-website"
+      },
+      {
+        "label": "Communication visuelle",
+        "href": "/studio#studio-service-integrations"
+      }
+    ],
+    "/contact": [
+      "talk-project",
+      {
+        "label": "À propos",
+        "href": "/contact#studio-founders",
+        "intent": "navigate"
+      }
+    ]
   },
   "review": []
 }
