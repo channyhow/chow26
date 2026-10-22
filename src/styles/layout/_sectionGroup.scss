@@ -103,13 +103,10 @@
     flex: 0 1 auto;
   }
 
-  /* The opening is intentionally cinematic and remains the one mobile viewport exception. */
-  .sectionGroup__panel[data-panel-id="home-opening-panel"] {
-    min-height: 100svh;
-  }
-
-  .sectionGroup__panel[data-panel-id="home-opening-panel"] > .sectionGroup__surface {
-    min-height: 100svh;
+  /* Keep the initial cinematic frame; after expansion, follow content height. */
+  .sectionGroup__panel[data-panel-id="home-opening-panel"]:has(.homeOpeningScene[data-expanded="true"]),
+  .sectionGroup__panel[data-panel-id="home-opening-panel"]:has(.homeOpeningScene[data-expanded="true"]) > .sectionGroup__surface {
+    min-height: 0;
   }
 }
 
