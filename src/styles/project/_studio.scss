@@ -212,6 +212,18 @@
     aspect-ratio: $ratio-square;
   }
 
+  .textBlock__footer {
+    margin-top: $space-3;
+
+    .actions {
+      @include type-body;
+    }
+
+    .actions__link {
+      font-weight: $font-weight-medium;
+    }
+  }
+
 }
 
 @include desktop-up {
