@@ -1,19 +1,13 @@
-import { motion } from "motion/react";
-
 import { useState } from "react";
 
 import { Media } from "@/components/content/Media";
-import { TextBlock } from "@/components/content/TextBlock";
-import type { ContentItem } from "@/types/content";
 import type { MediaItem } from "@/types/media";
 
 type HomeOpeningSceneProps = {
-  header?: ContentItem;
   media: MediaItem[];
-  parallaxEnabled?: boolean;
 };
 
-export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
+export function HomeOpeningScene({ media }: HomeOpeningSceneProps) {
   const [expanded, setExpanded] = useState(false);
   const openingMedia = media[0];
 
@@ -24,8 +18,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
           type="button"
           className="homeOpeningScene__mediaLink"
           aria-expanded={expanded}
-          aria-controls="home-opening-statement"
-          aria-label="Découvrir le message de Chow Studio"
+          aria-label="Révéler la suite de la page"
           onClick={() => setExpanded(true)}
         >
           <div className="homeOpeningScene__mediaStage">
@@ -44,18 +37,6 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         </button>
       ) : null}
 
-      {header && expanded ? (
-        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ opacity: { duration: 1.1, delay: 1.35, ease: [0.22, 1, 0.36, 1] }, y: { type: "spring", stiffness: 75, damping: 22, mass: 1.3, delay: 1.35 } }}>
-        <TextBlock
-          content={header}
-          titleAs="h1"
-          copyVariant="prominent"
-          titleVariant="display"
-          className="homeOpeningScene__statement"
-          motionEnabled={false}
-        />
-        </motion.div>
-      ) : null}
     </div>
   );
 }
