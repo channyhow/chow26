@@ -14,7 +14,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
    Panel mechanics and shared interaction stay foundation-owned. */
 
 #home-opening {
-  min-height: 100svh;
+  min-height: 0;
 }
 
 #home-opening .section__inner {
@@ -27,7 +27,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeOpeningScene {
   display: flex;
   flex-direction: column;
-  min-height: calc(100svh - (2 * #{$padding-block}));
+  min-height: 0;
 }
 
 .homeOpeningScene__mediaLink {
@@ -96,11 +96,18 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 }
 
 .homeOpeningScene__statementReveal {
-  margin-top: auto;
-  padding-top: $margin-content;
+  padding-top: $margin-block;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 900ms ease, transform 900ms ease;
 }
 
 .homeOpeningScene[data-expanded="true"] {
+  .homeOpeningScene__statementReveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1050ms;
+  }
   .homeOpeningScene__mediaStage {
     height: calc((100cqw - 11 * #{$space-3}) / 12);
   }
@@ -201,7 +208,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeServicesStory__row {
   @include site-grid;
   align-items: center;
-  min-height: 100svh;
+  min-height: 0;
 }
 
 .homeServicesStory__copy,
