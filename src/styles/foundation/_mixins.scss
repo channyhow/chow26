@@ -44,7 +44,8 @@
   align-items: stretch;
   gap: $margin-group;
   min-height: 0;
-  padding-block: $padding-block;
+  // Section wrappers own outer breathing room; stacked compositions only own internal gaps.
+  padding-block: 0;
 }
 
 @mixin editorial-stacked-media($ratio: $ratio-wide) {
