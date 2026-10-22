@@ -15,6 +15,13 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
 #home-opening {
   min-height: 100svh;
+  transition: min-height 1500ms cubic-bezier(.76, 0, .18, 1) 260ms;
+}
+
+// The opening contracts in normal flow, pulling the next section directly
+// underneath the pink squares rather than overlaying the statement.
+html:has(.homeOpeningScene[data-expanded="true"]) #home-opening {
+  min-height: 0;
 }
 
 #home-opening .section__inner {
@@ -28,6 +35,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   display: flex;
   flex-direction: column;
   min-height: calc(100svh - (2 * #{$padding-block}));
+  transition: min-height 1500ms cubic-bezier(.76, 0, .18, 1) 260ms;
+}
+
+.homeOpeningScene[data-expanded="true"] {
+  min-height: 0;
 }
 
 .homeOpeningScene__mediaLink {
@@ -95,9 +107,16 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   background-color: $color-accent-pink;
 }
 
-.homeOpeningScene__statementReveal {
-  margin-top: auto;
-  padding-top: $margin-content;
+// The headline now belongs to the next section, revealed as it rises.
+.homeServicesStory__intro {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1000ms $ease-soft 1150ms, transform 1150ms $ease-soft 1150ms;
+  .textBlock { max-width: 22ch; }
+}
+html:has(.homeOpeningScene[data-expanded="true"]) .homeServicesStory__intro {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .homeOpeningScene[data-expanded="true"] {
@@ -126,7 +145,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpeningScene[data-expanded="true"] .homeOpeningScene__mediaStage {
     height: calc((100cqw - 5 * #{$space-3}) / 6);
   }
-  .homeOpeningScene__statementReveal { padding-bottom: $space-4; }
 }
 @media (prefers-reduced-motion: reduce) {
   .homeOpeningScene__mediaStage,
