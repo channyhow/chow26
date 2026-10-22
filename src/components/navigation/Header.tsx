@@ -41,6 +41,7 @@ export function Header() {
   const logoRef = useRef<HTMLAnchorElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const menuSlotRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -117,6 +118,11 @@ export function Header() {
   }, [currentPath]);
 
   const activeLinks = openSubmenu ? submenus[openSubmenu] : undefined;
+  const positionSubmenu = (href: string) => {
+    const item = navItemRefs.current[href];
+    const header = headerRef.current;
+    if (item && header) header.style.setProperty("--submenu-left", `${item.getBoundingClientRect().left - header.getBoundingClientRect().left}px`);
+  };
   return (
     <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface} data-submenu-open={Boolean(activeLinks)} onMouseLeave={() => setOpenSubmenu(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenSubmenu(null); }}>
       <Link ref={logoRef} className="header__logo" to={home?.href ?? "/"} viewTransition aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`} aria-current={currentPath === "/" ? "page" : undefined}>{siteData.site.name}</Link>
@@ -125,7 +131,7 @@ export function Header() {
           if (!item.href) return null;
           const submenu = submenus[item.href];
           return (
-            <div key={`${item.label}-${item.href}`} className="header__navItem" data-open={openSubmenu === item.href} onMouseEnter={() => setOpenSubmenu(submenu ? item.href : null)} onFocus={() => { if (submenu) setOpenSubmenu(item.href); }}>
+            <div key={`${item.label}-${item.href}`} ref={(node) => { navItemRefs.current[item.href!] = node; }} className="header__navItem" data-open={openSubmenu === item.href} onMouseEnter={() => { if (submenu) positionSubmenu(item.href!); setOpenSubmenu(submenu ? item.href : null); }} onFocus={() => { if (submenu) { positionSubmenu(item.href!); setOpenSubmenu(item.href!); } }}>
               <Link to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={() => setOpenSubmenu(null)}>
                 <span>{item.href === "/contact" ? "Contact" : item.label}</span>
               </Link>
