@@ -5,9 +5,6 @@
     "layout": "media-overlay",
     "motion": "none",
     "content": {
-      "header": {
-        "title": "Une présence claire, cohérente et singulière."
-      },
       "media": "appel-projets-opening"
     }
   },
@@ -107,7 +104,8 @@
           "Des éléments cohérents, faciles à utiliser au quotidien.",
           "Cartes de visite, affiches, réseaux sociaux : votre identité s’adapte à tous vos supports.",
           "Un **site internet** à votre image, simple à parcourir et pensé pour donner envie de vous contacter."
-        ]
+        ],
+        "subtitle": "Une présence claire, cohérente et singulière."
       },
       "media": [
         "flo-business-card",
