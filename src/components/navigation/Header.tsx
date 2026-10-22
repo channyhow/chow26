@@ -24,17 +24,9 @@ export function Header() {
   const home = items.find((item) => item.href === "/");
   const primaryItems = items.filter((item) => item.href !== "/" && item.href !== "/link" && item.href !== "/contact#studio-founders");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
-  const submenus: Record<string, { label: string; href: string }[]> = {
-    "/studio": [
-      { label: "Identité visuelle", href: "/studio#studio-service-identity" },
-      { label: "Site web", href: "/studio#studio-service-website" },
-      { label: "Communication visuelle", href: "/studio#studio-service-integrations" },
-    ],
-    "/contact": [
-      { label: "Parler d’un projet", href: "/contact" },
-      { label: "À propos", href: "/contact#studio-founders" },
-    ],
-  };
+  const submenus = Object.fromEntries(
+    Object.entries(navigationData.submenus).map(([path, refs]) => [path, resolveActions(refs as ActionRef[])]),
+  ) as Record<string, ReturnType<typeof resolveActions>>;
   const [surface, setSurface] = useState<HeaderSurface>("secondary");
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -105,6 +97,10 @@ export function Header() {
         header.style.setProperty("--header-menu-opacity", String(menuOpacity));
         menuSlot.inert = menuOpacity < 0.6;
       }
+      if (openSubmenu) {
+        const item = navItemRefs.current[openSubmenu];
+        if (item) header.style.setProperty("--submenu-left", `${item.getBoundingClientRect().left - header.getBoundingClientRect().left}px`);
+      }
     };
     const scheduleResolve = () => { if (!frame) frame = window.requestAnimationFrame(resolveHeaderState); };
     scheduleResolve();
@@ -115,7 +111,7 @@ export function Header() {
       window.removeEventListener("resize", scheduleResolve);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [currentPath]);
+  }, [currentPath, openSubmenu]);
 
   const activeLinks = openSubmenu ? submenus[openSubmenu] : undefined;
   const positionSubmenu = (href: string) => {
@@ -132,7 +128,15 @@ export function Header() {
           const submenu = submenus[item.href];
           return (
             <div key={`${item.label}-${item.href}`} ref={(node) => { navItemRefs.current[item.href!] = node; }} className="header__navItem" data-open={openSubmenu === item.href} onMouseEnter={() => { if (submenu) positionSubmenu(item.href!); setOpenSubmenu(submenu ? item.href : null); }} onFocus={() => { if (submenu) { positionSubmenu(item.href!); setOpenSubmenu(item.href!); } }}>
-              <Link to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={() => setOpenSubmenu(null)}>
+              <Link to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={(event) => {
+                if (submenu && window.matchMedia("(hover: none)").matches && openSubmenu !== item.href) {
+                  event.preventDefault();
+                  positionSubmenu(item.href);
+                  setOpenSubmenu(item.href);
+                  return;
+                }
+                setOpenSubmenu(null);
+              }}>
                 <span>{item.href === "/contact" ? "Contact" : item.label}</span>
               </Link>
 
@@ -140,7 +144,7 @@ export function Header() {
           );
         })}
       </nav>
-      <div className="header__expanded"><div className="header__expandedInner" key={openSubmenu ?? "closed"}>{activeLinks?.map((link) => <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link>)}</div></div>
+      <div className="header__expanded" id="header-expanded" aria-label="Sous-navigation"><div className="header__expandedInner" key={openSubmenu ?? "closed"}>{activeLinks?.map((link) => link.href ? <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.href === "/studio#studio-service-integrations" ? "Communication visuelle" : link.href === "/studio#studio-service-identity" ? "Identité visuelle" : link.href === "/studio#studio-service-website" ? "Site web" : link.label}</Link> : null)}</div></div>
       <div ref={menuSlotRef} className="header__menuSlot"><BurgerButton /></div>
     </header>
   );
