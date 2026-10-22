@@ -90,20 +90,6 @@
         border-bottom-color: currentColor;
       }
 
-      @include hover {
-        color: $color-special;
-        border-bottom-color: currentColor;
-      }
-
-      &:focus-visible {
-        color: $color-special;
-        border-bottom-color: currentColor;
-      }
-
-      &:active {
-        color: var(--accent);
-        border-bottom-color: currentColor;
-      }
     }
   }
 
