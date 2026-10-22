@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 
 import { Actions } from "@/components/navigation/Actions";
 import { resolveActions } from "@/data/actionRegistry";
@@ -27,7 +28,7 @@ export function SiteFooter({ block }: SiteFooterProps) {
         {socialLinks.length ? <motion.nav className="siteFooter__social" aria-label="Réseaux sociaux" variants={revealItem}><Actions links={socialLinks} variant="social" /></motion.nav> : null}
         {legalLinks.length ? <motion.nav className="siteFooter__legal" aria-label="Informations légales" variants={revealItem}><Actions links={legalLinks} variant="nav" /></motion.nav> : null}
         <motion.div className="siteFooter__identity" variants={revealContainer}>
-          {eyebrows[0] ? <motion.p className="siteFooter__name" variants={revealItem}>{eyebrows[0]}</motion.p> : null}
+          {eyebrows[0] ? <motion.p className="siteFooter__name" variants={revealItem}><Link to="/" aria-label="Chow Studio — retour à l’accueil">{eyebrows[0]}</Link></motion.p> : null}
           {eyebrows.length > 1 ? <motion.div className="siteFooter__baselines" variants={revealContainer}>{eyebrows.slice(1).map((eyebrow) => <motion.p key={eyebrow} className="siteFooter__baseline" variants={revealItem}>{eyebrow}</motion.p>)}</motion.div> : null}
         </motion.div>
       </motion.div>
