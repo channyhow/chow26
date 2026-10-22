@@ -271,7 +271,9 @@
   color: inherit;
   text-align: left;
   text-decoration: none;
-  &:focus-visible { @include focus-ring; }
+  @include accent-interaction;
+  @include hover { border-bottom-color: currentColor; }
+  &:focus-visible, &:active { border-bottom-color: currentColor; }
 }
 
 @mixin glass($surface: var(--surface, #{$color-secondary}), $alpha: 1.5%) {
