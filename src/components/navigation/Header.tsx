@@ -116,29 +116,25 @@ export function Header() {
     };
   }, [currentPath]);
 
+  const activeLinks = openSubmenu ? submenus[openSubmenu] : undefined;
   return (
-    <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface}>
+    <header ref={headerRef} className="header" data-navigation={navigationMode} data-over-color={surface} data-submenu-open={Boolean(activeLinks)} onMouseLeave={() => setOpenSubmenu(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenSubmenu(null); }}>
       <Link ref={logoRef} className="header__logo" to={home?.href ?? "/"} viewTransition aria-label={`${siteData.site.name} | ${home?.label ?? siteData.site.name}`} aria-current={currentPath === "/" ? "page" : undefined}>{siteData.site.name}</Link>
       <nav ref={navRef} className="header__nav" aria-label={siteData.ui.copy.navigation.mainLabel}>
         {primaryItems.map((item) => {
           if (!item.href) return null;
           const submenu = submenus[item.href];
           return (
-            <div key={`${item.label}-${item.href}`} className="header__navItem" data-open={openSubmenu === item.href}>
+            <div key={`${item.label}-${item.href}`} className="header__navItem" data-open={openSubmenu === item.href} onMouseEnter={() => setOpenSubmenu(submenu ? item.href : null)} onFocus={() => { if (submenu) setOpenSubmenu(item.href); }}>
               <Link to={item.href} viewTransition data-nav-variant={item.variant} aria-current={currentPath === normalizePath(item.href) ? "page" : undefined} onClick={() => setOpenSubmenu(null)}>
                 <span>{item.href === "/contact" ? "Contact" : item.label}</span>
               </Link>
-              {submenu ? (
-                <>
-                  <div id={`header-submenu-${item.href.slice(1)}`} className="header__submenu">
-                    {submenu.map(link => <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link>)}
-                  </div>
-                </>
-              ) : null}
+
             </div>
           );
         })}
       </nav>
+      <div className="header__expanded"><div className="header__expandedInner" key={openSubmenu ?? "closed"}>{activeLinks?.map((link) => <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link>)}</div></div>
       <div ref={menuSlotRef} className="header__menuSlot"><BurgerButton /></div>
     </header>
   );
