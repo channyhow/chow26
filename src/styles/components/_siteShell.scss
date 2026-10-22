@@ -35,6 +35,56 @@
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.2em); } } }
+.header__navItem { position: relative; display: inline-flex; align-items: center; gap: 0.2em; pointer-events: auto; }
+.header__submenuToggle {
+  @include interactive-text;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: color $transition-hover;
+}
+.header__submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: grid;
+  gap: $space-2;
+  min-width: max-content;
+  padding: $space-2 $space-3;
+  background: var(--secondary);
+  color: var(--primary);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-0.35rem);
+  transition: opacity $transition-hover, transform $transition-hover, visibility $transition-hover;
+}
+.header__submenu a {
+  @include type-body;
+  @include interactive-text;
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: $font-weight-medium;
+}
+.header__navItem:is(:hover, :focus-within) .header__submenu,
+.header__navItem[data-open="true"] .header__submenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.header__navItem:has(.header__submenu):hover > a,
+.header__navItem:has(.header__submenu):focus-within > a { color: var(--accent); }
 .header__menuSlot { opacity: var(--header-menu-opacity); transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0); }
 .header__menuSlot .burgerButton { pointer-events: auto; }
 .site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary, var(--secondary)); }
