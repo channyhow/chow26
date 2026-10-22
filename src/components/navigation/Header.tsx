@@ -113,6 +113,34 @@ export function Header() {
     };
   }, [currentPath, openSubmenu]);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const targets = Array.from(document.querySelectorAll<HTMLElement>(
+      '[id$="-final-panel"], .siteFooter',
+    ));
+    const visible = new Set<Element>();
+    const update = () => {
+      const hidden = visible.size > 0;
+      header.dataset.hidden = String(hidden);
+      header.inert = hidden;
+    };
+    update();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      update();
+    }, { rootMargin: "-15% 0px -20% 0px", threshold: 0 });
+    targets.forEach((target) => observer.observe(target));
+    return () => {
+      observer.disconnect();
+      header.inert = false;
+      delete header.dataset.hidden;
+    };
+  }, [pathname]);
+
   const activeLinks = openSubmenu ? submenus[openSubmenu] : undefined;
   const positionSubmenu = (href: string) => {
     const item = navItemRefs.current[href];
