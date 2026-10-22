@@ -13,7 +13,6 @@
 }
 
 .actions__link {
-  // @include type-body-bold;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -29,7 +28,7 @@
   border-radius: var(--radius-control, #{$radius-full});
   appearance: none;
   background: transparent;
-  // color: inherit;
+  color: inherit;
   text-decoration: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -100,7 +99,7 @@
   color: var(--accent);
 
   @include hover {
-    color: var(--secondary);
+    color: var(--accent);
     .actions__label { background-size: 100% 1px; }
     .actions__arrow { transform: translate(0.18em, -0.08em); }
   }
