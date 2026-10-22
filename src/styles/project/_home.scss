@@ -109,6 +109,7 @@ html:has(.homeOpeningScene[data-expanded="true"]) #home-opening {
 
 // The headline now belongs to the next section, revealed as it rises.
 .homeServicesStory__intro {
+  padding-block: $margin-group;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 1000ms $ease-soft 1150ms, transform 1150ms $ease-soft 1150ms;
