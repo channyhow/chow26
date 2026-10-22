@@ -75,6 +75,25 @@
   width: fit-content;
   text-transform: uppercase;
 }
+.header__submenu a {
+  opacity: 0;
+  transform: translateY(0.45rem);
+  transition: opacity 260ms ease, transform 320ms ease, color $transition-hover;
+}
+.header__navItem:is(:hover, :focus-within) .header__submenu a,
+.header__navItem[data-open="true"] .header__submenu a {
+  opacity: 1;
+  transform: translateY(0);
+}
+@for $i from 1 through 3 {
+  .header__submenu a:nth-child(#{$i}) {
+    transition-delay: 0ms;
+  }
+  .header__navItem:is(:hover, :focus-within) .header__submenu a:nth-child(#{$i}),
+  .header__navItem[data-open="true"] .header__submenu a:nth-child(#{$i}) {
+    transition-delay: #{($i - 1) * 65}ms;
+  }
+}
 .header__navItem:is(:hover, :focus-within) .header__submenu,
 .header__navItem[data-open="true"] .header__submenu {
   opacity: 1;
