@@ -42,8 +42,6 @@ export function Header() {
   const navRef = useRef<HTMLElement>(null);
   const menuSlotRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { setOpenSubmenu(null); }, [pathname]);
-
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
