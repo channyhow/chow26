@@ -193,7 +193,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .actions__link {
     @include editorial-control-row;
     @include type-body;
-    @include hover { color: var(--accent); }
   }
 }
 
@@ -266,7 +265,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .actions__link {
     @include editorial-control-row;
     @include type-body;
-    @include hover { color: var(--accent); }
   }
 }
 
