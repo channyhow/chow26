@@ -40,7 +40,7 @@
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.1em); } } }
 .header__navItem { position: relative; display: inline-flex; align-items: center; gap: 0.1em; pointer-events: auto; }
-.header__expanded { display: none; grid-template-rows: 0fr; overflow: hidden; opacity: 0; background: var(--secondary); color: var(--primary); pointer-events: none; transition: grid-template-rows 280ms ease, opacity 220ms ease, background-color $transition-interface, color $transition-interface; }
+.header__expanded { display: none; grid-template-rows: 0fr; overflow: hidden; opacity: 0; background: var(--secondary); color: var(--primary); pointer-events: none; transition: grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease-out, background-color $transition-interface, color $transition-interface; }
 .header__expandedInner { display: flex; min-height: 0; align-items: center; justify-content: center; flex-wrap: wrap; column-gap: $space-4; row-gap: $space-1; padding: 0 var(--header-gutter); }
 .header[data-submenu-open="true"] .header__expandedInner { padding-block: $space-2; }
 .header__expanded a { @include type-ui-compact; @include interactive-text; width: fit-content; opacity: 0; transform: translateY(0.3rem); transition: opacity 220ms ease, transform 240ms ease, color $transition-hover; }
