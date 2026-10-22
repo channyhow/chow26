@@ -40,7 +40,7 @@
     opacity $transition-hover,
     transform $transition-hover;
 
-  &:focus-visible { @include focus-ring; }
+  @include accent-interaction;
   &:active:not(:disabled, [aria-disabled="true"]) { transform: translateY(1px); }
 
   &:disabled,
@@ -150,7 +150,6 @@
     border-radius: 0;
     background: transparent;
     box-shadow: none;
-    color: inherit;
   }
 }
 
@@ -194,8 +193,8 @@
     @include glass($color-accent, 0.5%);
 
     @include hover {
-      background: var(--accent);
-      color: var(--primary);
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
     }
   }
 }
