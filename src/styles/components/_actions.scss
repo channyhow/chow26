@@ -112,6 +112,21 @@
   }
 }
 
+/* Consistent interaction feedback for all enabled action variants.
+   Placed after variant defaults so navigation and panel actions share accent states. */
+.actions__link:not(:disabled, [aria-disabled="true"]) {
+  &:focus-visible,
+  &:active {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  &:focus-visible {
+    .actions__label { background-size: 100% 1px; }
+    .actions__arrow { transform: translate(0.18em, -0.08em); }
+  }
+}
+
 // Primary (dark) sections keep actionable links fully legible.
 // Disabled links retain their intentional subdued state.
 .section[data-color="primary"] .actions__link:not(:disabled, [aria-disabled="true"]) {
@@ -190,4 +205,10 @@
     min-height: 4.25rem;
     padding: $space-2;
   }
+}
+
+/* Variant-specific backgrounds must not obscure accent interaction feedback. */
+.actions--panel .actions__link:not(:disabled, [aria-disabled="true"]) {
+  &:focus-visible,
+  &:active { color: var(--accent); }
 }
