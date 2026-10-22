@@ -26,22 +26,32 @@ export function OfferSwitcher({ offers, composition = defaultComposition }: Offe
   const [active, setActive] = useState(0);
   const [visible, setVisible] = useState(true);
   const switchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingIndex = useRef<number | null>(null);
 
   useEffect(() => () => {
     if (switchTimer.current) clearTimeout(switchTimer.current);
   }, []);
 
   const selectOffer = (index: number) => {
-    if (switchTimer.current) clearTimeout(switchTimer.current);
+    if (index === active && pendingIndex.current === null) return;
+    if (switchTimer.current !== null) clearTimeout(switchTimer.current);
+
+    // Keep only the latest selection when someone switches quickly.
+    pendingIndex.current = index;
     if (index === active) {
+      pendingIndex.current = null;
+      switchTimer.current = null;
       setVisible(true);
       return;
     }
+
     setVisible(false);
     switchTimer.current = setTimeout(() => {
-      setActive(index);
-      setVisible(true);
+      const nextIndex = pendingIndex.current;
+      pendingIndex.current = null;
       switchTimer.current = null;
+      if (nextIndex !== null) setActive(nextIndex);
+      setVisible(true);
     }, 220);
   };
   const panelId = useId();
@@ -71,7 +81,7 @@ export function OfferSwitcher({ offers, composition = defaultComposition }: Offe
         </div>
       </EditorialGridItem>
       <EditorialGridItem area="heading" placement={place("heading")}>
-        <div id={panelId} className="offerComposition__heading" aria-live="polite" aria-atomic="true">
+        <div id={panelId} className="offerComposition__heading" aria-busy={!visible} aria-live="polite" aria-atomic="true">
           <TextBlock content={{ eyebrow: selected.eyebrow, title: selected.title }} titleAs="h3" motionEnabled={false} />
         </div>
       </EditorialGridItem>
