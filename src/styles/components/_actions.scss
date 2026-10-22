@@ -87,9 +87,9 @@
   color: var(--secondary);
 
   @include hover {
-    border-color: var(--secondary);
+    border-color: var(--accent);
     background: var(--secondary);
-    color: var(--primary);
+    color: var(--accent);
     box-shadow: 0 0.35rem 1rem color-mix(in srgb, var(--primary) 16%, transparent);
     transform: translateY(-1px);
   }
