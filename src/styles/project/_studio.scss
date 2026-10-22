@@ -66,10 +66,15 @@
     padding-top: $margin-content;
   }
 
-  // Reveal newly mounted offer details without moving the selector.
-  // The content component must remount or change its animation key on selection.
-  .offerComposition {
-    animation: studio-offer-reveal 360ms $ease-soft both;
+  // Keep navigation still while the offer content crossfades out and in.
+  .offerComposition > [data-editorial-area]:not([data-editorial-area="navigation"]) {
+    opacity: 1;
+    transition: opacity 220ms ease-in-out;
+  }
+
+  .offerComposition--exiting > [data-editorial-area]:not([data-editorial-area="navigation"]) {
+    opacity: 0;
+    pointer-events: none;
   }
 
   // OfferSwitcher renders .offerComposition; controls remain styled here.
@@ -358,10 +363,4 @@
     @include type-body;
   }
   .actions__arrow { flex: 0 0 auto; }
-}
-
-// A small editorial entrance, with no scale or layout shift.
-@keyframes studio-offer-reveal {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
 }
