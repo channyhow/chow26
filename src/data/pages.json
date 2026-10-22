@@ -472,20 +472,6 @@
             ]
           },
           {
-            "id": "contact-approach-panel",
-            "behavior": "sticky",
-            "frame": "content",
-            "size": "full",
-            "align": "center",
-            "surface": "solid",
-            "color": "primary",
-            "blocks": [
-              {
-                "ref": "approach-default"
-              }
-            ]
-          },
-          {
             "id": "contact-founder-panel",
             "behavior": "sticky",
             "frame": "content",
