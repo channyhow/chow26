@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 import { useState } from "react";
 
 import { Media } from "@/components/content/Media";
@@ -44,8 +42,8 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
         </button>
       ) : null}
 
-      {header && expanded ? (
-        <motion.div id="home-opening-statement" className="homeOpeningScene__statementReveal" initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ opacity: { duration: 1.1, delay: 1.35, ease: [0.22, 1, 0.36, 1] }, y: { type: "spring", stiffness: 75, damping: 22, mass: 1.3, delay: 1.35 } }}>
+      {header ? (
+        <div id="home-opening-statement" className="homeOpeningScene__statementReveal">
         <TextBlock
           content={header}
           titleAs="h1"
@@ -54,7 +52,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
           className="homeOpeningScene__statement"
           motionEnabled={false}
         />
-        </motion.div>
+        </div>
       ) : null}
     </div>
   );
