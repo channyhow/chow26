@@ -139,6 +139,8 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
 
   if (isHomeOpening) {
     body = <HomeOpeningScene media={mediaItems} />;
+  } else if (block.id === "home-opening-statement" && header) {
+    body = <TextBlock content={header} titleAs="h1" titleVariant="display" className="homeOpeningStatement__title" motionEnabled={false} />;
   } else if (block.id === "studio-services-intro") {
     const introItems = mediaCards.map((card, index) => {
       const ref = header?.links?.[index];
