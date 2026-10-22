@@ -144,7 +144,7 @@ export function Header() {
           );
         })}
       </nav>
-      <div className="header__expanded" id="header-expanded" aria-label="Sous-navigation"><div className="header__expandedInner" key={openSubmenu ?? "closed"}>{activeLinks?.map((link) => link.href ? <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link> : null)}</div></div>
+      <nav className="header__expanded" id="header-expanded" aria-label="Sous-navigation"><div className="header__expandedInner" key={openSubmenu ?? "closed"}>{activeLinks?.map((link) => link.href ? <Link key={link.href} to={link.href} onClick={() => setOpenSubmenu(null)}>{link.label}</Link> : null)}</div></nav>
       <div ref={menuSlotRef} className="header__menuSlot"><BurgerButton /></div>
     </header>
   );
