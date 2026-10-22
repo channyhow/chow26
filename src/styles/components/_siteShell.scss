@@ -66,6 +66,7 @@
   transform: translateY(-0.35rem);
   transition: opacity $transition-hover, transform $transition-hover, visibility $transition-hover;
 }
+.header__navItem:last-child .header__submenu { left: auto; right: 0; }
 .header__submenu a {
   @include type-body;
   @include interactive-text;
