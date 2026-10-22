@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { Actions } from "@/components/navigation/Actions";
 import { TextBlock } from "@/components/content/TextBlock";
@@ -24,6 +24,26 @@ export interface OfferSwitcherProps {
 
 export function OfferSwitcher({ offers, composition = defaultComposition }: OfferSwitcherProps) {
   const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const switchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    if (switchTimer.current) clearTimeout(switchTimer.current);
+  }, []);
+
+  const selectOffer = (index: number) => {
+    if (switchTimer.current) clearTimeout(switchTimer.current);
+    if (index === active) {
+      setVisible(true);
+      return;
+    }
+    setVisible(false);
+    switchTimer.current = setTimeout(() => {
+      setActive(index);
+      setVisible(true);
+      switchTimer.current = null;
+    }, 220);
+  };
   const panelId = useId();
   if (!offers.length) return null;
 
@@ -33,7 +53,7 @@ export function OfferSwitcher({ offers, composition = defaultComposition }: Offe
   const place = (region: OfferRegion) => composition[region] ?? defaultComposition[region];
 
   return (
-    <EditorialGrid className="offerComposition">
+    <EditorialGrid className={visible ? "offerComposition" : "offerComposition offerComposition--exiting"}>
       <EditorialGridItem area="navigation" placement={place("navigation")}>
         <div className="section__offerSwitcherControls" role="group" aria-label="Choisir une formule">
           {offers.map((offer, index) => (
@@ -42,7 +62,7 @@ export function OfferSwitcher({ offers, composition = defaultComposition }: Offe
               type="button"
               aria-pressed={index === active}
               aria-controls={panelId}
-              onClick={() => setActive(index)}
+              onClick={() => selectOffer(index)}
             >
               <span className="section__offerSwitcherNumber">{String(index + 1).padStart(2, "0")}</span>
               <span className="section__offerSwitcherLabel">{typeof offer.eyebrow === "string" ? offer.eyebrow.replace(/^\d+\s*·\s*/, "") : offer.title}</span>
