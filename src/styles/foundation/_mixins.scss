@@ -136,12 +136,31 @@
   }
 }
 
+@mixin accent-interaction {
+  transition: color $transition-hover, border-color $transition-hover;
+  @include hover { color: var(--accent); }
+  &:focus-visible { color: var(--accent); @include focus-ring; }
+  &:active { color: var(--accent); }
+}
+
 @mixin interactive-text {
   color: inherit;
   text-decoration: none;
-  transition: color $transition-hover;
-  @include hover { color: var(--accent); }
-  &:focus-visible { @include focus-ring; }
+  @include accent-interaction;
+}
+
+@mixin interactive-card {
+  @include accent-interaction;
+  cursor: pointer;
+  .media__asset { transition: transform $transition-reveal; }
+  @include hover { .media__asset { transform: scale(1.02); } }
+  &:focus-within .media__asset { transform: scale(1.02); }
+}
+
+@mixin interactive-floating {
+  @include accent-interaction;
+  @include hover { border-color: var(--accent); }
+  &:focus-visible, &:active { border-color: var(--accent); }
 }
 
 @mixin nav-link {
