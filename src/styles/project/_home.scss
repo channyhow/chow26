@@ -201,6 +201,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeServicesStory {
   display: grid;
   width: 100%;
+  row-gap: $margin-section;
 }
 
 .homeServicesStory__row {
@@ -339,7 +340,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 // One breakpoint owns the structure; tablet and phone only tune the scale.
 @include desktop-down {
   .homeServicesStory {
-    gap: $margin-group;
+    row-gap: $margin-section;
   }
 
   .homeServicesStory__row {
