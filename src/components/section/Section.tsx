@@ -138,7 +138,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   let body: ReactNode;
 
   if (isHomeOpening) {
-    body = <HomeOpeningScene header={header} media={mediaItems} parallaxEnabled={parallaxEnabled} />;
+    body = <HomeOpeningScene media={mediaItems} />;
   } else if (block.id === "studio-services-intro") {
     const introItems = mediaCards.map((card, index) => {
       const ref = header?.links?.[index];
@@ -177,6 +177,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
       ? <div className="homeServicesStory__media"><Media media={item} sizes="(min-width: 64rem) 36vw, 100vw" /></div>
       : null;
     body = <article className="homeServicesStory">
+      {header.subtitle ? <div className="homeServicesStory__intro" id="home-opening-statement"><TextBlock content={{ title: header.subtitle }} titleAs="h1" titleVariant="display" motionEnabled={false} /></div> : null}
       <div className="homeServicesStory__row homeServicesStory__row--reverse">
         <div className="homeServicesStory__copy"><TextBlock content={identity} motionEnabled={sectionMotionEnabled} /></div>
         {storyMedia(identityMedia)}
