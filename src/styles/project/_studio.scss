@@ -355,7 +355,6 @@
   .actions__link {
     @include editorial-control-row;
     @include type-body;
-    &:hover { color: $color-special; }
   }
   .actions__arrow { flex: 0 0 auto; }
 }
