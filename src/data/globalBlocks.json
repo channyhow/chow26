@@ -5,9 +5,6 @@
     "layout": "media-overlay",
     "motion": "none",
     "content": {
-      "header": {
-        "title": "Une présence claire, cohérente et singulière."
-      },
       "media": "appel-projets-opening"
     }
   },
@@ -698,6 +695,17 @@
         ]
       },
       "media": "appel-projets"
+    }
+  },
+  "home-opening-statement": {
+    "id": "home-opening-statement",
+    "type": "Section",
+    "layout": "text",
+    "motion": "none",
+    "content": {
+      "header": {
+        "title": "Une présence claire, cohérente et singulière."
+      }
     }
   }
 }
