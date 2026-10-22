@@ -478,7 +478,7 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "color": "secondary",
+            "color": "primary",
             "blocks": [
               {
                 "ref": "studio-founders"
