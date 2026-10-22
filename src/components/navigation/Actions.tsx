@@ -45,7 +45,7 @@ export function Actions({ links = [], className, variant = "default" }: ActionsP
         const external = Boolean(href && isExternalHref(href));
         const hasArrow = isSocial || actionVariant === "arrow" || actionVariant === "cta" || actionVariant === "accent";
         const classNames = clsx("actions__link", actionVariant && `actions__link--${actionVariant}`);
-        const content = <><span className="actions__label">{action.label}</span>{hasArrow ? <span className="actions__arrow" aria-hidden="true">{isSocial || external ? "↗" : "→"}</span> : null}</>;
+        const content = <><span className="actions__label">{action.label}</span>{hasArrow ? <span className="actions__arrow" aria-hidden="true">{isSocial || external || href?.startsWith("mailto:") ? "↗" : "→"}</span> : null}</>;
 
         if (intent === "submit") {
           return <button key={`submit-${action.label}`} className={classNames} type="submit" data-intent="submit" data-priority={action.priority ?? "primary"}>{content}</button>;
