@@ -22,7 +22,7 @@ export function Header() {
   const currentPath = normalizePath(pathname);
   const items = resolveActions(navigationData.primary as ActionRef[]);
   const home = items.find((item) => item.href === "/");
-  const primaryItems = items.filter((item) => item.href !== "/" && item.href !== "/link");
+  const primaryItems = items.filter((item) => item.href !== "/" && item.href !== "/link" && item.href !== "/contact#studio-founders");
   const navigationMode = (siteData.ui as typeof siteData.ui & NavigationUiConfig).navigation?.desktop ?? "drawer";
   const submenus: Record<string, { label: string; href: string }[]> = {
     "/studio": [
