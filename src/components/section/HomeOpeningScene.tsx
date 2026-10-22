@@ -24,6 +24,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
           aria-expanded={expanded}
           aria-controls="home-opening-statement"
           aria-label="Découvrir le message de Chow Studio"
+          disabled={expanded}
           onClick={() => setExpanded(true)}
         >
           <div className="homeOpeningScene__mediaStage">
@@ -44,14 +45,14 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
 
       {header ? (
         <div id="home-opening-statement" className="homeOpeningScene__statementReveal">
-        <TextBlock
+          <TextBlock
           content={header}
           titleAs="h1"
           copyVariant="prominent"
           titleVariant="display"
           className="homeOpeningScene__statement"
           motionEnabled={false}
-        />
+          />
         </div>
       ) : null}
     </div>
