@@ -193,6 +193,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .actions__link {
     @include editorial-control-row;
     @include type-body;
+
+    // Keep the full-width separator, not an underline beneath the label.
+    .actions__label {
+      background-image: none;
+    }
   }
 }
 
@@ -265,6 +270,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .actions__link {
     @include editorial-control-row;
     @include type-body;
+
+    // Keep the full-width separator, not an underline beneath the label.
+    .actions__label {
+      background-image: none;
+    }
   }
 }
 
