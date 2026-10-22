@@ -80,13 +80,14 @@
       align-items: baseline;
       justify-items: start;
       gap: $space-2;
-      border-bottom: 0;
+      border-bottom: 1px solid transparent;
       color: $gray-500;
       cursor: pointer;
       transition: color $transition-hover, border-color $transition-hover;
 
       &[aria-pressed="true"] {
         color: var(--accent);
+        border-bottom-color: currentColor;
       }
 
     }
