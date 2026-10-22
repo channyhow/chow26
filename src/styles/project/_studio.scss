@@ -73,23 +73,31 @@
     min-width: 0;
 
     button {
-      @include editorial-control-row(0%);
       @include type-body;
+      @include accent-interaction;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       align-items: baseline;
       justify-items: start;
       gap: $space-2;
-      border-bottom: 1px solid transparent;
+      width: 100%;
+      min-height: $control-min-height;
+      padding: $space-1 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
       color: $gray-500;
+      text-align: left;
       cursor: pointer;
-      transition: color $transition-hover, border-color $transition-hover;
+
+      // A static separator, independent of hover, focus and selection.
+      & + button {
+        border-top: 1px solid color-mix(in srgb, var(--primary) 22%, transparent);
+      }
 
       &[aria-pressed="true"] {
         color: var(--accent);
-        border-bottom-color: currentColor;
       }
-
     }
   }
 
