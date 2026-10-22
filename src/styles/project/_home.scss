@@ -499,7 +499,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   display: block;
 }
 
-[data-page-id="home"] #home-services,
 [data-page-id="home"] #home-featured-project,
 [data-page-id="home"] #home-opencall-preview,
 [data-page-id="home"] #final-cta {
@@ -851,4 +850,12 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 [data-page-id="home"] #home-featured-project,
 [data-page-id="home"] #home-opencall-preview {
   margin-block-start: $margin-section;
+}
+
+// The opening already has its own exit rhythm. Avoid stacking a section margin
+// and section padding before the first service image on smaller screens.
+@include desktop-down {
+  [data-page-id="home"] #home-services .section__inner {
+    padding-block-start: $margin-group;
+  }
 }
