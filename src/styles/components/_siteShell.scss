@@ -30,8 +30,8 @@
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
 .header__logo { @include type-ui-lg; font-weight: $font-weight-bold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
 .header__nav { display: none; align-items: center; gap: clamp($space-2, 2.4vw, $space-3); transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
-.header__nav a { @include type-ui-lg; font-weight: $font-weight-semibold; @include interactive-text; pointer-events: auto; }
-.header__nav a[aria-current="page"] { color: var(--accent); text-decoration: none; }
+.header__nav > .header__navItem > a { @include type-ui-lg; font-weight: $font-weight-semibold; @include interactive-text; pointer-events: auto; text-decoration: none; }
+.header__nav > .header__navItem > a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.1em); } } }
@@ -41,10 +41,10 @@
   top: 100%;
   left: 0;
   display: grid;
-  gap: $space-1;
+  gap: 0.35rem;
   width: max-content;
   max-width: min(22rem, 80vw);
-  padding: $space-2 $space-2 $space-2 0;
+  padding: $space-1 $space-2 $space-2 0;
   text-align: left;
   color: var(--primary);
   background: var(--secondary);
@@ -57,10 +57,10 @@
 .header__navItem:last-child .header__submenu {
   left: auto;
   right: 0;
-  padding: $space-2 0 $space-2 $space-2;
+  padding: $space-1 0 $space-2 $space-2;
 }
 .header__submenu a {
-  @include type-caption;
+  @include type-ui-compact;
   @include interactive-text;
   display: block;
   width: fit-content;
