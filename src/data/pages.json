@@ -654,7 +654,7 @@
                     {
                       "title": "2. Devis, commande et démarrage",
                       "text": [
-                        "Le contenu, les livrables, le calendrier indicatif et le tarifs sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.",
+                        "Le contenu, les livrables, le calendrier indicatif et les tarifs sont définis dans le devis ou la proposition commerciale. La commande devient ferme à compter de l’acceptation écrite du devis ou du contrat et, lorsqu’un acompte est prévu, de son règlement.",
                         "Toute demande qui modifie sensiblement le périmètre initial peut faire l’objet d’un ajustement de planning, d’un devis complémentaire ou d’une nouvelle estimation avant réalisation."
                       ]
                     },
@@ -662,7 +662,7 @@
                       "title": "3. Tarifs",
                       "text": [
                         "Les tarifs sont indiqués en euros hors taxes, sauf mention contraire. La TVA et toute autre taxe applicable sont ajoutées selon la situation fiscale de Chow Studio au jour de la facturation.",
-                        "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des tarifs de départ. Le tarifs contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."
+                        "Les tarifs publics affichés sur le site sont indicatifs lorsqu’ils sont présentés comme des tarifs de départ. Le tarif contractuel est celui figurant sur le devis ou la proposition acceptée. Aucun escompte pour paiement anticipé n’est accordé sauf mention expresse contraire."
                       ]
                     },
                     {
@@ -695,52 +695,60 @@
                     {
                       "title": "8. Propriété intellectuelle",
                       "text": [
-                        "Sauf disposition contraire convenue par écrit, les droits d’exploitation sur les créations originales réalisées pour le client ne sont cédés qu’après paiement intégral des sommes dues et uniquement dans l’étendue prévue au devis ou au contrat. Les droits non expressément cédés restent réservés.",
-                        "Les éléments préexistants, outils, méthodes, composants génériques, bibliothèques, polices, logiciels, contenus ou licences appartenant à Chow Studio ou à des tiers restent soumis à leurs droits et licences propres. Le client garantit disposer des droits nécessaires sur les contenus, marques, textes, images et autres éléments qu’il fournit au studio.",
-                        "Sauf obligation de confidentialité ou opposition convenue par écrit avant publication, Chow Studio peut présenter le projet réalisé, une fois rendu public, dans son portfolio, ses études de cas et ses communications professionnelles."
+                        "Sauf disposition contraire convenue par écrit, CHOW STUDIO accorde au client, après paiement intégral, une licence d’utilisation non exclusive et non transférable sur les créations originales finales livrées. Sa durée, son territoire, les supports et les usages autorisés sont définis dans le devis ou l’accord de prestation. Les droits non expressément accordés restent réservés. Toute adaptation ou utilisation dépassant ces conditions nécessite un accord écrit complémentaire.",
+                        "Les recherches, propositions non retenues, fichiers de travail et fichiers sources modifiables ne sont pas inclus dans les livrables, sauf mention expresse au devis. Les éléments préexistants, méthodes, composants génériques, bibliothèques, polices, logiciels et contenus tiers restent soumis à leurs droits et licences propres. Le client garantit disposer des droits nécessaires sur les éléments qu’il fournit.",
+                        "Après la publication du projet, CHOW STUDIO peut présenter les créations réalisées dans son portfolio, sur son site et ses réseaux sociaux, sauf accord de confidentialité ou opposition convenue par écrit avant publication."
                       ]
                     },
                     {
-                      "title": "9. Sites web, services tiers et maintenance",
+                      "title": "9. Modifications et intelligence artificielle",
+                      "text": [
+                        "Le client peut utiliser les créations dans les limites de la licence accordée, notamment les adapter aux formats et supports expressément autorisés. Les modifications substantielles, la création de nouvelles variantes ou les usages non prévus nécessitent un accord écrit préalable de CHOW STUDIO.",
+                        "L’utilisation d’outils d’intelligence artificielle générative pour transformer, recréer ou produire des variantes des créations livrées, ou pour entraîner un modèle à partir de celles-ci ou des fichiers de travail, nécessite un accord écrit préalable. Cette restriction ne vise pas les simples opérations techniques ou les modifications de contenus courants qui respectent la licence.",
+                        "Les contenus modifiés ou générés par un tiers ne doivent pas être présentés comme des créations de CHOW STUDIO sans son accord."
+                      ]
+                    },
+                    {
+                      "title": "10. Livraison et validation",
+                      "text": [
+                        "Les livrables et leurs formats sont ceux prévus au devis ou à l’accord. Le client est invité à les vérifier lors des étapes de validation et à la livraison finale. Toute anomalie relevant du périmètre convenu doit être signalée avec suffisamment de précision pour permettre son analyse et, si elle est imputable à la prestation, sa correction dans des conditions raisonnables.",
+                        "Une nouvelle préférence, une évolution de besoin ou une modification demandée après validation ne constitue pas une non-conformité."
+                      ]
+                    },
+                    {
+                      "title": "11. Sites web, services tiers et maintenance",
                       "text": [
                         "Pour les prestations digitales, les livrables, accès, environnements et modalités de mise en ligne sont ceux prévus au devis. Les abonnements, noms de domaine, hébergements, services SaaS, API, outils tiers et licences nécessaires au projet restent soumis aux conditions de leurs fournisseurs respectifs et sont à la charge de la partie désignée au devis.",
                         "La maintenance, les évolutions, mises à jour de contenu ou interventions postérieures à la livraison ne sont incluses que lorsqu’elles sont expressément prévues. Chow Studio ne peut garantir la disponibilité ou la pérennité d’un service fourni par un tiers."
                       ]
                     },
                     {
-                      "title": "10. Livraison et conformité",
-                      "text": [
-                        "Le client est invité à vérifier les livrables au fur et à mesure des validations et lors de la livraison finale. Toute anomalie relevant du périmètre convenu doit être signalée avec suffisamment de précision pour permettre son analyse et, lorsqu’elle est imputable à la prestation livrée, sa correction dans des conditions raisonnables.",
-                        "Une préférence nouvelle, une évolution de besoin ou une modification demandée après validation ne constitue pas une non-conformité."
-                      ]
-                    },
-                    {
-                      "title": "11. Responsabilité",
+                      "title": "12. Responsabilité",
                       "text": [
                         "Chow Studio exécute ses prestations avec le soin normalement attendu d’un professionnel et dans le cadre du périmètre convenu. Le client reste responsable de ses décisions commerciales, de ses contenus, de ses obligations légales propres, des validations qu’il donne et de l’usage final des livrables.",
                         "Chow Studio ne peut être tenu responsable des dysfonctionnements, interruptions, changements de conditions ou pertes résultant directement d’un service tiers, d’un accès ou contenu fourni par le client, d’une modification effectuée par un tiers après livraison ou d’un événement échappant raisonnablement à son contrôle."
                       ]
                     },
                     {
-                      "title": "12. Confidentialité et données",
+                      "title": "13. Confidentialité et données",
                       "text": [
                         "Chaque partie s’engage à traiter avec discrétion les informations confidentielles reçues dans le cadre du projet. Les données personnelles éventuellement traitées dans la relation commerciale sont utilisées pour la gestion des échanges, du projet, de la facturation et des obligations administratives. La politique de confidentialité du site précise les traitements liés au site et aux prises de contact."
                       ]
                     },
                     {
-                      "title": "13. Force majeure",
+                      "title": "14. Force majeure",
                       "text": [
                         "Aucune partie ne peut être tenue responsable d’un retard ou d’une inexécution résultant d’un événement de force majeure au sens du droit français. Les obligations affectées sont suspendues pendant la durée de l’empêchement et les parties se rapprochent pour déterminer les conséquences pratiques sur le projet."
                       ]
                     },
                     {
-                      "title": "14. Droit applicable et différends",
+                      "title": "15. Droit applicable et différends",
                       "text": [
                         "Les présentes CGV et les contrats conclus avec Chow Studio sont soumis au droit français. En cas de difficulté, les parties cherchent d’abord une solution amiable. À défaut d’accord, le litige relève des juridictions compétentes selon les règles de droit commun applicables."
                       ]
                     },
                     {
-                      "title": "15. Version des CGV",
+                      "title": "16. Version des CGV",
                       "text": [
                         "La version applicable est celle acceptée avec le devis ou le contrat. Les présentes CGV peuvent évoluer pour tenir compte de changements dans les services ou dans le cadre juridique."
                       ]
