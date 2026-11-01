@@ -20,7 +20,10 @@
     "layout": "carousel",
     "source": {
       "collection": "projects",
-      "query": { "featured": true, "limit": 5 }
+      "query": {
+        "featured": true,
+        "limit": 5
+      }
     },
     "content": {
       "header": {
@@ -37,7 +40,9 @@
     "layout": "grid",
     "surface": "solid",
     "color": "special",
-    "source": { "collection": "projects" },
+    "source": {
+      "collection": "projects"
+    },
     "content": {
       "header": {
         "eyebrow": "Projets & études de cas",
@@ -77,7 +82,11 @@
             "Construire une présence cohérente dès le départ : positionnement visuel, identité, site et expérience digitale pensés comme un même système."
           ],
           "media": "ravine-business-card",
-          "tags": ["Site web", "Identité visuelle", "Direction artistique"],
+          "tags": [
+            "Site web",
+            "Identité visuelle",
+            "Direction artistique"
+          ],
           "links": [
             {
               "label": "Construire votre présence",
@@ -95,7 +104,12 @@
             "Reprendre l’existant pour retrouver une hiérarchie claire, un message plus précis et une expérience plus simple à comprendre et à utiliser."
           ],
           "media": "atmosphere-laptop",
-          "tags": ["Audit", "Refonte", "Architecture de contenu", "UX/UI"],
+          "tags": [
+            "Audit",
+            "Refonte",
+            "Architecture de contenu",
+            "UX/UI"
+          ],
           "links": [
             {
               "label": "Clarifier l’existant",
@@ -195,7 +209,9 @@
           "text": [
             "Avant le web, Channy a travaillé dans le développement produit et la création entre la Chine, Hong Kong, Sydney et la France. Cette expérience nourrit une manière de travailler attentive à la fois à l’idée, au détail, aux contraintes de production et à ce qui doit réellement fonctionner une fois livré."
           ],
-          "media": ["studio-founder-1"]
+          "media": [
+            "studio-founder-1"
+          ]
         }
       ]
     }
@@ -204,7 +220,9 @@
     "id": "approach-method",
     "type": "Section",
     "layout": "grid",
-    "source": { "collection": "approach" },
+    "source": {
+      "collection": "approach"
+    },
     "content": {
       "header": {
         "title": "Clarifier, structurer, concevoir, livrer.",
@@ -220,7 +238,10 @@
     "layout": "carousel",
     "source": {
       "collection": "journal",
-      "query": { "featured": true, "limit": 3 }
+      "query": {
+        "featured": true,
+        "limit": 3
+      }
     },
     "content": {
       "header": {
@@ -231,7 +252,10 @@
         ]
       }
     },
-    "itemAppearance": { "frame": true, "effect": "none" }
+    "itemAppearance": {
+      "frame": true,
+      "effect": "none"
+    }
   },
   "contact-default": {
     "id": "contact-default",
@@ -255,7 +279,6 @@
     "type": "Section",
     "layout": "statement",
     "tone": "inverse",
-    
     "content": {
       "header": {
         "eyebrow": "Un projet en tête ?",
@@ -295,7 +318,10 @@
     "layout": "list",
     "source": {
       "collection": "links",
-      "query": { "group": "primary", "enabled": true }
+      "query": {
+        "group": "primary",
+        "enabled": true
+      }
     }
   },
   "legal-notice-default": {
@@ -303,7 +329,10 @@
     "type": "Section",
     "layout": "list",
     "content": {
-      "header": { "eyebrow": "Informations", "title": "Mentions légales" },
+      "header": {
+        "eyebrow": "Informations",
+        "title": "Mentions légales"
+      },
       "items": [
         {
           "eyebrow": "01",
@@ -322,7 +351,9 @@
         {
           "eyebrow": "03",
           "title": "Hébergement",
-          "text": ["Ce site est hébergé par Netlify, Inc."]
+          "text": [
+            "Ce site est hébergé par Netlify, Inc."
+          ]
         },
         {
           "eyebrow": "04",
@@ -420,13 +451,21 @@
           "Design web · Identité visuelle · Direction digitale · Paris · La Réunion"
         ],
         "links": [
-          { "label": "Projets", "href": "/projets", "intent": "navigate" },
+          {
+            "label": "Projets",
+            "href": "/projets",
+            "intent": "navigate"
+          },
           {
             "label": "Accompagnements",
             "href": "/approche",
             "intent": "navigate"
           },
-          { "label": "Journal", "href": "/journal", "intent": "navigate" },
+          {
+            "label": "Journal",
+            "href": "/journal",
+            "intent": "navigate"
+          },
           {
             "label": "Parler d’un projet",
             "href": "/contact",
@@ -447,6 +486,11 @@
             "label": "Mentions légales",
             "href": "/mentions-legales",
             "intent": "navigate"
+          },
+          {
+            "label": "CGV",
+            "href": "/cgv",
+            "intent": "navigate"
           }
         ],
         "meta": [
@@ -454,7 +498,9 @@
             "label": "Design et développement",
             "value": "Channy How-Choong · Chow Studio"
           },
-          { "label": "© 2026 Chow Studio· Tous droits réservés" }
+          {
+            "label": "© 2026 Chow Studio· Tous droits réservés"
+          }
         ]
       }
     }
@@ -474,7 +520,11 @@
           "Revenez à l’accueil ou poursuivez avec les projets du studio."
         ],
         "links": [
-          { "label": "Retour à l’accueil", "href": "/", "intent": "navigate" },
+          {
+            "label": "Retour à l’accueil",
+            "href": "/",
+            "intent": "navigate"
+          },
           {
             "label": "Voir les projets",
             "href": "/projets",
@@ -482,6 +532,72 @@
           }
         ]
       }
+    }
+  },
+  "cgv-default": {
+    "id": "cgv-default",
+    "type": "Section",
+    "layout": "list",
+    "content": {
+      "header": {
+        "eyebrow": "Conditions de collaboration",
+        "title": "Conditions générales de vente",
+        "text": [
+          "Cadre général à compléter par les conditions particulières de chaque devis ou accord.",
+          "Projet de clauses à faire valider juridiquement avant mise en application."
+        ]
+      },
+      "items": [
+        {
+          "eyebrow": "01",
+          "title": "Périmètre et démarrage",
+          "text": [
+            "La mission débute après acceptation écrite du devis ou de l’accord. Seuls les livrables, phases et révisions convenus sont inclus. Toute prestation supplémentaire exige un devis et une acceptation écrite préalables."
+          ]
+        },
+        {
+          "eyebrow": "02",
+          "title": "Interlocuteur et décisions",
+          "text": [
+            "Le client désigne un interlocuteur référent habilité à centraliser les échanges, recueillir les avis internes et transmettre des retours consolidés et des décisions validées. Les désaccords internes sont arbitrés par le client avant transmission."
+          ]
+        },
+        {
+          "eyebrow": "03",
+          "title": "Participation du client",
+          "text": [
+            "Le client fournit les informations, contenus et accès nécessaires et participe aux échanges et validations dans les délais convenus. Les retards de validation peuvent entraîner un réajustement du calendrier convenu."
+          ]
+        },
+        {
+          "eyebrow": "04",
+          "title": "Propositions et révisions",
+          "text": [
+            "Le nombre de pistes et d’allers-retours est précisé dans le devis ou l’accord. Toute nouvelle direction créative ou demande hors périmètre peut faire l’objet d’un devis complémentaire accepté avant réalisation. Les explorations précontractuelles n’engagent pas le studio à poursuivre."
+          ]
+        },
+        {
+          "eyebrow": "05",
+          "title": "Prestations offertes",
+          "text": [
+            "Les prestations gracieuses ou préférentielles restent soumises à un périmètre, à des livrables et à des modalités de validation convenus par écrit. Leur gratuité ne vaut pas disponibilité illimitée ni droit à des propositions supplémentaires."
+          ]
+        },
+        {
+          "eyebrow": "06",
+          "title": "Suspension et résiliation",
+          "text": [
+            "En cas de difficultés persistantes empêchant la réalisation, le studio notifie les difficultés et peut proposer une suspension et des conditions de reprise. Les conditions de résiliation et de règlement des travaux sont celles de l’accord applicable, sous réserve des dispositions légales impératives. Aucun travail offert ne sera facturé rétroactivement sans accord."
+          ]
+        },
+        {
+          "eyebrow": "07",
+          "title": "Conditions particulières",
+          "text": [
+            "Le devis ou l’accord applicable précise les tarifs, paiements, délais, droits de propriété intellectuelle et éventuelles dispositions spécifiques. Les droits légaux impératifs, notamment ceux des consommateurs le cas échéant, prévalent."
+          ]
+        }
+      ]
     }
   }
 }
