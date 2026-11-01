@@ -19,7 +19,11 @@
             "size": "full",
             "align": "center",
             "surface": "solid",
-            "blocks": [{ "ref": "home-opening" }]
+            "blocks": [
+              {
+                "ref": "home-opening"
+              }
+            ]
           },
           {
             "id": "home-projects-panel",
@@ -28,7 +32,11 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "projects-featured" }]
+            "blocks": [
+              {
+                "ref": "projects-featured"
+              }
+            ]
           },
           {
             "id": "home-approach-panel",
@@ -37,7 +45,11 @@
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
           },
           {
             "id": "home-services-panel",
@@ -46,7 +58,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
           {
             "id": "home-final-panel",
@@ -55,7 +71,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -82,7 +105,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "project-gallery" }]
+            "blocks": [
+              {
+                "ref": "project-gallery"
+              }
+            ]
           },
           {
             "id": "projects-final-panel",
@@ -91,7 +118,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -144,11 +178,24 @@
                       ],
                       "media": "ravine-business-card",
                       "meta": [
-                        { "label": "Identité", "value": "Logo · Branding · Identité visuelle" },
-                        { "label": "Digital", "value": "Site web · UX/UI · Frontend" },
-                        { "label": "Budget", "value": "À partir de 1 200 € HT" }
+                        {
+                          "label": "Identité",
+                          "value": "Logo · Branding · Identité visuelle"
+                        },
+                        {
+                          "label": "Digital",
+                          "value": "Site web · UX/UI · Frontend"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "À partir de 1 200 € HT"
+                        }
                       ],
-                      "tags": ["Logo", "Branding", "Identité visuelle"],
+                      "tags": [
+                        "Logo",
+                        "Branding",
+                        "Identité visuelle"
+                      ],
                       "links": [
                         {
                           "label": "Construire votre présence",
@@ -169,11 +216,24 @@
                       ],
                       "media": "atmosphere-laptop",
                       "meta": [
-                        { "label": "Diagnostic", "value": "Audit · UX/UI · Architecture de contenu" },
-                        { "label": "Refonte", "value": "Site web · Direction artistique · Frontend" },
-                        { "label": "Budget", "value": "À partir de 800 € HT" }
+                        {
+                          "label": "Diagnostic",
+                          "value": "Audit · UX/UI · Architecture de contenu"
+                        },
+                        {
+                          "label": "Refonte",
+                          "value": "Site web · Direction artistique · Frontend"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "À partir de 800 € HT"
+                        }
                       ],
-                      "tags": ["Audit", "Refonte", "UX/UI"],
+                      "tags": [
+                        "Audit",
+                        "Refonte",
+                        "UX/UI"
+                      ],
                       "links": [
                         {
                           "label": "Clarifier l’existant",
@@ -194,11 +254,24 @@
                       ],
                       "media": "structure-mobile-multi",
                       "meta": [
-                        { "label": "Système", "value": "Design system · Direction artistique · Refonte" },
-                        { "label": "Extension", "value": "Site web · Frontend · Nouveaux supports" },
-                        { "label": "Budget", "value": "Sur devis" }
+                        {
+                          "label": "Système",
+                          "value": "Design system · Direction artistique · Refonte"
+                        },
+                        {
+                          "label": "Extension",
+                          "value": "Site web · Frontend · Nouveaux supports"
+                        },
+                        {
+                          "label": "Budget",
+                          "value": "Sur devis"
+                        }
                       ],
-                      "tags": ["Design system", "Refonte", "Frontend"],
+                      "tags": [
+                        "Design system",
+                        "Refonte",
+                        "Frontend"
+                      ],
                       "links": [
                         {
                           "label": "Faire évoluer le projet",
@@ -240,25 +313,33 @@
                       "id": "studio-approach-understand",
                       "eyebrow": "01 · Cadrage",
                       "title": "Comprendre",
-                      "text": ["Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."]
+                      "text": [
+                        "Clarifier le projet, son public, son positionnement, ses contenus, ses objectifs et ses contraintes avant de décider de la forme."
+                      ]
                     },
                     {
                       "id": "studio-approach-structure",
                       "eyebrow": "02 · Architecture",
                       "title": "Structurer",
-                      "text": ["Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."]
+                      "text": [
+                        "Transformer les priorités en hiérarchie, en parcours et en structure suffisamment simple pour guider la suite du projet."
+                      ]
                     },
                     {
                       "id": "studio-approach-design",
                       "eyebrow": "03 · Direction",
                       "title": "Concevoir",
-                      "text": ["Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."]
+                      "text": [
+                        "Réunir typographie, image, rythme, interface et identité dans une direction cohérente plutôt que les traiter comme des couches séparées."
+                      ]
                     },
                     {
                       "id": "studio-approach-build",
                       "eyebrow": "04 · Réalisation",
                       "title": "Construire",
-                      "text": ["Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."]
+                      "text": [
+                        "Traduire la direction en une expérience responsive, accessible et maintenable, puis ajuster jusqu’à ce que forme et usage racontent la même chose."
+                      ]
                     }
                   ]
                 }
@@ -272,7 +353,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "studio-final-panel",
@@ -281,7 +366,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -293,7 +385,10 @@
     "seo": {
       "title": "Studio | Chow Studio",
       "description": "Services, approche et studio Chow Studio.",
-      "robots": { "index": false, "follow": true }
+      "robots": {
+        "index": false,
+        "follow": true
+      }
     },
     "blocks": [
       {
@@ -308,7 +403,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "home-services" }]
+            "blocks": [
+              {
+                "ref": "home-services"
+              }
+            ]
           },
           {
             "id": "approach-process-panel",
@@ -317,7 +416,11 @@
             "align": "center",
             "surface": "solid",
             "color": "primary",
-            "blocks": [{ "ref": "approach-default" }]
+            "blocks": [
+              {
+                "ref": "approach-default"
+              }
+            ]
           },
           {
             "id": "approach-founders-panel",
@@ -326,7 +429,11 @@
             "align": "center",
             "surface": "solid",
             "color": "special",
-            "blocks": [{ "ref": "studio-founders" }]
+            "blocks": [
+              {
+                "ref": "studio-founders"
+              }
+            ]
           },
           {
             "id": "approach-final-panel",
@@ -335,7 +442,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -347,7 +461,10 @@
     "seo": {
       "title": "Journal | Chow Studio",
       "description": "Archives éditoriales de Chow Studio.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -362,7 +479,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "journal-default" }]
+            "blocks": [
+              {
+                "ref": "journal-default"
+              }
+            ]
           },
           {
             "id": "journal-archive-final-panel",
@@ -371,7 +492,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -383,7 +511,10 @@
     "seo": {
       "title": "Rendre un site web plus clair avant de le redesign | Chow Studio",
       "description": "Navigation, hiérarchie et contenu : les questions à résoudre avant une refonte visuelle.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -398,7 +529,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -410,7 +548,10 @@
     "seo": {
       "title": "Une identité visuelle doit fonctionner comme un système | Chow Studio",
       "description": "Logo, typographie, couleur, image et règles d’usage : une identité visuelle pensée comme système.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -425,7 +566,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -437,7 +585,10 @@
     "seo": {
       "title": "Pourquoi rapprocher design et développement frontend | Chow Studio",
       "description": "Design, UX et développement frontend pensés ensemble.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -452,7 +603,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -478,7 +636,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "contact-default" }]
+            "blocks": [
+              {
+                "ref": "contact-default"
+              }
+            ]
           },
           {
             "id": "contact-final-panel",
@@ -487,7 +649,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -500,7 +669,10 @@
     "seo": {
       "title": "Chow Studio | Projets, studio et contact",
       "description": "Accédez aux projets, au studio et au contact de Chow Studio.",
-      "robots": { "index": false, "follow": true }
+      "robots": {
+        "index": false,
+        "follow": true
+      }
     },
     "blocks": [
       {
@@ -515,7 +687,14 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "links-profile" }, { "ref": "links-primary" }]
+            "blocks": [
+              {
+                "ref": "links-profile"
+              },
+              {
+                "ref": "links-primary"
+              }
+            ]
           },
           {
             "id": "links-final-panel",
@@ -524,7 +703,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -551,7 +737,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "legal-notice-default" }]
+            "blocks": [
+              {
+                "ref": "legal-notice-default"
+              }
+            ]
           },
           {
             "id": "legal-final-panel",
@@ -560,7 +750,61 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cgv",
+    "slug": "/cgv",
+    "variant": "editorial",
+    "seo": {
+      "title": "Conditions générales de vente | Chow Studio",
+      "description": "Conditions de collaboration, validations, périmètre et révisions des prestations Chow Studio."
+    },
+    "blocks": [
+      {
+        "id": "cgv-story",
+        "type": "Group",
+        "layout": "scroll-panel",
+        "panels": [
+          {
+            "id": "cgv-content-panel",
+            "behavior": "cover",
+            "size": "full",
+            "align": "center",
+            "surface": "solid",
+            "color": "secondary",
+            "blocks": [
+              {
+                "ref": "cgv-default"
+              }
+            ]
+          },
+          {
+            "id": "cgv-final-panel",
+            "behavior": "stack",
+            "size": "full",
+            "align": "center",
+            "surface": "glass",
+            "color": "special",
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -587,7 +831,11 @@
             "align": "center",
             "surface": "solid",
             "color": "secondary",
-            "blocks": [{ "ref": "privacy-default" }]
+            "blocks": [
+              {
+                "ref": "privacy-default"
+              }
+            ]
           },
           {
             "id": "privacy-final-panel",
@@ -596,7 +844,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
@@ -609,7 +864,10 @@
     "seo": {
       "title": "Page introuvable | Chow Studio",
       "description": "Cette page Chow Studio est introuvable.",
-      "robots": { "index": false, "follow": false }
+      "robots": {
+        "index": false,
+        "follow": false
+      }
     },
     "blocks": [
       {
@@ -624,7 +882,11 @@
             "align": "center",
             "surface": "solid",
             "color": "accent",
-            "blocks": [{ "ref": "not-found-default" }]
+            "blocks": [
+              {
+                "ref": "not-found-default"
+              }
+            ]
           },
           {
             "id": "not-found-final-panel",
@@ -633,7 +895,14 @@
             "align": "center",
             "surface": "glass",
             "color": "special",
-            "blocks": [{ "ref": "final-cta" }, { "ref": "site-footer" }]
+            "blocks": [
+              {
+                "ref": "final-cta"
+              },
+              {
+                "ref": "site-footer"
+              }
+            ]
           }
         ]
       }
