@@ -9,7 +9,7 @@
   align-items: flex-start;
   gap: 0;
   color: inherit;
-  @include type-heading-sm;
+  @include type-editorial-copy;
 }
 
 .actions__link {
@@ -212,12 +212,9 @@
   &:active { color: var(--accent); }
 }
 
-// Reserve display typography for prominent editorial contact and discovery actions.
-:is(#final-cta, #home-opencall-preview, #home-services) .actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link:is([href="/contact"], [href="/projets"]),
-.section .actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link[data-priority="primary"][href="/contact"] {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
+
+// Editorial actions use one brand treatment; utility groups remain DM Sans.
+.actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link:has(.actions__arrow),
+.actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link--primary {
+  @include type-action;
 }
