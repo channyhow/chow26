@@ -76,7 +76,7 @@ export function Header() {
       const logoWidth = logo.getBoundingClientRect().width;
       if (desktop && nav) {
         const navWidth = nav.getBoundingClientRect().width;
-        const groupGap = 24;
+        const groupGap = Number.parseFloat(window.getComputedStyle(nav).columnGap) || 18;
         const groupWidth = logoWidth + groupGap + navWidth;
         const logoStart = -(groupWidth / 2) + (logoWidth / 2);
         const navStart = (groupWidth / 2) - (navWidth / 2);
@@ -106,6 +106,7 @@ export function Header() {
     scheduleResolve();
     window.addEventListener("scroll", scheduleResolve, { passive: true });
     window.addEventListener("resize", scheduleResolve);
+    document.fonts?.ready.then(scheduleResolve);
     return () => {
       window.removeEventListener("scroll", scheduleResolve);
       window.removeEventListener("resize", scheduleResolve);
