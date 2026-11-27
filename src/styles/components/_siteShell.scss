@@ -86,3 +86,13 @@
   text-decoration: none;
   @include interactive-text;
 }
+
+// Brand typography experiment: primary header and submenu labels.
+.header__logo,
+.header__nav > .header__navItem > a,
+.header__expanded a,
+.header__menuSlot .burgerButton {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+}
