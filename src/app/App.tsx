@@ -1,5 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
-import { AnimatePresence } from "motion/react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { SiteShell } from "@/app/SiteShell";
@@ -82,16 +81,9 @@ function RoutedPage() {
 
 export function App() {
   const location = useLocation();
-  const [showInitialLoader, setShowInitialLoader] = useState(true);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => setShowInitialLoader(false), 2400);
-    return () => window.clearTimeout(timeout);
-  }, []);
 
   return <SiteShell>
     <ScrollManager />
-    <AnimatePresence>{showInitialLoader && <RouteLoader />}</AnimatePresence>
     <div className="routeTransition" key={location.pathname}>
       <Routes location={location}>
         <Route path="/system" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "System", robots: internalRobots }} slug="/system" /><SystemPage /><SystemReference /></Suspense>} />
