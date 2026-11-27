@@ -1,13 +1,17 @@
 @use "../foundation/tokens" as *;
 
+:root {
+  --font-display: "Oswald", "IBM Plex Sans", sans-serif;
+  --font-heading: var(--font-display);
+  --font-body: "IBM Plex Sans", sans-serif;
+}
+
 :root,
 [data-variant="classic"] {
   --primary: #{$color-primary};
   --secondary: #{$color-secondary};
   --accent: #{$color-accent};
   --surface-beige: #{$color-surface-beige};
-  --font-heading: "Oswald", "IBM Plex Sans", sans-serif;
-  --font-body: "IBM Plex Sans", sans-serif;
   --section-space: #{$space-4};
   --section-gap: #{$space-3};
   --text-width: #{$measure-text};
@@ -22,8 +26,6 @@
 }
 
 [data-variant="editorial"] {
-  --font-heading: "Oswald", "IBM Plex Sans", sans-serif;
-  --font-body: "IBM Plex Sans", sans-serif;
   --section-space: #{$space-5};
   --section-gap: #{$space-4};
   --text-width: 34rem;
@@ -38,8 +40,6 @@
 }
 
 [data-variant="organic"] {
-  --font-heading: "Oswald", "IBM Plex Sans", sans-serif;
-  --font-body: "IBM Plex Sans", sans-serif;
   --section-space: #{$space-4};
   --section-gap: #{$space-3};
   --text-width: 38rem;
