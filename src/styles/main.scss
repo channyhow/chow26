@@ -39,6 +39,7 @@
 @use "project/notFound";
 
 :root {
+  --font-display: "Oswald", "DM Sans", sans-serif;
   color: var(--primary);
   background: var(--secondary);
   font-family: system-ui, sans-serif;
