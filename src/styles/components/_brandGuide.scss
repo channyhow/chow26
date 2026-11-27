@@ -41,3 +41,30 @@
 .brandGuide__applications > div { aspect-ratio:4/5; padding:$space-2; display:flex; flex-direction:column; justify-content:space-between; background:$color-accent; strong { @include type-heading-lg; } }
 .brandGuide__applications > div:nth-child(2) { background:$color-primary; color:$color-secondary; }
 .brandGuide__applications > div:nth-child(3) { background:$color-surface-beige; }
+
+ // Stationery specimen: screenshot-derived colours, separate from digital palette.
+.brandGuide__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: $space-3;
+  figure { margin: 0; min-width: 0; }
+  figcaption { @include type-caption; margin-top: $space-1; }
+}
+.brandGuide__card {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 85 / 55;
+  color: #000;
+  overflow: hidden;
+  font-family: var(--font-body);
+  line-height: 1.15;
+  strong { @include type-brand; line-height: 1; }
+}
+.brandGuide__card--front { background: #a75038; }
+.brandGuide__card--back { background: #f1ead9; }
+.brandGuide__cardWordmark { position: absolute; top: 10%; left: 7%; font-size: 14.5cqw; white-space: nowrap; }
+.brandGuide__cardBaseline { position: absolute; bottom: 9%; right: 7%; font-family: var(--font-display); font-weight: $font-weight-medium; font-size: 2.4cqw; }
+.brandGuide__cardName { position: absolute; top: 12%; left: 9%; font-size: 4.1cqw; }
+.brandGuide__cardRole { position: absolute; top: 47%; left: 9%; font-size: 3.3cqw; }
+.brandGuide__cardContact { position: absolute; bottom: 10%; left: 9%; font-size: 2.8cqw; }
+.brandGuide__cardVertical { position: absolute; right: 7%; bottom: 9%; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 9.2cqw; white-space: nowrap; }
