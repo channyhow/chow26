@@ -87,3 +87,10 @@ textarea { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+// Brand typography experiment: semantic headings and shared title elements.
+:is(h1, h2, h3, h4, h5, h6, .textBlock__title):not(.header *) {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+}
