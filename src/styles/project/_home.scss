@@ -565,7 +565,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   @include type-heading-sm;
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
 
@@ -898,7 +898,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 #home-opening .homeOpeningScene__statement .textBlock__title {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.15;
   letter-spacing: -0.015em;
   text-transform: uppercase;
 }
@@ -909,7 +909,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 [data-page-id="home"] #final-cta .textBlock__title {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
@@ -928,7 +928,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: $type-heading-md;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   max-width: none;
