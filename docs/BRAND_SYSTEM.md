@@ -4,15 +4,20 @@
 Editorial, direct, warm, restrained. Client work supplies visual variety; the studio identity supplies structure.
 
 ## Palette
+### Primary palette
 | Role | HEX |
 |---|---|
-| Charcoal / primary | #222224 |
-| Chalk / background | #F6F5F3 |
-| Burnt orange / accent | #D85234 |
-| Sand / media backing | #E9D9CE |
-| Stone / secondary text | #6E6E69 |
-| Mist / rules | #D7D7D2 |
-| Warm ivory / stationery and editorial surface | #EFE8D7 |
+| Burnt orange / signature | #D85234 |
+| Charcoal / typography and contrast | #222224 |
+| Warm ivory / warm brand background | #EFE8D7 |
+
+### Secondary palette
+| Role | HEX |
+|---|---|
+| Chalk / digital background | #F6F5F3 |
+| Sand / editorial surfaces | #E9D9CE |
+| Stone / secondary information | #6E6E69 |
+| Mist / borders and separators | #D7D7D2 |
 
 Orange is an accent, not the default colour for small text. Check contrast on each surface; use charcoal for essential copy. Print colours require a physical proof and printer-specific conversion. Other existing functional tokens are not core brand colours.
 
