@@ -41,7 +41,10 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
   const layout = block.layout ?? "text";
   const ownsVisualPlane = visualContext === "own";
   const header = block.content?.header;
-  const items = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
+  const [projectFilter, setProjectFilter] = useState("all");
+  const allItems = [...(block.content?.items ?? []), ...resolveCollection(block.source)];
+  const projectKinds: Record<string, string[]> = { atmosphere: ["web"], "mois-du-ker": ["identity"], kuro: ["web"], sashayogaflow: ["web", "identity"], maloya: ["web"], "ravine-branding": ["identity"], "ravine-web": ["web"], randorunoi: ["print"], structure: ["web"], contraste: ["web"] };
+  const items = block.id === "project-gallery" && projectFilter !== "all" ? allItems.filter(item => projectKinds[item.id ?? ""]?.includes(projectFilter)) : allItems;
   const splitItem = layout === "split" && items.length === 1 ? items[0] : undefined;
   const serviceMediaCount = splitItem ? resolveMediaList(splitItem.media).length : 0;
   const serviceRotation = useMobileMediaRotation(serviceMediaCount);
@@ -329,7 +332,7 @@ export function Section({ block, suppressSceneMotion = false, visualContext = "o
     body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media ? <Media media={media} className="section__media" /> : null, "reverse"))}</>;
   } else {
     const content = <>{media ? <Media media={media} className="section__media" /> : null}{form ? <Form schema={form} /> : null}{cardsCollection}</>;
-    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" copyVariant={isProjectStoryText ? "story-lead" : "default"} betweenGroups={block.id === "linkpage-navigation" ? <LinkProjectRotation /> : undefined} motionEnabled={sectionMotionEnabled} /> : null, "forward")}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
+    body = <>{motionLayer(header ? <TextBlock content={header} className="section__header" copyVariant={isProjectStoryText ? "story-lead" : "default"} betweenGroups={block.id === "linkpage-navigation" ? <LinkProjectRotation /> : undefined} motionEnabled={sectionMotionEnabled} /> : null, "forward")}{block.id === "project-gallery" ? <div className="projectFilters" role="group" aria-label="Filtrer les projets">{[["all", "Tous"], ["identity", "Identité visuelle"], ["web", "Design web"], ["print", "Supports imprimés"]].map(([value,label]) => <button key={value} type="button" aria-pressed={projectFilter === value} onClick={() => setProjectFilter(value)}>{label}</button>)}<span role="status">{items.length} projets</span></div> : null}{region(motionLayer(media || form || cardsCollection ? content : null, "reverse"))}</>;
   }
 
   const mediaOverlayScene = shouldTrackScroll && !isHomeOpening && layout === "media-overlay" ? <ScrollScene preset={scenePreset} intensity={sceneIntensity} range={sceneRange} className="section__scrollScene" decorative={false} progress={scrollProgress}><div className="section__inner">{body}</div></ScrollScene> : null;
