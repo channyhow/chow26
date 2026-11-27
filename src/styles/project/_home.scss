@@ -910,3 +910,11 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
+
+// Match the vertical editorial indexes to the studio wordmark.
+.homeContact__index,
+.homeFeaturedProject__index {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
