@@ -95,8 +95,8 @@ export function App() {
     <div className="routeTransition" key={location.pathname}>
       <Routes location={location}>
         <Route path="/system" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "System", robots: internalRobots }} slug="/system" /><SystemPage /><SystemReference /></Suspense>} />
-        <Route path="/brand-guide" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "CHOW Studio — Brand guide", robots: internalRobots }} slug="/brand-guide" /><BrandGuidePage /></Suspense>} />
-        <Route path="/branding" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" /><BrandingPage /></Suspense>} />
+        <Route path="/branding" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "CHOW Studio — Brand guide", robots: internalRobots }} slug="/branding" /><BrandGuidePage /></Suspense>} />
+        <Route path="/branding/moodboards" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding/moodboards" /><BrandingPage /></Suspense>} />
         <Route path="/projets/:slug" element={<Suspense fallback={<RouteLoader />}><ProjectDetailPage /></Suspense>} />
         <Route path="*" element={<RoutedPage />} />
       </Routes>
