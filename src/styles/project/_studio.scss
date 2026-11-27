@@ -68,7 +68,7 @@
   // Keep navigation still while the offer content crossfades out and in.
   .offerComposition > [data-editorial-area]:not([data-editorial-area="navigation"]) {
     opacity: 1;
-    transition: opacity 220ms ease-in-out;
+    transition: opacity $transition-interface;
   }
 
   .offerComposition--exiting > [data-editorial-area]:not([data-editorial-area="navigation"]) {
@@ -312,7 +312,7 @@
       @include type-editorial-copy;
     }
   }
-  .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
+  .studioIntro__details .textBlock__footer { margin-top: $margin-content; }
 }
 
 // Below desktop, mockups crossfade in one landscape slot.
@@ -329,7 +329,7 @@
       @include editorial-stacked-media;
 
       opacity: 1;
-      transition: opacity 650ms ease-in-out;
+      transition: opacity $transition-reveal;
       &[data-active="false"] {
         opacity: 0;
         pointer-events: none;
