@@ -196,7 +196,7 @@
 
 @mixin brand-link {
   font-family: var(--font-heading);
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-display;
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
