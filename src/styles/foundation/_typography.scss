@@ -17,8 +17,8 @@
 }
 
 @mixin type-meta {
-  font-weight: $font-weight-semibold;
   @include type-body;
+  font-weight: $font-weight-semibold;
 }
 
 @mixin type-meta-tags {
