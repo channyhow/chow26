@@ -33,7 +33,11 @@
 #studio-services-intro {
   .textBlock__title {
     @include type-heading-xl;
-    font-weight: $font-weight-medium;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
   }
 }
 
