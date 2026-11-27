@@ -17,24 +17,14 @@ const fontStack = (family: string, fallback: "serif" | "sans-serif") =>
 
 // const scrollProgress = siteData.ui.experience.scrollProgress as ScrollProgressMode | false;
 const tone = siteData.theme.tone as Tone;
-const { colors, fonts } = siteData.theme;
+const { fonts } = siteData.theme;
 const headingFont =
   siteData.theme.variant === "editorial"
     ? fonts.editorialHeading
     : siteData.theme.variant === "organic"
       ? fonts.organicHeading
       : fonts.classicHeading;
-const foreground = tone === "inverse" ? colors.secondary : colors.primary;
-const background = tone === "inverse" ? colors.primary : tone === "accent" ? colors.accent : colors.secondary;
 const themeStyle: ThemeStyle = {
-  "--theme-primary": colors.primary,
-  "--theme-secondary": colors.secondary,
-  "--theme-special": colors.special,
-  "--theme-accent": colors.accent,
-  "--primary": foreground,
-  "--secondary": background,
-  "--accent": colors.accent,
-  "--special": colors.special,
   "--font-heading-classic": fontStack(fonts.classicHeading, "sans-serif"),
   "--font-heading-editorial": fontStack(fonts.editorialHeading, "sans-serif"),
   "--font-heading-organic": fontStack(fonts.organicHeading, "sans-serif"),
