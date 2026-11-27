@@ -563,7 +563,10 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
 #home-opencall-preview .textBlock__eyebrow {
   @include type-heading-sm;
-  font-weight: $font-weight-bold;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
 }
 
 .homeOpenCall__statement {
@@ -917,4 +920,17 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.015em;
+}
+
+// Shared editorial heading scale; keep the opening and vertical indexes distinct.
+[data-page-id="home"] :is(.homeServicesStory__copy, .homeFeaturedProject__story, .homeContact__story, .homeOpenCall__details) .textBlock__title,
+[data-page-id="home"] #home-opencall-preview .textBlock__eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: $type-heading-md;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  max-width: none;
+  @include desktop-up { font-size: $type-heading-lg; }
 }
