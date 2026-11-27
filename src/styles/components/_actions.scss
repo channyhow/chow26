@@ -153,11 +153,11 @@
   }
 }
 
-.actions--nav .actions__link { @include type-body-bold; }
+.actions--nav .actions__link { @include type-nav; }
 
 .actions--social .actions__link {
   @include social-action;
-  @include type-ui-compact;
+  @include type-nav($font-weight-regular);
 }
 
 /* Full-width campaign/list actions. This variant owns its complete visual
@@ -213,7 +213,7 @@
 }
 
 
-// Editorial actions use one brand treatment; utility groups remain DM Sans.
+// Editorial actions use the shared Oswald brand treatment.
 .actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link:has(.actions__arrow),
 .actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link--primary {
   @include type-action;
