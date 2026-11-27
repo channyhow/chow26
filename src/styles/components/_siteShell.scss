@@ -21,7 +21,7 @@
   padding-inline: var(--header-gutter); background: transparent;
 
   color: var(--header-color, var(--primary)); pointer-events: none;
-  transition: color $transition-interface, background-color $transition-interface, opacity 300ms ease-out, visibility 300ms ease-out;
+  transition: color $transition-interface, background-color $transition-interface, opacity $transition-interface, visibility $transition-interface;
 }
 .header[data-hidden="true"] {
   opacity: 0;
@@ -40,21 +40,21 @@
 .header__logo { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
 .header__nav { display: none; align-items: center; gap: 1.125rem; transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
 .header__nav > .header__navItem > a { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; text-decoration: none; }
-.header__nav > .header__navItem > a[aria-current="page"] { color: var(--accent); text-decoration: none; }
+.header__nav > .header__navItem > a[aria-current="page"] { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
 .header__nav a[data-nav-variant="cta"] { @include hover { span:last-child { transform: translateX(0.1em); } } }
 .header__navItem { position: relative; display: inline-flex; align-items: center; gap: 0.1em; pointer-events: auto; }
-.header__expanded { display: none; grid-template-rows: 0fr; overflow: hidden; opacity: 0; background: var(--secondary); color: var(--primary); pointer-events: none; transition: grid-template-rows 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 320ms ease-in, background-color $transition-interface, color $transition-interface; }
+.header__expanded { display: none; grid-template-rows: 0fr; overflow: hidden; opacity: 0; background: var(--secondary); color: var(--primary); pointer-events: none; transition: grid-template-rows $transition-interface, opacity $transition-interface, background-color $transition-interface, color $transition-interface; }
 .header__expandedInner { display: flex; min-height: 3.5rem; align-items: center; justify-content: center; flex-wrap: wrap; column-gap: $space-4; row-gap: $space-1; padding: $space-2 var(--header-gutter); }
 
-.header__expanded a { @include type-nav; font-size: $type-ui-compact; @include interactive-text; width: fit-content; opacity: 0; transform: translateY(0.3rem); transition: opacity 220ms ease, transform 240ms ease, color $transition-hover; }
-.header[data-submenu-open="true"] .header__expanded { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-out, ease, ease; }
+.header__expanded a { @include type-nav; font-size: $type-ui-compact; @include interactive-text; width: fit-content; opacity: 0; transform: translateY(0.3rem); transition: opacity $transition-interface, transform $transition-interface, color $transition-hover; }
+.header[data-submenu-open="true"] .header__expanded { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; transition-timing-function: $ease-soft, $ease-standard, $ease-standard, $ease-standard; }
 .header[data-submenu-open="true"] .header__expanded a { opacity: 1; transform: translateY(0); }
 @for $i from 1 through 3 {
-  .header[data-submenu-open="true"] .header__expanded a:nth-child(#{$i}) { transition-delay: #{($i - 1) * 35}ms; }
+  .header[data-submenu-open="true"] .header__expanded a:nth-child(#{$i}) { transition-delay: ($i - 1) * $duration-stagger; }
 }
-.header__navItem:is(:hover, :focus-within) > a { color: var(--accent); }
+.header__navItem:is(:hover, :focus-within) > a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
 .header__menuSlot { opacity: var(--header-menu-opacity); transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0); }
 .header__menuSlot .burgerButton { @include type-nav; pointer-events: auto; }
 .site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary, var(--secondary)); }
