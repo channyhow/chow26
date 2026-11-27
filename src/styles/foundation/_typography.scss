@@ -68,8 +68,8 @@
   text-transform: none;
 }
 
-@mixin type-nav {
-  @include type-brand;
+@mixin type-nav($weight: $font-weight-medium) {
+  @include type-brand($weight);
   font-size: $type-nav;
   line-height: 1.2;
   letter-spacing: 0.015em;
@@ -100,7 +100,7 @@
 }
 
 @mixin type-heading-sm {
-  @include type-brand;
+  @include type-brand($font-weight-semibold);
   font-size: $type-heading-sm;
 }
 @mixin type-lead-bold {
@@ -109,7 +109,7 @@
 }
 
 @mixin type-heading-md {
-  @include type-brand;
+  @include type-brand($font-weight-semibold);
   font-size: $type-heading-md;
 }
 
@@ -124,7 +124,7 @@
 }
 
 @mixin type-heading-xl-semibold {
-  @include type-brand;
+  @include type-brand($font-weight-semibold);
   font-size: $type-heading-xl;
 }
 
@@ -152,9 +152,9 @@
 }
 
 // Family and rhythm belong to semantic roles, not the size scale.
-@mixin type-brand {
+@mixin type-brand($weight: $font-weight-display) {
   font-family: var(--font-display);
-  font-weight: $font-weight-display;
+  font-weight: $weight;
   line-height: 1.15;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -168,6 +168,6 @@
 }
 
 @mixin type-action {
-  @include type-brand;
+  @include type-brand($font-weight-medium);
   letter-spacing: 0.01em;
 }
