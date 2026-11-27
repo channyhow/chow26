@@ -144,8 +144,7 @@
 }
 
 .textBlock--copy-story-lead .textBlock__content > :first-child {
-  @include type-editorial-copy;
-  max-width: 34ch;
+  @include type-body;
 }
 
 @include mobile-down {
