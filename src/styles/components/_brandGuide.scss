@@ -1,5 +1,6 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/typography" as *;
+@use "../foundation/mixins" as *;
 .brandGuide {
   max-width: $container-wide;
   margin-inline: auto;
@@ -17,7 +18,7 @@
 .brandGuide__hero { background:$color-accent; padding:$space-3; display:grid; gap:$space-2; }
 .brandGuide__nav { display:flex; flex-wrap:wrap; gap:$space-2; padding-block:$space-3; a { @include type-nav; } }
 .brandGuide__palette,.brandGuide__applications,.brandGuide__families { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%, 12rem),1fr)); gap:$space-2; }
-.brandGuide__swatch { border:1px solid $gray-300; text-align:left; cursor:pointer; min-height:10rem; padding:$space-2; display:flex; flex-direction:column; justify-content:end; color:$color-primary; }
+.brandGuide__swatch { &:focus-visible { @include focus-ring; } border:1px solid $gray-300; text-align:left; cursor:pointer; min-height:10rem; padding:$space-2; display:flex; flex-direction:column; justify-content:end; color:$color-primary; }
 @each $i,$color in (0:$color-primary,1:$color-secondary,2:$color-accent,3:$color-surface-beige,4:$gray-500,5:$gray-300,6:$color-ivory) {
   .brandGuide__swatch[data-swatch="#{$i}"] { background:$color; }
 }
