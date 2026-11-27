@@ -24,7 +24,7 @@ Orange is an accent, not the default colour for small text. Check contrast on ea
 ## Typography
 Oswald: uppercase headings 600–700, navigation and actions 400–500, metadata 400 where appropriate.
 IBM Plex Sans: body 400, emphasis 600, captions and explanatory content 400.
-Body and lead share one fluid scale: 18–22px at 16px root, line-height 1.5. Navigation base 20px; footer navigation 18–20px. Display line-height 1.15, tracking -0.01em. Avoid arbitrary component-specific font sizes and unsupported weights. Fonts currently load via Google Fonts in index.html.
+Body and lead share one fluid scale: 18–22px at 16px root, line-height 1.5. Navigation base 20px; footer navigation 18–20px. Display line-height 1.15, tracking -0.01em. Project hero statement and project name share Heading XL, with charcoal and stone respectively. Avoid arbitrary component-specific font sizes and unsupported weights. Fonts currently load via Google Fonts in index.html.
 
 ## Rhythm
 Base scale (at 16px root): 8, 16, 32, 64, 96, 128px.
