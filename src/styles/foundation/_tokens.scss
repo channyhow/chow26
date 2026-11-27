@@ -116,11 +116,11 @@ $font-weight-strong: 680;
 // Fluid type scale. Body copy stays restrained while display sizes carry hierarchy.
 $type-caption: clamp(0.75rem, 0.15vw + 0.72rem, 0.8125rem);
 $type-body-sm: clamp(0.875rem, 0.18vw + 0.84rem, 0.9375rem);
-$type-body: clamp(1rem, 0.32vw + 0.94rem, 1.125rem);
+$type-body: clamp(1.125rem, 0.55vw + 1rem, 1.375rem);
 $type-ui: clamp(0.9375rem, 0.25vw + 0.89rem, 1.0625rem);
 $type-ui-compact: clamp(0.75rem, 0.2vw + 0.71rem, 0.875rem);
 $type-nav: 1.25rem;
-$type-lead: clamp(1.125rem, 0.55vw + 1rem, 1.375rem);
+$type-lead: $type-body;
 $type-heading-sm: clamp(1.25rem, 0.55vw + 1.12rem, 1.5rem);
 $type-heading-md: clamp(1.5rem, 1vw + 1.25rem, 2rem);
 $type-heading-lg: clamp(2rem, 1.8vw + 1.55rem, 3rem);
