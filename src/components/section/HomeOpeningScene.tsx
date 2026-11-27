@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Media } from "@/components/content/Media";
 import { TextBlock } from "@/components/content/TextBlock";
 import type { ContentItem } from "@/types/content";
@@ -12,21 +10,13 @@ type HomeOpeningSceneProps = {
 };
 
 export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
-  const [expanded, setExpanded] = useState(false);
+  const expanded = true;
   const openingMedia = media[0];
 
   return (
     <div className="homeOpeningScene" data-expanded={expanded}>
       {openingMedia ? (
-        <button
-          type="button"
-          className="homeOpeningScene__mediaLink"
-          aria-expanded={expanded}
-          aria-controls="home-opening-statement"
-          aria-label="Découvrir le message de Chow Studio"
-          disabled={expanded}
-          onClick={() => setExpanded(true)}
-        >
+        <div className="homeOpeningScene__mediaLink" aria-hidden="true">
           <div className="homeOpeningScene__mediaStage">
             <Media
               media={openingMedia}
@@ -40,7 +30,7 @@ export function HomeOpeningScene({ header, media }: HomeOpeningSceneProps) {
               ))}
             </div>
           </div>
-        </button>
+        </div>
       ) : null}
 
       {header ? (
