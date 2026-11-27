@@ -60,7 +60,7 @@
     "accent": "#D85234",
     "surfaceBeige": "#E9D9CE"
   },
-      "fonts": { "classicHeading": "Flor de Ruina Semilla", "editorialHeading": "DM Sans", "organicHeading": "Flor de Ruina Semilla", "body": "IBM Plex Sans" }
+      "fonts": { "classicHeading": "Oswald", "editorialHeading": "Oswald", "organicHeading": "Oswald", "body": "IBM Plex Sans" }
   },
   "integrations": { "hosting": "netlify", "forms": "tally", "cms": false, "calendar": false, "newsletter": false, "commerce": false, "maps": false, "reviews": false, "weather": false, "analytics": false }
 }
