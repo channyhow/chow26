@@ -228,7 +228,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   // Give each story a real editorial heading, consistent with Studio.
   .textBlock__title {
     @include type-heading-md;
-    font-weight: $font-weight-medium;
+    
   }
 
   @include desktop-up {
@@ -243,7 +243,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     // Same editorial scale as Studio's services introduction.
     // Apply type to the actual paragraph, not only its inline spans.
     .textBlock__group > p {
-      @include type-heading-sm;
+      @include type-editorial-copy($type-heading-sm);
       color: $gray-500;
       font-weight: $font-weight-medium;
       line-height: 1.25;
@@ -262,7 +262,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   @include desktop-up {
     .textBlock__content .textBlock__group > p {
-      @include type-heading-md;
+      @include type-editorial-copy($type-heading-md);
     }
   }
 
@@ -394,7 +394,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
       max-width: $measure-header-copy;
 
       .textBlock__group > p {
-        @include type-heading-sm;
+        @include type-editorial-copy($type-heading-sm);
         line-height: 1.3;
       }
     }
@@ -427,7 +427,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpenCall__details,
   .homeContact__story {
     .textBlock__content .textBlock__group > p {
-      @include type-heading-sm;
+      @include type-editorial-copy($type-heading-sm);
       line-height: 1.3;
     }
   }
@@ -439,7 +439,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpenCall__details,
   .homeContact__story {
     .textBlock__content .textBlock__group > p {
-      @include type-heading-md;
+      @include type-editorial-copy($type-heading-md);
       line-height: 1.3;
     }
   }
@@ -453,7 +453,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   .homeServicesStory__copy {
     .textBlock__title { @include type-heading-md; }
-    .textBlock__content .textBlock__group > p { @include type-heading-md; line-height: 1.3; }
+    .textBlock__content .textBlock__group > p { @include type-editorial-copy($type-heading-md); line-height: 1.3; }
   }
 }
 
@@ -476,9 +476,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
 .homeContact__index {
   @include type-display-xl;
-  font-weight: $font-weight-bold;
-  line-height: 0.9;
-  text-transform: uppercase;
 }
 
 // .homeContact__story {
@@ -563,10 +560,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
 #home-opencall-preview .textBlock__eyebrow {
   @include type-heading-sm;
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  @include type-brand;
 }
 
 .homeOpenCall__statement {
@@ -690,9 +684,6 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 .homeFeaturedProject__index {
   grid-column: 1 / -1;
   @include type-display-xl;
-  font-weight: $font-weight-bold;
-  line-height: 0.9;
-  text-transform: uppercase;
 }
 @include desktop-up {
   .homeFeaturedProject__composition {
@@ -894,43 +885,10 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   }
 }
 
-// Brand typography experiment: only the opening statement.
-#home-opening .homeOpeningScene__statement .textBlock__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-}
-
-// Extend the display face to editorial service headlines, not their copy.
-[data-page-id="home"] .homeServicesStory__copy .textBlock__title,
-[data-page-id="home"] #home-services .textBlock__title,
-[data-page-id="home"] #final-cta .textBlock__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-// Match the vertical editorial indexes to the studio wordmark.
-.homeContact__index,
-.homeFeaturedProject__index {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-}
-
 // Shared editorial heading scale; keep the opening and vertical indexes distinct.
 [data-page-id="home"] :is(.homeServicesStory__copy, .homeFeaturedProject__story, .homeContact__story, .homeOpenCall__details) .textBlock__title,
 [data-page-id="home"] #home-opencall-preview .textBlock__eyebrow {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: $type-heading-md;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+  @include type-heading-md;
   max-width: none;
   @include desktop-up { font-size: $type-heading-lg; }
 }
