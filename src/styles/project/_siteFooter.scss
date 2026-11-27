@@ -38,17 +38,13 @@
 
 .siteFooter__baseline,
 .siteFooter__meta,
-.siteFooter__nav .actions__link,
 .siteFooter__social .actions__link,
 .siteFooter__legal .actions__link { @include type-ui-compact; }
 
 .siteFooter__name {
   @include type-heading-lg;
   text-transform: uppercase;
-  font-weight: $font-weight-bold;
   margin: 0;
-  line-height: 0.95;
-  letter-spacing: 0.1em;
   overflow-wrap: anywhere;
 }
 
@@ -129,7 +125,7 @@
 
   .siteFooter__legal { grid-column: 1 / -1; }
   .siteFooter__identity { grid-column: 1 / -1; }
-  .siteFooter__name { font-size: clamp(2rem, 9vw, 4rem); letter-spacing: 0.045em; }
+  .siteFooter__name { font-size: clamp(2rem, 9vw, 4rem); }
   .siteFooter__baseline { overflow-wrap: anywhere; }
   .siteFooter__legal { opacity: $opacity-quiet; }
 
@@ -141,9 +137,5 @@
   }
 }
 
-// Footer wordmark follows the same condensed brand typography as the header.
-.siteFooter__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
+
+.siteFooter__nav .actions__link { @include type-nav; font-size: $type-ui-compact; }
