@@ -33,11 +33,6 @@
 #studio-services-intro {
   .textBlock__title {
     @include type-heading-xl;
-    font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    text-transform: uppercase;
   }
 }
 
@@ -89,6 +84,7 @@
 
     button {
       @include type-body;
+      @include type-action;
       @include accent-interaction;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
@@ -224,7 +220,7 @@
     }
 
     .actions__link {
-      font-weight: $font-weight-medium;
+      @include type-action;
     }
   }
 
@@ -313,7 +309,7 @@
     gap: $margin-group;
     min-width: 0;
     .textBlock__content p {
-      @include type-heading-sm;
+      @include type-editorial-copy;
     }
   }
   .studioIntro__details .textBlock__footer { margin-top: $margin-group; }
@@ -402,12 +398,3 @@
   .actions__arrow { flex: 0 0 auto; }
 }
 
-// Use the display face for service panel headings, not offer cards or controls.
-[data-page-id="studio"] :is(#studio-service-identity, #studio-service-website, #studio-service-integrations) .section__header .textBlock__title,
-[data-page-id="studio"] :is(#studio-service-identity, #studio-service-website, #studio-service-integrations) [data-editorial-area="description"] > .textBlock > .textBlock__header .textBlock__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
