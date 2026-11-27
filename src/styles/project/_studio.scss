@@ -35,7 +35,7 @@
     @include type-heading-xl;
     font-family: var(--font-display);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.15;
     letter-spacing: -0.015em;
     text-transform: uppercase;
   }
@@ -407,7 +407,7 @@
 [data-page-id="studio"] :is(#studio-service-identity, #studio-service-website, #studio-service-integrations) [data-editorial-area="description"] > .textBlock > .textBlock__header .textBlock__title {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
