@@ -6,7 +6,14 @@
     "motion": "none",
     "content": {
       "header": {
-        "title": "Une présence claire, cohérente et singulière."
+        "title": "Une présence claire, cohérente et singulière.",
+        "text": [
+          "Identité visuelle, création de sites internet et supports de communication sur mesure, entre Paris et La Réunion."
+        ],
+        "links": [
+          "talk-project",
+          "studio-services"
+        ]
       },
       "media": "appel-projets-opening"
     }
@@ -148,8 +155,8 @@
     "id": "approach-default",
     "type": "Section",
     "layout": "timeline",
-    "timelineOrientation": "horizontal",
-    "motion": "scene",
+    "timelineOrientation": "vertical",
+    "motion": "none",
     "motionPreset": "ambient",
     "source": {
       "collection": "approach"
@@ -287,8 +294,8 @@
         "eyebrow": "Parler d’un projet",
         "title": "Quelques lignes suffisent pour commencer.",
         "text": [
-          "Vous avez un projet de **site internet**, d’**identité visuelle** ou de **supports de communication** ? Que votre idée soit déjà précise ou encore en réflexion, vous n’avez pas besoin de tout définir avant de me contacter.",
-          "Racontez-moi **ce que vous avez en tête**, votre univers, ce qui existe déjà et ce que vous aimeriez créer ou faire évoluer. Ces premières informations me permettront de mieux comprendre **votre vision**, vos besoins et de préparer notre premier échange."
+          "Un site internet, une identité visuelle ou des supports de communication ? Quelques lignes sur votre projet suffisent pour commencer.",
+          "Vous pouvez aussi m’écrire directement à hello@chow-studio.com. Réponse généralement sous 1 à 2 jours ouvrés."
         ]
       },
       "form": "contact"
