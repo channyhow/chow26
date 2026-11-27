@@ -65,7 +65,7 @@
 .siteFooter__nav,
 .siteFooter__social,
 .siteFooter__legal { min-width: 0; 
-  padding-top: $space-3;
+  padding-top: $space-1;
   .actions { color: inherit; }
 
   .actions__link {
@@ -81,7 +81,7 @@
   justify-content: space-between;
   gap: $flow-tight $flow-loose;
   width: 100%;
-  opacity: $opacity-soft;
+  opacity: 1;
 }
 
 @include tablet-up {
@@ -132,7 +132,7 @@
   .siteFooter__identity { grid-column: 1 / -1; }
   .siteFooter__name { font-size: clamp(2rem, 9vw, 4rem); }
   .siteFooter__baseline { overflow-wrap: anywhere; }
-  .siteFooter__legal { opacity: $opacity-quiet; }
+  .siteFooter__legal { opacity: 1; }
 
   .siteFooter__meta {
     display: grid;
