@@ -31,6 +31,9 @@ Base scale (at 16px root): 8, 16, 32, 64, 96, 128px.
 Related details 8px; content 16px; distinct groups 32px; blocks 64px; section breathing room 64–128px where applicable.
 Grid: 4 mobile, 8 tablet, 12 desktop. Gutter 16–64px. Prefer alignment and whitespace over decorative containers. Use thin rules to group related information, not to separate every sentence.
 
+## Motion
+Shared interface timings: 60ms stagger, 180ms feedback, 360ms interface transitions, 640ms editorial reveals. Loader cycles and scroll-driven effects are separate choreography. Preserve reduced-motion support.
+
 ## Graphic language
 Strong uppercase wordmark, horizontal primary and rotated vertical secondary for suitable applications. Keep existing artwork until master vector assets are approved. Square-edged editorial images, subtle sand offset planes, simple arrows. Warm, tactile photography; avoid imposing the studio palette on client work.
 
