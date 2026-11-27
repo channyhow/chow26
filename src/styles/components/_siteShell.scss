@@ -37,9 +37,9 @@
 .header[data-over-color="accent"] { --menu-surface: var(--accent); --menu-ink: var(--primary); }
 .header[data-over-color="special"] { --menu-surface: var(--special); --menu-ink: var(--primary); }
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
-.header__logo { @include type-ui-lg; font-weight: $font-weight-bold; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
+.header__logo { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
 .header__nav { display: none; align-items: center; gap: 1.125rem; transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
-.header__nav > .header__navItem > a { @include type-ui-lg; font-weight: $font-weight-semibold; @include interactive-text; pointer-events: auto; text-decoration: none; }
+.header__nav > .header__navItem > a { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; text-decoration: none; }
 .header__nav > .header__navItem > a[aria-current="page"] { color: var(--accent); text-decoration: none; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
 .header__nav a[data-nav-variant="cta"] span:last-child { transition: transform $transition-hover; }
@@ -48,7 +48,7 @@
 .header__expanded { display: none; grid-template-rows: 0fr; overflow: hidden; opacity: 0; background: var(--secondary); color: var(--primary); pointer-events: none; transition: grid-template-rows 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 320ms ease-in, background-color $transition-interface, color $transition-interface; }
 .header__expandedInner { display: flex; min-height: 3.5rem; align-items: center; justify-content: center; flex-wrap: wrap; column-gap: $space-4; row-gap: $space-1; padding: $space-2 var(--header-gutter); }
 
-.header__expanded a { @include type-ui-compact; @include interactive-text; width: fit-content; opacity: 0; transform: translateY(0.3rem); transition: opacity 220ms ease, transform 240ms ease, color $transition-hover; }
+.header__expanded a { @include type-nav; font-size: $type-ui-compact; @include interactive-text; width: fit-content; opacity: 0; transform: translateY(0.3rem); transition: opacity 220ms ease, transform 240ms ease, color $transition-hover; }
 .header[data-submenu-open="true"] .header__expanded { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-out, ease, ease; }
 .header[data-submenu-open="true"] .header__expanded a { opacity: 1; transform: translateY(0); }
 @for $i from 1 through 3 {
@@ -56,7 +56,7 @@
 }
 .header__navItem:is(:hover, :focus-within) > a { color: var(--accent); }
 .header__menuSlot { opacity: var(--header-menu-opacity); transform: translate3d(calc(-50% + var(--header-menu-x)), -50%, 0); }
-.header__menuSlot .burgerButton { pointer-events: auto; }
+.header__menuSlot .burgerButton { @include type-nav; pointer-events: auto; }
 .site[data-drawer="menu"] .header, .site[data-drawer="contact"] .header, .site[data-drawer="reservation"] .header { color: var(--theme-secondary, var(--secondary)); }
 .site[data-drawer="menu"] .header { background: color-mix(in srgb, var(--theme-primary, var(--primary)) 82%, transparent); }
 
@@ -74,34 +74,11 @@
   .header[data-navigation="inline"] .header__menuSlot { display: none; }
 }
 
-@include mobile-down {
-  .header__logo,
-  .header__menuSlot .burgerButton {
-    font-weight: $font-weight-semibold;
-  }
-}
+
 
 .siteFooter__name a {
   color: inherit;
   text-decoration: none;
   @include interactive-text;
-}
-
-// Brand typography experiment: primary header and submenu labels.
-.header__logo,
-.header__nav > .header__navItem > a,
-.header__expanded a,
-.header__menuSlot .burgerButton {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.015em;
-}
-
-.header__logo,
-.header__nav > .header__navItem > a {
-  font-size: 1.25rem;
-  line-height: 1.2;
-  letter-spacing: 0.015em;
-  white-space: nowrap;
 }
 
