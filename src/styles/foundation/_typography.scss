@@ -155,7 +155,7 @@
 
 // Family and rhythm belong to semantic roles, not the size scale.
 @mixin type-brand {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: $font-weight-display;
   line-height: 1.15;
   letter-spacing: -0.01em;
