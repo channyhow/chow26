@@ -40,7 +40,7 @@
 @use "project/linkPage";
 
 :root {
-  --font-display: var(--font-heading);
+  --font-display: "Oswald", "DM Sans", sans-serif;
   color: var(--primary);
   background: var(--secondary);
   font-family: var(--font-body);
