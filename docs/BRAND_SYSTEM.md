@@ -1,4 +1,4 @@
-# CHOW STUDIO — Brand system
+# CHOW STUDIO | Brand system
 
 ## Direction
 Editorial, direct, warm, restrained. Client work supplies visual variety; the studio identity supplies structure.
