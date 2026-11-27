@@ -29,18 +29,14 @@
   // Reusable heading treatments; the surrounding layout owns reading width.
   &--title-display .textBlock__title {
     @include type-heading-xl;
-    font-weight: $font-weight-medium;
   }
 
   &--title-feature .textBlock__title {
     @include type-heading-lg;
-    font-weight: $font-weight-medium;
-    line-height: 1;
   }
 
   &--title-contact .textBlock__title {
     @include type-heading-lg;
-    line-height: 1;
   }
 
   @include mobile-down {
@@ -54,7 +50,7 @@
   }
 
   &--subtitle-hero .textBlock__subtitle p {
-    @include type-heading-xl;
+    @include type-editorial-copy($type-heading-xl);
   }
 
   &__subtitle p {
@@ -65,7 +61,7 @@
   &--subtitle-editorial,
   &--subtitle-editorial-responsive {
     .textBlock__subtitle p {
-      @include type-heading-md;
+      @include type-editorial-copy($type-heading-md);
     }
     .textBlock__subtitle .textBlock__copy {
       opacity: $opacity-muted;
@@ -79,7 +75,7 @@
   }
 
   &--copy-prominent .textBlock__content .textBlock__copy {
-    @include type-heading-sm;
+    @include type-editorial-copy;
     font-weight: $font-weight-medium;
   }
 
@@ -149,13 +145,13 @@
 }
 
 .textBlock--copy-story-lead .textBlock__content > :first-child {
-  @include type-heading-md;
+  @include type-editorial-copy($type-heading-md);
   max-width: 34ch;
 }
 
 @include mobile-down {
   .textBlock--copy-story-lead .textBlock__content > :first-child {
-    @include type-heading-sm;
+    @include type-editorial-copy($type-heading-sm);
   }
 }
 
