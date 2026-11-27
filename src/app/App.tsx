@@ -9,6 +9,7 @@ import { Seo } from "@/components/page/Seo";
 import pages from "@/data/pages.json";
 import type { PageData } from "@/types/content";
 
+const BrandGuidePage = lazy(() => import("@/app/BrandGuidePage").then((module) => ({ default: module.BrandGuidePage })));
 const BrandingPage = lazy(() => import("@/app/BrandingPage").then((module) => ({ default: module.BrandingPage })));
 const ProjectDetailPage = lazy(() => import("@/app/ProjectDetailPage").then((module) => ({ default: module.ProjectDetailPage })));
 const SystemPage = lazy(() => import("@/app/SystemPage").then((module) => ({ default: module.SystemPage })));
@@ -94,6 +95,7 @@ export function App() {
     <div className="routeTransition" key={location.pathname}>
       <Routes location={location}>
         <Route path="/system" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "System", robots: internalRobots }} slug="/system" /><SystemPage /><SystemReference /></Suspense>} />
+        <Route path="/brand-guide" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "CHOW Studio — Brand guide", robots: internalRobots }} slug="/brand-guide" /><BrandGuidePage /></Suspense>} />
         <Route path="/branding" element={<Suspense fallback={<RouteLoader />}><Seo seo={{ title: "Branding", robots: internalRobots }} slug="/branding" /><BrandingPage /></Suspense>} />
         <Route path="/projets/:slug" element={<Suspense fallback={<RouteLoader />}><ProjectDetailPage /></Suspense>} />
         <Route path="*" element={<RoutedPage />} />
