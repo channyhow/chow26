@@ -83,8 +83,8 @@
     min-width: 0;
 
     button {
-      @include type-body;
-      @include type-action;
+      @include type-nav($font-weight-regular);
+      font-size: clamp(1rem, 0.35vw + 0.9rem, 1.125rem);
       @include accent-interaction;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
@@ -113,7 +113,7 @@
   }
 
   .section__offerSwitcherNumber {
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-regular;
   }
 
   .section__offerSwitcherLabel {
