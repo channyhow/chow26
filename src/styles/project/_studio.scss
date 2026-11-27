@@ -394,6 +394,7 @@
   .actions__link {
     @include editorial-control-row;
     @include type-body;
+    @include type-action;
   }
   .actions__arrow { flex: 0 0 auto; }
 }
