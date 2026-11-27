@@ -890,3 +890,12 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     padding-block-start: $margin-content;
   }
 }
+
+// Brand typography experiment: only the opening statement.
+#home-opening .homeOpeningScene__statement .textBlock__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
