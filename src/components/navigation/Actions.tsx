@@ -6,6 +6,7 @@ import type { Action, ActionRef } from "@/types/content";
 
 export type ActionsProps = {
   links?: ActionRef[];
+  showArrows?: boolean;
   className?: string;
   variant?: "default" | "nav" | "social" | "panel";
 };
@@ -29,7 +30,7 @@ const getHash = (href: string) => {
   return hashIndex >= 0 ? href.slice(hashIndex) : "";
 };
 
-export function Actions({ links = [], className, variant = "default" }: ActionsProps) {
+export function Actions({ links = [], className, variant = "default", showArrows = true }: ActionsProps) {
   const { pathname } = useLocation();
   const isSocial = variant === "social";
   const resolvedLinks = resolveActions(links);
@@ -45,7 +46,7 @@ export function Actions({ links = [], className, variant = "default" }: ActionsP
         const external = Boolean(href && isExternalHref(href));
         const hasArrow = isSocial || actionVariant === "arrow" || actionVariant === "cta" || actionVariant === "accent";
         const classNames = clsx("actions__link", actionVariant && `actions__link--${actionVariant}`);
-        const content = <><span className="actions__label">{action.label}</span>{hasArrow ? <span className="actions__arrow" aria-hidden="true">{isSocial || external || href?.startsWith("mailto:") ? "↗" : "→"}</span> : null}</>;
+        const content = <><span className="actions__label">{action.label}</span>{showArrows && hasArrow ? <span className="actions__arrow" aria-hidden="true">{isSocial || external || href?.startsWith("mailto:") ? "↗" : "→"}</span> : null}</>;
 
         if (intent === "submit") {
           return <button key={`submit-${action.label}`} className={classNames} type="submit" data-intent="submit" data-priority={action.priority ?? "primary"}>{content}</button>;
