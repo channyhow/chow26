@@ -889,3 +889,8 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   max-width: none;
   @include desktop-up { font-size: $type-heading-lg; }
 }
+
+.projectFilters { display: flex; flex-wrap: wrap; align-items: center; gap: $space-2; margin-block: $space-2; }
+.projectFilters button { @include type-nav; color: inherit; background: transparent; border: 0; padding: $space-1 0; cursor: pointer; }
+.projectFilters button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: .2em; }
+.projectFilters button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
