@@ -186,3 +186,12 @@
     text-transform: none;
   }
 }
+
+// Primary menu navigation shares the header display face.
+.site .drawer[data-view="menu"] .drawer__nav a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+  letter-spacing: 0.015em;
+}
