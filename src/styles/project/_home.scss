@@ -244,10 +244,8 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
     // Same editorial scale as Studio's services introduction.
     // Apply type to the actual paragraph, not only its inline spans.
     .textBlock__group > p {
-      @include type-editorial-copy($type-heading-sm);
+      @include type-editorial-copy;
       color: $gray-500;
-      font-weight: $font-weight-medium;
-      line-height: 1.25;
     }
 
     .textBlock__copy {
@@ -263,7 +261,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   @include desktop-up {
     .textBlock__content .textBlock__group > p {
-      @include type-editorial-copy($type-heading-md);
+      @include type-editorial-copy;
     }
   }
 
@@ -396,8 +394,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
       max-width: $measure-header-copy;
 
       .textBlock__group > p {
-        @include type-editorial-copy($type-heading-sm);
-        line-height: 1.3;
+        @include type-editorial-copy;
       }
     }
   }
@@ -429,8 +426,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpenCall__details,
   .homeContact__story {
     .textBlock__content .textBlock__group > p {
-      @include type-editorial-copy($type-heading-sm);
-      line-height: 1.3;
+      @include type-editorial-copy;
     }
   }
 }
@@ -441,8 +437,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
   .homeOpenCall__details,
   .homeContact__story {
     .textBlock__content .textBlock__group > p {
-      @include type-editorial-copy($type-heading-md);
-      line-height: 1.3;
+      @include type-editorial-copy;
     }
   }
 }
@@ -455,7 +450,7 @@ html:has(.homeOpeningScene[data-expanded="false"]) body {
 
   .homeServicesStory__copy {
     .textBlock__title { @include type-heading-md; }
-    .textBlock__content .textBlock__group > p { @include type-editorial-copy($type-heading-md); line-height: 1.3; }
+    .textBlock__content .textBlock__group > p { @include type-editorial-copy; }
   }
 }
 
