@@ -15,7 +15,7 @@
         "panels": [
           {
             "id": "home-main-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -32,10 +32,10 @@
                 "ref": "projects-featured-gallery"
               },
               {
-                "ref": "home-opencall-preview"
+                "ref": "approach-default"
               }
             ],
-            "parallax": true
+            "parallax": false
           },
           {
             "id": "home-final-panel",
@@ -74,7 +74,7 @@
         "panels": [
           {
             "id": "projects-gallery-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -123,7 +123,7 @@
         "panels": [
           {
             "id": "studio-intro-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -137,7 +137,7 @@
           },
           {
             "id": "studio-identity-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -151,7 +151,7 @@
           },
           {
             "id": "studio-website-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -165,7 +165,7 @@
           },
           {
             "id": "studio-integrations-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -459,7 +459,7 @@
         "panels": [
           {
             "id": "contact-content-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
@@ -473,7 +473,7 @@
           },
           {
             "id": "contact-founder-panel",
-            "behavior": "sticky",
+            "behavior": "normal",
             "frame": "content",
             "size": "full",
             "align": "center",
