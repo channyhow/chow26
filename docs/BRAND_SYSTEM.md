@@ -12,6 +12,7 @@ Editorial, direct, warm, restrained. Client work supplies visual variety; the st
 | Sand / media backing | #E9D9CE |
 | Stone / secondary text | #6E6E69 |
 | Mist / rules | #D7D7D2 |
+| Warm ivory / stationery and editorial surface | #EFE8D7 |
 
 Orange is an accent, not the default colour for small text. Check contrast on each surface; use charcoal for essential copy. Print colours require a physical proof and printer-specific conversion. Other existing functional tokens are not core brand colours.
 
@@ -32,7 +33,7 @@ Strong uppercase wordmark, horizontal primary and rotated vertical secondary for
 1080 × 1350 feed, 1080 × 1920 stories. Use a 72px feed margin and 24px modular spacing; adjust story safe zones for platform overlays. Oswald 600–700 for headlines (roughly 72–112px), IBM Plex Sans 400 for copy (roughly 32–40px), Oswald 400–500 for labels (roughly 24–32px). Test at phone size. Alternate project-led imagery, typographic statements, and process/details. Keep one main message per slide.
 
 ## Print and other applications
-Use horizontal or vertical wordmark with generous clear space. Business cards: charcoal on orange recto, charcoal on warm light stock verso. Use IBM Plex Sans for contact details; Oswald for names and labels. Test small text, ink and stock before production. Proposals and email signatures use the same family hierarchy, with practical fallback fonts for email.
+Use horizontal or vertical wordmark with generous clear space. Business cards: charcoal on orange recto, charcoal on warm ivory verso. Use IBM Plex Sans for contact details; Oswald for names and labels. Test small text, ink and stock before production. Proposals and email signatures use the same family hierarchy, with practical fallback fonts for email.
 
 ## Verification
 This is the initial consolidated reference, not a completed visual regression audit. Validate all routes, responsive sizes, hover/focus states, contrast, font loading, and build before merging. Social dimensions and print treatments are proposed application rules, not exported artwork.
