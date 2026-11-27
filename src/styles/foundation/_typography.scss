@@ -96,10 +96,7 @@
 
 
 @mixin type-lead {
-  font-family: var(--font-body);
-  font-size: $type-lead;
-  font-weight: $font-weight-medium;
-  line-height: 1.42;
+  @include type-body;
 }
 
 @mixin type-heading-sm {
@@ -163,12 +160,10 @@
   text-transform: uppercase;
 }
 
-@mixin type-editorial-copy($size: $type-heading-sm) {
-  font-family: var(--font-body);
-  font-size: $size;
-  font-weight: $font-weight-regular;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
+@mixin type-editorial-copy($size: $type-body) {
+  // Legacy size argument retained for compatibility; prose uses one scale.
+  @include type-body;
+  letter-spacing: normal;
   text-transform: none;
 }
 
