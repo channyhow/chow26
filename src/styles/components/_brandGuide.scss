@@ -68,3 +68,8 @@
 .brandGuide__cardRole { position: absolute; top: 47%; left: 9%; font-size: 3.3cqw; }
 .brandGuide__cardContact { position: absolute; bottom: 10%; left: 9%; font-size: 2.8cqw; }
 .brandGuide__cardVertical { position: absolute; right: 7%; bottom: 9%; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 9.2cqw; white-space: nowrap; }
+
+.brandGuide__palette--primary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.brandGuide__palette--primary .brandGuide__swatch { min-height: $space-6 + $space-4; }
+.brandGuide__palette--secondary { grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
+.brandGuide__palette--secondary .brandGuide__swatch { min-height: $space-6; }
