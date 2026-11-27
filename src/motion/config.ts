@@ -3,12 +3,12 @@ import type { Variants } from "motion/react";
 export const motionConfig = {
   duration: {
     fast: 0.18,
-    default: 0.4,
+    default: 0.36,
     slow: 0.64,
   },
   delay: {
-    stagger: 0.1,
-    staggerFast: 0.08,
+    stagger: 0.06,
+    staggerFast: 0.06,
   },
   distance: {
     route: 6,
