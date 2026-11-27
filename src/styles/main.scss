@@ -1,4 +1,5 @@
 @use "foundation/fonts";
+@use "foundation/typography" as *;
 @use "variants/variants";
 @use "utilities/utilities";
 @use "layout/page";
@@ -39,10 +40,10 @@
 @use "project/linkPage";
 
 :root {
-  --font-display: "Oswald", "DM Sans", sans-serif;
+  --font-display: var(--font-heading);
   color: var(--primary);
   background: var(--secondary);
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-body);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -88,21 +89,6 @@ textarea { font: inherit; }
   html { scroll-behavior: auto; }
 }
 
-// Shared brand typography: preserve existing responsive size roles.
-// Explicit title roles win over legacy layout-specific typography mixins.
-:is(h1, h2, h3, h4, h5, h6, .textBlock__title):not(.header *) {
-  font-family: var(--font-display) !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
-  line-height: 1.15 !important;
-  letter-spacing: -0.01em !important;
-}
 
-// Editorial arrow actions share one treatment, independent of destination.
-:is([data-page-id="home"], [data-page-id="studio"]) .section .actions:not(.actions--nav, .actions--social, .actions--panel) .actions__link:has(.actions__arrow) {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
-}
+// Low-specificity defaults for headings outside TextBlock.
+:where(h1, h2, h3, h4, h5, h6) { @include type-brand; }
