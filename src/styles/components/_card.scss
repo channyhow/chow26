@@ -152,7 +152,7 @@
     padding-top: $padding-content;
 
     .actions__link {
-      font-weight: $font-weight-medium;
+      @include type-action;
     }
   }
 }
@@ -195,7 +195,7 @@
   }
 
   .textBlock__subtitle {
-    @include type-heading-sm;
+    @include type-editorial-copy;
   }
 
   .textBlock__content {
