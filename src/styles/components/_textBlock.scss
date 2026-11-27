@@ -50,7 +50,7 @@
   }
 
   &--subtitle-hero .textBlock__subtitle p {
-    @include type-editorial-copy($type-heading-xl);
+    @include type-editorial-copy;
   }
 
   &__subtitle p {
@@ -61,7 +61,7 @@
   &--subtitle-editorial,
   &--subtitle-editorial-responsive {
     .textBlock__subtitle p {
-      @include type-editorial-copy($type-heading-md);
+      @include type-editorial-copy;
     }
     .textBlock__subtitle .textBlock__copy {
       opacity: $opacity-muted;
@@ -70,13 +70,12 @@
 
   @include desktop-down {
     &--subtitle-editorial-responsive .textBlock__subtitle p {
-      @include type-body;
+      @include type-editorial-copy;
     }
   }
 
   &--copy-prominent .textBlock__content .textBlock__copy {
     @include type-editorial-copy;
-    font-weight: $font-weight-medium;
   }
 
   &__subtitle strong,
@@ -145,13 +144,13 @@
 }
 
 .textBlock--copy-story-lead .textBlock__content > :first-child {
-  @include type-editorial-copy($type-heading-md);
+  @include type-editorial-copy;
   max-width: 34ch;
 }
 
 @include mobile-down {
   .textBlock--copy-story-lead .textBlock__content > :first-child {
-    @include type-editorial-copy($type-heading-sm);
+    @include type-editorial-copy;
   }
 }
 
