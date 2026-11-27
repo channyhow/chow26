@@ -1,0 +1,43 @@
+@use "../foundation/tokens" as *;
+@use "../foundation/typography" as *;
+.brandGuide {
+  max-width: $container-wide;
+  margin-inline: auto;
+  padding: calc(#{$header-height} + #{$space-3}) $page-gutter $space-6;
+  color: $color-primary;
+  background: $color-secondary;
+  h1,h2,h3,p { margin: 0; }
+  h1 { @include type-display-xl; }
+  h2 { @include type-heading-lg; }
+  h3 { @include type-heading-md; }
+  section { display:grid; gap:$space-3; padding-block:$space-4; border-top:1px solid $gray-300; scroll-margin-top:$header-height; }
+  section > p { max-width:$measure-text; }
+  small { @include type-caption; }
+}
+.brandGuide__hero { background:$color-accent; padding:$space-3; display:grid; gap:$space-2; }
+.brandGuide__nav { display:flex; flex-wrap:wrap; gap:$space-2; padding-block:$space-3; a { @include type-nav; } }
+.brandGuide__palette,.brandGuide__applications,.brandGuide__families { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%, 12rem),1fr)); gap:$space-2; }
+.brandGuide__swatch { border:1px solid $gray-300; text-align:left; cursor:pointer; min-height:10rem; padding:$space-2; display:flex; flex-direction:column; justify-content:end; color:$color-primary; }
+@each $i,$color in (0:$color-primary,1:$color-secondary,2:$color-accent,3:$color-surface-beige,4:$gray-500,5:$gray-300) {
+  .brandGuide__swatch[data-swatch="#{$i}"] { background:$color; }
+}
+.brandGuide__swatch[data-swatch="0"],.brandGuide__swatch[data-swatch="4"] { color:$gray-0; }
+.brandGuide__plex { font-family:var(--font-body); font-size:$type-heading-lg; }
+.brandGuide__samples { display:grid; gap:$space-2; > div { border-bottom:1px solid $gray-300; padding-bottom:$space-2; overflow-wrap:anywhere; } }
+.brandGuide__samples {
+ [data-type="display-xl"] { @include type-display-xl; }
+ [data-type="display-lg"] { @include type-display-lg; }
+ [data-type="heading-xl"] { @include type-heading-xl; }
+ [data-type="heading-lg"] { @include type-heading-lg; }
+ [data-type="heading-md"] { @include type-heading-md; }
+ [data-type="heading-sm"] { @include type-heading-sm; }
+ [data-type="nav"] { @include type-nav; }
+ [data-type="action"] { @include type-action; }
+ [data-type="body"] { @include type-body; }
+ [data-type="caption"] { @include type-caption; }
+}
+.brandGuide__rhythm { display:grid; gap:$space-1; > div { display:flex; align-items:center; gap:$space-2; } span { width:4rem; } i { height:$space-2; background:$color-accent; } }
+@each $i,$space in (0:$space-1,1:$space-2,2:$space-3,3:$space-4,4:$space-5,5:$space-6) { .brandGuide__rhythm i[data-space="#{$i}"] { width:$space; } }
+.brandGuide__applications > div { aspect-ratio:4/5; padding:$space-2; display:flex; flex-direction:column; justify-content:space-between; background:$color-accent; strong { @include type-heading-lg; } }
+.brandGuide__applications > div:nth-child(2) { background:$color-primary; color:$color-secondary; }
+.brandGuide__applications > div:nth-child(3) { background:$color-surface-beige; }
