@@ -69,7 +69,7 @@
 
 .actions__link:not(.actions__link--primary, .actions__link--accent, .actions__link--outline) {
   @include hover {
-    color: var(--accent);
+    color: inherit;
     .actions__label { background-size: 100% 1px; }
     .actions__arrow { transform: translate(0.18em, -0.08em); }
   }
@@ -87,19 +87,20 @@
   color: var(--secondary);
 
   @include hover {
-    border-color: var(--accent);
+    border-color: inherit;
     background: var(--secondary);
-    color: var(--accent);
+    color: var(--primary);
     box-shadow: 0 0.35rem 1rem color-mix(in srgb, var(--primary) 16%, transparent);
     transform: translateY(-1px);
   }
 }
 
 .actions__link--accent {
-  color: var(--accent);
+  color: inherit;
+  .actions__label { background-size: 100% 1px; }
 
   @include hover {
-    color: var(--accent);
+    color: inherit;
     .actions__label { background-size: 100% 1px; }
     .actions__arrow { transform: translate(0.18em, -0.08em); }
   }
@@ -107,8 +108,8 @@
 
 .actions__link--outline {
   @include hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: inherit;
+    color: inherit;
   }
 }
 
@@ -117,8 +118,8 @@
 .actions__link:not(:disabled, [aria-disabled="true"]) {
   &:focus-visible,
   &:active {
-    color: var(--accent);
-    border-color: var(--accent);
+    color: inherit;
+    border-color: inherit;
   }
 
   &:focus-visible {
@@ -178,7 +179,7 @@
     @include glass;
 
     @include hover {
-      color: var(--accent);
+      color: inherit;
       background: color-mix(in srgb, #{$gray-100} 4%, transparent);
       transform: translateX(0.2rem);
       .actions__arrow { transform: translate(0.22rem, -0.12rem); }
@@ -194,7 +195,7 @@
 
     @include hover {
       background: color-mix(in srgb, var(--accent) 14%, transparent);
-      color: var(--accent);
+      color: inherit;
     }
   }
 }
@@ -209,7 +210,7 @@
 /* Variant-specific backgrounds must not obscure accent interaction feedback. */
 .actions--panel .actions__link:not(:disabled, [aria-disabled="true"]) {
   &:focus-visible,
-  &:active { color: var(--accent); }
+  &:active { color: inherit; }
 }
 
 
