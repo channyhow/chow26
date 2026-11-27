@@ -35,11 +35,11 @@ const themeStyle: ThemeStyle = {
   "--secondary": background,
   "--accent": colors.accent,
   "--special": colors.special,
-  "--font-heading-classic": fontStack(fonts.classicHeading, "serif"),
-  "--font-heading-editorial": fontStack(fonts.editorialHeading, "serif"),
-  "--font-heading-organic": fontStack(fonts.organicHeading, "serif"),
+  "--font-heading-classic": fontStack(fonts.classicHeading, "sans-serif"),
+  "--font-heading-editorial": fontStack(fonts.editorialHeading, "sans-serif"),
+  "--font-heading-organic": fontStack(fonts.organicHeading, "sans-serif"),
   "--font-body-project": fontStack(fonts.body, "sans-serif"),
-  "--font-heading": fontStack(headingFont, "serif"),
+  "--font-heading": fontStack(headingFont, "sans-serif"),
   "--font-body": fontStack(fonts.body, "sans-serif"),
 };
 
