@@ -372,9 +372,12 @@
 
 #studio-approach .grid__item:first-child .textBlock__title {
   @include type-heading-xl;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
   max-width: 11ch;
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
 }
 
 #studio-approach .grid__item:not(:first-child) .textBlock__title {
@@ -401,6 +404,10 @@
 
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-lg;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
     max-width: 10ch;
   }
 
@@ -444,6 +451,10 @@
 
   #studio-approach .grid__item:first-child .textBlock__title {
     @include type-heading-lg;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
     max-width: 9ch;
   }
 
