@@ -47,8 +47,8 @@
       "schedule": { "bookingLabel": "Échanger" }
     },
     "loader": { "messages": ["Clarifier.", "Concevoir.", "Construire."] },
-    "experience": { "scrollProgress": "rail", "sectionReveal": true, "parallax": true, "footerReveal": true },
-    "floatingAction": { "enabled": true, "label": "Komen i lé ?", "ariaLabel": "Parler d’un projet", "hideWhileVisible": "#home-opening", "items": ["talk-project"] }
+    "experience": { "scrollProgress": false, "sectionReveal": true, "parallax": false, "footerReveal": true },
+    "floatingAction": { "enabled": true, "label": "Komen i lé ? | Parlons projet", "ariaLabel": "Parler d’un projet", "hideWhileVisible": "#home-opening", "items": ["talk-project"] }
   },
   "theme": {
     "variant": "editorial",
