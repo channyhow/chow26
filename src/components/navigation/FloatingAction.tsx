@@ -41,13 +41,11 @@ export function FloatingAction() {
       {items.length === 1 && singleItem?.href ? (
         <Link className="floatingAction__trigger" to={singleItem.href} viewTransition aria-label={singleItem.label}>
           <span className="floatingAction__label">{config.label}</span>
-          <span className="floatingAction__mark" aria-hidden="true">↗</span>
         </Link>
       ) : (
         <details className="floatingAction__details">
           <summary className="floatingAction__trigger">
             <span className="floatingAction__label">{config.label}</span>
-            <span className="floatingAction__mark" aria-hidden="true">↗</span>
           </summary>
           <nav className="floatingAction__menu" aria-label={config.ariaLabel}>
             {items.map((item) => item.href ? (
