@@ -36,8 +36,15 @@
   min-width: 0;
 }
 
-.siteFooter__baseline,
-.siteFooter__meta { @include type-ui-compact; }
+.siteFooter__baseline { @include type-ui-compact; }
+
+@mixin footer-meta-type {
+  @include type-nav($font-weight-regular);
+  font-size: clamp(0.875rem, 0.3vw + 0.8rem, 1rem);
+  line-height: 1.4;
+}
+
+.siteFooter__meta { @include footer-meta-type; }
 
 .siteFooter__name {
   @include type-heading-lg;
@@ -131,9 +138,9 @@
     display: grid;
     justify-content: stretch;
     max-width: 100%;
-    @include type-caption;
+    @include footer-meta-type;
   }
 }
 
 
-:is(.siteFooter__nav, .siteFooter__social, .siteFooter__legal) .actions__link { @include type-nav($font-weight-regular); font-size: $type-ui-compact; }
+:is(.siteFooter__nav, .siteFooter__social, .siteFooter__legal) .actions__link { @include type-nav($font-weight-regular); font-size: clamp(1.125rem, 0.4vw + 1rem, 1.25rem); line-height: 1.4; }
