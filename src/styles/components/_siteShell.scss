@@ -38,7 +38,7 @@
 .header[data-over-color="special"] { --menu-surface: var(--special); --menu-ink: var(--primary); }
 .header__logo, .header__nav, .header__menuSlot { position: absolute; top: 50%; left: 50%; will-change: transform, opacity; }
 .header__logo { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; transform: translate3d(calc(-50% + var(--header-logo-x)), -50%, 0); }
-.header__nav { display: none; align-items: center; gap: 1.125rem; transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
+.header__nav { display: none; align-items: center; gap: $space-2; transform: translate3d(calc(-50% + var(--header-nav-x)), -50%, 0); }
 .header__nav > .header__navItem > a { @include type-nav; white-space: nowrap; @include interactive-text; pointer-events: auto; text-decoration: none; }
 .header__nav > .header__navItem > a[aria-current="page"] { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
 .header__nav a[data-nav-variant="cta"] { display: inline-flex; align-items: center; gap: 0.45em; }
