@@ -167,7 +167,7 @@ function createProjectPage(project: ProjectRecord): PageData {
     panels: [
       {
         id: `project-${project.id}-related-panel`,
-        behavior: "sticky",
+        behavior: "normal",
         frame: "content",
         size: "full",
         align: "center",
