@@ -136,4 +136,4 @@
 }
 
 
-:is(.siteFooter__nav, .siteFooter__social, .siteFooter__legal) .actions__link { @include type-nav; font-size: $type-ui-compact; }
+:is(.siteFooter__nav, .siteFooter__social, .siteFooter__legal) .actions__link { @include type-nav($font-weight-regular); font-size: $type-ui-compact; }
