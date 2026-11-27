@@ -65,7 +65,7 @@
 }
 
 .brandingPage__manifesto p:first-child {
-  @include type-heading-lg;
+  @include type-editorial-copy($type-heading-lg);
   max-width: 15ch;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .brandingPage__typeLine p {
-  @include type-heading-sm;
+  @include type-editorial-copy;
 }
 
 .brandingPage__typeLine small,
