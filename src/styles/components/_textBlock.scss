@@ -45,12 +45,9 @@
     }
   }
 
-  &--title-hero .textBlock__title {
-    @include type-heading-xl;
-  }
-
+  &--title-hero .textBlock__title,
   &--subtitle-hero .textBlock__subtitle p {
-    @include type-editorial-copy;
+    @include type-heading-xl;
   }
 
   &__subtitle p {
