@@ -169,5 +169,6 @@
 
 @mixin type-action {
   @include type-brand($font-weight-medium);
-  letter-spacing: 0.01em;
+  font-size: $type-nav;
+  letter-spacing: 0.015em;
 }
