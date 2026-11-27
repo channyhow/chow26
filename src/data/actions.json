@@ -94,7 +94,7 @@
     "variant": "arrow"
   },
   "studio-services": {
-    "label": "Voir les accompagnements",
+    "label": "Découvrir les services",
     "href": "/studio",
     "intent": "navigate",
     "variant": "cta",
@@ -131,7 +131,7 @@
     "variant": "arrow"
   },
   "approach-services": {
-    "label": "Voir les accompagnements",
+    "label": "Découvrir les services",
     "href": "/studio",
     "intent": "navigate"
   },
