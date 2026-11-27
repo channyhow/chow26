@@ -4,12 +4,12 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 
 import muxTokenHandler from "./netlify/functions/mux-token.mjs";
-import actionsData from "./src/data/actions.json";
-import collectionsData from "./src/data/collections.json";
-import globalBlocksData from "./src/data/globalBlocks.json";
-import mediaData from "./src/data/media.json";
-import { blockRegistrySchema, collectionsSchema } from "./src/data/schemas";
-import siteData from "./src/data/site.json";
+import actionsData from "./src/data/actions.json" with { type: "json" };
+import collectionsData from "./src/data/collections.json" with { type: "json" };
+import globalBlocksData from "./src/data/globalBlocks.json" with { type: "json" };
+import mediaData from "./src/data/media.json" with { type: "json" };
+import { blockRegistrySchema, collectionsSchema } from "./src/data/schemas.ts";
+import siteData from "./src/data/site.json" with { type: "json" };
 
 function validateStaticData() {
   collectionsSchema.parse(collectionsData);
