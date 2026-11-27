@@ -37,7 +37,7 @@
 
 
 @mixin type-ui {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-size: $type-ui;
   font-weight: $font-weight-semibold;
   line-height: 1.15;
@@ -69,12 +69,10 @@
 }
 
 @mixin type-nav {
-  font-family: var(--font-body);
+  @include type-brand;
   font-size: $type-nav;
-  font-weight: $font-weight-semibold;
   line-height: 1.2;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.015em;
 }
 
 @mixin type-body-sm {
@@ -104,11 +102,8 @@
 }
 
 @mixin type-heading-sm {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-sm;
-  font-weight: $font-weight-medium;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
 }
 @mixin type-lead-bold {
   @include type-lead;
@@ -116,59 +111,37 @@
 }
 
 @mixin type-heading-md {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-md;
-  font-weight: $font-weight-medium;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
 }
 
 @mixin type-heading-lg {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-lg;
-  font-weight: $font-weight-medium;
-  line-height: 0.99;
-  letter-spacing: -0.018em;
 }
 
 @mixin type-heading-xl {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-xl;
-  font-weight: $font-weight-medium;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
 }
 
 @mixin type-heading-xl-semibold {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-xl;
-  font-weight: $font-weight-semibold;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
 }
 
 @mixin type-heading-xl-bold {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-heading-xl;
-  font-weight: $font-weight-bold;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
 }
 @mixin type-display-lg {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-display-lg;
-  font-weight: $font-weight-bold;
-  line-height: 0.96;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
 }
 
 @mixin type-display-xl {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-display-xl;
-  font-weight: $font-weight-bold;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
 }
 
 @mixin type-heading {
@@ -176,9 +149,29 @@
 }
 
 @mixin type-display {
-  font-family: var(--font-heading);
+  @include type-brand;
   font-size: $type-display;
-  font-weight: $font-weight-semibold;
-  line-height: 0.96;
-  letter-spacing: -0.03em;
+}
+
+// Family and rhythm belong to semantic roles, not the size scale.
+@mixin type-brand {
+  font-family: var(--font-heading);
+  font-weight: $font-weight-display;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+@mixin type-editorial-copy($size: $type-heading-sm) {
+  font-family: var(--font-body);
+  font-size: $size;
+  font-weight: $font-weight-medium;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+@mixin type-action {
+  @include type-brand;
+  letter-spacing: 0.01em;
 }
