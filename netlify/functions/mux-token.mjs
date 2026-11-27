@@ -1,6 +1,6 @@
 import { createPrivateKey, sign } from "node:crypto";
 
-import mediaData from "../../src/data/media.json";
+import mediaData from "../../src/data/media.json" with { type: "json" };
 
 const TOKEN_TTL_SECONDS = 15 * 60;
 
