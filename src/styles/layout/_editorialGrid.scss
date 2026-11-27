@@ -149,7 +149,7 @@
     padding-block: $space-2;
   }
 
-  &__specLabel { @include type-heading-sm; opacity: $opacity-muted; }
+  &__specLabel { @include type-editorial-copy; opacity: $opacity-muted; }
   &__specList {
     display: grid;
     gap: $space-1;
