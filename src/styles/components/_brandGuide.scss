@@ -42,7 +42,7 @@
 .brandGuide__applications > div:nth-child(2) { background:$color-primary; color:$color-secondary; }
 .brandGuide__applications > div:nth-child(3) { background:$color-surface-beige; }
 
- // Stationery specimen: screenshot-derived colours, separate from digital palette.
+ // Stationery specimen: reuse the canonical brand palette.
 .brandGuide__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
@@ -54,14 +54,14 @@
   position: relative;
   container-type: inline-size;
   aspect-ratio: 85 / 55;
-  color: #000;
+  color: $color-primary;
   overflow: hidden;
   font-family: var(--font-body);
   line-height: 1.15;
   strong { @include type-brand; line-height: 1; }
 }
-.brandGuide__card--front { background: #a75038; }
-.brandGuide__card--back { background: #f1ead9; }
+.brandGuide__card--front { background: $color-accent; }
+.brandGuide__card--back { background: $color-secondary; }
 .brandGuide__cardWordmark { position: absolute; top: 10%; left: 7%; font-size: 14.5cqw; white-space: nowrap; }
 .brandGuide__cardBaseline { position: absolute; bottom: 9%; right: 7%; font-family: var(--font-display); font-weight: $font-weight-medium; font-size: 2.4cqw; }
 .brandGuide__cardName { position: absolute; top: 12%; left: 9%; font-size: 4.1cqw; }
