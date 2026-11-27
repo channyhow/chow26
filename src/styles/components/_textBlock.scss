@@ -64,7 +64,8 @@
       @include type-editorial-copy;
     }
     .textBlock__subtitle .textBlock__copy {
-      opacity: $opacity-muted;
+      opacity: 1;
+      color: color-mix(in srgb, currentColor 76%, var(--secondary));
     }
   }
 
@@ -100,7 +101,8 @@
   }
   &--copy-muted .textBlock__content .textBlock__copy,
   &--copy-prominent .textBlock__content .textBlock__copy {
-    opacity: $opacity-muted;
+    opacity: 1;
+      color: color-mix(in srgb, currentColor 76%, var(--secondary));
   }
   &__footer {
     gap: $flow-default;
@@ -159,27 +161,28 @@
     display: grid;
     gap: 0;
     width: 100%;
-    margin-top: $margin-content;
+    margin-top: 0;
     padding-top: 0;
   }
 
   .textBlock__meta > * {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    gap: $margin-content;
+    gap: $flow-tight;
     padding-block: $space-2;
     border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
   }
 
   .textBlock__metaLabel {
     display: block;
-    color: $gray-700;
-    font-weight: $font-weight-regular;
+    @include type-nav($font-weight-regular);
+    color: inherit;
   }
 
   .textBlock__metaValue,
   .textBlock__meta > *:last-child .textBlock__metaValue {
+    @include type-body;
     color: inherit;
     opacity: 1;
   }
@@ -265,7 +268,8 @@
   .textBlock__content .textBlock__copy,
   .textBlock__metaLabel {
     color: inherit;
-    opacity: $opacity-muted;
+    opacity: 1;
+      color: color-mix(in srgb, currentColor 76%, var(--secondary));
   }
 }
 
