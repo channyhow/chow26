@@ -37,9 +37,7 @@
 }
 
 .siteFooter__baseline,
-.siteFooter__meta,
-.siteFooter__social .actions__link,
-.siteFooter__legal .actions__link { @include type-ui-compact; }
+.siteFooter__meta { @include type-ui-compact; }
 
 .siteFooter__name {
   @include type-heading-lg;
@@ -138,4 +136,4 @@
 }
 
 
-.siteFooter__nav .actions__link { @include type-nav; font-size: $type-ui-compact; }
+:is(.siteFooter__nav, .siteFooter__social, .siteFooter__legal) .actions__link { @include type-nav; font-size: $type-ui-compact; }
