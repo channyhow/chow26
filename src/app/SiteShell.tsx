@@ -8,7 +8,6 @@ import { Header } from "@/components/navigation/Header";
 import siteData from "@/data/site.json";
 import { selectDrawerView, selectOverlayOpen, useUIStore } from "@/state/uiStore";
 import type { StyleVariant, Tone } from "@/types/content";
-import { SmoothScroll } from "./SmoothScroll";
 
 type ThemeStyle = CSSProperties & Record<`--${string}`, string>;
 
@@ -60,7 +59,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
       data-minimal={isLinkPage ? "true" : "false"}
       style={themeStyle}
     >
-      <SmoothScroll />
       {/* <ScrollProgress mode={scrollProgress} /> */}
       <Header />
       <main id="main-content" className="site__canvas" tabIndex={-1}>{children}</main>
